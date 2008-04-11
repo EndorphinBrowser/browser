@@ -152,7 +152,7 @@ void tst_TabWidget::addWebAction()
 
     SubTabWidget widget;
     widget.show();
-    
+
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
     QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
@@ -163,7 +163,7 @@ void tst_TabWidget::addWebAction()
 
     QAction *action = new QAction(&widget);
     widget.addWebAction(action, webAction);
-    
+
     widget.newTab();
     QVERIFY(!action->isEnabled());
     widget.loadUrlInCurrentTab(QUrl("about:config"));
@@ -173,7 +173,7 @@ void tst_TabWidget::addWebAction()
     QVERIFY(action->isEnabled());
     widget.newTab();
     QVERIFY(!action->isEnabled());
-    
+
     QCOMPARE(spy0.count(), 0);
     QCOMPARE(spy1.count(), 0);
     QVERIFY(spy2.count() > 0);

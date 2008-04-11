@@ -20,11 +20,11 @@
 #include <QtGui/QtGui>
 #include <QtNetwork/QtNetwork>
 #include "downloadmanager.h"
- 
+
 int main(int argc, char **argv)
 {
     QApplication application(argc, argv);
-    
+
     DownloadManager manager;
     QUrl url("http://10.0.0.3/~ben/distccKNOPPIX-1.3-2004-08-20-gcc-3.3.iso");
     manager.download(url);

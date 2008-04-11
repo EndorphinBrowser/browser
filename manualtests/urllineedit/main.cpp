@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     BrowserApplication application(argc, argv);
     QCoreApplication::setApplicationName(QLatin1String("urllineeditexample"));
     QMainWindow w;
-    
+
     QWidget *window = new QWidget;
     QComboBox *comboBox = new QComboBox(window);
     comboBox->setEditable(true);

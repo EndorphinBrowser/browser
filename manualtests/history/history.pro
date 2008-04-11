@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = 
+TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 
@@ -8,4 +8,4 @@ include(../../autotests/modeltest/modeltest.pri)
 
 # Input
 SOURCES += main.cpp
-HEADERS += 
+HEADERS +=

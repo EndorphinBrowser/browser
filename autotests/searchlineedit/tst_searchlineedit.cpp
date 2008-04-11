@@ -133,7 +133,7 @@ void tst_SearchLineEdit::setMenu()
     QMenu *newMenu = new QMenu(&edit);
     edit.setMenu(newMenu);
     QCOMPARE(edit.menu(), newMenu);
-    
+
     edit.show();
     QList<QAbstractButton *> widgets = edit.findChildren<QAbstractButton *>(QString("SearchButton"));
     QSize oldSize = widgets.at(0)->size();

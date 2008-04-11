@@ -41,7 +41,7 @@ private slots:
 // Subclass that exposes the protected functions.
 class SubAddBookmarkDialog : public AddBookmarkDialog
 {
-    
+
 public:
     SubAddBookmarkDialog(const QString &url, const QString &title, QWidget *parent, BookmarksManager *manager)
         : AddBookmarkDialog(url, title, parent, manager){}
@@ -125,7 +125,7 @@ void tst_AddBookmarkDialog::addbookmarkdialog()
     QVERIFY(buttonBox);
     QPushButton *pushButton = buttonBox->button(button);
     pushButton->click();
-    
+
     QCOMPARE(spy.count(), menuCount + toolbarCount);
 
     QCOMPARE(menu->children().count(), menuCount);

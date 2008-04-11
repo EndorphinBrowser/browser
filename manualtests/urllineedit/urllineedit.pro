@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = 
+TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 
@@ -7,4 +7,4 @@ include(../manualtests.pri)
 
 # Input
 SOURCES += main.cpp
-HEADERS += 
+HEADERS +=
