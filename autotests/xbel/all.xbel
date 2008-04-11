@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel>
+<xbel version="1.0">
+    <folder>
+    </folder>
+
+    <folder folded="no">
+    </folder>
+
+    <folder folded="yes">
+        <title>Folder Title</title>
+        <bookmark href="http://www.foo.com/">
+            <title>Title</title>
+        </bookmark>
+        <bookmark href="http://www.bar.com/">
+            <title>Title 2</title>
+        </bookmark>
+    </folder>
+
+    <folder folded="no">
+        <title>Has SubFolder</title>
+	<separator/>
+        <folder folded="no">
+            <title>SubFolder</title>
+            <bookmark href="http://www.foo.com">
+                <title>Title</title>
+            </bookmark>
+            <separator/>
+            <bookmark href="http://www.foo.com">
+                <title>Title3</title>
+            </bookmark>
+        </folder>
+	<separator/>
+    </folder>
+</xbel>
