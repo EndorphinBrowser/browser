@@ -1,3 +1,22 @@
+/*
+ * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA  02110-1301  USA
+ */
+
 /****************************************************************************
 **
 ** Copyright (C) 2007-2008 Trolltech ASA. All rights reserved.
@@ -435,7 +454,7 @@ void BrowserMainWindow::setupMenu()
 
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(tr("About &Qt"), qApp, SLOT(aboutQt()));
-    helpMenu->addAction(tr("About &Demo Browser"), this, SLOT(slotAboutApplication()));
+    helpMenu->addAction(tr("About &Arora"), this, SLOT(slotAboutApplication()));
 }
 
 void BrowserMainWindow::setupToolBar()
@@ -622,12 +641,12 @@ void BrowserMainWindow::slotUpdateStatusbar(const QString &string)
 void BrowserMainWindow::slotUpdateWindowTitle(const QString &title)
 {
     if (title.isEmpty()) {
-        setWindowTitle(tr("Qt Demo Browser"));
+        setWindowTitle(tr("Arora"));
     } else {
 #if defined(Q_WS_MAC)
         setWindowTitle(title);
 #else
-        setWindowTitle(tr("%1 - Qt Demo Browser", "Page title and Browser name").arg(title));
+        setWindowTitle(tr("%1 - Arora", "Page title and Browser name").arg(title));
 #endif
     }
 }
