@@ -1,3 +1,22 @@
+/*
+ * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA  02110-1301  USA
+ */
+
 /****************************************************************************
 **
 ** Copyright (C) 2007-2008 Trolltech ASA. All rights reserved.
@@ -131,6 +150,7 @@ class QLineEdit;
 class QMenu;
 class QStackedWidget;
 QT_END_NAMESPACE
+class WebViewSearch;
 /*!
     TabWidget that contains WebViews and a stack widget of associated line edits.
 
@@ -173,6 +193,7 @@ public:
     QLineEdit *currentLineEdit() const;
     WebView *currentWebView() const;
     WebView *webView(int index) const;
+    WebViewSearch *webViewSearch(int index) const;
     QLineEdit *lineEdit(int index) const;
     int webViewIndex(WebView *webView) const;
 

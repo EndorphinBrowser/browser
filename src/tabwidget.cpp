@@ -67,6 +67,7 @@
 #include "history.h"
 #include "urllineedit.h"
 #include "webview.h"
+#include "webviewsearch.h"
 
 #include <QtGui/QClipboard>
 #include <QtGui/QCompleter>
@@ -322,6 +323,7 @@ void TabWidget::clear()
     for (int i = 0; i < m_lineEdits->count(); ++i) {
         QLineEdit *qLineEdit = lineEdit(i);
         qLineEdit->setText(qLineEdit->text());
+        webViewSearch(i)->clear();
     }
 }
 
@@ -439,8 +441,8 @@ QLineEdit *TabWidget::lineEdit(int index) const
 WebView *TabWidget::webView(int index) const
 {
     QWidget *widget = this->widget(index);
-    if (WebView *webView = qobject_cast<WebView*>(widget)) {
-        return webView;
+    if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
+        return webViewWithSearch->m_webView;
     } else {
         // optimization to delay creating the first webview
         if (count() == 1) {
@@ -455,10 +457,28 @@ WebView *TabWidget::webView(int index) const
     return 0;
 }
 
+WebViewSearch *TabWidget::webViewSearch(int index) const
+{
+    // so the optimization can be performed
+    webView(index);
+
+    QWidget *widget = this->widget(index);
+    if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
+        return webViewWithSearch->m_webViewSearch;
+    }
+    return 0;
+}
+
 int TabWidget::webViewIndex(WebView *webView) const
 {
-    int index = indexOf(webView);
-    return index;
+    for (int i = 0; i < count(); ++i) {
+        QWidget *widget = this->widget(i);
+        if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
+            if (webViewWithSearch->m_webView == webView)
+                return i;
+        }
+    }
+    return -1;
 }
 
 WebView *TabWidget::newTab(bool makeCurrent)
@@ -521,9 +541,11 @@ WebView *TabWidget::newTab(bool makeCurrent)
             this, SIGNAL(statusBarVisibilityChangeRequested(bool)));
     connect(webView->page(), SIGNAL(toolBarVisibilityChangeRequested(bool)),
             this, SIGNAL(toolBarVisibilityChangeRequested(bool)));
-    addTab(webView, tr("(Untitled)"));
+
+    WebViewWithSearch *webViewWithSearch = new WebViewWithSearch(webView, this);
+    addTab(webViewWithSearch, tr("(Untitled)"));
     if (makeCurrent)
-        setCurrentWidget(webView);
+        setCurrentWidget(webViewWithSearch);
 
     // webview actions
     for (int i = 0; i < m_actions.count(); ++i) {

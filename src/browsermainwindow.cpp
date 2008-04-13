@@ -73,6 +73,7 @@
 #include "toolbarsearch.h"
 #include "ui_passworddialog.h"
 #include "webview.h"
+#include "webviewsearch.h"
 
 #include <QtCore/QSettings>
 
@@ -734,7 +735,6 @@ void BrowserMainWindow::slotPrivateBrowsing()
         QList<BrowserMainWindow*> windows = BrowserApplication::instance()->mainWindows();
         for (int i = 0; i < windows.count(); ++i) {
             BrowserMainWindow *window = windows.at(i);
-            window->m_lastSearch = QString::null;
             window->tabWidget()->clear();
         }
     }
@@ -759,31 +759,17 @@ void BrowserMainWindow::closeEvent(QCloseEvent *event)
 
 void BrowserMainWindow::slotEditFind()
 {
-    if (!currentTab())
-        return;
-    bool ok;
-    QString search = QInputDialog::getText(this, tr("Find"),
-                                          tr("Text:"), QLineEdit::Normal,
-                                          m_lastSearch, &ok);
-    if (ok && !search.isEmpty()) {
-        m_lastSearch = search;
-        if (!currentTab()->findText(m_lastSearch))
-            slotUpdateStatusbar(tr("\"%1\" not found.").arg(m_lastSearch));
-    }
+    tabWidget()->webViewSearch(m_tabWidget->currentIndex())->showFind();
 }
 
 void BrowserMainWindow::slotEditFindNext()
 {
-    if (!currentTab() && !m_lastSearch.isEmpty())
-        return;
-    currentTab()->findText(m_lastSearch);
+    tabWidget()->webViewSearch(m_tabWidget->currentIndex())->findNext();
 }
 
 void BrowserMainWindow::slotEditFindPrevious()
 {
-    if (!currentTab() && !m_lastSearch.isEmpty())
-        return;
-    currentTab()->findText(m_lastSearch, QWebPage::FindBackward);
+    tabWidget()->webViewSearch(m_tabWidget->currentIndex())->findPrevious();
 }
 
 void BrowserMainWindow::slotViewTextBigger()

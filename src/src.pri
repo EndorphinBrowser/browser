@@ -30,6 +30,7 @@ FORMS += \
     history.ui \
     passworddialog.ui \
     proxy.ui \
+    searchbanner.ui \
     settings.ui
 
 HEADERS += \
@@ -52,6 +53,7 @@ HEADERS += \
     toolbarsearch.h \
     urllineedit.h \
     webview.h \
+    webviewsearch.h \
     xbel.h
 
 SOURCES += \
@@ -74,6 +76,7 @@ SOURCES += \
     toolbarsearch.cpp \
     urllineedit.cpp \
     webview.cpp \
+    webviewsearch.cpp \
     xbel.cpp
 
 RESOURCES += data/data.qrc \
