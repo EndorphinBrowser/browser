@@ -837,7 +837,7 @@ void BrowserMainWindow::slotHome()
 {
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));
-    QString home = settings.value(QLatin1String("home"), QLatin1String("http://www.trolltech.com/")).toString();
+    QString home = settings.value(QLatin1String("home"), QLatin1String("http://arora.googlecode.com/")).toString();
     loadPage(home);
 }
 

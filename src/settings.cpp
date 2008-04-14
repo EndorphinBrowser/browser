@@ -91,7 +91,7 @@ void SettingsDialog::loadFromSettings()
 {
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));
-    QString defaultHome = QLatin1String("http://www.trolltech.com");
+    QString defaultHome = QLatin1String("http://arora.googlecode.com/");
     homeLineEdit->setText(settings.value(QLatin1String("home"), defaultHome).toString());
     settings.endGroup();
 
