@@ -91,6 +91,12 @@ void WebViewSearch::showFind()
     show();
     ui.searchLineEdit->setFocus();
     ui.searchLineEdit->lineEdit()->selectAll();
+
+    m_timeLine->setFrameRange(-1 * m_widget->height(), 0);
+    m_timeLine->setDirection(QTimeLine::Forward);
+    disconnect(m_timeLine, SIGNAL(finished()),
+               this, SLOT(hide()));
+    m_timeLine->start();
 }
 
 void WebViewSearch::findNext()
@@ -119,17 +125,6 @@ void WebViewSearch::resizeEvent(QResizeEvent *event)
     if (event->size().width() != m_widget->width())
         m_widget->resize(event->size().width(), m_widget->height());
     QWidget::resizeEvent(event);
-}
-
-void WebViewSearch::showEvent(QShowEvent *event)
-{
-    m_timeLine->setFrameRange(-1 * m_widget->height(), 0);
-    m_timeLine->setDirection(QTimeLine::Forward);
-    disconnect(m_timeLine, SIGNAL(finished()),
-               this, SLOT(hide()));
-    m_timeLine->start();
-
-    QWidget::showEvent(event);
 }
 
 void WebViewSearch::animateHide()

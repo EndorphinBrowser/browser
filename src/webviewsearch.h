@@ -50,7 +50,6 @@ public slots:
 
 protected:
     void resizeEvent(QResizeEvent *event);
-    void showEvent(QShowEvent *event);
 
 private slots:
     void frameChanged(int frame);
