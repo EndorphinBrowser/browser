@@ -24,7 +24,7 @@
 
 #include <QtWebKit/QWebPage>
 
-#include "ui_searchbanner.h";
+#include "ui_searchbanner.h"
 
 QT_BEGIN_NAMESPACE
 class QTimeLine;
