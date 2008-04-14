@@ -90,6 +90,7 @@ void WebViewSearch::showFind()
 {
     show();
     ui.searchLineEdit->setFocus();
+    ui.searchLineEdit->lineEdit()->selectAll();
 }
 
 void WebViewSearch::findNext()
