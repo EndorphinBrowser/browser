@@ -107,8 +107,10 @@ void WebViewSearch::find(QWebPage::FindFlags flags)
     QString searchString = ui.searchLineEdit->lineEdit()->text();
     if (!m_webView || searchString.isEmpty())
         return;
+    QString infoString;
     if (!m_webView->findText(searchString, flags))
-        ui.searchInfo->setText(tr("Not Found"));
+        infoString = tr("Not Found");
+    ui.searchInfo->setText(infoString);
 }
 
 void WebViewSearch::resizeEvent(QResizeEvent *event)
