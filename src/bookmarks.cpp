@@ -1,3 +1,22 @@
+/*
+ * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA  02110-1301  USA
+ */
+
 /****************************************************************************
 **
 ** Copyright (C) 2008-2008 Trolltech ASA. All rights reserved.
@@ -48,21 +67,20 @@
 #include "history.h"
 #include "xbel.h"
 
-#include <QtCore/QBuffer>
-#include <QtCore/QFile>
-#include <QtCore/QMimeData>
+#include <qbuffer.h>
+#include <qdesktopservices.h>
+#include <qevent.h>
+#include <qfile.h>
+#include <qfiledialog.h>
+#include <qheaderview.h>
+#include <qicon.h>
+#include <qmessagebox.h>
+#include <qmimedata.h>
+#include <qtoolbutton.h>
 
-#include <QtGui/QDesktopServices>
-#include <QtGui/QDragEnterEvent>
-#include <QtGui/QFileDialog>
-#include <QtGui/QHeaderView>
-#include <QtGui/QIcon>
-#include <QtGui/QMessageBox>
-#include <QtGui/QToolButton>
+#include <qwebsettings.h>
 
-#include <QtWebKit/QWebSettings>
-
-#include <QtCore/QDebug>
+#include <qdebug.h>
 
 #define BOOKMARKBAR "Bookmarks Bar"
 #define BOOKMARKMENU "Bookmarks Menu"

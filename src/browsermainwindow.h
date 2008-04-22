@@ -63,9 +63,9 @@
 #ifndef BROWSERMAINWINDOW_H
 #define BROWSERMAINWINDOW_H
 
-#include <QtGui/QMainWindow>
-#include <QtGui/QIcon>
-#include <QtCore/QUrl>
+#include <qmainwindow.h>
+#include <qicon.h>
+#include <qurl.h>
 
 class AutoSaver;
 class BookmarksToolBar;

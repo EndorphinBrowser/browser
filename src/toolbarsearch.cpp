@@ -63,15 +63,14 @@
 #include "toolbarsearch.h"
 #include "autosaver.h"
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QSettings>
-#include <QtCore/QUrl>
+#include <qcompleter.h>
+#include <qcoreapplication.h>
+#include <qmenu.h>
+#include <qsettings.h>
+#include <qstringlistmodel.h>
+#include <qurl.h>
 
-#include <QtGui/QCompleter>
-#include <QtGui/QMenu>
-#include <QtGui/QStringListModel>
-
-#include <QtWebKit/QWebSettings>
+#include <qwebsettings.h>
 
 /*
     ToolbarSearch is a very basic search widget that also contains a small history.

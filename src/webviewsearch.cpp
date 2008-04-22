@@ -19,15 +19,14 @@
 
 #include "webviewsearch.h"
 
-#include <QtCore/QTimeLine>
+#include <qevent.h>
+#include <qshortcut.h>
+#include <qtimeline.h>
 
-#include <QtGui/QResizeEvent>
-#include <QtGui/QShortcut>
+#include <qwebframe.h>
+#include <qwebview.h>
 
-#include <QtWebKit/QWebFrame>
-#include <QtWebKit/QWebView>
-
-#include <QtCore/QtDebug>
+#include <qdebug.h>
 
 WebViewSearch::WebViewSearch(QWidget *parent)
     : QWidget(parent)

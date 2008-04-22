@@ -75,24 +75,23 @@
 #include "webview.h"
 #include "webviewsearch.h"
 
-#include <QtCore/QSettings>
+#include <qdesktopwidget.h>
+#include <qfiledialog.h>
+#include <qplaintextedit.h>
+#include <qprintdialog.h>
+#include <qprintpreviewdialog.h>
+#include <qprinter.h>
+#include <qsettings.h>
+#include <qmenubar.h>
+#include <qmessagebox.h>
+#include <qstatusbar.h>
+#include <qtoolbar.h>
+#include <qinputdialog.h>
 
-#include <QtGui/QDesktopWidget>
-#include <QtGui/QFileDialog>
-#include <QtGui/QPlainTextEdit>
-#include <QtGui/QPrintDialog>
-#include <QtGui/QPrintPreviewDialog>
-#include <QtGui/QPrinter>
-#include <QtGui/QMenuBar>
-#include <QtGui/QMessageBox>
-#include <QtGui/QStatusBar>
-#include <QtGui/QToolBar>
-#include <QtGui/QInputDialog>
+#include <qwebframe.h>
+#include <qwebhistory.h>
 
-#include <QtWebKit/QWebFrame>
-#include <QtWebKit/QWebHistory>
-
-#include <QtCore/QDebug>
+#include <qdebug.h>
 
 BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)

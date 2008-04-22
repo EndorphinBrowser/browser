@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA  02110-1301  USA
  */
- 
+
 /****************************************************************************
 **
 ** Copyright (C) 2007-2008 Trolltech ASA. All rights reserved.
@@ -63,7 +63,7 @@
 #ifndef WEBVIEW_H
 #define WEBVIEW_H
 
-#include <QtWebKit/QWebView>
+#include <qwebview.h>
 
 QT_BEGIN_NAMESPACE
 class QAuthenticator;

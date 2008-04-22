@@ -68,17 +68,15 @@
 #include "tabwidget.h"
 #include "webview.h"
 
-#include <QtGui/QClipboard>
-#include <QtGui/QMenu>
-#include <QtGui/QMessageBox>
-#include <QtGui/QMouseEvent>
+#include <qbuffer.h>
+#include <qclipboard.h>
+#include <qevent.h>
+#include <qmenu.h>
+#include <qmessagebox.h>
 
-#include <QtWebKit/QWebHitTestResult>
+#include <qwebframe.h>
 
-#include <QtUiTools/QUiLoader>
-
-#include <QtCore/QDebug>
-#include <QtCore/QBuffer>
+#include <qdebug.h>
 
 WebPage::WebPage(QObject *parent)
     : QWebPage(parent)

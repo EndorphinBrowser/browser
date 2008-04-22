@@ -1,3 +1,22 @@
+/*
+ * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA  02110-1301  USA
+ */
+
 /****************************************************************************
 **
 ** Copyright (C) 2007-2008 Trolltech ASA. All rights reserved.
@@ -45,24 +64,23 @@
 
 #include "autosaver.h"
 
-#include <QtCore/QDateTime>
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtCore/QMetaEnum>
-#include <QtCore/QSettings>
-#include <QtCore/QUrl>
+#include <qcompleter.h>
+#include <qdatetime.h>
+#include <qdesktopservices.h>
+#include <qdir.h>
+#include <qevent.h>
+#include <qfile.h>
+#include <qfont.h>
+#include <qfontmetrics.h>
+#include <qheaderview.h>
+#include <qmetaobject.h>
+#include <qsettings.h>
+#include <qsortfilterproxymodel.h>
+#include <qurl.h>
 
-#include <QtGui/QCompleter>
-#include <QtGui/QDesktopServices>
-#include <QtGui/QFont>
-#include <QtGui/QFontMetrics>
-#include <QtGui/QHeaderView>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QSortFilterProxyModel>
+#include <qwebsettings.h>
 
-#include <QtWebKit/QWebSettings>
-
-#include <QtCore/QDebug>
+#include <qdebug.h>
 
 static const unsigned int JAR_VERSION = 23;
 

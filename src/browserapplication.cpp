@@ -71,23 +71,22 @@
 #include "tabwidget.h"
 #include "webview.h"
 
-#include <QtCore/QBuffer>
-#include <QtCore/QDir>
-#include <QtCore/QLibraryInfo>
-#include <QtCore/QSettings>
-#include <QtCore/QTextStream>
-#include <QtCore/QTranslator>
+#include <qbuffer.h>
+#include <qdesktopservices.h>
+#include <qdir.h>
+#include <qevent.h>
+#include <qlibraryinfo.h>
+#include <qsettings.h>
+#include <qtextstream.h>
+#include <qtranslator.h>
 
-#include <QtGui/QDesktopServices>
-#include <QtGui/QFileOpenEvent>
+#include <qlocalserver.h>
+#include <qlocalsocket.h>
+#include <qnetworkproxy.h>
 
-#include <QtNetwork/QLocalServer>
-#include <QtNetwork/QLocalSocket>
-#include <QtNetwork/QNetworkProxy>
+#include <qwebsettings.h>
 
-#include <QtWebKit/QWebSettings>
-
-#include <QtCore/QDebug>
+#include <qdebug.h>
 
 DownloadManager *BrowserApplication::s_downloadManager = 0;
 HistoryManager *BrowserApplication::s_historyManager = 0;
@@ -181,7 +180,7 @@ BrowserApplication *BrowserApplication::instance()
 }
 
 #if defined(Q_WS_MAC)
-#include <QtGui/QMessageBox>
+#include <qmessagebox.h>
 void BrowserApplication::quitBrowser()
 {
     clean();

@@ -63,9 +63,9 @@
 #ifndef TABWIDGET_H
 #define TABWIDGET_H
 
-#include <QtGui/QTabBar>
+#include <qtabbar.h>
 
-#include <QtGui/QShortcut>
+#include <qshortcut.h>
 /*
     Tab bar with a few more features such as a context menu and shortcuts
  */
@@ -107,7 +107,7 @@ private:
     int m_dragCurrentIndex;
 };
 
-#include <QtWebKit/QWebPage>
+#include <qwebpage.h>
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -142,8 +142,8 @@ private:
     QWebPage::WebAction m_webAction;
 };
 
-#include <QtCore/QUrl>
-#include <QtGui/QTabWidget>
+#include <qurl.h>
+#include <qtabwidget.h>
 QT_BEGIN_NAMESPACE
 class QCompleter;
 class QLineEdit;

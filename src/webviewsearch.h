@@ -20,9 +20,9 @@
 #ifndef WEBVIEWSEARCH_H
 #define WEBVIEWSEARCH_H
 
-#include <QtGui/QWidget>
+#include <qwidget.h>
 
-#include <QtWebKit/QWebPage>
+#include <qwebpage.h>
 
 #include "ui_searchbanner.h"
 

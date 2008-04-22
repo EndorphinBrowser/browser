@@ -69,17 +69,17 @@
 #include "webview.h"
 #include "webviewsearch.h"
 
-#include <QtGui/QClipboard>
-#include <QtGui/QCompleter>
-#include <QtGui/QListView>
-#include <QtGui/QMenu>
-#include <QtGui/QMessageBox>
-#include <QtGui/QMouseEvent>
-#include <QtGui/QStackedWidget>
-#include <QtGui/QStyle>
-#include <QtGui/QToolButton>
+#include <qclipboard.h>
+#include <qcompleter.h>
+#include <qevent.h>
+#include <qlistview.h>
+#include <qmenu.h>
+#include <qmessagebox.h>
+#include <qstackedwidget.h>
+#include <qstyle.h>
+#include <qtoolbutton.h>
 
-#include <QtCore/QDebug>
+#include <qdebug.h>
 
 TabBar::TabBar(QWidget *parent)
     : QTabBar(parent)
