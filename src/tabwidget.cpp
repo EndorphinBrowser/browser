@@ -482,7 +482,7 @@ WebView *TabWidget::newTab(bool makeCurrent)
     urlLineEdit->setWebView(webView);
     connect(webView, SIGNAL(loadStarted()),
             this, SLOT(webViewLoadStarted()));
-    connect(webView, SIGNAL(loadFinished()),
+    connect(webView, SIGNAL(loadFinished(bool)),
             this, SLOT(webViewIconChanged()));
     connect(webView, SIGNAL(iconChanged()),
             this, SLOT(webViewIconChanged()));

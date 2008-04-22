@@ -194,7 +194,7 @@ WebView::WebView(QWidget* parent)
             SLOT(setStatusBarText(const QString&)));
     connect(this, SIGNAL(loadProgress(int)),
             this, SLOT(setProgress(int)));
-    connect(this, SIGNAL(loadFinished()),
+    connect(this, SIGNAL(loadFinished(bool)),
             this, SLOT(loadFinished()));
     connect(page(), SIGNAL(loadingUrl(const QUrl&)),
             this, SIGNAL(urlChanged(const QUrl &)));

@@ -265,7 +265,7 @@ void UrlLineEdit::setWebView(WebView *webView)
     m_iconLabel->m_webView = webView;
     connect(webView, SIGNAL(urlChanged(const QUrl &)),
         this, SLOT(webViewUrlChanged(const QUrl &)));
-    connect(webView, SIGNAL(loadFinished()),
+    connect(webView, SIGNAL(loadFinished(bool)),
         this, SLOT(webViewIconChanged()));
     connect(webView, SIGNAL(iconChanged()),
         this, SLOT(webViewIconChanged()));
