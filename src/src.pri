@@ -1,5 +1,3 @@
-QT += webkit
-
 CONFIG += qt warn_on
 contains(QT_BUILD_PARTS, tools): CONFIG += uitools
 else: DEFINES += QT_NO_UITOOLS
@@ -14,7 +12,7 @@ UI_DIR      = .ui
 MOC_DIR     = .moc
 OBJECTS_DIR = .obj
 
-QT += webkit network script
+QT += webkit network
 
 CONFIG += qt warn_on
 contains(QT_BUILD_PARTS, tools): CONFIG += uitools
