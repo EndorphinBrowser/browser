@@ -445,6 +445,7 @@ void BrowserMainWindow::setupMenu()
     m_windowMenu = menuBar()->addMenu(tr("&Window"));
     connect(m_windowMenu, SIGNAL(aboutToShow()),
             this, SLOT(slotAboutToShowWindowMenu()));
+    slotAboutToShowWindowMenu();
 
     QMenu *toolsMenu = menuBar()->addMenu(tr("&Tools"));
     toolsMenu->addAction(tr("Web &Search"), this, SLOT(slotWebSearch()), QKeySequence(tr("Ctrl+K", "Web Search")));

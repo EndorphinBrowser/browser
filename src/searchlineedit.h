@@ -78,6 +78,9 @@ class SearchLineEdit : public ExLineEdit
     Q_OBJECT
     Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText)
 
+signals:
+    void textChanged(const QString &text);
+
 public:
     SearchLineEdit(QWidget *parent = 0);
 
