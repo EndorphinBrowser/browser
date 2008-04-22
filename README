@@ -3,5 +3,3 @@ Arora web browser
 http://arora.googlecode.com/
 
 Arora is a cross platform web browser built using Qt and WebKit.
-
-Arora is a fork of the Demo Browser that was shipped with Qt 4.4.0.  All new development is no longer going into the demo browser, but here.  Some have critizized the demo browser for being to large already and should have been kicked out earlier.
