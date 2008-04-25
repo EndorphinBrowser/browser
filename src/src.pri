@@ -88,3 +88,5 @@ mac {
     ICON = browser.icns
     QMAKE_INFO_PLIST = Info_mac.plist
 }
+
+include(webkittrunk.pri)
