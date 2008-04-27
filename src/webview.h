@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -130,6 +131,9 @@ private slots:
     void setStatusBarText(const QString &string);
     void downloadRequested(const QNetworkRequest &request);
     void openLinkInNewTab();
+    void openLinkInNewWindow();
+    void downloadLinkToDisk();
+    void copyLinkToClipboard();
 
 private:
     QString m_statusBarText;

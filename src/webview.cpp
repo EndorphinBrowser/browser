@@ -226,13 +226,13 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     QWebHitTestResult r = page()->mainFrame()->hitTestContent(event->pos());
     if (!r.linkUrl().isEmpty()) {
         QMenu menu(this);
-        menu.addAction(pageAction(QWebPage::OpenLinkInNewWindow));
-        menu.addAction(tr("Open in New Tab"), this, SLOT(openLinkInNewTab()));
+        menu.addAction(tr("Open in New &Window"), this, SLOT(openLinkInNewWindow()));
+        menu.addAction(tr("Open in New &Tab"), this, SLOT(openLinkInNewTab()));
         menu.addSeparator();
-        menu.addAction(pageAction(QWebPage::DownloadLinkToDisk));
+        menu.addAction(tr("Save Lin&k"), this, SLOT(downloadLinkToDisk()));
         // Add link to bookmarks...
         menu.addSeparator();
-        menu.addAction(pageAction(QWebPage::CopyLinkToClipboard));
+        menu.addAction(tr("&Copy Link Location"), this, SLOT(copyLinkToClipboard()));
         if (page()->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled))
             menu.addAction(pageAction(QWebPage::InspectElement));
         menu.exec(mapToGlobal(event->pos()));
@@ -267,6 +267,22 @@ void WebView::openLinkInNewTab()
 {
     m_page->m_openInNewTab = true;
     pageAction(QWebPage::OpenLinkInNewWindow)->trigger();
+}
+
+void WebView::openLinkInNewWindow()
+{
+    m_page->m_openInNewTab = false;
+    pageAction(QWebPage::OpenLinkInNewWindow)->trigger();
+}
+
+void WebView::downloadLinkToDisk()
+{
+    pageAction(QWebPage::DownloadLinkToDisk)->trigger();
+}
+
+void WebView::copyLinkToClipboard()
+{
+    pageAction(QWebPage::CopyLinkToClipboard)->trigger();
 }
 
 void WebView::setProgress(int progress)
