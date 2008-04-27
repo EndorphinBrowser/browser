@@ -223,9 +223,13 @@ WebView::WebView(QWidget* parent)
 
 void WebView::contextMenuEvent(QContextMenuEvent *event)
 {
+    bool showMenu = false;
+    QMenu menu(this);
+
     QWebHitTestResult r = page()->mainFrame()->hitTestContent(event->pos());
+
     if (!r.linkUrl().isEmpty()) {
-        QMenu menu(this);
+        showMenu = true;
         menu.addAction(tr("Open in New &Window"), this, SLOT(openLinkInNewWindow()));
         menu.addAction(tr("Open in New &Tab"), this, SLOT(openLinkInNewTab()));
         menu.addSeparator();
@@ -235,9 +239,21 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         menu.addAction(tr("&Copy Link Location"), this, SLOT(copyLinkToClipboard()));
         if (page()->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled))
             menu.addAction(pageAction(QWebPage::InspectElement));
+    }
+
+    if (!r.imageUrl().isEmpty()) {
+        if (showMenu)
+            menu.addSeparator();
+        showMenu = true;
+        menu.addAction(tr("View &Image"), this, SLOT(openImageInNewWindow()));
+        menu.addAction(tr("Sa&ve Image"), this, SLOT(downloadImageToDisk()));
+    }
+
+    if (showMenu) {
         menu.exec(mapToGlobal(event->pos()));
         return;
     }
+
     QWebView::contextMenuEvent(event);
 }
 
@@ -283,6 +299,16 @@ void WebView::downloadLinkToDisk()
 void WebView::copyLinkToClipboard()
 {
     pageAction(QWebPage::CopyLinkToClipboard)->trigger();
+}
+
+void WebView::openImageInNewWindow()
+{
+    pageAction(QWebPage::OpenImageInNewWindow)->trigger();
+}
+
+void WebView::downloadImageToDisk()
+{
+    pageAction(QWebPage::DownloadImageToDisk)->trigger();
 }
 
 void WebView::setProgress(int progress)

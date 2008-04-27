@@ -134,6 +134,8 @@ private slots:
     void openLinkInNewWindow();
     void downloadLinkToDisk();
     void copyLinkToClipboard();
+    void openImageInNewWindow();
+    void downloadImageToDisk();
 
 private:
     QString m_statusBarText;
