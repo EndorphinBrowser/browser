@@ -13,6 +13,7 @@ webkit_trunk {
     release: QMAKE_LIBDIR_FLAGS = -L$$WEBKITHOME/WebKitBuild/Release/lib
     LIBS = -lQtWebKit
     INCLUDEPATH = $$WEBKITHOME/WebKit/qt/Api $$INCLUDEPATH
-    QMAKE_RPATHDIR = $$WEBKITHOME/WebKitBuild/Release/lib $$QMAKE_RPATHDIR
+    release: QMAKE_RPATHDIR = $$WEBKITHOME/WebKitBuild/Release/lib $$QMAKE_RPATHDIR
+    debug: QMAKE_RPATHDIR = $$WEBKITHOME/WebKitBuild/Debug/lib $$QMAKE_RPATHDIR
 }
 
