@@ -428,7 +428,7 @@ void BrowserMainWindow::setupMenu()
 
     QList<QAction*> bookmarksActions;
 
-    QAction *showAllBookmarksAction = new QAction(tr("Show All Bookmarks"), this);
+    QAction *showAllBookmarksAction = new QAction(tr("Manage Bookmarks..."), this);
     connect(showAllBookmarksAction, SIGNAL(triggered()), this, SLOT(slotShowBookmarksDialog()));
     m_addBookmark = new QAction(QIcon(QLatin1String(":addbookmark.png")), tr("Add Bookmark..."), this);
     m_addBookmark->setIconVisibleInMenu(false);
