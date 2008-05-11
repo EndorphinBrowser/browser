@@ -1,0 +1,20 @@
+[Desktop Entry]
+Comment=Arora Web Browser
+Comment[en_US]=Arora Web Browser
+Encoding=UTF-8
+Exec=arora %U
+GenericName=
+GenericName[en_US]=
+Icon=arora.png
+MimeType=
+Name=Arora
+Name[en_US]=Arora
+NoDisplay=true
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DCOP-ServiceType=
+X-KDE-HasTempFileOption=true
+X-KDE-StartupNotify=true
+X-KDE-SubstituteUID=false
