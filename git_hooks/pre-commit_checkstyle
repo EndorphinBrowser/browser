@@ -3,10 +3,10 @@
 # Check that the code follows a consistant code style
 #
 
-astyle --version >> /dev/null
+astyle --version 2>> /dev/null
 if [ $? -eq 127 ] ; then
-    echo "AStyle not found installed on the system, skiping style check
-    return 0;
+    echo "AStyle not found installed on the system, skiping style check"
+    exit 0;
 fi
 
 // Something close to our style which is the same as the Qt4 code style
