@@ -300,8 +300,8 @@ void BrowserMainWindow::setupMenu()
     fileMenu->addAction(tr("P&rint Preview..."), this, SLOT(slotFilePrintPreview()));
     fileMenu->addAction(tr("&Print..."), this, SLOT(slotFilePrint()), QKeySequence::Print);
     fileMenu->addSeparator();
-    QAction *action = fileMenu->addAction(tr("Private &Browsing..."), this, SLOT(slotPrivateBrowsing()));
-    action->setCheckable(true);
+    m_privateBrowsing = fileMenu->addAction(tr("Private &Browsing..."), this, SLOT(slotPrivateBrowsing()));
+    m_privateBrowsing->setCheckable(true);
     fileMenu->addSeparator();
 
 #if defined(Q_WS_MAC)
@@ -729,14 +729,15 @@ void BrowserMainWindow::slotPrivateBrowsing()
     bool pb = settings->testAttribute(QWebSettings::PrivateBrowsingEnabled);
     if (!pb) {
         QString title = tr("Are you sure you want to turn on private browsing?");
-        QString text = tr("<b>%1</b><br><br>When private browsing in turned on,"
-            " webpages are not added to the history,"
-            " items are automatically removed from the Downloads window," \
-            " new cookies are not stored, current cookies can't be accessed," \
-            " site icons wont be stored, session wont be saved, " \
-            " and searches are not addded to the pop-up menu in the Google search box." \
-            "  Until you close the window, you can still click the Back and Forward buttons" \
-            " to return to the webpages you have opened.").arg(title);
+        QString text = tr("<b>%1</b><br><br>When private browsing is turned on,"
+            " some actions concerning your privacy will be disabled:"
+            "<ul><li> Webpages are not added to the history.</li>"
+            "<li> Items are automatically removed from the Downloads window.</li>"
+            "<li> New cookies are not stored, current cookies can't be accessed.</li>"
+            "<li> Site icons won't be stored, session won't be saved.</li>"
+            "<li> Searches are not addded to the pop-up menu in the search box.</li></ul>"
+            "Until you close the window, you can still click the Back and Forward buttons"
+            "to return to the webpages you have opened.").arg(title);
 
         QMessageBox::StandardButton button = QMessageBox::question(this, QString(), text,
                                QMessageBox::Ok | QMessageBox::Cancel,
@@ -753,6 +754,7 @@ void BrowserMainWindow::slotPrivateBrowsing()
             window->tabWidget()->clear();
         }
     }
+    m_privateBrowsing->setChecked(settings->testAttribute(QWebSettings::PrivateBrowsingEnabled));
 }
 
 void BrowserMainWindow::closeEvent(QCloseEvent *event)

@@ -171,6 +171,7 @@ private:
     QAction *m_historyForward;
     QMenu *m_historyForwardMenu;
     QMenu *m_windowMenu;
+    QAction *m_privateBrowsing;
 
     QAction *m_stop;
     QAction *m_reload;
