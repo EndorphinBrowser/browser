@@ -90,6 +90,7 @@ protected:
     void mouseMoveEvent(QMouseEvent* event);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
+    QSize tabSizeHint(int index) const;
 
 private slots:
     void selectTabAction();

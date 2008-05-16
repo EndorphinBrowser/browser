@@ -86,6 +86,7 @@ TabBar::TabBar(QWidget *parent)
 {
     setContextMenuPolicy(Qt::CustomContextMenu);
     setAcceptDrops(true);
+    setElideMode(Qt::ElideRight);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(contextMenuRequested(const QPoint &)));
 
@@ -212,6 +213,12 @@ void TabBar::dropEvent(QDropEvent *event)
         event->acceptProposedAction();
     }
     QTabBar::dropEvent(event);
+}
+
+QSize TabBar::tabSizeHint(int index) const
+{
+    QSize sizeHint = QTabBar::tabSizeHint(index);
+    return sizeHint.boundedTo(QSize(250, sizeHint.height()));
 }
 
 // When index is -1 index chooses the current tab

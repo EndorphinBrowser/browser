@@ -87,6 +87,9 @@ void WebViewSearch::clear()
 
 void WebViewSearch::showFind()
 {
+    if (isVisible())
+        return;
+
     show();
     ui.searchLineEdit->setFocus();
     ui.searchLineEdit->lineEdit()->selectAll();
