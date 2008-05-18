@@ -87,6 +87,7 @@
 #include <qstatusbar.h>
 #include <qtoolbar.h>
 #include <qinputdialog.h>
+#include <qsplitter.h>
 
 #include <qwebframe.h>
 #include <qwebhistory.h>
@@ -217,6 +218,7 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
     stream << !m_navigationBar->isHidden();
     stream << !m_bookmarksToolbar->isHidden();
     stream << !statusBar()->isHidden();
+    stream << m_locationSearchSplit->saveState();
     if (withTabs)
         stream << tabWidget()->saveState();
     else
@@ -243,12 +245,14 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     bool showToolbar;
     bool showBookmarksBar;
     bool showStatusbar;
+    QByteArray splitterState;
     QByteArray tabState;
 
     stream >> size;
     stream >> showToolbar;
     stream >> showBookmarksBar;
     stream >> showStatusbar;
+    stream >> splitterState;
     stream >> tabState;
 
     resize(size);
@@ -261,6 +265,8 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
 
     statusBar()->setVisible(showStatusbar);
     updateStatusbarActionText(showStatusbar);
+    
+    m_locationSearchSplit->restoreState(splitterState);
 
     if (!tabWidget()->restoreState(tabState))
         return false;
@@ -488,13 +494,21 @@ void BrowserMainWindow::setupToolBar()
     m_stopReload->setIcon(m_reloadIcon);
 
     m_navigationBar->addAction(m_stopReload);
-
-    m_navigationBar->addWidget(m_tabWidget->lineEditStack());
-
+    
+    m_locationSearchSplit = new QSplitter(m_navigationBar);
+    m_locationSearchSplit->addWidget(m_tabWidget->lineEditStack());
     m_toolbarSearch = new ToolbarSearch(m_navigationBar);
-    m_navigationBar->addWidget(m_toolbarSearch);
+    m_locationSearchSplit->addWidget(m_toolbarSearch);
     connect(m_toolbarSearch, SIGNAL(search(const QUrl&)), SLOT(loadUrl(const QUrl&)));
-
+    m_locationSearchSplit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+    m_tabWidget->lineEditStack()->setMinimumWidth(120);
+    m_locationSearchSplit->setCollapsible(0, false);
+    m_navigationBar->addWidget(m_locationSearchSplit);
+    int splitterWidth = m_locationSearchSplit->width();
+    QList<int> sizes;
+    sizes << (int)((double)splitterWidth * .80) << (int)((double)splitterWidth * .20);
+    m_locationSearchSplit->setSizes(sizes);
+    
     m_chaseWidget = new ChaseWidget(this);
     m_navigationBar->addWidget(m_chaseWidget);
 }
