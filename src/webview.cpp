@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,6 +68,7 @@
 #include "networkaccessmanager.h"
 #include "tabwidget.h"
 #include "webview.h"
+#include "bookmarks.h"
 
 #include <qbuffer.h>
 #include <qclipboard.h>
@@ -223,18 +225,16 @@ WebView::WebView(QWidget* parent)
 
 void WebView::contextMenuEvent(QContextMenuEvent *event)
 {
-    bool showMenu = false;
     QMenu menu(this);
 
     QWebHitTestResult r = page()->mainFrame()->hitTestContent(event->pos());
 
     if (!r.linkUrl().isEmpty()) {
-        showMenu = true;
         menu.addAction(tr("Open in New &Window"), this, SLOT(openLinkInNewWindow()));
         menu.addAction(tr("Open in New &Tab"), this, SLOT(openLinkInNewTab()));
         menu.addSeparator();
         menu.addAction(tr("Save Lin&k"), this, SLOT(downloadLinkToDisk()));
-        // Add link to bookmarks...
+        menu.addAction(tr("&Bookmark This Link"), this, SLOT(bookmarkLink()))->setData(r.linkUrl().toString());
         menu.addSeparator();
         menu.addAction(tr("&Copy Link Location"), this, SLOT(copyLinkToClipboard()));
         if (page()->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled))
@@ -242,18 +242,17 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     }
 
     if (!r.imageUrl().isEmpty()) {
-        if (showMenu)
+        if (!menu.isEmpty())
             menu.addSeparator();
-        showMenu = true;
         menu.addAction(tr("Open Image in New &Window"), this, SLOT(openImageInNewWindow()));
         menu.addAction(tr("Open Image in New &Tab"), this, SLOT(openImageInNewTab()));
         menu.addSeparator();
         menu.addAction(tr("&Save Image"), this, SLOT(downloadImageToDisk()));
-        QAction *copyAction = page()->action(QWebPage::CopyImageToClipboard);
-        menu.addAction(tr("&Copy Image"), copyAction, SLOT(trigger()));
+        menu.addAction(tr("&Copy Image"), this, SLOT(copyImageToClipboard()));
+        menu.addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(r.imageUrl().toString());
     }
 
-    if (showMenu) {
+    if (!menu.isEmpty()) {
         menu.exec(mapToGlobal(event->pos()));
         return;
     }
@@ -319,6 +318,26 @@ void WebView::openImageInNewWindow()
 void WebView::downloadImageToDisk()
 {
     pageAction(QWebPage::DownloadImageToDisk)->trigger();
+}
+
+void WebView::copyImageToClipboard()
+{
+    pageAction(QWebPage::CopyImageToClipboard)->trigger();
+}
+
+void WebView::copyImageLocationToClipboard()
+{
+    if (QAction *action = qobject_cast<QAction*>(sender())) {
+        BrowserApplication::clipboard()->setText(action->data().toString());
+    }
+}
+
+void WebView::bookmarkLink()
+{
+    if (QAction *action = qobject_cast<QAction*>(sender())) {
+        AddBookmarkDialog dialog(action->data().toString(), "");
+        dialog.exec();
+    }
 }
 
 void WebView::setProgress(int progress)
