@@ -245,8 +245,12 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         if (showMenu)
             menu.addSeparator();
         showMenu = true;
-        menu.addAction(tr("View &Image"), this, SLOT(openImageInNewWindow()));
-        menu.addAction(tr("Sa&ve Image"), this, SLOT(downloadImageToDisk()));
+        menu.addAction(tr("Open Image in New &Window"), this, SLOT(openImageInNewWindow()));
+        menu.addAction(tr("Open Image in New &Tab"), this, SLOT(openImageInNewTab()));
+        menu.addSeparator();
+        menu.addAction(tr("&Save Image"), this, SLOT(downloadImageToDisk()));
+        QAction *copyAction = page()->action(QWebPage::CopyImageToClipboard);
+        menu.addAction(tr("&Copy Image"), copyAction, SLOT(trigger()));
     }
 
     if (showMenu) {
@@ -299,6 +303,12 @@ void WebView::downloadLinkToDisk()
 void WebView::copyLinkToClipboard()
 {
     pageAction(QWebPage::CopyLinkToClipboard)->trigger();
+}
+
+void WebView::openImageInNewTab()
+{
+    m_page->m_openInNewTab = true;
+    pageAction(QWebPage::OpenImageInNewWindow)->trigger();
 }
 
 void WebView::openImageInNewWindow()

@@ -134,6 +134,7 @@ private slots:
     void openLinkInNewWindow();
     void downloadLinkToDisk();
     void copyLinkToClipboard();
+    void openImageInNewTab();
     void openImageInNewWindow();
     void downloadImageToDisk();
 
