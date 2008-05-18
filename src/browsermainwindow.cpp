@@ -222,7 +222,7 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
         stream << tabWidget()->saveState();
     else
         stream << QByteArray();
-    stream << m_locationSearchSplit->saveState();
+    stream << m_navigationSplitter->saveState();
     return data;
 }
 
@@ -266,7 +266,7 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     statusBar()->setVisible(showStatusbar);
     updateStatusbarActionText(showStatusbar);
     
-    m_locationSearchSplit->restoreState(splitterState);
+    m_navigationSplitter->restoreState(splitterState);
 
     if (!tabWidget()->restoreState(tabState))
         return false;
@@ -495,19 +495,19 @@ void BrowserMainWindow::setupToolBar()
 
     m_navigationBar->addAction(m_stopReload);
     
-    m_locationSearchSplit = new QSplitter(m_navigationBar);
-    m_locationSearchSplit->addWidget(m_tabWidget->lineEditStack());
+    m_navigationSplitter = new QSplitter(m_navigationBar);
+    m_navigationSplitter->addWidget(m_tabWidget->lineEditStack());
     m_toolbarSearch = new ToolbarSearch(m_navigationBar);
-    m_locationSearchSplit->addWidget(m_toolbarSearch);
+    m_navigationSplitter->addWidget(m_toolbarSearch);
     connect(m_toolbarSearch, SIGNAL(search(const QUrl&)), SLOT(loadUrl(const QUrl&)));
-    m_locationSearchSplit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+    m_navigationSplitter->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
     m_tabWidget->lineEditStack()->setMinimumWidth(120);
-    m_locationSearchSplit->setCollapsible(0, false);
-    m_navigationBar->addWidget(m_locationSearchSplit);
-    int splitterWidth = m_locationSearchSplit->width();
+    m_navigationSplitter->setCollapsible(0, false);
+    m_navigationBar->addWidget(m_navigationSplitter);
+    int splitterWidth = m_navigationSplitter->width();
     QList<int> sizes;
     sizes << (int)((double)splitterWidth * .80) << (int)((double)splitterWidth * .20);
-    m_locationSearchSplit->setSizes(sizes);
+    m_navigationSplitter->setSizes(sizes);
     
     m_chaseWidget = new ChaseWidget(this);
     m_navigationBar->addWidget(m_chaseWidget);
