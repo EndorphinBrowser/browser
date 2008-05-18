@@ -1,8 +1,6 @@
 [Desktop Entry]
 Comment=Arora Web Browser
 Comment[en_US]=Arora Web Browser
-Encoding=UTF-8
-Encoding=UTF-8
 Exec=arora %U
 GenericName=
 GenericName[en_US]=
