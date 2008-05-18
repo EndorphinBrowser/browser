@@ -5,14 +5,14 @@
 
 astyle --version 2>> /dev/null
 if [ $? -eq 127 ] ; then
-    echo "AStyle not found installed on the system, skiping style check"
+    echo "--AStyle not found installed on the system, skiping style check"
     exit 0;
 fi
 
 // Something close to our style which is the same as the Qt4 code style
 #astyle --indent=spaces=4 --brackets=linux --indent-labels --pad=oper --unpad=paren --one-line=keep-statements --convert-tabs --indent-preprocessor `find -type f -name '*.cpp'` `find -type f -name '*.h'`
 
-echo "--checking style--"
+echo "--Checking style--"
 for file in `git-diff-index --name-only HEAD | grep *.cpp` ; do
     tempfoo=`basename $0`
     newfile=`mktemp /tmp/${tempfoo}.XXXXXX` || exit 1
@@ -25,4 +25,4 @@ for file in `git-diff-index --name-only HEAD | grep *.cpp` ; do
         exit 1
     fi
 done
-echo "--checking style done--"
+echo "--Checking style pass--"
