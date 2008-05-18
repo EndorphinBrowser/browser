@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
