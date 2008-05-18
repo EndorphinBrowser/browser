@@ -81,6 +81,16 @@
 
 #include <qdebug.h>
 
+TabShortcut::TabShortcut(int tab, const QKeySequence &key, QWidget *parent)
+   : QShortcut(key,parent), m_tab(tab)
+{
+}
+
+int TabShortcut::tab()
+{
+   return m_tab;
+}
+
 TabBar::TabBar(QWidget *parent)
     : QTabBar(parent)
 {
@@ -90,25 +100,18 @@ TabBar::TabBar(QWidget *parent)
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(contextMenuRequested(const QPoint &)));
 
-    QString alt = QLatin1String("Alt+%1");
-    for (int i = 1; i <= 10; ++i) {
-        int key = i;
-        if (key == 10)
-            key = 0;
-        QShortcut *shortCut = new QShortcut(alt.arg(key), this);
-        m_tabShortcuts.append(shortCut);
-        connect(shortCut, SIGNAL(activated()), this, SLOT(selectTabAction()));
+    QString alt = QLatin1String("Ctrl+%1");
+    for (int i = 0; i < 10; ++i) {
+        int key = i == 9 ? 0 : i+1;
+        TabShortcut *tabShortCut = new TabShortcut(i, alt.arg(key), this);
+        connect(tabShortCut, SIGNAL(activated()), this, SLOT(selectTabAction()));
     }
 }
 
 void TabBar::selectTabAction()
 {
-    if (QShortcut *shortCut = qobject_cast<QShortcut*>(sender())) {
-        int index = m_tabShortcuts.indexOf(shortCut);
-        if (index == 0)
-            index = 10;
-        setCurrentIndex(index);
-    }
+   int index = qobject_cast<TabShortcut*>(sender())->tab();
+   setCurrentIndex(index);
 }
 
 void TabBar::contextMenuRequested(const QPoint &position)
@@ -287,6 +290,7 @@ TabWidget::TabWidget(QWidget *parent)
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageDown));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BracketRight));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Less));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Tab));
     m_nextTabAction->setShortcuts(shortcuts);
     connect(m_nextTabAction, SIGNAL(triggered()), this, SLOT(nextTab()));
 
@@ -296,6 +300,7 @@ TabWidget::TabWidget(QWidget *parent)
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageUp));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BracketLeft));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Greater));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab));
     m_previousTabAction->setShortcuts(shortcuts);
     connect(m_previousTabAction, SIGNAL(triggered()), this, SLOT(previousTab()));
 

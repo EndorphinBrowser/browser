@@ -66,6 +66,20 @@
 #include <qtabbar.h>
 
 #include <qshortcut.h>
+
+/*
+     Shortcut to switch directly to a tab by index
+ */
+class TabShortcut : public QShortcut
+{
+   Q_OBJECT
+public:
+   int tab();
+   TabShortcut(int tab, const QKeySequence &key, QWidget *parent);
+private:
+   int m_tab;
+};
+
 /*
     Tab bar with a few more features such as a context menu and shortcuts
  */
@@ -102,7 +116,6 @@ private slots:
     void contextMenuRequested(const QPoint &position);
 
 private:
-    QList<QShortcut*> m_tabShortcuts;
     friend class TabWidget;
 
     QPoint m_dragStartPos;
