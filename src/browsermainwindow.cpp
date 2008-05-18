@@ -218,11 +218,11 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
     stream << !m_navigationBar->isHidden();
     stream << !m_bookmarksToolbar->isHidden();
     stream << !statusBar()->isHidden();
-    stream << m_locationSearchSplit->saveState();
     if (withTabs)
         stream << tabWidget()->saveState();
     else
         stream << QByteArray();
+    stream << m_locationSearchSplit->saveState();
     return data;
 }
 
@@ -252,8 +252,8 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     stream >> showToolbar;
     stream >> showBookmarksBar;
     stream >> showStatusbar;
-    stream >> splitterState;
     stream >> tabState;
+    stream >> splitterState;
 
     resize(size);
 
