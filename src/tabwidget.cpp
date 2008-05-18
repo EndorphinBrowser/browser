@@ -242,6 +242,11 @@ void TabBar::reloadTab()
     }
 }
 
+void TabBar::tabLayoutChange()
+{
+    setVisible(count() > 1);
+}
+
 TabWidget::TabWidget(QWidget *parent)
     : QTabWidget(parent)
     , m_recentlyClosedTabsAction(0)
