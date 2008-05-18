@@ -766,12 +766,36 @@ void TabWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void TabWidget::loadUrlInCurrentTab(const QUrl &url)
 {
-    WebView *webView = currentWebView();
-    if (webView) {
+    loadUrl(url, false);
+}
+
+void TabWidget::loadUrl(const QUrl &url, bool inNewTab)
+{
+    WebView *webView;
+    if(inNewTab)
+        webView = newTab(true);
+    else
+        webView = currentWebView();
+    if(webView) {
         webView->loadUrl(url);
         webView->setFocus();
     }
 }
+void TabWidget::loadUrlWithTitle(const QUrl &url, const QString &title, bool inNewTab)
+{
+    WebView *webView;
+    if(inNewTab)
+        webView = newTab(true);
+    else
+        webView = currentWebView();
+    if(webView) {
+        webView->loadUrl(url);
+        webView->setFocus();
+        int tabIndex = webViewIndex(webView);
+        setTabText(tabIndex, title);
+    }
+}
+
 
 void TabWidget::nextTab()
 {

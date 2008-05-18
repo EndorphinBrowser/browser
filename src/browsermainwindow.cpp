@@ -114,8 +114,8 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
     m_bookmarksToolbar = new BookmarksToolBar(boomarksModel, this);
-    connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&)),
-            m_tabWidget, SLOT(loadUrlInCurrentTab(const QUrl&)));
+    connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&, const QString&, bool)),
+          m_tabWidget, SLOT(loadUrlWithTitle(const QUrl&, const QString&, bool)));
     connect(m_bookmarksToolbar->toggleViewAction(), SIGNAL(toggled(bool)),
             this, SLOT(updateBookmarksToolbarActionText(bool)));
 
@@ -428,8 +428,8 @@ void BrowserMainWindow::setupMenu()
 
     // Bookmarks
     BookmarksMenu *bookmarksMenu = new BookmarksMenu(this);
-    connect(bookmarksMenu, SIGNAL(openUrl(const QUrl&)),
-            m_tabWidget, SLOT(loadUrlInCurrentTab(const QUrl&)));
+    connect(bookmarksMenu, SIGNAL(openUrl(const QUrl&, const QString &, bool)),
+            m_tabWidget, SLOT(loadUrlWithTitle(const QUrl&, const QString&, bool)));
     connect(bookmarksMenu, SIGNAL(hovered(const QString&)),
             this, SLOT(slotUpdateStatusbar(const QString&)));
     bookmarksMenu->setTitle(tr("&Bookmarks"));
@@ -522,8 +522,8 @@ void BrowserMainWindow::setupToolBar()
 void BrowserMainWindow::slotShowBookmarksDialog()
 {
     BookmarksDialog *dialog = new BookmarksDialog(this);
-    connect(dialog, SIGNAL(openUrl(const QUrl&)),
-            m_tabWidget, SLOT(loadUrlInCurrentTab(const QUrl&)));
+    connect(dialog, SIGNAL(openUrl(const QUrl&, const QString &, bool)),
+            m_tabWidget, SLOT(loadUrlWithTitle(const QUrl&, const QString &, bool)));
     dialog->show();
 }
 

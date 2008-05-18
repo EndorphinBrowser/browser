@@ -66,7 +66,9 @@
 #include <qobject.h>
 
 #include <qabstractitemmodel.h>
+#include <qtoolbutton.h>
 #include <qundostack.h>
+#include <qtoolbar.h>
 
 /*!
     Bookmark manager, owner of the bookmarks, loads, saves and basic tasks
@@ -221,7 +223,7 @@ class BookmarksMenu : public ModelMenu
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url);
+    void openUrl(const QUrl &url, const QString &title, bool inNewTab);
 
 public:
      BookmarksMenu(QWidget *parent = 0);
@@ -281,7 +283,7 @@ class BookmarksDialog : public QDialog, public Ui_BookmarksDialog
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url);
+    void openUrl(const QUrl &url, const QString &title, bool inNewTab);
 
 public:
     BookmarksDialog(QWidget *parent = 0, BookmarksManager *manager = 0);
@@ -289,7 +291,9 @@ public:
 
 private slots:
     void customContextMenuRequested(const QPoint &pos);
-    void open();
+    void open(bool inNewTab);
+    void openInNewTab();
+    void openInCurrentTab();
     void newFolder();
 
 private:
@@ -301,13 +305,33 @@ private:
     TreeProxyModel *m_proxyModel;
 };
 
-#include <qtoolbar.h>
+class BookmarkToolButton : public QToolButton
+{
+    Q_OBJECT
+signals:
+    void openBookmark(const QUrl &url, const QString &title, bool inNewTab);
+
+public:
+    BookmarkToolButton(QWidget *parent, QUrl url);
+    const QUrl &url() const;
+
+protected:
+    void mouseReleaseEvent(QMouseEvent *event);
+
+private:
+    QUrl m_url;
+
+private slots:
+    void openBookmark();
+
+};
+
+
 class BookmarksToolBar : public QToolBar
 {
     Q_OBJECT
-
 signals:
-    void openUrl(const QUrl &url);
+    void openUrl(const QUrl &url, const QString &title, bool inNewTab);
 
 public:
     BookmarksToolBar(BookmarksModel *model, QWidget *parent = 0);
@@ -319,8 +343,7 @@ protected:
     void dropEvent(QDropEvent *event);
 
 private slots:
-    void triggered(QAction *action);
-    void activated(const QModelIndex &index);
+    void toolbuttonOpenBookmark(const QUrl &url, const QString &title, bool inNewTab);
     void build();
 
 private:

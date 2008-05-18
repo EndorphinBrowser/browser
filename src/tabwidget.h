@@ -209,6 +209,8 @@ protected:
 
 public slots:
     void loadUrlInCurrentTab(const QUrl &url);
+    void loadUrl(const QUrl &url, bool inNewTab);
+    void loadUrlWithTitle(const QUrl &url, const QString &title, bool inNewTab);
     WebView *newTab(bool makeCurrent = true);
     void cloneTab(int index = -1);
     void closeTab(int index = -1);
