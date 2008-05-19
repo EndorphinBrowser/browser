@@ -32,6 +32,7 @@ FORMS += \
     settings.ui
 
 HEADERS += \
+    aboutdialog.h \
     autosaver.h \
     bookmarks.h \
     browserapplication.h \
@@ -55,6 +56,7 @@ HEADERS += \
     xbel.h
 
 SOURCES += \
+    aboutdialog.cpp \
     autosaver.cpp \
     bookmarks.cpp \
     browserapplication.cpp \

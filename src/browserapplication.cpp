@@ -98,7 +98,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     , m_localServer(0)
 {
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
-    QCoreApplication::setApplicationVersion(QLatin1String("0.1"));
+    QCoreApplication::setApplicationVersion(QLatin1String("0.2"));
 #ifdef Q_WS_QWS
     // Use a different server name for QWS so we can run an X11
     // browser and a QWS browser in parallel on the same machine for

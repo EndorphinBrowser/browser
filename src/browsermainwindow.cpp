@@ -63,6 +63,7 @@
 
 #include "browsermainwindow.h"
 
+#include "aboutdialog.h"
 #include "autosaver.h"
 #include "bookmarks.h"
 #include "browserapplication.h"
@@ -669,13 +670,11 @@ void BrowserMainWindow::slotUpdateWindowTitle(const QString &title)
 
 void BrowserMainWindow::slotAboutApplication()
 {
-    QMessageBox::about(this, tr("About"), tr(
-        "Version %1"
-        "<p>This demo demonstrates Qt's "
-        "webkit facilities in action, providing an example "
-        "browser for you to experiment with.<p>"
-        "<p>QtWebKit is based on the Open Source WebKit Project developed at <a href=\"http://webkit.org/\">http://webkit.org/</a>."
-        ).arg(QCoreApplication::applicationVersion()));
+    AboutDialog *aboutDialog = new AboutDialog(this);
+    QStringList authors;
+    authors << QLatin1String("Benjamin C. Meyer <a href=\"mailto:ben@meyerhome.net\">ben@meyerhome.net</a>");
+    aboutDialog->addAuthors(authors);
+    aboutDialog->show();
 }
 
 void BrowserMainWindow::slotFileNew()
