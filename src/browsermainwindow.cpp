@@ -266,7 +266,7 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
 
     statusBar()->setVisible(showStatusbar);
     updateStatusbarActionText(showStatusbar);
-    
+
     m_navigationSplitter->restoreState(splitterState);
 
     if (!tabWidget()->restoreState(tabState))
@@ -495,7 +495,7 @@ void BrowserMainWindow::setupToolBar()
     m_stopReload->setIcon(m_reloadIcon);
 
     m_navigationBar->addAction(m_stopReload);
-    
+
     m_navigationSplitter = new QSplitter(m_navigationBar);
     m_navigationSplitter->addWidget(m_tabWidget->lineEditStack());
     m_toolbarSearch = new ToolbarSearch(m_navigationBar);
@@ -509,7 +509,7 @@ void BrowserMainWindow::setupToolBar()
     QList<int> sizes;
     sizes << (int)((double)splitterWidth * .80) << (int)((double)splitterWidth * .20);
     m_navigationSplitter->setSizes(sizes);
-    
+
     m_chaseWidget = new ChaseWidget(this);
     m_navigationBar->addWidget(m_chaseWidget);
 }
