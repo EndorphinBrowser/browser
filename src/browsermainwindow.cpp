@@ -812,13 +812,9 @@ void BrowserMainWindow::slotViewTextSmaller()
 void BrowserMainWindow::slotViewFullScreen(bool makeFullScreen)
 {
     if (makeFullScreen) {
-        showFullScreen();
+        setWindowState(windowState() | Qt::WindowFullScreen);
     } else {
-        if (isMinimized())
-            showMinimized();
-        else if (isMaximized())
-            showMaximized();
-        else showNormal();
+        setWindowState(windowState() & ~Qt::WindowFullScreen);
     }
 }
 
