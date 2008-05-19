@@ -646,8 +646,8 @@ void BrowserMainWindow::slotFileSaveAs()
 
 void BrowserMainWindow::slotPreferences()
 {
-    SettingsDialog *s = new SettingsDialog(this);
-    s->show();
+    SettingsDialog s(this);
+    s.exec();
 }
 
 void BrowserMainWindow::slotUpdateStatusbar(const QString &string)
