@@ -1,11 +1,11 @@
 #
 # export QT_WEBKIT=webkit_trunk
-# and set WEBKITHOME to the correct location
+# and export WEBKITHOME=(correct location of webkit)
 #
 CONFIG += $$(QT_WEBKIT)
 webkit_trunk {
 
-    WEBKITHOME = $$(HOME)/dev/webkit/
+    WEBKITHOME = $$(WEBKITHOME)
 
     message(Using WebKit Trunk)
     QT -= webkit

@@ -112,7 +112,7 @@ void SettingsDialog::loadFromSettings()
 {
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));
-    QString defaultHome = QLatin1String("http://arora.googlecode.com/");
+    QString defaultHome = QLatin1String("http://www.arora-browser.org");
     homeLineEdit->setText(settings.value(QLatin1String("home"), defaultHome).toString());
     settings.endGroup();
 
