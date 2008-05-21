@@ -32,7 +32,8 @@
 #include <qpushbutton.h>
 #include <qwebsettings.h>
 
-ClearPrivateData::ClearPrivateData(QWidget *parent) : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint)
+ClearPrivateData::ClearPrivateData(QWidget *parent)
+    : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint)
 {
     setWindowTitle(tr("Clear Private Data"));
 
@@ -79,26 +80,26 @@ ClearPrivateData::ClearPrivateData(QWidget *parent) : QDialog(parent, Qt::Window
 
 void ClearPrivateData::accept()
 {
-    if(m_browsingHistory->isChecked()) {
+    if (m_browsingHistory->isChecked()) {
         BrowserApplication::historyManager()->clear();
     }
-    if(m_downloadHistory->isChecked()) {
+    if (m_downloadHistory->isChecked()) {
         BrowserApplication::downloadManager()->cleanup();
         BrowserApplication::downloadManager()->hide();
     }
-    if(m_searchHistory->isChecked()) {
+    if (m_searchHistory->isChecked()) {
         QList<BrowserMainWindow*> mainWindows = BrowserApplication::instance()->mainWindows();
         for (int i = 0; i < mainWindows.count(); ++i) {
             mainWindows.at(i)->toolbarSearch()->clear();
         }
     }
-    if(m_cookies->isChecked()) {
+    if (m_cookies->isChecked()) {
         BrowserApplication::cookieJar()->clear();
     }
-    if(m_cache->isChecked()) {
+    if (m_cache->isChecked()) {
         //not implemented
     }
-    if(m_favIcons->isChecked()) {
+    if (m_favIcons->isChecked()) {
         QWebSettings::clearIconDatabase();
     }
     QDialog::accept();

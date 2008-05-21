@@ -32,7 +32,7 @@ public:
     ClearPrivateData(QWidget *parent = 0);
 
 public slots:
-    virtual void accept();
+    void accept();
 
 private:
     QCheckBox *m_browsingHistory;
