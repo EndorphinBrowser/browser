@@ -97,6 +97,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     : QApplication(argc, argv)
     , m_localServer(0)
 {
+    QCoreApplication::setOrganizationName(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
     QCoreApplication::setApplicationVersion(QLatin1String("0.2"));
 #ifdef Q_WS_QWS
