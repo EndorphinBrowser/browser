@@ -169,7 +169,7 @@ QString DownloadItem::saveFileName(const QString &directory) const
         int pos = value.indexOf(QLatin1String("filename="));
         if (pos != -1) {
             QString name = value.mid(pos + 9);
-            if(name.startsWith(QLatin1Char('"')) && name.endsWith(QLatin1Char('"')))
+            if (name.startsWith(QLatin1Char('"')) && name.endsWith(QLatin1Char('"')))
                 name = name.mid(1, name.size() - 2);
             path = name;
         }

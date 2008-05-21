@@ -110,7 +110,7 @@ void ChaseWidget::paintEvent(QPaintEvent *event)
 
     p.setRenderHint(QPainter::Antialiasing, true);
 
-    if(m_animated)
+    if (m_animated)
         p.setPen(Qt::gray);
     else
         p.setPen(QPen(palette().dark().color()));
@@ -119,7 +119,7 @@ void ChaseWidget::paintEvent(QPaintEvent *event)
 
     for (int segment = 0; segment < segmentCount(); ++segment) {
         p.rotate(QApplication::isRightToLeft() ? m_step : -m_step);
-        if(m_animated)
+        if (m_animated)
             p.setBrush(colorForSegment(segment));
         else
             p.setBrush(palette().background());
