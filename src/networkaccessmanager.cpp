@@ -76,6 +76,7 @@
 #include <qauthenticator.h>
 #include <qnetworkproxy.h>
 #include <qnetworkreply.h>
+#include <qsslconfiguration>
 #include <qsslerror.h>
 
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
@@ -108,6 +109,17 @@ void NetworkAccessManager::loadSettings()
         proxy.setPassword(settings.value(QLatin1String("password")).toString());
     }
     setProxy(proxy);
+    settings.endGroup();
+
+#ifndef QT_NO_OPENSSL
+    QSslConfiguration sslCfg = QSslConfiguration::defaultConfiguration();
+    QList<QSslCertificate> ca_list = sslCfg.caCertificates();
+    QList<QSslCertificate> ca_new = QSslCertificate::fromData(settings.value(QLatin1String("CaCertificates")).toByteArray());
+    ca_list += ca_new;
+
+    sslCfg.setCaCertificates(ca_list);
+    QSslConfiguration::setDefaultConfiguration(sslCfg);
+#endif
 }
 
 void NetworkAccessManager::authenticationRequired(QNetworkReply *reply, QAuthenticator *auth)
@@ -163,16 +175,53 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
 {
     BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
 
+    QSettings settings;
+    QList<QSslCertificate> ca_merge = QSslCertificate::fromData(settings.value(QLatin1String("CaCertificates")).toByteArray());
+
+    QList<QSslCertificate> ca_new;
     QStringList errorStrings;
-    for (int i = 0; i < error.count(); ++i)
+    for (int i = 0; i < error.count(); ++i) {
+        if (ca_merge.contains(error.at(i).certificate()))
+            continue;
         errorStrings += error.at(i).errorString();
+        if (!error.at(i).certificate().isNull()) {
+            ca_new.append(error.at(i).certificate());
+        }
+    }
+    if (errorStrings.isEmpty()) {
+        reply->ignoreSslErrors();
+        return;
+    }
+
     QString errors = errorStrings.join(QLatin1String("\n"));
     int ret = QMessageBox::warning(mainWindow, QCoreApplication::applicationName(),
                            tr("SSL Errors:\n\n%1\n\n%2\n\n"
                               "Do you want to ignore these errors?").arg(reply->url().toString()).arg(errors),
                            QMessageBox::Yes | QMessageBox::No,
                            QMessageBox::No);
-    if (ret == QMessageBox::Yes)
+
+    if (ret == QMessageBox::Yes) {
+        if (ca_new.count() > 0) {
+            ret = QMessageBox::question(mainWindow, QCoreApplication::applicationName(),
+                tr("Do you want to accept all these certificates?"),
+                QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+            if (ret == QMessageBox::Yes) {
+                ca_merge += ca_new;
+
+                QSslConfiguration sslCfg = QSslConfiguration::defaultConfiguration();
+                QList<QSslCertificate> ca_list = sslCfg.caCertificates();
+                ca_list += ca_new;
+                sslCfg.setCaCertificates(ca_list);
+                QSslConfiguration::setDefaultConfiguration(sslCfg);
+                reply->setSslConfiguration(sslCfg);
+
+                QByteArray pems;
+                for (int i = 0; i < ca_merge.count(); ++i)
+                    pems += ca_merge.at(i).toPem() + '\n';
+                settings.setValue(QLatin1String("CaCertificates"), pems);
+            }
+        }
         reply->ignoreSslErrors();
+    }
 }
 #endif
