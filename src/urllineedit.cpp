@@ -211,6 +211,11 @@ void ExLineEdit::paintEvent(QPaintEvent *)
     style()->drawPrimitive(QStyle::PE_PanelLineEdit, &panel, &p, this);
 }
 
+void ExLineEdit::clear()
+{
+    m_lineEdit->clear();
+}
+
 
 class UrlIconLabel : public QLabel
 {

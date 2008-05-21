@@ -68,6 +68,7 @@
 #include "bookmarks.h"
 #include "browserapplication.h"
 #include "chasewidget.h"
+#include "clearprivatedata.h"
 #include "downloadmanager.h"
 #include "history.h"
 #include "settings.h"
@@ -456,6 +457,7 @@ void BrowserMainWindow::setupMenu()
 
     QMenu *toolsMenu = menuBar()->addMenu(tr("&Tools"));
     toolsMenu->addAction(tr("Web &Search"), this, SLOT(slotWebSearch()), QKeySequence(tr("Ctrl+K", "Web Search")));
+    toolsMenu->addAction(tr("&Clear Private Data"), this, SLOT(slotClearPrivateData()), QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
 #ifndef Q_CC_MINGW
     a = toolsMenu->addAction(tr("Enable Web &Inspector"), this, SLOT(slotToggleInspector(bool)));
     a->setCheckable(true);
@@ -845,6 +847,12 @@ void BrowserMainWindow::slotWebSearch()
     m_toolbarSearch->lineEdit()->setFocus();
 }
 
+void BrowserMainWindow::slotClearPrivateData()
+{
+    ClearPrivateData dialog;
+    dialog.exec();
+}
+
 void BrowserMainWindow::slotToggleInspector(bool enable)
 {
     QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, enable);
@@ -885,6 +893,11 @@ TabWidget *BrowserMainWindow::tabWidget() const
 WebView *BrowserMainWindow::currentTab() const
 {
     return m_tabWidget->currentWebView();
+}
+
+ToolbarSearch *BrowserMainWindow::toolbarSearch() const
+{
+    return m_toolbarSearch;
 }
 
 void BrowserMainWindow::slotLoadProgress(int progress)

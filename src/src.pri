@@ -38,6 +38,7 @@ HEADERS += \
     browserapplication.h \
     browsermainwindow.h \
     chasewidget.h \
+    clearprivatedata.h \
     cookiejar.h \
     downloadmanager.h \
     edittableview.h \
@@ -62,6 +63,7 @@ SOURCES += \
     browserapplication.cpp \
     browsermainwindow.cpp \
     chasewidget.cpp \
+    clearprivatedata.cpp \
     cookiejar.cpp \
     downloadmanager.cpp \
     edittableview.cpp \

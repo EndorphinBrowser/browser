@@ -93,6 +93,7 @@ protected:
     void paintEvent(QPaintEvent *event);
     void resizeEvent(QResizeEvent *event);
     bool event(QEvent *event);
+    void clear();
 
 protected:
     void updateGeometries();

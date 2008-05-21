@@ -93,6 +93,7 @@ public:
     static QUrl guessUrlFromString(const QString &url);
     TabWidget *tabWidget() const;
     WebView *currentTab() const;
+    ToolbarSearch *toolbarSearch() const;
     QByteArray saveState(bool withTabs = true) const;
     bool restoreState(const QByteArray &state);
 
@@ -134,6 +135,7 @@ private slots:
     void slotViewFullScreen(bool enable);
 
     void slotWebSearch();
+    void slotClearPrivateData();
     void slotToggleInspector(bool enable);
     void slotAboutApplication();
     void slotDownloadManager();
