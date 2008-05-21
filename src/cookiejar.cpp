@@ -106,8 +106,7 @@ QDataStream &operator>>(QDataStream &stream, QList<QNetworkCookie> &list)
 
     quint32 count;
     stream >> count;
-    for(quint32 i = 0; i < count; ++i)
-    {
+    for (quint32 i = 0; i < count; ++i) {
         QByteArray value;
         stream >> value;
         QList<QNetworkCookie> newCookies = QNetworkCookie::parseCookies(value);
