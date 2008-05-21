@@ -657,7 +657,9 @@ void TabWidget::closeTab(int index)
     QWidget *lineEdit = m_lineEdits->widget(index);
     m_lineEdits->removeWidget(lineEdit);
     lineEdit->deleteLater();
+    QWidget *webView = widget(index);
     removeTab(index);
+    webView->deleteLater();
     emit tabsChanged();
     if (hasFocus && count() > 0)
         currentWebView()->setFocus();
