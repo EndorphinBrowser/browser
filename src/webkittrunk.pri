@@ -1,13 +1,11 @@
 #
 # export QT_WEBKIT=webkit_trunk
-# and export WEBKITHOME=(correct location of webkit)
+# export WEBKITHOME=$HOME/dev/webkit/
 #
 CONFIG += $$(QT_WEBKIT)
 webkit_trunk {
-
-    WEBKITHOME = $$(WEBKITHOME)
-
     message(Using WebKit Trunk)
+    WEBKITHOME = $$(WEBKITHOME)
     QT -= webkit
     debug: QMAKE_LIBDIR_FLAGS = -L$$WEBKITHOME/WebKitBuild/Debug/lib
     release: QMAKE_LIBDIR_FLAGS = -L$$WEBKITHOME/WebKitBuild/Release/lib
