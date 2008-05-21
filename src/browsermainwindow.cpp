@@ -871,10 +871,12 @@ void BrowserMainWindow::slotToggleInspector(bool enable)
 
 void BrowserMainWindow::slotSwapFocus()
 {
-    if (currentTab()->hasFocus())
+    if (currentTab()->hasFocus()) {
         m_tabWidget->currentLineEdit()->setFocus();
-    else
+        m_tabWidget->currentLineEdit()->selectAll();
+    } else {
         currentTab()->setFocus();
+    }
 }
 
 void BrowserMainWindow::loadPage(const QString &page)
