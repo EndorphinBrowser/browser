@@ -1,5 +1,7 @@
 ; Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
 
+SetCompressor /SOLID /FINAL lzma
+
 !define PRODUCT_NAME "Arora"
 !define PRODUCT_VERSION "Snapshot (5-21-2008)"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\arora.exe"
@@ -31,14 +33,32 @@ ShowUnInstDetails nevershow
 Section "Main Components" SEC01
   KillProcDLL::KillProc "arora.exe"
   Sleep 100
-  SetOutPath "$INSTDIR"
   SetOverwrite on
+
+  SetOutPath "$INSTDIR"
   File "arora.exe"
   File "C:\qt\4.4.0\bin\mingwm10.dll"
   File "C:\qt\4.4.0\bin\QtCore4.dll"
   File "C:\qt\4.4.0\bin\QtGui4.dll"
   File "C:\qt\4.4.0\bin\QtNetwork4.dll"
   File "C:\qt\4.4.0\bin\QtWebKit4.dll"
+
+  SetOutPath "$INSTDIR\imageformats"
+  File "C:\qt\4.4.0\plugins\imageformats\qtiff4.dll"
+  File "C:\qt\4.4.0\plugins\imageformats\qsvg4.dll"
+  File "C:\qt\4.4.0\plugins\imageformats\qmng4.dll"
+  File "C:\qt\4.4.0\plugins\imageformats\qjpeg4.dll"
+  File "C:\qt\4.4.0\plugins\imageformats\qico4.dll"
+  File "C:\qt\4.4.0\plugins\imageformats\qgif4.dll"
+
+  SetOutPath "$INSTDIR\iconengines"
+  File "C:\qt\4.4.0\plugins\iconengines\qsvgicon4.dll"
+
+  SetOutPath "$INSTDIR\codecs"
+  File "C:\qt\4.4.0\plugins\codecs\qtwcodecs4.dll"
+  File "C:\qt\4.4.0\plugins\codecs\qkrcodecs4.dll"
+  File "C:\qt\4.4.0\plugins\codecs\qjpcodecs4.dll"
+  File "C:\qt\4.4.0\plugins\codecs\qcncodecs4.dll"
 SectionEnd
 
 Section -Icons
