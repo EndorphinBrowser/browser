@@ -76,7 +76,7 @@
 #include <qauthenticator.h>
 #include <qnetworkproxy.h>
 #include <qnetworkreply.h>
-#include <qsslconfiguration>
+#include <qsslconfiguration.h>
 #include <qsslerror.h>
 
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
