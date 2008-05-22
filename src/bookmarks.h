@@ -66,9 +66,11 @@
 #include <qobject.h>
 
 #include <qabstractitemmodel.h>
+#include <qtoolbar.h>
 #include <qtoolbutton.h>
 #include <qundostack.h>
-#include <qtoolbar.h>
+
+#include "tabwidget.h"
 
 /*!
     Bookmark manager, owner of the bookmarks, loads, saves and basic tasks
@@ -223,7 +225,7 @@ class BookmarksMenu : public ModelMenu
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url, const QString &title, bool inNewTab);
+    void openUrl(const QUrl &url, TabWidget::Tab type, const QString &title);
 
 public:
      BookmarksMenu(QWidget *parent = 0);
@@ -283,7 +285,7 @@ class BookmarksDialog : public QDialog, public Ui_BookmarksDialog
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url, const QString &title, bool inNewTab);
+    void openUrl(const QUrl &url, TabWidget::Tab, const QString &title);
 
 public:
     BookmarksDialog(QWidget *parent = 0, BookmarksManager *manager = 0);
@@ -291,7 +293,7 @@ public:
 
 private slots:
     void customContextMenuRequested(const QPoint &pos);
-    void open(bool inNewTab);
+    void open(TabWidget::Tab tab);
     void openInNewTab();
     void openInCurrentTab();
     void newFolder();
@@ -308,21 +310,22 @@ private:
 class BookmarkToolButton : public QToolButton
 {
     Q_OBJECT
+
 signals:
-    void openBookmark(const QUrl &url, const QString &title, bool inNewTab);
+    void openBookmark(const QUrl &url, TabWidget::Tab tab, const QString &title);
 
 public:
-    BookmarkToolButton(QWidget *parent, QUrl url);
-    const QUrl &url() const;
+    BookmarkToolButton(QUrl url, QWidget *parent = 0);
+    const QUrl url() const;
 
 protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
-private:
-    QUrl m_url;
-
 private slots:
     void openBookmark();
+
+private:
+    QUrl m_url;
 
 };
 
@@ -330,8 +333,9 @@ private slots:
 class BookmarksToolBar : public QToolBar
 {
     Q_OBJECT
+
 signals:
-    void openUrl(const QUrl &url, const QString &title, bool inNewTab);
+    void openUrl(const QUrl &url, TabWidget::Tab tab, const QString &title);
 
 public:
     BookmarksToolBar(BookmarksModel *model, QWidget *parent = 0);
@@ -343,7 +347,6 @@ protected:
     void dropEvent(QDropEvent *event);
 
 private slots:
-    void toolbuttonOpenBookmark(const QUrl &url, const QString &title, bool inNewTab);
     void build();
 
 private:

@@ -46,8 +46,8 @@ private slots:
     void currentWebView();
     void lineEditStack_data();
     void lineEditStack();
-    void loadUrlInCurrentTab_data();
-    void loadUrlInCurrentTab();
+    void loadUrl_data();
+    void loadUrl();
     void newTab_data();
     void newTab();
     void nextTab_data();
@@ -127,7 +127,7 @@ void tst_TabWidget::tabwidget()
     QVERIFY(widget.closeTabAction());
     widget.currentWebView();
     widget.lineEditStack();
-    widget.loadUrlInCurrentTab(QUrl());
+    widget.loadUrl(QUrl());
     widget.newTab();
     QVERIFY(widget.newTabAction());
     widget.nextTab();
@@ -165,9 +165,9 @@ void tst_TabWidget::addWebAction()
 
     widget.newTab();
     QVERIFY(!action->isEnabled());
-    widget.loadUrlInCurrentTab(QUrl("about:config"));
-    widget.loadUrlInCurrentTab(QUrl("http://www.google.com/"));
-    widget.loadUrlInCurrentTab(QUrl("http://www.yahoo.com/"));
+    widget.loadUrl(QUrl("about:config"));
+    widget.loadUrl(QUrl("http://www.google.com/"));
+    widget.loadUrl(QUrl("http://www.yahoo.com/"));
     QTest::qWait(3000);
     QVERIFY(action->isEnabled());
     widget.newTab();
@@ -176,7 +176,7 @@ void tst_TabWidget::addWebAction()
     QCOMPARE(spy0.count(), 0);
     QCOMPARE(spy1.count(), 0);
     QVERIFY(spy2.count() > 0);
-    QCOMPARE(spy3.count(), 4);
+    QCOMPARE(spy3.count(), 6);
     QVERIFY(spy4.count() > 0);
     QCOMPARE(spy5.count(), 7);
     QCOMPARE(spy6.count(), 0);
@@ -206,7 +206,7 @@ void tst_TabWidget::closeTab()
     widget.closeTab(index);
     widget.newTab();
     widget.newTab();
-    widget.loadUrlInCurrentTab(QUrl("about:config"));
+    widget.loadUrl(QUrl("about:config"));
     widget.newTab();
     qDebug() << "TODO";
     return;
@@ -334,14 +334,14 @@ void tst_TabWidget::lineEditStack()
     QSKIP("Test is not implemented.", SkipAll);
 }
 
-void tst_TabWidget::loadUrlInCurrentTab_data()
+void tst_TabWidget::loadUrl_data()
 {
     QTest::addColumn<QUrl>("url");
     QTest::newRow("null") << QUrl();
 }
 
-// public void loadUrlInCurrentTab(QUrl const& url)
-void tst_TabWidget::loadUrlInCurrentTab()
+// public void loadUrl(QUrl const& url)
+void tst_TabWidget::loadUrl()
 {
     /*
     QFETCH(QUrl, url);
@@ -356,7 +356,7 @@ void tst_TabWidget::loadUrlInCurrentTab()
     QSignalSpy spy5(&widget, SIGNAL(tabsChanged()));
     QSignalSpy spy6(&widget, SIGNAL(lastTabClosed()));
 
-    widget.loadUrlInCurrentTab(url);
+    widget.loadUrl(url);
 
     QCOMPARE(spy0.count(), 0);
     QCOMPARE(spy1.count(), 0);

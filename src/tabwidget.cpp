@@ -728,7 +728,7 @@ void TabWidget::aboutToShowRecentTabsMenu()
 void TabWidget::aboutToShowRecentTriggeredAction(QAction *action)
 {
     QUrl url = action->data().toUrl();
-    loadUrlInCurrentTab(url);
+    loadUrl(url, CurrentTab);
 }
 
 void TabWidget::mouseDoubleClickEvent(QMouseEvent *event)
@@ -764,35 +764,21 @@ void TabWidget::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-void TabWidget::loadUrlInCurrentTab(const QUrl &url)
+void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
 {
-    loadUrl(url, false);
-}
+    WebView *webView;
+    if (NewTab == type)
+        webView = newTab(true);
+    else
+        webView = currentWebView();
 
-void TabWidget::loadUrl(const QUrl &url, bool inNewTab)
-{
-    WebView *webView;
-    if(inNewTab)
-        webView = newTab(true);
-    else
-        webView = currentWebView();
-    if(webView) {
+    if (webView) {
         webView->loadUrl(url);
         webView->setFocus();
-    }
-}
-void TabWidget::loadUrlWithTitle(const QUrl &url, const QString &title, bool inNewTab)
-{
-    WebView *webView;
-    if(inNewTab)
-        webView = newTab(true);
-    else
-        webView = currentWebView();
-    if(webView) {
-        webView->loadUrl(url);
-        webView->setFocus();
-        int tabIndex = webViewIndex(webView);
-        setTabText(tabIndex, title);
+        if (!title.isEmpty()) {
+            int tabIndex = webViewIndex(webView);
+            setTabText(tabIndex, title);
+        }
     }
 }
 

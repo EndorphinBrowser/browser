@@ -114,8 +114,8 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
     m_bookmarksToolbar = new BookmarksToolBar(boomarksModel, this);
-    connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&, const QString&, bool)),
-          m_tabWidget, SLOT(loadUrlWithTitle(const QUrl&, const QString&, bool)));
+    connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&, TabWidget::Tab, const QString&)),
+          m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::Tab, const QString&)));
     connect(m_bookmarksToolbar->toggleViewAction(), SIGNAL(toggled(bool)),
             this, SLOT(updateBookmarksToolbarActionText(bool)));
 
@@ -394,7 +394,7 @@ void BrowserMainWindow::setupMenu()
     // History
     HistoryMenu *historyMenu = new HistoryMenu(this);
     connect(historyMenu, SIGNAL(openUrl(const QUrl&)),
-            m_tabWidget, SLOT(loadUrlInCurrentTab(const QUrl&)));
+            m_tabWidget, SLOT(loadUrl(const QUrl&)));
     connect(historyMenu, SIGNAL(hovered(const QString&)), this,
             SLOT(slotUpdateStatusbar(const QString&)));
     historyMenu->setTitle(tr("Hi&story"));
@@ -428,8 +428,8 @@ void BrowserMainWindow::setupMenu()
 
     // Bookmarks
     BookmarksMenu *bookmarksMenu = new BookmarksMenu(this);
-    connect(bookmarksMenu, SIGNAL(openUrl(const QUrl&, const QString &, bool)),
-            m_tabWidget, SLOT(loadUrlWithTitle(const QUrl&, const QString&, bool)));
+    connect(bookmarksMenu, SIGNAL(openUrl(const QUrl&, TabWidget::Tab, const QString &)),
+            m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::Tab, const QString&)));
     connect(bookmarksMenu, SIGNAL(hovered(const QString&)),
             this, SLOT(slotUpdateStatusbar(const QString&)));
     bookmarksMenu->setTitle(tr("&Bookmarks"));
@@ -522,8 +522,8 @@ void BrowserMainWindow::setupToolBar()
 void BrowserMainWindow::slotShowBookmarksDialog()
 {
     BookmarksDialog *dialog = new BookmarksDialog(this);
-    connect(dialog, SIGNAL(openUrl(const QUrl&, const QString &, bool)),
-            m_tabWidget, SLOT(loadUrlWithTitle(const QUrl&, const QString &, bool)));
+    connect(dialog, SIGNAL(openUrl(const QUrl&, TabWidget::Tab, const QString &)),
+            m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::Tab, const QString &)));
     dialog->show();
 }
 
@@ -886,7 +886,7 @@ void BrowserMainWindow::loadPage(const QString &page)
 
     QUrl url = guessUrlFromString(page);
     m_tabWidget->currentLineEdit()->setText(url.toString());
-    m_tabWidget->loadUrlInCurrentTab(url);
+    m_tabWidget->loadUrl(url, TabWidget::CurrentTab);
 }
 
 TabWidget *BrowserMainWindow::tabWidget() const
