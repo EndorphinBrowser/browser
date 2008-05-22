@@ -6,6 +6,7 @@ Makefile
 .moc
 .obj
 .rcc
+.gdb_history
 
 autotests/addbookmarkdialog/addbookmarkdialog
 autotests/autosaver/autosaver
