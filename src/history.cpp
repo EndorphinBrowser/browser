@@ -1077,7 +1077,7 @@ int HistoryTreeModel::columnCount(const QModelIndex &parent) const
 
 int HistoryTreeModel::rowCount(const QModelIndex &parent) const
 {
-    if ( parent.internalId() != 0
+    if (parent.internalId() != 0
         || parent.column() > 0
         || !sourceModel())
         return 0;

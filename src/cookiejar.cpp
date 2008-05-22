@@ -524,7 +524,7 @@ CookiesDialog::CookiesDialog(CookieJar *cookieJar, QWidget *parent) : QDialog(pa
     int height = fm.height() + fm.height()/3;
     cookiesTable->verticalHeader()->setDefaultSectionSize(height);
     cookiesTable->verticalHeader()->setMinimumSectionSize(-1);
-    for (int i = 0; i < model->columnCount(); ++i){
+    for (int i = 0; i < model->columnCount(); ++i) {
         int header = cookiesTable->horizontalHeader()->sectionSizeHint(i);
         switch (i) {
         case 0:
@@ -699,7 +699,7 @@ CookiesExceptionsDialog::CookiesExceptionsDialog(CookieJar *cookieJar, QWidget *
     int height = fm.height() + fm.height()/3;
     exceptionTable->verticalHeader()->setDefaultSectionSize(height);
     exceptionTable->verticalHeader()->setMinimumSectionSize(-1);
-    for (int i = 0; i < m_exceptionsModel->columnCount(); ++i){
+    for (int i = 0; i < m_exceptionsModel->columnCount(); ++i) {
         int header = exceptionTable->horizontalHeader()->sectionSizeHint(i);
         switch (i) {
         case 0:

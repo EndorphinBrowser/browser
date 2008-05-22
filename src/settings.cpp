@@ -321,7 +321,7 @@ void SettingsDialog::chooseFont()
 {
     bool ok;
     QFont font = QFontDialog::getFont(&ok, standardFont, this);
-    if ( ok ) {
+    if (ok) {
         standardFont = font;
         standardLabel->setText(QString(QLatin1String("%1 %2")).arg(font.family()).arg(font.pointSize()));
     }
@@ -331,7 +331,7 @@ void SettingsDialog::chooseFixedFont()
 {
     bool ok;
     QFont font = QFontDialog::getFont(&ok, fixedFont, this);
-    if ( ok ) {
+    if (ok) {
         fixedFont = font;
         fixedLabel->setText(QString(QLatin1String("%1 %2")).arg(font.family()).arg(font.pointSize()));
     }
