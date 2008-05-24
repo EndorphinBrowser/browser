@@ -316,7 +316,7 @@ signals:
 
 public:
     BookmarkToolButton(QUrl url, QWidget *parent = 0);
-    const QUrl url() const;
+    QUrl url() const;
 
 protected:
     void mouseReleaseEvent(QMouseEvent *event);

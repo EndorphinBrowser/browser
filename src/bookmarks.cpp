@@ -928,7 +928,7 @@ void BookmarkToolButton::mouseReleaseEvent(QMouseEvent *event)
         emit openBookmark(url(), TabWidget::NewTab, text());
 }
 
-const QUrl BookmarkToolButton::url() const
+QUrl BookmarkToolButton::url() const
 {
     return m_url;
 }
