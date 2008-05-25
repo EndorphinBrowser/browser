@@ -437,10 +437,8 @@ NetworkAccessManager *BrowserApplication::networkAccessManager()
 
 HistoryManager *BrowserApplication::historyManager()
 {
-    if (!s_historyManager) {
+    if (!s_historyManager)
         s_historyManager = new HistoryManager();
-        QWebHistoryInterface::setDefaultInterface(s_historyManager);
-    }
     return s_historyManager;
 }
 
