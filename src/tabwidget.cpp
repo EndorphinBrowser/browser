@@ -564,6 +564,8 @@ WebView *TabWidget::newTab(bool makeCurrent)
     if (makeCurrent)
         setCurrentWidget(webViewWithSearch);
 
+    QWidget::setTabOrder(this, urlLineEdit);
+
     // webview actions
     for (int i = 0; i < m_actions.count(); ++i) {
         WebActionMapper *mapper = m_actions[i];
