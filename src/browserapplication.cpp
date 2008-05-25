@@ -275,6 +275,8 @@ void BrowserApplication::clean()
             m_mainWindows.removeAt(i);
 }
 
+static const qint32 BrowserApplicationMagic = 0xec;
+
 void BrowserApplication::saveSession()
 {
     QWebSettings *globalSettings = QWebSettings::globalSettings();
@@ -286,12 +288,17 @@ void BrowserApplication::saveSession()
     QSettings settings;
     settings.beginGroup(QLatin1String("sessions"));
 
+    int version = 2;
+
     QByteArray data;
     QBuffer buffer(&data);
     QDataStream stream(&buffer);
-    buffer.open(QIODevice::ReadWrite);
+    buffer.open(QIODevice::WriteOnly);
 
-    stream << m_mainWindows.count();
+    stream << qint32(BrowserApplicationMagic);
+    stream << qint32(version);
+
+    stream << qint32(m_mainWindows.count());
     for (int i = 0; i < m_mainWindows.count(); ++i)
         stream << m_mainWindows.at(i)->saveState();
     settings.setValue(QLatin1String("lastSession"), data);
@@ -303,15 +310,24 @@ bool BrowserApplication::canRestoreSession() const
     return !m_lastSession.isEmpty();
 }
 
-void BrowserApplication::restoreLastSession()
+bool BrowserApplication::restoreLastSession()
 {
+    int version = 2;
     QList<QByteArray> windows;
     QBuffer buffer(&m_lastSession);
     QDataStream stream(&buffer);
     buffer.open(QIODevice::ReadOnly);
-    int windowCount;
+
+    qint32 marker;
+    qint32 v;
+    stream >> marker;
+    stream >> v;
+    if (marker != BrowserApplicationMagic || v != version)
+        return false;
+
+    qint32 windowCount;
     stream >> windowCount;
-    for (int i = 0; i < windowCount; ++i) {
+    for (qint32 i = 0; i < windowCount; ++i) {
         QByteArray windowState;
         stream >> windowState;
         windows.append(windowState);
@@ -327,6 +343,7 @@ void BrowserApplication::restoreLastSession()
         }
         newWindow->restoreState(windows.at(i));
     }
+    return true;
 }
 
 bool BrowserApplication::isTheOnlyBrowser() const

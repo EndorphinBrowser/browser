@@ -150,6 +150,7 @@ WebViewWithSearch::WebViewWithSearch(WebView *webView, QWidget *parent)
     : QWidget(parent)
     , m_webView(webView)
 {
+    m_webView->setParent(this);
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);

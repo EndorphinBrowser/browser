@@ -664,9 +664,12 @@ void TabWidget::closeTab(int index)
     QWidget *lineEdit = m_lineEdits->widget(index);
     m_lineEdits->removeWidget(lineEdit);
     lineEdit->deleteLater();
-    QWidget *webView = widget(index);
+
+    QWidget *webViewWithSearch = widget(index);
     removeTab(index);
-    webView->deleteLater();
+    webViewWithSearch->setParent(0);
+    webViewWithSearch->deleteLater();
+
     emit tabsChanged();
     if (hasFocus && count() > 0)
         currentWebView()->setFocus();
@@ -774,10 +777,13 @@ void TabWidget::mouseReleaseEvent(QMouseEvent *event)
 void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
 {
     WebView *webView;
-    if (NewTab == type)
+    if (NewTab == type) {
         webView = newTab(true);
-    else
+        if (count() == 1)
+            webView = this->webView(0);
+    } else {
         webView = currentWebView();
+    }
 
     if (webView) {
         webView->loadUrl(url);
@@ -819,7 +825,7 @@ QByteArray TabWidget::saveState() const
 
     QStringList tabs;
     for (int i = 0; i < count(); ++i) {
-        if (WebView *tab = qobject_cast<WebView*>(widget(i))) {
+        if (WebView *tab = webView(i)) {
             tabs.append(tab->url().toString());
         } else {
             tabs.append(QString::null);
@@ -847,12 +853,8 @@ bool TabWidget::restoreState(const QByteArray &state)
 
     QStringList openTabs;
     stream >> openTabs;
-
-    for (int i = 0; i < openTabs.count(); ++i) {
-        if (i != 0)
-            newTab();
-        loadPage(openTabs.at(i));
-    }
+    for (int i = 0; i < openTabs.count(); ++i)
+        loadUrl(openTabs.at(i), i == 0 ? CurrentTab : NewTab);
 
     int currentTab;
     stream >> currentTab;

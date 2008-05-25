@@ -22,6 +22,7 @@
 #include "qtest_arora.h"
 
 #include <tabwidget.h>
+#include <webview.h>
 
 class tst_TabWidget : public QObject
 {
@@ -68,6 +69,8 @@ private slots:
     void showStatusBarMessage(const QString &);
     void tabsChanged_data();
     void tabsChanged();
+
+    void saveState();
 };
 
 // Subclass that exposes the protected functions.
@@ -720,6 +723,40 @@ void tst_TabWidget::tabsChanged()
     */
     QSKIP("Test is not implemented.", SkipAll);
 }
+
+void tst_TabWidget::saveState()
+{
+    SubTabWidget widget;
+    widget.newTab();
+    QCOMPARE(widget.count(), 1);
+
+    QUrl url = QUrl("data:text/html;base32,Hello%20World");
+    widget.loadUrl(url, TabWidget::CurrentTab);
+    QCOMPARE(widget.count(), 1);
+    QCOMPARE(widget.webView(0)->url(), url);
+
+    widget.loadUrl(url, TabWidget::NewTab);
+    QCOMPARE(widget.count(), 2);
+    QCOMPARE(widget.webView(1)->url(), url);
+
+    QByteArray state = widget.saveState();
+
+    widget.closeTab();
+    widget.closeTab();
+    QCOMPARE(widget.count(), 0);
+
+    widget.newTab();
+    widget.restoreState(state);
+    QCOMPARE(widget.count(), 2);
+    QVERIFY(widget.webView(0));
+    QCOMPARE(widget.webView(0)->url(), url);
+    QVERIFY(widget.webView(1));
+    QCOMPARE(widget.webView(1)->url(), url);
+
+    widget.closeTab();
+    widget.closeTab();
+}
+
 
 QTEST_MAIN(tst_TabWidget)
 #include "tst_tabwidget.moc"

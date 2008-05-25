@@ -109,7 +109,7 @@ public:
 
 public slots:
     BrowserMainWindow *newMainWindow();
-    void restoreLastSession();
+    bool restoreLastSession();
 #if defined(Q_WS_MAC)
     void lastWindowClosed();
     void quitBrowser();

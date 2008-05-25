@@ -248,8 +248,8 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     bool showToolbar;
     bool showBookmarksBar;
     bool showStatusbar;
-    QByteArray splitterState;
     QByteArray tabState;
+    QByteArray splitterState;
 
     stream >> size;
     stream >> showToolbar;
