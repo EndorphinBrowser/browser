@@ -61,6 +61,15 @@ private:
 class SubHistory : public HistoryManager
 {
 public:
+    SubHistory() : HistoryManager()
+    {
+        QWidget w;
+        setParent(&w);
+        if (QWebHistoryInterface::defaultInterface() == this);
+            QWebHistoryInterface::setDefaultInterface(0);
+        setParent(0);
+    }
+
     ~SubHistory() {
         setHistoryLimit(30);
     }
