@@ -14,10 +14,6 @@ OBJECTS_DIR = .obj
 
 QT += webkit network
 
-CONFIG += qt warn_on
-contains(QT_BUILD_PARTS, tools): CONFIG += uitools
-else: DEFINES += QT_NO_UITOOLS
-
 FORMS += \
     addbookmarkdialog.ui \
     bookmarks.ui \
