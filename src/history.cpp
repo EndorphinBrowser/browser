@@ -677,7 +677,8 @@ TreeProxyModel::TreeProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
 
 bool TreeProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
-    if (!source_parent.isValid())
+    QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
+    if (sourceModel()->hasChildren(idx))
         return true;
     return QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent);
 }
