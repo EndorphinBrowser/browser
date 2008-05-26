@@ -93,4 +93,16 @@ mac {
     QMAKE_INFO_PLIST = Info_mac.plist
 }
 
+unix {
+    isEmpty(PREFIX) {
+	PREFIX = /usr/local
+    }
+
+    BINDIR = $$PREFIX/bin
+    DATADIR = $$PREFIX/share
+    PKGDATADIR = $$DATADIR/arora
+
+    DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
+}
+
 include(webkittrunk.pri)

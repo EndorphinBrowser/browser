@@ -42,6 +42,9 @@ Section "Main Components" SEC01
   File "C:\qt\4.4.0\bin\QtGui4.dll"
   File "C:\qt\4.4.0\bin\QtNetwork4.dll"
   File "C:\qt\4.4.0\bin\QtWebKit4.dll"
+  
+  SetOutPath "$INSTDIR\locale"
+  File "src\.qm\locale\*.qm"
 
   SetOutPath "$INSTDIR\imageformats"
   File "C:\qt\4.4.0\plugins\imageformats\qtiff4.dll"

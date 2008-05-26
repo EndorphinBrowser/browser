@@ -143,6 +143,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QString localSysName = QLocale::system().name();
 
     installTranslator(QLatin1String("qt_") + localSysName);
+    installTranslator(dataDirectory() + QDir::separator() + "locale" + QDir::separator() + localSysName);
 
     QSettings settings;
     settings.beginGroup(QLatin1String("sessions"));
@@ -477,3 +478,11 @@ QIcon BrowserApplication::icon(const QUrl &url) const
     return m_defaultIcon.pixmap(16, 16);
 }
 
+QString BrowserApplication::dataDirectory() const
+{
+#if defined(Q_WS_X11)
+    return PKGDATADIR;
+#elif defined(Q_WS_WIN) || defined(Q_WS_MAC)
+    return applicationDirPath();
+#endif
+}
