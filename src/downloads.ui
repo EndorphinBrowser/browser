@@ -20,7 +20,11 @@
     <number>0</number>
    </property>
    <item row="0" column="0" colspan="3" >
-    <widget class="EditTableView" name="downloadsView" />
+    <widget class="EditTableView" name="downloadsView" >
+     <property name="frameShape" >
+      <enum>QFrame::NoFrame</enum>
+     </property>
+    </widget>
    </item>
    <item row="1" column="0" >
     <layout class="QHBoxLayout" name="horizontalLayout" >
