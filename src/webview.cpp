@@ -179,7 +179,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
     QBuffer imageBuffer;
     imageBuffer.open(QBuffer::ReadWrite);
     QIcon icon = view()->style()->standardIcon(QStyle::SP_MessageBoxWarning, 0, view());
-    QPixmap pixmap = icon.pixmap(QSize(32,32));
+    QPixmap pixmap = icon.pixmap(QSize(32, 32));
     if (pixmap.save(&imageBuffer, "PNG")) {
         html.replace(QLatin1String("IMAGE_BINARY_DATA_HERE"),
                      QString(QLatin1String(imageBuffer.buffer().toBase64())));
