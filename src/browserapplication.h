@@ -103,6 +103,8 @@ public:
     static NetworkAccessManager *networkAccessManager();
     static BookmarksManager *bookmarksManager();
 
+    QString dataDirectory() const;
+
 #if defined(Q_WS_MAC)
     bool event(QEvent *event);
 #endif
