@@ -133,6 +133,9 @@ void SettingsDialog::loadFromSettings()
     settings.endGroup();
 
     settings.beginGroup(QLatin1String("downloadmanager"));
+    bool alwaysPromptForFileName = settings.value(QLatin1String("alwaysPromptForFileName"), false).toBool();
+    if (alwaysPromptForFileName)
+        downloadAsk->setChecked(true);
     QString downloadDirectory = settings.value(QLatin1String("downloadDirectory"), downloadsLocation->text()).toString();
     downloadsLocation->setText(downloadDirectory);
     settings.endGroup();
@@ -211,6 +214,11 @@ void SettingsDialog::saveToSettings()
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));
     settings.setValue(QLatin1String("home"), homeLineEdit->text());
+    settings.endGroup();
+
+    settings.beginGroup(QLatin1String("downloadmanager"));
+    settings.setValue(QLatin1String("alwaysPromptForFileName"), downloadAsk->isChecked());
+    settings.setValue(QLatin1String("downloadDirectory"), downloadsLocation->text());
     settings.endGroup();
 
     settings.beginGroup(QLatin1String("general"));

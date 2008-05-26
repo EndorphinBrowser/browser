@@ -100,6 +100,12 @@ DownloadItem::DownloadItem(QNetworkReply *reply, bool requestFileName, QWidget *
     connect(openButton, SIGNAL(clicked()), this, SLOT(open()));
     connect(tryAgainButton, SIGNAL(clicked()), this, SLOT(tryAgain()));
 
+    if (!requestFileName) {
+        QSettings settings;
+        settings.beginGroup(QLatin1String("downloadmanager"));
+        m_requestFileName = settings.value(QLatin1String("alwaysPromptForFileName"), false).toBool();
+    }
+
     init();
 }
 
@@ -153,6 +159,7 @@ void DownloadItem::getFileName()
             fileNameLabel->setText(tr("Download canceled: %1").arg(QFileInfo(defaultFileName).fileName()));
             return;
         }
+        m_requestFileName = false;
     }
     m_output.setFileName(fileName);
     fileNameLabel->setText(QFileInfo(m_output.fileName()).fileName());
@@ -195,7 +202,6 @@ QString DownloadItem::saveFileName(const QString &directory) const
     }
     return name;
 }
-
 
 void DownloadItem::stop()
 {
@@ -544,7 +550,7 @@ void DownloadManager::load()
             item->stopButton->setEnabled(false);
             item->tryAgainButton->setVisible(!done);
             item->tryAgainButton->setEnabled(!done);
-            item->progressBar->setVisible(!done);
+            item->progressBar->setVisible(false);
             addItem(item);
         }
         key = QString(QLatin1String("download_%1_")).arg(++i);
