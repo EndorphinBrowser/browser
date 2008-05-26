@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -136,15 +137,33 @@ void ExLineEdit::updateGeometries()
     int width = rect.width();
 
     int m_leftWidgetHeight = m_leftWidget->height();
-    m_leftWidget->setGeometry(rect.x() + 2,          rect.y() + (height - m_leftWidgetHeight)/2,
-                              m_leftWidget->width(), m_leftWidget->height());
-
     int clearButtonWidth = this->height();
-    m_lineEdit->setGeometry(m_leftWidget->x() + m_leftWidget->width(),        0,
-                            width - clearButtonWidth - m_leftWidget->width(), this->height());
 
-    m_clearButton->setGeometry(this->width() - clearButtonWidth, 0,
-                               clearButtonWidth, this->height());
+    switch (layoutDirection()) {
+    case Qt::RightToLeft:
+        m_clearButton->setGeometry(rect.x(),         rect.y() + (height - clearButtonWidth)/2,
+                                   clearButtonWidth, this->height());
+
+        m_lineEdit->setGeometry(m_clearButton->x() + m_clearButton->width(),        0,
+                                width - clearButtonWidth - m_leftWidget->width() - 2, this->height());
+
+        m_leftWidget->setGeometry(this->width() - m_leftWidget->width() - 2, rect.y() + (height - m_leftWidgetHeight)/2,
+                                  m_leftWidget->width(), m_leftWidget->height());
+
+        break;
+
+    case Qt::LeftToRight:
+    default:
+        m_leftWidget->setGeometry(rect.x() + 2,          rect.y() + (height - m_leftWidgetHeight)/2,
+                                  m_leftWidget->width(), m_leftWidget->height());
+
+        m_lineEdit->setGeometry(m_leftWidget->x() + m_leftWidget->width(),        0,
+                                width - clearButtonWidth - m_leftWidget->width(), this->height());
+
+        m_clearButton->setGeometry(this->width() - clearButtonWidth, 0,
+                                   clearButtonWidth, this->height());
+        break;
+    }
 }
 
 void ExLineEdit::initStyleOption(QStyleOptionFrameV2 *option) const
@@ -347,8 +366,19 @@ void UrlLineEdit::paintEvent(QPaintEvent *event)
         QColor loadingColor = QColor(116, 192, 250);
         painter.setBrush(generateGradient(loadingColor));
         painter.setPen(Qt::transparent);
+
         int mid = backgroundRect.width() / 100 * progress;
-        QRect progressRect(backgroundRect.x(), backgroundRect.y(), mid, backgroundRect.height());
+        QRect progressRect;
+        switch (layoutDirection()) {
+        case Qt::RightToLeft:
+            progressRect = QRect(backgroundRect.width()-mid, backgroundRect.y(), mid, backgroundRect.height());
+            break;
+
+        case Qt::LeftToRight:
+        default:
+            progressRect = QRect(backgroundRect.x(), backgroundRect.y(), mid, backgroundRect.height());
+            break;
+        }
         painter.drawRect(progressRect);
     }
 }
