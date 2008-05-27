@@ -3,6 +3,7 @@
 SetCompressor /SOLID /FINAL lzma
 
 !define PRODUCT_NAME "Arora"
+!define /date PRODUCT_VERSION "Snapshot (%#m-%#d-%#Y)"
 !define PRODUCT_VERSION "Snapshot (5-21-2008)"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\arora.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -42,7 +43,9 @@ Section "Main Components" SEC01
   File "C:\qt\4.4.0\bin\QtGui4.dll"
   File "C:\qt\4.4.0\bin\QtNetwork4.dll"
   File "C:\qt\4.4.0\bin\QtWebKit4.dll"
-  
+  File "C:\windows\system32\ssleay32.dll"
+  File "C:\windows\system32\libeay32.dll"
+
   SetOutPath "$INSTDIR\locale"
   File "src\.qm\locale\*.qm"
 
