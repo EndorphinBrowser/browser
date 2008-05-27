@@ -17,6 +17,7 @@ isEmpty(QMAKE_LRELEASE) {
 }
 
 TRANSLATIONS += \
+    locale/de.ts \
     locale/en.ts \
     locale/ru.ts
 

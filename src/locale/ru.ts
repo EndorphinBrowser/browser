@@ -1,4 +1,5 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS><TS version="1.1" language="ru_RU">
 <defaultcodec></defaultcodec>
 <context>
     <name>@default</name>
@@ -54,6 +55,10 @@
     <message>
         <source>Add Folder</source>
         <translation>Добавить папку</translation>
+    </message>
+    <message>
+        <source>Open in New Tab</source>
+        <translation>Открыть в новой вкладке</translation>
     </message>
 </context>
 <context>
@@ -449,12 +454,12 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Clear Private Data</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Очистить личные данные</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Delete</source>
         <comment>Clear Private Data</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Delete</translation>
     </message>
 </context>
 <context>
@@ -468,43 +473,43 @@ Do you want to reload all pages?</source>
     <name>ClearPrivateData</name>
     <message>
         <source>Clear Private Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистить личные данные</translation>
     </message>
     <message>
         <source>Clear the following items:</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистить следующие элементы:</translation>
     </message>
     <message>
         <source>&amp;Browsing History</source>
-        <translation type="unfinished"></translation>
+        <translation>Журнал &amp;посещений</translation>
     </message>
     <message>
         <source>&amp;Download History</source>
-        <translation type="unfinished"></translation>
+        <translation>Журнал &amp;загрузок</translation>
     </message>
     <message>
         <source>&amp;Search History</source>
-        <translation type="unfinished"></translation>
+        <translation>Историю &amp;поиска</translation>
     </message>
     <message>
         <source>&amp;Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cookies</translation>
     </message>
     <message>
         <source>C&amp;ache</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Кэш</translation>
     </message>
     <message>
         <source>Website &amp;Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>З&amp;начки веб-сайтов</translation>
     </message>
     <message>
         <source>Clear &amp;Private Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистить &amp;личные данные</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Отмена</translation>
     </message>
 </context>
 <context>
@@ -808,7 +813,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Do you want to accept all these certificates?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы желаете принять все эти сертификаты?</translation>
     </message>
 </context>
 <context>
@@ -946,7 +951,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Save downloads to:</source>
-        <translation>Сохранять загрузки в:</translation>
+        <translation type="obsolete">Сохранять загрузки в:</translation>
     </message>
     <message>
         <source>Open links from applications:</source>
@@ -966,15 +971,15 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Standard font:</source>
-        <translation type="obsolete">Стандартный шрифт:</translation>
+        <translation>Стандартный шрифт:</translation>
     </message>
     <message>
         <source>Times 16</source>
-        <translation type="obsolete">Times 16</translation>
+        <translation>Times 16</translation>
     </message>
     <message>
         <source>Select...</source>
-        <translation type="obsolete">Выбрать...</translation>
+        <translation>Выбрать...</translation>
     </message>
     <message>
         <source>Fixed-width font:</source>
@@ -982,7 +987,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Courier 13</source>
-        <translation type="obsolete">Courier 13</translation>
+        <translation>Courier 13</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -1090,27 +1095,39 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Sans-serif font:</source>
-        <translation>Шрифт без засечек:</translation>
+        <translation type="obsolete">Шрифт без засечек:</translation>
     </message>
     <message>
         <source>Serif font:</source>
-        <translation>Шрифт с засечками:</translation>
+        <translation type="obsolete">Шрифт с засечками:</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation>Размер:</translation>
+        <translation type="obsolete">Размер:</translation>
     </message>
     <message>
         <source>Default font:</source>
-        <translation>Шрифт по умолчанию:</translation>
+        <translation type="obsolete">Шрифт по умолчанию:</translation>
     </message>
     <message>
         <source>Sans serif</source>
-        <translation>Без засечек</translation>
+        <translation type="obsolete">Без засечек</translation>
     </message>
     <message>
         <source>Serif</source>
-        <translation>С засечками</translation>
+        <translation type="obsolete">С засечками</translation>
+    </message>
+    <message>
+        <source>Downloads</source>
+        <translation>Загрузки</translation>
+    </message>
+    <message>
+        <source>Ask for a destination each time</source>
+        <translation>Каждый раз спрашивать папку назначения</translation>
+    </message>
+    <message>
+        <source>Use this destination:</source>
+        <translation>Использовать эту папку назначения:</translation>
     </message>
 </context>
 <context>
