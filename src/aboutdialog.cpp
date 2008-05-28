@@ -19,45 +19,63 @@
 
 #include "aboutdialog.h"
 
+#include <qfile.h>
 #include <qlabel.h>
 #include <qlayout.h>
-#include <qapplication.h>
-#include <qicon.h>
+#include <qtextedit.h>
+#include <qtextstream.h>
+#include <qdialogbuttonbox.h>
 
 AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent)
 {
-    setWindowTitle(tr("About") + QString(" %1").arg(qApp->applicationName()));
-    logo = new QLabel();
-    logo->setPixmap(qApp->windowIcon().pixmap(128, 128));
-    logo->setAlignment(Qt::AlignCenter);
-
-    name = new QLabel(qApp->applicationName());
-    QFont font = name->font();
-    font.setBold(true);
-    name->setFont(font);
-    name->setAlignment(Qt::AlignHCenter);
-
-    version = new QLabel();
-    version->setAlignment(Qt::AlignHCenter);
-    version->setText(QApplication::applicationVersion());
-
-    layout = new QVBoxLayout();
-    layout->addWidget(logo);
-    layout->addWidget(name);
-    layout->addWidget(version);
-
-    layout->insertStretch(-1, 1);
-    setLayout(layout);
+    setupUi(this);
 }
 
-void AboutDialog::addAuthors(const QStringList &list)
+void AboutDialog::displayFile(const QString& fileName, const QString& title)
 {
-    for (int i = list.count() - 1; i >= 0; --i) {
-        QLabel *author = new QLabel(list.at(i), this);
-        author->setOpenExternalLinks(true);
-        author->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
-        author->setAlignment(Qt::AlignHCenter);
-        layout->insertWidget(3, author);
-    }
+    QDialog *dialog = new QDialog(this);
+    QLayout *layout = new QVBoxLayout(dialog);
+    QTextEdit *textEdit = new QTextEdit(dialog);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, dialog);
+    QFont font;
+
+    textEdit->setStyleSheet(QLatin1String("font-family: monospace"));
+    textEdit->setPlainText(loadText(fileName));
+    connect(buttonBox, SIGNAL(rejected()), dialog, SLOT(close()));
+    buttonBox->setCenterButtons(true);
+    layout->addWidget(textEdit);
+    layout->addWidget(buttonBox);
+
+    dialog->setLayout(layout);
+    dialog->setWindowTitle(title);
+    dialog->resize(600, 350);
+    dialog->exec();
 }
 
+QString AboutDialog::loadText(const QString& fileName)
+{
+    QString text;
+    QFile f(fileName);
+
+    if (f.open(QIODevice::ReadOnly))
+    {
+        text = QTextStream(&f).readAll();
+    }
+
+    return text;
+}
+
+void AboutDialog::on_authorsButton_clicked()
+{
+    displayFile(QLatin1String(":AUTHORS"), tr("Authors"));
+}
+
+void AboutDialog::on_licenseButton_clicked()
+{
+    displayFile(QLatin1String(":LICENSE.GPL3"), tr("License"));
+}
+
+void AboutDialog::on_closeButton_clicked()
+{
+    close();
+}

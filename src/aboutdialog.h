@@ -21,20 +21,28 @@
 #define ABOUTDIALOG_H
 
 #include <qdialog.h>
+#include "ui_aboutdialog.h"
 
 class QVBoxLayout;
 class QLabel;
 
-class AboutDialog : public QDialog
+class AboutDialog : public QDialog, private Ui_AboutDialog
 {
 
     Q_OBJECT
 
 public:
     AboutDialog(QWidget *parent = 0);
-    void addAuthors(const QStringList &list);
+
+private slots:
+    void on_authorsButton_clicked();
+    void on_licenseButton_clicked();
+    void on_closeButton_clicked();
 
 private:
+    void displayFile(const QString& fileName, const QString& title);
+    QString loadText(const QString& fileName);
+
     QVBoxLayout *layout;
     QLabel *logo;
     QLabel *name;

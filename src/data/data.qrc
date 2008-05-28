@@ -7,5 +7,7 @@
     <file>defaultbookmarks.xbel</file>
     <file>loading.gif</file>
     <file>defaulticon.png</file>
+    <file>../../AUTHORS</file>
+    <file>../../LICENSE.GPL3</file>
 </qresource>
 </RCC>

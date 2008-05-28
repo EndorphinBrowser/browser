@@ -1,15 +1,15 @@
 CONFIG += qt warn_on
 contains(QT_BUILD_PARTS, tools): CONFIG += uitools
-else: DEFINES += QT_NO_UITOOLS
+else : DEFINES += QT_NO_UITOOLS
 
-win32:Debug: CONFIG += console
+win32 : Debug : CONFIG += console
 
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-RCC_DIR     = .rcc
-UI_DIR      = .ui
-MOC_DIR     = .moc
+RCC_DIR = .rcc
+UI_DIR = .ui
+MOC_DIR = .moc
 OBJECTS_DIR = .obj
 
 QT += webkit network
@@ -25,7 +25,8 @@ FORMS += \
     passworddialog.ui \
     proxy.ui \
     searchbanner.ui \
-    settings.ui
+    settings.ui \
+ aboutdialog.ui
 
 HEADERS += \
     aboutdialog.h \
@@ -80,8 +81,14 @@ SOURCES += \
 RESOURCES += data/data.qrc \
     htmls/htmls.qrc
 
+DISTFILES += ../AUTHORS \
+    ../ChangeLog \
+    ../LICENSE.GPL2 \
+    ../LICENSE.GPL3 \
+    ../README
+
 win32 {
-   RC_FILE = browser.rc
+    RC_FILE = browser.rc
 }
 
 mac {
@@ -90,8 +97,8 @@ mac {
 }
 
 unix {
-    isEmpty(PREFIX) {
-	PREFIX = /usr/local
+    isEmpty(PREFIX){
+        PREFIX = /usr/local
     }
 
     BINDIR = $$PREFIX/bin
