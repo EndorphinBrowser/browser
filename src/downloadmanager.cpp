@@ -256,7 +256,7 @@ void DownloadItem::downloadReadyRead()
         if (!m_output.open(QIODevice::WriteOnly)) {
             downloadInfoLabel->setText(tr("Error opening save file: %1")
                     .arg(m_output.errorString()));
-            stopButton->click();
+            stop();
             emit statusChanged();
             return;
         }
@@ -269,9 +269,8 @@ void DownloadItem::downloadReadyRead()
     }
     else {
         m_startedSaving = true;
-    }
-    if (m_finishedDownloading) {
-        finished();
+        if (m_finishedDownloading)
+            finished();
     }
 }
 
