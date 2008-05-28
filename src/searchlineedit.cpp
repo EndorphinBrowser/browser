@@ -68,7 +68,7 @@
 #include <qstyle.h>
 
 ClearButton::ClearButton(QWidget *parent)
-  : QAbstractButton(parent)
+    : QAbstractButton(parent)
 {
     setCursor(Qt::ArrowCursor);
     setToolTip(tr("Clear"));
@@ -108,7 +108,8 @@ void ClearButton::textChanged(const QString &text)
     Search icon on the left hand side of the search widget
     When a menu is set a down arrow appears
  */
-class SearchButton : public QAbstractButton {
+class SearchButton : public QAbstractButton
+{
 public:
     SearchButton(QWidget *parent = 0);
     void paintEvent(QPaintEvent *event);
@@ -119,8 +120,8 @@ protected:
 };
 
 SearchButton::SearchButton(QWidget *parent)
-  : QAbstractButton(parent),
-    m_menu(0)
+    : QAbstractButton(parent)
+    , m_menu(0)
 {
     setObjectName(QLatin1String("SearchButton"));
     setCursor(Qt::ArrowCursor);
@@ -182,8 +183,9 @@ void SearchButton::paintEvent(QPaintEvent *event)
     - When there is no text and doesn't have focus an "inactive text" is displayed
     - When there is text a clear button is displayed on the right hand side
  */
-SearchLineEdit::SearchLineEdit(QWidget *parent) : ExLineEdit(parent),
-    m_searchButton(new SearchButton(this))
+SearchLineEdit::SearchLineEdit(QWidget *parent)
+    : ExLineEdit(parent)
+    , m_searchButton(new SearchButton(this))
 {
     connect(lineEdit(), SIGNAL(textChanged(const QString &)),
             this, SIGNAL(textChanged(const QString &)));
@@ -207,7 +209,7 @@ void SearchLineEdit::paintEvent(QPaintEvent *event)
                        r.width() - 2 * horizontalMargin, fm.height());
         QPainter painter(this);
         painter.setPen(palette().brush(QPalette::Disabled, QPalette::Text).color());
-        painter.drawText(lineRect, Qt::AlignLeft|Qt::AlignVCenter, m_inactiveText);
+        painter.drawText(lineRect, Qt::AlignLeft | Qt::AlignVCenter, m_inactiveText);
     } else {
         ExLineEdit::paintEvent(event);
     }

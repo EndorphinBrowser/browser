@@ -72,12 +72,14 @@
  */
 class TabShortcut : public QShortcut
 {
-   Q_OBJECT
+    Q_OBJECT
+
 public:
-   int tab();
-   TabShortcut(int tab, const QKeySequence &key, QWidget *parent);
+    int tab();
+    TabShortcut(int tab, const QKeySequence &key, QWidget *parent);
+
 private:
-   int m_tab;
+    int m_tab;
 };
 
 /*

@@ -342,11 +342,11 @@ QString DownloadItem::dataString(int size) const
     QString unit;
     if (size < 1024) {
         unit = tr("bytes");
-    } else if (size < 1024*1024) {
+    } else if (size < 1024 * 1024) {
         size /= 1024;
         unit = tr("kB");
     } else {
-        size /= 1024*1024;
+        size /= 1024 * 1024;
         unit = tr("MB");
     }
     return QString(QLatin1String("%1 %2")).arg(size).arg(unit);

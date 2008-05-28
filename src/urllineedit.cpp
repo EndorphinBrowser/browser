@@ -141,23 +141,23 @@ void ExLineEdit::updateGeometries()
 
     switch (layoutDirection()) {
     case Qt::RightToLeft:
-        m_clearButton->setGeometry(rect.x(),         rect.y() + (height - clearButtonWidth)/2,
+        m_clearButton->setGeometry(rect.x(), rect.y() + (height - clearButtonWidth) / 2,
                                    clearButtonWidth, this->height());
 
-        m_lineEdit->setGeometry(m_clearButton->x() + m_clearButton->width(),        0,
+        m_lineEdit->setGeometry(m_clearButton->x() + m_clearButton->width(), 0,
                                 width - clearButtonWidth - m_leftWidget->width() - 2, this->height());
 
-        m_leftWidget->setGeometry(this->width() - m_leftWidget->width() - 2, rect.y() + (height - m_leftWidgetHeight)/2,
+        m_leftWidget->setGeometry(this->width() - m_leftWidget->width() - 2, rect.y() + (height - m_leftWidgetHeight) / 2,
                                   m_leftWidget->width(), m_leftWidget->height());
 
         break;
 
     case Qt::LeftToRight:
     default:
-        m_leftWidget->setGeometry(rect.x() + 2,          rect.y() + (height - m_leftWidgetHeight)/2,
+        m_leftWidget->setGeometry(rect.x() + 2,rect.y() + (height - m_leftWidgetHeight) / 2,
                                   m_leftWidget->width(), m_leftWidget->height());
 
-        m_lineEdit->setGeometry(m_leftWidget->x() + m_leftWidget->width(),        0,
+        m_lineEdit->setGeometry(m_leftWidget->x() + m_leftWidget->width(), 0,
                                 width - clearButtonWidth - m_leftWidget->width(), this->height());
 
         m_clearButton->setGeometry(this->width() - clearButtonWidth, 0,
@@ -202,9 +202,9 @@ void ExLineEdit::focusOutEvent(QFocusEvent *event)
 
     if (m_lineEdit->completer()) {
         connect(m_lineEdit->completer(), SIGNAL(activated(QString)),
-                         m_lineEdit, SLOT(setText(QString)));
+                m_lineEdit, SLOT(setText(QString)));
         connect(m_lineEdit->completer(), SIGNAL(highlighted(QString)),
-                         m_lineEdit, SLOT(_q_completionHighlighted(QString)));
+                m_lineEdit, SLOT(_q_completionHighlighted(QString)));
     }
     QWidget::focusOutEvent(event);
 }
@@ -272,7 +272,7 @@ void UrlIconLabel::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() == Qt::LeftButton
         && (event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()
-         && m_webView) {
+        && m_webView) {
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
         mimeData->setText(m_webView->url().toString());
@@ -304,13 +304,13 @@ void UrlLineEdit::setWebView(WebView *webView)
     m_webView = webView;
     m_iconLabel->m_webView = webView;
     connect(webView, SIGNAL(urlChanged(const QUrl &)),
-        this, SLOT(webViewUrlChanged(const QUrl &)));
+            this, SLOT(webViewUrlChanged(const QUrl &)));
     connect(webView, SIGNAL(loadFinished(bool)),
-        this, SLOT(webViewIconChanged()));
+            this, SLOT(webViewIconChanged()));
     connect(webView, SIGNAL(iconChanged()),
-        this, SLOT(webViewIconChanged()));
+            this, SLOT(webViewIconChanged()));
     connect(webView, SIGNAL(loadProgress(int)),
-        this, SLOT(update()));
+            this, SLOT(update()));
 }
 
 void UrlLineEdit::webViewUrlChanged(const QUrl &url)
@@ -371,7 +371,7 @@ void UrlLineEdit::paintEvent(QPaintEvent *event)
         QRect progressRect;
         switch (layoutDirection()) {
         case Qt::RightToLeft:
-            progressRect = QRect(backgroundRect.width()-mid, backgroundRect.y(), mid, backgroundRect.height());
+            progressRect = QRect(backgroundRect.width() - mid, backgroundRect.y(), mid, backgroundRect.height());
             break;
 
         case Qt::LeftToRight:

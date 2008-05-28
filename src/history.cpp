@@ -258,7 +258,7 @@ void HistoryManager::load()
     loadSettings();
 
     QFile historyFile(QDesktopServices::storageLocation(QDesktopServices::DataLocation)
-        + QLatin1String("/history"));
+                      + QLatin1String("/history"));
     if (!historyFile.exists())
         return;
     if (!historyFile.open(QFile::ReadOnly)) {
@@ -418,8 +418,8 @@ QVariant HistoryModel::headerData(int section, Qt::Orientation orientation, int 
     if (orientation == Qt::Horizontal
         && role == Qt::DisplayRole) {
         switch (section) {
-            case 0: return tr("Title");
-            case 1: return tr("Address");
+        case 0: return tr("Title");
+        case 1: return tr("Address");
         }
     }
     return QAbstractTableModel::headerData(section, orientation, role);
@@ -444,19 +444,19 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const
     case Qt::DisplayRole:
     case Qt::EditRole: {
         switch (index.column()) {
-            case 0:
-                // when there is no title try to generate one from the url
-                if (item.title.isEmpty()) {
-                    QString page = QFileInfo(QUrl(item.url).path()).fileName();
-                    if (!page.isEmpty())
-                        return page;
-                    return item.url;
-                }
-                return item.title;
-            case 1:
+        case 0:
+            // when there is no title try to generate one from the url
+            if (item.title.isEmpty()) {
+                QString page = QFileInfo(QUrl(item.url).path()).fileName();
+                if (!page.isEmpty())
+                    return page;
                 return item.url;
+            }
+            return item.title;
+        case 1:
+            return item.url;
         }
-        }
+    }
     case Qt::DecorationRole:
         if (index.column() == 0) {
             return BrowserApplication::instance()->icon(item.url);
@@ -747,8 +747,8 @@ void HistoryDialog::copy()
 }
 
 HistoryFilterModel::HistoryFilterModel(QAbstractItemModel *sourceModel, QObject *parent)
-    : QAbstractProxyModel(parent),
-    m_loaded(false)
+    : QAbstractProxyModel(parent)
+    , m_loaded(false)
 {
     setSourceModel(sourceModel);
 }
@@ -773,9 +773,9 @@ void HistoryFilterModel::setSourceModel(QAbstractItemModel *newSourceModel)
         disconnect(sourceModel(), SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),
                    this, SLOT(dataChanged(const QModelIndex &, const QModelIndex &)));
         disconnect(sourceModel(), SIGNAL(rowsInserted(const QModelIndex &, int, int)),
-                this, SLOT(sourceRowsInserted(const QModelIndex &, int, int)));
+                   this, SLOT(sourceRowsInserted(const QModelIndex &, int, int)));
         disconnect(sourceModel(), SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-                this, SLOT(sourceRowsRemoved(const QModelIndex &, int, int)));
+                   this, SLOT(sourceRowsRemoved(const QModelIndex &, int, int)));
     }
 
     QAbstractProxyModel::setSourceModel(newSourceModel);
@@ -784,7 +784,7 @@ void HistoryFilterModel::setSourceModel(QAbstractItemModel *newSourceModel)
         m_loaded = false;
         connect(sourceModel(), SIGNAL(modelReset()), this, SLOT(sourceReset()));
         connect(sourceModel(), SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),
-                   this, SLOT(sourceDataChanged(const QModelIndex &, const QModelIndex &)));
+                this, SLOT(sourceDataChanged(const QModelIndex &, const QModelIndex &)));
         connect(sourceModel(), SIGNAL(rowsInserted(const QModelIndex &, int, int)),
                 this, SLOT(sourceRowsInserted(const QModelIndex &, int, int)));
         connect(sourceModel(), SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
@@ -926,7 +926,7 @@ bool HistoryFilterModel::removeRows(int row, int count, const QModelIndex &paren
         return false;
     int lastRow = row + count - 1;
     disconnect(sourceModel(), SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-                this, SLOT(sourceRowsRemoved(const QModelIndex &, int, int)));
+               this, SLOT(sourceRowsRemoved(const QModelIndex &, int, int)));
     beginRemoveRows(parent, row, lastRow);
     int oldCount = rowCount();
     int start = sourceModel()->rowCount() - m_sourceRow.value(row);
@@ -934,7 +934,7 @@ bool HistoryFilterModel::removeRows(int row, int count, const QModelIndex &paren
     sourceModel()->removeRows(start, end - start + 1);
     endRemoveRows();
     connect(sourceModel(), SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-                this, SLOT(sourceRowsRemoved(const QModelIndex &, int, int)));
+            this, SLOT(sourceRowsRemoved(const QModelIndex &, int, int)));
     m_loaded = false;
     if (oldCount - count != rowCount())
         reset();
@@ -1008,9 +1008,9 @@ void HistoryCompletionModel::setSourceModel(QAbstractItemModel *newSourceModel)
     if (sourceModel()) {
         disconnect(sourceModel(), SIGNAL(modelReset()), this, SLOT(sourceReset()));
         disconnect(sourceModel(), SIGNAL(rowsInserted(const QModelIndex &, int, int)),
-                this, SLOT(sourceReset()));
+                   this, SLOT(sourceReset()));
         disconnect(sourceModel(), SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-                this, SLOT(sourceReset()));
+                   this, SLOT(sourceReset()));
     }
 
     QAbstractProxyModel::setSourceModel(newSourceModel);
@@ -1197,9 +1197,9 @@ void HistoryTreeModel::setSourceModel(QAbstractItemModel *newSourceModel)
         disconnect(sourceModel(), SIGNAL(modelReset()), this, SLOT(sourceReset()));
         disconnect(sourceModel(), SIGNAL(layoutChanged()), this, SLOT(sourceReset()));
         disconnect(sourceModel(), SIGNAL(rowsInserted(const QModelIndex &, int, int)),
-                this, SLOT(sourceRowsInserted(const QModelIndex &, int, int)));
+                   this, SLOT(sourceRowsInserted(const QModelIndex &, int, int)));
         disconnect(sourceModel(), SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-                this, SLOT(sourceRowsRemoved(const QModelIndex &, int, int)));
+                   this, SLOT(sourceRowsRemoved(const QModelIndex &, int, int)));
     }
 
     QAbstractProxyModel::setSourceModel(newSourceModel);

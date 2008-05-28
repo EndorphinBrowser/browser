@@ -82,13 +82,13 @@
 #include <qdebug.h>
 
 TabShortcut::TabShortcut(int tab, const QKeySequence &key, QWidget *parent)
-   : QShortcut(key,parent), m_tab(tab)
+    : QShortcut(key, parent), m_tab(tab)
 {
 }
 
 int TabShortcut::tab()
 {
-   return m_tab;
+    return m_tab;
 }
 
 TabBar::TabBar(QWidget *parent)
@@ -102,7 +102,7 @@ TabBar::TabBar(QWidget *parent)
 
     QString alt = QLatin1String("Ctrl+%1");
     for (int i = 0; i < 10; ++i) {
-        int key = i == 9 ? 0 : i+1;
+        int key = i == 9 ? 0 : i + 1;
         TabShortcut *tabShortCut = new TabShortcut(i, alt.arg(key), this);
         connect(tabShortCut, SIGNAL(activated()), this, SLOT(selectTabAction()));
     }
@@ -110,8 +110,8 @@ TabBar::TabBar(QWidget *parent)
 
 void TabBar::selectTabAction()
 {
-   int index = qobject_cast<TabShortcut*>(sender())->tab();
-   setCurrentIndex(index);
+    int index = qobject_cast<TabShortcut*>(sender())->tab();
+    setCurrentIndex(index);
 }
 
 void TabBar::contextMenuRequested(const QPoint &position)
@@ -121,23 +121,23 @@ void TabBar::contextMenuRequested(const QPoint &position)
     int index = tabAt(position);
     if (-1 != index) {
         QAction *action = menu.addAction(tr("Duplicate Tab"),
-                this, SLOT(cloneTab()));
+                                         this, SLOT(cloneTab()));
         action->setData(index);
 
         menu.addSeparator();
 
         action = menu.addAction(tr("&Close Tab"),
-                this, SLOT(closeTab()), QKeySequence::Close);
+                                this, SLOT(closeTab()), QKeySequence::Close);
         action->setData(index);
 
         action = menu.addAction(tr("Close &Other Tabs"),
-                this, SLOT(closeOtherTabs()));
+                                this, SLOT(closeOtherTabs()));
         action->setData(index);
 
         menu.addSeparator();
 
         action = menu.addAction(tr("Reload Tab"),
-                this, SLOT(reloadTab()), QKeySequence::Refresh);
+                                this, SLOT(reloadTab()), QKeySequence::Refresh);
         action->setData(index);
     } else {
         menu.addSeparator();
@@ -347,7 +347,7 @@ void TabWidget::clear()
 void TabWidget::moveTab(int fromIndex, int toIndex)
 {
     disconnect(this, SIGNAL(currentChanged(int)),
-        this, SLOT(currentChanged(int)));
+               this, SLOT(currentChanged(int)));
 
     QWidget *tabWidget = widget(fromIndex);
     QIcon icon = tabIcon(fromIndex);
@@ -357,7 +357,7 @@ void TabWidget::moveTab(int fromIndex, int toIndex)
     insertTab(toIndex, tabWidget, icon, text);
     m_tabBar->setTabData(toIndex, data);
     connect(this, SIGNAL(currentChanged(int)),
-        this, SLOT(currentChanged(int)));
+            this, SLOT(currentChanged(int)));
     setCurrentIndex(toIndex);
 }
 
@@ -379,11 +379,11 @@ void TabWidget::currentChanged(int index)
     WebView *oldWebView = this->webView(m_lineEdits->currentIndex());
     if (oldWebView) {
         disconnect(oldWebView, SIGNAL(statusBarMessage(const QString&)),
-                this, SIGNAL(showStatusBarMessage(const QString&)));
+                   this, SIGNAL(showStatusBarMessage(const QString&)));
         disconnect(oldWebView->page(), SIGNAL(linkHovered(const QString&, const QString&, const QString&)),
-                this, SIGNAL(linkHovered(const QString&)));
+                   this, SIGNAL(linkHovered(const QString&)));
         disconnect(oldWebView, SIGNAL(loadProgress(int)),
-                this, SIGNAL(loadProgress(int)));
+                   this, SIGNAL(loadProgress(int)));
     }
 
     connect(webView, SIGNAL(statusBarMessage(const QString&)),
@@ -526,10 +526,10 @@ WebView *TabWidget::newTab(bool makeCurrent)
         emptyWidget->setPalette(p);
         emptyWidget->setAutoFillBackground(true);
         disconnect(this, SIGNAL(currentChanged(int)),
-            this, SLOT(currentChanged(int)));
+                   this, SLOT(currentChanged(int)));
         addTab(emptyWidget, tr("(Untitled)"));
         connect(this, SIGNAL(currentChanged(int)),
-            this, SLOT(currentChanged(int)));
+                this, SLOT(currentChanged(int)));
         return 0;
     }
 
@@ -646,7 +646,7 @@ void TabWidget::closeTab(int index)
             closeConfirmation.setWindowFlags(Qt::Sheet);
             closeConfirmation.setWindowTitle(tr("Do you really want to close this page?"));
             closeConfirmation.setInformativeText(tr("You have modified this page and when closing it you would lose the modification.\n"
-                                                     "Do you really want to close this page?\n"));
+                                                    "Do you really want to close this page?\n"));
             closeConfirmation.setIcon(QMessageBox::Question);
             closeConfirmation.addButton(QMessageBox::Yes);
             closeConfirmation.addButton(QMessageBox::No);
@@ -744,8 +744,8 @@ void TabWidget::aboutToShowRecentTriggeredAction(QAction *action)
 void TabWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if (!childAt(event->pos())
-            // Remove the line below when QTabWidget does not have a one pixel frame
-            && event->pos().y() < (tabBar()->y() + tabBar()->height())) {
+        // Remove the line below when QTabWidget does not have a one pixel frame
+        && event->pos().y() < (tabBar()->y() + tabBar()->height())) {
         newTab();
         return;
     }
@@ -764,8 +764,8 @@ void TabWidget::contextMenuEvent(QContextMenuEvent *event)
 void TabWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::MidButton && !childAt(event->pos())
-            // Remove the line below when QTabWidget does not have a one pixel frame
-            && event->pos().y() < (tabBar()->y() + tabBar()->height())) {
+        // Remove the line below when QTabWidget does not have a one pixel frame
+        && event->pos().y() < (tabBar()->y() + tabBar()->height())) {
         QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
         if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
             WebView *webView = newTab();

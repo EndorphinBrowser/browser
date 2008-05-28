@@ -102,7 +102,9 @@ public:
     BookmarkNode *toolbar();
 
     BookmarksModel *bookmarksModel();
-    QUndoStack *undoRedoStack() { return &m_commands; };
+    QUndoStack *undoRedoStack() {
+        return &m_commands;
+    }
 
 public slots:
     void importBookmarks();
@@ -146,9 +148,13 @@ class InsertBookmarksCommand : public RemoveBookmarksCommand
 
 public:
     InsertBookmarksCommand(BookmarksManager *m_bookmarkManagaer,
-        BookmarkNode *parent, BookmarkNode *node, int row);
-    void undo() { RemoveBookmarksCommand::redo(); }
-    void redo() { RemoveBookmarksCommand::undo(); }
+                           BookmarkNode *parent, BookmarkNode *node, int row);
+    void undo() {
+        RemoveBookmarksCommand::redo();
+    }
+    void redo() {
+        RemoveBookmarksCommand::undo();
+    }
 
 };
 
@@ -157,7 +163,7 @@ class ChangeBookmarkCommand : public QUndoCommand
 
 public:
     ChangeBookmarkCommand(BookmarksManager *m_bookmarkManagaer,
-        BookmarkNode *node, const QString &newValue, bool title);
+                          BookmarkNode *node, const QString &newValue, bool title);
     void undo();
     void redo();
 
@@ -191,22 +197,24 @@ public:
     };
 
     BookmarksModel(BookmarksManager *bookmarkManager, QObject *parent = 0);
-    inline BookmarksManager *bookmarksManager() const { return m_bookmarksManager; }
+    inline BookmarksManager *bookmarksManager() const {
+        return m_bookmarksManager;
+    }
 
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QModelIndex index(int, int, const QModelIndex& = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index= QModelIndex()) const;
+    QModelIndex parent(const QModelIndex& index = QModelIndex()) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
-    Qt::DropActions supportedDropActions () const;
+    Qt::DropActions supportedDropActions() const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
     QMimeData *mimeData(const QModelIndexList &indexes) const;
     QStringList mimeTypes() const;
     bool dropMimeData(const QMimeData *data,
-        Qt::DropAction action, int row, int column, const QModelIndex &parent);
+                      Qt::DropAction action, int row, int column, const QModelIndex &parent);
     bool hasChildren(const QModelIndex &parent = QModelIndex()) const;
 
     BookmarkNode *node(const QModelIndex &index) const;
@@ -228,8 +236,8 @@ signals:
     void openUrl(const QUrl &url, TabWidget::Tab type, const QString &title);
 
 public:
-     BookmarksMenu(QWidget *parent = 0);
-     void setInitialActions(QList<QAction*> actions);
+    BookmarksMenu(QWidget *parent = 0);
+    void setInitialActions(QList<QAction*> actions);
 
 protected:
     bool prePopulated();

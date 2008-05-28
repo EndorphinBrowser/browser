@@ -80,11 +80,12 @@ public:
     HistoryItem() {}
     HistoryItem(const QString &u,
                 const QDateTime &d = QDateTime(), const QString &t = QString())
-        : title(t), url(u), dateTime(d) {}
+            : title(t), url(u), dateTime(d) {}
 
-    inline bool operator==(const HistoryItem &other) const
-        { return other.title == title
-          && other.url == url && other.dateTime == dateTime; }
+    inline bool operator==(const HistoryItem &other) const {
+        return other.title == title
+               && other.url == url && other.dateTime == dateTime;
+    }
 
     // history is sorted in reverse
     inline bool operator <(const HistoryItem &other) const
@@ -206,7 +207,7 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QModelIndex index(int, int, const QModelIndex& = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index= QModelIndex()) const;
+    QModelIndex parent(const QModelIndex& index = QModelIndex()) const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
@@ -260,8 +261,8 @@ signals:
     void openUrl(const QUrl &url);
 
 public:
-     HistoryMenu(QWidget *parent = 0);
-     void setInitialActions(QList<QAction*> actions);
+    HistoryMenu(QWidget *parent = 0);
+    void setInitialActions(QList<QAction*> actions);
 
 protected:
     bool prePopulated();
@@ -291,7 +292,7 @@ public:
     QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
     QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
     QModelIndex index(int, int, const QModelIndex& = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index= QModelIndex()) const;
+    QModelIndex parent(const QModelIndex& index = QModelIndex()) const;
     void setSourceModel(QAbstractItemModel *sourceModel);
 
 private slots:
@@ -314,7 +315,7 @@ public:
     QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
     QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex &index= QModelIndex()) const;
+    QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
     bool hasChildren(const QModelIndex &parent = QModelIndex()) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());

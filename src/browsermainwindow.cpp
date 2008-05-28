@@ -115,7 +115,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
     m_bookmarksToolbar = new BookmarksToolBar(boomarksModel, this);
     connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&, TabWidget::Tab, const QString&)),
-          m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::Tab, const QString&)));
+            m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::Tab, const QString&)));
     connect(m_bookmarksToolbar->toggleViewAction(), SIGNAL(toggled(bool)),
             this, SLOT(updateBookmarksToolbarActionText(bool)));
 
@@ -131,12 +131,12 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
 #endif
     layout->addWidget(m_tabWidget);
     centralWidget->setLayout(layout);
-	setCentralWidget(centralWidget);
+    setCentralWidget(centralWidget);
 
     connect(m_tabWidget, SIGNAL(loadPage(const QString &)),
-        this, SLOT(loadPage(const QString &)));
+            this, SLOT(loadPage(const QString &)));
     connect(m_tabWidget, SIGNAL(setCurrentTitle(const QString &)),
-        this, SLOT(slotUpdateWindowTitle(const QString &)));
+            this, SLOT(slotUpdateWindowTitle(const QString &)));
     connect(m_tabWidget, SIGNAL(showStatusBarMessage(const QString&)),
             statusBar(), SLOT(showMessage(const QString&)));
     connect(m_tabWidget, SIGNAL(linkHovered(const QString&)),
@@ -288,12 +288,12 @@ void BrowserMainWindow::setupMenu()
     fileMenu->addAction(m_tabWidget->newTabAction());
     fileMenu->addAction(tr("&Open File..."), this, SLOT(slotFileOpen()), QKeySequence::Open);
     fileMenu->addAction(tr("Open &Location..."), this,
-                SLOT(slotSelectLineEdit()), QKeySequence(Qt::ControlModifier + Qt::Key_L));
+                        SLOT(slotSelectLineEdit()), QKeySequence(Qt::ControlModifier + Qt::Key_L));
     fileMenu->addSeparator();
     fileMenu->addAction(m_tabWidget->closeTabAction());
     fileMenu->addSeparator();
     fileMenu->addAction(tr("&Save As..."), this,
-                SLOT(slotFileSaveAs()), QKeySequence(QKeySequence::Save));
+                        SLOT(slotFileSaveAs()), QKeySequence(QKeySequence::Save));
     fileMenu->addSeparator();
     BookmarksManager *bookmarksManager = BrowserApplication::bookmarksManager();
     fileMenu->addAction(tr("&Import Bookmarks..."), bookmarksManager, SLOT(importBookmarks()));
@@ -457,9 +457,9 @@ void BrowserMainWindow::setupMenu()
 
     QMenu *toolsMenu = menuBar()->addMenu(tr("&Tools"));
     toolsMenu->addAction(tr("Web &Search"), this, SLOT(slotWebSearch()),
-        QKeySequence(tr("Ctrl+K", "Web Search")));
+                         QKeySequence(tr("Ctrl+K", "Web Search")));
     toolsMenu->addAction(tr("&Clear Private Data"), this, SLOT(slotClearPrivateData()),
-        QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
+                         QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
 #ifndef Q_CC_MINGW
     a = toolsMenu->addAction(tr("Enable Web &Inspector"), this, SLOT(slotToggleInspector(bool)));
     a->setCheckable(true);
@@ -691,7 +691,7 @@ void BrowserMainWindow::slotFileNew()
 void BrowserMainWindow::slotFileOpen()
 {
     QString file = QFileDialog::getOpenFileName(this, tr("Open Web Resource"), QString(),
-            tr("Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)"));
+                   tr("Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)"));
 
     if (file.isEmpty())
         return;
@@ -764,10 +764,10 @@ void BrowserMainWindow::closeEvent(QCloseEvent *event)
 {
     if (m_tabWidget->count() > 1) {
         int ret = QMessageBox::warning(this, QString(),
-                           tr("Are you sure you want to close the window?"
-                              "  There are %1 tab open").arg(m_tabWidget->count()),
-                           QMessageBox::Yes | QMessageBox::No,
-                           QMessageBox::No);
+                                       tr("Are you sure you want to close the window?"
+                                          "  There are %1 tab open").arg(m_tabWidget->count()),
+                                       QMessageBox::Yes | QMessageBox::No,
+                                       QMessageBox::No);
         if (ret == QMessageBox::No) {
             event->ignore();
             return;
@@ -861,7 +861,7 @@ void BrowserMainWindow::slotToggleInspector(bool enable)
     if (enable) {
         int result = QMessageBox::question(this, tr("Web Inspector"),
                                            tr("The web inspector will only work correctly for pages that were loaded after enabling.\n"
-                                           "Do you want to reload all pages?"),
+                                              "Do you want to reload all pages?"),
                                            QMessageBox::Yes | QMessageBox::No);
         if (result == QMessageBox::Yes) {
             m_tabWidget->reloadAllTabs();
@@ -933,7 +933,7 @@ void BrowserMainWindow::slotAboutToShowBackMenu()
     for (int i = history->backItems(historyCount).count() - 1; i >= 0; --i) {
         QWebHistoryItem item = history->backItems(history->count()).at(i);
         QAction *action = new QAction(this);
-        action->setData(-1*(historyCount-i-1));
+        action->setData(-1*(historyCount - i - 1));
         QIcon icon = BrowserApplication::instance()->icon(item.url());
         action->setIcon(icon);
         action->setText(item.title());
@@ -951,7 +951,7 @@ void BrowserMainWindow::slotAboutToShowForwardMenu()
     for (int i = 0; i < history->forwardItems(history->count()).count(); ++i) {
         QWebHistoryItem item = history->forwardItems(historyCount).at(i);
         QAction *action = new QAction(this);
-        action->setData(historyCount-i);
+        action->setData(historyCount - i);
         QIcon icon = BrowserApplication::instance()->icon(item.url());
         action->setIcon(icon);
         action->setText(item.title());
@@ -1000,7 +1000,7 @@ void BrowserMainWindow::slotOpenActionUrl(QAction *action)
         history->goToItem(history->backItems(-1*offset).first()); // back
     else if (offset > 0)
         history->goToItem(history->forwardItems(history->count() - offset + 1).back()); // forward
- }
+}
 
 void BrowserMainWindow::geometryChangeRequested(const QRect &geometry)
 {

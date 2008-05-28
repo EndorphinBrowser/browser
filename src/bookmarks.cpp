@@ -450,8 +450,8 @@ QVariant BookmarksModel::headerData(int section, Qt::Orientation orientation, in
 {
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
         switch (section) {
-            case 0: return tr("Title");
-            case 1: return tr("Address");
+        case 0: return tr("Title");
+        case 1: return tr("Address");
         }
     }
     return QAbstractItemModel::headerData(section, orientation, role);
@@ -573,7 +573,7 @@ Qt::ItemFlags BookmarksModel::flags(const QModelIndex &index) const
     return flags;
 }
 
-Qt::DropActions BookmarksModel::supportedDropActions () const
+Qt::DropActions BookmarksModel::supportedDropActions() const
 {
     return Qt::CopyAction | Qt::MoveAction;
 }

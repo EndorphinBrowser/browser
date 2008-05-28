@@ -75,7 +75,8 @@ class QSslError;
 QT_END_NAMESPACE
 
 class BrowserMainWindow;
-class WebPage : public QWebPage {
+class WebPage : public QWebPage
+{
     Q_OBJECT
 
 signals:
@@ -105,7 +106,8 @@ private:
     QUrl m_loadingUrl;
 };
 
-class WebView : public QWebView {
+class WebView : public QWebView
+{
     Q_OBJECT
 
 public:

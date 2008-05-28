@@ -81,7 +81,8 @@ class QSplitter;
 
     Handles the tab widget and all the actions
  */
-class BrowserMainWindow : public QMainWindow {
+class BrowserMainWindow : public QMainWindow
+{
     Q_OBJECT
 
 public:

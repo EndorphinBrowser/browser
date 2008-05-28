@@ -72,9 +72,10 @@
     It will wait several seconds after changed() to combining multiple changes and
     prevent continuous writing to disk.
   */
-class AutoSaver : public QObject {
+class AutoSaver : public QObject
+{
 
-Q_OBJECT
+    Q_OBJECT
 
 public:
     AutoSaver(QObject *parent);

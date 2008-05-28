@@ -168,17 +168,17 @@ void CookieJar::loadSettings()
     QSettings settings;
     settings.beginGroup(QLatin1String("cookies"));
     QByteArray value = settings.value(QLatin1String("acceptCookies"),
-                        QLatin1String("AcceptOnlyFromSitesNavigatedTo")).toByteArray();
+                                      QLatin1String("AcceptOnlyFromSitesNavigatedTo")).toByteArray();
     QMetaEnum acceptPolicyEnum = staticMetaObject.enumerator(staticMetaObject.indexOfEnumerator("AcceptPolicy"));
     m_acceptCookies = acceptPolicyEnum.keyToValue(value) == -1 ?
-                        AcceptOnlyFromSitesNavigatedTo :
-                        static_cast<AcceptPolicy>(acceptPolicyEnum.keyToValue(value));
+                      AcceptOnlyFromSitesNavigatedTo :
+                      static_cast<AcceptPolicy>(acceptPolicyEnum.keyToValue(value));
 
     value = settings.value(QLatin1String("keepCookiesUntil"), QLatin1String("KeepUntilExpire")).toByteArray();
     QMetaEnum keepPolicyEnum = staticMetaObject.enumerator(staticMetaObject.indexOfEnumerator("KeepPolicy"));
     m_keepCookies = keepPolicyEnum.keyToValue(value) == -1 ?
-                        KeepUntilExpire :
-                        static_cast<KeepPolicy>(keepPolicyEnum.keyToValue(value));
+                    KeepUntilExpire :
+                    static_cast<KeepPolicy>(keepPolicyEnum.keyToValue(value));
 
     if (m_keepCookies == KeepUntilExit)
         setAllCookies(QList<QNetworkCookie>());
@@ -280,7 +280,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
             if (m_keepCookies == KeepUntilTimeLimit
                 && !cookie.isSessionCookie()
                 && cookie.expirationDate() > soon) {
-                    cookie.setExpirationDate(soon);
+                cookie.setExpirationDate(soon);
             }
             lst += cookie;
             if (QNetworkCookieJar::setCookiesFromUrl(lst, url)) {
@@ -404,7 +404,7 @@ QVariant CookieModel::headerData(int section, Qt::Orientation orientation, int r
         QFont font;
         font.setPointSize(10);
         QFontMetrics fm(font);
-        int height = fm.height() + fm.height()/3;
+        int height = fm.height() + fm.height() / 3;
         int width = fm.width(headerData(section, orientation, Qt::DisplayRole).toString());
         return QSize(width, height);
     }
@@ -414,20 +414,20 @@ QVariant CookieModel::headerData(int section, Qt::Orientation orientation, int r
             return QVariant();
 
         switch (section) {
-            case 0:
-                return tr("Website");
-            case 1:
-                return tr("Name");
-            case 2:
-                return tr("Path");
-            case 3:
-                return tr("Secure");
-            case 4:
-                return tr("Expires");
-            case 5:
-                return tr("Contents");
-            default:
-                return QVariant();
+        case 0:
+            return tr("Website");
+        case 1:
+            return tr("Name");
+        case 2:
+            return tr("Path");
+        case 3:
+            return tr("Secure");
+        case 4:
+            return tr("Expires");
+        case 5:
+            return tr("Contents");
+        default:
+            return QVariant();
         }
     }
     return QAbstractTableModel::headerData(section, orientation, role);
@@ -446,25 +446,25 @@ QVariant CookieModel::data(const QModelIndex &index, int role) const
     case Qt::EditRole: {
         QNetworkCookie cookie = lst.at(index.row());
         switch (index.column()) {
-            case 0:
-                return cookie.domain();
-            case 1:
-                return cookie.name();
-            case 2:
-                return cookie.path();
-            case 3:
-                return cookie.isSecure();
-            case 4:
-                return cookie.expirationDate();
-            case 5:
-                return cookie.value();
+        case 0:
+            return cookie.domain();
+        case 1:
+            return cookie.name();
+        case 2:
+            return cookie.path();
+        case 3:
+            return cookie.isSecure();
+        case 4:
+            return cookie.expirationDate();
+        case 5:
+            return cookie.value();
         }
-        }
-    case Qt::FontRole:{
+    }
+    case Qt::FontRole: {
         QFont font;
         font.setPointSize(10);
         return font;
-        }
+    }
     }
 
     return QVariant();
@@ -521,7 +521,7 @@ CookiesDialog::CookiesDialog(CookieJar *cookieJar, QWidget *parent) : QDialog(pa
     QFont f = font();
     f.setPointSize(10);
     QFontMetrics fm(f);
-    int height = fm.height() + fm.height()/3;
+    int height = fm.height() + fm.height() / 3;
     cookiesTable->verticalHeader()->setDefaultSectionSize(height);
     cookiesTable->verticalHeader()->setMinimumSectionSize(-1);
     for (int i = 0; i < model->columnCount(); ++i) {
@@ -561,7 +561,7 @@ QVariant CookieExceptionsModel::headerData(int section, Qt::Orientation orientat
         QFont font;
         font.setPointSize(10);
         QFontMetrics fm(font);
-        int height = fm.height() + fm.height()/3;
+        int height = fm.height() + fm.height() / 3;
         int width = fm.width(headerData(section, orientation, Qt::DisplayRole).toString());
         return QSize(width, height);
     }
@@ -569,10 +569,10 @@ QVariant CookieExceptionsModel::headerData(int section, Qt::Orientation orientat
     if (orientation == Qt::Horizontal
         && role == Qt::DisplayRole) {
         switch (section) {
-            case 0:
-                return tr("Website");
-            case 1:
-                return tr("Status");
+        case 0:
+            return tr("Website");
+        case 1:
+            return tr("Status");
         }
     }
     return QAbstractTableModel::headerData(section, orientation, role);
@@ -589,36 +589,36 @@ QVariant CookieExceptionsModel::data(const QModelIndex &index, int role) const
         int row = index.row();
         if (row < m_allowedCookies.count()) {
             switch (index.column()) {
-                case 0:
-                    return m_allowedCookies.at(row);
-                case 1:
-                    return tr("Allow");
+            case 0:
+                return m_allowedCookies.at(row);
+            case 1:
+                return tr("Allow");
             }
         }
         row = row - m_allowedCookies.count();
         if (row < m_blockedCookies.count()) {
             switch (index.column()) {
-                case 0:
-                    return m_blockedCookies.at(row);
-                case 1:
-                    return tr("Block");
+            case 0:
+                return m_blockedCookies.at(row);
+            case 1:
+                return tr("Block");
             }
         }
         row = row - m_blockedCookies.count();
         if (row < m_sessionCookies.count()) {
             switch (index.column()) {
-                case 0:
-                    return m_sessionCookies.at(row);
-                case 1:
-                    return tr("Allow For Session");
+            case 0:
+                return m_sessionCookies.at(row);
+            case 1:
+                return tr("Allow For Session");
             }
         }
-        }
-    case Qt::FontRole:{
+    }
+    case Qt::FontRole: {
         QFont font;
         font.setPointSize(10);
         return font;
-        }
+    }
     }
     return QVariant();
 }
@@ -696,7 +696,7 @@ CookiesExceptionsDialog::CookiesExceptionsDialog(CookieJar *cookieJar, QWidget *
     QFont f = font();
     f.setPointSize(10);
     QFontMetrics fm(f);
-    int height = fm.height() + fm.height()/3;
+    int height = fm.height() + fm.height() / 3;
     exceptionTable->verticalHeader()->setDefaultSectionSize(height);
     exceptionTable->verticalHeader()->setMinimumSectionSize(-1);
     for (int i = 0; i < m_exceptionsModel->columnCount(); ++i) {
