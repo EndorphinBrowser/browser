@@ -37,7 +37,6 @@ Section "Main Components" SEC01
 
   SetOutPath "$INSTDIR"
   File "arora.exe"
-  File "C:\qt\4.4.0\bin\mingwm10.dll"
   File "C:\qt\4.4.0\bin\QtCore4.dll"
   File "C:\qt\4.4.0\bin\QtGui4.dll"
   File "C:\qt\4.4.0\bin\QtNetwork4.dll"
