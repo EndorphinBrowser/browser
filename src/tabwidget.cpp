@@ -172,8 +172,13 @@ void TabBar::closeOtherTabs()
 
 void TabBar::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton) {
         m_dragStartPos = event->pos();
+    } else if (event->button() == Qt::MidButton) {
+        int index = tabAt(event->pos());
+        if (index != -1)
+            emit closeTab(index);
+    }
     QTabBar::mousePressEvent(event);
 }
 
