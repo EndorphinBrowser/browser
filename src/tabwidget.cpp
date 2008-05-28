@@ -279,15 +279,21 @@ TabWidget::TabWidget(QWidget *parent)
     setTabBar(m_tabBar);
 
     // Actions
-    m_newTabAction = new QAction(QIcon(QLatin1String(":addtab.png")), tr("New &Tab"), this);
+    m_newTabAction = new QAction(tr("New &Tab"), this);
     m_newTabAction->setShortcuts(QKeySequence::AddTab);
-    m_newTabAction->setIconVisibleInMenu(false);
     connect(m_newTabAction, SIGNAL(triggered()), this, SLOT(newTab()));
 
-    m_closeTabAction = new QAction(QIcon(QLatin1String(":closetab.png")), tr("&Close Tab"), this);
+    m_closeTabAction = new QAction(tr("&Close Tab"), this);
     m_closeTabAction->setShortcuts(QKeySequence::Close);
-    m_closeTabAction->setIconVisibleInMenu(false);
     connect(m_closeTabAction, SIGNAL(triggered()), this, SLOT(closeTab()));
+
+#if QT_VERSION < 0x040500
+    m_newTabAction->setIcon(QIcon(QLatin1String(":addtab.png")));
+    m_newTabAction->setIconVisibleInMenu(false);
+
+    m_closeTabAction->setIcon(QIcon(QLatin1String(":closetab.png")));
+    m_closeTabAction->setIconVisibleInMenu(false);
+#endif
 
     m_nextTabAction = new QAction(tr("Show Next Tab"), this);
     QList<QKeySequence> shortcuts;
@@ -318,6 +324,12 @@ TabWidget::TabWidget(QWidget *parent)
     m_recentlyClosedTabsAction->setMenu(m_recentlyClosedTabsMenu);
     m_recentlyClosedTabsAction->setEnabled(false);
 
+#if QT_VERSION >= 0x040500
+    m_tabBar->setTabsClosable(true);
+    connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
+                      this, SLOT(closeTab(int)));
+    m_tabBar->setSelectionBehaviorOnRemove(QTabBar::SelectPreviousTab);
+#else
     // corner buttons
     QToolButton *addTabButton = new QToolButton(this);
     addTabButton->setDefaultAction(m_newTabAction);
@@ -330,6 +342,7 @@ TabWidget::TabWidget(QWidget *parent)
     closeTabButton->setAutoRaise(true);
     closeTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
     setCornerWidget(closeTabButton, Qt::TopRightCorner);
+#endif
 
     connect(this, SIGNAL(currentChanged(int)),
             this, SLOT(currentChanged(int)));
