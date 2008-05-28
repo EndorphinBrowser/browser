@@ -43,6 +43,7 @@ Section "Main Components" SEC01
   File "C:\qt\4.4.0\bin\QtWebKit4.dll"
   File "C:\windows\system32\ssleay32.dll"
   File "C:\windows\system32\libeay32.dll"
+  File "C:\windows\system32\msvcr71.dll"
 
   SetOutPath "$INSTDIR\locale"
   File "src\.qm\locale\*.qm"
