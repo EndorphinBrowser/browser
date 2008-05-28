@@ -740,7 +740,7 @@ void BrowserMainWindow::slotPrivateBrowsing()
             "<li> Site icons won't be stored, session won't be saved.</li>"
             "<li> Searches are not addded to the pop-up menu in the search box.</li></ul>"
             "Until you close the window, you can still click the Back and Forward buttons"
-            "to return to the webpages you have opened.").arg(title);
+            " to return to the webpages you have opened.").arg(title);
 
         QMessageBox::StandardButton button = QMessageBox::question(this, QString(), text,
                                QMessageBox::Ok | QMessageBox::Cancel,
