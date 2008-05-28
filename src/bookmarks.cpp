@@ -756,7 +756,7 @@ BookmarksMenu::BookmarksMenu(QWidget *parent)
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
     setMaxRows(-1);
-    setHoverRole(BookmarksModel::UrlStringRole);
+    setStatusBarTextRole(BookmarksModel::UrlStringRole);
     setSeparatorRole(BookmarksModel::SeparatorRole);
 }
 

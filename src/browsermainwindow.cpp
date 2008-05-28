@@ -395,8 +395,6 @@ void BrowserMainWindow::setupMenu()
     HistoryMenu *historyMenu = new HistoryMenu(this);
     connect(historyMenu, SIGNAL(openUrl(const QUrl&)),
             m_tabWidget, SLOT(loadUrl(const QUrl&)));
-    connect(historyMenu, SIGNAL(hovered(const QString&)), this,
-            SLOT(slotUpdateStatusbar(const QString&)));
     historyMenu->setTitle(tr("Hi&story"));
     menuBar()->addMenu(historyMenu);
     QList<QAction*> historyActions;
@@ -430,8 +428,6 @@ void BrowserMainWindow::setupMenu()
     BookmarksMenu *bookmarksMenu = new BookmarksMenu(this);
     connect(bookmarksMenu, SIGNAL(openUrl(const QUrl&, TabWidget::Tab, const QString &)),
             m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::Tab, const QString&)));
-    connect(bookmarksMenu, SIGNAL(hovered(const QString&)),
-            this, SLOT(slotUpdateStatusbar(const QString&)));
     bookmarksMenu->setTitle(tr("&Bookmarks"));
     menuBar()->addMenu(bookmarksMenu);
 

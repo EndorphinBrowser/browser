@@ -615,7 +615,7 @@ HistoryMenu::HistoryMenu(QWidget *parent)
 {
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
-    setHoverRole(HistoryModel::UrlStringRole);
+    setStatusBarTextRole(HistoryModel::UrlStringRole);
 }
 
 void HistoryMenu::activated(const QModelIndex &index)

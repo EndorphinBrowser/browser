@@ -73,7 +73,6 @@ class ModelMenu : public QMenu
 
 signals:
     void activated(const QModelIndex &index);
-    void hovered(const QString &text);
 
 public:
     ModelMenu(QWidget *parent = 0);
@@ -90,8 +89,8 @@ public:
     void setRootIndex(const QModelIndex &index);
     QModelIndex rootIndex() const;
 
-    void setHoverRole(int role);
-    int hoverRole() const;
+    void setStatusBarTextRole(int role);
+    int statusBarTextRole() const;
 
     void setSeparatorRole(int role);
     int separatorRole() const;
@@ -109,14 +108,13 @@ protected:
 private slots:
     void aboutToShow();
     void triggered(QAction *action);
-    void hovered(QAction *action);
 
 private:
     QAction *makeAction(const QModelIndex &index);
     int m_maxRows;
     int m_firstSeparator;
     int m_maxWidth;
-    int m_hoverRole;
+    int m_statusBarTextRole;
     int m_separatorRole;
     QAbstractItemModel *m_model;
     QPersistentModelIndex m_root;

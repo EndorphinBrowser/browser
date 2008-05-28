@@ -71,7 +71,7 @@ ModelMenu::ModelMenu(QWidget * parent)
     , m_maxRows(7)
     , m_firstSeparator(-1)
     , m_maxWidth(-1)
-    , m_hoverRole(0)
+    , m_statusBarTextRole(0)
     , m_separatorRole(0)
     , m_model(0)
 {
@@ -127,14 +127,14 @@ QModelIndex ModelMenu::rootIndex() const
     return m_root;
 }
 
-void ModelMenu::setHoverRole(int role)
+void ModelMenu::setStatusBarTextRole(int role)
 {
-    m_hoverRole = role;
+    m_statusBarTextRole = role;
 }
 
-int ModelMenu::hoverRole() const
+int ModelMenu::statusBarTextRole() const
 {
-    return m_hoverRole;
+    return m_statusBarTextRole;
 }
 
 void ModelMenu::setSeparatorRole(int role)
@@ -190,7 +190,6 @@ void ModelMenu::createMenu(const QModelIndex &parent, int max, QMenu *parentMenu
         end = qMin(max, end);
 
     connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(triggered(QAction*)));
-    connect(menu, SIGNAL(hovered(QAction*)), this, SLOT(hovered(QAction*)));
 
     for (int i = 0; i < end; ++i) {
         QModelIndex idx = m_model->index(i, 0, parent);
@@ -212,6 +211,8 @@ QAction *ModelMenu::makeAction(const QModelIndex &index)
 {
     QIcon icon = qvariant_cast<QIcon>(index.data(Qt::DecorationRole));
     QAction *action = makeAction(icon, index.data().toString(), this);
+    action->setStatusTip(index.data(m_statusBarTextRole).toString());
+
     QVariant v;
     v.setValue(index);
     action->setData(v);
@@ -233,17 +234,6 @@ void ModelMenu::triggered(QAction *action)
     if (v.canConvert<QModelIndex>()) {
         QModelIndex idx = qvariant_cast<QModelIndex>(v);
         emit activated(idx);
-    }
-}
-
-void ModelMenu::hovered(QAction *action)
-{
-    QVariant v = action->data();
-    if (v.canConvert<QModelIndex>()) {
-        QModelIndex idx = qvariant_cast<QModelIndex>(v);
-        QString hoveredString = idx.data(m_hoverRole).toString();
-        if (!hoveredString.isEmpty())
-            emit hovered(hoveredString);
     }
 }
 
