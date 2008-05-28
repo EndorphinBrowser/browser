@@ -482,7 +482,7 @@ QString BrowserApplication::dataDirectory() const
 {
 #if defined(Q_WS_X11)
     return PKGDATADIR;
-#elif defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#else
     return applicationDirPath();
 #endif
 }
