@@ -19,7 +19,8 @@ isEmpty(QMAKE_LRELEASE) {
 TRANSLATIONS += \
     locale/de.ts \
     locale/en.ts \
-    locale/ru.ts
+    locale/ru.ts \
+    locale/cs_CZ.ts
 
 updateqm.input = TRANSLATIONS
 updateqm.output = .qm/locale/${QMAKE_FILE_BASE}.qm
