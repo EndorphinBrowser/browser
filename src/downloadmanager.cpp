@@ -266,8 +266,7 @@ void DownloadItem::downloadReadyRead()
         downloadInfoLabel->setText(tr("Error saving: %1")
                 .arg(m_output.errorString()));
         stopButton->click();
-    }
-    else {
+    } else {
         m_startedSaving = true;
         if (m_finishedDownloading)
             finished();
