@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -114,6 +115,9 @@ void DownloadItem::init()
     if (!m_reply)
         return;
 
+    m_startedSaving = false;
+    m_finishedDownloading = false;
+
     // attach to the m_reply
     m_url = m_reply->url();
     m_reply->setParent(this);
@@ -159,7 +163,6 @@ void DownloadItem::getFileName()
             fileNameLabel->setText(tr("Download canceled: %1").arg(QFileInfo(defaultFileName).fileName()));
             return;
         }
-        m_requestFileName = false;
     }
     m_output.setFileName(fileName);
     fileNameLabel->setText(QFileInfo(m_output.fileName()).fileName());
@@ -193,7 +196,7 @@ QString DownloadItem::saveFileName(const QString &directory) const
         qDebug() << "DownloadManager:: downloading unknown file:" << m_url;
     }
     QString name = directory + baseName + QLatin1Char('.') + endName;
-    if (QFile::exists(name)) {
+    if (!m_requestFileName && QFile::exists(name)) {
         // already exists, don't overwrite
         int i = 1;
         do {
@@ -263,6 +266,12 @@ void DownloadItem::downloadReadyRead()
         downloadInfoLabel->setText(tr("Error saving: %1")
                 .arg(m_output.errorString()));
         stopButton->click();
+    }
+    else {
+        m_startedSaving = true;
+    }
+    if (m_finishedDownloading) {
+        finished();
     }
 }
 
@@ -364,6 +373,10 @@ bool DownloadItem::downloadedSuccessfully() const
 
 void DownloadItem::finished()
 {
+    m_finishedDownloading = true;
+    if (!m_startedSaving) {
+        return;
+    }
     progressBar->hide();
     stopButton->setEnabled(false);
     stopButton->hide();
@@ -451,11 +464,19 @@ void DownloadManager::addItem(DownloadItem *item)
     QIcon icon = style()->standardIcon(QStyle::SP_FileIcon);
     item->fileIcon->setPixmap(icon.pixmap(48, 48));
     downloadsView->setRowHeight(row, item->sizeHint().height());
+    updateRow(item); //incase download finishes before the constructor returns
 }
 
 void DownloadManager::updateRow()
 {
     DownloadItem *item = qobject_cast<DownloadItem*>(sender());
+    if (item) {
+        updateRow(item);
+    }
+}
+
+void DownloadManager::updateRow(DownloadItem *item)
+{
     int row = m_downloads.indexOf(item);
     if (-1 == row)
         return;
