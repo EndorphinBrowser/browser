@@ -8,6 +8,6 @@
     <file>loading.gif</file>
     <file>defaulticon.png</file>
     <file>../../AUTHORS</file>
-    <file>../../LICENSE.GPL3</file>
+    <file>../../LICENSE.GPL2</file>
 </qresource>
 </RCC>

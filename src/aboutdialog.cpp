@@ -72,7 +72,7 @@ void AboutDialog::on_authorsButton_clicked()
 
 void AboutDialog::on_licenseButton_clicked()
 {
-    displayFile(QLatin1String(":LICENSE.GPL3"), tr("License"));
+    displayFile(QLatin1String(":LICENSE.GPL2"), tr("License"));
 }
 
 void AboutDialog::on_closeButton_clicked()
