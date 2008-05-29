@@ -508,7 +508,7 @@ CookiesDialog::CookiesDialog(CookieJar *cookieJar, QWidget *parent) : QDialog(pa
     m_proxyModel = new QSortFilterProxyModel(this);
     connect(search, SIGNAL(textChanged(QString)),
             m_proxyModel, SLOT(setFilterFixedString(QString)));
-    connect(removeButton, SIGNAL(clicked()), cookiesTable, SLOT(removeOne()));
+    connect(removeButton, SIGNAL(clicked()), cookiesTable, SLOT(removeSelected()));
     connect(removeAllButton, SIGNAL(clicked()), cookiesTable, SLOT(removeAll()));
     m_proxyModel->setSourceModel(model);
     cookiesTable->verticalHeader()->hide();
@@ -669,7 +669,7 @@ CookiesExceptionsDialog::CookiesExceptionsDialog(CookieJar *cookieJar, QWidget *
 {
     setupUi(this);
     setWindowFlags(Qt::Sheet);
-    connect(removeButton, SIGNAL(clicked()), exceptionTable, SLOT(removeOne()));
+    connect(removeButton, SIGNAL(clicked()), exceptionTable, SLOT(removeSelected()));
     connect(removeAllButton, SIGNAL(clicked()), exceptionTable, SLOT(removeAll()));
     exceptionTable->verticalHeader()->hide();
     exceptionTable->setSelectionBehavior(QAbstractItemView::SelectRows);

@@ -805,7 +805,7 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     m_proxyModel = new TreeProxyModel(this);
     connect(search, SIGNAL(textChanged(QString)),
             m_proxyModel, SLOT(setFilterFixedString(QString)));
-    connect(removeButton, SIGNAL(clicked()), tree, SLOT(removeOne()));
+    connect(removeButton, SIGNAL(clicked()), tree, SLOT(removeSelected()));
     m_proxyModel->setSourceModel(m_bookmarksModel);
     tree->setModel(m_proxyModel);
     tree->setDragDropMode(QAbstractItemView::InternalMove);
@@ -874,7 +874,7 @@ void BookmarksDialog::customContextMenuRequested(const QPoint &pos)
         menu.addAction(tr("Open in New Tab"), this, SLOT(openInNewTab()));
         menu.addSeparator();
     }
-    menu.addAction(tr("Delete"), tree, SLOT(removeOne()));
+    menu.addAction(tr("Delete"), tree, SLOT(removeSelected()));
     menu.exec(QCursor::pos());
 }
 

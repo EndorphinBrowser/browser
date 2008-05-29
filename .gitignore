@@ -12,6 +12,7 @@ Makefile
 autotests/addbookmarkdialog/addbookmarkdialog
 autotests/autosaver/autosaver
 autotests/downloadmanager/downloadmanager
+autotests/edittreeview/edittreeview
 autotests/history/history
 autotests/historyfiltermodel/historyfiltermodel
 autotests/searchlineedit/searchlineedit

@@ -696,7 +696,7 @@ HistoryDialog::HistoryDialog(QWidget *parent, HistoryManager *setHistory) : QDia
     TreeProxyModel *proxyModel = new TreeProxyModel(this);
     connect(search, SIGNAL(textChanged(QString)),
             proxyModel, SLOT(setFilterFixedString(QString)));
-    connect(removeButton, SIGNAL(clicked()), tree, SLOT(removeOne()));
+    connect(removeButton, SIGNAL(clicked()), tree, SLOT(removeSelected()));
     connect(removeAllButton, SIGNAL(clicked()), history, SLOT(clear()));
     proxyModel->setSourceModel(model);
     tree->setModel(proxyModel);
@@ -723,7 +723,7 @@ void HistoryDialog::customContextMenuRequested(const QPoint &pos)
         menu.addSeparator();
         menu.addAction(tr("Copy"), this, SLOT(copy()));
     }
-    menu.addAction(tr("Delete"), tree, SLOT(removeOne()));
+    menu.addAction(tr("Delete"), tree, SLOT(removeSelected()));
     menu.exec(QCursor::pos());
 }
 

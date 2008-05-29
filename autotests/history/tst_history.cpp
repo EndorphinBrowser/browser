@@ -502,14 +502,14 @@ void tst_History::historyDialog()
     int topRowCount = model->rowCount();
     int parentRowCount = model->rowCount(parent.sibling(parent.row(), 0));
     int childRowCount = model->rowCount(child.sibling(child.row(), 0));
-    dialog.tree->setCurrentIndex(child);
+    dialog.tree->selectionModel()->select(child, QItemSelectionModel::SelectCurrent);
     if (row == -3) {
         dialog.tree->removeAll();
         QCOMPARE(model->rowCount(), 0);
         QModelIndex idx = dialog.tree->indexAt(QPoint(10, 10));
         QVERIFY(!idx.isValid());
     } else {
-        dialog.tree->removeOne();
+        dialog.tree->removeSelected();
         QCOMPARE(history.history().count(), bigHistory.count() + parentRowsDiff + (childRowCount * datesDiff));
         QCOMPARE(model->rowCount(), topRowCount + datesDiff);
         if (parent.isValid() && datesDiff == 0)

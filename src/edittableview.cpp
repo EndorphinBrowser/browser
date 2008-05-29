@@ -74,22 +74,27 @@ void EditTableView::keyPressEvent(QKeyEvent *event)
     if ((event->key() == Qt::Key_Delete
          || event->key() == Qt::Key_Backspace)
         && model()) {
-        removeOne();
+        removeSelected();
     } else {
         QAbstractItemView::keyPressEvent(event);
     }
 }
 
-void EditTableView::removeOne()
+void EditTableView::removeSelected()
 {
     if (!model() || !selectionModel())
         return;
-    int row = currentIndex().row();
-    model()->removeRow(row, rootIndex());
+    QModelIndexList selectedRows = selectionModel()->selectedRows();
+    int row = 0;
+    for (int i = selectedRows.count() - 1; i >= 0; --i) {
+        row = selectedRows.at(i).row();
+        model()->removeRow(row, rootIndex());
+    }
     QModelIndex idx = model()->index(row, 0, rootIndex());
     if (!idx.isValid())
         idx = model()->index(row - 1, 0, rootIndex());
     selectionModel()->select(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+    setCurrentIndex(idx);
 }
 
 void EditTableView::removeAll()

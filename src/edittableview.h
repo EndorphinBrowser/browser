@@ -74,7 +74,7 @@ public:
     void keyPressEvent(QKeyEvent *event);
 
 public slots:
-    void removeOne();
+    void removeSelected();
     void removeAll();
 };
 
