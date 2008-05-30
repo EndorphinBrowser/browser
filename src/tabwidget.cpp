@@ -267,6 +267,9 @@ TabWidget::TabWidget(QWidget *parent)
     , m_lineEdits(0)
     , m_tabBar(new TabBar(this))
 {
+#if QT_VERSION >= 0x040500
+    setDocumentMode(true);
+#endif
     setElideMode(Qt::ElideRight);
 
     connect(m_tabBar, SIGNAL(newTab()), this, SLOT(newTab()));
