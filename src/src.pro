@@ -22,6 +22,7 @@ TRANSLATIONS += \
     locale/en.ts \
     locale/es.ts \
     locale/fr.ts \
+    locale/it.ts \
     locale/pl.ts \
     locale/ru.ts
 
