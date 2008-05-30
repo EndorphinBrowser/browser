@@ -41,13 +41,16 @@ void AboutDialog::displayFile(const QString& fileName, const QString& title)
 
     textEdit->setStyleSheet(QLatin1String("font-family: monospace"));
     textEdit->setPlainText(loadText(fileName));
+    textEdit->setReadOnly(true);
     connect(buttonBox, SIGNAL(rejected()), dialog, SLOT(close()));
     buttonBox->setCenterButtons(true);
     layout->addWidget(textEdit);
     layout->addWidget(buttonBox);
+    layout->setMargin(6);
 
     dialog->setLayout(layout);
     dialog->setWindowTitle(title);
+    dialog->setWindowFlags(Qt::Sheet);
     dialog->resize(600, 350);
     dialog->exec();
 }

@@ -671,9 +671,6 @@ void BrowserMainWindow::slotUpdateWindowTitle(const QString &title)
 void BrowserMainWindow::slotAboutApplication()
 {
     AboutDialog *aboutDialog = new AboutDialog(this);
-    QStringList authors;
-    authors << QLatin1String("Benjamin C. Meyer <a href=\"mailto:ben@meyerhome.net\">ben@meyerhome.net</a>");
-    aboutDialog->addAuthors(authors);
     aboutDialog->show();
 }
 
