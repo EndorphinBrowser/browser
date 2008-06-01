@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Matvey Kozhev <sikon@ubuntu.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,28 +20,42 @@
 
 #include "aboutdialog.h"
 
+#include <qdialogbuttonbox.h>
 #include <qfile.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qtextedit.h>
 #include <qtextstream.h>
-#include <qdialogbuttonbox.h>
 
-AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent)
+AboutDialog::AboutDialog(QWidget *parent)
+    : QDialog(parent)
 {
     setupUi(this);
+    setWindowTitle(tr("About") + QString(" %1").arg(qApp->applicationName()));
+    logo->setPixmap(qApp->windowIcon().pixmap(128, 128));
+    name->setText(qApp->applicationName());
+    version->setText(QApplication::applicationVersion());
+    connect(authorsButton, SIGNAL(clicked()),
+            this, SLOT(authorsButtonClicked()));
+    connect(licenseButton, SIGNAL(clicked()),
+            this, SLOT(licenseButtonClicked()));
 }
 
-void AboutDialog::displayFile(const QString& fileName, const QString& title)
+void AboutDialog::displayFile(const QString &fileName, const QString &title)
 {
     QDialog *dialog = new QDialog(this);
     QLayout *layout = new QVBoxLayout(dialog);
     QTextEdit *textEdit = new QTextEdit(dialog);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, dialog);
-    QFont font;
 
     textEdit->setStyleSheet(QLatin1String("font-family: monospace"));
-    textEdit->setPlainText(loadText(fileName));
+
+    QFile file(fileName);
+    if (file.open(QIODevice::ReadOnly)) {
+        QString text = QTextStream(&file).readAll();
+        textEdit->setPlainText(text);
+    }
+
     textEdit->setReadOnly(true);
     connect(buttonBox, SIGNAL(rejected()), dialog, SLOT(close()));
     buttonBox->setCenterButtons(true);
@@ -55,30 +70,13 @@ void AboutDialog::displayFile(const QString& fileName, const QString& title)
     dialog->exec();
 }
 
-QString AboutDialog::loadText(const QString& fileName)
-{
-    QString text;
-    QFile f(fileName);
-
-    if (f.open(QIODevice::ReadOnly))
-    {
-        text = QTextStream(&f).readAll();
-    }
-
-    return text;
-}
-
-void AboutDialog::on_authorsButton_clicked()
+void AboutDialog::authorsButtonClicked()
 {
     displayFile(QLatin1String(":AUTHORS"), tr("Authors"));
 }
 
-void AboutDialog::on_licenseButton_clicked()
+void AboutDialog::licenseButtonClicked()
 {
     displayFile(QLatin1String(":LICENSE.GPL2"), tr("License"));
 }
 
-void AboutDialog::on_closeButton_clicked()
-{
-    close();
-}

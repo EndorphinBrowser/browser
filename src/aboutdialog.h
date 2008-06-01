@@ -35,18 +35,12 @@ public:
     AboutDialog(QWidget *parent = 0);
 
 private slots:
-    void on_authorsButton_clicked();
-    void on_licenseButton_clicked();
-    void on_closeButton_clicked();
+    void authorsButtonClicked();
+    void licenseButtonClicked();
 
 private:
-    void displayFile(const QString& fileName, const QString& title);
-    QString loadText(const QString& fileName);
+    void displayFile(const QString &fileName, const QString &title);
 
-    QVBoxLayout *layout;
-    QLabel *logo;
-    QLabel *name;
-    QLabel *version;
 };
 
 #endif // ABOUTDIALOG_H

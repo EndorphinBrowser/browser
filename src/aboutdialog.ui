@@ -5,31 +5,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>442</width>
-    <height>230</height>
+    <width>454</width>
+    <height>236</height>
    </rect>
-  </property>
-  <property name="windowTitle" >
-   <string>About Arora</string>
-  </property>
-  <property name="windowIcon" >
-   <iconset resource="data/data.qrc" >
-    <normaloff>:/defaulticon.png</normaloff>:/defaulticon.png</iconset>
   </property>
   <property name="modal" >
    <bool>true</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" >
    <item>
-    <widget class="QLabel" name="label" >
+    <widget class="QLabel" name="logo" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="pixmap" >
-      <pixmap resource="data/data.qrc" >:/browser.svg</pixmap>
      </property>
      <property name="scaledContents" >
       <bool>false</bool>
@@ -40,30 +30,51 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_2" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font" >
-      <font>
-       <pointsize>16</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text" >
-      <string>Arora 0.2</string>
-     </property>
-     <property name="alignment" >
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2" >
+     <item>
+      <widget class="QLabel" name="name" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font" >
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="version" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font" >
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_3" >
+    <widget class="QLabel" name="description" >
      <property name="text" >
       <string>Lightweight WebKit-based web browser</string>
      </property>
@@ -73,7 +84,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_4" >
+    <widget class="QLabel" name="author" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
        <horstretch>0</horstretch>
@@ -96,7 +107,7 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_5" >
+    <widget class="QLabel" name="sitelink" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
        <horstretch>0</horstretch>
