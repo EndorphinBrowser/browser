@@ -16,6 +16,7 @@ autotests/edittreeview/edittreeview
 autotests/history/history
 autotests/historyfiltermodel/historyfiltermodel
 autotests/searchlineedit/searchlineedit
+autotests/tabbar/tabbar
 autotests/tabwidget/tabwidget
 autotests/webactionmapper/webactionmapper
 autotests/xbel/xbel

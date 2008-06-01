@@ -101,13 +101,18 @@ signals:
 public:
     TabBar(QWidget *parent = 0);
 
+    bool showTabBarWhenOneTab() const;
+    void setShowTabBarWhenOneTab(bool enabled);
+    QAction *viewTabBarAction() const;
+
 protected:
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
     QSize tabSizeHint(int index) const;
-    void tabLayoutChange();
+    void tabInserted(int position);
+    void tabRemoved(int position);
 
 private slots:
     void selectTabAction();
@@ -116,12 +121,17 @@ private slots:
     void closeOtherTabs();
     void reloadTab();
     void contextMenuRequested(const QPoint &position);
+    void updateViewToolBarAction();
+    void viewTabBar();
 
 private:
+    void updateVisibility();
     friend class TabWidget;
 
     QPoint m_dragStartPos;
     int m_dragCurrentIndex;
+    QAction *m_viewTabBarAction;
+    bool m_showTabBarWhenOneTab;
 };
 
 #include <qwebpage.h>
@@ -202,6 +212,7 @@ public:
     };
 
     TabWidget(QWidget *parent = 0);
+    TabBar *tabBar() { return m_tabBar; }
     void clear();
     void addWebAction(QAction *action, QWebPage::WebAction webAction);
 

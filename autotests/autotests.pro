@@ -6,6 +6,7 @@ SUBDIRS  = addbookmarkdialog \
 	history \
 	historyfiltermodel \
 	searchlineedit \
+	tabbar \
 	tabwidget \
 	webactionmapper \
 	xbel

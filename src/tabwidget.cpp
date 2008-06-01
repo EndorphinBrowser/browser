@@ -93,10 +93,13 @@ int TabShortcut::tab()
 
 TabBar::TabBar(QWidget *parent)
     : QTabBar(parent)
+    , m_viewTabBarAction(0)
+    , m_showTabBarWhenOneTab(true)
 {
     setContextMenuPolicy(Qt::CustomContextMenu);
     setAcceptDrops(true);
     setElideMode(Qt::ElideRight);
+    setUsesScrollButtons(true);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(contextMenuRequested(const QPoint &)));
 
@@ -106,6 +109,42 @@ TabBar::TabBar(QWidget *parent)
         TabShortcut *tabShortCut = new TabShortcut(i, alt.arg(key), this);
         connect(tabShortCut, SIGNAL(activated()), this, SLOT(selectTabAction()));
     }
+
+    m_viewTabBarAction = new QAction(this);
+    updateViewToolBarAction();
+    m_viewTabBarAction->setShortcut(tr("Shift+Ctrl+T"));
+    connect(m_viewTabBarAction, SIGNAL(triggered()),
+            this, SLOT(viewTabBar()));
+}
+
+bool TabBar::showTabBarWhenOneTab() const
+{
+    return m_showTabBarWhenOneTab;
+}
+
+void TabBar::setShowTabBarWhenOneTab(bool enabled)
+{
+    m_showTabBarWhenOneTab = enabled;
+    updateVisibility();
+}
+
+QAction *TabBar::viewTabBarAction() const
+{
+    return m_viewTabBarAction;
+}
+
+void TabBar::updateViewToolBarAction()
+{
+    bool show = showTabBarWhenOneTab();
+    if (count() > 1)
+        show = true;
+    m_viewTabBarAction->setText(!show ? tr("Show Tab Bar") : tr("Hide Tab Bar"));
+}
+
+void TabBar::viewTabBar()
+{
+    setShowTabBarWhenOneTab(!showTabBarWhenOneTab());
+    updateViewToolBarAction();
 }
 
 void TabBar::selectTabAction()
@@ -250,9 +289,23 @@ void TabBar::reloadTab()
     }
 }
 
-void TabBar::tabLayoutChange()
+void TabBar::tabInserted(int position)
 {
-    setVisible(count() > 1);
+    Q_UNUSED(position);
+    updateVisibility();
+}
+
+void TabBar::tabRemoved(int position)
+{
+    Q_UNUSED(position);
+    updateVisibility();
+}
+
+void TabBar::updateVisibility()
+{
+    setVisible((count()) > 1 || m_showTabBarWhenOneTab);
+    m_viewTabBarAction->setEnabled(count() == 1);
+    updateViewToolBarAction();
 }
 
 TabWidget::TabWidget(QWidget *parent)

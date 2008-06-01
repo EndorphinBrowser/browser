@@ -226,6 +226,7 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
     else
         stream << QByteArray();
     stream << m_navigationSplitter->saveState();
+    stream << m_tabWidget->tabBar()->showTabBarWhenOneTab();
     return data;
 }
 
@@ -250,6 +251,7 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     bool showStatusbar;
     QByteArray tabState;
     QByteArray splitterState;
+    bool showTabBarWhenOneTab;
 
     stream >> size;
     stream >> showToolbar;
@@ -257,6 +259,7 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     stream >> showStatusbar;
     stream >> tabState;
     stream >> splitterState;
+    stream >> showTabBarWhenOneTab;
 
     resize(size);
 
@@ -271,8 +274,10 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
 
     m_navigationSplitter->restoreState(splitterState);
 
-    if (!tabWidget()->restoreState(tabState))
+    if (!tabState.isEmpty() && !tabWidget()->restoreState(tabState))
         return false;
+
+    m_tabWidget->tabBar()->setShowTabBarWhenOneTab(showTabBarWhenOneTab);
 
     return true;
 }
@@ -351,17 +356,22 @@ void BrowserMainWindow::setupMenu()
     // View
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
 
+    m_viewToolbar = new QAction(this);
+    updateToolbarActionText(true);
+    m_viewToolbar->setShortcut(tr("Ctrl+|"));
+    connect(m_viewToolbar, SIGNAL(triggered()), this, SLOT(slotViewToolbar()));
+    viewMenu->addAction(m_viewToolbar);
+
     m_viewBookmarkBar = new QAction(this);
     updateBookmarksToolbarActionText(true);
     m_viewBookmarkBar->setShortcut(tr("Shift+Ctrl+B"));
     connect(m_viewBookmarkBar, SIGNAL(triggered()), this, SLOT(slotViewBookmarksBar()));
     viewMenu->addAction(m_viewBookmarkBar);
 
-    m_viewToolbar = new QAction(this);
-    updateToolbarActionText(true);
-    m_viewToolbar->setShortcut(tr("Ctrl+|"));
-    connect(m_viewToolbar, SIGNAL(triggered()), this, SLOT(slotViewToolbar()));
-    viewMenu->addAction(m_viewToolbar);
+    QAction *viewTabBarAction = m_tabWidget->tabBar()->viewTabBarAction();
+    viewMenu->addAction(viewTabBarAction);
+    connect(viewTabBarAction, SIGNAL(changed()),
+            m_autoSaver, SLOT(changeOccurred()));
 
     m_viewStatusbar = new QAction(this);
     updateStatusbarActionText(true);
