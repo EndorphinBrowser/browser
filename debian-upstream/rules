@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+  
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/qmake.mk
+
+QMAKE                       = qmake-qt4
+DEB_QMAKE_ARGS             += PREFIX=/usr QMAKE_LFLAGS+=-Wl,--as-needed
+DEB_PHONY_RULES            += get-orig-source
+VERSION                     = $(shell dpkg-parsechangelog | egrep '^Version' | sed s/"Version: "//)
+UPSTREAM_VERSION            = $(shell echo $(VERSION) | sed s/-.*//)
+DEB_INSTALL_CHANGELOGS_ALL  = ChangeLog
+
+makebuilddir/arora::
+	./generateAuthors
+
+install/arora::
+	cp src/data/arora-16.png debian/arora/usr/share/icons/hicolor/16x16/apps/arora.png
+	cp src/data/arora-32.png debian/arora/usr/share/icons/hicolor/32x32/apps/arora.png
+	cp src/data/arora-128.png debian/arora/usr/share/icons/hicolor/128x128/apps/arora.png
+
+get-orig-source:
+	cd debian && git clone git://github.com/icefox/arora.git arora-$(UPSTREAM_VERSION)
+	cd debian/arora-$(UPSTREAM_VERSION) && \
+	    git archive --format=tar --prefix=arora-$(UPSTREAM_VERSION)/ HEAD | \
+	    gzip -9c > ../../../arora_$(UPSTREAM_VERSION).orig.tar.gz
+	rm -rf debian/arora-$(UPSTREAM_VERSION)
