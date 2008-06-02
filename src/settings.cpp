@@ -207,6 +207,12 @@ void SettingsDialog::loadFromSettings()
     proxyUserName->setText(settings.value(QLatin1String("userName")).toString());
     proxyPassword->setText(settings.value(QLatin1String("password")).toString());
     settings.endGroup();
+
+    // Tabs
+    settings.beginGroup(QLatin1String("tabs"));
+    selectTabsWhenCreated->setChecked(settings.value(QLatin1String("selectNewTabs"), false).toBool());
+    confirmClosingMultipleTabs->setChecked(settings.value(QLatin1String("confirmClosingMultipleTabs"), true).toBool());
+    settings.endGroup();
 }
 
 void SettingsDialog::saveToSettings()
@@ -299,6 +305,12 @@ void SettingsDialog::saveToSettings()
     settings.setValue(QLatin1String("port"), proxyPort->text());
     settings.setValue(QLatin1String("userName"), proxyUserName->text());
     settings.setValue(QLatin1String("password"), proxyPassword->text());
+    settings.endGroup();
+
+    // Tabs
+    settings.beginGroup(QLatin1String("tabs"));
+    settings.setValue(QLatin1String("selectNewTabs"), selectTabsWhenCreated->isChecked());
+    settings.setValue(QLatin1String("confirmClosingMultipleTabs"), confirmClosingMultipleTabs->isChecked());
     settings.endGroup();
 
     BrowserApplication::instance()->loadSettings();

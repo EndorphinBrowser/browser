@@ -75,6 +75,7 @@
 #include <qlistview.h>
 #include <qmenu.h>
 #include <qmessagebox.h>
+#include <qsettings.h>
 #include <qstackedwidget.h>
 #include <qstyle.h>
 #include <qtoolbutton.h>
@@ -572,8 +573,12 @@ int TabWidget::webViewIndex(WebView *webView) const
     return -1;
 }
 
-WebView *TabWidget::newTab(bool makeCurrent)
+WebView *TabWidget::newTab()
 {
+    QSettings settings;
+    settings.beginGroup(QLatin1String("tabs"));
+    bool makeCurrent = settings.value(QLatin1String("selectNewTabs"), false).toBool();
+
     // line edit
     UrlLineEdit *urlLineEdit = new UrlLineEdit;
     QLineEdit *lineEdit = urlLineEdit->lineEdit();
@@ -701,7 +706,7 @@ void TabWidget::cloneTab(int index)
         index = currentIndex();
     if (index < 0 || index >= count())
         return;
-    WebView *tab = newTab(false);
+    WebView *tab = newTab();
     tab->setUrl(webView(index)->url());
 }
 
@@ -852,7 +857,7 @@ void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
 {
     WebView *webView;
     if (NewTab == type) {
-        webView = newTab(true);
+        webView = newTab();
         if (count() == 1)
             webView = this->webView(0);
     } else {

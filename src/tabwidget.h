@@ -240,7 +240,7 @@ protected:
 
 public slots:
     void loadUrl(const QUrl &url, TabWidget::Tab type = CurrentTab, const QString &title = QString());
-    WebView *newTab(bool makeCurrent = true);
+    WebView *newTab();
     void cloneTab(int index = -1);
     void closeTab(int index = -1);
     void closeOtherTabs(int index);
