@@ -129,6 +129,7 @@ private slots:
     void slotViewTextBigger();
     void slotViewTextNormal();
     void slotViewTextSmaller();
+    void slotViewMenuBar();
     void slotViewToolbar();
     void slotViewBookmarksBar();
     void slotViewStatusbar();

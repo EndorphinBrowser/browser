@@ -355,6 +355,7 @@ void BrowserMainWindow::setupMenu()
 
     // View
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
+    new QShortcut(QKeySequence("Ctrl+m"), this, SLOT(slotViewMenuBar()));
 
     m_viewToolbar = new QAction(this);
     updateToolbarActionText(true);
@@ -540,6 +541,11 @@ void BrowserMainWindow::slotAddBookmark()
     QString title = webView->title();
     AddBookmarkDialog dialog(url, title);
     dialog.exec();
+}
+
+void BrowserMainWindow::slotViewMenuBar()
+{
+    menuBar()->setVisible(!menuBar()->isVisible());
 }
 
 void BrowserMainWindow::slotViewToolbar()
