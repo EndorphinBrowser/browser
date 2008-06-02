@@ -184,5 +184,22 @@ p, li { white-space: pre-wrap; }
  <resources>
   <include location="data/data.qrc" />
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>closeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AboutDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>322</x>
+     <y>204</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>372</x>
+     <y>206</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
