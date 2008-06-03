@@ -229,6 +229,7 @@ public:
     WebViewSearch *webViewSearch(int index) const;
     QLineEdit *lineEdit(int index) const;
     int webViewIndex(WebView *webView) const;
+    WebView *makeNewTab(bool makeCurrent = false);
 
     QByteArray saveState() const;
     bool restoreState(const QByteArray &state);
@@ -240,7 +241,7 @@ protected:
 
 public slots:
     void loadUrl(const QUrl &url, TabWidget::Tab type = CurrentTab, const QString &title = QString());
-    WebView *newTab();
+    void newTab();
     void cloneTab(int index = -1);
     void closeTab(int index = -1);
     void closeOtherTabs(int index);

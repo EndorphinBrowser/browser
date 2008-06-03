@@ -573,11 +573,18 @@ int TabWidget::webViewIndex(WebView *webView) const
     return -1;
 }
 
-WebView *TabWidget::newTab()
+void TabWidget::newTab()
 {
-    QSettings settings;
-    settings.beginGroup(QLatin1String("tabs"));
-    bool makeCurrent = settings.value(QLatin1String("selectNewTabs"), false).toBool();
+    makeNewTab(true);
+}
+
+WebView *TabWidget::makeNewTab(bool makeCurrent)
+{
+    if (!makeCurrent) {
+        QSettings settings;
+        settings.beginGroup(QLatin1String("tabs"));
+        makeCurrent = settings.value(QLatin1String("selectNewTabs"), false).toBool();
+    }
 
     // line edit
     UrlLineEdit *urlLineEdit = new UrlLineEdit;
@@ -706,7 +713,7 @@ void TabWidget::cloneTab(int index)
         index = currentIndex();
     if (index < 0 || index >= count())
         return;
-    WebView *tab = newTab();
+    WebView *tab = makeNewTab();
     tab->setUrl(webView(index)->url());
 }
 
@@ -847,7 +854,7 @@ void TabWidget::mouseReleaseEvent(QMouseEvent *event)
         && event->pos().y() < (tabBar()->y() + tabBar()->height())) {
         QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
         if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
-            WebView *webView = newTab();
+            WebView *webView = makeNewTab();
             webView->setUrl(url);
         }
     }
@@ -857,7 +864,7 @@ void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
 {
     WebView *webView;
     if (NewTab == type) {
-        webView = newTab();
+        webView = makeNewTab();
         if (count() == 1)
             webView = this->webView(0);
     } else {

@@ -120,12 +120,8 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
             newMainWindow->activateWindow();
             webView->setFocus();
         } else {
-            webView = mainWindow()->tabWidget()->newTab();
             bool selectNewTab = (m_keyboardModifiers & Qt::ShiftModifier);
-            if (selectNewTab) {
-                int index = mainWindow()->tabWidget()->webViewIndex(webView);
-                mainWindow()->tabWidget()->setCurrentIndex(index);
-            }
+            webView = mainWindow()->tabWidget()->makeNewTab(selectNewTab);
         }
         webView->load(request);
         m_keyboardModifiers = Qt::NoModifier;
@@ -146,7 +142,7 @@ QWebPage *WebPage::createWindow(QWebPage::WebWindowType type)
         m_openInNewTab = true;
     if (m_openInNewTab) {
         m_openInNewTab = false;
-        return mainWindow()->tabWidget()->newTab()->page();
+        return mainWindow()->tabWidget()->makeNewTab()->page();
     }
     BrowserApplication::instance()->newMainWindow();
     BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
