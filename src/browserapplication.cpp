@@ -99,7 +99,8 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
-    QCoreApplication::setApplicationVersion(QLatin1String("0.2"));
+    QString version = QString("0.2 (Change: %1 %2)").arg(GITCHANGENUMBER).arg(GITVERSION);
+    QCoreApplication::setApplicationVersion(version);
 #ifdef Q_WS_QWS
     // Use a different server name for QWS so we can run an X11
     // browser and a QWS browser in parallel on the same machine for

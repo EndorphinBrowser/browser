@@ -14,6 +14,11 @@ OBJECTS_DIR = .obj
 
 QT += webkit network
 
+GITVERSION=$$system(git log -n1 --pretty=format:%h)
+GITCHANGENUMBER=$$system(git log --pretty=format:%h | wc -l)
+DEFINES += GITVERSION=\"\\\"$$GITVERSION\\\"\"
+DEFINES += GITCHANGENUMBER=\"\\\"$$GITCHANGENUMBER\\\"\"
+
 FORMS += \
     addbookmarkdialog.ui \
     bookmarks.ui \
