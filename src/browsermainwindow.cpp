@@ -72,6 +72,7 @@
 #include "downloadmanager.h"
 #include "history.h"
 #include "settings.h"
+#include "tabbar.h"
 #include "tabwidget.h"
 #include "toolbarsearch.h"
 #include "ui_passworddialog.h"

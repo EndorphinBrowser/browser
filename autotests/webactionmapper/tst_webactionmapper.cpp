@@ -22,7 +22,7 @@
 #include <QtGui/QtGui>
 #include <QtWebKit/QtWebKit>
 
-#include <tabwidget.h>
+#include <webactionmapper.h>
 #include <webview.h>
 
 class tst_WebActionMapper : public QObject

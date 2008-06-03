@@ -63,121 +63,23 @@
 #ifndef TABWIDGET_H
 #define TABWIDGET_H
 
-#include <qtabbar.h>
-
-#include <qshortcut.h>
-
-/*
-     Shortcut to switch directly to a tab by index
- */
-class TabShortcut : public QShortcut
-{
-    Q_OBJECT
-
-public:
-    int tab();
-    TabShortcut(int tab, const QKeySequence &key, QWidget *parent);
-
-private:
-    int m_tab;
-};
-
-/*
-    Tab bar with a few more features such as a context menu and shortcuts
- */
-class TabBar : public QTabBar
-{
-    Q_OBJECT
-
-signals:
-    void newTab();
-    void cloneTab(int index);
-    void closeTab(int index);
-    void closeOtherTabs(int index);
-    void reloadTab(int index);
-    void reloadAllTabs();
-    void tabMoveRequested(int fromIndex, int toIndex);
-
-public:
-    TabBar(QWidget *parent = 0);
-
-    bool showTabBarWhenOneTab() const;
-    void setShowTabBarWhenOneTab(bool enabled);
-    QAction *viewTabBarAction() const;
-
-protected:
-    void mousePressEvent(QMouseEvent* event);
-    void mouseMoveEvent(QMouseEvent* event);
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
-    QSize tabSizeHint(int index) const;
-    void tabInserted(int position);
-    void tabRemoved(int position);
-
-private slots:
-    void selectTabAction();
-    void cloneTab();
-    void closeTab();
-    void closeOtherTabs();
-    void reloadTab();
-    void contextMenuRequested(const QPoint &position);
-    void updateViewToolBarAction();
-    void viewTabBar();
-
-private:
-    void updateVisibility();
-    friend class TabWidget;
-
-    QPoint m_dragStartPos;
-    int m_dragCurrentIndex;
-    QAction *m_viewTabBarAction;
-    bool m_showTabBarWhenOneTab;
-};
+#include <qtabwidget.h>
 
 #include <qwebpage.h>
-
-QT_BEGIN_NAMESPACE
-class QAction;
-QT_END_NAMESPACE
-class WebView;
-/*!
-    A proxy object that connects a single browser action
-    to one child webpage action at a time.
-
-    Example usage: used to keep the main window stop action in sync with
-    the current tabs webview's stop action.
- */
-class WebActionMapper : public QObject
-{
-    Q_OBJECT
-
-public:
-    WebActionMapper(QAction *root, QWebPage::WebAction webAction, QObject *parent);
-    QWebPage::WebAction webAction() const;
-    void addChild(QAction *action);
-    void updateCurrent(QWebPage *currentParent);
-
-private slots:
-    void rootTriggered();
-    void childChanged();
-    void rootDestroyed();
-    void currentDestroyed();
-
-private:
-    QWebPage *m_currentParent;
-    QAction *m_root;
-    QWebPage::WebAction m_webAction;
-};
-
 #include <qurl.h>
-#include <qtabwidget.h>
+
 QT_BEGIN_NAMESPACE
 class QCompleter;
 class QLineEdit;
 class QMenu;
 class QStackedWidget;
 QT_END_NAMESPACE
+
+class TabBar;
+class WebView;
+class WebActionMapper;
 class WebViewSearch;
+
 /*!
     TabWidget that contains WebViews and a stack widget of associated line edits.
 

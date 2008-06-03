@@ -51,9 +51,11 @@ HEADERS += \
     searchlineedit.h \
     settings.h \
     squeezelabel.h \
+    tabbar.h \
     tabwidget.h \
     toolbarsearch.h \
     urllineedit.h \
+    webactionmapper.h \
     webview.h \
     webviewsearch.h \
     xbel.h
@@ -76,9 +78,11 @@ SOURCES += \
     searchlineedit.cpp \
     settings.cpp \
     squeezelabel.cpp \
+    tabbar.cpp \
     tabwidget.cpp \
     toolbarsearch.cpp \
     urllineedit.cpp \
+    webactionmapper.cpp \
     webview.cpp \
     webviewsearch.cpp \
     xbel.cpp

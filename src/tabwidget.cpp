@@ -65,7 +65,9 @@
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "history.h"
+#include "tabbar.h"
 #include "urllineedit.h"
+#include "webactionmapper.h"
 #include "webview.h"
 #include "webviewsearch.h"
 
@@ -81,233 +83,6 @@
 #include <qtoolbutton.h>
 
 #include <qdebug.h>
-
-TabShortcut::TabShortcut(int tab, const QKeySequence &key, QWidget *parent)
-    : QShortcut(key, parent), m_tab(tab)
-{
-}
-
-int TabShortcut::tab()
-{
-    return m_tab;
-}
-
-TabBar::TabBar(QWidget *parent)
-    : QTabBar(parent)
-    , m_viewTabBarAction(0)
-    , m_showTabBarWhenOneTab(true)
-{
-    setContextMenuPolicy(Qt::CustomContextMenu);
-    setAcceptDrops(true);
-    setElideMode(Qt::ElideRight);
-    setUsesScrollButtons(true);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
-            this, SLOT(contextMenuRequested(const QPoint &)));
-
-    QString alt = QLatin1String("Ctrl+%1");
-    for (int i = 0; i < 10; ++i) {
-        int key = i == 9 ? 0 : i + 1;
-        TabShortcut *tabShortCut = new TabShortcut(i, alt.arg(key), this);
-        connect(tabShortCut, SIGNAL(activated()), this, SLOT(selectTabAction()));
-    }
-
-    m_viewTabBarAction = new QAction(this);
-    updateViewToolBarAction();
-    m_viewTabBarAction->setShortcut(tr("Shift+Ctrl+T"));
-    connect(m_viewTabBarAction, SIGNAL(triggered()),
-            this, SLOT(viewTabBar()));
-}
-
-bool TabBar::showTabBarWhenOneTab() const
-{
-    return m_showTabBarWhenOneTab;
-}
-
-void TabBar::setShowTabBarWhenOneTab(bool enabled)
-{
-    m_showTabBarWhenOneTab = enabled;
-    updateVisibility();
-}
-
-QAction *TabBar::viewTabBarAction() const
-{
-    return m_viewTabBarAction;
-}
-
-void TabBar::updateViewToolBarAction()
-{
-    bool show = showTabBarWhenOneTab();
-    if (count() > 1)
-        show = true;
-    m_viewTabBarAction->setText(!show ? tr("Show Tab Bar") : tr("Hide Tab Bar"));
-}
-
-void TabBar::viewTabBar()
-{
-    setShowTabBarWhenOneTab(!showTabBarWhenOneTab());
-    updateViewToolBarAction();
-}
-
-void TabBar::selectTabAction()
-{
-    int index = qobject_cast<TabShortcut*>(sender())->tab();
-    setCurrentIndex(index);
-}
-
-void TabBar::contextMenuRequested(const QPoint &position)
-{
-    QMenu menu;
-    menu.addAction(tr("New &Tab"), this, SIGNAL(newTab()), QKeySequence::AddTab);
-    int index = tabAt(position);
-    if (-1 != index) {
-        QAction *action = menu.addAction(tr("Duplicate Tab"),
-                                         this, SLOT(cloneTab()));
-        action->setData(index);
-
-        menu.addSeparator();
-
-        action = menu.addAction(tr("&Close Tab"),
-                                this, SLOT(closeTab()), QKeySequence::Close);
-        action->setData(index);
-
-        action = menu.addAction(tr("Close &Other Tabs"),
-                                this, SLOT(closeOtherTabs()));
-        action->setData(index);
-
-        menu.addSeparator();
-
-        action = menu.addAction(tr("Reload Tab"),
-                                this, SLOT(reloadTab()), QKeySequence::Refresh);
-        action->setData(index);
-    } else {
-        menu.addSeparator();
-    }
-    menu.addAction(tr("Reload All Tabs"), this, SIGNAL(reloadAllTabs()));
-    menu.exec(QCursor::pos());
-}
-
-void TabBar::cloneTab()
-{
-    if (QAction *action = qobject_cast<QAction*>(sender())) {
-        int index = action->data().toInt();
-        emit cloneTab(index);
-    }
-}
-
-void TabBar::closeTab()
-{
-    if (QAction *action = qobject_cast<QAction*>(sender())) {
-        int index = action->data().toInt();
-        emit closeTab(index);
-    }
-}
-
-void TabBar::closeOtherTabs()
-{
-    if (QAction *action = qobject_cast<QAction*>(sender())) {
-        int index = action->data().toInt();
-        emit closeOtherTabs(index);
-    }
-}
-
-void TabBar::mousePressEvent(QMouseEvent *event)
-{
-    if (event->button() == Qt::LeftButton) {
-        m_dragStartPos = event->pos();
-    } else if (event->button() == Qt::MidButton) {
-        int index = tabAt(event->pos());
-        if (index != -1)
-            emit closeTab(index);
-    }
-    QTabBar::mousePressEvent(event);
-}
-
-void TabBar::mouseMoveEvent(QMouseEvent *event)
-{
-    if (event->buttons() == Qt::LeftButton
-        && (event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()) {
-        QDrag *drag = new QDrag(this);
-        QMimeData *mimeData = new QMimeData;
-        QList<QUrl> urls;
-        int index = tabAt(event->pos());
-        QUrl url = tabData(index).toUrl();
-        urls.append(url);
-        mimeData->setUrls(urls);
-        mimeData->setText(tabText(index));
-        mimeData->setData(QLatin1String("action"), "tab-reordering");
-        drag->setMimeData(mimeData);
-        drag->exec();
-    }
-    QTabBar::mouseMoveEvent(event);
-}
-
-void TabBar::dragEnterEvent(QDragEnterEvent *event)
-{
-    const QMimeData *mimeData = event->mimeData();
-    QStringList formats = mimeData->formats();
-    if (formats.contains(QLatin1String("action"))
-        && (mimeData->data(QLatin1String("action")) == "tab-reordering")) {
-        event->acceptProposedAction();
-    }
-    QTabBar::dragEnterEvent(event);
-}
-
-void TabBar::dropEvent(QDropEvent *event)
-{
-    int fromIndex = tabAt(m_dragStartPos);
-    int toIndex = tabAt(event->pos());
-    if (fromIndex != toIndex) {
-        emit tabMoveRequested(fromIndex, toIndex);
-        event->acceptProposedAction();
-    }
-    QTabBar::dropEvent(event);
-}
-
-QSize TabBar::tabSizeHint(int index) const
-{
-    QSize sizeHint = QTabBar::tabSizeHint(index);
-    return sizeHint.boundedTo(QSize(250, sizeHint.height()));
-}
-
-// When index is -1 index chooses the current tab
-void TabWidget::reloadTab(int index)
-{
-    if (index < 0)
-        index = currentIndex();
-    if (index < 0 || index >= count())
-        return;
-
-    QWidget *widget = this->widget(index);
-    if (WebView *tab = qobject_cast<WebView*>(widget))
-        tab->reload();
-}
-
-void TabBar::reloadTab()
-{
-    if (QAction *action = qobject_cast<QAction*>(sender())) {
-        int index = action->data().toInt();
-        emit reloadTab(index);
-    }
-}
-
-void TabBar::tabInserted(int position)
-{
-    Q_UNUSED(position);
-    updateVisibility();
-}
-
-void TabBar::tabRemoved(int position)
-{
-    Q_UNUSED(position);
-    updateVisibility();
-}
-
-void TabBar::updateVisibility()
-{
-    setVisible((count()) > 1 || m_showTabBarWhenOneTab);
-    m_viewTabBarAction->setEnabled(count() == 1);
-    updateViewToolBarAction();
-}
 
 TabWidget::TabWidget(QWidget *parent)
     : QTabWidget(parent)
@@ -417,6 +192,19 @@ void TabWidget::clear()
         qLineEdit->setText(qLineEdit->text());
         webViewSearch(i)->clear();
     }
+}
+
+// When index is -1 index chooses the current tab
+void TabWidget::reloadTab(int index)
+{
+    if (index < 0)
+        index = currentIndex();
+    if (index < 0 || index >= count())
+        return;
+
+    QWidget *widget = this->widget(index);
+    if (WebView *tab = qobject_cast<WebView*>(widget))
+        tab->reload();
 }
 
 void TabWidget::moveTab(int fromIndex, int toIndex)
@@ -947,81 +735,5 @@ bool TabWidget::restoreState(const QByteArray &state)
     setCurrentIndex(currentTab);
 
     return true;
-}
-
-WebActionMapper::WebActionMapper(QAction *root, QWebPage::WebAction webAction, QObject *parent)
-    : QObject(parent)
-    , m_currentParent(0)
-    , m_root(root)
-    , m_webAction(webAction)
-{
-    if (!m_root)
-        return;
-    connect(m_root, SIGNAL(triggered()), this, SLOT(rootTriggered()));
-    connect(root, SIGNAL(destroyed(QObject *)), this, SLOT(rootDestroyed()));
-    root->setEnabled(false);
-}
-
-void WebActionMapper::rootDestroyed()
-{
-    m_root = 0;
-}
-
-void WebActionMapper::currentDestroyed()
-{
-    updateCurrent(0);
-}
-
-void WebActionMapper::addChild(QAction *action)
-{
-    if (!action)
-        return;
-    connect(action, SIGNAL(changed()), this, SLOT(childChanged()));
-}
-
-QWebPage::WebAction WebActionMapper::webAction() const
-{
-    return m_webAction;
-}
-
-void WebActionMapper::rootTriggered()
-{
-    if (m_currentParent) {
-        QAction *gotoAction = m_currentParent->action(m_webAction);
-        gotoAction->trigger();
-    }
-}
-
-void WebActionMapper::childChanged()
-{
-    if (QAction *source = qobject_cast<QAction*>(sender())) {
-        if (m_root
-            && m_currentParent
-            && source->parent() == m_currentParent) {
-            m_root->setChecked(source->isChecked());
-            m_root->setEnabled(source->isEnabled());
-        }
-    }
-}
-
-void WebActionMapper::updateCurrent(QWebPage *currentParent)
-{
-    if (m_currentParent)
-        disconnect(m_currentParent, SIGNAL(destroyed(QObject *)),
-                   this, SLOT(currentDestroyed()));
-
-    m_currentParent = currentParent;
-    if (!m_root)
-        return;
-    if (!m_currentParent) {
-        m_root->setEnabled(false);
-        m_root->setChecked(false);
-        return;
-    }
-    QAction *source = m_currentParent->action(m_webAction);
-    m_root->setChecked(source->isChecked());
-    m_root->setEnabled(source->isEnabled());
-    connect(m_currentParent, SIGNAL(destroyed(QObject *)),
-            this, SLOT(currentDestroyed()));
 }
 

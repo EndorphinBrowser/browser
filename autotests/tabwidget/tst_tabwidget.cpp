@@ -742,6 +742,7 @@ void tst_TabWidget::saveState()
     QByteArray state = widget.saveState();
 
     widget.closeTab();
+    QCOMPARE(widget.count(), 1);
     widget.closeTab();
     QCOMPARE(widget.count(), 0);
 
