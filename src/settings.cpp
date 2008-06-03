@@ -106,6 +106,7 @@ void SettingsDialog::loadDefaults()
 
     enableJavascript->setChecked(defaultSettings->testAttribute(QWebSettings::JavascriptEnabled));
     enablePlugins->setChecked(defaultSettings->testAttribute(QWebSettings::PluginsEnabled));
+    enableImages->setChecked(defaultSettings->testAttribute(QWebSettings::AutoLoadImages));
 }
 
 void SettingsDialog::loadFromSettings()
@@ -155,6 +156,7 @@ void SettingsDialog::loadFromSettings()
 
     enableJavascript->setChecked(settings.value(QLatin1String("enableJavascript"), enableJavascript->isChecked()).toBool());
     enablePlugins->setChecked(settings.value(QLatin1String("enablePlugins"), enablePlugins->isChecked()).toBool());
+    enableImages->setChecked(settings.value(QLatin1String("enableImages"), enableImages->isChecked()).toBool());
     userStyleSheet->setText(settings.value(QLatin1String("userStyleSheet")).toUrl().toString());
     settings.endGroup();
 
@@ -251,6 +253,7 @@ void SettingsDialog::saveToSettings()
     settings.setValue(QLatin1String("standardFont"), standardFont);
     settings.setValue(QLatin1String("enableJavascript"), enableJavascript->isChecked());
     settings.setValue(QLatin1String("enablePlugins"), enablePlugins->isChecked());
+    settings.setValue(QLatin1String("enableImages"), enableImages->isChecked());
     QString userStyleSheetString = userStyleSheet->text();
     if (QFile::exists(userStyleSheetString))
         settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromLocalFile(userStyleSheetString));
