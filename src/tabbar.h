@@ -87,6 +87,9 @@ public:
     bool showTabBarWhenOneTab() const;
     void setShowTabBarWhenOneTab(bool enabled);
     QAction *viewTabBarAction() const;
+#if QT_VERSION >= 0x040500
+    QTabBar::ButtonPosition freeSide();
+#endif
 
 protected:
     void mousePressEvent(QMouseEvent* event);

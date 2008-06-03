@@ -77,6 +77,7 @@
 #include <qlistview.h>
 #include <qmenu.h>
 #include <qmessagebox.h>
+#include <qmovie.h>
 #include <qsettings.h>
 #include <qstackedwidget.h>
 #include <qstyle.h>
@@ -413,7 +414,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     connect(webView, SIGNAL(loadStarted()),
             this, SLOT(webViewLoadStarted()));
     connect(webView, SIGNAL(loadFinished(bool)),
-            this, SLOT(webViewIconChanged()));
+            this, SLOT(webViewLoadFinished()));
     connect(webView, SIGNAL(iconChanged()),
             this, SLOT(webViewIconChanged()));
     connect(webView, SIGNAL(titleChanged(const QString &)),
@@ -551,14 +552,56 @@ void TabWidget::closeTab(int index)
         emit lastTabClosed();
 }
 
+QLabel *TabWidget::animationLabel(int index, bool addMovie)
+{
+#if QT_VERSION >= 0x040500
+    if (-1 == index)
+        return 0;
+    QTabBar::ButtonPosition side = m_tabBar->freeSide();
+    QLabel *loadingAnimation = qobject_cast<QLabel*>(m_tabBar->tabButton(index, side));
+    if (!loadingAnimation) {
+        loadingAnimation = new QLabel(this);
+    }
+    if (addMovie && !loadingAnimation->movie()) {
+        QMovie *movie = new QMovie(":loading.gif", QByteArray(), loadingAnimation);
+        loadingAnimation->setMovie(movie);
+        movie->start();
+    }
+    loadingAnimation->show();
+    m_tabBar->setTabButton(index, side, 0);
+    m_tabBar->setTabButton(index, side, loadingAnimation);
+    return loadingAnimation;
+#endif
+}
+
 void TabWidget::webViewLoadStarted()
 {
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
     if (-1 != index) {
+#if QT_VERSION >= 0x040500
+        QLabel *label = animationLabel(index, true);
+        if (label->movie())
+            label->movie()->start();
+#else
         QIcon icon(QLatin1String(":loading.gif"));
         setTabIcon(index, icon);
+#endif
     }
+}
+
+void TabWidget::webViewLoadFinished()
+{
+#if QT_VERSION >= 0x040500
+    WebView *webView = qobject_cast<WebView*>(sender());
+    int index = webViewIndex(webView);
+    if (-1 != index) {
+        QLabel *label = animationLabel(index, true);
+        if (label->movie())
+            label->movie()->stop();
+    }
+#endif
+    webViewIconChanged();
 }
 
 void TabWidget::webViewIconChanged()
@@ -567,7 +610,16 @@ void TabWidget::webViewIconChanged()
     int index = webViewIndex(webView);
     if (-1 != index) {
         QIcon icon = BrowserApplication::instance()->icon(webView->url());
+#if QT_VERSION >= 0x040500
+        QLabel *label = animationLabel(index, false);
+        QMovie *movie = label->movie();
+        delete movie;
+        label->setMovie(0);
+        label->setPixmap(icon.pixmap(16, 16));
+        label->show();
+#else
         setTabIcon(index, icon);
+#endif
     }
 }
 

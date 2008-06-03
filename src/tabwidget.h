@@ -70,6 +70,7 @@
 
 QT_BEGIN_NAMESPACE
 class QCompleter;
+class QLabel;
 class QLineEdit;
 class QMenu;
 class QStackedWidget;
@@ -157,6 +158,7 @@ private slots:
     void aboutToShowRecentTabsMenu();
     void aboutToShowRecentTriggeredAction(QAction *action);
     void webViewLoadStarted();
+    void webViewLoadFinished();
     void webViewIconChanged();
     void webViewTitleChanged(const QString &title);
     void webViewUrlChanged(const QUrl &url);
@@ -165,6 +167,8 @@ private slots:
     void moveTab(int fromIndex, int toIndex);
 
 private:
+    QLabel *animationLabel(int index, bool addMovie);
+
     QAction *m_recentlyClosedTabsAction;
     QAction *m_newTabAction;
     QAction *m_closeTabAction;

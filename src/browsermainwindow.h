@@ -166,7 +166,6 @@ private:
     QSplitter *m_navigationSplitter;
     ToolbarSearch *m_toolbarSearch;
     BookmarksToolBar *m_bookmarksToolbar;
-    ChaseWidget *m_chaseWidget;
     TabWidget *m_tabWidget;
     AutoSaver *m_autoSaver;
 

@@ -66,6 +66,7 @@
 #include <qapplication.h>
 #include <qevent.h>
 #include <qmenu.h>
+#include <qstyle.h>
 #include <qurl.h>
 
 #include <qdebug.h>
@@ -122,6 +123,15 @@ QAction *TabBar::viewTabBarAction() const
 {
     return m_viewTabBarAction;
 }
+
+#if QT_VERSION >= 0x040500
+QTabBar::ButtonPosition TabBar::freeSide()
+{
+    QTabBar::ButtonPosition side = (QTabBar::ButtonPosition)style()->styleHint(QStyle::SH_TabBar_CloseButtonPosition, 0, this);
+    side = (side == QTabBar::LeftSide) ? QTabBar::RightSide : QTabBar::LeftSide;
+    return side;
+}
+#endif
 
 void TabBar::updateViewToolBarAction()
 {

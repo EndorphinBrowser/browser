@@ -67,7 +67,6 @@
 #include "autosaver.h"
 #include "bookmarks.h"
 #include "browserapplication.h"
-#include "chasewidget.h"
 #include "clearprivatedata.h"
 #include "downloadmanager.h"
 #include "history.h"
@@ -522,9 +521,6 @@ void BrowserMainWindow::setupToolBar()
     QList<int> sizes;
     sizes << (int)((double)splitterWidth * .80) << (int)((double)splitterWidth * .20);
     m_navigationSplitter->setSizes(sizes);
-
-    m_chaseWidget = new ChaseWidget(this);
-    m_navigationBar->addWidget(m_chaseWidget);
 }
 
 void BrowserMainWindow::slotShowBookmarksDialog()
@@ -922,7 +918,6 @@ ToolbarSearch *BrowserMainWindow::toolbarSearch() const
 void BrowserMainWindow::slotLoadProgress(int progress)
 {
     if (progress < 100 && progress > 0) {
-        m_chaseWidget->setAnimated(true);
         disconnect(m_stopReload, SIGNAL(triggered()), m_reload, SLOT(trigger()));
         if (m_stopIcon.isNull())
             m_stopIcon = style()->standardIcon(QStyle::SP_BrowserStop);
@@ -930,7 +925,6 @@ void BrowserMainWindow::slotLoadProgress(int progress)
         connect(m_stopReload, SIGNAL(triggered()), m_stop, SLOT(trigger()));
         m_stopReload->setToolTip(tr("Stop loading the current page"));
     } else {
-        m_chaseWidget->setAnimated(false);
         disconnect(m_stopReload, SIGNAL(triggered()), m_stop, SLOT(trigger()));
         m_stopReload->setIcon(m_reloadIcon);
         connect(m_stopReload, SIGNAL(triggered()), m_reload, SLOT(trigger()));

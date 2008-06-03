@@ -39,7 +39,6 @@ HEADERS += \
     bookmarks.h \
     browserapplication.h \
     browsermainwindow.h \
-    chasewidget.h \
     clearprivatedata.h \
     cookiejar.h \
     downloadmanager.h \
@@ -66,7 +65,6 @@ SOURCES += \
     bookmarks.cpp \
     browserapplication.cpp \
     browsermainwindow.cpp \
-    chasewidget.cpp \
     clearprivatedata.cpp \
     cookiejar.cpp \
     downloadmanager.cpp \
