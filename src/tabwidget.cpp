@@ -214,11 +214,14 @@ void TabWidget::moveTab(int fromIndex, int toIndex)
                this, SLOT(currentChanged(int)));
 
     QWidget *tabWidget = widget(fromIndex);
+    QWidget *lineEdit = m_lineEdits->widget(fromIndex);
     QIcon icon = tabIcon(fromIndex);
     QString text = tabText(fromIndex);
     QVariant data = m_tabBar->tabData(fromIndex);
     removeTab(fromIndex);
+    m_lineEdits->removeWidget(lineEdit);
     insertTab(toIndex, tabWidget, icon, text);
+    m_lineEdits->insertWidget(toIndex, lineEdit);
     m_tabBar->setTabData(toIndex, data);
     connect(this, SIGNAL(currentChanged(int)),
             this, SLOT(currentChanged(int)));
