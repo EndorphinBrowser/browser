@@ -667,7 +667,7 @@ void TabWidget::aboutToShowRecentTabsMenu()
 void TabWidget::aboutToShowRecentTriggeredAction(QAction *action)
 {
     QUrl url = action->data().toUrl();
-    loadUrl(url, CurrentTab);
+    loadUrl(url, NewTab);
 }
 
 void TabWidget::mouseDoubleClickEvent(QMouseEvent *event)
