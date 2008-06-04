@@ -141,6 +141,7 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent *event);
     void contextMenuEvent(QContextMenuEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+    void wheelEvent(QWheelEvent *event);
 
 public slots:
     void loadUrl(const QUrl &url, TabWidget::Tab type = CurrentTab, const QString &title = QString());
