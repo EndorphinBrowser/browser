@@ -158,6 +158,7 @@ public slots:
 
 private slots:
     void currentChanged(int index);
+    void openLastTab();
     void aboutToShowRecentTabsMenu();
     void aboutToShowRecentTriggeredAction(QAction *action);
     void webViewLoadStarted();

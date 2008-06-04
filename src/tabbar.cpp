@@ -103,7 +103,6 @@ TabBar::TabBar(QWidget *parent)
 
     m_viewTabBarAction = new QAction(this);
     updateViewToolBarAction();
-    m_viewTabBarAction->setShortcut(tr("Shift+Ctrl+T"));
     connect(m_viewTabBarAction, SIGNAL(triggered()),
             this, SLOT(viewTabBar()));
 }

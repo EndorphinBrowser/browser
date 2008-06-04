@@ -102,6 +102,8 @@ TabWidget::TabWidget(QWidget *parent)
 #endif
     setElideMode(Qt::ElideRight);
 
+    new QShortcut(QKeySequence("Ctrl+Shift+T"), this, SLOT(openLastTab()));
+
     connect(m_tabBar, SIGNAL(newTab()), this, SLOT(newTab()));
     connect(m_tabBar, SIGNAL(closeTab(int)), this, SLOT(closeTab(int)));
     connect(m_tabBar, SIGNAL(cloneTab(int)), this, SLOT(cloneTab(int)));
@@ -651,6 +653,15 @@ void TabWidget::webViewUrlChanged(const QUrl &url)
     emit tabsChanged();
 }
 
+void TabWidget::openLastTab()
+{
+    if (m_recentlyClosedTabs.isEmpty())
+        return;
+    QUrl url = m_recentlyClosedTabs.takeFirst();
+    loadUrl(url, NewTab);
+    m_recentlyClosedTabsAction->setEnabled(!m_recentlyClosedTabs.isEmpty());
+}
+
 void TabWidget::aboutToShowRecentTabsMenu()
 {
     m_recentlyClosedTabsMenu->clear();
@@ -743,7 +754,6 @@ void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
         }
     }
 }
-
 
 void TabWidget::nextTab()
 {
