@@ -703,6 +703,7 @@ void TabWidget::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
+#if QT_VERSION < 0x040500
 void TabWidget::wheelEvent(QWheelEvent *event)
 {
     if (event->y() > tabBar()->height()) {
@@ -720,6 +721,7 @@ void TabWidget::wheelEvent(QWheelEvent *event)
         }
     }
 }
+#endif
 
 void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
 {
