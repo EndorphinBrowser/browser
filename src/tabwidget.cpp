@@ -703,6 +703,26 @@ void TabWidget::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
+#if QT_VERSION < 0x040500
+void TabWidget::wheelEvent(QWheelEvent *event)
+{
+    if (event->y() > tabBar()->height()) {
+        // Don't change the active tab if the user scrolls the webview
+        return;
+    }
+    if ((event->orientation() == Qt::Vertical && event->delta() < 0)
+        || (event->orientation() == Qt::Horizontal && event->delta() > 0)) {
+        if (currentIndex() < count()) {
+            setCurrentIndex(currentIndex() + 1);
+        }
+    } else {
+        if (currentIndex() > 0) {
+            setCurrentIndex(currentIndex() - 1);
+        }
+    }
+}
+#endif
+
 void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
 {
     WebView *webView;
