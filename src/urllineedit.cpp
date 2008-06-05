@@ -289,6 +289,9 @@ UrlLineEdit::UrlLineEdit(QWidget *parent)
     , m_webView(0)
     , m_iconLabel(0)
 {
+    // Urls are always LeftToRight
+    setLayoutDirection(Qt::LeftToRight);
+
     // icon
     m_iconLabel = new UrlIconLabel(this);
     m_iconLabel->resize(16, 16);
