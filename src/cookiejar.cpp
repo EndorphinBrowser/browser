@@ -289,6 +289,19 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
                 // finally force it in if wanted
                 if (m_acceptCookies == AcceptAlways) {
                     QList<QNetworkCookie> cookies = allCookies();
+                    QList<QNetworkCookie>::Iterator it = cookies.begin(),
+                               end = cookies.end();
+                    for ( ; it != end; ++it) {
+                        // does this cookie already exist?
+                        if (cookie.name() == it->name() &&
+                            cookie.domain() == it->domain() &&
+                            cookie.path() == it->path()) {
+                            // found a match
+                            cookies.erase(it);
+                            break;
+                        }
+                    }
+
                     cookies += cookie;
                     setAllCookies(cookies);
                     addedCookies = true;
