@@ -225,9 +225,12 @@ void TabBar::mouseReleaseEvent(QMouseEvent *event)
     if (event->button() == Qt::MidButton
         // Remove the line below when QTabWidget does not have a one pixel frame
         && event->pos().y() < (y() + height())) {
-        QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
-        if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
-            emit loadUrl(url, TabWidget::NewTab);
+        int index = tabAt(event->pos());
+        if (index == -1) {
+            QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
+            if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
+                emit loadUrl(url, TabWidget::NewTab);
+            }
         }
     }
     QTabBar::mouseReleaseEvent(event);
