@@ -24,7 +24,7 @@ TRANSLATIONS += \
     locale/fr.ts \
     locale/it.ts \
     locale/pl.ts \
-    locale/pt_BR \
+    locale/pt_BR.ts \
     locale/ru.ts
 
 updateqm.input = TRANSLATIONS

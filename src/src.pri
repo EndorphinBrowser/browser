@@ -20,6 +20,7 @@ DEFINES += GITVERSION=\"\\\"$$GITVERSION\\\"\"
 DEFINES += GITCHANGENUMBER=\"\\\"$$GITCHANGENUMBER\\\"\"
 
 FORMS += \
+    aboutdialog.ui \
     addbookmarkdialog.ui \
     bookmarks.ui \
     cookies.ui \
@@ -30,8 +31,7 @@ FORMS += \
     passworddialog.ui \
     proxy.ui \
     searchbanner.ui \
-    settings.ui \
- aboutdialog.ui
+    settings.ui
 
 HEADERS += \
     aboutdialog.h \
