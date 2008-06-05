@@ -71,7 +71,6 @@
 #include "webview.h"
 #include "webviewsearch.h"
 
-#include <qclipboard.h>
 #include <qcompleter.h>
 #include <qevent.h>
 #include <qlistview.h>
@@ -104,6 +103,8 @@ TabWidget::TabWidget(QWidget *parent)
 
     new QShortcut(QKeySequence("Ctrl+Shift+T"), this, SLOT(openLastTab()));
 
+    connect(m_tabBar, SIGNAL(loadUrl(const QUrl&, TabWidget::Tab)),
+            this, SLOT(loadUrl(const QUrl&, TabWidget::Tab)));
     connect(m_tabBar, SIGNAL(newTab()), this, SLOT(newTab()));
     connect(m_tabBar, SIGNAL(closeTab(int)), this, SLOT(closeTab(int)));
     connect(m_tabBar, SIGNAL(cloneTab(int)), this, SLOT(cloneTab(int)));
@@ -681,16 +682,6 @@ void TabWidget::aboutToShowRecentTriggeredAction(QAction *action)
     loadUrl(url, NewTab);
 }
 
-void TabWidget::mouseDoubleClickEvent(QMouseEvent *event)
-{
-    if (!childAt(event->pos())
-        // Remove the line below when QTabWidget does not have a one pixel frame
-        && event->pos().y() < (tabBar()->y() + tabBar()->height())) {
-        newTab();
-        return;
-    }
-    QTabWidget::mouseDoubleClickEvent(event);
-}
 
 void TabWidget::contextMenuEvent(QContextMenuEvent *event)
 {
@@ -701,20 +692,20 @@ void TabWidget::contextMenuEvent(QContextMenuEvent *event)
     QTabWidget::contextMenuEvent(event);
 }
 
-void TabWidget::mouseReleaseEvent(QMouseEvent *event)
+#if QT_VERSION < 0x040500
+void TabWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::MidButton && !childAt(event->pos())
-        // Remove the line below when QTabWidget does not have a one pixel frame
-        && event->pos().y() < (tabBar()->y() + tabBar()->height())) {
-        QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
-        if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
-            WebView *webView = makeNewTab();
-            webView->setUrl(url);
-        }
-    }
+    m_tabBar->mouseDoubleClickEvent(event);
+    QTabWidget::mouseDoubleClickEvent(event);
 }
 
-#if QT_VERSION < 0x040500
+void TabWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::MidButton && !childAt(event->pos()))
+        m_tabBar->mouseReleaseEvent(event);
+    QTabWidget::mouseReleaseEvent(event);
+}
+
 void TabWidget::wheelEvent(QWheelEvent *event)
 {
     if (event->y() > tabBar()->height()) {

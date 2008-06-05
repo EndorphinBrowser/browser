@@ -64,6 +64,7 @@
 
 #include <qaction.h>
 #include <qapplication.h>
+#include <qclipboard.h>
 #include <qevent.h>
 #include <qmenu.h>
 #include <qstyle.h>
@@ -206,6 +207,30 @@ void TabBar::closeOtherTabs()
         int index = action->data().toInt();
         emit closeOtherTabs(index);
     }
+}
+
+void TabBar::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if (!childAt(event->pos())
+        // Remove the line below when QTabWidget does not have a one pixel frame
+        && event->pos().y() < (y() + height())) {
+        emit newTab();
+        return;
+    }
+    QTabBar::mouseDoubleClickEvent(event);
+}
+
+void TabBar::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::MidButton
+        // Remove the line below when QTabWidget does not have a one pixel frame
+        && event->pos().y() < (y() + height())) {
+        QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
+        if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
+            emit loadUrl(url, TabWidget::NewTab);
+        }
+    }
+    QTabBar::mouseReleaseEvent(event);
 }
 
 void TabBar::mousePressEvent(QMouseEvent *event)

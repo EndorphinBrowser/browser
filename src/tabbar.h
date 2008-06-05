@@ -65,6 +65,8 @@
 
 #include <qtabbar.h>
 
+#include <tabwidget.h>
+
 /*
     Tab bar with a few more features such as a context menu and shortcuts
  */
@@ -80,6 +82,7 @@ signals:
     void reloadTab(int index);
     void reloadAllTabs();
     void tabMoveRequested(int fromIndex, int toIndex);
+    void loadUrl(const QUrl &url, TabWidget::Tab type);
 
 public:
     TabBar(QWidget *parent = 0);
@@ -92,6 +95,8 @@ public:
 #endif
 
 protected:
+    void mouseDoubleClickEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void dragEnterEvent(QDragEnterEvent *event);

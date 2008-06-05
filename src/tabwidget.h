@@ -138,10 +138,10 @@ public:
     bool restoreState(const QByteArray &state);
 
 protected:
-    void mouseDoubleClickEvent(QMouseEvent *event);
     void contextMenuEvent(QContextMenuEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
 #if QT_VERSION < 0x040500
+    void mouseDoubleClickEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
 #endif
 
