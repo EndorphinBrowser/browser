@@ -111,6 +111,9 @@ HistoryManager::HistoryManager(QObject *parent)
 
 HistoryManager::~HistoryManager()
 {
+    // remove history items on application exit
+    if (m_historyLimit == -2)
+        clear();
     m_saveTimer->saveIfNeccessary();
 }
 

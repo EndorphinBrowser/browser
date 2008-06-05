@@ -118,7 +118,7 @@ void SettingsDialog::loadFromSettings()
     settings.endGroup();
 
     settings.beginGroup(QLatin1String("history"));
-    int historyExpire = settings.value(QLatin1String("historyExpire")).toInt();
+    int historyExpire = settings.value(QLatin1String("historyLimit")).toInt();
     int idx = 0;
     switch (historyExpire) {
     case 1: idx = 0; break;
@@ -127,6 +127,7 @@ void SettingsDialog::loadFromSettings()
     case 30: idx = 3; break;
     case 365: idx = 4; break;
     case -1: idx = 5; break;
+    case -2: idx = 6; break;
     default:
         idx = 5;
     }
@@ -243,8 +244,9 @@ void SettingsDialog::saveToSettings()
     case 3: idx = 30; break;
     case 4: idx = 365; break;
     case 5: idx = -1; break;
+    case 6: idx = -2; break;
     }
-    settings.setValue(QLatin1String("historyExpire"), idx);
+    settings.setValue(QLatin1String("historyLimit"), idx);
     settings.endGroup();
 
     // Appearance
