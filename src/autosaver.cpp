@@ -78,8 +78,11 @@ AutoSaver::AutoSaver(QObject *parent) : QObject(parent)
 
 AutoSaver::~AutoSaver()
 {
-    if (m_timer.isActive())
-        qWarning() << "AutoSaver: still active when destroyed, changes not saved.";
+    if (m_timer.isActive()) {
+         qWarning() << "AutoSaver: still active when destroyed, changes not saved.";
+        if (parent())
+            qWarning() << parent() << "should call saveIfNeccessary";
+    }
 }
 
 void AutoSaver::changeOccurred()
