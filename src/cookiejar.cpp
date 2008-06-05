@@ -250,7 +250,17 @@ QList<QNetworkCookie> CookieJar::cookiesForUrl(const QUrl &url) const
         return noCookies;
     }
 
-    return QNetworkCookieJar::cookiesForUrl(url);
+    // Not sure if this conforms to the cookie specification, in fact I am
+    // pretty sure it incomplete and in the worst case a security hole.
+    QList<QNetworkCookie> cookies;
+    QString host = url.host();
+    while (host.count(QLatin1Char('.')) > 0) {
+        QUrl subUrl = url;
+        subUrl.setHost(host);
+        cookies += QNetworkCookieJar::cookiesForUrl(subUrl);
+        host = host.mid(host.indexOf(QLatin1Char('.')) + 1);
+    }
+    return cookies;
 }
 
 bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
