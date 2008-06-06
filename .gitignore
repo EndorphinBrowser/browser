@@ -8,6 +8,7 @@ Makefile
 .rcc
 .qm
 .gdb_history
+*.swp
 
 autotests/addbookmarkdialog/addbookmarkdialog
 autotests/autosaver/autosaver
