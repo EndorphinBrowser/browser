@@ -123,7 +123,7 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
             bool selectNewTab = (m_keyboardModifiers & Qt::ShiftModifier);
             webView = mainWindow()->tabWidget()->makeNewTab(selectNewTab);
         }
-        webView->load(request);
+        webView->loadUrl(request);
         m_keyboardModifiers = Qt::NoModifier;
         m_pressedButtons = Qt::NoButton;
         return false;
@@ -354,10 +354,21 @@ void WebView::loadFinished()
     m_progress = 0;
 }
 
-void WebView::loadUrl(const QUrl &url)
+void WebView::loadUrl(const QUrl &url, const QString &title)
 {
     m_initialUrl = url;
+    if (!title.isEmpty())
+        emit titleChanged(tr("Loading..."));
+    else
+        emit titleChanged(title);
     load(url);
+}
+
+void WebView::loadUrl(const QNetworkRequest &request, QNetworkAccessManager::Operation operation, const QByteArray &body)
+{
+    m_initialUrl = request.url();
+    emit titleChanged(tr("Loading..."));
+    QWebView::load(request, operation, body);
 }
 
 QString WebView::lastStatusBarText() const
@@ -387,7 +398,7 @@ void WebView::mouseReleaseEvent(QMouseEvent *event)
     if (!event->isAccepted() && (m_page->m_pressedButtons & Qt::MidButton)) {
         QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
         if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
-            setUrl(url);
+            loadUrl(url);
         }
     }
 }

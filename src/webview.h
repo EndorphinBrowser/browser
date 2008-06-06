@@ -114,7 +114,8 @@ public:
     WebView(QWidget *parent = 0);
     WebPage *webPage() const { return m_page; }
 
-    void loadUrl(const QUrl &url);
+    void loadUrl(const QUrl &url, const QString &title = QString());
+    void loadUrl(const QNetworkRequest &request, QNetworkAccessManager::Operation operation = QNetworkAccessManager::GetOperation, const QByteArray &body = QByteArray());
     QUrl url() const;
 
     QString lastStatusBarText() const;

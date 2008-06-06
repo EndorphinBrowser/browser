@@ -509,7 +509,7 @@ void TabWidget::cloneTab(int index)
     if (index < 0 || index >= count())
         return;
     WebView *tab = makeNewTab();
-    tab->setUrl(webView(index)->url());
+    tab->loadUrl(webView(index)->url());
 }
 
 // When index is -1 index chooses the current tab
@@ -737,12 +737,8 @@ void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
     }
 
     if (webView) {
-        webView->loadUrl(url);
+        webView->loadUrl(url, title);
         webView->setFocus();
-        if (!title.isEmpty()) {
-            int tabIndex = webViewIndex(webView);
-            setTabText(tabIndex, title);
-        }
     }
 }
 
