@@ -347,16 +347,19 @@ void DownloadItem::updateInfoLabel()
 QString DownloadItem::dataString(int size) const
 {
     QString unit;
+    double newSize;
+
     if (size < 1024) {
+        newSize = size;
         unit = tr("bytes");
     } else if (size < 1024 * 1024) {
-        size /= 1024;
+        newSize = (double)size / (double)1024;
         unit = tr("kB");
     } else {
-        size /= 1024 * 1024;
+        newSize = (double)size / (double)(1024 * 1024);
         unit = tr("MB");
     }
-    return QString(QLatin1String("%1 %2")).arg(size).arg(unit);
+    return QString(QLatin1String("%1 %2")).arg(newSize, 0, 'f', 1).arg(unit);
 }
 
 bool DownloadItem::downloading() const
