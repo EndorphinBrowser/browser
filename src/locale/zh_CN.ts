@@ -1005,7 +1005,7 @@ Do you want to ignore these errors?</source>
     <message>
         <location filename="../passworddialog.ui" line="43"/>
         <source>Username:</source>
-	<translatio>用户名：</translation>
+	<translation>用户名：</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="53"/>
