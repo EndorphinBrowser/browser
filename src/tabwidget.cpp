@@ -560,7 +560,11 @@ void TabWidget::closeTab(int index)
 
 QLabel *TabWidget::animationLabel(int index, bool addMovie)
 {
-#if QT_VERSION >= 0x040500
+#if QT_VERSION < 0x040500
+    Q_UNUSED(index);
+    Q_UNUSED(addMovie);
+    return 0;
+#else
     if (-1 == index)
         return 0;
     QTabBar::ButtonPosition side = m_tabBar->freeSide();
