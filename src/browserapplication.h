@@ -92,7 +92,7 @@ public:
     bool isTheOnlyBrowser() const;
     BrowserMainWindow *mainWindow();
     QList<BrowserMainWindow*> mainWindows();
-    QIcon icon(const QUrl &url) const;
+    static QIcon icon(const QUrl &url);
 
     void saveSession();
     bool canRestoreSession() const;
@@ -134,7 +134,6 @@ private:
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
     QLocalServer *m_localServer;
     QByteArray m_lastSession;
-    mutable QIcon m_defaultIcon;
 };
 
 #endif // BROWSERAPPLICATION_H
