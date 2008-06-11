@@ -66,6 +66,7 @@
 #include <qurl.h>
 #include <qwidget.h>
 #include <qstyleoption.h>
+#include <qpointer>
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
@@ -124,7 +125,7 @@ private slots:
 
 private:
     QLinearGradient generateGradient(const QColor &color) const;
-    WebView *m_webView;
+    QPointer<WebView> m_webView;
     UrlIconLabel *m_iconLabel;
     QColor m_defaultBaseColor;
 
