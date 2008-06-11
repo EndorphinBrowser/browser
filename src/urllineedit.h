@@ -66,7 +66,7 @@
 #include <qurl.h>
 #include <qwidget.h>
 #include <qstyleoption.h>
-#include <qpointer>
+#include <qpointer.h>
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
