@@ -80,8 +80,8 @@ AutoSaver::~AutoSaver()
 {
     if (m_timer.isActive()) {
          qWarning() << "AutoSaver: still active when destroyed, changes not saved.";
-        if (parent())
-            qWarning() << parent() << "should call saveIfNeccessary";
+        if (parent() && parent()->metaObject())
+            qWarning() << parent() << parent()->metaObject()->className() << "should call saveIfNeccessary";
     }
 }
 
