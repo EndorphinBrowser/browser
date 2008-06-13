@@ -512,7 +512,8 @@ void BrowserMainWindow::setupToolBar()
     m_navigationSplitter->addWidget(m_tabWidget->lineEditStack());
     m_toolbarSearch = new ToolbarSearch(m_navigationBar);
     m_navigationSplitter->addWidget(m_toolbarSearch);
-    connect(m_toolbarSearch, SIGNAL(search(const QUrl&)), SLOT(loadUrl(const QUrl&)));
+    connect(m_toolbarSearch, SIGNAL(search(const QUrl&)),
+            m_tabWidget, SLOT(loadUrl(const QUrl&)));
     m_navigationSplitter->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
     m_tabWidget->lineEditStack()->setMinimumWidth(120);
     m_navigationSplitter->setCollapsible(0, false);
@@ -634,11 +635,6 @@ QUrl BrowserMainWindow::guessUrlFromString(const QString &string)
     if (url.scheme().isEmpty())
         url = QUrl(QLatin1String("http://") + string, QUrl::TolerantMode);
     return url;
-}
-
-void BrowserMainWindow::loadUrl(const QUrl &url)
-{
-    loadPage(url.toString());
 }
 
 void BrowserMainWindow::slotDownloadManager()

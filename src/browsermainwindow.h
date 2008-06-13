@@ -112,7 +112,6 @@ private slots:
     void slotUpdateStatusbar(const QString &string);
     void slotUpdateWindowTitle(const QString &title = QString());
 
-    void loadUrl(const QUrl &url);
     void slotPreferences();
 
     void slotFileNew();
