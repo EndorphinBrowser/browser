@@ -136,7 +136,7 @@ void NetworkAccessManager::authenticationRequired(QNetworkReply *reply, QAuthent
     passwordDialog.iconLabel->setPixmap(mainWindow->style()->standardIcon(QStyle::SP_MessageBoxQuestion, 0, mainWindow).pixmap(32, 32));
 
     QString introMessage = tr("<qt>Enter username and password for \"%1\" at %2</qt>");
-    introMessage = introMessage.arg(Qt::escape(reply->url().toString())).arg(Qt::escape(reply->url().toString()));
+    introMessage = introMessage.arg(Qt::escape(auth->realm())).arg(Qt::escape(reply->url().toString()));
     passwordDialog.introLabel->setText(introMessage);
     passwordDialog.introLabel->setWordWrap(true);
 
