@@ -9,7 +9,7 @@ if [ $? -eq 127 ] ; then
     exit 0;
 fi
 
-// Something close to our style which is the same as the Qt4 code style
+# Something close to our style which is the same as the Qt4 code style
 #astyle --indent=spaces=4 --brackets=linux --indent-labels --pad=oper --unpad=paren --one-line=keep-statements --convert-tabs --indent-preprocessor `find -type f -name '*.cpp'` `find -type f -name '*.h'`
 
 echo "--Checking style--"
