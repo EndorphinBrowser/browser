@@ -605,7 +605,20 @@ QUrl BrowserMainWindow::guessUrlFromString(const QString &string)
     // Check if it looks like a qualified URL. Try parsing it and see.
     bool hasSchema = test.exactMatch(urlStr);
     if (hasSchema) {
-        QUrl url(urlStr, QUrl::TolerantMode);
+        bool isAscii = true;
+        foreach (QChar c, urlStr) {
+            if (c >= 0x80) {
+                isAscii = false;
+                break;
+            }
+        }
+
+        QUrl url;
+        if (isAscii) {
+            url = QUrl::fromEncoded(urlStr.toAscii(), QUrl::TolerantMode);
+        } else {
+            url = QUrl(urlStr, QUrl::TolerantMode);
+        }
         if (url.isValid())
             return url;
     }
