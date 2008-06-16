@@ -353,7 +353,7 @@ void UrlLineEdit::paintEvent(QPaintEvent *event)
     QPalette p = palette();
     if (m_webView && m_webView->url().scheme() == QLatin1String("https")) {
         QColor lightYellow(248, 248, 210);
-        p.setBrush(QPalette::Base, generateGradient(lightYellow));
+        p.setBrush(QPalette::Base, lightYellow);
     } else {
         p.setBrush(QPalette::Base, m_defaultBaseColor);
     }
