@@ -222,17 +222,17 @@ void TabBar::mouseDoubleClickEvent(QMouseEvent *event)
 
 void TabBar::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::MidButton
-        // Remove the line below when QTabWidget does not have a one pixel frame
-        && event->pos().y() < (y() + height())) {
+    if (event->button() == Qt::MidButton) {
         int index = tabAt(event->pos());
-        if (index == -1) {
+        if (index != -1) {
+            emit closeTab(index);
+        } else {
             QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
-            if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
+            if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty())
                 emit loadUrl(url, TabWidget::NewTab);
-            }
         }
     }
+
     QTabBar::mouseReleaseEvent(event);
 }
 
@@ -240,10 +240,6 @@ void TabBar::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
         m_dragStartPos = event->pos();
-    } else if (event->button() == Qt::MidButton) {
-        int index = tabAt(event->pos());
-        if (index != -1)
-            emit closeTab(index);
     }
     QTabBar::mousePressEvent(event);
 }
