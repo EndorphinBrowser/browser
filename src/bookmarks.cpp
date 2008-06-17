@@ -874,7 +874,8 @@ void BookmarksDialog::customContextMenuRequested(const QPoint &pos)
         menu.addAction(tr("Open in New Tab"), this, SLOT(openInNewTab()));
         menu.addSeparator();
     }
-    menu.addAction(tr("Delete"), tree, SLOT(removeSelected()));
+    QAction *deleteAction = menu.addAction(tr("Delete"), tree, SLOT(removeSelected()));
+    deleteAction->setEnabled(index.flags() & Qt::ItemIsDragEnabled);
     menu.exec(QCursor::pos());
 }
 
