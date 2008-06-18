@@ -216,7 +216,7 @@ void BrowserApplication::postLaunch()
         directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
     QWebSettings::setIconDatabasePath(directory);
 
-    setWindowIcon(QIcon(QLatin1String(":arora-128.png")));
+    setWindowIcon(QIcon(QLatin1String(":128x128/arora.png")));
 
     loadSettings();
 
