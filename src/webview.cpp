@@ -262,7 +262,7 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
 
 void WebView::wheelEvent(QWheelEvent *event)
 {
-    if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
+    if (event->modifiers() & Qt::ControlModifier) {
         int numDegrees = event->delta() / 8;
         int numSteps = numDegrees / 15;
         setTextSizeMultiplier(textSizeMultiplier() + numSteps * 0.1);
