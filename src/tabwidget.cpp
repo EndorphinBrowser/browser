@@ -638,10 +638,11 @@ void TabWidget::webViewTitleChanged(const QString &title)
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
     if (-1 != index) {
+        QString tabTitle = title;
         if (title.isEmpty())
-            setTabText(index, webView->url().toString());
-        else
-            setTabText(index, title);
+            tabTitle = webView->url().toString();
+        tabTitle.replace(QLatin1Char('&'), QLatin1String("&&"));
+        setTabText(index, tabTitle);
     }
     if (currentIndex() == index)
         emit setCurrentTitle(title);
