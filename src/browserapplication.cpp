@@ -146,6 +146,10 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     installTranslator(QLatin1String("qt_") + localSysName);
     installTranslator(dataDirectory() + QDir::separator() + "locale" + QDir::separator() + localSysName);
 
+    // Until QtWebkit defaults to 16
+    QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, 16);
+    QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFixedFontSize, 16);
+
     QSettings settings;
     settings.beginGroup(QLatin1String("sessions"));
     m_lastSession = settings.value(QLatin1String("lastSession")).toByteArray();
