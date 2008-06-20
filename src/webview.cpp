@@ -77,6 +77,7 @@
 #include <qmenu.h>
 #include <qmessagebox.h>
 #include <qsettings.h>
+#include <qmenubar.h>
 
 #include <qwebframe.h>
 
@@ -273,6 +274,11 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     }
 
     if (!menu.isEmpty()) {
+        if (m_page->mainWindow()->menuBar()->isHidden()) {
+            menu.addSeparator();
+            menu.addAction(m_page->mainWindow()->showMenuBarAction());
+        }
+
         menu.exec(mapToGlobal(event->pos()));
         return;
     }
