@@ -586,7 +586,7 @@ void BrowserMainWindow::updateToolbarActionText(bool visible)
 
 void BrowserMainWindow::updateBookmarksToolbarActionText(bool visible)
 {
-    m_viewBookmarkBar->setText(!visible ? tr("Show Bookmarks bar") : tr("Hide Bookmarks bar"));
+    m_viewBookmarkBar->setText(!visible ? tr("Show Bookmarks Bar") : tr("Hide Bookmarks Bar"));
 }
 
 void BrowserMainWindow::slotViewStatusbar()
