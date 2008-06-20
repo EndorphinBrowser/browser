@@ -429,16 +429,16 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
             this, SLOT(webViewUrlChanged(const QUrl &)));
     connect(webView->page(), SIGNAL(windowCloseRequested()),
             this, SLOT(windowCloseRequested()));
-    connect(webView->page(), SIGNAL(geometryChangeRequested(const QRect &)),
-            this, SIGNAL(geometryChangeRequested(const QRect &)));
     connect(webView->page(), SIGNAL(printRequested(QWebFrame *)),
             this, SIGNAL(printRequested(QWebFrame *)));
+    connect(webView->page(), SIGNAL(geometryChangeRequested(const QRect &)),
+            this, SLOT(geometryChangeRequestedCheck(const QRect &)));
     connect(webView->page(), SIGNAL(menuBarVisibilityChangeRequested(bool)),
-            this, SIGNAL(menuBarVisibilityChangeRequested(bool)));
+            this, SLOT(menuBarVisibilityChangeRequestedCheck(bool)));
     connect(webView->page(), SIGNAL(statusBarVisibilityChangeRequested(bool)),
-            this, SIGNAL(statusBarVisibilityChangeRequested(bool)));
+            this, SLOT(statusBarVisibilityChangeRequestedCheck(bool)));
     connect(webView->page(), SIGNAL(toolBarVisibilityChangeRequested(bool)),
-            this, SIGNAL(toolBarVisibilityChangeRequested(bool)));
+            this, SLOT(toolBarVisibilityChangeRequestedCheck(bool)));
 
     WebViewWithSearch *webViewWithSearch = new WebViewWithSearch(webView, this);
     addTab(webViewWithSearch, tr("(Untitled)"));
@@ -457,6 +457,30 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
         currentChanged(currentIndex());
     emit tabsChanged();
     return webView;
+}
+
+void TabWidget::geometryChangeRequestedCheck(const QRect &geometry)
+{
+    if (count() == 1)
+        emit geometryChangeRequested(geometry);
+}
+
+void TabWidget::menuBarVisibilityChangeRequestedCheck(bool visible)
+{
+    if (count() == 1)
+        emit menuBarVisibilityChangeRequested(visible);
+}
+
+void TabWidget::statusBarVisibilityChangeRequestedCheck(bool visible)
+{
+    if (count() == 1)
+        emit statusBarVisibilityChangeRequested(visible);
+}
+
+void TabWidget::toolBarVisibilityChangeRequestedCheck(bool visible)
+{
+    if (count() == 1)
+        emit toolBarVisibilityChangeRequested(visible);
 }
 
 void TabWidget::reloadAllTabs()

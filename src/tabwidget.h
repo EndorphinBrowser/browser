@@ -169,6 +169,10 @@ private slots:
     void lineEditReturnPressed();
     void windowCloseRequested();
     void moveTab(int fromIndex, int toIndex);
+    void geometryChangeRequestedCheck(const QRect &geometry);
+    void menuBarVisibilityChangeRequestedCheck(bool visible);
+    void statusBarVisibilityChangeRequestedCheck(bool visible);
+    void toolBarVisibilityChangeRequestedCheck(bool visible);
 
 private:
     QLabel *animationLabel(int index, bool addMovie);
