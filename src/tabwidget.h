@@ -137,9 +137,9 @@ public:
     QByteArray saveState() const;
     bool restoreState(const QByteArray &state);
 
+#if QT_VERSION < 0x040500
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
-#if QT_VERSION < 0x040500
     void mouseDoubleClickEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
