@@ -72,9 +72,11 @@
 
 #include <qbuffer.h>
 #include <qclipboard.h>
+#include <qdesktopservices.h>
 #include <qevent.h>
 #include <qmenu.h>
 #include <qmessagebox.h>
+#include <qsettings.h>
 
 #include <qwebframe.h>
 
@@ -132,6 +134,14 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
         m_loadingUrl = request.url();
         emit loadingUrl(m_loadingUrl);
     }
+
+    QString scheme = request.url().scheme();
+    if (scheme == QLatin1String("mailto")
+        || scheme == QLatin1String("ftp")) {
+        QDesktopServices::openUrl(request.url());
+        return false;
+    }
+
     return QWebPage::acceptNavigationRequest(frame, request, type);
 }
 
@@ -162,6 +172,16 @@ QObject *WebPage::createPlugin(const QString &classId, const QUrl &url, const QS
 
 void WebPage::handleUnsupportedContent(QNetworkReply *reply)
 {
+    if (reply->error() == QNetworkReply::ProtocolUnknownError) {
+        QSettings settings;
+        settings.beginGroup(QLatin1String("WebView"));
+        QStringList externalSchemes;
+        externalSchemes = settings.value(QLatin1String("externalSchemes")).toStringList();
+        if (externalSchemes.contains(reply->url().scheme()))
+            QDesktopServices::openUrl(reply->url());
+        return;
+    }
+
     if (reply->error() == QNetworkReply::NoError) {
         BrowserApplication::downloadManager()->handleUnsupportedContent(reply);
         return;
