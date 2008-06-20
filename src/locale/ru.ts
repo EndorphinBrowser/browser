@@ -414,7 +414,7 @@ Do you want to quit anyway?</source>
         <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;В режиме конфиденциальности посещённые веб-страницы не добавляются в журнал, файлы автоматически удаляются из окна загрузок, новые cookies are не сохраняются, текущие cookies недоступны, значки сайтов и сеансы не сохраняются, и поисковые запросы не добавляются в поле поиска Google. Пока вы не закроете окно, вы всё ещё можете нажимать кнопки Назад и Вперёд для возврата к уже посещённым страницам.</translation>
     </message>
     <message>
-        <source>Are you sure you want to close the window?  There are %1 tab open</source>
+        <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Вы уверены, что хотите закрыть окно? Открыты %1 вкладок</translation>
     </message>
     <message>

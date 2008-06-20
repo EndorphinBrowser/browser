@@ -507,7 +507,7 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="768"/>
-        <source>Are you sure you want to close the window?  There are %1 tab open</source>
+        <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Êtes-vous sûr de vouloir fermer cette fenêtre? Il y a %1 onglets ouverts.</translation>
     </message>
     <message>

@@ -406,7 +406,7 @@ Você deve sair de qualquer maneira?</translation>
       <translation type="unfinished" />
     </message>
     <message>
-      <source>Are you sure you want to close the window?  There are %1 tab open</source>
+      <source>Are you sure you want to close the window?  There are %1 tabs open</source>
       <translation type="unfinished" />
     </message>
     <message>

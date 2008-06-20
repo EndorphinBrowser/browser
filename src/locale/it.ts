@@ -487,7 +487,7 @@ Se sicuro di voler uscire?</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="768"/>
-        <source>Are you sure you want to close the window?  There are %1 tab open</source>
+        <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Sei sicuro di voler chiudere la finestra? Ci sono %1 schede aperte</translation>
     </message>
     <message>

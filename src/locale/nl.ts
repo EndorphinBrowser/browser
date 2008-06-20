@@ -537,7 +537,7 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="778"/>
-        <source>Are you sure you want to close the window?  There are %1 tab open</source>
+        <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Bent u zeker dat u het venster wil sluiten? Er zijn %1 tabs geopend</translation>
     </message>
     <message>

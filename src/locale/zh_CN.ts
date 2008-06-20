@@ -499,7 +499,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="768"/>
-        <source>Are you sure you want to close the window?  There are %1 tab open</source>
+        <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>您确定要关闭窗口吗？ 当前已经打开了 %1 个标签。</translation>
     </message>
     <message>

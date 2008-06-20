@@ -535,7 +535,7 @@ Přesto ukončit?</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="778"/>
-        <source>Are you sure you want to close the window?  There are %1 tab open</source>
+        <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Opravdu chceš zavřít okno? Je tu otevřeno %1 panelů</translation>
     </message>
     <message>

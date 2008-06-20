@@ -503,7 +503,7 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="768"/>
-        <source>Are you sure you want to close the window?  There are %1 tab open</source>
+        <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Czy jesteś pewien, że chcesz zamknąć okno?  %1 kart jest otwartch</translation>
     </message>
     <message>

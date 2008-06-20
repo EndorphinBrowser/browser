@@ -531,7 +531,7 @@ Arora wirklich beenden?</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="778"/>
-        <source>Are you sure you want to close the window?  There are %1 tab open</source>
+        <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Soll das Fenster wirklich geschlossen werden? Es sind %1 Tabs geöffnet</translation>
     </message>
     <message>
