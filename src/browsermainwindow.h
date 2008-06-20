@@ -97,6 +97,7 @@ public:
     ToolbarSearch *toolbarSearch() const;
     QByteArray saveState(bool withTabs = true) const;
     bool restoreState(const QByteArray &state);
+    QAction *showMenuBarAction() const;
 
 public slots:
     void loadPage(const QString &url);
@@ -168,6 +169,7 @@ private:
     TabWidget *m_tabWidget;
     AutoSaver *m_autoSaver;
 
+    QAction *m_showMenuBarAction;
     QAction *m_historyBack;
     QMenu *m_historyBackMenu;
     QAction *m_historyForward;

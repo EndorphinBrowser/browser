@@ -286,6 +286,11 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     return true;
 }
 
+QAction *BrowserMainWindow::showMenuBarAction() const
+{
+    return m_showMenuBarAction;
+}
+
 void BrowserMainWindow::setupMenu()
 {
     new QShortcut(QKeySequence(Qt::Key_F6), this, SLOT(slotSwapFocus()));
@@ -359,7 +364,10 @@ void BrowserMainWindow::setupMenu()
 
     // View
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
-    new QShortcut(QKeySequence("Ctrl+m"), this, SLOT(slotViewMenuBar()));
+    m_showMenuBarAction = new QAction("Show Menu Bar", this);
+    m_showMenuBarAction->setShortcut(QKeySequence("Ctrl+m"));
+    connect(m_showMenuBarAction, SIGNAL(triggered()), this, SLOT(slotViewMenuBar()));
+    addAction(m_showMenuBarAction);
 
     m_viewToolbar = new QAction(this);
     updateToolbarActionText(true);
