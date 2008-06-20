@@ -90,6 +90,7 @@ DownloadItem::DownloadItem(QNetworkReply *reply, bool requestFileName, QWidget *
     , m_reply(reply)
     , m_requestFileName(requestFileName)
     , m_bytesReceived(0)
+    , m_gettingFileName(false)
 {
     setupUi(this);
     QPalette p = downloadInfoLabel->palette();
@@ -147,6 +148,9 @@ void DownloadItem::init()
 
 void DownloadItem::getFileName()
 {
+    if (m_gettingFileName)
+        return;
+
     QSettings settings;
     settings.beginGroup(QLatin1String("downloadmanager"));
     QString defaultLocation = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
@@ -157,7 +161,9 @@ void DownloadItem::getFileName()
     QString defaultFileName = saveFileName(downloadDirectory);
     QString fileName = defaultFileName;
     if (m_requestFileName) {
+        m_gettingFileName = true;
         fileName = QFileDialog::getSaveFileName(this, tr("Save File"), defaultFileName);
+        m_gettingFileName = false;
         if (fileName.isEmpty()) {
             m_reply->close();
             fileNameLabel->setText(tr("Download canceled: %1").arg(QFileInfo(defaultFileName).fileName()));
@@ -283,6 +289,14 @@ void DownloadItem::error(QNetworkReply::NetworkError)
 
 void DownloadItem::metaDataChanged()
 {
+    QVariant locationHeader = m_reply->header(QNetworkRequest::LocationHeader);
+    if (locationHeader.isValid()) {
+        m_url = locationHeader.toUrl();
+        m_reply->deleteLater();
+        m_reply = BrowserApplication::networkAccessManager()->get(QNetworkRequest(m_url));
+        init();
+        return;
+    }
     qDebug() << "DownloadItem::metaDataChanged: not handled.";
 }
 

@@ -113,6 +113,7 @@ private:
     QTime m_downloadTime;
     bool m_startedSaving;
     bool m_finishedDownloading;
+    bool m_gettingFileName;
 };
 
 class AutoSaver;
