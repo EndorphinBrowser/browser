@@ -325,11 +325,7 @@ void DownloadItem::updateInfoLabel()
     double speed = m_bytesReceived * 1000.0 / m_downloadTime.elapsed();
     double timeRemaining = ((double)(bytesTotal - m_bytesReceived)) / speed;
     QString timeRemainingString = tr("seconds");
-    if (timeRemaining > 60) {
-        timeRemaining = timeRemaining / 60;
-        timeRemainingString = tr("minutes");
-    }
-    timeRemaining = floor(timeRemaining);
+
 
     // When downloading the eta should never be 0
     if (timeRemaining == 0)
@@ -338,10 +334,18 @@ void DownloadItem::updateInfoLabel()
     QString info;
     if (running) {
         QString remaining;
-        if (bytesTotal != 0)
-            remaining = tr("- %4 %5 remaining")
-            .arg(timeRemaining)
-            .arg(timeRemainingString);
+
+        if (bytesTotal != 0) {
+            if (timeRemaining > 60) {
+                timeRemaining = timeRemaining / 60;
+                timeRemaining = floor(timeRemaining);
+                remaining = tr("- %n minutes remaining", "", timeRemaining);
+            }
+            else {
+                timeRemaining = floor(timeRemaining);
+                remaining = tr("- %n seconds remaining", "", timeRemaining);
+            }
+        }
         info = QString(tr("%1 of %2 (%3/sec) %4"))
             .arg(dataString(m_bytesReceived))
             .arg(bytesTotal == 0 ? tr("?") : dataString(bytesTotal))
