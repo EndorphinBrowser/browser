@@ -614,7 +614,7 @@ void DownloadManager::cleanup()
 void DownloadManager::updateItemCount()
 {
     int count = m_downloads.count();
-    itemCount->setText(count == 1 ? tr("1 Download") : tr("%1 Downloads").arg(count));
+    itemCount->setText(tr("%n Download(s)", "", count));
 }
 
 DownloadModel::DownloadModel(DownloadManager *downloadManager, QObject *parent)

@@ -1059,7 +1059,7 @@ QVariant HistoryTreeModel::data(const QModelIndex &index, int role) const
                 return date.toString(QLatin1String("dddd, MMMM d, yyyy"));
             }
             if (index.column() == 1) {
-                return tr("%1 items").arg(rowCount(index.sibling(index.row(), 0)));
+                return tr("%n item(s)", "", rowCount(index.sibling(index.row(), 0)));
             }
         }
     }
