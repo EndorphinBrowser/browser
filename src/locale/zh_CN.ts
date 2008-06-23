@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="zh_CN">
+<defaultcodec></defaultcodec>
+<context encoding="UTF-8">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -17,7 +19,8 @@
     </message>
     <message>
         <location filename="../addbookmarkdialog.ui" line="19"/>
-        <source>Type a name for the bookmark, and choose where to keep it.</source>
+        <source>Type a name for the bookmark, and choose where to keep 
+it.</source>
         <translation>请为此书签输入名称，然后选择位置保存。</translation>
     </message>
 </context>
@@ -160,7 +163,8 @@
         <location filename="../browserapplication.cpp" line="197"/>
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
-        <translation>当前有 %1 个窗口和 %2 个标签打开，您真的要退出吗？</translation>
+        <translation>当前有 %1 个窗口和 %2 
+个标签打开，您真的要退出吗？</translation>
     </message>
 </context>
 <context>
@@ -469,8 +473,16 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <location filename="src/browsermainwindow.cpp" line="678"/>
-        <source>Version %1&lt;p&gt;This demo demonstrates Qt&apos;s webkit facilities in action, providing an example browser for you to experiment with.&lt;p&gt;&lt;p&gt;QtWebKit is based on the Open Source WebKit Project developed at &lt;a href=&quot;http://webkit.org/&quot;&gt;http://webkit.org/&lt;/a&gt;.</source>
-	<translation>Version %1&lt;p&gt;This demo demonstrates Qt&apos;s webkit facilities in action, providing an example browser for you to experiment with.&lt;p&gt;&lt;p&gt;QtWebKit is based on the Open Source WebKit Project developed at &lt;a href=&quot;http://webkit.org/&quot;&gt;http://webkit.org/&lt;/a&gt;.</translation>
+        <source>Version %1&lt;p&gt;This demo demonstrates Qt&apos;s webkit 
+facilities in action, providing an example browser for you to experiment 
+with.&lt;p&gt;&lt;p&gt;QtWebKit is based on the Open Source WebKit Project 
+developed at &lt;a 
+href=&quot;http://webkit.org/&quot;&gt;http://webkit.org/&lt;/a&gt;.</source>
+	<translation>Version %1&lt;p&gt;This demo demonstrates Qt&apos;s webkit 
+facilities in action, providing an example browser for you to experiment 
+with.&lt;p&gt;&lt;p&gt;QtWebKit is based on the Open Source WebKit Project 
+developed at &lt;a 
+href=&quot;http://webkit.org/&quot;&gt;http://webkit.org/&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="693"/>
@@ -479,8 +491,10 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="694"/>
-        <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
-        <translation>网络资源 (*.html *.htm *.svg *.png *.gif *.svgz);;所有的文件 (*.*)</translation>
+        <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files 
+(*.*)</source>
+        <translation>网络资源 (*.html *.htm *.svg *.png *.gif *.svgz);;所有的文件 
+(*.*)</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="723"/>
@@ -494,12 +508,20 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <location filename="src/browsermainwindow.cpp" line="739"/>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing in turned on, webpages are not added to the history, items are automatically removed from the Downloads window, new cookies are not stored, current cookies can&apos;t be accessed, site icons wont be stored, session wont be saved,  and searches are not addded to the pop-up menu in the Google search box.  Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;打开秘密浏览时，浏览的页面不会被添加到历史中，下载的内容会被自动从下载窗口种移除，新的cookie也不会被保存，当前的cookie也不能被访问，站点图标不会被保存，会话也将不被保存，搜索也不会添加到Google搜索框的弹出菜单中。在你关闭窗口前，你仍然可以使用前进和后退按钮来访问你曾经打开的页面。</translation>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing in 
+turned on, webpages are not added to the history, items are automatically removed 
+from the Downloads window, new cookies are not stored, current cookies can&apos;t 
+be accessed, site icons wont be stored, session wont be saved,  and searches are 
+not addded to the pop-up menu in the Google search box.  Until you close the 
+window, you can still click the Back and Forward buttons to return to the webpages 
+you have opened.</source>
+        <translation 
+type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;打开秘密浏览时，浏览的页面不会被添加到历史中，下载的内容会被自动从下载窗口种移除，新的cookie也不会被保存，当前的cookie也不能被访问，站点图标不会被保存，会话也将不被保存，搜索也不会添加到Google搜索框的弹出菜单中。在你关闭窗口前，你仍然可以使用前进和后退按钮来访问你曾经打开的页面。</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="768"/>
-        <source>Are you sure you want to close the window?  There are %1 tabs open</source>
+        <source>Are you sure you want to close the window?  There are %1 tab 
+open</source>
         <translation>您确定要关闭窗口吗？ 当前已经打开了 %1 个标签。</translation>
     </message>
     <message>
@@ -514,9 +536,11 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="864"/>
-        <source>The web inspector will only work correctly for pages that were loaded after enabling.
+        <source>The web inspector will only work correctly for pages that were 
+loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation>Web inspactor只对启用后打开的页面有效。您是否要重新载入所有的页面？</translation>
+        <translation>Web 
+inspactor只对启用后打开的页面有效。您是否要重新载入所有的页面？</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="916"/>
@@ -552,8 +576,19 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="743"/>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttonsto return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;当秘密浏览启用时，涉及您个人隐私的操作是被禁止的：&lt;ul&gt;&lt;li&gt; 页面不会被添加到历史中。&lt;/li&gt;&lt;li&gt;内容会被自动从下载窗口中移除。&lt;/li&gt;&lt;li&gt;新的cookie不能被保存，当前cookie不能访问。&lt;/li&gt;&lt;li&gt;站点图标不被保存。&lt;/li&gt;&lt;li&gt;搜索过的关键词不会被添加到搜索框的弹出菜单中&lt;/li&gt;&lt;/ul&gt;在关闭窗口前，您仍然可以通过前进和后退按钮访问打开的页面。</translation>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is 
+turned on, some actions concerning your privacy will be 
+disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the 
+history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads 
+window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies 
+can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, 
+session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the 
+pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, 
+you can still click the Back and Forward buttonsto return to the webpages you have 
+opened.</source>
+        
+<translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;当秘密浏览启用时，涉及您个人隐私的操作是被禁止的：&lt;ul&gt;&lt;li&gt; 
+页面不会被添加到历史中。&lt;/li&gt;&lt;li&gt;内容会被自动从下载窗口中移除。&lt;/li&gt;&lt;li&gt;新的cookie不能被保存，当前cookie不能访问。&lt;/li&gt;&lt;li&gt;站点图标不被保存。&lt;/li&gt;&lt;li&gt;搜索过的关键词不会被添加到搜索框的弹出菜单中&lt;/li&gt;&lt;/ul&gt;在关闭窗口前，您仍然可以通过前进和后退按钮访问打开的页面。</translation>
     </message>
 </context>
 <context>
@@ -954,13 +989,17 @@ Do you want to reload all pages?</source>
     <name>NetworkAccessManager</name>
     <message>
         <location filename="../networkaccessmanager.cpp" line="138"/>
-        <source>&lt;qt&gt;Enter username and password for &quot;%1&quot; at %2&lt;/qt&gt;</source>
-        <translation>&lt;qt&gt;输入 &quot;%1&quot; 于 %2 的用户名和密码&lt;/qt&gt;</translation>
+        <source>&lt;qt&gt;Enter username and password for &quot;%1&quot; at 
+%2&lt;/qt&gt;</source>
+        <translation>&lt;qt&gt;输入 &quot;%1&quot; 于 %2 
+的用户名和密码&lt;/qt&gt;</translation>
     </message>
     <message>
         <location filename="../networkaccessmanager.cpp" line="162"/>
-        <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</source>
-        <translation>&lt;qt&gt;使用如下方式连接代理 &quot;%1&quot;：&lt;/qt&gt;</translation>
+        <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; 
+using:&lt;/qt&gt;</source>
+        <translation>&lt;qt&gt;使用如下方式连接代理 
+&quot;%1&quot;：&lt;/qt&gt;</translation>
     </message>
     <message>
         <location filename="../networkaccessmanager.cpp" line="199"/>
@@ -1005,7 +1044,7 @@ Do you want to ignore these errors?</source>
     <message>
         <location filename="../passworddialog.ui" line="43"/>
         <source>Username:</source>
-	<translation>用户名：</translation>
+	<translatio>用户名：</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="53"/>
@@ -1415,10 +1454,12 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="649"/>
-        <source>You have modified this page and when closing it you would lose the modification.
+        <source>You have modified this page and when closing it you would lose the 
+modification.
 Do you really want to close this page?
 </source>
-        <translation>您已经修改了页面，关闭将导致您的修改丢失。您确定要关闭此页吗？
+        
+<translation>您已经修改了页面，关闭将导致您的修改丢失。您确定要关闭此页吗？
 </translation>
     </message>
 </context>
@@ -1520,3 +1561,4 @@ Do you really want to close this page?
     </message>
 </context>
 </TS>
+
