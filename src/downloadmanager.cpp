@@ -165,7 +165,8 @@ void DownloadItem::getFileName()
         fileName = QFileDialog::getSaveFileName(this, tr("Save File"), defaultFileName);
         m_gettingFileName = false;
         if (fileName.isEmpty()) {
-            m_reply->close();
+            progressBar->setVisible(false);
+            stop();
             fileNameLabel->setText(tr("Download canceled: %1").arg(QFileInfo(defaultFileName).fileName()));
             return;
         }
