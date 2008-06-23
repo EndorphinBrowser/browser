@@ -489,10 +489,8 @@ void DownloadManager::addItem(DownloadItem *item)
 
 void DownloadManager::updateRow()
 {
-    DownloadItem *item = qobject_cast<DownloadItem*>(sender());
-    if (item) {
+    if (DownloadItem *item = qobject_cast<DownloadItem*>(sender()))
         updateRow(item);
-    }
 }
 
 void DownloadManager::updateRow(DownloadItem *item)
@@ -506,7 +504,9 @@ void DownloadManager::updateRow(DownloadItem *item)
     if (icon.isNull())
         icon = style()->standardIcon(QStyle::SP_FileIcon);
     item->fileIcon->setPixmap(icon.pixmap(48, 48));
-    downloadsView->setRowHeight(row, item->minimumSizeHint().height());
+    
+    int oldHeight = downloadsView->rowHeight(row);
+    downloadsView->setRowHeight(row, qMax(oldHeight, item->minimumSizeHint().height()));
 
     bool remove = false;
     QWebSettings *globalSettings = QWebSettings::globalSettings();
@@ -587,12 +587,12 @@ void DownloadManager::load()
             item->m_output.setFileName(fileName);
             item->fileNameLabel->setText(QFileInfo(item->m_output.fileName()).fileName());
             item->m_url = url;
+            addItem(item);
             item->stopButton->setVisible(false);
             item->stopButton->setEnabled(false);
             item->tryAgainButton->setVisible(!done);
             item->tryAgainButton->setEnabled(!done);
             item->progressBar->setVisible(false);
-            addItem(item);
         }
         key = QString(QLatin1String("download_%1_")).arg(++i);
     }
