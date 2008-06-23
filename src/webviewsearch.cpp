@@ -87,18 +87,16 @@ void WebViewSearch::clear()
 
 void WebViewSearch::showFind()
 {
-    if (isVisible())
-        return;
-
-    show();
+    if (!isVisible()) {
+        show();
+        m_timeLine->setFrameRange(-1 * m_widget->height(), 0);
+        m_timeLine->setDirection(QTimeLine::Forward);
+        disconnect(m_timeLine, SIGNAL(finished()),
+                   this, SLOT(hide()));
+        m_timeLine->start();
+    }
     ui.searchLineEdit->setFocus();
     ui.searchLineEdit->lineEdit()->selectAll();
-
-    m_timeLine->setFrameRange(-1 * m_widget->height(), 0);
-    m_timeLine->setDirection(QTimeLine::Forward);
-    disconnect(m_timeLine, SIGNAL(finished()),
-               this, SLOT(hide()));
-    m_timeLine->start();
 }
 
 void WebViewSearch::findNext()
