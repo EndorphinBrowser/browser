@@ -351,7 +351,8 @@ void UrlLineEdit::focusOutEvent(QFocusEvent *event)
 void UrlLineEdit::paintEvent(QPaintEvent *event)
 {
     QPalette p = palette();
-    if (m_webView && m_webView->url().scheme() == QLatin1String("https")) {
+    if (m_webView && m_webView->url().scheme() == QLatin1String("https")
+        && p.brush(QPalette::Text) != Qt::black) {
         QColor lightYellow(248, 248, 210);
         p.setBrush(QPalette::Base, lightYellow);
     } else {
@@ -367,6 +368,9 @@ void UrlLineEdit::paintEvent(QPaintEvent *event)
     if (m_webView && !hasFocus()) {
         int progress = m_webView->progress();
         QColor loadingColor = QColor(116, 192, 250);
+        if (p.brush(QPalette::Text) != Qt::black)
+            loadingColor = m_defaultBaseColor.value() < 128 ? m_defaultBaseColor.lighter(200) : m_defaultBaseColor.darker(200);
+
         painter.setBrush(generateGradient(loadingColor));
         painter.setPen(Qt::transparent);
 
