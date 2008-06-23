@@ -184,7 +184,8 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
     }
 
     if (reply->error() == QNetworkReply::NoError) {
-        BrowserApplication::downloadManager()->handleUnsupportedContent(reply);
+        if (reply->header(QNetworkRequest::ContentTypeHeader).isValid())
+            BrowserApplication::downloadManager()->handleUnsupportedContent(reply);
         return;
     }
 
