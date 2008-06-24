@@ -1,2 +1,13 @@
+0.3
+
 0.2
-  - Branch from the Qt demo browser
+ - Many Bug fixes and improvements.
+ - Add make install on unix
+ - Improved tabs
+ - Translations
+ - New reset dialog
+ - New about dialog
+ - Add search banner
+ - Rename to Arora and a new application icon
+ - Project specific git hooks
+ - Branch from the Qt demo browser with new autotests and manualtests
