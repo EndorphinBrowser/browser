@@ -7,6 +7,7 @@ webkit_trunk {
     message(Using WebKit Trunk)
     WEBKITHOME = $$(WEBKITHOME)
     QT -= webkit
+    DEFINES += WEBKIT_TRUNK
     debug: QMAKE_LIBDIR_FLAGS = -L$$WEBKITHOME/WebKitBuild/Debug/lib
     release: QMAKE_LIBDIR_FLAGS = -L$$WEBKITHOME/WebKitBuild/Release/lib
     LIBS = -lQtWebKit

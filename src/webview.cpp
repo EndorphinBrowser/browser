@@ -247,42 +247,49 @@ WebView::WebView(QWidget* parent)
 
 void WebView::contextMenuEvent(QContextMenuEvent *event)
 {
-    QMenu menu(this);
+    QMenu *menu = new QMenu(this);
 
     QWebHitTestResult r = page()->mainFrame()->hitTestContent(event->pos());
 
     if (!r.linkUrl().isEmpty()) {
-        menu.addAction(tr("Open in New &Window"), this, SLOT(openLinkInNewWindow()));
-        menu.addAction(tr("Open in New &Tab"), this, SLOT(openLinkInNewTab()));
-        menu.addSeparator();
-        menu.addAction(tr("Save Lin&k"), this, SLOT(downloadLinkToDisk()));
-        menu.addAction(tr("&Bookmark This Link"), this, SLOT(bookmarkLink()))->setData(r.linkUrl().toString());
-        menu.addSeparator();
-        menu.addAction(tr("&Copy Link Location"), this, SLOT(copyLinkToClipboard()));
+        menu->addAction(tr("Open in New &Window"), this, SLOT(openLinkInNewWindow()));
+        menu->addAction(tr("Open in New &Tab"), this, SLOT(openLinkInNewTab()));
+        menu->addSeparator();
+        menu->addAction(tr("Save Lin&k"), this, SLOT(downloadLinkToDisk()));
+        menu->addAction(tr("&Bookmark This Link"), this, SLOT(bookmarkLink()))->setData(r.linkUrl().toString());
+        menu->addSeparator();
+        menu->addAction(tr("&Copy Link Location"), this, SLOT(copyLinkToClipboard()));
         if (page()->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled))
-            menu.addAction(pageAction(QWebPage::InspectElement));
+            menu->addAction(pageAction(QWebPage::InspectElement));
     }
 
     if (!r.imageUrl().isEmpty()) {
-        if (!menu.isEmpty())
-            menu.addSeparator();
-        menu.addAction(tr("Open Image in New &Window"), this, SLOT(openImageInNewWindow()));
-        menu.addAction(tr("Open Image in New &Tab"), this, SLOT(openImageInNewTab()));
-        menu.addSeparator();
-        menu.addAction(tr("&Save Image"), this, SLOT(downloadImageToDisk()));
-        menu.addAction(tr("&Copy Image"), this, SLOT(copyImageToClipboard()));
-        menu.addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(r.imageUrl().toString());
+        if (!menu->isEmpty())
+            menu->addSeparator();
+        menu->addAction(tr("Open Image in New &Window"), this, SLOT(openImageInNewWindow()));
+        menu->addAction(tr("Open Image in New &Tab"), this, SLOT(openImageInNewTab()));
+        menu->addSeparator();
+        menu->addAction(tr("&Save Image"), this, SLOT(downloadImageToDisk()));
+        menu->addAction(tr("&Copy Image"), this, SLOT(copyImageToClipboard()));
+        menu->addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(r.imageUrl().toString());
     }
 
-    if (!menu.isEmpty()) {
+#ifdef WEBKIT_TRUNK // i.e. Qt 4.5, but not in Qt 4.5 yet
+    if (menu->isEmpty())
+        menu = page()->createStandardContextMenu();
+#endif
+
+    if (!menu->isEmpty()) {
         if (m_page->mainWindow()->menuBar()->isHidden()) {
-            menu.addSeparator();
-            menu.addAction(m_page->mainWindow()->showMenuBarAction());
+            menu->addSeparator();
+            menu->addAction(m_page->mainWindow()->showMenuBarAction());
         }
 
-        menu.exec(mapToGlobal(event->pos()));
+        menu->exec(mapToGlobal(event->pos()));
+        delete menu;
         return;
     }
+    delete menu;
 
     QWebView::contextMenuEvent(event);
 }
