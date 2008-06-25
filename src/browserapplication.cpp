@@ -227,10 +227,18 @@ void BrowserApplication::postLaunch()
     // newMainWindow() needs to be called in main() for this to happen
     if (m_mainWindows.count() > 0) {
         QStringList args = QCoreApplication::arguments();
-        if (args.count() > 1)
+        if (args.count() > 1) {
             mainWindow()->loadPage(args.last());
-        else
-            mainWindow()->slotHome();
+        } else {
+            QSettings settings;
+            settings.beginGroup(QLatin1String("MainWindow"));
+            int startup = settings.value(QLatin1String("startupBehavior")).toInt();
+            switch (startup) {
+            case 0: mainWindow()->slotHome(); break;
+            case 1: break;
+            case 2: restoreLastSession(); break;
+            }
+        }
     }
     BrowserApplication::historyManager();
 }
@@ -286,13 +294,17 @@ static const qint32 BrowserApplicationMagic = 0xec;
 
 void BrowserApplication::saveSession()
 {
+    QSettings settings;
+    settings.beginGroup(QLatin1String("MainWindow"));
+    settings.setValue(QLatin1String("restoring"), false);
+    settings.endGroup();
+
     QWebSettings *globalSettings = QWebSettings::globalSettings();
     if (globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled))
         return;
 
     clean();
 
-    QSettings settings;
     settings.beginGroup(QLatin1String("sessions"));
 
     int version = 2;
@@ -319,6 +331,18 @@ bool BrowserApplication::canRestoreSession() const
 
 bool BrowserApplication::restoreLastSession()
 {
+    {
+        QSettings settings;
+        settings.beginGroup(QLatin1String("MainWindow"));
+        if (settings.value(QLatin1String("restoring"), false).toBool()) {
+            QMessageBox::information(0, tr("Restore failed"),
+                tr("The saved session will not being restored because last time it was restored Arora crashed."));
+            return false;
+        }
+        // saveSession will be called by an AutoSaver timer from the set tabs
+        // and in saveSession we will reset this flag back to false
+        settings.setValue(QLatin1String("restoring"), true);
+    }
     int version = 2;
     QList<QByteArray> windows;
     QBuffer buffer(&m_lastSession);

@@ -115,6 +115,7 @@ void SettingsDialog::loadFromSettings()
     settings.beginGroup(QLatin1String("MainWindow"));
     QString defaultHome = QLatin1String("http://www.arora-browser.org");
     homeLineEdit->setText(settings.value(QLatin1String("home"), defaultHome).toString());
+    startupBehavior->setCurrentIndex(settings.value(QLatin1String("startupBehavior"), 0).toInt());
     settings.endGroup();
 
     settings.beginGroup(QLatin1String("history"));
@@ -223,6 +224,7 @@ void SettingsDialog::saveToSettings()
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));
     settings.setValue(QLatin1String("home"), homeLineEdit->text());
+    settings.setValue(QLatin1String("startupBehavior"), startupBehavior->currentIndex());
     settings.endGroup();
 
     settings.beginGroup(QLatin1String("downloadmanager"));
