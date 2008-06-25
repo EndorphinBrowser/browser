@@ -76,6 +76,7 @@
 #include <qdir.h>
 #include <qevent.h>
 #include <qlibraryinfo.h>
+#include <qmessagebox.h>
 #include <qsettings.h>
 #include <qtextstream.h>
 #include <qtranslator.h>
