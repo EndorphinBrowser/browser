@@ -99,8 +99,10 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
+#if QT_VERSION < 0x040500
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
+#endif
     QSize tabSizeHint(int index) const;
     void tabInserted(int position);
     void tabRemoved(int position);
@@ -120,7 +122,6 @@ private:
     friend class TabWidget;
 
     QPoint m_dragStartPos;
-    int m_dragCurrentIndex;
     QAction *m_viewTabBarAction;
     bool m_showTabBarWhenOneTab;
 };

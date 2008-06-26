@@ -98,6 +98,8 @@ TabWidget::TabWidget(QWidget *parent)
 {
 #if QT_VERSION >= 0x040500
     setDocumentMode(true);
+    connect(m_tabBar, SIGNAL(tabMoved(int, int)),
+            this, SLOT(moveTab(int, int)));
 #endif
     setElideMode(Qt::ElideRight);
 
@@ -213,6 +215,7 @@ void TabWidget::reloadTab(int index)
 
 void TabWidget::moveTab(int fromIndex, int toIndex)
 {
+#if QT_VERSION < 0x040500
     disconnect(this, SIGNAL(currentChanged(int)),
                this, SLOT(currentChanged(int)));
 
@@ -229,6 +232,11 @@ void TabWidget::moveTab(int fromIndex, int toIndex)
     connect(this, SIGNAL(currentChanged(int)),
             this, SLOT(currentChanged(int)));
     setCurrentIndex(toIndex);
+#else
+    QWidget *lineEdit = m_lineEdits->widget(fromIndex);
+    m_lineEdits->removeWidget(lineEdit);
+    m_lineEdits->insertWidget(toIndex, lineEdit);
+#endif
 }
 
 void TabWidget::addWebAction(QAction *action, QWebPage::WebAction webAction)
@@ -601,7 +609,6 @@ QLabel *TabWidget::animationLabel(int index, bool addMovie)
         loadingAnimation->setMovie(movie);
         movie->start();
     }
-    loadingAnimation->show();
     m_tabBar->setTabButton(index, side, 0);
     m_tabBar->setTabButton(index, side, loadingAnimation);
     return loadingAnimation;
@@ -650,7 +657,6 @@ void TabWidget::webViewIconChanged()
         delete movie;
         label->setMovie(0);
         label->setPixmap(icon.pixmap(16, 16));
-        label->show();
 #else
         setTabIcon(index, icon);
 #endif

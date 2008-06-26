@@ -106,6 +106,9 @@ TabBar::TabBar(QWidget *parent)
     updateViewToolBarAction();
     connect(m_viewTabBarAction, SIGNAL(triggered()),
             this, SLOT(viewTabBar()));
+#if QT_VERSION >= 0x040500
+    setMovable(true);
+#endif
 }
 
 bool TabBar::showTabBarWhenOneTab() const
@@ -238,31 +241,41 @@ void TabBar::mouseReleaseEvent(QMouseEvent *event)
 
 void TabBar::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton) {
+    if (event->button() == Qt::LeftButton)
         m_dragStartPos = event->pos();
-    }
     QTabBar::mousePressEvent(event);
 }
 
 void TabBar::mouseMoveEvent(QMouseEvent *event)
 {
-    if (event->buttons() == Qt::LeftButton
-        && (event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()) {
-        QDrag *drag = new QDrag(this);
-        QMimeData *mimeData = new QMimeData;
-        QList<QUrl> urls;
-        int index = tabAt(event->pos());
-        QUrl url = tabData(index).toUrl();
-        urls.append(url);
-        mimeData->setUrls(urls);
-        mimeData->setText(tabText(index));
-        mimeData->setData(QLatin1String("action"), "tab-reordering");
-        drag->setMimeData(mimeData);
-        drag->exec();
+    if (event->buttons() == Qt::LeftButton) {
+#if QT_VERSION >= 0x040500
+        int diffX = event->pos().x() - m_dragStartPos.x();
+        int diffY = event->pos().y() - m_dragStartPos.y();
+#endif
+        if ((event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()
+#if QT_VERSION >= 0x040500
+            && diffX < 3 && diffX > -3
+            && diffY < -10
+#endif
+            ) {
+            QDrag *drag = new QDrag(this);
+            QMimeData *mimeData = new QMimeData;
+            QList<QUrl> urls;
+            int index = tabAt(event->pos());
+            QUrl url = tabData(index).toUrl();
+            urls.append(url);
+            mimeData->setUrls(urls);
+            mimeData->setText(tabText(index));
+            mimeData->setData(QLatin1String("action"), "tab-reordering");
+            drag->setMimeData(mimeData);
+            drag->exec();
+        }
     }
     QTabBar::mouseMoveEvent(event);
 }
 
+#if QT_VERSION < 0x040500
 void TabBar::dragEnterEvent(QDragEnterEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
@@ -284,6 +297,7 @@ void TabBar::dropEvent(QDropEvent *event)
     }
     QTabBar::dropEvent(event);
 }
+#endif
 
 QSize TabBar::tabSizeHint(int index) const
 {
