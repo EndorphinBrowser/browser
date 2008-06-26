@@ -2,7 +2,6 @@
 <!DOCTYPE TS><TS version="1.1" language="zh_CN">
 <defaultcodec></defaultcodec>
 <context encoding="UTF-8">
-<context>
     <name>AboutDialog</name>
     <message>
         <location filename="../aboutdialog.cpp" line="29"/>
@@ -1044,7 +1043,7 @@ Do you want to ignore these errors?</source>
     <message>
         <location filename="../passworddialog.ui" line="43"/>
         <source>Username:</source>
-	<translatio>用户名：</translation>
+	<translation>用户名：</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="53"/>
