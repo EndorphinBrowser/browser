@@ -81,7 +81,9 @@ signals:
     void closeOtherTabs(int index);
     void reloadTab(int index);
     void reloadAllTabs();
+#if QT_VERSION < 0x040500
     void tabMoveRequested(int fromIndex, int toIndex);
+#endif
     void loadUrl(const QUrl &url, TabWidget::Tab type);
 
 public:
