@@ -234,17 +234,25 @@ void BrowserApplication::postLaunch()
 
         if (args.count() > 1) {
             switch(startup) {
-            case 2: restoreLastSession();
-                    mainWindow()->tabWidget()->makeNewTab(true)->loadUrl(args.last() );
-                    break;
-            default: mainWindow()->loadPage(args.last() ); break;
+            case 2:
+                restoreLastSession();
+                WebView *webView = mainWindow()->tabWidget()->makeNewTab(true);
+                webView->loadUrl(args.last());
+                break;
+            default:
+                mainWindow()->loadPage(args.last());
+                break;
             }
         } else {
-
             switch (startup) {
-            case 0: mainWindow()->slotHome(); break;
-            case 1: break;
-            case 2: restoreLastSession(); break;
+            case 0:
+                mainWindow()->slotHome();
+                break;
+            case 1:
+                break;
+            case 2:
+                restoreLastSession();
+                break;
             }
         }
     }
