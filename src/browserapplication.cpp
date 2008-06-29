@@ -227,13 +227,20 @@ void BrowserApplication::postLaunch()
 
     // newMainWindow() needs to be called in main() for this to happen
     if (m_mainWindows.count() > 0) {
+        QSettings settings;
+        settings.beginGroup(QLatin1String("MainWindow"));
+        int startup = settings.value(QLatin1String("startupBehavior")).toInt();
         QStringList args = QCoreApplication::arguments();
+
         if (args.count() > 1) {
-            mainWindow()->loadPage(args.last());
+            switch(startup) {
+            case 2: restoreLastSession();
+                    mainWindow()->tabWidget()->makeNewTab(true)->loadUrl(args.last() );
+                    break;
+            default: mainWindow()->loadPage(args.last() ); break;
+            }
         } else {
-            QSettings settings;
-            settings.beginGroup(QLatin1String("MainWindow"));
-            int startup = settings.value(QLatin1String("startupBehavior")).toInt();
+
             switch (startup) {
             case 0: mainWindow()->slotHome(); break;
             case 1: break;
