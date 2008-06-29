@@ -113,7 +113,9 @@ TabWidget::TabWidget(QWidget *parent)
     connect(m_tabBar, SIGNAL(closeOtherTabs(int)), this, SLOT(closeOtherTabs(int)));
     connect(m_tabBar, SIGNAL(reloadTab(int)), this, SLOT(reloadTab(int)));
     connect(m_tabBar, SIGNAL(reloadAllTabs()), this, SLOT(reloadAllTabs()));
+#if QT_VERSION < 0x040500
     connect(m_tabBar, SIGNAL(tabMoveRequested(int, int)), this, SLOT(moveTab(int, int)));
+#endif
     setTabBar(m_tabBar);
 
     // Actions
