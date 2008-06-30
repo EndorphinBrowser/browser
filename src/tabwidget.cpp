@@ -96,11 +96,6 @@ TabWidget::TabWidget(QWidget *parent)
     , m_lineEdits(0)
     , m_tabBar(new TabBar(this))
 {
-#if QT_VERSION >= 0x040500
-    setDocumentMode(true);
-    connect(m_tabBar, SIGNAL(tabMoved(int, int)),
-            this, SLOT(moveTab(int, int)));
-#endif
     setElideMode(Qt::ElideRight);
 
     new QShortcut(QKeySequence("Ctrl+Shift+T"), this, SLOT(openLastTab()));
@@ -117,6 +112,11 @@ TabWidget::TabWidget(QWidget *parent)
     connect(m_tabBar, SIGNAL(tabMoveRequested(int, int)), this, SLOT(moveTab(int, int)));
 #endif
     setTabBar(m_tabBar);
+#if QT_VERSION >= 0x040500
+    setDocumentMode(true);
+    connect(m_tabBar, SIGNAL(tabMoved(int, int)),
+            this, SLOT(moveTab(int, int)));
+#endif
 
     // Actions
     m_newTabAction = new QAction(tr("New &Tab"), this);
@@ -642,6 +642,11 @@ void TabWidget::webViewLoadFinished()
         QLabel *label = animationLabel(index, true);
         if (label->movie())
             label->movie()->stop();
+#if defined(Q_WS_MAC)
+        QMovie *movie = label->movie();
+        delete movie;
+        label->setMovie(0);
+#endif
     }
 #endif
     webViewIconChanged();
@@ -652,14 +657,17 @@ void TabWidget::webViewIconChanged()
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
     if (-1 != index) {
-        QIcon icon = BrowserApplication::instance()->icon(webView->url());
 #if QT_VERSION >= 0x040500
+#if !defined(Q_WS_MAC)
+        QIcon icon = BrowserApplication::instance()->icon(webView->url());
         QLabel *label = animationLabel(index, false);
         QMovie *movie = label->movie();
         delete movie;
         label->setMovie(0);
         label->setPixmap(icon.pixmap(16, 16));
+#endif
 #else
+        QIcon icon = BrowserApplication::instance()->icon(webView->url());
         setTabIcon(index, icon);
 #endif
     }

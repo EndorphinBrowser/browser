@@ -75,6 +75,7 @@ class TabWidget;
 class ToolbarSearch;
 class WebView;
 class QSplitter;
+class QFrame;
 
 /*!
     The MainWindow of the Browser Application.
@@ -165,6 +166,9 @@ private:
     QToolBar *m_navigationBar;
     QSplitter *m_navigationSplitter;
     ToolbarSearch *m_toolbarSearch;
+#if defined(Q_WS_MAC)
+    QFrame *m_bookmarksToolbarFrame;
+#endif
     BookmarksToolBar *m_bookmarksToolbar;
     TabWidget *m_tabWidget;
     AutoSaver *m_autoSaver;

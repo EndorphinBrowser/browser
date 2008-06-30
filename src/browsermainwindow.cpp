@@ -123,8 +123,33 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     layout->setSpacing(0);
     layout->setMargin(0);
 #if defined(Q_WS_MAC)
+    m_bookmarksToolbarFrame = new QFrame(this);
+    m_bookmarksToolbarFrame->setLineWidth(1);
+    m_bookmarksToolbarFrame->setMidLineWidth(0);
+    m_bookmarksToolbarFrame->setFrameShape(QFrame::HLine);
+    m_bookmarksToolbarFrame->setFrameShadow(QFrame::Raised);
+    QPalette fp = m_bookmarksToolbarFrame->palette();
+    fp.setColor(QPalette::Active, QPalette::Light, QColor(64, 64, 64));
+    fp.setColor(QPalette::Active, QPalette::Dark, QColor(192, 192, 192));
+    fp.setColor(QPalette::Inactive, QPalette::Light, QColor(135, 135, 135));
+    fp.setColor(QPalette::Inactive, QPalette::Dark, QColor(226, 226, 226));
+    m_bookmarksToolbarFrame->setAttribute(Qt::WA_MacNoClickThrough, true);
+    m_bookmarksToolbarFrame->setPalette(fp);
+    layout->addWidget(m_bookmarksToolbarFrame);
+
     layout->addWidget(m_bookmarksToolbar);
-    layout->addWidget(new QWidget); // <- OS X tab widget style bug
+    QPalette p = m_bookmarksToolbar->palette();
+    p.setColor(QPalette::Active, QPalette::Window, QColor(150, 150, 150));
+    p.setColor(QPalette::Inactive, QPalette::Window, QColor(207, 207, 207));
+    m_bookmarksToolbar->setAttribute(Qt::WA_MacNoClickThrough, true);
+    m_bookmarksToolbar->setAutoFillBackground(true);
+    m_bookmarksToolbar->setPalette(p);
+    m_bookmarksToolbar->setBackgroundRole(QPalette::Window);
+    m_bookmarksToolbar->setMaximumHeight(19);
+
+    QWidget *w = new QWidget(this);
+    w->setMaximumHeight(0);
+    layout->addWidget(w); // <- OS X tab widget style bug
 #else
     addToolBarBreak();
     addToolBar(m_bookmarksToolbar);
@@ -163,9 +188,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     slotUpdateWindowTitle();
     loadDefaultState();
     m_tabWidget->newTab();
-
-    int size = m_tabWidget->lineEditStack()->sizeHint().height();
-    m_navigationBar->setIconSize(QSize(size, size));
+    m_navigationBar->setIconSize(QSize(18, 18));
 
     // Add each item in the menu bar to the main window so
     // if the menu bar is hidden the shortcuts still work.
@@ -175,6 +198,9 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
             actions += action->menu()->actions();
         addAction(action);
     }
+#if defined(Q_WS_MAC)
+    setWindowIcon(QIcon());
+#endif
 }
 
 BrowserMainWindow::~BrowserMainWindow()
@@ -271,6 +297,9 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     updateToolbarActionText(showToolbar);
 
     m_bookmarksToolbar->setVisible(showBookmarksBar);
+#if defined(Q_WS_MAC)
+    m_bookmarksToolbarFrame->setVisible(showBookmarksBar);
+#endif
     updateBookmarksToolbarActionText(showBookmarksBar);
 
     statusBar()->setVisible(showStatusbar);
@@ -574,10 +603,16 @@ void BrowserMainWindow::slotViewBookmarksBar()
 {
     if (m_bookmarksToolbar->isVisible()) {
         updateBookmarksToolbarActionText(false);
-        m_bookmarksToolbar->close();
+        m_bookmarksToolbar->hide();
+#if defined(Q_WS_MAC)
+        m_bookmarksToolbarFrame->hide();
+#endif
     } else {
         updateBookmarksToolbarActionText(true);
         m_bookmarksToolbar->show();
+#if defined(Q_WS_MAC)
+        m_bookmarksToolbarFrame->show();
+#endif
     }
     m_autoSaver->changeOccurred();
 }
