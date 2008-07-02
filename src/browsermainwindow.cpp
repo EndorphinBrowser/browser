@@ -509,8 +509,11 @@ void BrowserMainWindow::setupMenu()
     toolsMenu->addAction(tr("&Clear Private Data"), this, SLOT(slotClearPrivateData()),
                          QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
 #ifndef Q_CC_MINGW
-    a = toolsMenu->addAction(tr("Enable Web &Inspector"), this, SLOT(slotToggleInspector(bool)));
-    a->setCheckable(true);
+    QAction *m_enableInspector = toolsMenu->addAction(tr("Enable Web &Inspector"), this, SLOT(slotToggleInspector(bool)));
+    m_enableInspector->setCheckable(true);
+    QSettings settings;
+    settings.beginGroup(QLatin1String("websettings"));
+    m_enableInspector->setChecked(settings.value(QLatin1String("enableInspector"), false).toBool());
 #endif
 
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
@@ -934,6 +937,9 @@ void BrowserMainWindow::slotToggleInspector(bool enable)
             m_tabWidget->reloadAllTabs();
         }
     }
+    QSettings settings;
+    settings.beginGroup(QLatin1String("websettings"));
+    settings.setValue(QLatin1String("enableInspector"), enable);
 }
 
 void BrowserMainWindow::slotSwapFocus()
