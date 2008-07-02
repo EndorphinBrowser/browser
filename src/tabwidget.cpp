@@ -643,9 +643,9 @@ void TabWidget::webViewLoadFinished()
         if (label->movie())
             label->movie()->stop();
 #if defined(Q_WS_MAC)
-        QMovie *movie = label->movie();
-        delete movie;
-        label->setMovie(0);
+        QTabBar::ButtonPosition side = m_tabBar->freeSide();
+        m_tabBar->setTabButton(index, side, 0);
+        delete label;
 #endif
     }
 #endif
