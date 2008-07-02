@@ -302,7 +302,8 @@ void TabBar::dropEvent(QDropEvent *event)
 QSize TabBar::tabSizeHint(int index) const
 {
     QSize sizeHint = QTabBar::tabSizeHint(index);
-    return sizeHint.boundedTo(QSize(250, sizeHint.height()));
+    QFontMetrics fm = fontMetrics();
+    return sizeHint.boundedTo(QSize(fm.width(QLatin1Char('M')) * 18, sizeHint.height()));
 }
 
 void TabBar::reloadTab()
