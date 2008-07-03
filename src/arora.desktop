@@ -1,12 +1,10 @@
 [Desktop Entry]
-Encoding=UTF-8
 Exec=arora %U
-MultipleArgs=false
 GenericName=Web Browser
 GenericName[en_US]=Web Browser
 GenericName[cs_CZ]=Webový prohlížeč
 Icon=arora
-MimeType=text/html
+MimeType=text/html;
 Name=Arora
 Name[en_US]=Arora
 StartupNotify=true
