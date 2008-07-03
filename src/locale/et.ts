@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="et_EE">
-<defaultcodec></defaultcodec>
-<context encoding="UTF-8">
+<!DOCTYPE TS><TS version="2.0" language="et_EE">
+<context>
     <name>AboutDialog</name>
     <message>
         <location filename="../aboutdialog.cpp" line="34"/>

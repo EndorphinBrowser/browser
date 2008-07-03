@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="ru_RU">
-<defaultcodec></defaultcodec>
+<!DOCTYPE TS><TS version="2.0" language="ru_RU">
 <context>
-    <name>@default</name>
+    <name></name>
     <message>
         <source>Error</source>
         <translation type="obsolete">Ошибка</translation>
@@ -17,6 +16,34 @@
     <message>
         <source>About</source>
         <translation>О программе</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightweight WebKit-based web browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -148,6 +175,14 @@ Do you want to quit anyway?</source>
         <translation>Открыто %1 окон и %2 вкладок
 Вы всё равно хотите выйти?</translation>
     </message>
+    <message>
+        <source>Restore failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The saved session will not being restored because last time it was restored Arora crashed.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BrowserMainWindow</name>
@@ -225,15 +260,15 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&amp;Find Next</source>
-        <translation>Найти &amp;далее</translation>
+        <translation type="obsolete">Найти &amp;далее</translation>
     </message>
     <message>
         <source>&amp;Find Previous</source>
-        <translation>Найти пред&amp;ыдущее</translation>
+        <translation type="obsolete">Найти пред&amp;ыдущее</translation>
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation>&amp;Параметры</translation>
+        <translation type="obsolete">&amp;Параметры</translation>
     </message>
     <message>
         <source>Ctrl+,</source>
@@ -261,19 +296,19 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Reload Page</source>
-        <translation>Обновить страницу</translation>
+        <translation type="obsolete">Обновить страницу</translation>
     </message>
     <message>
         <source>&amp;Make Text Bigger</source>
-        <translation>У&amp;величить</translation>
+        <translation type="obsolete">У&amp;величить</translation>
     </message>
     <message>
         <source>&amp;Make Text Normal</source>
-        <translation>&amp;Исходный размер</translation>
+        <translation type="obsolete">&amp;Исходный размер</translation>
     </message>
     <message>
         <source>&amp;Make Text Smaller</source>
-        <translation>У&amp;меньшить</translation>
+        <translation type="obsolete">У&amp;меньшить</translation>
     </message>
     <message>
         <source>Page S&amp;ource</source>
@@ -374,11 +409,11 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Show Bookmarks bar</source>
-        <translation>Показать панель закладок</translation>
+        <translation type="obsolete">Показать панель закладок</translation>
     </message>
     <message>
         <source>Hide Bookmarks bar</source>
-        <translation>Скрыть панель закладок</translation>
+        <translation type="obsolete">Скрыть панель закладок</translation>
     </message>
     <message>
         <source>Arora</source>
@@ -450,7 +485,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttonsto return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;В режиме конфиденциальности отключаются некоторые действия, связанные с вашей анонимностью:&lt;ul&gt;&lt;li&gt; Веб-страницы не добавляются в журнал.&lt;/li&gt;&lt;li&gt; Файлы автоматически удаляются из окна загрузок.&lt;/li&gt;&lt;li&gt; Новые cookies не сохраняются, текущие cookies недоступны.&lt;/li&gt;&lt;li&gt; Значки сайтов и сеансы не сохраняются.&lt;/li&gt;&lt;li&gt; Поисковые запросы не добавляются в поле поиска.&lt;/li&gt;&lt;/ul&gt; Пока вы не закроете окно, вы всё ещё можете нажимать кнопки Назад и Вперёд для возврата к уже посещённым страницам.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;В режиме конфиденциальности отключаются некоторые действия, связанные с вашей анонимностью:&lt;ul&gt;&lt;li&gt; Веб-страницы не добавляются в журнал.&lt;/li&gt;&lt;li&gt; Файлы автоматически удаляются из окна загрузок.&lt;/li&gt;&lt;li&gt; Новые cookies не сохраняются, текущие cookies недоступны.&lt;/li&gt;&lt;li&gt; Значки сайтов и сеансы не сохраняются.&lt;/li&gt;&lt;li&gt; Поисковые запросы не добавляются в поле поиска.&lt;/li&gt;&lt;/ul&gt; Пока вы не закроете окно, вы всё ещё можете нажимать кнопки Назад и Вперёд для возврата к уже посещённым страницам.</translation>
     </message>
     <message>
         <source>&amp;Clear Private Data</source>
@@ -460,6 +495,46 @@ Do you want to reload all pages?</source>
         <source>Ctrl+Shift+Delete</source>
         <comment>Clear Private Data</comment>
         <translation>Ctrl+Shift+Delete</translation>
+    </message>
+    <message>
+        <source>Find &amp;Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find P&amp;revious</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefe&amp;rences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reload Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make Text &amp;Bigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make Text &amp;Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make Text &amp;Smaller</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Bookmarks Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide Bookmarks Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -659,11 +734,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation>минут</translation>
+        <translation type="obsolete">минут</translation>
     </message>
     <message>
         <source>- %4 %5 remaining</source>
-        <translation>- %4 %5 осталось</translation>
+        <translation type="obsolete">- %4 %5 осталось</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
@@ -713,16 +788,40 @@ Do you want to reload all pages?</source>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
+    <message numerus="yes">
+        <source>- %n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>- %n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message>
         <source>1 Download</source>
-        <translation>1 загрузка</translation>
+        <translation type="obsolete">1 загрузка</translation>
     </message>
     <message>
         <source>%1 Downloads</source>
-        <translation>%1 загрузок</translation>
+        <translation type="obsolete">%1 загрузок</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n Download(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -782,7 +881,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 items</source>
-        <translation>%1 элементов</translation>
+        <translation type="obsolete">%1 элементов</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n item(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1129,6 +1236,42 @@ Do you want to ignore these errors?</source>
         <source>Use this destination:</source>
         <translation>Использовать эту папку назначения:</translation>
     </message>
+    <message>
+        <source>On startup:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show my home page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a blank page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore windows and tabs from last time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On application exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select tabs and windows as they are created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm when closing multiple tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabBar</name>
@@ -1155,6 +1298,14 @@ Do you want to ignore these errors?</source>
     <message>
         <source>Reload All Tabs</source>
         <translation>Обновить все вкладки</translation>
+    </message>
+    <message>
+        <source>Show Tab Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide Tab Bar</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1263,6 +1414,10 @@ Do you really want to close this page?
     <message>
         <source>C&amp;opy Image Location</source>
         <translation>Копировать &amp;адрес изображения</translation>
+    </message>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

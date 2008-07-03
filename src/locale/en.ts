@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="en_US">
-<defaultcodec></defaultcodec>
-<context encoding="UTF-8">
+<!DOCTYPE TS><TS version="2.0" language="en_US">
+<context>
     <name>AboutDialog</name>
     <message>
         <location filename="../aboutdialog.cpp" line="34"/>
@@ -192,387 +191,397 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BrowserApplication</name>
     <message>
-        <location filename="../browserapplication.cpp" line="202"/>
+        <location filename="../browserapplication.cpp" line="203"/>
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browserapplication.cpp" line="356"/>
+        <source>Restore failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browserapplication.cpp" line="357"/>
+        <source>The saved session will not being restored because last time it was restored Arora crashed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BrowserMainWindow</name>
     <message>
-        <location filename="../browsermainwindow.cpp" line="299"/>
+        <location filename="../browsermainwindow.cpp" line="328"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="301"/>
+        <location filename="../browsermainwindow.cpp" line="330"/>
         <source>&amp;New Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="303"/>
+        <location filename="../browsermainwindow.cpp" line="332"/>
         <source>&amp;Open File...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="304"/>
+        <location filename="../browsermainwindow.cpp" line="333"/>
         <source>Open &amp;Location...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="309"/>
+        <location filename="../browsermainwindow.cpp" line="338"/>
         <source>&amp;Save As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="313"/>
+        <location filename="../browsermainwindow.cpp" line="342"/>
         <source>&amp;Import Bookmarks...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="314"/>
+        <location filename="../browsermainwindow.cpp" line="343"/>
         <source>&amp;Export Bookmarks...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="316"/>
+        <location filename="../browsermainwindow.cpp" line="345"/>
         <source>P&amp;rint Preview...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="317"/>
+        <location filename="../browsermainwindow.cpp" line="346"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="319"/>
+        <location filename="../browsermainwindow.cpp" line="348"/>
         <source>Private &amp;Browsing...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="326"/>
+        <location filename="../browsermainwindow.cpp" line="355"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="330"/>
+        <location filename="../browsermainwindow.cpp" line="359"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="331"/>
+        <location filename="../browsermainwindow.cpp" line="360"/>
         <source>&amp;Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="334"/>
+        <location filename="../browsermainwindow.cpp" line="363"/>
         <source>&amp;Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="338"/>
+        <location filename="../browsermainwindow.cpp" line="367"/>
         <source>Cu&amp;t</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="341"/>
+        <location filename="../browsermainwindow.cpp" line="370"/>
         <source>&amp;Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="344"/>
+        <location filename="../browsermainwindow.cpp" line="373"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="349"/>
+        <location filename="../browsermainwindow.cpp" line="378"/>
         <source>&amp;Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="354"/>
-        <source>&amp;Find Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="358"/>
-        <source>&amp;Find Previous</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="363"/>
-        <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="363"/>
+        <location filename="../browsermainwindow.cpp" line="392"/>
         <source>Ctrl+,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="366"/>
+        <location filename="../browsermainwindow.cpp" line="395"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="380"/>
+        <location filename="../browsermainwindow.cpp" line="409"/>
         <source>Shift+Ctrl+B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="374"/>
+        <location filename="../browsermainwindow.cpp" line="403"/>
         <source>Ctrl+|</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="391"/>
+        <location filename="../browsermainwindow.cpp" line="420"/>
         <source>Ctrl+/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="397"/>
+        <location filename="../browsermainwindow.cpp" line="426"/>
         <source>&amp;Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="404"/>
-        <source>Reload Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="408"/>
-        <source>&amp;Make Text Bigger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="409"/>
-        <source>&amp;Make Text Normal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="410"/>
-        <source>&amp;Make Text Smaller</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="413"/>
+        <location filename="../browsermainwindow.cpp" line="442"/>
         <source>Page S&amp;ource</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="413"/>
+        <location filename="../browsermainwindow.cpp" line="442"/>
         <source>Ctrl+Alt+U</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="414"/>
+        <location filename="../browsermainwindow.cpp" line="443"/>
         <source>&amp;Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="421"/>
+        <location filename="../browsermainwindow.cpp" line="450"/>
         <source>Hi&amp;story</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="425"/>
+        <location filename="../browsermainwindow.cpp" line="454"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="430"/>
+        <location filename="../browsermainwindow.cpp" line="459"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="435"/>
+        <location filename="../browsermainwindow.cpp" line="464"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="439"/>
+        <location filename="../browsermainwindow.cpp" line="468"/>
         <source>Restore Last Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="454"/>
+        <location filename="../browsermainwindow.cpp" line="483"/>
         <source>&amp;Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="459"/>
+        <location filename="../browsermainwindow.cpp" line="488"/>
         <source>Manage Bookmarks...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="461"/>
+        <location filename="../browsermainwindow.cpp" line="490"/>
         <source>Add Bookmark...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="472"/>
+        <location filename="../browsermainwindow.cpp" line="501"/>
         <source>&amp;Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="477"/>
+        <location filename="../browsermainwindow.cpp" line="506"/>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="478"/>
+        <location filename="../browsermainwindow.cpp" line="507"/>
         <source>Web &amp;Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="479"/>
+        <location filename="../browsermainwindow.cpp" line="508"/>
         <source>Ctrl+K</source>
         <comment>Web Search</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="483"/>
+        <location filename="../browsermainwindow.cpp" line="512"/>
         <source>Enable Web &amp;Inspector</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="487"/>
+        <location filename="../browsermainwindow.cpp" line="519"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="488"/>
+        <location filename="../browsermainwindow.cpp" line="520"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="489"/>
+        <location filename="../browsermainwindow.cpp" line="521"/>
         <source>About &amp;Arora</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="495"/>
+        <location filename="../browsermainwindow.cpp" line="527"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="587"/>
+        <location filename="../browsermainwindow.cpp" line="625"/>
         <source>Show Status Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="587"/>
+        <location filename="../browsermainwindow.cpp" line="625"/>
         <source>Hide Status Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="592"/>
+        <location filename="../browsermainwindow.cpp" line="630"/>
         <source>Show Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="592"/>
+        <location filename="../browsermainwindow.cpp" line="630"/>
         <source>Hide Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="695"/>
+        <location filename="../browsermainwindow.cpp" line="733"/>
         <source>Arora</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="700"/>
+        <location filename="../browsermainwindow.cpp" line="738"/>
         <source>%1 - Arora</source>
         <comment>Page title and Browser name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="720"/>
+        <location filename="../browsermainwindow.cpp" line="758"/>
         <source>Open Web Resource</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="721"/>
+        <location filename="../browsermainwindow.cpp" line="759"/>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="750"/>
+        <location filename="../browsermainwindow.cpp" line="788"/>
         <source>Print Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="761"/>
+        <location filename="../browsermainwindow.cpp" line="799"/>
         <source>Are you sure you want to turn on private browsing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="799"/>
+        <location filename="../browsermainwindow.cpp" line="837"/>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="864"/>
+        <location filename="../browsermainwindow.cpp" line="902"/>
         <source>Page Source of %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="894"/>
+        <location filename="../browsermainwindow.cpp" line="932"/>
         <source>Web Inspector</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="896"/>
+        <location filename="../browsermainwindow.cpp" line="934"/>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="947"/>
+        <location filename="../browsermainwindow.cpp" line="988"/>
         <source>Stop loading the current page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="952"/>
+        <location filename="../browsermainwindow.cpp" line="993"/>
         <source>Reload the current page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="998"/>
+        <location filename="../browsermainwindow.cpp" line="1039"/>
         <source>Downloads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="998"/>
+        <location filename="../browsermainwindow.cpp" line="1039"/>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="480"/>
+        <location filename="../browsermainwindow.cpp" line="509"/>
         <source>&amp;Clear Private Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="481"/>
+        <location filename="../browsermainwindow.cpp" line="510"/>
         <source>Ctrl+Shift+Delete</source>
         <comment>Clear Private Data</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="597"/>
+        <location filename="../browsermainwindow.cpp" line="635"/>
         <source>Show Bookmarks Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="597"/>
+        <location filename="../browsermainwindow.cpp" line="635"/>
         <source>Hide Bookmarks Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="770"/>
+        <location filename="../browsermainwindow.cpp" line="808"/>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="383"/>
+        <source>Find &amp;Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="387"/>
+        <source>Find P&amp;revious</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="392"/>
+        <source>Prefe&amp;rences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="433"/>
+        <source>&amp;Reload Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="437"/>
+        <source>Make Text &amp;Bigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="438"/>
+        <source>Make Text &amp;Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="439"/>
+        <source>Make Text &amp;Smaller</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1124,305 +1133,325 @@ Do you want to ignore these errors?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="52"/>
+        <location filename="../settings.ui" line="68"/>
         <source>Home:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="65"/>
+        <location filename="../settings.ui" line="81"/>
         <source>Set to current page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="72"/>
+        <location filename="../settings.ui" line="101"/>
         <source>Remove history items:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="83"/>
+        <location filename="../settings.ui" line="112"/>
         <source>After one day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="88"/>
+        <location filename="../settings.ui" line="117"/>
         <source>After one week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="93"/>
+        <location filename="../settings.ui" line="122"/>
         <source>After two weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="98"/>
+        <location filename="../settings.ui" line="127"/>
         <source>After one month</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="103"/>
+        <location filename="../settings.ui" line="132"/>
         <source>After one year</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="108"/>
+        <location filename="../settings.ui" line="137"/>
         <source>Manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="121"/>
+        <location filename="../settings.ui" line="150"/>
         <source>Open links from applications:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="132"/>
+        <location filename="../settings.ui" line="161"/>
         <source>In a tab in the current window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="137"/>
+        <location filename="../settings.ui" line="166"/>
         <source>In a new window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="201"/>
+        <location filename="../settings.ui" line="222"/>
         <source>Appearance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="243"/>
+        <location filename="../settings.ui" line="264"/>
         <source>Fixed-width font:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="287"/>
+        <location filename="../settings.ui" line="308"/>
         <source>Privacy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="293"/>
+        <location filename="../settings.ui" line="314"/>
         <source>Web Content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="299"/>
+        <location filename="../settings.ui" line="320"/>
         <source>Enable Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="309"/>
+        <location filename="../settings.ui" line="330"/>
         <source>Enable Javascript</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="332"/>
+        <location filename="../settings.ui" line="353"/>
         <source>Cookies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="338"/>
+        <location filename="../settings.ui" line="359"/>
         <source>Accept Cookies:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="349"/>
+        <location filename="../settings.ui" line="370"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="354"/>
+        <location filename="../settings.ui" line="375"/>
         <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="359"/>
+        <location filename="../settings.ui" line="380"/>
         <source>Only from sites you navigate to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="367"/>
+        <location filename="../settings.ui" line="388"/>
         <source>Exceptions...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="374"/>
+        <location filename="../settings.ui" line="395"/>
         <source>Keep until:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="385"/>
+        <location filename="../settings.ui" line="406"/>
         <source>They expire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="390"/>
+        <location filename="../settings.ui" line="411"/>
         <source>I exit the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="395"/>
+        <location filename="../settings.ui" line="416"/>
         <source>At most 90 days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="403"/>
+        <location filename="../settings.ui" line="424"/>
         <source>Cookies...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="464"/>
+        <location filename="../settings.ui" line="485"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="470"/>
+        <location filename="../settings.ui" line="491"/>
         <source>Enable proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="479"/>
+        <location filename="../settings.ui" line="500"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="490"/>
+        <location filename="../settings.ui" line="511"/>
         <source>Socks5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="495"/>
+        <location filename="../settings.ui" line="516"/>
         <source>Http</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="503"/>
+        <location filename="../settings.ui" line="524"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="516"/>
+        <location filename="../settings.ui" line="537"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="549"/>
+        <location filename="../settings.ui" line="570"/>
         <source>User Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="562"/>
+        <location filename="../settings.ui" line="583"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="596"/>
+        <location filename="../settings.ui" line="617"/>
         <source>Advanced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="602"/>
+        <location filename="../settings.ui" line="623"/>
         <source>Style Sheet:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="158"/>
+        <location filename="../settings.ui" line="174"/>
         <source>Downloads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="164"/>
+        <location filename="../settings.ui" line="180"/>
         <source>Ask for a destination each time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="173"/>
+        <location filename="../settings.ui" line="189"/>
         <source>Use this destination:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="207"/>
+        <location filename="../settings.ui" line="228"/>
         <source>Standard font:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="226"/>
+        <location filename="../settings.ui" line="247"/>
         <source>Times 16</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="266"/>
+        <location filename="../settings.ui" line="287"/>
         <source>Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="256"/>
+        <location filename="../settings.ui" line="277"/>
         <source>Courier 13</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="113"/>
+        <location filename="../settings.ui" line="142"/>
         <source>On application exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="319"/>
+        <location filename="../settings.ui" line="340"/>
         <source>Enable Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="427"/>
+        <location filename="../settings.ui" line="448"/>
         <source>Tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="433"/>
+        <location filename="../settings.ui" line="454"/>
         <source>Select tabs and windows as they are created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="440"/>
+        <location filename="../settings.ui" line="461"/>
         <source>Confirm when closing multiple tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="39"/>
+        <source>On startup:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="50"/>
+        <source>Show my home page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="55"/>
+        <source>Show a blank page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="60"/>
+        <source>Restore windows and tabs from last time</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TabBar</name>
     <message>
-        <location filename="../tabbar.cpp" line="159"/>
+        <location filename="../tabbar.cpp" line="162"/>
         <source>New &amp;Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="162"/>
+        <location filename="../tabbar.cpp" line="165"/>
         <source>Duplicate Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="168"/>
+        <location filename="../tabbar.cpp" line="171"/>
         <source>&amp;Close Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="172"/>
+        <location filename="../tabbar.cpp" line="175"/>
         <source>Close &amp;Other Tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="178"/>
+        <location filename="../tabbar.cpp" line="181"/>
         <source>Reload Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="184"/>
+        <location filename="../tabbar.cpp" line="187"/>
         <source>Reload All Tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="141"/>
+        <location filename="../tabbar.cpp" line="144"/>
         <source>Show Tab Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="141"/>
+        <location filename="../tabbar.cpp" line="144"/>
         <source>Hide Tab Bar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1430,42 +1459,42 @@ Do you want to ignore these errors?</source>
 <context>
     <name>TabWidget</name>
     <message>
-        <location filename="../tabwidget.cpp" line="118"/>
+        <location filename="../tabwidget.cpp" line="122"/>
         <source>New &amp;Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="122"/>
+        <location filename="../tabwidget.cpp" line="126"/>
         <source>&amp;Close Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="134"/>
+        <location filename="../tabwidget.cpp" line="138"/>
         <source>Show Next Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="144"/>
+        <location filename="../tabwidget.cpp" line="148"/>
         <source>Show Previous Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="159"/>
+        <location filename="../tabwidget.cpp" line="163"/>
         <source>Recently Closed Tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="444"/>
+        <location filename="../tabwidget.cpp" line="454"/>
         <source>(Untitled)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="552"/>
+        <location filename="../tabwidget.cpp" line="562"/>
         <source>Do you really want to close this page?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="554"/>
+        <location filename="../tabwidget.cpp" line="564"/>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
@@ -1556,7 +1585,7 @@ Do you really want to close this page?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="404"/>
+        <location filename="../webview.cpp" line="413"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
