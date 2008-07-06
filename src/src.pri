@@ -35,7 +35,6 @@ FORMS += \
 
 HEADERS += \
     aboutdialog.h \
-    autosaver.h \
     bookmarks.h \
     browserapplication.h \
     browsermainwindow.h \
@@ -49,7 +48,6 @@ HEADERS += \
     networkaccessmanager.h \
     searchlineedit.h \
     settings.h \
-    squeezelabel.h \
     tabbar.h \
     tabwidget.h \
     toolbarsearch.h \
@@ -61,7 +59,6 @@ HEADERS += \
 
 SOURCES += \
     aboutdialog.cpp \
-    autosaver.cpp \
     bookmarks.cpp \
     browserapplication.cpp \
     browsermainwindow.cpp \
@@ -75,7 +72,6 @@ SOURCES += \
     networkaccessmanager.cpp \
     searchlineedit.cpp \
     settings.cpp \
-    squeezelabel.cpp \
     tabbar.cpp \
     tabwidget.cpp \
     toolbarsearch.cpp \
@@ -84,6 +80,8 @@ SOURCES += \
     webview.cpp \
     webviewsearch.cpp \
     xbel.cpp
+
+include(utils/utils.pri)
 
 RESOURCES += data/data.qrc \
     htmls/htmls.qrc

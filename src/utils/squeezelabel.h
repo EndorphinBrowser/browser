@@ -65,6 +65,10 @@
 
 #include <qlabel.h>
 
+/*
+    This class will paint the current text with an elided in the middle
+    if the width of the text is less then the width of the widget.
+*/
 class SqueezeLabel : public QLabel
 {
     Q_OBJECT
