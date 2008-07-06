@@ -11,7 +11,7 @@
     <message>
         <location filename="../aboutdialog.ui" line="84"/>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>Browser Web leggero basato su WebKit</translation>
+        <translation>Browser web leggero basato su WebKit</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../aboutdialog.ui" line="100"/>
@@ -48,7 +48,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addbookmarkdialog.ui" line="13"/>
         <source>Add Bookmark</source>
-        <translation>Aggiungi un Segnalibro</translation>
+        <translation>Aggiungi un segnalibro</translation>
     </message>
     <message>
         <location filename="../addbookmarkdialog.ui" line="19"/>
@@ -66,12 +66,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="877"/>
         <source>Delete</source>
-        <translation>Cancella</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="914"/>
         <source>New Folder</source>
-        <translation>Nuova Cartella</translation>
+        <translation>Nuova cartella</translation>
     </message>
     <message>
         <location filename="../bookmarks.ui" line="13"/>
@@ -86,12 +86,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.ui" line="47"/>
         <source>Add Folder</source>
-        <translation>Aggiungi Cartella</translation>
+        <translation>Aggiungi cartella</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="874"/>
         <source>Open in New Tab</source>
-        <translation>Apri in una nuova Scheda</translation>
+        <translation>Apri in una nuova scheda</translation>
     </message>
 </context>
 <context>
@@ -100,13 +100,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../bookmarks.cpp" line="285"/>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
-        <translation>Errore durante l&apos;appertura dei segnalibri sulla riga %1, colonna %2
+        <translation>Errore durante l&apos;apertura dei segnalibri alla riga %1, colonna %2:
 %3</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="139"/>
         <source>Toolbar Bookmarks</source>
-        <translation>Barra dei Segnalibri</translation>
+        <translation>Barra dei segnalibri</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="147"/>
@@ -116,7 +116,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="274"/>
         <source>Open File</source>
-        <translation>Apri File</translation>
+        <translation>Apri file</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="297"/>
@@ -131,7 +131,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="295"/>
         <source>Save File</source>
-        <translation>Salva il File</translation>
+        <translation>Salva il file</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="296"/>
@@ -151,22 +151,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="307"/>
         <source>Remove Bookmark</source>
-        <translation>Rimuovi Segnalibro</translation>
+        <translation>Rimuovi segnalibro</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="341"/>
         <source>Insert Bookmark</source>
-        <translation>Inserisci Segnalibro</translation>
+        <translation>Inserisci segnalibro</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="355"/>
         <source>Name Change</source>
-        <translation>Cambia il Nome</translation>
+        <translation>Cambia il nome</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="358"/>
         <source>Address Change</source>
-        <translation>Cambia l&apos;Indirizzo</translation>
+        <translation>Cambia l&apos;indirizzo</translation>
     </message>
 </context>
 <context>
@@ -197,17 +197,17 @@ p, li { white-space: pre-wrap; }
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
         <translation>Ci sono %1 finestre e %2 schede aperte
-Se sicuro di voler uscire?</translation>
+Sei sicuro di voler uscire?</translation>
     </message>
     <message>
         <location filename="../browserapplication.cpp" line="339"/>
         <source>Restore failed</source>
-        <translation>Ripristino fallito</translation>
+        <translation>Ripristino non riuscito</translation>
     </message>
     <message>
         <location filename="../browserapplication.cpp" line="340"/>
         <source>The saved session will not being restored because last time it was restored Arora crashed.</source>
-        <translation>La sessione salvata non sarà ripristinata perchè l&apos;ultima volta che è stata ripristinata Arora è andata in crash.</translation>
+        <translation>La sessione salvata non sarà ripristinata perché l&apos;ultima volta che è stata ripristinata Arora è andato in crash.</translation>
     </message>
 </context>
 <context>
@@ -220,37 +220,37 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="301"/>
         <source>&amp;New Window</source>
-        <translation>&amp;Nuova Finestra</translation>
+        <translation>&amp;Nuova finestra</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="303"/>
         <source>&amp;Open File...</source>
-        <translation>&amp;Apri File...</translation>
+        <translation>&amp;Apri file...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="304"/>
         <source>Open &amp;Location...</source>
-        <translation>&amp;Apri Indirizzo...</translation>
+        <translation>&amp;Apri indirizzo...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="309"/>
         <source>&amp;Save As...</source>
-        <translation>&amp;Salva Con Nome...</translation>
+        <translation>&amp;Salva come...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="313"/>
         <source>&amp;Import Bookmarks...</source>
-        <translation>&amp;Importa i Segnalibri...</translation>
+        <translation>&amp;Importa i segnalibri...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="314"/>
         <source>&amp;Export Bookmarks...</source>
-        <translation>&amp;Esporta i Segnalibri...</translation>
+        <translation>&amp;Esporta segnalibri...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="316"/>
         <source>P&amp;rint Preview...</source>
-        <translation>An&amp;teprima di Stampa...</translation>
+        <translation>An&amp;teprima di stampa...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="317"/>
@@ -260,7 +260,7 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="319"/>
         <source>Private &amp;Browsing...</source>
-        <translation>&amp;Navigazione Anonima...</translation>
+        <translation>&amp;Navigazione anonima...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="326"/>
@@ -300,17 +300,17 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="349"/>
         <source>&amp;Find</source>
-        <translation>&amp;Cerca</translation>
+        <translation>Tro&amp;va</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="354"/>
         <source>&amp;Find Next</source>
-        <translation>&amp;Cerca il Successivo</translation>
+        <translation>Tro&amp;va successivo</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="358"/>
         <source>&amp;Find Previous</source>
-        <translation>&amp;Cerca il Precedente</translation>
+        <translation>Tro&amp;va precedente</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="363"/>
@@ -325,7 +325,7 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="366"/>
         <source>&amp;View</source>
-        <translation>&amp;Vista</translation>
+        <translation>&amp;Visualizza</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="380"/>
@@ -350,27 +350,27 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="404"/>
         <source>Reload Page</source>
-        <translation>Ricarica la Pagina</translation>
+        <translation>Ricarica la pagina</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="408"/>
         <source>&amp;Make Text Bigger</source>
-        <translation>&amp;Ingrandisci il Testo</translation>
+        <translation>&amp;Ingrandisci il testo</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="409"/>
         <source>&amp;Make Text Normal</source>
-        <translation>&amp;Dimensione Normale</translation>
+        <translation>&amp;Dimensione normale</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="410"/>
         <source>&amp;Make Text Smaller</source>
-        <translation>&amp;Rimpicciolisci il Testo</translation>
+        <translation>&amp;Rimpicciolisci il testo</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="413"/>
         <source>Page S&amp;ource</source>
-        <translation>&amp;Sorgente della Pagina</translation>
+        <translation>&amp;Sorgente della pagina</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="413"/>
@@ -380,7 +380,7 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="414"/>
         <source>&amp;Full Screen</source>
-        <translation>&amp;Schermo Intero</translation>
+        <translation>&amp;Schermo intero</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="421"/>
@@ -400,12 +400,12 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="435"/>
         <source>Home</source>
-        <translation>Pagina Iniziale</translation>
+        <translation>Pagina iniziale</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="439"/>
         <source>Restore Last Session</source>
-        <translation>Ripristina la Sessione Precedente</translation>
+        <translation>Ripristina la sessione precedente</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="454"/>
@@ -415,12 +415,12 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="459"/>
         <source>Manage Bookmarks...</source>
-        <translation>Gestione dei Segnalibri...</translation>
+        <translation>Gestione dei segnalibri...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="461"/>
         <source>Add Bookmark...</source>
-        <translation>Aggiungi Segnalibro...</translation>
+        <translation>Aggiungi segnalibro...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="472"/>
@@ -435,7 +435,7 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="478"/>
         <source>Web &amp;Search</source>
-        <translation>&amp;Ricerca nel Web</translation>
+        <translation>&amp;Ricerca nel web</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="479"/>
@@ -446,7 +446,7 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="483"/>
         <source>Enable Web &amp;Inspector</source>
-        <translation>Abilita l&apos;&amp;Ispettore Web</translation>
+        <translation>Abilita l&apos;anal&amp;izzatore web</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="487"/>
@@ -471,28 +471,30 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="587"/>
         <source>Show Status Bar</source>
-        <translation>Mostra la Barra di Stato</translation>
+        <translation>Mostra la barra di stato</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="587"/>
         <source>Hide Status Bar</source>
-        <translation>Nascondi la Barra di Stato</translation>
+        <translation>Nascondi la barra di stato</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="592"/>
         <source>Show Toolbar</source>
-        <translation>Mostra la Barra Degli Strumenti</translation>
+        <translation>Mostra la barra degli strumenti</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="592"/>
         <source>Hide Toolbar</source>
-        <translation>Nascondi la Barra Degli Strumenti</translation>
+        <translation>Nascondi la barra degli strumenti</translation>
     </message>
     <message>
+        <location filename="../browsermainwindow.cpp" line="592"/>
         <source>Show Bookmarks bar</source>
         <translation type="obsolete">Mostra la Barra Dei Segnalibri</translation>
     </message>
     <message>
+        <location filename="../browsermainwindow.cpp" line="592"/>
         <source>Hide Bookmarks bar</source>
         <translation type="obsolete">Nascondi la Barra Dei Segnalibri</translation>
     </message>
@@ -510,17 +512,17 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="720"/>
         <source>Open Web Resource</source>
-        <translation>Apri Risorsa Web</translation>
+        <translation>Apri risorsa web</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="721"/>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
-        <translation>Risorse Web (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</translation>
+        <translation>Risorse web (*.html *.htm *.svg *.png *.gif *.svgz);;Tutti i file (*.*)</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="750"/>
         <source>Print Document</source>
-        <translation>Stampa Documento</translation>
+        <translation>Stampa documento</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="761"/>
@@ -530,7 +532,7 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="799"/>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
-        <translation>Sei sicuro di voler chiudere la finestra? Ci sono %1 schede aperte</translation>
+        <translation>Sei sicuro di voler chiudere la finestra?  Ci sono %1 schede aperte</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="864"/>
@@ -540,24 +542,24 @@ Se sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="894"/>
         <source>Web Inspector</source>
-        <translation>Ispettore Web</translation>
+        <translation>Analizzatore web</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="896"/>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation>L&apos;ispettore web funziona correttamente solo con le pagine che sono caricate dopo averlo abilitato.
+        <translation>L&apos;analizzatore web funziona correttamente solo con le pagine che sono caricate dopo averlo abilitato.
 Vuoi ricaricare tutte le pagine?</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="947"/>
         <source>Stop loading the current page</source>
-        <translation>Ferma il caricamento della pagina corrente</translation>
+        <translation>Ferma il caricamento della pagina attuale</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="952"/>
         <source>Reload the current page</source>
-        <translation>Ricarica la pagina corrente</translation>
+        <translation>Ricarica la pagina attuale</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="998"/>
@@ -573,7 +575,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="480"/>
         <source>&amp;Clear Private Data</source>
-        <translation>&amp;Cancella i Dati Privati</translation>
+        <translation>&amp;Cancella i dati privati</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="481"/>
@@ -584,17 +586,17 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="770"/>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quando la navigazione anonima è attivata, alcune azioni sono disabilitate nel rispetto della tua privacy:&lt;ul&gt;&lt;li&gt; Le pagine non sono aggiunte alla cronologia.&lt;/li&gt;&lt;li&gt; Gli elementi sono rimossi automaticamente dalla finestra degli scaricamenti.&lt;/li&gt;&lt;li&gt; Non vengono salvati i nuovi cookie e non è possibile accedere a quelli attuali.&lt;/li&gt;&lt;li&gt; Le chiavi di ricerca non sono aggiunte al menu che appare sul box di ricerca.&lt;/li&gt;&lt;/ul&gt;Fino a che la finestra è aperta, puoi comunque usare i bottoni Avanti e Indietro per tornare alle pagine che hai già visitato.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quando la navigazione anonima è attivata, alcune azioni sono disabilitate nel rispetto della tua privacy:&lt;ul&gt;&lt;li&gt; Le pagine non sono aggiunte alla cronologia.&lt;/li&gt;&lt;li&gt; Gli elementi sono rimossi automaticamente dalla finestra degli scaricamenti.&lt;/li&gt;&lt;li&gt; Non vengono salvati i nuovi cookie e non è possibile accedere a quelli attuali.&lt;/li&gt;&lt;li&gt; Le chiavi di ricerca non sono aggiunte al menu che appare sulla riquadro di ricerca.&lt;/li&gt;&lt;/ul&gt;Fino a che la finestra è aperta, puoi comunque usare i pulsanti Avanti e Indietro per tornare alle pagine che hai già visitato.</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="597"/>
         <source>Show Bookmarks Bar</source>
-        <translation>Visualizza la barra dei Preferiti</translation>
+        <translation>Visualizza la barra dei segnalibri</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="597"/>
         <source>Hide Bookmarks Bar</source>
-        <translation>Nascondi la barra dei Preferiti</translation>
+        <translation>Nascondi la barra dei segnalibri</translation>
     </message>
 </context>
 <context>
@@ -610,7 +612,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../clearprivatedata.cpp" line="38"/>
         <source>Clear Private Data</source>
-        <translation>Cancella i Dati Privati</translation>
+        <translation>Cancella i dati privati</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="41"/>
@@ -620,17 +622,17 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../clearprivatedata.cpp" line="43"/>
         <source>&amp;Browsing History</source>
-        <translation>Cronologia della &amp;Navigazione</translation>
+        <translation>Cronologia della &amp;navigazione</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="47"/>
         <source>&amp;Download History</source>
-        <translation>Cronologia dei &amp;Download</translation>
+        <translation>Cronolo&amp;gia degli scaricamenti</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="51"/>
         <source>&amp;Search History</source>
-        <translation>Cronologia delle &amp;Ricerche</translation>
+        <translation>Cronologia delle &amp;ricerche</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="55"/>
@@ -640,17 +642,17 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../clearprivatedata.cpp" line="59"/>
         <source>C&amp;ache</source>
-        <translation>Dati della C&amp;ache</translation>
+        <translation>C&amp;ache</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="63"/>
         <source>Website &amp;Icons</source>
-        <translation>&amp;Icone dei Siti</translation>
+        <translation>&amp;Icone dei siti</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="67"/>
         <source>Clear &amp;Private Data</source>
-        <translation>Cancella i Dati &amp;Privati</translation>
+        <translation>Cancella i dati &amp;privati</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="69"/>
@@ -663,7 +665,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../cookiejar.cpp" line="596"/>
         <source>Website</source>
-        <translation>Sito</translation>
+        <translation>Sito web</translation>
     </message>
     <message>
         <location filename="../cookiejar.cpp" line="598"/>
@@ -683,7 +685,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../cookiejar.cpp" line="636"/>
         <source>Allow For Session</source>
-        <translation>Consenti nella Sessione</translation>
+        <translation>Consenti nella sessione</translation>
     </message>
 </context>
 <context>
@@ -691,7 +693,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../cookiejar.cpp" line="441"/>
         <source>Website</source>
-        <translation>Sito</translation>
+        <translation>Sito web</translation>
     </message>
     <message>
         <location filename="../cookiejar.cpp" line="443"/>
@@ -729,12 +731,12 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../cookies.ui" line="40"/>
         <source>&amp;Remove</source>
-        <translation>&amp;Cancella</translation>
+        <translation>&amp;Rimuovi</translation>
     </message>
     <message>
         <location filename="../cookies.ui" line="47"/>
         <source>Remove &amp;All Cookies</source>
-        <translation>Cancella &amp;Tutti i Cookie</translation>
+        <translation>Rimuovi &amp;tutti i cookie</translation>
     </message>
 </context>
 <context>
@@ -747,7 +749,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../cookiesexceptions.ui" line="19"/>
         <source>New Exception</source>
-        <translation>Nuova Eccezione</translation>
+        <translation>Nuova eccezione</translation>
     </message>
     <message>
         <location filename="../cookiesexceptions.ui" line="27"/>
@@ -762,7 +764,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../cookiesexceptions.ui" line="67"/>
         <source>Allow For Session</source>
-        <translation>Consenti nella Sessione</translation>
+        <translation>Consenti nella sessione</translation>
     </message>
     <message>
         <location filename="../cookiesexceptions.ui" line="77"/>
@@ -777,12 +779,12 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../cookiesexceptions.ui" line="114"/>
         <source>&amp;Remove</source>
-        <translation>&amp;Cancella</translation>
+        <translation>&amp;Rimuovi</translation>
     </message>
     <message>
         <location filename="../cookiesexceptions.ui" line="121"/>
         <source>Remove &amp;All</source>
-        <translation>Cancella &amp;Tutti</translation>
+        <translation>Rimuovi &amp;tutti</translation>
     </message>
 </context>
 <context>
@@ -800,7 +802,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../downloads.ui" line="59"/>
         <source>0 Items</source>
-        <translation>Nessun Elemento</translation>
+        <translation>0 elementi</translation>
     </message>
 </context>
 <context>
@@ -808,17 +810,17 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../downloadmanager.cpp" line="165"/>
         <source>Save File</source>
-        <translation>Salva il File</translation>
+        <translation>Salva il file</translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="170"/>
         <source>Download canceled: %1</source>
-        <translation>Download annullato: %1</translation>
+        <translation>Scaricamento annullato: %1</translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="265"/>
         <source>Error opening save file: %1</source>
-        <translation>Errore salvando il file: %1</translation>
+        <translation>Errore durante l&apos;apertura del file: %1</translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="274"/>
@@ -828,7 +830,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../downloadmanager.cpp" line="286"/>
         <source>Network Error: %1</source>
-        <translation>Errore di Rete: %1</translation>
+        <translation>Errore di rete: %1</translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="328"/>
@@ -836,10 +838,12 @@ Vuoi ricaricare tutte le pagine?</translation>
         <translation>secondi</translation>
     </message>
     <message>
+        <location filename="../downloadmanager.cpp" line="328"/>
         <source>minutes</source>
         <translation type="obsolete">minuti</translation>
     </message>
     <message>
+        <location filename="../downloadmanager.cpp" line="328"/>
         <source>- %4 %5 remaining</source>
         <translation type="obsolete">- %4 %5 rimanenti</translation>
     </message>
@@ -876,7 +880,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../downloaditem.ui" line="13"/>
         <source>Form</source>
-        <translation>Scheda</translation>
+        <translation>Modulo</translation>
     </message>
     <message>
         <location filename="../downloaditem.ui" line="28"/>
@@ -923,10 +927,12 @@ Vuoi ricaricare tutte le pagine?</translation>
 <context>
     <name>DownloadManager</name>
     <message>
+        <location filename="../downloadmanager.cpp" line="347"/>
         <source>1 Download</source>
         <translation type="obsolete">1 Scaricamento</translation>
     </message>
     <message>
+        <location filename="../downloadmanager.cpp" line="347"/>
         <source>%1 Downloads</source>
         <translation type="obsolete">%2 Scaricamenti</translation>
     </message>
@@ -934,8 +940,8 @@ Vuoi ricaricare tutte le pagine?</translation>
         <location filename="../downloadmanager.cpp" line="618"/>
         <source>%n Download(s)</source>
         <translation>
-            <numerusform>%n Scaricamento</numerusform>
-            <numerusform>%n Scaricamenti</numerusform>
+            <numerusform>%n scaricamento</numerusform>
+            <numerusform>%n scaricamenti</numerusform>
         </translation>
     </message>
 </context>
@@ -954,7 +960,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../history.cpp" line="729"/>
         <source>Delete</source>
-        <translation>Cancella</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../history.ui" line="13"/>
@@ -964,12 +970,12 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../history.ui" line="40"/>
         <source>&amp;Remove</source>
-        <translation>&amp;Cancella</translation>
+        <translation>&amp;Rimuovi</translation>
     </message>
     <message>
         <location filename="../history.ui" line="47"/>
         <source>Remove &amp;All</source>
-        <translation>Cancella &amp;Tutti</translation>
+        <translation>Rimuovi &amp;tutti</translation>
     </message>
 </context>
 <context>
@@ -977,12 +983,12 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../history.cpp" line="651"/>
         <source>Show All History</source>
-        <translation>Mostra tutta la Cronologia</translation>
+        <translation>Mostra tutta la cronologia</translation>
     </message>
     <message>
         <location filename="../history.cpp" line="655"/>
         <source>Clear History</source>
-        <translation>Cancella la Cronologia</translation>
+        <translation>Cancella la cronologia</translation>
     </message>
 </context>
 <context>
@@ -1003,9 +1009,10 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../history.cpp" line="1058"/>
         <source>Earlier Today</source>
-        <translation>Odierni</translation>
+        <translation>Prima di oggi</translation>
     </message>
     <message>
+        <location filename="../history.cpp" line="1058"/>
         <source>%1 items</source>
         <translation type="obsolete">%1 elementi</translation>
     </message>
@@ -1050,7 +1057,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../networkaccessmanager.cpp" line="206"/>
         <source>Do you want to accept all these certificates?</source>
-        <translation>Accetti tutti questi certificati?</translation>
+        <translation>Vuoi accettare tutti questi certificati?</translation>
     </message>
 </context>
 <context>
@@ -1058,7 +1065,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../passworddialog.ui" line="13"/>
         <source>Authentication Required</source>
-        <translation>E&apos; Richiesta l&apos;Autenticazione</translation>
+        <translation>Autenticazione richiesta</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="21"/>
@@ -1068,12 +1075,12 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../passworddialog.ui" line="34"/>
         <source>INTRO TEXT DUMMY</source>
-        <translation>TESTO FANTASMA</translation>
+        <translation>TESTO INTRODUTTIVO FANTASMA</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="43"/>
         <source>Username:</source>
-        <translation>Nome Utente:</translation>
+        <translation>Nome utente:</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="53"/>
@@ -1086,7 +1093,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../proxy.ui" line="13"/>
         <source>Proxy Authentication</source>
-        <translation>Autenticazione al Proxy</translation>
+        <translation>Autenticazione al proxy</translation>
     </message>
     <message>
         <location filename="../proxy.ui" line="19"/>
@@ -1101,7 +1108,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../proxy.ui" line="36"/>
         <source>Username:</source>
-        <translation>Nome Utente:</translation>
+        <translation>Nome utente:</translation>
     </message>
     <message>
         <location filename="../proxy.ui" line="46"/>
@@ -1127,12 +1134,12 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../searchbanner.ui" line="19"/>
         <source>Form</source>
-        <translation>Scheda</translation>
+        <translation>Modulo</translation>
     </message>
     <message>
         <location filename="../searchbanner.ui" line="50"/>
         <source>TextLabel</source>
-        <translation>Etichetta</translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../searchbanner.ui" line="57"/>
@@ -1168,7 +1175,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="33"/>
         <source>General</source>
-        <translation>Generali</translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="68"/>
@@ -1183,7 +1190,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="101"/>
         <source>Remove history items:</source>
-        <translation>Cancella gli elementi dalla cronologia:</translation>
+        <translation>Rimuovi gli elementi dalla cronologia:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="112"/>
@@ -1218,7 +1225,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="150"/>
         <source>Open links from applications:</source>
-        <translation>Apri i link dalle applicazioni:</translation>
+        <translation>Apri i collegamenti dalle applicazioni:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="161"/>
@@ -1248,17 +1255,17 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="314"/>
         <source>Web Content</source>
-        <translation>Contenuto Web</translation>
+        <translation>Contenuto web</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="320"/>
         <source>Enable Plugins</source>
-        <translation>Abilita i Plugin</translation>
+        <translation>Abilita i plugin</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="330"/>
         <source>Enable Javascript</source>
-        <translation>Abilita il Javascript</translation>
+        <translation>Abilita Javascript</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="353"/>
@@ -1268,7 +1275,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="359"/>
         <source>Accept Cookies:</source>
-        <translation>Accetta i Cookie</translation>
+        <translation>Accetta cookie:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="370"/>
@@ -1353,7 +1360,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="570"/>
         <source>User Name:</source>
-        <translation>Nome Utente:</translation>
+        <translation>Nome utente:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="583"/>
@@ -1368,7 +1375,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="623"/>
         <source>Style Sheet:</source>
-        <translation>Stile Web:</translation>
+        <translation>Foglio di stile:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="174"/>
@@ -1408,27 +1415,27 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="39"/>
         <source>On startup:</source>
-        <translation>In fase di avvio:</translation>
+        <translation>All&apos;avvio:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="50"/>
         <source>Show my home page</source>
-        <translation>Mostra la home page</translation>
+        <translation>Mostra la pagina iniziale</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="55"/>
         <source>Show a blank page</source>
-        <translation>Mostra pagina vuota</translation>
+        <translation>Mostra una pagina vuota</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="60"/>
         <source>Restore windows and tabs from last time</source>
-        <translation>Ripristina le finestre ed i tabs dell&apos;ultima sessione</translation>
+        <translation>Ripristina le finestre ed le schede dell&apos;ultima sessione</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="142"/>
         <source>On application exit</source>
-        <translation>In fase di chiusura</translation>
+        <translation>All&apos;uscita</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="340"/>
@@ -1438,17 +1445,17 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="448"/>
         <source>Tabs</source>
-        <translation>Tabs</translation>
+        <translation>Schede</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="454"/>
         <source>Select tabs and windows as they are created</source>
-        <translation>Seleziona tabs e finestre a seconda di come sono state create</translation>
+        <translation>Seleziona schede e finestre a seconda di come sono state create</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="461"/>
         <source>Confirm when closing multiple tabs</source>
-        <translation>Chiedi conferma durante la chiusura di tab multipli</translation>
+        <translation>Chiedi conferma durante la chiusura di schede multiple</translation>
     </message>
 </context>
 <context>
@@ -1456,42 +1463,42 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../tabbar.cpp" line="159"/>
         <source>New &amp;Tab</source>
-        <translation>&amp;Nuova Scheda</translation>
+        <translation>&amp;Nuova scheda</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="162"/>
         <source>Duplicate Tab</source>
-        <translation>Duplica Scheda</translation>
+        <translation>Duplica scheda</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="168"/>
         <source>&amp;Close Tab</source>
-        <translation>&amp;Chiudi Scheda</translation>
+        <translation>&amp;Chiudi scheda</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="172"/>
         <source>Close &amp;Other Tabs</source>
-        <translation>Chiudi &amp;Altre Schede</translation>
+        <translation>Chiudi &amp;altre schede</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="178"/>
         <source>Reload Tab</source>
-        <translation>Ricarica Scheda</translation>
+        <translation>Ricarica scheda</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="184"/>
         <source>Reload All Tabs</source>
-        <translation>Ricarica Tutte le Schede</translation>
+        <translation>Ricarica tutte le schede</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="141"/>
         <source>Show Tab Bar</source>
-        <translation>Visualizza la barra dei Tab</translation>
+        <translation>Mostra la barra delle schede</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="141"/>
         <source>Hide Tab Bar</source>
-        <translation>Nascondi la barra dei Tab</translation>
+        <translation>Nascondi la barra delle schede</translation>
     </message>
 </context>
 <context>
@@ -1499,27 +1506,27 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../tabwidget.cpp" line="118"/>
         <source>New &amp;Tab</source>
-        <translation>&amp;Nuova Scheda</translation>
+        <translation>&amp;Nuova scheda</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="122"/>
         <source>&amp;Close Tab</source>
-        <translation>&amp;Chiudi la Scheda</translation>
+        <translation>&amp;Chiudi la scheda</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="134"/>
         <source>Show Next Tab</source>
-        <translation>Mostra la Scheda Successiva</translation>
+        <translation>Mostra la scheda successiva</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="144"/>
         <source>Show Previous Tab</source>
-        <translation>Mostra la Scheda Precedente</translation>
+        <translation>Mostra la scheda precedente</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="159"/>
         <source>Recently Closed Tabs</source>
-        <translation>Schede Chiuse di Recente</translation>
+        <translation>Schede chiuse di recente</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="444"/>
@@ -1536,7 +1543,7 @@ Vuoi ignorare questi errori?</translation>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
-        <translation>Hai modificato questa pagina e chiudendola perderai la tua modifica.
+        <translation>Hai modificato questa pagina e chiudendola perderai le tue modifiche.
 Sei sicuro di volerlo fare?
 </translation>
     </message>
@@ -1551,17 +1558,17 @@ Sei sicuro di volerlo fare?
     <message>
         <location filename="../toolbarsearch.cpp" line="153"/>
         <source>No Recent Searches</source>
-        <translation>Nessuna Ricerca Recente</translation>
+        <translation>Nessuna ricerca recente</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="157"/>
         <source>Recent Searches</source>
-        <translation>Ricerche Recenti</translation>
+        <translation>Ricerche recenti</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="164"/>
         <source>Clear Recent Searches</source>
-        <translation>Cancella le Ricerche Recenti</translation>
+        <translation>Cancella le ricerche recenti</translation>
     </message>
 </context>
 <context>
@@ -1569,7 +1576,7 @@ Sei sicuro di volerlo fare?
     <message>
         <location filename="../webview.cpp" line="195"/>
         <source>Error loading page: %1</source>
-        <translation>Errore aprendo la pagina: %1</translation>
+        <translation>Errore durante l&apos;apertura della pagina: %1</translation>
     </message>
 </context>
 <context>
@@ -1577,52 +1584,52 @@ Sei sicuro di volerlo fare?
     <message>
         <location filename="../webview.cpp" line="255"/>
         <source>Open in New &amp;Window</source>
-        <translation>Apri in una Nuova &amp;Finestra</translation>
+        <translation>Apri in una nuova &amp;finestra</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="256"/>
         <source>Open in New &amp;Tab</source>
-        <translation>Apri in una Nuova &amp;Scheda</translation>
+        <translation>Apri in una nuova &amp;scheda</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="258"/>
         <source>Save Lin&amp;k</source>
-        <translation>Salva il Lin&amp;k</translation>
+        <translation>Salva il colle&amp;gamento</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="259"/>
         <source>&amp;Bookmark This Link</source>
-        <translation>Salva il Link nei Segnali&amp;bri</translation>
+        <translation>Salva il collegamento nei Segnali&amp;bri</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="261"/>
         <source>&amp;Copy Link Location</source>
-        <translation>&amp;Copia il link</translation>
+        <translation>&amp;Copia l&apos;indirizzo del collegamento</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="269"/>
         <source>Open Image in New &amp;Window</source>
-        <translation>Apri l&apos;Immagine un una nuova &amp;Finestra</translation>
+        <translation>Apri l&apos;immagine un una nuova &amp;finestra</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="270"/>
         <source>Open Image in New &amp;Tab</source>
-        <translation>Apri l&apos;Immagine in una nuova &amp;Scheda</translation>
+        <translation>Apri l&apos;immagine in una nuova &amp;scheda</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="272"/>
         <source>&amp;Save Image</source>
-        <translation>&amp;Salva l&apos;Immagine</translation>
+        <translation>&amp;Salva l&apos;immagine</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="273"/>
         <source>&amp;Copy Image</source>
-        <translation>&amp;Copia l&apos;Immagine negli Appunti</translation>
+        <translation>&amp;Copia l&apos;immagine</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="274"/>
         <source>C&amp;opy Image Location</source>
-        <translation>C&amp;opia l&apos;indirizzo dell&apos;Immagine</translation>
+        <translation>C&amp;opia l&apos;indirizzo dell&apos;immagine</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="413"/>
@@ -1635,7 +1642,7 @@ Sei sicuro di volerlo fare?
     <message>
         <location filename="../webviewsearch.cpp" line="119"/>
         <source>Not Found</source>
-        <translation>Non Trovato</translation>
+        <translation>Non trovato</translation>
     </message>
 </context>
 </TS>
