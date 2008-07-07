@@ -66,6 +66,9 @@
 #include <qmenu.h>
 #include <qpainter.h>
 #include <qstyle.h>
+#include <qstyleoption.h>
+
+#include <qdebug.h>
 
 ClearButton::ClearButton(QWidget *parent)
     : QAbstractButton(parent)
@@ -74,6 +77,7 @@ ClearButton::ClearButton(QWidget *parent)
     setToolTip(tr("Clear"));
     setVisible(false);
     setFocusPolicy(Qt::NoFocus);
+    setMinimumSize(22, 22);
 }
 
 void ClearButton::paintEvent(QPaintEvent *event)
@@ -184,41 +188,48 @@ void SearchButton::paintEvent(QPaintEvent *event)
     - When there is text a clear button is displayed on the right hand side
  */
 SearchLineEdit::SearchLineEdit(QWidget *parent)
-    : ExLineEdit(parent)
+    : LineEdit(parent)
     , m_searchButton(new SearchButton(this))
 {
-    connect(lineEdit(), SIGNAL(textChanged(const QString &)),
-            this, SIGNAL(textChanged(const QString &)));
-    setLeftWidget(m_searchButton);
+    addWidget(m_searchButton, LeftSide);
     m_inactiveText = tr("Search");
 
     QSizePolicy policy = sizePolicy();
     setSizePolicy(QSizePolicy::Preferred, policy.verticalPolicy());
+
+    // clear button on the right
+    ClearButton *m_clearButton = new ClearButton(this);
+    connect(m_clearButton, SIGNAL(clicked()),
+            this, SLOT(clear()));
+    connect(this, SIGNAL(textChanged(const QString&)),
+            m_clearButton, SLOT(textChanged(const QString&)));
+    addWidget(m_clearButton, RightSide);
+    m_clearButton->hide();
 }
 
 void SearchLineEdit::paintEvent(QPaintEvent *event)
 {
-    if (lineEdit()->text().isEmpty() && !hasFocus() && !m_inactiveText.isEmpty()) {
-        ExLineEdit::paintEvent(event);
+    if (text().isEmpty() && !hasFocus() && !m_inactiveText.isEmpty()) {
+        LineEdit::paintEvent(event);
         QStyleOptionFrameV2 panel;
         initStyleOption(&panel);
         QRect r = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
         QFontMetrics fm = fontMetrics();
-        int horizontalMargin = lineEdit()->x();
+        int horizontalMargin = x();
         QRect lineRect(horizontalMargin + r.x(), r.y() + (r.height() - fm.height() + 1) / 2,
                        r.width() - 2 * horizontalMargin, fm.height());
         QPainter painter(this);
         painter.setPen(palette().brush(QPalette::Disabled, QPalette::Text).color());
         painter.drawText(lineRect, Qt::AlignLeft | Qt::AlignVCenter, m_inactiveText);
     } else {
-        ExLineEdit::paintEvent(event);
+        LineEdit::paintEvent(event);
     }
 }
 
 void SearchLineEdit::resizeEvent(QResizeEvent *event)
 {
     updateGeometries();
-    ExLineEdit::resizeEvent(event);
+    LineEdit::resizeEvent(event);
 }
 
 void SearchLineEdit::updateGeometries()
@@ -227,7 +238,7 @@ void SearchLineEdit::updateGeometries()
     int menuWidth = menuHeight + 1;
     if (!m_searchButton->m_menu)
         menuWidth = (menuHeight / 5) * 4;
-    m_searchButton->resize(QSize(menuWidth, menuHeight));
+    m_searchButton->setMinimumSize(QSize(menuWidth, menuHeight));
 }
 
 QString SearchLineEdit::inactiveText() const

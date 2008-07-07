@@ -63,7 +63,7 @@
 #ifndef SEARCHLINEEDIT_H
 #define SEARCHLINEEDIT_H
 
-#include "urllineedit.h"
+#include "lineedit.h"
 
 #include <qlineedit.h>
 #include <qabstractbutton.h>
@@ -92,13 +92,10 @@ public slots:
 };
 
 
-class SearchLineEdit : public ExLineEdit
+class SearchLineEdit : public LineEdit
 {
     Q_OBJECT
     Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText)
-
-signals:
-    void textChanged(const QString &text);
 
 public:
     SearchLineEdit(QWidget *parent = 0);

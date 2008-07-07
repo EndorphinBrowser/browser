@@ -60,7 +60,7 @@ void WebViewSearch::initializeSearchWidget()
             this, SLOT(findNext()));
     connect(ui.previousButton, SIGNAL(clicked()),
             this, SLOT(findPrevious()));
-    connect(ui.searchLineEdit->lineEdit(), SIGNAL(returnPressed()),
+    connect(ui.searchLineEdit, SIGNAL(returnPressed()),
             this, SLOT(findNext()));
     connect(ui.doneButton, SIGNAL(clicked()),
             this, SLOT(animateHide()));
@@ -82,7 +82,7 @@ QWebView *WebViewSearch::webView() const
 
 void WebViewSearch::clear()
 {
-    ui.searchLineEdit->lineEdit()->setText(QString());
+    ui.searchLineEdit->setText(QString());
 }
 
 void WebViewSearch::showFind()
@@ -96,7 +96,7 @@ void WebViewSearch::showFind()
         m_timeLine->start();
     }
     ui.searchLineEdit->setFocus();
-    ui.searchLineEdit->lineEdit()->selectAll();
+    ui.searchLineEdit->selectAll();
 }
 
 void WebViewSearch::findNext()
@@ -111,7 +111,7 @@ void WebViewSearch::findPrevious()
 
 void WebViewSearch::find(QWebPage::FindFlags flags)
 {
-    QString searchString = ui.searchLineEdit->lineEdit()->text();
+    QString searchString = ui.searchLineEdit->text();
     if (!m_webView || searchString.isEmpty())
         return;
     QString infoString;

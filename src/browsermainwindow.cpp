@@ -920,8 +920,8 @@ void BrowserMainWindow::slotHome()
 
 void BrowserMainWindow::slotWebSearch()
 {
-    m_toolbarSearch->lineEdit()->selectAll();
-    m_toolbarSearch->lineEdit()->setFocus();
+    m_toolbarSearch->selectAll();
+    m_toolbarSearch->setFocus();
 }
 
 void BrowserMainWindow::slotClearPrivateData()

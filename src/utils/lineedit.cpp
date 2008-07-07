@@ -121,6 +121,11 @@ void LineEdit::setWidgetSpacing(int spacing)
     updateTextMargins();
 }
 
+int LineEdit::widgetSpacing() const
+{
+    return m_leftLayout->spacing();
+}
+
 int LineEdit::textMargin(WidgetPosition position) const
 {
     int spacing = m_rightLayout->spacing();
@@ -157,7 +162,7 @@ void LineEdit::updateSideWidgetLocations()
 
     int left = textMargin(LineEdit::LeftSide);
     int right = textMargin(LineEdit::RightSide);
-    textRect.adjust(-left, 0, right, 0);
+    textRect.adjust(-left, 1, right, 0);
 
     int midHeight = textRect.center().y();
 
@@ -168,8 +173,9 @@ void LineEdit::updateSideWidgetLocations()
             leftHeight = midHeight - m_leftWidget->sizeHint().height() / 2;
         m_leftWidget->move(textRect.x(), leftHeight);
     }
-    textRect.setY(midHeight - m_rightWidget->height() / 2);
-    textRect.setHeight(m_rightWidget->height());
+    textRect.setX(left);
+    textRect.setY(midHeight - m_rightWidget->sizeHint().height() / 2);
+    textRect.setHeight(m_rightWidget->sizeHint().height());
     m_rightWidget->setGeometry(textRect);
 }
 

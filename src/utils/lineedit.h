@@ -51,6 +51,7 @@ public:
     void addWidget(QWidget *widget, WidgetPosition position);
     void removeWidget(QWidget *widget);
     void setWidgetSpacing(int spacing);
+    int widgetSpacing() const;
     int textMargin(WidgetPosition position) const;
 
 protected:

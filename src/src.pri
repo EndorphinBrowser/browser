@@ -44,6 +44,8 @@ HEADERS += \
     edittableview.h \
     edittreeview.h \
     history.h \
+    locationbar.h \
+    locationbar_p.h \
     modelmenu.h \
     networkaccessmanager.h \
     searchlineedit.h \
@@ -51,7 +53,6 @@ HEADERS += \
     tabbar.h \
     tabwidget.h \
     toolbarsearch.h \
-    urllineedit.h \
     webactionmapper.h \
     webview.h \
     webviewsearch.h \
@@ -68,6 +69,7 @@ SOURCES += \
     edittableview.cpp \
     edittreeview.cpp \
     history.cpp \
+    locationbar.cpp \
     modelmenu.cpp \
     networkaccessmanager.cpp \
     searchlineedit.cpp \
@@ -75,7 +77,6 @@ SOURCES += \
     tabbar.cpp \
     tabwidget.cpp \
     toolbarsearch.cpp \
-    urllineedit.cpp \
     webactionmapper.cpp \
     webview.cpp \
     webviewsearch.cpp \

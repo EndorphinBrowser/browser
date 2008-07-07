@@ -66,7 +66,7 @@
 #include "browsermainwindow.h"
 #include "history.h"
 #include "tabbar.h"
-#include "urllineedit.h"
+#include "locationbar.h"
 #include "webactionmapper.h"
 #include "webview.h"
 #include "webviewsearch.h"
@@ -329,10 +329,7 @@ WebView *TabWidget::currentWebView() const
 
 QLineEdit *TabWidget::lineEdit(int index) const
 {
-    UrlLineEdit *urlLineEdit = qobject_cast<UrlLineEdit*>(m_lineEdits->widget(index));
-    if (urlLineEdit)
-        return urlLineEdit->lineEdit();
-    return 0;
+    return qobject_cast<LocationBar*>(m_lineEdits->widget(index));
 }
 
 WebView *TabWidget::webView(int index) const
@@ -392,8 +389,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     }
 
     // line edit
-    UrlLineEdit *urlLineEdit = new UrlLineEdit;
-    QLineEdit *lineEdit = urlLineEdit->lineEdit();
+    LocationBar *locationBar = new LocationBar(this);
     if (!m_lineEditCompleter && count() > 0) {
         HistoryCompletionModel *completionModel = new HistoryCompletionModel(this);
         completionModel->setSourceModel(BrowserApplication::historyManager()->historyFilterModel());
@@ -404,10 +400,10 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
         if (listView)
             listView->setUniformItemSizes(true);
     }
-    lineEdit->setCompleter(m_lineEditCompleter);
-    connect(lineEdit, SIGNAL(returnPressed()), this, SLOT(lineEditReturnPressed()));
-    m_lineEdits->addWidget(urlLineEdit);
-    m_lineEdits->setSizePolicy(lineEdit->sizePolicy());
+    locationBar->setCompleter(m_lineEditCompleter);
+    connect(locationBar, SIGNAL(returnPressed()), this, SLOT(lineEditReturnPressed()));
+    m_lineEdits->addWidget(locationBar);
+    m_lineEdits->setSizePolicy(locationBar->sizePolicy());
 
     // optimization to delay creating the more expensive WebView, history, etc
     if (count() == 0) {
@@ -426,7 +422,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
 
     // webview
     WebView *webView = new WebView;
-    urlLineEdit->setWebView(webView);
+    locationBar->setWebView(webView);
     connect(webView, SIGNAL(loadStarted()),
             this, SLOT(webViewLoadStarted()));
     connect(webView, SIGNAL(loadFinished(bool)),
@@ -455,7 +451,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     if (makeCurrent)
         setCurrentWidget(webViewWithSearch);
 
-    QWidget::setTabOrder(this, urlLineEdit);
+    QWidget::setTabOrder(this, locationBar);
 
     // webview actions
     for (int i = 0; i < m_actions.count(); ++i) {

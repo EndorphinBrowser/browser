@@ -88,9 +88,9 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
 
     QCompleter *completer = new QCompleter(m_stringListModel, this);
     completer->setCompletionMode(QCompleter::InlineCompletion);
-    lineEdit()->setCompleter(completer);
+    setCompleter(completer);
 
-    connect(lineEdit(), SIGNAL(returnPressed()), SLOT(searchNow()));
+    connect(this, SIGNAL(returnPressed()), SLOT(searchNow()));
     setInactiveText(tr("Google"));
     load();
 }
@@ -121,7 +121,7 @@ void ToolbarSearch::load()
 
 void ToolbarSearch::searchNow()
 {
-    QString searchText = lineEdit()->text();
+    QString searchText = text();
     QStringList newList = m_stringListModel->stringList();
     if (newList.contains(searchText))
         newList.removeAt(newList.indexOf(searchText));
@@ -145,7 +145,7 @@ void ToolbarSearch::searchNow()
 
 void ToolbarSearch::aboutToShowMenu()
 {
-    lineEdit()->selectAll();
+    selectAll();
     QMenu *m = menu();
     m->clear();
     QStringList list = m_stringListModel->stringList();
@@ -169,7 +169,7 @@ void ToolbarSearch::triggeredMenuAction(QAction *action)
     QVariant v = action->data();
     if (v.canConvert<QString>()) {
         QString text = v.toString();
-        lineEdit()->setText(text);
+        setText(text);
         searchNow();
     }
 }
@@ -178,7 +178,7 @@ void ToolbarSearch::clear()
 {
     m_stringListModel->setStringList(QStringList());
     m_autosaver->changeOccurred();
-    ExLineEdit::clear();
+    clear();
     clearFocus();
 }
 

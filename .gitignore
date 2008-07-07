@@ -16,6 +16,7 @@ autotests/downloadmanager/downloadmanager
 autotests/edittreeview/edittreeview
 autotests/history/history
 autotests/historyfiltermodel/historyfiltermodel
+autotests/lineedit/lineedit
 autotests/searchlineedit/searchlineedit
 autotests/tabbar/tabbar
 autotests/tabwidget/tabwidget
