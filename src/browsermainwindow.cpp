@@ -650,9 +650,14 @@ void BrowserMainWindow::slotViewStatusbar()
 QUrl BrowserMainWindow::guessUrlFromString(const QString &string)
 {
     QString urlStr = string.trimmed();
-    QRegExp test(QLatin1String("^[a-zA-Z]+\\:.*"));
+
+    // check if the string is just a host with a port
+    QRegExp hostWithPort(QLatin1String("^[a-zA-Z\\.]+\\:[0-9]*$"));
+    if (hostWithPort.exactMatch(urlStr))
+        urlStr = QLatin1String("http://") + urlStr;
 
     // Check if it looks like a qualified URL. Try parsing it and see.
+    QRegExp test(QLatin1String("^[a-zA-Z]+\\:.*"));
     bool hasSchema = test.exactMatch(urlStr);
     if (hasSchema) {
         bool isAscii = true;
