@@ -261,7 +261,7 @@ void DownloadItem::downloadReadyRead()
         if (!m_requestFileName)
             getFileName();
         if (!m_output.open(QIODevice::WriteOnly)) {
-            downloadInfoLabel->setText(tr("Error opening save file: %1")
+            downloadInfoLabel->setText(tr("Error opening output file: %1")
                     .arg(m_output.errorString()));
             stop();
             emit statusChanged();

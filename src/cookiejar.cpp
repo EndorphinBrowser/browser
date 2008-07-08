@@ -476,7 +476,7 @@ QVariant CookieModel::data(const QModelIndex &index, int role) const
         case 2:
             return cookie.path();
         case 3:
-            return cookie.isSecure();
+            return cookie.isSecure() ? tr("true") : tr("false");
         case 4:
             return cookie.expirationDate();
         case 5:
@@ -595,7 +595,7 @@ QVariant CookieExceptionsModel::headerData(int section, Qt::Orientation orientat
         case 0:
             return tr("Website");
         case 1:
-            return tr("Status");
+            return tr("Rule");
         }
     }
     return QAbstractTableModel::headerData(section, orientation, role);

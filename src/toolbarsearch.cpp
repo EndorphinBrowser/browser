@@ -91,7 +91,7 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     setCompleter(completer);
 
     connect(this, SIGNAL(returnPressed()), SLOT(searchNow()));
-    setInactiveText(tr("Google"));
+    setInactiveText(QLatin1String("Google"));
     load();
 }
 

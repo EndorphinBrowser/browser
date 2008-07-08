@@ -56,7 +56,7 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
     m_cookies->setChecked(true);
     layout->addWidget(m_cookies);
 
-    m_cache = new QCheckBox(tr("C&ache"));
+    m_cache = new QCheckBox(tr("C&ached Web Pages"));
     m_cache->setEnabled(false);
     layout->addWidget(m_cache);
 
