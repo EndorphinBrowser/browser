@@ -427,6 +427,7 @@ DownloadManager::DownloadManager(QWidget *parent)
     m_model = new DownloadModel(this);
     downloadsView->setModel(m_model);
     connect(cleanupButton, SIGNAL(clicked()), this, SLOT(cleanup()));
+    connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
     load();
 }
 
