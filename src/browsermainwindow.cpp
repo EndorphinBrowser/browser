@@ -257,6 +257,9 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
         stream << QByteArray();
     stream << m_navigationSplitter->saveState();
     stream << m_tabWidget->tabBar()->showTabBarWhenOneTab();
+
+    stream << qint32(toolBarArea(m_navigationBar));
+    stream << qint32(toolBarArea(m_bookmarksToolbar));
     return data;
 }
 
@@ -282,6 +285,8 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     QByteArray tabState;
     QByteArray splitterState;
     bool showTabBarWhenOneTab;
+    qint32 navigationBarLocation;
+    qint32 bookmarkBarLocation;
 
     stream >> size;
     stream >> showToolbar;
@@ -290,6 +295,8 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     stream >> tabState;
     stream >> splitterState;
     stream >> showTabBarWhenOneTab;
+    stream >> navigationBarLocation;
+    stream >> bookmarkBarLocation;
 
     resize(size);
 
@@ -311,6 +318,13 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
         return false;
 
     m_tabWidget->tabBar()->setShowTabBarWhenOneTab(showTabBarWhenOneTab);
+
+    Qt::ToolBarArea navigationArea = Qt::ToolBarArea(navigationBarLocation);
+    if (navigationArea != Qt::TopToolBarArea && navigationArea != Qt::NoToolBarArea)
+        addToolBar(navigationArea, m_navigationBar);
+    Qt::ToolBarArea bookmarkArea = Qt::ToolBarArea(navigationBarLocation);
+    if (bookmarkArea != Qt::TopToolBarArea && bookmarkArea != Qt::NoToolBarArea)
+        addToolBar(bookmarkArea, m_bookmarksToolbar);
 
     return true;
 }
