@@ -178,7 +178,7 @@ void ToolbarSearch::clear()
 {
     m_stringListModel->setStringList(QStringList());
     m_autosaver->changeOccurred();
-    clear();
+    QLineEdit::clear();
     clearFocus();
 }
 
