@@ -23,7 +23,8 @@ TRANSLATIONS += \
     locale/en.ts \
     locale/es.ts \
     locale/et.ts \
-    locale/fr.ts \
+    locale/fr_FR.ts \
+    locale/fr_CA.ts \
     locale/it.ts \
     locale/pl.ts \
     locale/pt_BR.ts \
