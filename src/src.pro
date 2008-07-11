@@ -28,6 +28,7 @@ TRANSLATIONS += \
     locale/pl.ts \
     locale/pt_BR.ts \
     locale/ru.ts \
+    locale/tr.ts \
     locale/nl.ts \
     locale/zh_CN.ts
 
