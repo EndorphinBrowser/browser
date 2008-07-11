@@ -322,7 +322,7 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     Qt::ToolBarArea navigationArea = Qt::ToolBarArea(navigationBarLocation);
     if (navigationArea != Qt::TopToolBarArea && navigationArea != Qt::NoToolBarArea)
         addToolBar(navigationArea, m_navigationBar);
-    Qt::ToolBarArea bookmarkArea = Qt::ToolBarArea(navigationBarLocation);
+    Qt::ToolBarArea bookmarkArea = Qt::ToolBarArea(bookmarkBarLocation);
     if (bookmarkArea != Qt::TopToolBarArea && bookmarkArea != Qt::NoToolBarArea)
         addToolBar(bookmarkArea, m_bookmarksToolbar);
 
