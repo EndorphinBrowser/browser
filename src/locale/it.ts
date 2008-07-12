@@ -245,7 +245,7 @@ Sei sicuro di voler uscire?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="314"/>
         <source>&amp;Export Bookmarks...</source>
-        <translation>&amp;Esporta segnalibri...</translation>
+        <translation>&amp;Esporta i segnalibri...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="316"/>
@@ -591,7 +591,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="597"/>
         <source>Show Bookmarks Bar</source>
-        <translation>Visualizza la barra dei segnalibri</translation>
+        <translation>Mostra la barra dei segnalibri</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="597"/>
@@ -1395,7 +1395,7 @@ Vuoi ignorare questi errori?</translation>
     <message>
         <location filename="../settings.ui" line="228"/>
         <source>Standard font:</source>
-        <translation>Font standard:</translation>
+        <translation>Carattere standard:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="247"/>
