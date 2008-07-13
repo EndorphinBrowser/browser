@@ -64,7 +64,7 @@
      <item>
       <widget class="QDialogButtonBox" name="buttonBox" >
        <property name="standardButtons" >
-        <set>QDialogButtonBox::Ok</set>
+        <set>QDialogButtonBox::Close</set>
        </property>
       </widget>
      </item>
@@ -88,9 +88,9 @@
  <connections>
   <connection>
    <sender>buttonBox</sender>
-   <signal>accepted()</signal>
+   <signal>rejected()</signal>
    <receiver>HistoryDialog</receiver>
-   <slot>accept()</slot>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>472</x>
