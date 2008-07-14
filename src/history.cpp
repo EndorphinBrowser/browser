@@ -76,6 +76,7 @@
 #include <qstyle.h>
 #include <qtemporaryfile.h>
 #include <qtextstream.h>
+#include <qmessagebox.h>
 
 #include <qwebhistoryinterface.h>
 #include <qwebsettings.h>
@@ -649,11 +650,12 @@ void HistoryMenu::postPopulated()
         addSeparator();
 
     QAction *showAllAction = new QAction(tr("Show All History"), this);
+    showAllAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_H));
     connect(showAllAction, SIGNAL(triggered()), this, SLOT(showHistoryDialog()));
     addAction(showAllAction);
 
-    QAction *clearAction = new QAction(tr("Clear History"), this);
-    connect(clearAction, SIGNAL(triggered()), m_history, SLOT(clear()));
+    QAction *clearAction = new QAction(tr("Clear History..."), this);
+    connect(clearAction, SIGNAL(triggered()), this, SLOT(clearHistoryDialog()));
     addAction(clearAction);
 }
 
@@ -663,6 +665,14 @@ void HistoryMenu::showHistoryDialog()
     connect(dialog, SIGNAL(openUrl(const QUrl&)),
             this, SIGNAL(openUrl(const QUrl&)));
     dialog->show();
+}
+
+void HistoryMenu::clearHistoryDialog()
+{
+    if (m_history && QMessageBox::question(0, tr("Clear History"), tr("Do you want to clear the history?"),
+            QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
+        m_history->clear();
+    }
 }
 
 void HistoryMenu::setInitialActions(QList<QAction*> actions)

@@ -271,6 +271,7 @@ protected:
 private slots:
     void activated(const QModelIndex &index);
     void showHistoryDialog();
+    void clearHistoryDialog();
 
 private:
     HistoryManager *m_history;
