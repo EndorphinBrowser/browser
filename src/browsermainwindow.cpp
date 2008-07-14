@@ -403,7 +403,7 @@ void BrowserMainWindow::setupMenu()
     connect(m_findPrevious, SIGNAL(triggered()), this, SLOT(slotEditFindPrevious()));
 
     editMenu->addSeparator();
-    editMenu->addAction(tr("Prefe&rences"), this, SLOT(slotPreferences()), tr("Ctrl+,"));
+    editMenu->addAction(tr("Prefe&rences..."), this, SLOT(slotPreferences()), tr("Ctrl+,"));
 
     // View
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
