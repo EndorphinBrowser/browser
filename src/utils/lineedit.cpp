@@ -43,7 +43,7 @@ LineEdit::LineEdit(QWidget *parent)
     , m_leftLayout(0)
     , m_rightLayout(0)
 {
-#if 1
+#if QT_VERSION < 0x040500
     setStyle(new LineEditStyle);
 #endif
     init();
@@ -141,7 +141,7 @@ int LineEdit::textMargin(WidgetPosition position) const
 
 void LineEdit::updateTextMargins()
 {
-#if 0
+#if QT_VERSION >= 0x040500
     int left = textMargin(LineEdit::LeftSide);
     int right = textMargin(LineEdit::RightSide);
     int top = 0;
@@ -161,8 +161,10 @@ void LineEdit::updateSideWidgetLocations()
     textRect.adjust(spacing, 0, -spacing, 0);
 
     int left = textMargin(LineEdit::LeftSide);
+#if QT_VERSION < 0x040500
     int right = textMargin(LineEdit::RightSide);
     textRect.adjust(-left, 1, right, 0);
+#endif
 
     int midHeight = textRect.center().y();
 

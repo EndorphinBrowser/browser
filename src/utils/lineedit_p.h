@@ -37,6 +37,8 @@ protected:
 
 };
 
+#if QT_VERSION < 0x040500
+
 #include "qapplication.h"
 #include "proxystyle.h"
 #include "lineedit.h"
@@ -64,6 +66,8 @@ public:
     }
 
 };
+
+#endif // QT_VERSION
 
 #endif // LINEEDIT_P_H
 
