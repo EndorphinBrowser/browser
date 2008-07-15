@@ -5,7 +5,7 @@
     <name>AboutDialog</name>
     <message>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>Webkit tabanlı hafif web tarayıcı</translation>
+        <translation>Webkit tabanlı hafif bir web tarayıcı</translation>
     </message>
     <message encoding="UTF-8">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -83,7 +83,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
-        <translation>Satır %1, sütun %2&apos;deki yerimini yüklerken hata oluştu:￼%3</translation>
+        <translation>Satır %1, sütun %2&apos;deki yerimini yüklerken hata oluştu:
+￼%3</translation>
     </message>
     <message>
         <source>Toolbar Bookmarks</source>
@@ -170,14 +171,14 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
-        <translation>Kaydolan oturum geri yüklenemeyecek çünkü Arora oturumu geri yüklerken çöktü</translation>
+        <translation>Kaydolan oturum geri yüklenemeyecek çünkü Arora oturumu geri yüklerken çöktü.</translation>
     </message>
 </context>
 <context>
     <name>BrowserMainWindow</name>
     <message>
         <source>&amp;File</source>
-        <translation>D&amp;osya</translation>
+        <translation>Do&amp;sya</translation>
     </message>
     <message>
         <source>&amp;New Window</source>
@@ -185,35 +186,35 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>&amp;Open File...</source>
-        <translation>&amp;Dosya Aç</translation>
+        <translation>Dosya &amp;Aç...</translation>
     </message>
     <message>
         <source>Open &amp;Location...</source>
-        <translation>&amp;Konumu Aç</translation>
+        <translation>Kon&amp;umu Aç...</translation>
     </message>
     <message>
         <source>&amp;Save As...</source>
-        <translation>&amp;Farklı Kaydet</translation>
+        <translation>&amp;Farklı Kaydet...</translation>
     </message>
     <message>
         <source>&amp;Import Bookmarks...</source>
-        <translation>&amp;Yerimlerini İçe Aktar</translation>
+        <translation>Yeri&amp;mlerini İçe Aktar...</translation>
     </message>
     <message>
         <source>&amp;Export Bookmarks...</source>
-        <translation>&amp;Yerimlerini Dışa Aktar</translation>
+        <translation>Yerimlerini Dı&amp;şa Aktar...</translation>
     </message>
     <message>
         <source>P&amp;rint Preview...</source>
-        <translation>&amp;Baskı Önizleme</translation>
+        <translation>Baskı &amp;Önizleme...</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation>&amp;Yazdır</translation>
+        <translation>Ya&amp;zdır...</translation>
     </message>
     <message>
         <source>Private &amp;Browsing...</source>
-        <translation>&amp;Özel Gezinme</translation>
+        <translation>Özel Gez&amp;inme...</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -221,7 +222,7 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Düzenle</translation>
+        <translation>D&amp;üzenle</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
@@ -237,7 +238,7 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopyala</translation>
+        <translation>K&amp;opyala</translation>
     </message>
     <message>
         <source>&amp;Paste</source>
@@ -257,7 +258,7 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Prefe&amp;rences</source>
-        <translation>&amp;Tercihler</translation>
+        <translation>Te&amp;rcihler</translation>
     </message>
     <message>
         <source>Ctrl+,</source>
@@ -285,7 +286,7 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>&amp;Reload Page</source>
-        <translation>%Sayfayı Yeniden Yükle</translation>
+        <translation>&amp;Sayfayı Yeniden Yükle</translation>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
@@ -293,15 +294,15 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation>&amp;Yazıyı Normal Yap</translation>
+        <translation>Yazıyı &amp;Normal Yap</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation>&amp;Yazıyı Küçült</translation>
+        <translation>Yazıyı K&amp;üçült</translation>
     </message>
     <message>
         <source>Page S&amp;ource</source>
-        <translation>&amp;Sayfa Kaynağı</translation>
+        <translation>Sayfa Kayna&amp;ğı</translation>
     </message>
     <message>
         <source>Ctrl+Alt+U</source>
@@ -309,19 +310,19 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
-        <translation>&amp;Tam Ekran</translation>
+        <translation>Tam Ek&amp;ran</translation>
     </message>
     <message>
         <source>Hi&amp;story</source>
-        <translation>&amp;Geçmiş</translation>
+        <translation>Ge&amp;çmiş</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation>&amp;Geri</translation>
+        <translation>Geri</translation>
     </message>
     <message>
         <source>Forward</source>
-        <translation>&amp;İleri</translation>
+        <translation>İleri</translation>
     </message>
     <message>
         <source>Home</source>
@@ -337,7 +338,7 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>Yer İmlerini Düzenle</translation>
+        <translation>Yer İmlerini Düzenle...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -371,11 +372,11 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Enable Web &amp;Inspector</source>
-        <translation>Web Denetçisini Aktif Et</translation>
+        <translation>Ağ Denet&amp;çisini Aktif Et</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Yardım</translation>
+        <translation>Yard&amp;ım</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
@@ -571,7 +572,7 @@ Tüm sayfaları yenilemeyi istiyor musunuz?</translation>
     </message>
     <message>
         <source>Expires</source>
-        <translation>Biter</translation>
+        <translation>Sonlanma</translation>
     </message>
     <message>
         <source>Contents</source>
@@ -794,7 +795,7 @@ Tüm sayfaları yenilemeyi istiyor musunuz?</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</source>
-        <translation>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</translation>
+        <translation>&lt;qt&gt;Vekil &quot;%1&quot; &apos;e bunu kullanarak bağlan:&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>SSL Errors:
@@ -844,7 +845,7 @@ Do you want to ignore these errors?</source>
     <name>ProxyDialog</name>
     <message>
         <source>Proxy Authentication</source>
-        <translation>Proxy Kimlik Denetimi</translation>
+        <translation>Vekil Kimlik Denetimi</translation>
     </message>
     <message>
         <source>ICON</source>
