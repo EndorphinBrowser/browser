@@ -101,7 +101,10 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
-    QString version = QString("0.3 (Change: %1 %2)").arg(GITCHANGENUMBER).arg(GITVERSION);
+    QString version = QLatin1String("0.3");
+    if (GITCHANGENUMBER != "0")
+        version += QString(" (Change: %1 %2)").arg(GITCHANGENUMBER).arg(GITVERSION);
+
     QCoreApplication::setApplicationVersion(version);
 #ifdef Q_WS_QWS
     // Use a different server name for QWS so we can run an X11
