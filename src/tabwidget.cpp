@@ -840,7 +840,7 @@ bool TabWidget::restoreState(const QByteArray &state)
     QStringList openTabs;
     stream >> openTabs;
     for (int i = 0; i < openTabs.count(); ++i)
-        loadUrl(openTabs.at(i), i == 0 ? CurrentTab : NewTab);
+        loadUrl(openTabs.at(i), i == 0 && currentWebView()->url() == QUrl() ? CurrentTab : NewTab);
 
     int currentTab;
     stream >> currentTab;

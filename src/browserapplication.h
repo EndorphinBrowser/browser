@@ -134,6 +134,7 @@ private:
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
     QLocalServer *m_localServer;
     QByteArray m_lastSession;
+    bool quiting;
 };
 
 #endif // BROWSERAPPLICATION_H

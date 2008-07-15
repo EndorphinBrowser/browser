@@ -97,6 +97,7 @@ BookmarksManager *BrowserApplication::s_bookmarksManager = 0;
 BrowserApplication::BrowserApplication(int &argc, char **argv)
     : QApplication(argc, argv)
     , m_localServer(0)
+    , quiting(false)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
@@ -166,6 +167,8 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 
 BrowserApplication::~BrowserApplication()
 {
+    saveSession();
+    quiting = true;
     delete s_downloadManager;
     qDeleteAll(m_mainWindows);
     delete s_networkAccessManager;
@@ -312,6 +315,8 @@ static const qint32 BrowserApplicationMagic = 0xec;
 
 void BrowserApplication::saveSession()
 {
+    if (quiting)
+        return;
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));
     settings.setValue(QLatin1String("restoring"), false);
@@ -383,9 +388,7 @@ bool BrowserApplication::restoreLastSession()
     }
     for (int i = 0; i < windows.count(); ++i) {
         BrowserMainWindow *newWindow = 0;
-        if (m_mainWindows.count() == 1
-            && mainWindow()->tabWidget()->count() == 1
-            && mainWindow()->currentTab()->url() == QUrl()) {
+        if (i == 0 && m_mainWindows.count() >= 1) {
             newWindow = mainWindow();
         } else {
             newWindow = newMainWindow();
