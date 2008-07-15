@@ -103,7 +103,7 @@ mac {
 }
 
 unix {
-    isEmpty(PREFIX){
+    isEmpty(PREFIX) {
         PREFIX = /usr/local
     }
 

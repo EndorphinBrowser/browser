@@ -505,7 +505,7 @@ void DownloadManager::updateRow(DownloadItem *item)
     if (icon.isNull())
         icon = style()->standardIcon(QStyle::SP_FileIcon);
     item->fileIcon->setPixmap(icon.pixmap(48, 48));
-    
+
     int oldHeight = downloadsView->rowHeight(row);
     downloadsView->setRowHeight(row, qMax(oldHeight, item->minimumSizeHint().height()));
 
