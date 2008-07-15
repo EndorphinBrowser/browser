@@ -394,7 +394,7 @@ void BrowserMainWindow::setupMenu()
     connect(m_find, SIGNAL(triggered()), this, SLOT(slotEditFind()));
     new QShortcut(QKeySequence(Qt::Key_Slash), this, SLOT(slotEditFind()));
 
-    QAction *m_findNext = editMenu->addAction(tr("Find &Next"));
+    QAction *m_findNext = editMenu->addAction(tr("Find Nex&t"));
     m_findNext->setShortcuts(QKeySequence::FindNext);
     connect(m_findNext, SIGNAL(triggered()), this, SLOT(slotEditFindNext()));
 
@@ -403,7 +403,7 @@ void BrowserMainWindow::setupMenu()
     connect(m_findPrevious, SIGNAL(triggered()), this, SLOT(slotEditFindPrevious()));
 
     editMenu->addSeparator();
-    editMenu->addAction(tr("Prefe&rences..."), this, SLOT(slotPreferences()), tr("Ctrl+,"));
+    editMenu->addAction(tr("Prefere&nces..."), this, SLOT(slotPreferences()), tr("Ctrl+,"));
 
     // View
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
