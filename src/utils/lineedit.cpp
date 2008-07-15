@@ -131,7 +131,7 @@ int LineEdit::textMargin(WidgetPosition position) const
     int spacing = m_rightLayout->spacing();
     int w = 0;
     if (position == LeftSide)
-        w = m_leftWidget->width();
+        w = m_leftWidget->sizeHint().width();
     else
         w = m_rightWidget->sizeHint().width();
     if (w == 0)
@@ -147,8 +147,9 @@ void LineEdit::updateTextMargins()
     int top = 0;
     int bottom = 0;
     setTextMargins(left, top, right, bottom);
-#endif
+#else
     update();
+#endif
     updateSideWidgetLocations();
 }
 

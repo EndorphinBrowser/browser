@@ -31,20 +31,29 @@
 
 #include <qdebug.h>
 
-LocationBarSiteIcon::LocationBarSiteIcon(WebView *webView, QWidget *parent)
+LocationBarSiteIcon::LocationBarSiteIcon(QWidget *parent)
     : QLabel(parent)
-    , m_webView(webView)
+    , m_webView(0)
 {
+    resize(QSize(16, 16));
+    webViewSiteIconChanged();
+}
+
+void LocationBarSiteIcon::setWebView(WebView *webView)
+{
+    m_webView = webView;
     connect(webView, SIGNAL(loadFinished(bool)),
             this, SLOT(webViewSiteIconChanged()));
     connect(webView, SIGNAL(iconChanged()),
             this, SLOT(webViewSiteIconChanged()));
-    webViewSiteIconChanged();
 }
 
 void LocationBarSiteIcon::webViewSiteIconChanged()
 {
-    setPixmap(BrowserApplication::instance()->icon(m_webView->url()).pixmap(16, 16));
+    QUrl url;
+    if (m_webView)
+        url = m_webView->url();
+    setPixmap(BrowserApplication::instance()->icon(url).pixmap(16, 16));
 }
 
 void LocationBarSiteIcon::mousePressEvent(QMouseEvent *event)
@@ -75,14 +84,10 @@ LocationBar::LocationBar(QWidget *parent)
     , m_webView(0)
     , m_siteIcon(0)
 {
-    m_defaultBaseColor = palette().color(QPalette::Base);
-
-    QPalette p = palette();
-    p.setColor(QPalette::Base, QColor(255, 255, 255, 100));
-    setPalette(p);
-
-    // Urls are always LeftToRight
-    setLayoutDirection(Qt::LeftToRight);
+    setUpdatesEnabled(false);
+    // site icon on the left
+    m_siteIcon = new LocationBarSiteIcon(this);
+    addWidget(m_siteIcon, LeftSide);
 
     // clear button on the right
     ClearButton *m_clearButton = new ClearButton(this);
@@ -91,21 +96,29 @@ LocationBar::LocationBar(QWidget *parent)
     connect(this, SIGNAL(textChanged(const QString&)),
             m_clearButton, SLOT(textChanged(const QString&)));
     addWidget(m_clearButton, RightSide);
+    updateTextMargins();
+    setUpdatesEnabled(true);
+
     m_clearButton->hide();
+    m_defaultBaseColor = palette().color(QPalette::Base);
+
+    QPalette p = palette();
+    p.setColor(QPalette::Base, QColor(255, 255, 255, 100));
+    setPalette(p);
+
+    // Urls are always LeftToRight
+    setLayoutDirection(Qt::LeftToRight);
 }
 
 void LocationBar::setWebView(WebView *webView)
 {
     Q_ASSERT(webView);
     m_webView = webView;
-
-    // site icon on the left
-    m_siteIcon = new LocationBarSiteIcon(webView, this);
+    m_siteIcon->setWebView(webView);
     connect(webView, SIGNAL(urlChanged(const QUrl &)),
             this, SLOT(webViewUrlChanged(const QUrl &)));
     connect(webView, SIGNAL(loadProgress(int)),
             this, SLOT(update()));
-    addWidget(m_siteIcon, LeftSide);
 }
 
 void LocationBar::webViewUrlChanged(const QUrl &url)

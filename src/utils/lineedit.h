@@ -57,7 +57,7 @@ public:
 protected:
     void resizeEvent(QResizeEvent *event);
 
-private slots:
+protected slots:
     void updateTextMargins();
 
 private:
