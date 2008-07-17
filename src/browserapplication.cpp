@@ -102,7 +102,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
     QString version = QLatin1String("0.3");
-    if (GITCHANGENUMBER != "0")
+    if (QLatin1String(GITCHANGENUMBER) != QLatin1String("0"))
         version += QString(" (Change: %1 %2)").arg(GITCHANGENUMBER).arg(GITVERSION);
 
     QCoreApplication::setApplicationVersion(version);
