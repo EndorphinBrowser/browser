@@ -239,7 +239,7 @@ void BrowserApplication::postLaunch()
         QStringList args = QCoreApplication::arguments();
 
         if (args.count() > 1) {
-            switch(startup) {
+            switch (startup) {
             case 2: {
                 restoreLastSession();
                 WebView *webView = mainWindow()->tabWidget()->makeNewTab(true);

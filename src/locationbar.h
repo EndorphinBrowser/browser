@@ -48,3 +48,4 @@ private:
 };
 
 #endif // LOCATIONBAR_H
+

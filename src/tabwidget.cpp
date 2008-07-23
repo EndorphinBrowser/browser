@@ -167,7 +167,7 @@ TabWidget::TabWidget(QWidget *parent)
 #if QT_VERSION >= 0x040500
     m_tabBar->setTabsClosable(true);
     connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
-                      this, SLOT(closeTab(int)));
+            this, SLOT(closeTab(int)));
     m_tabBar->setSelectionBehaviorOnRemove(QTabBar::SelectPreviousTab);
 #else
     // corner buttons

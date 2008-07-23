@@ -171,7 +171,7 @@ void SettingsDialog::loadFromSettings()
     CookieJar::AcceptPolicy acceptCookies = acceptPolicyEnum.keyToValue(value) == -1 ?
                         CookieJar::AcceptOnlyFromSitesNavigatedTo :
                         static_cast<CookieJar::AcceptPolicy>(acceptPolicyEnum.keyToValue(value));
-    switch(acceptCookies) {
+    switch (acceptCookies) {
     case CookieJar::AcceptAlways:
         acceptCombo->setCurrentIndex(0);
         break;
@@ -188,7 +188,7 @@ void SettingsDialog::loadFromSettings()
     CookieJar::KeepPolicy keepCookies = keepPolicyEnum.keyToValue(value) == -1 ?
                         CookieJar::KeepUntilExpire :
                         static_cast<CookieJar::KeepPolicy>(keepPolicyEnum.keyToValue(value));
-    switch(keepCookies) {
+    switch (keepCookies) {
     case CookieJar::KeepUntilExpire:
         keepUntilCombo->setCurrentIndex(0);
         break;
@@ -269,7 +269,7 @@ void SettingsDialog::saveToSettings()
     settings.beginGroup(QLatin1String("cookies"));
 
     CookieJar::KeepPolicy keepCookies;
-    switch(acceptCombo->currentIndex()) {
+    switch (acceptCombo->currentIndex()) {
     default:
     case 0:
         keepCookies = CookieJar::KeepUntilExpire;
@@ -286,8 +286,8 @@ void SettingsDialog::saveToSettings()
     settings.setValue(QLatin1String("acceptCookies"), QLatin1String(acceptPolicyEnum.valueToKey(keepCookies)));
 
     CookieJar::KeepPolicy keepPolicy;
-    switch(keepUntilCombo->currentIndex()) {
-        default:
+    switch (keepUntilCombo->currentIndex()) {
+    default:
     case 0:
         keepPolicy = CookieJar::KeepUntilExpire;
         break;

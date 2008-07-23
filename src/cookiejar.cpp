@@ -285,7 +285,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
         // pass url domain == cookie domain
         QDateTime soon = QDateTime::currentDateTime();
         soon = soon.addDays(90);
-        foreach(QNetworkCookie cookie, cookieList) {
+        foreach (QNetworkCookie cookie, cookieList) {
             QList<QNetworkCookie> lst;
             if (m_keepCookies == KeepUntilTimeLimit
                 && !cookie.isSessionCookie()
