@@ -88,6 +88,20 @@ void LineEdit::init()
             this, SLOT(updateTextMargins()));
 }
 
+bool LineEdit::event(QEvent *event)
+{
+    if (event->type() == QEvent::LayoutDirectionChange) {
+        if (isRightToLeft()) {
+            m_leftLayout->setDirection(QBoxLayout::RightToLeft);
+            m_rightLayout->setDirection(QBoxLayout::RightToLeft);
+        } else {
+            m_leftLayout->setDirection(QBoxLayout::LeftToRight);
+            m_rightLayout->setDirection(QBoxLayout::LeftToRight);
+        }
+    }
+    return QLineEdit::event(event);
+}
+
 void LineEdit::addWidget(QWidget *widget, WidgetPosition position)
 {
     if (!widget)

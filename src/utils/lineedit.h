@@ -56,6 +56,7 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent *event);
+    bool event(QEvent *event);
 
 protected slots:
     void updateTextMargins();

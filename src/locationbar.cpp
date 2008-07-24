@@ -84,6 +84,9 @@ LocationBar::LocationBar(QWidget *parent)
     , m_webView(0)
     , m_siteIcon(0)
 {
+    // Urls are always LeftToRight
+    setLayoutDirection(Qt::LeftToRight);
+
     setUpdatesEnabled(false);
     // site icon on the left
     m_siteIcon = new LocationBarSiteIcon(this);
@@ -96,18 +99,15 @@ LocationBar::LocationBar(QWidget *parent)
     connect(this, SIGNAL(textChanged(const QString&)),
             m_clearButton, SLOT(textChanged(const QString&)));
     addWidget(m_clearButton, RightSide);
+    m_clearButton->hide();
     updateTextMargins();
     setUpdatesEnabled(true);
 
-    m_clearButton->hide();
     m_defaultBaseColor = palette().color(QPalette::Base);
 
     QPalette p = palette();
     p.setColor(QPalette::Base, QColor(255, 255, 255, 100));
     setPalette(p);
-
-    // Urls are always LeftToRight
-    setLayoutDirection(Qt::LeftToRight);
 }
 
 void LocationBar::setWebView(WebView *webView)
