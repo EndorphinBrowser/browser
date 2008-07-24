@@ -180,3 +180,9 @@ void LocationBar::paintEvent(QPaintEvent *event)
     LineEdit::paintEvent(event);
 }
 
+void LocationBar::focusOutEvent(QFocusEvent *event)
+{
+    if (text().isEmpty() && m_webView)
+        webViewUrlChanged(m_webView->url());
+    QLineEdit::focusOutEvent(event);
+}

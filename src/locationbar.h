@@ -37,6 +37,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *event);
+    void focusOutEvent(QFocusEvent *event);
 
 private slots:
     void webViewUrlChanged(const QUrl &url);
