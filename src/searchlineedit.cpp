@@ -189,8 +189,11 @@ void SearchButton::paintEvent(QPaintEvent *event)
  */
 SearchLineEdit::SearchLineEdit(QWidget *parent)
     : LineEdit(parent)
-    , m_searchButton(new SearchButton(this))
+    , m_searchButton(0)
 {
+    setUpdatesEnabled(false);
+    m_searchButton = new SearchButton(this);
+    updateGeometries();
     addWidget(m_searchButton, LeftSide);
     m_inactiveText = tr("Search");
 
@@ -205,6 +208,8 @@ SearchLineEdit::SearchLineEdit(QWidget *parent)
             m_clearButton, SLOT(textChanged(const QString&)));
     addWidget(m_clearButton, RightSide);
     m_clearButton->hide();
+    updateTextMargins();
+    setUpdatesEnabled(true);
 }
 
 void SearchLineEdit::paintEvent(QPaintEvent *event)
@@ -213,14 +218,13 @@ void SearchLineEdit::paintEvent(QPaintEvent *event)
         LineEdit::paintEvent(event);
         QStyleOptionFrameV2 panel;
         initStyleOption(&panel);
-        QRect r = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
-        QFontMetrics fm = fontMetrics();
-        int horizontalMargin = x();
-        QRect lineRect(horizontalMargin + r.x(), r.y() + (r.height() - fm.height() + 1) / 2,
-                       r.width() - 2 * horizontalMargin, fm.height());
+        QRect textRect = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
+        int left = textMargin(LineEdit::LeftSide);
+        int right = textMargin(LineEdit::RightSide);
+        textRect.adjust(left, 0, -right, 0);
         QPainter painter(this);
         painter.setPen(palette().brush(QPalette::Disabled, QPalette::Text).color());
-        painter.drawText(lineRect, Qt::AlignLeft | Qt::AlignVCenter, m_inactiveText);
+        painter.drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, m_inactiveText);
     } else {
         LineEdit::paintEvent(event);
     }
@@ -239,6 +243,8 @@ void SearchLineEdit::updateGeometries()
     if (!m_searchButton->m_menu)
         menuWidth = (menuHeight / 5) * 4;
     m_searchButton->setMinimumSize(QSize(menuWidth, menuHeight));
+    m_searchButton->resize(menuWidth, menuHeight);
+    updateTextMargins();
 }
 
 QString SearchLineEdit::inactiveText() const
