@@ -106,7 +106,7 @@ public slots:
 
 protected:
     void closeEvent(QCloseEvent *event);
-
+    void mousePressEvent(QMouseEvent *event);
 private slots:
     void save();
 
