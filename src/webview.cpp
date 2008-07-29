@@ -1,6 +1,7 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
  * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
+ * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -228,6 +229,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
 WebView::WebView(QWidget* parent)
     : QWebView(parent)
     , m_progress(0)
+    , m_currentZoom(100)
     , m_page(new WebPage(this))
 {
     setPage(m_page);
@@ -243,6 +245,10 @@ WebView::WebView(QWidget* parent)
             this, SLOT(downloadRequested(const QNetworkRequest &)));
     page()->setForwardUnsupportedContent(true);
 
+    // the zoom values (in percent) are chosen to be like in Mozilla Firefox 3
+    m_zoomLevels << 30 << 50 << 67 << 80 << 90;
+    m_zoomLevels << 100;
+    m_zoomLevels << 110 << 120 << 133 << 150 << 170 << 200 << 240 << 300;
 }
 
 void WebView::contextMenuEvent(QContextMenuEvent *event)
@@ -377,6 +383,34 @@ void WebView::bookmarkLink()
 void WebView::setProgress(int progress)
 {
     m_progress = progress;
+}
+
+void WebView::zoomIn()
+{
+    int i = m_zoomLevels.indexOf(m_currentZoom);
+    Q_ASSERT(i >= 0);
+
+    if (i < m_zoomLevels.count() - 1)
+        m_currentZoom = m_zoomLevels[i + 1];
+
+    setTextSizeMultiplier(qreal(m_currentZoom) / 100.0);
+}
+
+void WebView::zoomOut()
+{
+    int i = m_zoomLevels.indexOf(m_currentZoom);
+    Q_ASSERT(i >= 0);
+
+    if (i > 0)
+        m_currentZoom = m_zoomLevels[i - 1];
+
+    setTextSizeMultiplier(qreal(m_currentZoom) / 100.0);
+}
+
+void WebView::resetZoom()
+{
+    m_currentZoom = 100;
+    setTextSizeMultiplier(1.0);
 }
 
 void WebView::loadFinished()

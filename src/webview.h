@@ -121,6 +121,11 @@ public:
     QString lastStatusBarText() const;
     inline int progress() const { return m_progress; }
 
+public slots:
+    void zoomIn();
+    void zoomOut();
+    void resetZoom();
+
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
@@ -148,6 +153,8 @@ private:
     QString m_statusBarText;
     QUrl m_initialUrl;
     int m_progress;
+    int m_currentZoom;
+    QList<int> m_zoomLevels;
     WebPage *m_page;
 };
 

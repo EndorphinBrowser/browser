@@ -1,6 +1,7 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
  * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
+ * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -902,21 +903,21 @@ void BrowserMainWindow::slotViewTextBigger()
 {
     if (!currentTab())
         return;
-    currentTab()->setTextSizeMultiplier(currentTab()->textSizeMultiplier() + 0.1);
+    currentTab()->zoomIn();
 }
 
 void BrowserMainWindow::slotViewTextNormal()
 {
     if (!currentTab())
         return;
-    currentTab()->setTextSizeMultiplier(1.0);
+    currentTab()->resetZoom();
 }
 
 void BrowserMainWindow::slotViewTextSmaller()
 {
     if (!currentTab())
         return;
-    currentTab()->setTextSizeMultiplier(currentTab()->textSizeMultiplier() - 0.1);
+    currentTab()->zoomOut();
 }
 
 void BrowserMainWindow::slotViewFullScreen(bool makeFullScreen)
