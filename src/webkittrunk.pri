@@ -7,6 +7,7 @@ webkit_trunk {
     message(Using WebKit Trunk at $$(WEBKITBUILD))
     WEBKITBUILD = $$(WEBKITBUILD)/lib
     QT -= webkit
+    DEFINES += WEBKIT_TRUNK
     QMAKE_LIBDIR_FLAGS = -L$$WEBKITBUILD
     LIBS = -lQtWebKit
     INCLUDEPATH = $$WEBKITBUILD/../../../WebKit/qt/Api $$INCLUDEPATH
