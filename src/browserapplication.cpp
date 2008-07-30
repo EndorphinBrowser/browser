@@ -170,7 +170,6 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 
 BrowserApplication::~BrowserApplication()
 {
-    saveSession();
     quiting = true;
     delete s_downloadManager;
     qDeleteAll(m_mainWindows);
@@ -213,6 +212,7 @@ void BrowserApplication::quitBrowser()
             return;
     }
 
+    saveSession();
     exit(0);
 }
 #endif
