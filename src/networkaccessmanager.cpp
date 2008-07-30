@@ -99,8 +99,7 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
 
 #if QT_VERSION >= 0x040500
     QNetworkDiskCache *diskCache = new QNetworkDiskCache(this);
-    QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation)
-                      + QLatin1String("/cache");
+    QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
     diskCache->setCacheDirectory(location);
     setCache(diskCache);
 #endif
