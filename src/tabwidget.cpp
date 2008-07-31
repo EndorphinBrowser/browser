@@ -429,7 +429,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
         emptyWidget->setAutoFillBackground(true);
         disconnect(this, SIGNAL(currentChanged(int)),
                    this, SLOT(currentChanged(int)));
-        addTab(emptyWidget, tr("(Untitled)"));
+        addTab(emptyWidget, tr("Untitled"));
         connect(this, SIGNAL(currentChanged(int)),
                 this, SLOT(currentChanged(int)));
         return 0;
@@ -462,7 +462,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
             this, SLOT(toolBarVisibilityChangeRequestedCheck(bool)));
 
     WebViewWithSearch *webViewWithSearch = new WebViewWithSearch(webView, this);
-    addTab(webViewWithSearch, tr("(Untitled)"));
+    addTab(webViewWithSearch, tr("Untitled"));
     if (makeCurrent)
         setCurrentWidget(webViewWithSearch);
 
