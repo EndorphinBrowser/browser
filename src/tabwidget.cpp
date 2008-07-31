@@ -337,7 +337,7 @@ WebView *TabWidget::webView(int index) const
     QWidget *widget = this->widget(index);
     if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
         return webViewWithSearch->m_webView;
-    } else {
+    } else if (widget) {
         // optimization to delay creating the first webview
         if (count() == 1) {
             TabWidget *that = const_cast<TabWidget*>(this);
