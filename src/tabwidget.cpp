@@ -98,7 +98,7 @@ TabWidget::TabWidget(QWidget *parent)
 {
     setElideMode(Qt::ElideRight);
 
-    new QShortcut(QKeySequence("Ctrl+Shift+T"), this, SLOT(openLastTab()));
+    new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_T), this, SLOT(openLastTab()));
 
     connect(m_tabBar, SIGNAL(loadUrl(const QUrl&, TabWidget::Tab)),
             this, SLOT(loadUrl(const QUrl&, TabWidget::Tab)));
@@ -617,7 +617,7 @@ QLabel *TabWidget::animationLabel(int index, bool addMovie)
         loadingAnimation = new QLabel(this);
     }
     if (addMovie && !loadingAnimation->movie()) {
-        QMovie *movie = new QMovie(":loading.gif", QByteArray(), loadingAnimation);
+        QMovie *movie = new QMovie(QLatin1String(":loading.gif"), QByteArray(), loadingAnimation);
         loadingAnimation->setMovie(movie);
         movie->start();
     }

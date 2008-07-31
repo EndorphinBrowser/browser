@@ -31,7 +31,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
 {
     setupUi(this);
-    setWindowTitle(tr("About") + QString(" %1").arg(qApp->applicationName()));
+    setWindowTitle(tr("About") + QLatin1String(" ") + qApp->applicationName());
     logo->setPixmap(qApp->windowIcon().pixmap(128, 128));
     name->setText(qApp->applicationName());
     version->setText(QApplication::applicationVersion());

@@ -408,8 +408,8 @@ void BrowserMainWindow::setupMenu()
 
     // View
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
-    m_showMenuBarAction = new QAction("Show Menu Bar", this);
-    m_showMenuBarAction->setShortcut(QKeySequence("Ctrl+m"));
+    m_showMenuBarAction = new QAction(tr("Show Menu Bar"), this);
+    m_showMenuBarAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_M));
     connect(m_showMenuBarAction, SIGNAL(triggered()), this, SLOT(slotViewMenuBar()));
     addAction(m_showMenuBarAction);
 

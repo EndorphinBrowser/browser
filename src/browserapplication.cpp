@@ -103,7 +103,9 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
     QString version = QLatin1String("0.3");
     if (QLatin1String(GITCHANGENUMBER) != QLatin1String("0"))
-        version += QString(" (Change: %1 %2)").arg(GITCHANGENUMBER).arg(GITVERSION);
+        version += QString(tr(" (Change: %1 %2)"))
+                    .arg(QLatin1String(GITCHANGENUMBER))
+                    .arg(QLatin1String(GITVERSION));
 
     QCoreApplication::setApplicationVersion(version);
 #ifdef Q_WS_QWS
@@ -149,7 +151,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QString localSysName = QLocale::system().name();
 
     installTranslator(QLatin1String("qt_") + localSysName);
-    installTranslator(dataDirectory() + QDir::separator() + "locale" + QDir::separator() + localSysName);
+    installTranslator(dataDirectory() + QDir::separator() + QLatin1String("locale") + QDir::separator() + localSysName);
 
     // Until QtWebkit defaults to 16
     QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, 16);

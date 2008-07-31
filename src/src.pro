@@ -5,6 +5,8 @@ mac {
     TARGET = Arora
 }
 
+DEFINES += QT_NO_CAST_FROM_ASCII
+
 include(src.pri)
 
 SOURCES += main.cpp
