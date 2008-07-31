@@ -79,6 +79,11 @@
 #include <qsslconfiguration.h>
 #include <qsslerror.h>
 
+#if QT_VERSION >= 0x040500
+#include <qnetworkdiskcache.h>
+#include <qdesktopservices.h>
+#endif
+
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
     : QNetworkAccessManager(parent)
 {
@@ -91,6 +96,14 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
             SLOT(sslErrors(QNetworkReply*, const QList<QSslError>&)));
 #endif
     loadSettings();
+
+#if QT_VERSION >= 0x040500
+    QNetworkDiskCache *diskCache = new QNetworkDiskCache(this);
+    QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
+                            + QLatin1String("/browser");
+    diskCache->setCacheDirectory(location);
+    setCache(diskCache);
+#endif
 }
 
 void NetworkAccessManager::loadSettings()

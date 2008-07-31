@@ -57,7 +57,10 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
     layout->addWidget(m_cookies);
 
     m_cache = new QCheckBox(tr("C&ached Web Pages"));
+#if QT_VERSION < 0x040500
     m_cache->setEnabled(false);
+#endif
+    m_cookies->setChecked(true);
     layout->addWidget(m_cache);
 
     m_favIcons = new QCheckBox(tr("Website &Icons"));
@@ -97,7 +100,9 @@ void ClearPrivateData::accept()
         BrowserApplication::cookieJar()->clear();
     }
     if (m_cache->isChecked()) {
-        //not implemented
+#if QT_VERSION < 0x040500
+        BrowserApplication::downloadManager()->networkCache()->clear();
+#endif
     }
     if (m_favIcons->isChecked()) {
         QWebSettings::clearIconDatabase();
