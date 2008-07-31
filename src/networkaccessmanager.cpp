@@ -99,7 +99,8 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
 
 #if QT_VERSION >= 0x040500
     QNetworkDiskCache *diskCache = new QNetworkDiskCache(this);
-    QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
+    QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
+                            + QLatin1String("/browser");
     diskCache->setCacheDirectory(location);
     setCache(diskCache);
 #endif
