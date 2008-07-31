@@ -23,6 +23,7 @@
 #include "cookiejar.h"
 #include "downloadmanager.h"
 #include "history.h"
+#include "networkaccessmanager.h"
 #include "toolbarsearch.h"
 
 #include <qcheckbox.h>
@@ -31,7 +32,9 @@
 #include <qlist.h>
 #include <qpushbutton.h>
 #include <qwebsettings.h>
-
+#if QT_VERSION >= 0x040500
+#include <qabstractnetworkcache.h>
+#endif
 ClearPrivateData::ClearPrivateData(QWidget *parent)
     : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint)
 {
@@ -100,8 +103,8 @@ void ClearPrivateData::accept()
         BrowserApplication::cookieJar()->clear();
     }
     if (m_cache->isChecked()) {
-#if QT_VERSION < 0x040500
-        BrowserApplication::downloadManager()->networkCache()->clear();
+#if QT_VERSION >= 0x040500
+        BrowserApplication::networkAccessManager()->cache()->clear();
 #endif
     }
     if (m_favIcons->isChecked()) {
