@@ -188,6 +188,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     slotUpdateWindowTitle();
     loadDefaultState();
     m_tabWidget->newTab();
+    m_tabWidget->currentLineEdit()->setFocus();
     m_navigationBar->setIconSize(QSize(18, 18));
 
     // Add each item in the menu bar to the main window so

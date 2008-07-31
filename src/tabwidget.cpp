@@ -281,10 +281,11 @@ void TabWidget::currentChanged(int index)
     m_lineEdits->setCurrentIndex(index);
     emit loadProgress(webView->progress());
     emit showStatusBarMessage(webView->lastStatusBarText());
-    if (webView->url().isEmpty())
+    if (webView->url().isEmpty() && webView->hasFocus()) {
         m_lineEdits->currentWidget()->setFocus();
-    else
+    } else if (!webView->url().isEmpty()) {
         webView->setFocus();
+    }
 }
 
 QAction *TabWidget::newTabAction() const
@@ -342,8 +343,18 @@ WebView *TabWidget::webView(int index) const
         if (count() == 1) {
             TabWidget *that = const_cast<TabWidget*>(this);
             that->setUpdatesEnabled(false);
+            QWidget *currentLocationBar = m_lineEdits->widget(0);
+            bool giveBackFocus = currentLocationBar->hasFocus();
+            m_lineEdits->removeWidget(currentLocationBar);
+            m_lineEdits->addWidget(new QWidget());
             that->newTab();
             that->closeTab(0);
+            QWidget *newEmptyLineEdit = m_lineEdits->widget(0);
+            m_lineEdits->removeWidget(newEmptyLineEdit);
+            newEmptyLineEdit->deleteLater();
+            m_lineEdits->addWidget(currentLocationBar);
+            if (giveBackFocus)
+                currentLocationBar->setFocus();
             that->setUpdatesEnabled(true);
             return currentWebView();
         }
@@ -397,8 +408,11 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
         // Should this be in Qt by default?
         QAbstractItemView *popup = m_lineEditCompleter->popup();
         QListView *listView = qobject_cast<QListView*>(popup);
-        if (listView)
+        if (listView) {
+            // Urls are always LeftToRight
+            listView->setLayoutDirection(Qt::LeftToRight);
             listView->setUniformItemSizes(true);
+        }
     }
     locationBar->setCompleter(m_lineEditCompleter);
     connect(locationBar, SIGNAL(returnPressed()), this, SLOT(lineEditReturnPressed()));
