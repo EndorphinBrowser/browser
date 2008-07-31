@@ -543,7 +543,7 @@ QIcon BrowserApplication::icon(const QUrl &url)
 QString BrowserApplication::dataDirectory() const
 {
 #if defined(Q_WS_X11)
-    return PKGDATADIR;
+    return QLatin1String(PKGDATADIR);
 #else
     return applicationDirPath();
 #endif
