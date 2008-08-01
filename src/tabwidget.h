@@ -76,6 +76,7 @@ class QMenu;
 class QStackedWidget;
 QT_END_NAMESPACE
 
+class BrowserMainWindow;
 class TabBar;
 class WebView;
 class WebActionMapper;
@@ -144,6 +145,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
 #endif
+    BrowserMainWindow *mainWindow();
 
 public slots:
     void loadUrl(const QUrl &url, TabWidget::Tab type = CurrentTab, const QString &title = QString());

@@ -67,6 +67,7 @@
 #include "history.h"
 #include "tabbar.h"
 #include "locationbar.h"
+#include "toolbarsearch.h"
 #include "webactionmapper.h"
 #include "webview.h"
 #include "webviewsearch.h"
@@ -392,6 +393,17 @@ void TabWidget::newTab()
     makeNewTab(true);
 }
 
+BrowserMainWindow *TabWidget::mainWindow()
+{
+    QWidget *w = this->parentWidget();
+    while (w) {
+        if (BrowserMainWindow *mw = qobject_cast<BrowserMainWindow*>(w))
+            return mw;
+        w = w->parentWidget();
+    }
+    return 0;
+}
+
 WebView *TabWidget::makeNewTab(bool makeCurrent)
 {
     if (!makeCurrent) {
@@ -401,7 +413,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     }
 
     // line edit
-    LocationBar *locationBar = new LocationBar(this);
+    LocationBar *locationBar = new LocationBar;
     if (!m_lineEditCompleter && count() > 0) {
         HistoryCompletionModel *completionModel = new HistoryCompletionModel(this);
         completionModel->setSourceModel(BrowserApplication::historyManager()->historyFilterModel());
@@ -419,6 +431,8 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     connect(locationBar, SIGNAL(returnPressed()), this, SLOT(lineEditReturnPressed()));
     m_lineEdits->addWidget(locationBar);
     m_lineEdits->setSizePolicy(locationBar->sizePolicy());
+
+    QWidget::setTabOrder(locationBar, qFindChild<ToolbarSearch*>(mainWindow()));
 
     // optimization to delay creating the more expensive WebView, history, etc
     if (count() == 0) {
@@ -465,8 +479,6 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     addTab(webViewWithSearch, tr("Untitled"));
     if (makeCurrent)
         setCurrentWidget(webViewWithSearch);
-
-    QWidget::setTabOrder(this, locationBar);
 
     // webview actions
     for (int i = 0; i < m_actions.count(); ++i) {
