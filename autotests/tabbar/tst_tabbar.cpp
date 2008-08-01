@@ -79,8 +79,10 @@ public:
     void call_tabLayoutChange()
         { return SubTabBar::tabLayoutChange(); }
 
+#if QT_VERSION < 0x040500
     void call_tabMoveRequested(int fromIndex, int toIndex)
         { return SubTabBar::tabMoveRequested(fromIndex, toIndex); }
+#endif
 
     QSize call_tabSizeHint(int index) const
         { return SubTabBar::tabSizeHint(index); }
