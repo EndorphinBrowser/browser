@@ -34,26 +34,27 @@ int main(int argc, char **argv)
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
 
+    QStringList args = application.arguments();
+    args.takeFirst();
+    if (args.isEmpty()) {
+        QTextStream stream(stdout);
+        stream << "arora-cacheinfo is a tool for viewing and extracting information out of Arora cache files." << endl;
+        stream << "arora-cacheinfo [-o cachefile] [file | url]" << endl;
+        return 0;
+    }
+
     NetworkDiskCache diskCache;
     QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
             + QLatin1String("browser/");
     diskCache.setCacheDirectory(location);
 
-    QStringList args = application.arguments();
-    args.takeFirst();
-    if (args.isEmpty()) {
-        QTextStream stream(stdout);
-        stream << "cacheinfo [-o cachefile] [file | url]" << endl;
-        return 0;
-    }
-
     QNetworkCacheMetaData metaData;
     QString last = args.takeLast();
     if (QFile::exists(last)) {
-        qDebug() << "Reading in from a file and not a url.";
+        qDebug() << "Reading in from a file and not a URL.";
         metaData = diskCache._fileMetaData(last);
     } else {
-        qDebug() << "Reading in from a url and not a file.";
+        qDebug() << "Reading in from a URL and not a file.";
         metaData = diskCache.metaData(last);
     }
 
@@ -63,7 +64,7 @@ int main(int argc, char **argv)
         QUrl url = metaData.url();
         QIODevice *device = diskCache.data(url);
         if (!device) {
-            qDebug() << "Error: disk cache data is 0!";
+            qDebug() << "Error: data for URL is 0!";
             return 1;
         }
         QString fileName;
@@ -73,7 +74,7 @@ int main(int argc, char **argv)
             QFileInfo info(url.path());
             fileName = info.fileName();
             if (fileName.isEmpty()) {
-                qDebug() << "URL base name is empty, please specify an output file.";
+                qDebug() << "URL file name is empty, please specify an output file, I wont guess.";
                 return 1;
             }
             if (QFile::exists(fileName)) {
@@ -84,14 +85,14 @@ int main(int argc, char **argv)
         qDebug() << "Saved cache file to:" << fileName;
         QFile file(fileName);
         if (!file.open(QFile::ReadWrite))
-            qDebug() << "Unable to open the file.";
+            qDebug() << "Unable to open the output file for writing.";
         else
             file.write(device->readAll());
         delete device;
     }
 
     QTextStream stream(stdout);
-    stream << "Url: " << metaData.url().toString() << endl;
+    stream << "URL: " << metaData.url().toString() << endl;
     stream << "Expiration Date: " << metaData.expirationDate().toString() << endl;
     stream << "Last Modified Date: " << metaData.lastModified().toString() << endl;
     stream << "Save to disk: " << metaData.saveToDisk() << endl;
@@ -103,7 +104,7 @@ int main(int argc, char **argv)
         stream << "Data Size: " << device->size() << endl;
         stream << "First line: " << device->readLine(100);
     } else {
-        stream << "No data? corrupt or error" << endl;
+        stream << "No data? Either the file is corrupt or there is an error." << endl;
     }
 
     delete device;
