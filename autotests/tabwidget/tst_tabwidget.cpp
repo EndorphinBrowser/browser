@@ -168,20 +168,23 @@ void tst_TabWidget::addWebAction()
 
     widget.newTab();
     QVERIFY(!action->isEnabled());
+
     widget.loadUrl(QUrl("about:config"));
-    widget.loadUrl(QUrl("http://www.google.com/"));
-    widget.loadUrl(QUrl("http://www.yahoo.com/"));
-    QTest::qWait(3000);
-    QVERIFY(action->isEnabled());
+    QUrl url1(":/notfound.html"); //QUrl("http://www.google.com/"));
+    QUrl url2(":/notfound2.html"); //QUrl("http://www.yahoo.com/"));
+    widget.loadUrl(url1);
+    widget.loadUrl(url2);
+
+    QTRY_VERIFY(action->isEnabled());
     widget.newTab();
     QVERIFY(!action->isEnabled());
 
     QCOMPARE(spy0.count(), 0);
     QCOMPARE(spy1.count(), 0);
     QVERIFY(spy2.count() > 0);
-    QCOMPARE(spy3.count(), 6);
+    QCOMPARE(spy3.count(), 8);
     QVERIFY(spy4.count() > 0);
-    QCOMPARE(spy5.count(), 7);
+    QCOMPARE(spy5.count(), 6);
     QCOMPARE(spy6.count(), 0);
 }
 
