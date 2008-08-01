@@ -919,24 +919,27 @@ BookmarkToolButton::BookmarkToolButton(QUrl url, QWidget *parent)
     : QToolButton(parent)
     , m_url(url)
 {
-    connect(this, SIGNAL(clicked()), this, SLOT(openBookmark()));
 }
 
 void BookmarkToolButton::mouseReleaseEvent(QMouseEvent *event)
 {
     QToolButton::mouseReleaseEvent(event);
-    if (event->button() == Qt::MidButton)
-        emit openBookmark(url(), TabWidget::NewTab, text());
+    if (hitButton(event->pos())) {
+        if (event->button() == Qt::MidButton)
+            emit openBookmark(url(), TabWidget::NewTab, text());
+        if (event->button() == Qt::LeftButton) {
+            TabWidget::Tab openLocation =
+                (event->modifiers() & Qt::ControlModifier)
+                ? TabWidget::NewTab
+                : TabWidget::CurrentTab;
+            emit openBookmark(url(), openLocation, text());
+        }
+    }
 }
 
 QUrl BookmarkToolButton::url() const
 {
     return m_url;
-}
-
-void BookmarkToolButton::openBookmark()
-{
-    emit openBookmark(url(), TabWidget::CurrentTab, text());
 }
 
 BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)

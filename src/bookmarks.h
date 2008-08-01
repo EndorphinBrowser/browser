@@ -329,9 +329,6 @@ public:
 protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
-private slots:
-    void openBookmark();
-
 private:
     QUrl m_url;
 
