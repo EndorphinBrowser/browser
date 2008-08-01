@@ -108,6 +108,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
                     .arg(QLatin1String(GITVERSION));
 
     QCoreApplication::setApplicationVersion(version);
+#ifndef AUTOTESTS
 #ifdef Q_WS_QWS
     // Use a different server name for QWS so we can run an X11
     // browser and a QWS browser in parallel on the same machine for
@@ -115,7 +116,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QString serverName = QCoreApplication::applicationName() + QLatin1String("_qws");
 #else
     QString serverName = QCoreApplication::applicationName();
-#endif
+#endif // Q_WS_QWS
     QLocalSocket socket;
     socket.connectToServer(serverName);
     if (socket.waitForConnected(500)) {
@@ -130,12 +131,6 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
         return;
     }
 
-#if defined(Q_WS_MAC)
-    QApplication::setQuitOnLastWindowClosed(false);
-#else
-    QApplication::setQuitOnLastWindowClosed(true);
-#endif
-
     m_localServer = new QLocalServer(this);
     connect(m_localServer, SIGNAL(newConnection()),
             this, SLOT(newLocalSocketConnection()));
@@ -146,6 +141,13 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
             m_localServer->listen(serverName);
         }
     }
+#endif // AUTOTESTS
+
+#if defined(Q_WS_MAC)
+    QApplication::setQuitOnLastWindowClosed(false);
+#else
+    QApplication::setQuitOnLastWindowClosed(true);
+#endif
 
     QDesktopServices::setUrlHandler(QLatin1String("http"), this, "openUrl");
     QString localSysName = QLocale::system().name();
@@ -167,7 +169,9 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
             this, SLOT(lastWindowClosed()));
 #endif
 
+#ifndef AUTOTESTS
     QTimer::singleShot(0, this, SLOT(postLaunch()));
+#endif // AUTOTESTS
 }
 
 BrowserApplication::~BrowserApplication()
