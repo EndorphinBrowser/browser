@@ -28,6 +28,7 @@
 #define QTEST_MAIN(TestObject) \
 int main(int argc, char *argv[]) \
 { \
+    Q_INIT_RESOURCE(htmls); \
     Q_INIT_RESOURCE(data); \
     BrowserApplication app(argc, argv); \
     TestObject tc; \
