@@ -343,7 +343,7 @@ WebView *TabWidget::webView(int index) const
         if (count() == 1) {
             TabWidget *that = const_cast<TabWidget*>(this);
             that->setUpdatesEnabled(false);
-            QWidget *currentLocationBar = m_lineEdits->widget(0);
+            LocationBar *currentLocationBar = qobject_cast<LocationBar*>(m_lineEdits->widget(0));
             bool giveBackFocus = currentLocationBar->hasFocus();
             m_lineEdits->removeWidget(currentLocationBar);
             m_lineEdits->addWidget(new QWidget());
@@ -353,6 +353,7 @@ WebView *TabWidget::webView(int index) const
             m_lineEdits->removeWidget(newEmptyLineEdit);
             newEmptyLineEdit->deleteLater();
             m_lineEdits->addWidget(currentLocationBar);
+            currentLocationBar->setWebView(currentWebView());
             if (giveBackFocus)
                 currentLocationBar->setFocus();
             that->setUpdatesEnabled(true);
