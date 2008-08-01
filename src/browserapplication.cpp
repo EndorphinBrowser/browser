@@ -284,6 +284,9 @@ void BrowserApplication::loadSettings()
     standardFont = qVariantValue<QFont>(settings.value(QLatin1String("standardFont"), standardFont));
     defaultSettings->setFontFamily(QWebSettings::StandardFont, standardFont.family());
     defaultSettings->setFontSize(QWebSettings::DefaultFontSize, standardFont.pointSize());
+    int minimumFontSize = settings.value(QLatin1String("minimumFontSize"),
+                defaultSettings->fontSize(QWebSettings::MinimumFontSize)).toInt();
+    defaultSettings->setFontSize(QWebSettings::MinimumFontSize, minimumFontSize);
 
     QString fixedFontFamily = defaultSettings->fontFamily(QWebSettings::FixedFont);
     int fixedFontSize = defaultSettings->fontSize(QWebSettings::DefaultFixedFontSize);
