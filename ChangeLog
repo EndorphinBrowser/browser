@@ -1,4 +1,40 @@
 0.3
+- With Qt 4.5 use movable tabs
+- With Qt 4.5 use disk cache
+- Created a new LineEdit that handles adding side widgets in a clean, simple and elegant way.
+- Add a way to set the minimum font size in the settings.
+- When you ctrl-click on a bookmark item in the bookmark toolbar open it in a new tab
+- Fix possible crash on startup; Initialize htmls resource
+- When making the text larger or smaller, use predefined zoom levels.
+- Mouse button 4 and 5 connected to action back and forward. like firefox and ie
+- Clear history: Added confirm dialog
+- Shortcuts in the Edit menu like in Firefox.
+- Save the state of inspector across sessions.
+- When only a hostname and port are entered in the url prepend http://
+- Base the width of the tab on a font rather then a hard coded value
+- Tweak the main window look better on OS X and less out of place
+- Add support for javascript bookmarklets
+- Add option to automatically restore the session on startup.
+- Fix segfault caused by the clear private data dialog.
+- Save the location of the toolbars
+- Improve a number of the strings (feedback from MentalMaelstrom)
+- Tweak action accelerators (the same ones were being used)
+
+Build system
+- Allow building Arora with both Debug/Release of WebKit trunk
+- Only include the sha1 and change number in the version when using git.
+- Create utils directory to contain non-Arora specific classes
+- Run desktop file through desktop-file-validate and correct the errors
+
+Autotests
+- Add QTRY_COMPARE and QTRY_VERIFY for the autotests to use.
+- add AUTOTESTS define when running autotests to prevent accessing running arora's and sending url's to it
+- Fix autotest failures (test related, not arora)
+- Detect which version of qmake to use when building the autotests
+- Give a 1 second punishment if there is no autotest for the source file that was changed
+- Emit a warning of a file doesn't have a matching autotest
+- Update modeltest code to match Trolltech's svn
+
 
 0.2
  - Many Bug fixes and improvements.
