@@ -65,7 +65,7 @@ public:
     {
         QWidget w;
         setParent(&w);
-        if (QWebHistoryInterface::defaultInterface() == this);
+        if (QWebHistoryInterface::defaultInterface() == this)
             QWebHistoryInterface::setDefaultInterface(0);
         setParent(0);
     }
@@ -398,7 +398,6 @@ void tst_History::big()
     history.setHistoryLimit(-1);
     history.setHistory(bigHistory);
 
-
     qDebug() << "removed dups:" << history.history().count();
     QCOMPARE(history.history().count(), bigHistory.count());
 
@@ -456,15 +455,15 @@ void tst_History::historyDialog_data()
     QTest::newRow("page-2") << 0 << 0  << 2 << 0  << 0 << -1;
     QTest::newRow("page-3") << 0 << 0  << 3 << 0  << 0 << -1;
     QTest::newRow("page-4") << 0 << 0  << 4 << 0  << 0 << -1;
-    QTest::newRow("page-last") << 0 << 0  << -2 << 0  << 0 << -1;
-    QTest::newRow("page-only") << 32 << 0  << 0 << 0  << -1 << -1;
+    QTest::newRow("page-last") << 0  << 0  << -2 << 0  << 0  << -1;
+    QTest::newRow("page-only") << 32 << 0  << 0  << 0  << -1 << -1;
 
-    QTest::newRow("date-c") << -1 << -1  << 0 << 1  << -1 << 0;
-    QTest::newRow("date-0") << -1 << -1  << 0 << 0  << -1 << 0;
-    QTest::newRow("date-1") << -1 << -1  << 1 << 0  << -1 << 0;
-    QTest::newRow("date-2") << -1 << -1  << 2 << 0  << -1 << 0;
-    QTest::newRow("date-3") << -1 << -1  << 3 << 0  << -1 << 0;
-    QTest::newRow("date-last") << -1 << -1  << -2 << 0  << -1 << 0;
+    QTest::newRow("date-c") << -1 << -1 << 0 << 1  << -1 << 0;
+    QTest::newRow("date-0") << -1 << -1 << 0 << 0  << -1 << 0;
+    QTest::newRow("date-1") << -1 << -1 << 1 << 0  << -1 << 0;
+    QTest::newRow("date-2") << -1 << -1 << 2 << 0  << -1 << 0;
+    QTest::newRow("date-3") << -1 << -1 << 3 << 0  << -1 << 0;
+    QTest::newRow("date-last") << -1 << -1 << -2 << 0  << -1 << 0;
 
     QTest::newRow("removeAll") << -1 << -1  << -3 << 0  << -1 << 0;
 }
@@ -473,12 +472,13 @@ void tst_History::historyDialog()
 {
     QFETCH(int, parentRow);
     QFETCH(int, parentColumn);
+
     QFETCH(int, row);
     QFETCH(int, column);
+
     QFETCH(int, datesDiff);
     QFETCH(int, parentRowsDiff);
 
-   qDebug() << "which one";
     SubHistory history;
     history.setHistoryLimit(-1);
     history.setHistory(bigHistory);
@@ -487,22 +487,31 @@ void tst_History::historyDialog()
     //QTest::qWait(300);
 
     QAbstractItemModel *model = dialog.tree->model();
+    ModelTest test(model);
 /*
     for (int i = 0; i < model->rowCount(); ++i)
         if (model->rowCount(model->index(i, 0)) == 1)
             qDebug() << i;
 */
-    ModelTest test(model);
-    if (parentRow == -2) parentRow = model->rowCount() - 1;
+    if (parentRow == -2)
+        parentRow = model->rowCount() - 1;
     QModelIndex parent = model->index(parentRow, parentColumn);
-    if (row < -1) row = model->rowCount(parent) - 1;
+
+    if (row < -1)
+        row = model->rowCount(parent) - 1;
     QModelIndex child = model->index(row, column, parent);
     QVERIFY(child.isValid());
 
     int topRowCount = model->rowCount();
     int parentRowCount = model->rowCount(parent.sibling(parent.row(), 0));
     int childRowCount = model->rowCount(child.sibling(child.row(), 0));
-    dialog.tree->selectionModel()->select(child, QItemSelectionModel::SelectCurrent);
+    /*
+    qDebug() << "topRowCount" << topRowCount;
+    qDebug() << "parentRowCount" << parentRowCount;
+    qDebug() << "childRowCount" << childRowCount;
+    qDebug() << "selecting" << child;
+    */
+    dialog.tree->selectionModel()->select(child, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
     if (row == -3) {
         dialog.tree->removeAll();
         QCOMPARE(model->rowCount(), 0);
@@ -519,3 +528,4 @@ void tst_History::historyDialog()
 
 QTEST_MAIN(tst_History)
 #include "tst_history.moc"
+

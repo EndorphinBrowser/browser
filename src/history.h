@@ -332,6 +332,7 @@ private slots:
 private:
     int sourceDateRow(int row) const;
     mutable QList<int> m_sourceRowCache;
+    bool removingDown;
 
 };
 
