@@ -244,6 +244,7 @@ WebView::WebView(QWidget* parent)
     connect(page(), SIGNAL(downloadRequested(const QNetworkRequest &)),
             this, SLOT(downloadRequested(const QNetworkRequest &)));
     page()->setForwardUnsupportedContent(true);
+    setAcceptDrops(true);
 
     // the zoom values (in percent) are chosen to be like in Mozilla Firefox 3
     m_zoomLevels << 30 << 50 << 67 << 80 << 90;
@@ -467,6 +468,42 @@ void WebView::mousePressEvent(QMouseEvent *event)
     m_page->m_pressedButtons = event->buttons();
     m_page->m_keyboardModifiers = event->modifiers();
     QWebView::mousePressEvent(event);
+}
+
+void WebView::dragEnterEvent(QDragEnterEvent *event)
+{
+    event->acceptProposedAction();
+}
+
+void WebView::dragMoveEvent(QDragMoveEvent *event)
+{
+    if (!event->mimeData()->urls().isEmpty()) {
+        event->acceptProposedAction();
+    } else {
+        QUrl url(event->mimeData()->text());
+        if (url.isValid())
+            event->acceptProposedAction();
+    }
+    if (!event->isAccepted())
+        QWebView::dragMoveEvent(event);
+}
+
+void WebView::dropEvent(QDropEvent *event)
+{
+    QWebView::dropEvent(event);
+    if (!event->isAccepted()
+        && event->possibleActions() & Qt::CopyAction) {
+
+        QUrl url;
+        if (!event->mimeData()->urls().isEmpty())
+            url = event->mimeData()->urls().first();
+        if (!url.isValid())
+            url = event->mimeData()->text();
+        if (url.isValid()) {
+            loadUrl(url);
+            event->acceptProposedAction();
+        }
+    }
 }
 
 void WebView::mouseReleaseEvent(QMouseEvent *event)
