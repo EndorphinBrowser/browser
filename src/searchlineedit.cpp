@@ -219,9 +219,11 @@ void SearchLineEdit::paintEvent(QPaintEvent *event)
         QStyleOptionFrameV2 panel;
         initStyleOption(&panel);
         QRect textRect = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
+#if QT_VERSION >= 0x040500
         int left = textMargin(LineEdit::LeftSide);
         int right = textMargin(LineEdit::RightSide);
         textRect.adjust(left, 0, -right, 0);
+#endif
         QPainter painter(this);
         painter.setPen(palette().brush(QPalette::Disabled, QPalette::Text).color());
         painter.drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, m_inactiveText);
