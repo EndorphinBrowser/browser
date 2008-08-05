@@ -1268,6 +1268,7 @@ bool HistoryTreeModel::removeRows(int row, int count, const QModelIndex &parent)
     if (row < 0 || count <= 0 || row + count > rowCount(parent))
         return false;
 
+    removingDown = true;
     if (parent.isValid() && rowCount(parent) == count - row)
         beginRemoveRows(QModelIndex(), parent.row(), parent.row());
     else
@@ -1285,15 +1286,14 @@ bool HistoryTreeModel::removeRows(int row, int count, const QModelIndex &parent)
                 return false;
         }
     }
-    removingDown = true;
     return true;
 }
 
 void HistoryTreeModel::sourceRowsRemoved(const QModelIndex &parent, int start, int end)
 {
     if (!removingDown) {
-        m_sourceRowCache.clear();
         reset();
+        m_sourceRowCache.clear();
         return;
     }
     Q_UNUSED(parent); // Avoid warnings when compiling release
