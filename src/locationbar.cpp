@@ -123,6 +123,8 @@ void LocationBar::setWebView(WebView *webView)
 
 void LocationBar::webViewUrlChanged(const QUrl &url)
 {
+    if (hasFocus())
+        return;
     setText(url.toString());
     setCursorPosition(0);
 }
