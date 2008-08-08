@@ -335,6 +335,22 @@ private:
 };
 
 
+class BookmarksToolBarMenu : public ModelMenu
+{
+    Q_OBJECT
+
+signals:
+    void openUrl(const QUrl &url, TabWidget::Tab type, const QString &title);
+
+public:
+    BookmarksToolBarMenu(QWidget *parent = 0);
+
+private slots:
+    void activated(const QModelIndex &index);
+
+};
+
+
 class BookmarksToolBar : public QToolBar
 {
     Q_OBJECT

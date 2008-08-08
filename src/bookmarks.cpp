@@ -1009,6 +1009,23 @@ QModelIndex BookmarksToolBar::rootIndex() const
     return m_root;
 }
 
+BookmarksToolBarMenu::BookmarksToolBarMenu(QWidget *parent)
+    : ModelMenu(parent)
+{
+    connect(this, SIGNAL(activated(const QModelIndex &)),
+            this, SLOT(activated(const QModelIndex &)));
+    setStatusBarTextRole(BookmarksModel::UrlStringRole);
+    setSeparatorRole(BookmarksModel::SeparatorRole);
+}
+
+void BookmarksToolBarMenu::activated(const QModelIndex &index)
+{
+    emit openUrl(
+          index.data(BookmarksModel::UrlRole).toUrl(),
+          TabWidget::CurrentTab,
+          index.data(Qt::DisplayRole).toString());
+}
+
 void BookmarksToolBar::build()
 {
     clear();
@@ -1019,7 +1036,7 @@ void BookmarksToolBar::build()
             button->setPopupMode(QToolButton::InstantPopup);
             button->setArrowType(Qt::DownArrow);
             button->setText(idx.data().toString());
-            ModelMenu *menu = new ModelMenu(this);
+            ModelMenu *menu = new BookmarksToolBarMenu(this);
             menu->setModel(m_bookmarksModel);
             menu->setRootIndex(idx);
             menu->addAction(new QAction(menu));
@@ -1027,6 +1044,8 @@ void BookmarksToolBar::build()
             button->setToolButtonStyle(Qt::ToolButtonTextOnly);
             QAction *a = addWidget(button);
             a->setText(idx.data().toString());
+            connect(menu, SIGNAL(openUrl(const QUrl &, TabWidget::Tab, const QString &)),
+                    this, SIGNAL(openUrl(const QUrl &, TabWidget::Tab, const QString &)));
         } else {
             QUrl url = idx.data(BookmarksModel::UrlRole).toUrl();
             BookmarkToolButton *button = new BookmarkToolButton(url, this);
