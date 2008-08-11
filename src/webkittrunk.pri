@@ -5,13 +5,8 @@
 CONFIG += $$(QT_WEBKIT)
 webkit_trunk {
     WEBKITDIR = $$(WEBKITDIR)
-    WEBKITBUILD = $$(WEBKITBUILD)
-    isEmpty(WEBKITBUILD) {
-        CONFIG(release):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Release/lib
-        CONFIG(debug):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Debug/lib
-    } else {
-        WEBKITBUILD = $$WEBKITBUILD/lib
-    }
+    CONFIG(release):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Release/lib
+    CONFIG(debug):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Debug/lib
     message(Using WebKit Trunk at $$WEBKITDIR)
     message(Using WebKit Build at $$WEBKITBUILD)
     QT -= webkit
