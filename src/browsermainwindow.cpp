@@ -189,7 +189,9 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     loadDefaultState();
     m_tabWidget->newTab();
     m_tabWidget->currentLineEdit()->setFocus();
+#if defined(Q_WS_MAC)
     m_navigationBar->setIconSize(QSize(18, 18));
+#endif
 
     // Add each item in the menu bar to the main window so
     // if the menu bar is hidden the shortcuts still work.
