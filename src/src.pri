@@ -121,3 +121,7 @@ unix {
 }
 
 include(webkittrunk.pri)
+
+win32 {
+    include(explorerstyle.pri)
+}
