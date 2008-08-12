@@ -33,7 +33,11 @@ class ProxyStyle : public QStyle
 
 public:
     explicit ProxyStyle(const QString &baseStyle)
-        { style = QStyleFactory::create(baseStyle); }
+    {
+        style = QStyleFactory::create(baseStyle);
+        if (!style)
+            style = QStyleFactory::create(QLatin1String("windows"));
+    }
     ~ProxyStyle()
         { delete style; }
 
