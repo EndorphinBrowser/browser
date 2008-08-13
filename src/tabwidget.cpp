@@ -414,7 +414,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
 
     // line edit
     LocationBar *locationBar = new LocationBar;
-    if (!m_lineEditCompleter && count() > 0) {
+    if (!m_lineEditCompleter) {
         HistoryCompletionModel *completionModel = new HistoryCompletionModel(this);
         completionModel->setSourceModel(BrowserApplication::historyManager()->historyFilterModel());
         m_lineEditCompleter = new QCompleter(completionModel, this);
