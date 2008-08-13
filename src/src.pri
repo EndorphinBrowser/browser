@@ -14,10 +14,16 @@ OBJECTS_DIR = .obj
 
 QT += webkit network
 
-GITVERSION=$$system(git log -n1 --pretty=format:%h)
-GITCHANGENUMBER=$$system(git log --pretty=format:%h | wc -l)
-DEFINES += GITVERSION=\"\\\"$$GITVERSION\\\"\"
-DEFINES += GITCHANGENUMBER=\"\\\"$$GITCHANGENUMBER\\\"\"
+win32 {
+    DEFINES += GITVERSION=0
+    DEFINES += GITCHANGENUMBER=0
+}
+!win32 {
+    GITVERSION=$$system(git log -n1 --pretty=format:%h)
+    DEFINES += GITVERSION=\"\\\"$$GITVERSION\\\"\"
+    GITCHANGENUMBER=$$system(git log --pretty=format:%h | wc -l)
+    DEFINES += GITCHANGENUMBER=\"\\\"$$GITCHANGENUMBER\\\"\"
+}
 
 FORMS += \
     aboutdialog.ui \
