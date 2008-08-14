@@ -10,24 +10,3 @@ Makefile
 .gdb_history
 *.swp
 
-autotests/addbookmarkdialog/addbookmarkdialog
-autotests/autosaver/autosaver
-autotests/downloadmanager/downloadmanager
-autotests/edittreeview/edittreeview
-autotests/history/history
-autotests/historyfiltermodel/historyfiltermodel
-autotests/lineedit/lineedit
-autotests/searchlineedit/searchlineedit
-autotests/tabbar/tabbar
-autotests/tabwidget/tabwidget
-autotests/webactionmapper/webactionmapper
-autotests/xbel/xbel
-
-manualtests/bookmarks/bookmarks
-manualtests/downloadmanager/downloadmanager
-manualtests/history/history
-manualtests/lineedit/lineedit
-manualtests/searchlineedit/searchlineedit
-manualtests/squeezelabel/squeezelabel
-manualtests/webviewsearch/webviewsearch
-
