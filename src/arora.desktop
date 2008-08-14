@@ -3,6 +3,7 @@ Exec=arora %U
 GenericName=Web Browser
 GenericName[en_US]=Web Browser
 GenericName[cs_CZ]=Webový prohlížeč
+GenericName[nl]=Webbrowser
 Icon=arora
 MimeType=text/html;
 Name=Arora
