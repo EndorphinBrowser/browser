@@ -147,7 +147,7 @@ void LocationBar::paintEvent(QPaintEvent *event)
     QPalette p = palette();
     QColor backgroundColor = m_defaultBaseColor;
     if (m_webView && m_webView->url().scheme() == QLatin1String("https")
-        && p.brush(QPalette::Text) != Qt::black) {
+        && p.brush(QPalette::Text) == Qt::black) {
         QColor lightYellow(248, 248, 210);
         backgroundColor = lightYellow;
     }
