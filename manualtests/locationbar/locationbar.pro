@@ -8,3 +8,4 @@ include(../manualtests.pri)
 # Input
 SOURCES += main.cpp
 HEADERS +=
+

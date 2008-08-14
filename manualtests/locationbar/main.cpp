@@ -19,7 +19,7 @@
 
 #include <QtGui/QtGui>
 #include "browserapplication.h"
-#include "urllineedit.h"
+#include "locationbar.h"
 #include "webview.h"
 
 int main(int argc, char **argv)
@@ -32,8 +32,8 @@ int main(int argc, char **argv)
     QComboBox *comboBox = new QComboBox(window);
     comboBox->setEditable(true);
     QLineEdit *lineEdit = new QLineEdit(window);
-    UrlLineEdit *s1 = new UrlLineEdit(window);
-    UrlLineEdit *s2 = new UrlLineEdit(window);
+    LocationBar *s1 = new LocationBar(window);
+    LocationBar *s2 = new LocationBar(window);
     WebView *view = new WebView(window);
     view->setUrl(QUrl("http://www.google.com"));
     s2->setWebView(view);
@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 
     QToolBar *bar = w.addToolBar("foo");
     QSplitter *splitter = new QSplitter(window);
-    splitter->addWidget(new UrlLineEdit);
+    splitter->addWidget(new LocationBar);
     splitter->addWidget(new QLineEdit);
     bar->addWidget(splitter);
     return application.exec();

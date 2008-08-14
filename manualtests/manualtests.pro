@@ -3,7 +3,7 @@ SUBDIRS = bookmarks \
 	downloadmanager \
 	history \
 	lineedit \
+	locationbar \
 	searchlineedit \
-	squeezelabel \
-	urllineedit
+	squeezelabel
 
