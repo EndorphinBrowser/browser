@@ -106,6 +106,7 @@ class HistoryManager : public QWebHistoryInterface
     Q_PROPERTY(int historyLimit READ historyLimit WRITE setHistoryLimit)
 
 signals:
+    void historyCleared();
     void historyReset();
     void entryAdded(const HistoryItem &item);
     void entryRemoved(const HistoryItem &item);

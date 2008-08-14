@@ -175,6 +175,7 @@ private slots:
     void menuBarVisibilityChangeRequestedCheck(bool visible);
     void statusBarVisibilityChangeRequestedCheck(bool visible);
     void toolBarVisibilityChangeRequestedCheck(bool visible);
+    void historyCleared();
 
 private:
     QLabel *animationLabel(int index, bool addMovie);

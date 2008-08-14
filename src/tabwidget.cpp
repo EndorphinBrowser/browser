@@ -189,12 +189,22 @@ TabWidget::TabWidget(QWidget *parent)
             this, SLOT(currentChanged(int)));
 
     m_lineEdits = new QStackedWidget(this);
+
+    connect(BrowserApplication::historyManager(), SIGNAL(historyCleared()),
+        this, SLOT(historyCleared()));
+}
+
+void TabWidget::historyCleared()
+{
+    m_recentlyClosedTabs.clear();
+    m_recentlyClosedTabsAction->setEnabled(false);
 }
 
 void TabWidget::clear()
 {
     // clear the recently closed tabs
     m_recentlyClosedTabs.clear();
+    m_recentlyClosedTabsAction->setEnabled(false);
     // clear the line edit history
     for (int i = 0; i < m_lineEdits->count(); ++i) {
         QLineEdit *qLineEdit = lineEdit(i);
