@@ -33,7 +33,8 @@ TRANSLATIONS += \
     locale/pt_BR.ts \
     locale/ru.ts \
     locale/tr.ts \
-    locale/nl.ts
+    locale/nl.ts \
+    locale/zh_CN.ts
 
 updateqm.input = TRANSLATIONS
 updateqm.output = .qm/locale/${QMAKE_FILE_BASE}.qm
