@@ -108,6 +108,9 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
 {
     setAttribute(Qt::WA_DeleteOnClose, true);
     statusBar()->setSizeGripEnabled(true);
+    // fixes https://bugzilla.mozilla.org/show_bug.cgi?id=219070
+    // yes, that's a Firefox bug!
+    statusBar()->setLayoutDirection(Qt::LeftToRight);
     setupMenu();
     setupToolBar();
 

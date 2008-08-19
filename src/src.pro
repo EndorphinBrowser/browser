@@ -27,6 +27,7 @@ TRANSLATIONS += \
     locale/et.ts \
     locale/fr_FR.ts \
     locale/fr_CA.ts \
+    locale/he.ts \
     locale/hu.ts \
     locale/it.ts \
     locale/pl.ts \

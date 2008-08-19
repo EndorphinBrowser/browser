@@ -73,7 +73,11 @@
         </widget>
        </item>
        <item row="1" column="1" colspan="2" >
-        <widget class="QLineEdit" name="homeLineEdit" />
+        <widget class="QLineEdit" name="homeLineEdit" >
+         <property name="layoutDirection" >
+          <enum>Qt::LeftToRight</enum>
+         </property>
+        </widget>
        </item>
        <item row="2" column="1" >
         <widget class="QPushButton" name="setHomeToCurrentPageButton" >
@@ -194,7 +198,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="downloadsLocation" />
+             <widget class="QLineEdit" name="downloadsLocation" >
+              <property name="layoutDirection" >
+               <enum>Qt::LeftToRight</enum>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -528,7 +536,11 @@
            </widget>
           </item>
           <item row="1" column="1" colspan="2" >
-           <widget class="QLineEdit" name="proxyHostName" />
+           <widget class="QLineEdit" name="proxyHostName" >
+            <property name="layoutDirection" >
+             <enum>Qt::LeftToRight</enum>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0" >
            <widget class="QLabel" name="label_11" >
@@ -574,7 +586,11 @@
            </widget>
           </item>
           <item row="3" column="1" colspan="2" >
-           <widget class="QLineEdit" name="proxyUserName" />
+           <widget class="QLineEdit" name="proxyUserName" >
+            <property name="layoutDirection" >
+             <enum>Qt::LeftToRight</enum>
+            </property>
+           </widget>
           </item>
           <item row="4" column="0" >
            <widget class="QLabel" name="label_13" >
@@ -588,6 +604,9 @@
           </item>
           <item row="4" column="1" colspan="2" >
            <widget class="QLineEdit" name="proxyPassword" >
+            <property name="layoutDirection" >
+             <enum>Qt::LeftToRight</enum>
+            </property>
             <property name="echoMode" >
              <enum>QLineEdit::Password</enum>
             </property>
@@ -624,7 +643,11 @@
         </widget>
        </item>
        <item row="0" column="1" >
-        <widget class="QLineEdit" name="userStyleSheet" />
+        <widget class="QLineEdit" name="userStyleSheet" >
+         <property name="layoutDirection" >
+          <enum>Qt::LeftToRight</enum>
+         </property>
+        </widget>
        </item>
        <item row="1" column="1" >
         <spacer name="verticalSpacer_3" >

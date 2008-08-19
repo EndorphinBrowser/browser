@@ -48,12 +48,13 @@ void AboutDialog::displayFile(const QString &fileName, const QString &title)
     QTextEdit *textEdit = new QTextEdit(dialog);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, dialog);
 
-    textEdit->setStyleSheet(QLatin1String("font-family: monospace"));
+    textEdit->setLayoutDirection(Qt::LeftToRight);
 
     QFile file(fileName);
     if (file.open(QIODevice::ReadOnly)) {
         QString text = QTextStream(&file).readAll();
-        textEdit->setPlainText(text);
+	// this is done to force the content of the text editor to be LTR, and monospaced.
+        textEdit->setHtml( QString(QLatin1String("<pre>%1</pre>")).arg(text) );
     }
 
     textEdit->setReadOnly(true);

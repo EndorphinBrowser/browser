@@ -53,8 +53,8 @@ void WebViewSearch::initializeSearchWidget()
     m_widget = new QWidget(this);
     m_widget->setContentsMargins(0, 0, 0, 0);
     ui.setupUi(m_widget);
-    ui.previousButton->setText(QChar(9664));
-    ui.nextButton->setText(QChar(9654));
+    ui.previousButton->setText(m_widget->layoutDirection() == Qt::LeftToRight? QChar(9664): QChar(9654) );
+    ui.nextButton->setText(m_widget->layoutDirection() == Qt::LeftToRight? QChar(9654): QChar(9664));
     ui.searchInfo->setText(QString());
     connect(ui.nextButton, SIGNAL(clicked()),
             this, SLOT(findNext()));
