@@ -152,7 +152,6 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QDesktopServices::setUrlHandler(QLatin1String("http"), this, "openUrl");
     const QString localSysName = QLocale::system().name();
 
-#if 1
     QTranslator *translator = new QTranslator(this);
     QTranslator *qtTranslator = new QTranslator(this);
     QString translatorFileName = dataDirectory() + QDir::separator() + QLatin1String("locale") + QDir::separator() + localSysName;
@@ -166,12 +165,6 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
         installTranslator(translator);
 	installTranslator(qtTranslator);
     }
-#else
-    // this code is not compiled, and should be removed
-    // same for those useless methods
-    installTranslatorByName(QLatin1String("qt_") + localSysName);
-    installTranslatorByName(dataDirectory() + QDir::separator() + QLatin1String("locale") + QDir::separator() + localSysName);
-#endif
 
     // Until QtWebkit defaults to 16
     QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, 16);
@@ -431,13 +424,6 @@ bool BrowserApplication::restoreLastSession()
 bool BrowserApplication::isTheOnlyBrowser() const
 {
     return (m_localServer != 0);
-}
-
-void BrowserApplication::installTranslatorByName(const QString &name)
-{
-    QTranslator *translator = new QTranslator(this);
-    translator->load(name, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    QApplication::installTranslator(translator);
 }
 
 #if defined(Q_WS_MAC)
