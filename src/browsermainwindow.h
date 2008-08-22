@@ -70,6 +70,7 @@
 class AutoSaver;
 class BookmarksToolBar;
 class ChaseWidget;
+class LanguageChooser;
 class QWebFrame;
 class TabWidget;
 class ToolbarSearch;
@@ -141,6 +142,7 @@ private slots:
     void slotClearPrivateData();
     void slotToggleInspector(bool enable);
     void slotAboutApplication();
+    void slotChooseApplicationLanguage();
     void slotDownloadManager();
     void slotSelectLineEdit();
 
@@ -172,6 +174,8 @@ private:
     BookmarksToolBar *m_bookmarksToolbar;
     TabWidget *m_tabWidget;
     AutoSaver *m_autoSaver;
+    LanguageChooser *m_languageChooser;
+
 
     QAction *m_showMenuBarAction;
     QAction *m_historyBack;

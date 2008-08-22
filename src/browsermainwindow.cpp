@@ -71,6 +71,7 @@
 #include "clearprivatedata.h"
 #include "downloadmanager.h"
 #include "history.h"
+#include "languagechooser.h"
 #include "settings.h"
 #include "tabbar.h"
 #include "tabwidget.h"
@@ -114,6 +115,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     setupMenu();
     setupToolBar();
 
+    m_languageChooser = new LanguageChooser();
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
     m_bookmarksToolbar = new BookmarksToolBar(boomarksModel, this);
@@ -539,6 +541,8 @@ void BrowserMainWindow::setupMenu()
 
     // Help
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
+    helpMenu->addAction(tr("Switch application language "), this, SLOT(slotChooseApplicationLanguage()));
+    helpMenu->addSeparator();
     helpMenu->addAction(tr("About &Qt"), qApp, SLOT(aboutQt()));
     helpMenu->addAction(tr("About &Arora"), this, SLOT(slotAboutApplication()));
 }
@@ -771,6 +775,14 @@ void BrowserMainWindow::slotAboutApplication()
 {
     AboutDialog *aboutDialog = new AboutDialog(this);
     aboutDialog->show();
+}
+
+void BrowserMainWindow::slotChooseApplicationLanguage()
+{
+	if (!m_languageChooser)
+		return;
+	if (!m_languageChooser->getLanguageFromUser())
+		return;
 }
 
 void BrowserMainWindow::slotFileNew()
