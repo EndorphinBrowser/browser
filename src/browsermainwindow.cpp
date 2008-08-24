@@ -93,6 +93,10 @@
 #include <qinputdialog.h>
 #include <qsplitter.h>
 
+// lets use the corrent headers...
+#include <QTranslator>
+#include <QLibraryInfo>
+
 #include <qwebframe.h>
 #include <qwebhistory.h>
 
@@ -106,7 +110,12 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     , m_historyForward(0)
     , m_stop(0)
     , m_reload(0)
+    , m_languageChooser( new LanguageChooser )
+    , m_sysTranslator(NULL)
+    , m_appTranslator(NULL)
 {
+    updateTranslators();
+
     setAttribute(Qt::WA_DeleteOnClose, true);
     statusBar()->setSizeGripEnabled(true);
     // fixes https://bugzilla.mozilla.org/show_bug.cgi?id=219070
@@ -114,8 +123,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     statusBar()->setLayoutDirection(Qt::LeftToRight);
     setupMenu();
     setupToolBar();
-
-    m_languageChooser = new LanguageChooser();
+    
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
     m_bookmarksToolbar = new BookmarksToolBar(boomarksModel, this);
@@ -651,6 +659,47 @@ void BrowserMainWindow::updateStatusbarActionText(bool visible)
     m_viewStatusbar->setText(!visible ? tr("Show Status Bar") : tr("Hide Status Bar"));
 }
 
+void BrowserMainWindow::updateTranslators()
+{
+	QTranslator *newSysTranslator = new QTranslator(this);
+	QTranslator *newAppTranslator = new QTranslator(this);
+	
+	QString definedLocale = m_languageChooser->currentLanguage();
+	if (!definedLocale.isEmpty())
+	{
+		bool loaded = true;
+		QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+		QString translatorFileName;
+		
+		translatorFileName = m_languageChooser->dataDirectory() + QDir::separator() + QLatin1String("locale");
+		loaded &= newAppTranslator->load(definedLocale, translatorFileName);
+		
+		translatorFileName = QLatin1String("qt_");
+		translatorFileName += definedLocale;
+		loaded &= newSysTranslator->load(translatorFileName, resourceDir);
+		
+		if (loaded)
+		{
+			if (m_appTranslator!=NULL)
+			{
+				qApp->removeTranslator(m_appTranslator);
+				delete m_appTranslator;
+			}
+			
+			if (m_sysTranslator!=NULL)
+			{
+				qApp->removeTranslator(m_sysTranslator);
+				delete m_sysTranslator;
+			}
+			
+			qApp->installTranslator(newAppTranslator);
+			qApp->installTranslator(newSysTranslator);
+			m_appTranslator = newAppTranslator;
+			m_sysTranslator = newSysTranslator;
+		}
+	}
+}
+
 void BrowserMainWindow::updateToolbarActionText(bool visible)
 {
     m_viewToolbar->setText(!visible ? tr("Show Toolbar") : tr("Hide Toolbar"));
@@ -783,6 +832,7 @@ void BrowserMainWindow::slotChooseApplicationLanguage()
 		return;
 	if (!m_languageChooser->getLanguageFromUser())
 		return;
+	updateTranslators();
 }
 
 void BrowserMainWindow::slotFileNew()

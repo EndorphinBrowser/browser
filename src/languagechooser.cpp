@@ -9,6 +9,8 @@
 #include <QApplication>
 #include <QLibraryInfo>
 #include <QLatin1String>
+#include <QInputDialog>
+#include <QRegExp>
 #include <QDebug>
 
 // private class definition
@@ -19,11 +21,11 @@ public:
 	~Private();
 	
 	void	loadUpAvailableLangs();
-	QString	dataDirectory() const;
+	bool	isLanguageAvailable( const QString &lang ) const;
 	
 	LanguageChooser		*m_parent;
 	QHash<QString,QLocale>	m_langs;
-	QString			currentLang;
+	QString			m_currentLang;
 };
 
 // private class implementation
@@ -49,7 +51,7 @@ LanguageChooser::Private::~Private()
 /// exists - we cannot use it.
 void LanguageChooser::Private::loadUpAvailableLangs()
 {
-	QString appLangsDirName = dataDirectory() + QDir::separator() + QLatin1String("locale");
+	QString appLangsDirName = m_parent->dataDirectory() + QDir::separator() + QLatin1String("locale");
 	QString sysLangsDirName = QLibraryInfo::location(QLibraryInfo::TranslationsPath) + QDir::separator();
 	
 	QDir appLangsDir( appLangsDirName );
@@ -69,21 +71,26 @@ void LanguageChooser::Private::loadUpAvailableLangs()
 		if (!sysFileInfo.exists())
 			continue;
 			
-		qDebug() << "Language [" << lang << "] is available";
+// 		qDebug() << "Language [" << lang << "] is available";
 		m_langs[lang] = QLocale(lang);
 	}
 }
 
-/// Get the directory to read the applications borrowed from 
-/// BrowserApplication::dataDirectory()
-// TODO how should we refactor this?
-QString LanguageChooser::Private::dataDirectory() const
+/// Checks if a language is available for Arora to load
+bool	LanguageChooser::Private::isLanguageAvailable( const QString &lang  ) const
 {
-	#if defined(Q_WS_X11)
-	return QLatin1String(PKGDATADIR);
-	#else
-	return qApp->applicationDirPath();
-	#endif
+	bool found = false;
+	QLocale l1(lang);
+	foreach(QLocale l2, m_langs)
+	{
+		if (l1 == l2)
+		{
+			found = true;
+			break;
+		}
+	}
+	
+	return found;
 }
 
 // public class
@@ -95,19 +102,96 @@ LanguageChooser::LanguageChooser()
 
 LanguageChooser::~LanguageChooser()
 {
+	delete d;
 }
 
 bool LanguageChooser::getLanguageFromUser()
 {
+	QStringList items;
+	QLatin1String("Winter");
+	QLatin1String message(
+		"<p>You can run Arora with a different language <br>"
+		"then the operating system default.</p>"
+		"<p>Please choose the language which should be used for Arora</p>");
+	
+	bool ok;
+	
+	foreach(QLocale l, d->m_langs)
+	{
+		QString s;
+		s = QString( QLatin1String("%1 (%2) %3") )
+			.arg(QLocale::languageToString(l.language()))
+			.arg(l.name())
+			// this is for pretty RTL support, don't ask
+			.arg(QChar(0x200E) // LRM = 0x200E
+		);
+		items << s;
+	}
+	
+	QString item = QInputDialog::getItem(0,
+		QLatin1String("Choose language"), message, 
+		items, 0, false, &ok
+	);
+	
+	if (!ok)
+		return false;
+		
+	// now, lets see which item has been choosen
+	QRegExp regExp(  QLatin1String("\\((\\w+)\\)") );
+	if (regExp.indexIn(item) == -1)
+	{
+		// this is BAD, the string did not match!
+		qDebug()
+			<< __FILE__ << ":" << __LINE__
+			<< "Something bad happed, the language was not chosen from the combobox"; 
+		return false;
+	}
+	
+	QString newLang = regExp.cap(1);
+	
+	if (!d->isLanguageAvailable(newLang))
+	{
+		qDebug()
+			<< __FILE__ << ":" << __LINE__
+			<< "Something bad happed, choosen a non exising language: " 
+			<< newLang;
+		return false;
+	}
+	QLocale l3(newLang);
+	newLang = d->m_langs.key(l3);
+// 	qDebug() << "Choosen " << newLang;
+		
+	d->m_currentLang = newLang;
+	return true;
 }
 
 void LanguageChooser::setCurrentLanguage( const QString &name )
 {
 	// TODO is this a valid language...?
-	d->currentLang = name;
+	d->m_currentLang = name;
 }
 
-QString LanguageChooser::getCurrentLanguage()
+QString LanguageChooser::currentLanguage()
 {
-	return d->currentLang;
+	if (!d->m_currentLang.isEmpty())
+		return d->m_currentLang;
+	
+	const QString sysLanguage = QLocale::system().name();
+	if (d->isLanguageAvailable(sysLanguage))
+		return sysLanguage;
+	else
+		return QString();
 }
+
+/// Get the directory to read the applications borrowed from 
+/// BrowserApplication::dataDirectory()
+// TODO how should we refactor this?
+QString LanguageChooser::dataDirectory() const
+{
+	#if defined(Q_WS_X11)
+	return QLatin1String(PKGDATADIR);
+	#else
+	return qApp->applicationDirPath();
+	#endif
+}
+

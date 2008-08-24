@@ -11,7 +11,8 @@ public:
 	
 	bool getLanguageFromUser();
 	void setCurrentLanguage( const QString &name );
-	QString getCurrentLanguage();
+	QString currentLanguage();
+	QString	dataDirectory() const;
 	
 private:
 	class Private;

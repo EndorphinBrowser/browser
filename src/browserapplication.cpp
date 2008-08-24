@@ -150,21 +150,6 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 #endif
 
     QDesktopServices::setUrlHandler(QLatin1String("http"), this, "openUrl");
-    const QString localSysName = QLocale::system().name();
-
-    QTranslator *translator = new QTranslator(this);
-    QTranslator *qtTranslator = new QTranslator(this);
-    QString translatorFileName = dataDirectory() + QDir::separator() + QLatin1String("locale") + QDir::separator() + localSysName;
-    QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-    bool loaded = translator->load(translatorFileName, resourceDir);
-
-    translatorFileName = QLatin1String("qt_");
-    translatorFileName += localSysName;
-    loaded &= qtTranslator->load(translatorFileName, resourceDir);
-    if (loaded) {
-        installTranslator(translator);
-        installTranslator(qtTranslator);
-    }
 
     // Until QtWebkit defaults to 16
     QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, 16);
@@ -547,13 +532,4 @@ QIcon BrowserApplication::icon(const QUrl &url)
         return pixmap;
     }
     return icon;
-}
-
-QString BrowserApplication::dataDirectory() const
-{
-#if defined(Q_WS_X11)
-    return QLatin1String(PKGDATADIR);
-#else
-    return applicationDirPath();
-#endif
 }

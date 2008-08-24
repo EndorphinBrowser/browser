@@ -77,6 +77,7 @@ class ToolbarSearch;
 class WebView;
 class QSplitter;
 class QFrame;
+class QTranslator;
 
 /*!
     The MainWindow of the Browser Application.
@@ -163,6 +164,7 @@ private:
     void setupMenu();
     void setupToolBar();
     void updateStatusbarActionText(bool visible);
+    void updateTranslators();
 
 private:
     QToolBar *m_navigationBar;
@@ -175,6 +177,8 @@ private:
     TabWidget *m_tabWidget;
     AutoSaver *m_autoSaver;
     LanguageChooser *m_languageChooser;
+    QTranslator *m_sysTranslator;
+    QTranslator *m_appTranslator;
 
 
     QAction *m_showMenuBarAction;
