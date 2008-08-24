@@ -68,10 +68,8 @@ void LanguageChooser::Private::loadUpAvailableLangs()
 		QString		lang = appFileInfo.baseName();
 		QFileInfo	sysFileInfo(sysLangsDirName + QLatin1String("qt_") + lang + QLatin1String(".qm") );
 		
-		if (!sysFileInfo.exists())
-			continue;
-			
-// 		qDebug() << "Language [" << lang << "] is available";
+// 		if (!sysFileInfo.exists())
+// 			continue;
 		m_langs[lang] = QLocale(lang);
 	}
 }
@@ -121,7 +119,7 @@ bool LanguageChooser::getLanguageFromUser()
 		QString s;
 		s = QString( QLatin1String("%1 (%2) %3") )
 			.arg(QLocale::languageToString(l.language()))
-			.arg(l.name())
+			.arg(d->m_langs.key(l))
 			// this is for pretty RTL support, don't ask
 			.arg(QChar(0x200E) // LRM = 0x200E
 		);
