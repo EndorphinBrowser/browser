@@ -113,22 +113,27 @@ bool LanguageChooser::getLanguageFromUser()
 		"<p>Please choose the language which should be used for Arora</p>");
 	
 	bool ok;
+	int defaultItem = 0;
+	int counter = 0;
 	
 	foreach(QLocale l, d->m_langs)
 	{
-		QString s;
+		QString s = d->m_langs.key(l);
+		if (s == d->m_currentLang)
+			defaultItem = items.count();
 		s = QString( QLatin1String("%1 (%2) %3") )
 			.arg(QLocale::languageToString(l.language()))
-			.arg(d->m_langs.key(l))
+			.arg(s)
 			// this is for pretty RTL support, don't ask
 			.arg(QChar(0x200E) // LRM = 0x200E
 		);
+		
 		items << s;
 	}
 	
 	QString item = QInputDialog::getItem(0,
 		QLatin1String("Choose language"), message, 
-		items, 0, false, &ok
+		items, defaultItem, false, &ok
 	);
 	
 	if (!ok)
