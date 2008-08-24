@@ -113,6 +113,12 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     , m_languageChooser( new LanguageChooser )
     , m_sysTranslator(NULL)
     , m_appTranslator(NULL)
+    , m_navigationBar(NULL)
+    , m_historyBackMenu(NULL)
+    , m_historyForwardMenu(NULL)
+    , m_stopReload(NULL)
+    , m_navigationSplitter(NULL)
+    , m_toolbarSearch(NULL)
 {
     updateTranslators();
 
@@ -121,8 +127,8 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     // fixes https://bugzilla.mozilla.org/show_bug.cgi?id=219070
     // yes, that's a Firefox bug!
     statusBar()->setLayoutDirection(Qt::LeftToRight);
-    setupMenu();
-    setupToolBar();
+//     setupMenu();
+//     setupToolBar();
     
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
@@ -352,6 +358,7 @@ QAction *BrowserMainWindow::showMenuBarAction() const
 
 void BrowserMainWindow::setupMenu()
 {
+    menuBar()->clear();
     new QShortcut(QKeySequence(Qt::Key_F6), this, SLOT(slotSwapFocus()));
 
     // File
@@ -460,6 +467,8 @@ void BrowserMainWindow::setupMenu()
     m_stop->setShortcuts(shortcuts);
     m_tabWidget->addWebAction(m_stop, QWebPage::Stop);
 
+    if (m_reload)
+    	delete m_reload;
     m_reload = viewMenu->addAction(tr("&Reload Page"));
     m_reload->setShortcuts(QKeySequence::Refresh);
     m_tabWidget->addWebAction(m_reload, QWebPage::Reload);
@@ -558,11 +567,16 @@ void BrowserMainWindow::setupMenu()
 void BrowserMainWindow::setupToolBar()
 {
     setUnifiedTitleAndToolBarOnMac(true);
+    if (m_navigationBar)
+    	removeToolBar(m_navigationBar);
+//     	delete m_navigationBar; <-- Why does it kil the application?
     m_navigationBar = addToolBar(tr("Navigation"));
     connect(m_navigationBar->toggleViewAction(), SIGNAL(toggled(bool)),
             this, SLOT(updateToolbarActionText(bool)));
 
     m_historyBack->setIcon(style()->standardIcon(QStyle::SP_ArrowBack, 0, this));
+    if (m_historyBackMenu)
+    	delete m_historyBackMenu;
     m_historyBackMenu = new QMenu(this);
     m_historyBack->setMenu(m_historyBackMenu);
     connect(m_historyBackMenu, SIGNAL(aboutToShow()),
@@ -572,6 +586,8 @@ void BrowserMainWindow::setupToolBar()
     m_navigationBar->addAction(m_historyBack);
 
     m_historyForward->setIcon(style()->standardIcon(QStyle::SP_ArrowForward, 0, this));
+    if (m_historyForwardMenu)
+    	delete m_historyForwardMenu;
     m_historyForwardMenu = new QMenu(this);
     connect(m_historyForwardMenu, SIGNAL(aboutToShow()),
             this, SLOT(slotAboutToShowForwardMenu()));
@@ -580,14 +596,20 @@ void BrowserMainWindow::setupToolBar()
     m_historyForward->setMenu(m_historyForwardMenu);
     m_navigationBar->addAction(m_historyForward);
 
+    if (m_stopReload)
+    	delete m_stopReload;
     m_stopReload = new QAction(this);
     m_reloadIcon = style()->standardIcon(QStyle::SP_BrowserReload);
     m_stopReload->setIcon(m_reloadIcon);
-
     m_navigationBar->addAction(m_stopReload);
 
+//     if (m_navigationSplitter)
+//     	delete m_navigationSplitter;  <-- Why does it kil the application?
     m_navigationSplitter = new QSplitter(m_navigationBar);
     m_navigationSplitter->addWidget(m_tabWidget->lineEditStack());
+
+    if (m_toolbarSearch)
+    	delete m_toolbarSearch;
     m_toolbarSearch = new ToolbarSearch(m_navigationBar);
     m_navigationSplitter->addWidget(m_toolbarSearch);
     connect(m_toolbarSearch, SIGNAL(search(const QUrl&)),
@@ -696,6 +718,10 @@ void BrowserMainWindow::updateTranslators()
 			qApp->installTranslator(newSysTranslator);
 			m_appTranslator = newAppTranslator;
 			m_sysTranslator = newSysTranslator;
+			
+			// lets re-translate the whole application
+			setupMenu();
+			setupToolBar();
 		}
 	}
 }
