@@ -679,11 +679,11 @@ void BrowserMainWindow::updateTranslators()
 		QString translatorFileName;
 		
 		translatorFileName = m_languageChooser->dataDirectory() + QDir::separator() + QLatin1String("locale");
-		loaded &= newAppTranslator->load(definedLocale, translatorFileName);
+		loaded = newAppTranslator->load(definedLocale, translatorFileName);
 		
 		translatorFileName = QLatin1String("qt_");
 		translatorFileName += definedLocale;
-		loaded &= newSysTranslator->load(translatorFileName, resourceDir);
+		/*loaded |= */newSysTranslator->load(translatorFileName, resourceDir);
 		
 		if (loaded)
 		{
