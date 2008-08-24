@@ -165,6 +165,7 @@ private:
     void setupToolBar();
     void updateStatusbarActionText(bool visible);
     void updateTranslators();
+    void retranslate();
 
 private:
     QToolBar *m_navigationBar;

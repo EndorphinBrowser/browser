@@ -110,26 +110,24 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     , m_historyForward(0)
     , m_stop(0)
     , m_reload(0)
-    , m_languageChooser( new LanguageChooser )
-    , m_sysTranslator(NULL)
-    , m_appTranslator(NULL)
-    , m_navigationBar(NULL)
-    , m_historyBackMenu(NULL)
-    , m_historyForwardMenu(NULL)
-    , m_stopReload(NULL)
-    , m_navigationSplitter(NULL)
-    , m_toolbarSearch(NULL)
+//     , m_appTranslator(0)
+//     , m_sysTranslator(0)
+//     , m_languageChooser( new LanguageChooser )
 {
+    m_languageChooser = new LanguageChooser;
+    m_appTranslator = NULL;
+    m_sysTranslator = NULL;
+
     updateTranslators();
+    setupMenu();
+    setupToolBar();
 
     setAttribute(Qt::WA_DeleteOnClose, true);
     statusBar()->setSizeGripEnabled(true);
     // fixes https://bugzilla.mozilla.org/show_bug.cgi?id=219070
     // yes, that's a Firefox bug!
     statusBar()->setLayoutDirection(Qt::LeftToRight);
-//     setupMenu();
-//     setupToolBar();
-    
+
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
     m_bookmarksToolbar = new BookmarksToolBar(boomarksModel, this);
@@ -567,16 +565,11 @@ void BrowserMainWindow::setupMenu()
 void BrowserMainWindow::setupToolBar()
 {
     setUnifiedTitleAndToolBarOnMac(true);
-    if (m_navigationBar)
-    	removeToolBar(m_navigationBar);
-//     	delete m_navigationBar; <-- Why does it kil the application?
     m_navigationBar = addToolBar(tr("Navigation"));
     connect(m_navigationBar->toggleViewAction(), SIGNAL(toggled(bool)),
             this, SLOT(updateToolbarActionText(bool)));
 
     m_historyBack->setIcon(style()->standardIcon(QStyle::SP_ArrowBack, 0, this));
-    if (m_historyBackMenu)
-    	delete m_historyBackMenu;
     m_historyBackMenu = new QMenu(this);
     m_historyBack->setMenu(m_historyBackMenu);
     connect(m_historyBackMenu, SIGNAL(aboutToShow()),
@@ -586,8 +579,6 @@ void BrowserMainWindow::setupToolBar()
     m_navigationBar->addAction(m_historyBack);
 
     m_historyForward->setIcon(style()->standardIcon(QStyle::SP_ArrowForward, 0, this));
-    if (m_historyForwardMenu)
-    	delete m_historyForwardMenu;
     m_historyForwardMenu = new QMenu(this);
     connect(m_historyForwardMenu, SIGNAL(aboutToShow()),
             this, SLOT(slotAboutToShowForwardMenu()));
@@ -596,20 +587,14 @@ void BrowserMainWindow::setupToolBar()
     m_historyForward->setMenu(m_historyForwardMenu);
     m_navigationBar->addAction(m_historyForward);
 
-    if (m_stopReload)
-    	delete m_stopReload;
     m_stopReload = new QAction(this);
     m_reloadIcon = style()->standardIcon(QStyle::SP_BrowserReload);
     m_stopReload->setIcon(m_reloadIcon);
     m_navigationBar->addAction(m_stopReload);
 
-//     if (m_navigationSplitter)
-//     	delete m_navigationSplitter;  <-- Why does it kil the application?
     m_navigationSplitter = new QSplitter(m_navigationBar);
     m_navigationSplitter->addWidget(m_tabWidget->lineEditStack());
 
-    if (m_toolbarSearch)
-    	delete m_toolbarSearch;
     m_toolbarSearch = new ToolbarSearch(m_navigationBar);
     m_navigationSplitter->addWidget(m_toolbarSearch);
     connect(m_toolbarSearch, SIGNAL(search(const QUrl&)),
@@ -702,14 +687,17 @@ void BrowserMainWindow::updateTranslators()
 		
 		if (loaded)
 		{
+			bool reTranslationNeeded = false;
 			if (m_appTranslator!=NULL)
 			{
+				reTranslationNeeded = true;
 				qApp->removeTranslator(m_appTranslator);
 				delete m_appTranslator;
 			}
 			
 			if (m_sysTranslator!=NULL)
 			{
+				reTranslationNeeded = true;
 				qApp->removeTranslator(m_sysTranslator);
 				delete m_sysTranslator;
 			}
@@ -720,10 +708,19 @@ void BrowserMainWindow::updateTranslators()
 			m_sysTranslator = newSysTranslator;
 			
 			// lets re-translate the whole application
-			setupMenu();
-			setupToolBar();
+			if (reTranslationNeeded)
+    				retranslate();
 		}
 	}
+}
+
+void BrowserMainWindow::retranslate()
+{
+	// to re-translate the menus, the only doable thing it to re-create it
+	setupMenu();
+	
+	// however, for toolbars, we can just do it smartly
+	m_navigationBar->setWindowTitle (tr("Navigation"));
 }
 
 void BrowserMainWindow::updateToolbarActionText(bool visible)
