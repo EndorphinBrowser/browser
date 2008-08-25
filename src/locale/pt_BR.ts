@@ -8,15 +8,15 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>Autores</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licença</translation>
     </message>
     <message>
         <source>Lightweight WebKit-based web browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador web leve baseado em WebKit</translation>
     </message>
     <message encoding="UTF-8">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -24,22 +24,26 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar</translation>
     </message>
 </context>
 <context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
-        <translation>Adicionar Favoritos</translation>
+        <translation>Adicionar aos Favoritos</translation>
     </message>
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
@@ -86,7 +90,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Toolbar Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra de Favoritos</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -165,11 +169,11 @@ Você deve sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>Restore failed</source>
-        <translation type="unfinished"></translation>
+        <translation>A restauração falhou</translation>
     </message>
     <message>
         <source>The saved session will not being restored because last time it was restored Arora crashed.</source>
-        <translation type="unfinished"></translation>
+        <translation>A sessão salva não será restaurada porque houve um problema na última vez que foi restaurada.</translation>
     </message>
 </context>
 <context>
@@ -212,7 +216,7 @@ Você deve sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>Private &amp;Browsing...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Navegação Privativa...</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -435,15 +439,15 @@ Você deve sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>Are you sure you want to turn on private browsing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Você tem certeza de que deseja ativar a navegação privativa?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quando a navegação privativa está ativada, algumas ações que afetam a sua privacidade serão desabilitadas:&lt;ul&gt;&lt;li&gt; Páginas não serão adicionadas ao histórico.&lt;/li&gt;&lt;li&gt; Ítems serão removidos automaticamente da janela de Downloads.&lt;/li&gt;&lt;li&gt; Novos cookies não serão guardados, cookies atuais não poderão ser acessados.&lt;/li&gt;&lt;li&gt; Ícones de sites não serão armazenados, sessões não serão salvas.&lt;/li&gt;&lt;li&gt; Buscas não serão adicionadas ao menu na caixa de busca.&lt;/li&gt;&lt;/ul&gt;Até você fechar a janela, você poderá continuar clicando nos botões "Voltar" e "Avançar" para retornar as páginas que você já abriu.</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
-        <translation type="unfinished"></translation>
+        <translation>Você tem certeza de que quer fechar a Janela? Existem %1 abas abertas</translation>
     </message>
     <message>
         <source>Page Source of %1</source>
@@ -456,7 +460,8 @@ Você deve sair de qualquer maneira?</translation>
     <message>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation type="unfinished"></translation>
+        <translation>O inspetor web só funcionará corretamente para páginas que forem carregadas após a ativação.
+Você deseja recarregar todas as páginas?</translation>
     </message>
     <message>
         <source>Stop loading the current page</source>
@@ -477,39 +482,39 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrar &amp;Próximo</translation>
     </message>
     <message>
         <source>Find P&amp;revious</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrar &amp;Anterior</translation>
     </message>
     <message>
         <source>Prefe&amp;rences</source>
-        <translation type="unfinished"></translation>
+        <translation>Prefe&amp;rências</translation>
     </message>
     <message>
         <source>&amp;Reload Page</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Recarregar Página</translation>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Tornar o Texto M&amp;aior</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Tornar o Texto &amp;Normal</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation type="unfinished"></translation>
+        <translation>Tornar o Texto M&amp;enor</translation>
     </message>
     <message>
         <source>Show Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar Barra de Favoritos</translation>
     </message>
     <message>
         <source>Hide Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Esconder Barra de Favoritos</translation>
     </message>
 </context>
 <context>
@@ -765,15 +770,11 @@ Do you want to reload all pages?</source>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
+        <translation>- Faltam %n minutos</translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
+        <translation>- Faltam %n segundos</translation>
     </message>
 </context>
 <context>
@@ -788,9 +789,7 @@ Do you want to reload all pages?</source>
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
+        <translation>%n Download(s)</translation>
     </message>
 </context>
 <context>
@@ -854,9 +853,7 @@ Do you want to reload all pages?</source>
     </message>
     <message numerus="yes">
         <source>%n item(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
+        <translation>%n item(ns)</translation>
     </message>
 </context>
 <context>
@@ -898,11 +895,11 @@ Você deseja ignorar esses erros?</translation>
     </message>
     <message>
         <source>DUMMY ICON</source>
-        <translation type="unfinished"></translation>
+        <translation>DUMMY ICON</translation>
     </message>
     <message>
         <source>INTRO TEXT DUMMY</source>
-        <translation>Texto de Introdução</translation>
+        <translation>INTRO TEXT DUMMY</translation>
     </message>
     <message>
         <source>Username:</source>
@@ -1177,39 +1174,39 @@ Você deseja ignorar esses erros?</translation>
     </message>
     <message>
         <source>On startup:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ao iniciar:</translation>
     </message>
     <message>
         <source>Show my home page</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir minha página inicial</translation>
     </message>
     <message>
         <source>Show a blank page</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir uma página em branco</translation>
     </message>
     <message>
         <source>Restore windows and tabs from last time</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar janelas e abas da última sessão</translation>
     </message>
     <message>
         <source>On application exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ao sair do aplicativo</translation>
     </message>
     <message>
         <source>Enable Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar Imagens</translation>
     </message>
     <message>
         <source>Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Abas</translation>
     </message>
     <message>
         <source>Select tabs and windows as they are created</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar abas e janelas como foram criadas</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar ao fechar múltiplas abas</translation>
     </message>
 </context>
 <context>
@@ -1240,11 +1237,11 @@ Você deseja ignorar esses erros?</translation>
     </message>
     <message>
         <source>Show Tab Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir Barra de Abas</translation>
     </message>
     <message>
         <source>Hide Tab Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Esconder Barra de Abas</translation>
     </message>
 </context>
 <context>
@@ -1355,7 +1352,7 @@ Você realmente deseja fechar essa página?</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando...</translation>
     </message>
 </context>
 <context>
