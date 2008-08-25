@@ -121,8 +121,9 @@ bool LanguageChooser::getLanguageFromUser()
 		QString s = d->m_langs.key(l);
 		if (s == d->m_currentLang)
 			defaultItem = items.count();
-		s = QString( QLatin1String("%1 (%2) %3") )
+		s = QString( QLatin1String("%1, %2 (%3) %4") )
 			.arg(QLocale::languageToString(l.language()))
+			.arg(QLocale::countryToString(l.country()))
 			.arg(s)
 			// this is for pretty RTL support, don't ask
 			.arg(QChar(0x200E) // LRM = 0x200E
@@ -140,7 +141,7 @@ bool LanguageChooser::getLanguageFromUser()
 		return false;
 		
 	// now, lets see which item has been choosen
-	QRegExp regExp(  QLatin1String("\\((\\w+)\\)") );
+	QRegExp regExp( QLatin1String("\\((\\w+)\\)") );
 	if (regExp.indexIn(item) == -1)
 	{
 		// this is BAD, the string did not match!
