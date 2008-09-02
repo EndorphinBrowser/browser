@@ -116,6 +116,13 @@ bool LanguageChooser::getLanguageFromUser()
 	int defaultItem = 0;
 	int counter = 0;
 	
+	QString systemLocaleString = QLocale::system().name();
+	systemLocaleString = qApp->tr("System locale (%1) %2")
+		.arg(systemLocaleString)
+		// this is for pretty RTL support, don't ask
+		.arg(QChar(0x200E)); // LRM = 0x200E;
+	items << systemLocaleString;
+	
 	foreach(QLocale l, d->m_langs)
 	{
 		QString s = d->m_langs.key(l);
@@ -140,32 +147,42 @@ bool LanguageChooser::getLanguageFromUser()
 	if (!ok)
 		return false;
 		
-	// now, lets see which item has been choosen
-	QRegExp regExp( QLatin1String("\\((\\w+)\\)") );
-	if (regExp.indexIn(item) == -1)
-	{
-		// this is BAD, the string did not match!
-		qDebug()
-			<< __FILE__ << ":" << __LINE__
-			<< "Something bad happed, the language was not chosen from the combobox"; 
-		return false;
+	
+	
+	if (item == systemLocaleString)
+	{	// user choose to use the system locale
+		d->m_currentLang.clear();
+	}
+	else
+	{	// the user specified a specific locale
+		// lets see which item has been choosen
+		QRegExp regExp( QLatin1String("\\((\\w+)\\)") );
+		if (regExp.indexIn(item) == -1)
+		{
+			// this is BAD, the string did not match!
+			qDebug()
+				<< __FILE__ << ":" << __LINE__
+				<< "Something bad happed, the language was not chosen from the combobox"; 
+			return false;
+		}
+	
+		QString newLang = regExp.cap(1);
+	
+		if (!d->isLanguageAvailable(newLang))
+		{
+			qDebug()
+				<< __FILE__ << ":" << __LINE__
+				<< "Something bad happed, choosen a non exising language: " 
+				<< newLang;
+			return false;
+		}
+		QLocale l3(newLang);
+		newLang = d->m_langs.key(l3);
+	// 	qDebug() << "Choosen " << newLang;
+			
+		d->m_currentLang = newLang;
 	}
 	
-	QString newLang = regExp.cap(1);
-	
-	if (!d->isLanguageAvailable(newLang))
-	{
-		qDebug()
-			<< __FILE__ << ":" << __LINE__
-			<< "Something bad happed, choosen a non exising language: " 
-			<< newLang;
-		return false;
-	}
-	QLocale l3(newLang);
-	newLang = d->m_langs.key(l3);
-// 	qDebug() << "Choosen " << newLang;
-		
-	d->m_currentLang = newLang;
 	return true;
 }
 

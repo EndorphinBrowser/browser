@@ -118,6 +118,10 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     m_appTranslator = NULL;
     m_sysTranslator = NULL;
 
+    QSettings settings;
+    settings.beginGroup(QLatin1String("BrowserMainWindow"));
+    m_languageChooser->setCurrentLanguage( settings.value(QLatin1String("lang")).toString());
+
     updateTranslators();
     setupMenu();
     setupToolBar();
@@ -856,6 +860,10 @@ void BrowserMainWindow::slotChooseApplicationLanguage()
 	if (!m_languageChooser->getLanguageFromUser())
 		return;
 	updateTranslators();
+	
+	QSettings settings;
+	settings.beginGroup(QLatin1String("BrowserMainWindow"));
+	settings.setValue( QLatin1String("lang"), m_languageChooser->currentLanguage() );
 }
 
 void BrowserMainWindow::slotFileNew()
