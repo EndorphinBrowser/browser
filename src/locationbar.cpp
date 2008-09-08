@@ -188,3 +188,15 @@ void LocationBar::focusOutEvent(QFocusEvent *event)
         webViewUrlChanged(m_webView->url());
     QLineEdit::focusOutEvent(event);
 }
+
+void LocationBar::mouseDoubleClickEvent(QMouseEvent *event)
+{
+	if(event->button() == Qt::LeftButton)
+	{
+		selectAll();
+	}
+	else
+	{
+		QLineEdit::mouseDoubleClickEvent(event);
+	}
+}
