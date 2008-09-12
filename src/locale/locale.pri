@@ -8,6 +8,7 @@ TRANSLATIONS += \
     de.ts \
     en.ts \
     es.ts \
+    es_CR.ts \
     et.ts \
     fr_FR.ts \
     fr_CA.ts \
