@@ -1,16 +1,13 @@
 #include "languagechooser.h"
 
-#include <QList>
-#include <QDir>
-#include <QFileInfoList>
-#include <QFileInfo>
-#include <QLocale>
-#include <QApplication>
-#include <QLibraryInfo>
-#include <QLatin1String>
-#include <QInputDialog>
-#include <QRegExp>
-#include <QDebug>
+#include <qapplication.h>
+#include <qdir.h>
+#include <qdebug.h>
+#include <qfileinfo.h>
+#include <qlibraryinfo.h>
+#include <qlocale.h>
+#include <qinputdialog.h>
+#include <qregexp.h>
 
 // public class
 LanguageChooser::LanguageChooser()

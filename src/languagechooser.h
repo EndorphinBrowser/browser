@@ -1,9 +1,9 @@
-#ifndef __LANGUAGE_CHOOSER_H_
-#define __LANGUAGE_CHOOSER_H_
+#ifndef LANGUAGE_CHOOSER_H
+#define LANGUAGE_CHOOSER_H
 
-#include <QString>
-#include <QHash>
-#include <QLocale>
+#include <qstring.h>
+#include <qhash.h>
+#include <qlocale.h>
 
 class LanguageChooser
 {
@@ -23,4 +23,4 @@ private:
 	QString			m_currentLang;
 };
 
-#endif //__LANGUAGE_CHOOSER_H_
+#endif //LANGUAGE_CHOOSER_H
