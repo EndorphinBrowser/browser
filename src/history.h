@@ -74,25 +74,25 @@
 
 #include <qwebhistoryinterface.h>
 
-class HistoryItem
+class HistoryEntry
 {
 public:
-    HistoryItem() {}
-    HistoryItem(const QString &u,
+    HistoryEntry() {}
+    HistoryEntry(const QString &u,
                 const QDateTime &d = QDateTime(), const QString &t = QString())
-            : title(t), url(u), dateTime(d) {}
+            : url(u), title(t), dateTime(d) {}
 
-    inline bool operator==(const HistoryItem &other) const {
+    inline bool operator==(const HistoryEntry &other) const {
         return other.title == title
                && other.url == url && other.dateTime == dateTime;
     }
 
     // history is sorted in reverse
-    inline bool operator <(const HistoryItem &other) const
+    inline bool operator <(const HistoryEntry &other) const
         { return dateTime > other.dateTime; }
 
-    QString title;
     QString url;
+    QString title;
     QDateTime dateTime;
 };
 
@@ -103,13 +103,13 @@ class HistoryTreeModel;
 class HistoryManager : public QWebHistoryInterface
 {
     Q_OBJECT
-    Q_PROPERTY(int historyLimit READ historyLimit WRITE setHistoryLimit)
+    Q_PROPERTY(int daysToExpire READ daysToExpire WRITE setDaysToExpire)
 
 signals:
     void historyCleared();
     void historyReset();
-    void entryAdded(const HistoryItem &item);
-    void entryRemoved(const HistoryItem &item);
+    void entryAdded(const HistoryEntry &item);
+    void entryRemoved(const HistoryEntry &item);
     void entryUpdated(int offset);
 
 public:
@@ -118,14 +118,13 @@ public:
 
     bool historyContains(const QString &url) const;
     void addHistoryEntry(const QString &url);
+    void updateHistoryEntry(const QUrl &url, const QString &title);
 
-    void updateHistoryItem(const QUrl &url, const QString &title);
+    int daysToExpire() const;
+    void setDaysToExpire(int limit);
 
-    int historyLimit() const;
-    void setHistoryLimit(int limit);
-
-    QList<HistoryItem> history() const;
-    void setHistory(const QList<HistoryItem> &history, bool loadedAndSorted = false);
+    QList<HistoryEntry> history() const;
+    void setHistory(const QList<HistoryEntry> &history, bool loadedAndSorted = false);
 
     // History manager keeps around these models for use by the completer and other classes
     HistoryModel *historyModel() const;
@@ -141,15 +140,15 @@ private slots:
     void checkForExpired();
 
 protected:
-    void addHistoryItem(const HistoryItem &item);
+    void addHistoryEntry(const HistoryEntry &item);
 
 private:
     void load();
 
     AutoSaver *m_saveTimer;
-    int m_historyLimit;
+    int m_daysToExpire;
     QTimer m_expiredTimer;
-    QList<HistoryItem> m_history;
+    QList<HistoryEntry> m_history;
     QString m_lastSavedUrl;
 
     HistoryModel *m_historyModel;

@@ -719,7 +719,7 @@ void TabWidget::webViewTitleChanged(const QString &title)
     }
     if (currentIndex() == index)
         emit setCurrentTitle(title);
-    BrowserApplication::historyManager()->updateHistoryItem(webView->url(), title);
+    BrowserApplication::historyManager()->updateHistoryEntry(webView->url(), title);
 }
 
 void TabWidget::webViewUrlChanged(const QUrl &url)
