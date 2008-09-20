@@ -163,7 +163,6 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     settings.beginGroup(QLatin1String("sessions"));
     m_lastSession = settings.value(QLatin1String("lastSession")).toByteArray();
     settings.endGroup();
-    
 
 #if defined(Q_WS_MAC)
     connect(this, SIGNAL(lastWindowClosed()),
