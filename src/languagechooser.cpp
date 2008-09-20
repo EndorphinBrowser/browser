@@ -1,4 +1,5 @@
 #include "languagechooser.h"
+#include "browserapplication.h"	// needed only for dataDirectory, maybe we can workaround?
 
 #include <qapplication.h>
 #include <qdir.h>
@@ -10,16 +11,16 @@
 #include <qregexp.h>
 
 // public class
-LanguageChooser::LanguageChooser()
+LanguageManager::LanguageManager()
 {
 	loadUpAvailableLangs();
 }
 
-LanguageChooser::~LanguageChooser()
+LanguageManager::~LanguageManager()
 {
 }
 
-bool LanguageChooser::getLanguageFromUser()
+bool LanguageManager::getLanguageFromUser()
 {
 	QStringList items;
 	QLatin1String("Winter");
@@ -99,13 +100,13 @@ bool LanguageChooser::getLanguageFromUser()
 	return true;
 }
 
-void LanguageChooser::setCurrentLanguage( const QString &name )
+void LanguageManager::setCurrentLanguage( const QString &name )
 {
 	// TODO is this a valid language...?
 	m_currentLang = name;
 }
 
-QString LanguageChooser::currentLanguage()
+QString LanguageManager::currentLanguage()
 {
 	if (!m_currentLang.isEmpty())
 		return m_currentLang;
@@ -117,27 +118,15 @@ QString LanguageChooser::currentLanguage()
 		return QString();
 }
 
-/// Get the directory to read the applications borrowed from 
-/// BrowserApplication::dataDirectory()
-// TODO how should we refactor this?
-QString LanguageChooser::dataDirectory() const
-{
-	#if defined(Q_WS_X11)
-	return QLatin1String(PKGDATADIR);
-	#else
-	return qApp->applicationDirPath();
-	#endif
-}
-
 /// Used to initialize the internal language list
 /// Will look for all *.qm files in the data directory of Arora, and will try to 
 /// see if a translation for Qt exists.
 /// The only languages that are "valid" are those who exists on both dirs. If 
 /// only a Qt translation exist - we cannot use it. If only Arora translation 
 /// exists - we cannot use it.
-void LanguageChooser::loadUpAvailableLangs()
+void LanguageManager::loadUpAvailableLangs()
 {
-	QString appLangsDirName = dataDirectory() + QDir::separator() + QLatin1String("locale");
+	QString appLangsDirName = BrowserApplication::dataDirectory() + QDir::separator() + QLatin1String("locale");
 	QString sysLangsDirName = QLibraryInfo::location(QLibraryInfo::TranslationsPath) + QDir::separator();
 	
 	QDir appLangsDir( appLangsDirName );
@@ -161,7 +150,7 @@ void LanguageChooser::loadUpAvailableLangs()
 }
 
 /// Checks if a language is available for Arora to load
-bool	LanguageChooser::isLanguageAvailable( const QString &lang  ) const
+bool	LanguageManager::isLanguageAvailable( const QString &lang  ) const
 {
 	bool found = false;
 	QLocale l1(lang);

@@ -110,19 +110,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     , m_historyForward(0)
     , m_stop(0)
     , m_reload(0)
-//     , m_appTranslator(0)
-//     , m_sysTranslator(0)
-//     , m_languageChooser( new LanguageChooser )
 {
-    m_languageChooser = new LanguageChooser;
-    m_appTranslator = NULL;
-    m_sysTranslator = NULL;
-
-    QSettings settings;
-    settings.beginGroup(QLatin1String("BrowserMainWindow"));
-    m_languageChooser->setCurrentLanguage( settings.value(QLatin1String("lang")).toString());
-
-    updateTranslators();
     setupMenu();
     setupToolBar();
 
@@ -670,63 +658,6 @@ void BrowserMainWindow::updateStatusbarActionText(bool visible)
     m_viewStatusbar->setText(!visible ? tr("Show Status Bar") : tr("Hide Status Bar"));
 }
 
-void BrowserMainWindow::updateTranslators()
-{
-	QTranslator *newSysTranslator = new QTranslator(this);
-	QTranslator *newAppTranslator = new QTranslator(this);
-	
-	QString definedLocale = m_languageChooser->currentLanguage();
-	if (!definedLocale.isEmpty())
-	{
-		bool loaded = true;
-		QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-		QString translatorFileName;
-		
-		translatorFileName = m_languageChooser->dataDirectory() + QDir::separator() + QLatin1String("locale");
-		loaded = newAppTranslator->load(definedLocale, translatorFileName);
-		
-		translatorFileName = QLatin1String("qt_");
-		translatorFileName += definedLocale;
-		/*loaded |= */newSysTranslator->load(translatorFileName, resourceDir);
-		
-		if (loaded)
-		{
-			bool reTranslationNeeded = false;
-			if (m_appTranslator!=NULL)
-			{
-				reTranslationNeeded = true;
-				qApp->removeTranslator(m_appTranslator);
-				delete m_appTranslator;
-			}
-			
-			if (m_sysTranslator!=NULL)
-			{
-				reTranslationNeeded = true;
-				qApp->removeTranslator(m_sysTranslator);
-				delete m_sysTranslator;
-			}
-			
-			qApp->installTranslator(newAppTranslator);
-			qApp->installTranslator(newSysTranslator);
-			m_appTranslator = newAppTranslator;
-			m_sysTranslator = newSysTranslator;
-			
-			// lets re-translate the whole application
-			if (reTranslationNeeded)
-    				retranslate();
-		}
-	}
-}
-
-void BrowserMainWindow::retranslate()
-{
-	// to re-translate the menus, the only doable thing it to re-create it
-	setupMenu();
-	
-	// however, for toolbars, we can just do it smartly
-	m_navigationBar->setWindowTitle (tr("Navigation"));
-}
-
 void BrowserMainWindow::updateToolbarActionText(bool visible)
 {
     m_viewToolbar->setText(!visible ? tr("Show Toolbar") : tr("Hide Toolbar"));
@@ -855,15 +786,11 @@ void BrowserMainWindow::slotAboutApplication()
 
 void BrowserMainWindow::slotChooseApplicationLanguage()
 {
-	if (!m_languageChooser)
+	if (!BrowserApplication::languageManager()->getLanguageFromUser())
 		return;
-	if (!m_languageChooser->getLanguageFromUser())
-		return;
-	updateTranslators();
-	
-	QSettings settings;
-	settings.beginGroup(QLatin1String("BrowserMainWindow"));
-	settings.setValue( QLatin1String("lang"), m_languageChooser->currentLanguage() );
+		
+	BrowserApplication::instance()->updateTranslators();
+	slotRetranslate();
 }
 
 void BrowserMainWindow::slotFileNew()
@@ -982,6 +909,17 @@ void BrowserMainWindow::mousePressEvent(QMouseEvent *event)
     }
 }
 
+void BrowserMainWindow::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		slotRetranslate();
+	}
+	
+	// remember to call base class implementation
+	 QMainWindow::changeEvent(event);
+}
+
 void BrowserMainWindow::slotEditFind()
 {
     tabWidget()->webViewSearch(m_tabWidget->currentIndex())->showFind();
@@ -1046,6 +984,18 @@ void BrowserMainWindow::slotHome()
     settings.beginGroup(QLatin1String("MainWindow"));
     QString home = settings.value(QLatin1String("home"), QLatin1String("http://www.arora-browser.org")).toString();
     loadPage(home);
+}
+
+// TODO should it be a normal method, not a slot...?
+// TODO we really need to regenerate the main toolbar
+void BrowserMainWindow::slotRetranslate()
+{
+	// to re-translate the menus, the only doable thing it to re-create it
+	setupMenu();
+	
+	// however, for toolbars, we can just do it smartly
+	m_navigationBar->setWindowTitle (tr("Navigation"));
+	
 }
 
 void BrowserMainWindow::slotWebSearch()

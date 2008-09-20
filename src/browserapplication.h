@@ -79,6 +79,8 @@ class CookieJar;
 class DownloadManager;
 class HistoryManager;
 class NetworkAccessManager;
+class LanguageManager;
+class QTranslator;
 class BrowserApplication : public QApplication
 {
     Q_OBJECT
@@ -102,6 +104,10 @@ public:
     static DownloadManager *downloadManager();
     static NetworkAccessManager *networkAccessManager();
     static BookmarksManager *bookmarksManager();
+    static LanguageManager *languageManager();
+    static QString dataDirectory();
+
+    void updateTranslators();
 
 #if defined(Q_WS_MAC)
     bool event(QEvent *event);
@@ -127,7 +133,10 @@ private:
     static DownloadManager *s_downloadManager;
     static NetworkAccessManager *s_networkAccessManager;
     static BookmarksManager *s_bookmarksManager;
+    static LanguageManager *s_languageManager;
 
+    QTranslator *m_sysTranslator;
+    QTranslator *m_appTranslator;
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
     QLocalServer *m_localServer;
     QByteArray m_lastSession;

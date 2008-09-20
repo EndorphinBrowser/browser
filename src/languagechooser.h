@@ -1,20 +1,22 @@
-#ifndef LANGUAGE_CHOOSER_H
-#define LANGUAGE_CHOOSER_H
+#ifndef LANGUAGE_MANAGER_H
+#define LANGUAGE_MANAGER_H
 
 #include <qstring.h>
 #include <qhash.h>
 #include <qlocale.h>
+#include <qobject.h>
 
-class LanguageChooser
+// this class inherits QObject for "garbage collector" reasons
+// no need to define it as a Q_OBJECT :)
+class LanguageManager: public QObject
 {
 public:
-	LanguageChooser();
-	~LanguageChooser();
+	LanguageManager();
+	~LanguageManager();
 	
 	bool	getLanguageFromUser();
 	void	setCurrentLanguage( const QString &name );
 	QString	currentLanguage();
-	QString	dataDirectory() const;
 	void	loadUpAvailableLangs();
 	bool	isLanguageAvailable( const QString &lang ) const;
 
@@ -23,4 +25,4 @@ private:
 	QString			m_currentLang;
 };
 
-#endif //LANGUAGE_CHOOSER_H
+#endif //LANGUAGE_MANAGER_H

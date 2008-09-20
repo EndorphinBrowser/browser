@@ -105,10 +105,12 @@ public:
 public slots:
     void loadPage(const QString &url);
     void slotHome();
+    void slotRetranslate();
 
 protected:
     void closeEvent(QCloseEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void changeEvent(QEvent* event);
 private slots:
     void save();
 
@@ -164,8 +166,6 @@ private:
     void setupMenu();
     void setupToolBar();
     void updateStatusbarActionText(bool visible);
-    void updateTranslators();
-    void retranslate();
 
 private:
     QToolBar *m_navigationBar;
@@ -177,10 +177,6 @@ private:
     BookmarksToolBar *m_bookmarksToolbar;
     TabWidget *m_tabWidget;
     AutoSaver *m_autoSaver;
-    LanguageChooser *m_languageChooser;
-    QTranslator *m_sysTranslator;
-    QTranslator *m_appTranslator;
-
 
     QAction *m_showMenuBarAction;
     QAction *m_historyBack;
