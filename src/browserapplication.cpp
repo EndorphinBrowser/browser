@@ -67,10 +67,10 @@
 #include "cookiejar.h"
 #include "downloadmanager.h"
 #include "history.h"
+#include "languagemanager.h"
 #include "networkaccessmanager.h"
 #include "tabwidget.h"
 #include "webview.h"
-#include "languagechooser.h"
 
 #include <qbuffer.h>
 #include <qdesktopservices.h>
@@ -98,10 +98,10 @@ LanguageManager *BrowserApplication::s_languageManager = 0;
 
 BrowserApplication::BrowserApplication(int &argc, char **argv)
     : QApplication(argc, argv)
-    , m_localServer(0)
-    , quiting(false)
     , m_sysTranslator(0)
     , m_appTranslator(0)
+    , m_localServer(0)
+    , quiting(false)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
@@ -536,65 +536,62 @@ LanguageManager* BrowserApplication::languageManager()
 
 void BrowserApplication::updateTranslators()
 {
-	QTranslator *newSysTranslator = new QTranslator(this);
-	QTranslator *newAppTranslator = new QTranslator(this);
-	LanguageManager * l_manager = languageManager();
-	
-	QString definedLocale = l_manager->currentLanguage();
-	if (!definedLocale.isEmpty())
-	{
-		bool loaded = true;
-		QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-		QString translatorFileName;
-		
-		translatorFileName = dataDirectory() + QDir::separator() + QLatin1String("locale");
-		loaded = newAppTranslator->load(definedLocale, translatorFileName);
-		
-		translatorFileName = QLatin1String("qt_");
-		translatorFileName += definedLocale;
-		/*loaded |= */newSysTranslator->load(translatorFileName, resourceDir);
-		
-		if (loaded)
-		{
-			bool reTranslationNeeded = false;
-			if (m_appTranslator!=NULL)
-			{
-				reTranslationNeeded = true;
-				qApp->removeTranslator(m_appTranslator);
-				delete m_appTranslator;
-			}
-			
-			if (m_sysTranslator!=NULL)
-			{
-				reTranslationNeeded = true;
-				qApp->removeTranslator(m_sysTranslator);
-				delete m_sysTranslator;
-			}
-			
-			qApp->installTranslator(newAppTranslator);
-			qApp->installTranslator(newSysTranslator);
-			m_appTranslator = newAppTranslator;
-			m_sysTranslator = newSysTranslator;
-			
-			// lets re-translate the whole application
-			//  TODO emit signal?
-//			if (reTranslationNeeded)
-//				retranslate();
-		}
-	}
-	
-	QSettings settings;
-	settings.beginGroup(QLatin1String("BrowserMainWindow"));
-	settings.setValue( QLatin1String("lang"), l_manager->currentLanguage() );
+    QTranslator *newSysTranslator = new QTranslator(this);
+    QTranslator *newAppTranslator = new QTranslator(this);
+    LanguageManager * l_manager = languageManager();
+
+    QString definedLocale = l_manager->currentLanguage();
+    if (!definedLocale.isEmpty())
+    {
+        bool loaded = true;
+        QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+        QString translatorFileName;
+
+        translatorFileName = dataDirectory() + QDir::separator() + QLatin1String("locale");
+        loaded = newAppTranslator->load(definedLocale, translatorFileName);
+
+        translatorFileName = QLatin1String("qt_");
+        translatorFileName += definedLocale;
+        /*loaded |= */newSysTranslator->load(translatorFileName, resourceDir);
+
+        if (loaded)
+        {
+            bool reTranslationNeeded = false;
+            if (m_appTranslator!=NULL)
+            {
+                reTranslationNeeded = true;
+                qApp->removeTranslator(m_appTranslator);
+                delete m_appTranslator;
+            }
+
+            if (m_sysTranslator!=NULL)
+            {
+                reTranslationNeeded = true;
+                qApp->removeTranslator(m_sysTranslator);
+                delete m_sysTranslator;
+            }
+
+            // now remember that events are sent to the whole application widgets
+            // about the new lanague, so they *do* need to catch this and re-translate
+            qApp->installTranslator(newAppTranslator);
+            qApp->installTranslator(newSysTranslator);
+            m_appTranslator = newAppTranslator;
+            m_sysTranslator = newSysTranslator;
+        }
+    }
+
+    QSettings settings;
+    settings.beginGroup(QLatin1String("BrowserMainWindow"));
+    settings.setValue( QLatin1String("lang"), l_manager->currentLanguage() );
 }
 
 QString BrowserApplication::dataDirectory()
 {
-	#if defined(Q_WS_X11)
-	return QLatin1String(PKGDATADIR);
-	#else
-	return qApp->applicationDirPath();
-	#endif
+    #if defined(Q_WS_X11)
+    return QLatin1String(PKGDATADIR);
+    #else
+    return qApp->applicationDirPath();
+    #endif
 }
 
 QIcon BrowserApplication::icon(const QUrl &url)
@@ -612,3 +609,6 @@ QIcon BrowserApplication::icon(const QUrl &url)
     }
     return icon;
 }
+
+// kate: space-indent on; tab-indent off; tab-width 4; indent-width 4; mixedindent off; indent-mode cstyle;
+// kate: syntax: c++; auto-brackets on; auto-insert-doxygen: on; end-of-line: unix; show-tabs: on;

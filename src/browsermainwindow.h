@@ -145,7 +145,6 @@ private slots:
     void slotClearPrivateData();
     void slotToggleInspector(bool enable);
     void slotAboutApplication();
-    void slotChooseApplicationLanguage();
     void slotDownloadManager();
     void slotSelectLineEdit();
 

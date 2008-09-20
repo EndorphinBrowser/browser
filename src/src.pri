@@ -52,7 +52,7 @@ HEADERS += \
     history.h \
     locationbar.h \
     locationbar_p.h \
-    languagechooser.h \
+    languagemanager.h \
     modelmenu.h \
     networkaccessmanager.h \
     searchlineedit.h \
@@ -77,7 +77,7 @@ SOURCES += \
     edittreeview.cpp \
     history.cpp \
     locationbar.cpp \
-    languagechooser.cpp \
+    languagemanager.cpp \
     modelmenu.cpp \
     networkaccessmanager.cpp \
     searchlineedit.cpp \

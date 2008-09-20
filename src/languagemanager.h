@@ -38,19 +38,22 @@
 // no need to define it as a Q_OBJECT :)
 class LanguageManager: public QObject
 {
+    Q_OBJECT
 public:
-	LanguageManager(QObject *parent = 0);
-	~LanguageManager();
-	
-	bool	getLanguageFromUser();
-	void	setCurrentLanguage( const QString &name );
-	QString	currentLanguage();
-	void	loadUpAvailableLangs();
-	bool	isLanguageAvailable( const QString &lang ) const;
+    LanguageManager(QObject *parent = 0);
+    ~LanguageManager();
+
+    void setCurrentLanguage( const QString &name );
+    QString currentLanguage();
+    void loadUpAvailableLangs();
+    bool isLanguageAvailable( const QString &lang ) const;
+
+public slots:
+    bool getLanguageFromUser();
 
 private:
-	QHash<QString,QLocale>	m_langs;
-	QString			m_currentLang;
+    QHash<QString,QLocale> m_langs;
+    QString m_currentLang;
 };
 
 #endif //LANGUAGE_MANAGER_H
