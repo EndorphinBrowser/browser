@@ -157,13 +157,13 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QString translatorFileName = dataDirectory() + QDir::separator() + QLatin1String("locale") + QDir::separator() + localSysName;
     QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
     bool loaded = translator->load(translatorFileName, resourceDir);
-    
+
     translatorFileName = QLatin1String("qt_");
     translatorFileName += localSysName;
     loaded &= qtTranslator->load(translatorFileName, resourceDir);
     if (loaded) {
         installTranslator(translator);
-	installTranslator(qtTranslator);
+        installTranslator(qtTranslator);
     }
 
     // Until QtWebkit defaults to 16
@@ -505,9 +505,8 @@ CookieJar *BrowserApplication::cookieJar()
 
 DownloadManager *BrowserApplication::downloadManager()
 {
-    if (!s_downloadManager) {
+    if (!s_downloadManager)
         s_downloadManager = new DownloadManager();
-    }
     return s_downloadManager;
 }
 
@@ -529,9 +528,8 @@ HistoryManager *BrowserApplication::historyManager()
 
 BookmarksManager *BrowserApplication::bookmarksManager()
 {
-    if (!s_bookmarksManager) {
+    if (!s_bookmarksManager)
         s_bookmarksManager = new BookmarksManager;
-    }
     return s_bookmarksManager;
 }
 

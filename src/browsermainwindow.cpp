@@ -876,18 +876,17 @@ void BrowserMainWindow::closeEvent(QCloseEvent *event)
 
 void BrowserMainWindow::mousePressEvent(QMouseEvent *event)
 {
-	switch(event->button())
-	{
-	case Qt::XButton1:
-		m_historyBack->activate(QAction::Trigger);
-		break;
-	case Qt::XButton2:
-		m_historyForward->activate(QAction::Trigger);
-		break;
-	default:
-		QMainWindow::mousePressEvent(event);
-		break;
-	}
+    switch(event->button()) {
+    case Qt::XButton1:
+        m_historyBack->activate(QAction::Trigger);
+        break;
+    case Qt::XButton2:
+        m_historyForward->activate(QAction::Trigger);
+        break;
+    default:
+        QMainWindow::mousePressEvent(event);
+        break;
+    }
 }
 
 void BrowserMainWindow::slotEditFind()

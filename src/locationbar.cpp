@@ -191,9 +191,9 @@ void LocationBar::focusOutEvent(QFocusEvent *event)
 
 void LocationBar::mouseDoubleClickEvent(QMouseEvent *event)
 {
-	if (event->button() == Qt::LeftButton)
-		selectAll();
-	else
-		QLineEdit::mouseDoubleClickEvent(event);
+    if (event->button() == Qt::LeftButton)
+        selectAll();
+    else
+        QLineEdit::mouseDoubleClickEvent(event);
 }
 
