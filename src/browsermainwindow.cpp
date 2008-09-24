@@ -548,7 +548,7 @@ void BrowserMainWindow::setupMenu()
 
     // Help
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
-    helpMenu->addAction(tr("Switch application language "), BrowserApplication::languageManager(), SLOT(getLanguageFromUser()));
+    helpMenu->addAction(tr("Switch application language "), BrowserApplication::languageManager(), SLOT(chooseNewLanguage()));
     helpMenu->addSeparator();
     helpMenu->addAction(tr("About &Qt"), qApp, SLOT(aboutQt()));
     helpMenu->addAction(tr("About &Arora"), this, SLOT(slotAboutApplication()));
@@ -1154,5 +1154,3 @@ void BrowserMainWindow::geometryChangeRequested(const QRect &geometry)
     setGeometry(geometry);
 }
 
-// kate: space-indent on; tab-indent off; tab-width 4; indent-width 4; mixedindent off; indent-mode cstyle;
-// kate: syntax: c++; auto-brackets on; auto-insert-doxygen: on; end-of-line: unix; show-tabs: on;

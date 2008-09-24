@@ -98,8 +98,6 @@ LanguageManager *BrowserApplication::s_languageManager = 0;
 
 BrowserApplication::BrowserApplication(int &argc, char **argv)
     : QApplication(argc, argv)
-    , m_sysTranslator(0)
-    , m_appTranslator(0)
     , m_localServer(0)
     , quiting(false)
 {
@@ -164,6 +162,11 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     m_lastSession = settings.value(QLatin1String("lastSession")).toByteArray();
     settings.endGroup();
 
+    settings.beginGroup(QLatin1String("LanguageManager"));
+    if (settings.contains(QLatin1String("language")))
+        languageManager()->setCurrentLanguage(settings.value(QLatin1String("language")).toString());
+    settings.endGroup();
+
 #if defined(Q_WS_MAC)
     connect(this, SIGNAL(lastWindowClosed()),
             this, SLOT(lastWindowClosed()));
@@ -172,7 +175,6 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 #ifndef AUTOTESTS
     QTimer::singleShot(0, this, SLOT(postLaunch()));
 #endif // AUTOTESTS
-    updateTranslators();
 }
 
 BrowserApplication::~BrowserApplication()
@@ -525,73 +527,18 @@ BookmarksManager *BrowserApplication::bookmarksManager()
 
 LanguageManager* BrowserApplication::languageManager()
 {
-    if (!s_languageManager) {
-        QSettings settings;
+    if (!s_languageManager)
         s_languageManager = new LanguageManager;
-        settings.beginGroup(QLatin1String("BrowserMainWindow"));
-        s_languageManager->setCurrentLanguage( settings.value(QLatin1String("lang")).toString() );
-    }
     return s_languageManager;
-}
-
-void BrowserApplication::updateTranslators()
-{
-    QTranslator *newSysTranslator = new QTranslator(this);
-    QTranslator *newAppTranslator = new QTranslator(this);
-    LanguageManager * l_manager = languageManager();
-
-    QString definedLocale = l_manager->currentLanguage();
-    if (!definedLocale.isEmpty())
-    {
-        bool loaded = true;
-        QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-        QString translatorFileName;
-
-        translatorFileName = dataDirectory() + QDir::separator() + QLatin1String("locale");
-        loaded = newAppTranslator->load(definedLocale, translatorFileName);
-
-        translatorFileName = QLatin1String("qt_");
-        translatorFileName += definedLocale;
-        /*loaded |= */newSysTranslator->load(translatorFileName, resourceDir);
-
-        if (loaded)
-        {
-            bool reTranslationNeeded = false;
-            if (m_appTranslator!=NULL)
-            {
-                reTranslationNeeded = true;
-                qApp->removeTranslator(m_appTranslator);
-                delete m_appTranslator;
-            }
-
-            if (m_sysTranslator!=NULL)
-            {
-                reTranslationNeeded = true;
-                qApp->removeTranslator(m_sysTranslator);
-                delete m_sysTranslator;
-            }
-
-            // now remember that events are sent to the whole application widgets
-            // about the new lanague, so they *do* need to catch this and re-translate
-            qApp->installTranslator(newAppTranslator);
-            qApp->installTranslator(newSysTranslator);
-            m_appTranslator = newAppTranslator;
-            m_sysTranslator = newSysTranslator;
-        }
-    }
-
-    QSettings settings;
-    settings.beginGroup(QLatin1String("BrowserMainWindow"));
-    settings.setValue( QLatin1String("lang"), l_manager->currentLanguage() );
 }
 
 QString BrowserApplication::dataDirectory()
 {
-    #if defined(Q_WS_X11)
+#if defined(Q_WS_X11)
     return QLatin1String(PKGDATADIR);
-    #else
+#else
     return qApp->applicationDirPath();
-    #endif
+#endif
 }
 
 QIcon BrowserApplication::icon(const QUrl &url)
@@ -610,5 +557,3 @@ QIcon BrowserApplication::icon(const QUrl &url)
     return icon;
 }
 
-// kate: space-indent on; tab-indent off; tab-width 4; indent-width 4; mixedindent off; indent-mode cstyle;
-// kate: syntax: c++; auto-brackets on; auto-insert-doxygen: on; end-of-line: unix; show-tabs: on;

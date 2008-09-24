@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2008, Diego Iastrubni, elcuco, at, kde.org
+ * Copyright 2008 Diego Iastrubni, elcuco, at, kde.org
+ * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -26,37 +27,38 @@
  * SUCH DAMAGE.
  */
 
-#ifndef LANGUAGE_MANAGER_H
-#define LANGUAGE_MANAGER_H
+#ifndef LANGUAGEMANAGER_H
+#define LANGUAGEMANAGER_H
 
-#include <qstring.h>
-#include <qhash.h>
-#include <qlocale.h>
 #include <qobject.h>
 
-// this class inherits QObject for "garbage collector" reasons
-// no need to define it as a Q_OBJECT :)
-class LanguageManager: public QObject
+#include <qstringlist.h>
+
+class QTranslator;
+class LanguageManager : public QObject
 {
     Q_OBJECT
+
 public:
     LanguageManager(QObject *parent = 0);
-    ~LanguageManager();
 
-    void setCurrentLanguage( const QString &name );
-    QString currentLanguage();
-    void loadUpAvailableLangs();
-    bool isLanguageAvailable( const QString &lang ) const;
+    QString currentLanguage() const;
+    void setCurrentLanguage(const QString &language);
 
 public slots:
-    bool getLanguageFromUser();
+    void chooseNewLanguage();
 
 private:
-    QHash<QString,QLocale> m_langs;
-    QString m_currentLang;
+    bool isLanguageAvailable(const QString &language) const;
+    QString translationLocation() const;
+    void loadAvailableLanguages();
+
+    bool m_loaded;
+    QTranslator *m_sysTranslator;
+    QTranslator *m_appTranslator;
+    QStringList m_languages;
+    QString m_currentLanguage;
 };
 
-#endif //LANGUAGE_MANAGER_H
+#endif //LANGUAGEMANAGER_H
 
-// kate: space-indent on; tab-indent off; tab-width 4; indent-width 4; mixedindent off; indent-mode cstyle;
-// kate: syntax: c++; auto-brackets on; auto-insert-doxygen: on; end-of-line: unix; show-tabs: on;

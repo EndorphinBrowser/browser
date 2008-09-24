@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2008, Diego Iastrubni, elcuco, at, kde.org
+ * Copyright 2008 Diego Iastrubni, elcuco, at, kde.org
+ * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -27,167 +28,170 @@
  */
 
 #include "languagemanager.h"
-// needed only for dataDirectory, maybe we can workaround?
+
 #include "browserapplication.h"
 
 #include <qapplication.h>
 #include <qdir.h>
-#include <qdebug.h>
 #include <qfileinfo.h>
+#include <qinputdialog.h>
 #include <qlibraryinfo.h>
 #include <qlocale.h>
-#include <qinputdialog.h>
-#include <qregexp.h>
+#include <qsettings.h>
+#include <qtranslator.h>
 
-// public class
+#include <qdebug.h>
+
 LanguageManager::LanguageManager(QObject *parent)
- :QObject(parent)
-{
-    loadUpAvailableLangs();
-}
-
-LanguageManager::~LanguageManager()
+    : QObject(parent)
+    , m_loaded(false)
+    , m_sysTranslator(0)
+    , m_appTranslator(0)
 {
 }
 
-bool LanguageManager::getLanguageFromUser()
+QString LanguageManager::currentLanguage() const
 {
-    QStringList items;
-    QLatin1String("Winter");
-    QLatin1String message(
-        "<p>You can run Arora with a different language <br>"
-        "then the operating system default.</p>"
-        "<p>Please choose the language which should be used for Arora</p>");
-
-    bool ok;
-    int defaultItem = 0;
-
-    QString systemLocaleString = QLocale::system().name();
-    systemLocaleString = qApp->tr("System locale (%1) %2")
-        .arg(systemLocaleString)
-        // this is for pretty RTL support, don't ask
-        .arg(QChar(0x200E)); // LRM = 0x200E;
-    items << systemLocaleString;
-
-    foreach(QLocale l, m_langs)
-    {
-        QString s = m_langs.key(l);
-        if (s == m_currentLang)
-            defaultItem = items.count();
-        s = QString( QLatin1String("%1, %2 (%3) %4") )
-            .arg(QLocale::languageToString(l.language()))
-            .arg(QLocale::countryToString(l.country()))
-            .arg(s)
-            // this is for pretty RTL support, don't ask
-            .arg(QChar(0x200E)); // LRM = 0x200E
-        items << s;
-    }
-
-    QString item = QInputDialog::getItem( 0,
-        QLatin1String("Choose language"), message,
-        items, defaultItem, false, &ok
-    );
-
-    if (!ok)
-        return false;
-
-    if (item == systemLocaleString)
-    {   // user choose to use the system locale
-        m_currentLang.clear();
-    }
-    else
-    {   // the user specified a specific locale
-        // lets see which item has been choosen
-        QRegExp regExp( QLatin1String("\\((\\w+)\\)") );
-        if (regExp.indexIn(item) == -1)
-        {   // this is BAD, the string did not match!
-            qDebug()
-                << __FILE__ << ":" << __LINE__
-                << "Something bad happed, the language was not chosen from the combobox";
-            return false;
-        }
-        QString newLang = regExp.cap(1);
-        if (!isLanguageAvailable(newLang))
-        {
-            qDebug()
-                << __FILE__ << ":" << __LINE__
-                << "Something bad happed, choosen a non exising language: "
-                << newLang;
-            return false;
-        }
-        QLocale l3(newLang);
-        newLang = m_langs.key(l3);
-        m_currentLang = newLang;
-    }
-
-    BrowserApplication::instance()->updateTranslators();
-    return true;
-}
-
-void LanguageManager::setCurrentLanguage( const QString &name )
-{
-    // TODO is this a valid language...?
-    m_currentLang = name;
-}
-
-QString LanguageManager::currentLanguage()
-{
-    if (!m_currentLang.isEmpty())
-        return m_currentLang;
+    if (!m_currentLanguage.isEmpty())
+        return m_currentLanguage;
 
     const QString sysLanguage = QLocale::system().name();
     if (isLanguageAvailable(sysLanguage))
         return sysLanguage;
-    else
-        return QString();
+    return QString();
 }
 
-/// Used to initialize the internal language list
-/// Will look for all *.qm files in the data directory of Arora, and will try to
-/// see if a translation for Qt exists.
-/// The only languages that are "valid" are those who exists on both dirs. If
-/// only a Qt translation exist - we cannot use it. If only Arora translation
-/// exists - we cannot use it.
-void LanguageManager::loadUpAvailableLangs()
+bool LanguageManager::isLanguageAvailable(const QString &language) const
 {
-    QString appLangsDirName = BrowserApplication::dataDirectory() + QDir::separator() + QLatin1String("locale");
-    QString sysLangsDirName = QLibraryInfo::location(QLibraryInfo::TranslationsPath) + QDir::separator();
+    if (!m_loaded) {
+        LanguageManager *that = const_cast<LanguageManager*>(this);
+        that->loadAvailableLanguages();
+    }
+    return language.isEmpty() || m_languages.contains(language);
+}
 
-    QDir appLangsDir( appLangsDirName );
-    QFileInfoList list;
-    QStringList filters;
+void LanguageManager::setCurrentLanguage(const QString &language)
+{
+    if (m_currentLanguage == language
+        || !isLanguageAvailable(language))
+        return;
 
-    filters  << QLatin1String("*.qm");
-    appLangsDir.setNameFilters( filters );
-    list = appLangsDir.entryInfoList();
+    m_currentLanguage = language;
 
-    for (int i = 0; i < list.size(); ++i)
-    {
-        QFileInfo	appFileInfo = list.at(i);
-        QString		lang = appFileInfo.baseName();
-        QFileInfo	sysFileInfo(sysLangsDirName + QLatin1String("qt_") + lang + QLatin1String(".qm") );
+    QSettings settings;
+    settings.beginGroup(QLatin1String("LanguageManager"));
+    settings.setValue(QLatin1String("language"), m_currentLanguage);
 
-/*        if (!sysFileInfo.exists())
-            continue;*/
-        m_langs[lang] = QLocale(lang);
+    if (m_currentLanguage.isEmpty()) {
+        delete m_appTranslator;
+        delete m_sysTranslator;
+        m_appTranslator = 0;
+        m_sysTranslator = 0;
+        return;
+    }
+
+    QTranslator *newAppTranslator = new QTranslator(this);
+    QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+    bool loaded = newAppTranslator->load(m_currentLanguage, translationLocation());
+
+    QTranslator *newSysTranslator = new QTranslator(this);
+    QString translatorFileName = QLatin1String("qt_") + m_currentLanguage;
+    if (!newSysTranslator->load(translatorFileName, resourceDir)) {
+        delete newSysTranslator;
+        newSysTranslator = 0;
+    }
+
+    if (!loaded) {
+        qWarning() << "Failed to load translation:" << currentLanguage();
+        delete newAppTranslator;
+        delete newSysTranslator;
+        return;
+    }
+
+    // A new language event is sent to all widgets in the application
+    // They need to catch it and re-translate
+    delete m_appTranslator;
+    delete m_sysTranslator;
+    qApp->installTranslator(newAppTranslator);
+    qApp->installTranslator(newSysTranslator);
+    m_appTranslator = newAppTranslator;
+    m_sysTranslator = newSysTranslator;
+}
+
+void LanguageManager::chooseNewLanguage()
+{
+    if (!m_loaded)
+        loadAvailableLanguages();
+
+    QStringList items;
+    QString systemLocaleString = QLocale::system().name();
+    systemLocaleString = tr("System locale (%1) %2")
+        .arg(systemLocaleString)
+        // this is for pretty RTL support
+        .arg(QChar(0x200E)); // LRM = 0x200E;
+    items << systemLocaleString;
+
+    int defaultItem = 0;
+    foreach (QString name, m_languages) {
+        QLocale locale(name);
+        if (name == m_currentLanguage)
+            defaultItem = items.count();
+        QString string = QString(QLatin1String("%1, %2 (%3) %4"))
+            .arg(QLocale::languageToString(locale.language()))
+            .arg(QLocale::countryToString(locale.country()))
+            .arg(name)
+            // this is for pretty RTL support
+            .arg(QChar(0x200E)); // LRM = 0x200E
+        items << string;
+    }
+
+    bool ok;
+    QString item = QInputDialog::getItem(0,
+        tr("Choose language"),
+        tr("<p>You can run with a different language than<br>"
+        "the operating system default.</p>"
+        "<p>Please choose the language which should be used</p>"),
+        items, defaultItem, false, &ok);
+    if (!ok)
+        return;
+
+    int selection = items.indexOf(item);
+    if (selection == 0) {
+        setCurrentLanguage(QString());
+    } else {
+        setCurrentLanguage(m_languages.value(selection - 1));
     }
 }
 
-/// Checks if a language is available for Arora to load
-bool LanguageManager::isLanguageAvailable( const QString &lang  ) const
+QString LanguageManager::translationLocation() const
 {
-    bool found = false;
-    QLocale l1(lang);
-    foreach(QLocale l2, m_langs)
-    {
-        if (l1 == l2)
-        {
-            found = true;
-            break;
+    QString directory = BrowserApplication::dataDirectory() + QLatin1Char('/') + QLatin1String("locale");
+    // work without installing
+    if (!QFile::exists(directory))
+        directory = QLatin1String(".qm/locale");
+    return directory;
+}
+
+/*!
+    Find all *.qm files in the data directory that have a Qt translation.
+ */
+void LanguageManager::loadAvailableLanguages()
+{
+    m_loaded = true;
+    QDir appLangsDir(translationLocation());
+    appLangsDir.setNameFilters(QStringList(QLatin1String("*.qm")));
+    QFileInfoList list = appLangsDir.entryInfoList();
+
+    QString sysLangsDirName = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+    sysLangsDirName += QLatin1Char('/') + QLatin1String("qt_");
+    for (int i = 0; i < list.size(); ++i) {
+        QFileInfo appFileInfo = list.at(i);
+        QString language = appFileInfo.completeBaseName();
+        QFileInfo sysFileInfo(sysLangsDirName + language + QLatin1String(".qm") );
+        if (!sysFileInfo.exists()) {
+            //continue;
         }
+        m_languages.append(language);
     }
-    return found;
 }
 
-// kate: space-indent on; tab-indent off; tab-width 4; indent-width 4; mixedindent off; indent-mode cstyle;
-// kate: syntax: c++; auto-brackets on; auto-insert-doxygen: on; end-of-line: unix; show-tabs: on;
