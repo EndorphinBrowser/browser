@@ -72,6 +72,7 @@
 #include "downloadmanager.h"
 #include "history.h"
 #include "settings.h"
+#include "sourceviewer.h"
 #include "tabbar.h"
 #include "tabwidget.h"
 #include "toolbarsearch.h"
@@ -939,12 +940,10 @@ void BrowserMainWindow::slotViewPageSource()
     if (!currentTab())
         return;
 
+    QString title = currentTab()->title();
     QString markup = currentTab()->page()->mainFrame()->toHtml();
-    QPlainTextEdit *view = new QPlainTextEdit(markup);
-    view->setWindowTitle(tr("Page Source of %1").arg(currentTab()->title()));
-    view->setMinimumWidth(640);
-    view->setAttribute(Qt::WA_DeleteOnClose);
-    view->show();
+    SourceViewer *viewer = new SourceViewer(markup,title);
+    viewer->setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void BrowserMainWindow::slotHome()
