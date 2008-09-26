@@ -61,6 +61,7 @@ HEADERS += \
     tabbar.h \
     tabwidget.h \
     toolbarsearch.h \
+    viewsearch.h \
     webactionmapper.h \
     webview.h \
     webviewsearch.h \
@@ -87,6 +88,7 @@ SOURCES += \
     tabbar.cpp \
     tabwidget.cpp \
     toolbarsearch.cpp \
+    viewsearch.cpp \
     webactionmapper.cpp \
     webview.cpp \
     webviewsearch.cpp \

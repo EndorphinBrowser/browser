@@ -29,33 +29,8 @@
 #include <qdebug.h>
 
 WebViewSearch::WebViewSearch(QWidget *parent)
-    : QWidget(parent)
-    , m_widget(0)
-    , m_webView(0)
-    , m_timeLine(new QTimeLine(150, this))
+    : ViewSearch(parent)
 {
-    initializeSearchWidget();
-
-    // we start off hidden
-    setMaximumHeight(0);
-    m_widget->setGeometry(0, -1 * m_widget->height(),
-                          m_widget->width(), m_widget->height());
-    hide();
-
-    connect(m_timeLine, SIGNAL(frameChanged(int)),
-            this, SLOT(frameChanged(int)));
-
-    new QShortcut(QKeySequence(Qt::Key_Escape), this, SLOT(animateHide()));
-}
-
-void WebViewSearch::initializeSearchWidget()
-{
-    m_widget = new QWidget(this);
-    m_widget->setContentsMargins(0, 0, 0, 0);
-    ui.setupUi(m_widget);
-    ui.previousButton->setText(m_widget->layoutDirection() == Qt::LeftToRight? QChar(9664): QChar(9654) );
-    ui.nextButton->setText(m_widget->layoutDirection() == Qt::LeftToRight? QChar(9654): QChar(9664));
-    ui.searchInfo->setText(QString());
     connect(ui.nextButton, SIGNAL(clicked()),
             this, SLOT(findNext()));
     connect(ui.previousButton, SIGNAL(clicked()),
@@ -64,39 +39,16 @@ void WebViewSearch::initializeSearchWidget()
             this, SLOT(findNext()));
     connect(ui.doneButton, SIGNAL(clicked()),
             this, SLOT(animateHide()));
-
-    setMinimumWidth(m_widget->minimumWidth());
-    setMaximumWidth(m_widget->maximumWidth());
-    setMinimumHeight(m_widget->minimumHeight());
 }
 
 void WebViewSearch::setWebView(QWebView *webView)
 {
-    m_webView = webView;
+    setView(webView);
 }
 
 QWebView *WebViewSearch::webView() const
 {
-    return m_webView;
-}
-
-void WebViewSearch::clear()
-{
-    ui.searchLineEdit->setText(QString());
-}
-
-void WebViewSearch::showFind()
-{
-    if (!isVisible()) {
-        show();
-        m_timeLine->setFrameRange(-1 * m_widget->height(), 0);
-        m_timeLine->setDirection(QTimeLine::Forward);
-        disconnect(m_timeLine, SIGNAL(finished()),
-                   this, SLOT(hide()));
-        m_timeLine->start();
-    }
-    ui.searchLineEdit->setFocus();
-    ui.searchLineEdit->selectAll();
+    return (QWebView*)getView();
 }
 
 void WebViewSearch::findNext()
@@ -112,36 +64,12 @@ void WebViewSearch::findPrevious()
 void WebViewSearch::find(QWebPage::FindFlags flags)
 {
     QString searchString = ui.searchLineEdit->text();
-    if (!m_webView || searchString.isEmpty())
+    if (!m_view || searchString.isEmpty())
         return;
     QString infoString;
-    if (!m_webView->findText(searchString, flags))
+    if (!((QWebView*)m_view)->findText(searchString, flags))
         infoString = tr("Not Found");
     ui.searchInfo->setText(infoString);
-}
-
-void WebViewSearch::resizeEvent(QResizeEvent *event)
-{
-    if (event->size().width() != m_widget->width())
-        m_widget->resize(event->size().width(), m_widget->height());
-    QWidget::resizeEvent(event);
-}
-
-void WebViewSearch::animateHide()
-{
-    m_timeLine->setDirection(QTimeLine::Backward);
-    m_timeLine->start();
-    connect(m_timeLine, SIGNAL(finished()), this, SLOT(hide()));
-}
-
-void WebViewSearch::frameChanged(int frame)
-{
-    if (!m_widget)
-        return;
-    m_widget->move(0, frame);
-    int height = qMax(0, m_widget->y() + m_widget->height());
-    setMinimumHeight(height);
-    setMaximumHeight(height);
 }
 
 WebViewWithSearch::WebViewWithSearch(WebView *webView, QWidget *parent)
