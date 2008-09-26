@@ -19,12 +19,9 @@
 
 #include "plaintexteditsearch.h"
 
-#include <qevent.h>
-#include <qshortcut.h>
-#include <qtimeline.h>
+#include "qtextcursor.h"
 
-#include <qplaintextedit.h>
-
+#define m_edit ((QPlainTextEdit*)m_object)
 
 PlainTextEditSearch::PlainTextEditSearch(QWidget *parent)
     : SearchBar(parent)
@@ -55,8 +52,25 @@ void PlainTextEditSearch::find(QTextDocument::FindFlags flags)
     QString searchString = ui.searchLineEdit->text();
     if (!m_object || searchString.isEmpty())
         return;
+    if (searchString != lastSearchTerm) {
+        QTextCursor cursor = m_edit->textCursor();
+        cursor.setPosition(cursor.selectionStart());
+        cursor.clearSelection();
+        m_edit->setTextCursor(cursor);
+        lastSearchTerm = searchString;
+    }
     QString infoString;
-    if (!((QPlainTextEdit*)m_object)->find(searchString, flags))
-        infoString = tr("Not Found");
+    if (!m_edit->find(searchString, flags)) {
+        /* no support for wrapping so we set the cursor to start */
+        QTextCursor cursor = m_edit->textCursor();
+        m_edit->moveCursor(QTextCursor::Start);
+        /* ...search again from the beginning */
+        if (!m_edit->find(searchString,flags)) {
+            /* and if there's still nothing, we revert the cursor */
+            infoString = tr("Not Found");
+            cursor.clearSelection();
+            m_edit->setTextCursor(cursor);
+        }
+    }
     ui.searchInfo->setText(infoString);
 }

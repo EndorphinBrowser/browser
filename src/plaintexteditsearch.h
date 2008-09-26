@@ -23,7 +23,6 @@
 #include <qwidget.h>
 #include <qplaintextedit.h>
 #include <qtextdocument.h>
-
 #include "ui_searchbanner.h"
 #include "searchbar.h"
 
@@ -42,6 +41,8 @@ public slots:
 
 private slots:
     void find(QTextDocument::FindFlags flags);
+private:
+    QString lastSearchTerm;
 };
 
 #endif // PLAINTEXTEDITSEARCH_H
