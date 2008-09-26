@@ -17,7 +17,7 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include "viewsearch.h"
+#include "searchbar.h"
 
 #include <qevent.h>
 #include <qshortcut.h>
@@ -25,10 +25,10 @@
 
 #include <qdebug.h>
 
-ViewSearch::ViewSearch(QWidget *parent)
+SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)
     , m_widget(0)
-    , m_view(0)
+    , m_object(0)
     , m_timeLine(new QTimeLine(150, this))
 {
     initializeSearchWidget();
@@ -45,7 +45,7 @@ ViewSearch::ViewSearch(QWidget *parent)
     new QShortcut(QKeySequence(Qt::Key_Escape), this, SLOT(animateHide()));
 }
 
-void ViewSearch::initializeSearchWidget()
+void SearchBar::initializeSearchWidget()
 {
     m_widget = new QWidget(this);
     m_widget->setContentsMargins(0, 0, 0, 0);
@@ -61,22 +61,22 @@ void ViewSearch::initializeSearchWidget()
     setMinimumHeight(m_widget->minimumHeight());
 }
 
-void ViewSearch::setView(QWidget *view)
+void SearchBar::setObject(QObject *object)
 {
-    m_view = view;
+    m_object = object;
 }
 
-QWidget *ViewSearch::getView() const
+QObject *SearchBar::getObject() const
 {
-    return m_view;
+    return m_object;
 }
 
-void ViewSearch::clear()
+void SearchBar::clear()
 {
     ui.searchLineEdit->setText(QString());
 }
 
-void ViewSearch::showFind()
+void SearchBar::showFind()
 {
     if (!isVisible()) {
         show();
@@ -90,21 +90,21 @@ void ViewSearch::showFind()
     ui.searchLineEdit->selectAll();
 }
 
-void ViewSearch::resizeEvent(QResizeEvent *event)
+void SearchBar::resizeEvent(QResizeEvent *event)
 {
     if (event->size().width() != m_widget->width())
         m_widget->resize(event->size().width(), m_widget->height());
     QWidget::resizeEvent(event);
 }
 
-void ViewSearch::animateHide()
+void SearchBar::animateHide()
 {
     m_timeLine->setDirection(QTimeLine::Backward);
     m_timeLine->start();
     connect(m_timeLine, SIGNAL(finished()), this, SLOT(hide()));
 }
 
-void ViewSearch::frameChanged(int frame)
+void SearchBar::frameChanged(int frame)
 {
     if (!m_widget)
         return;

@@ -22,7 +22,9 @@
 
 #include <qboxlayout.h>
 #include <qplaintextedit.h>
+#include "plaintexteditsearch.h"
 #include "sourcehighlighter.h"
+
 
 class SourceViewer : public QWidget
 {
@@ -30,9 +32,10 @@ public:
     SourceViewer(QString &source, QString &title);
     ~SourceViewer();
 private:
+    PlainTextEditSearch *m_plainTextEditSearch;
     QVBoxLayout *layout;
-    QPlainTextEdit *edit;
-    SourceHighlighter *highlighter;
+    QPlainTextEdit *m_edit;
+    SourceHighlighter *m_highlighter;
 };
 
 #endif

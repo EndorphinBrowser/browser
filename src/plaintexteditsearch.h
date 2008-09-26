@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 ChriChristian Franke <cfchris6@ts2server.com>>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,40 +17,32 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef VIEWSEARCH_H
-#define VIEWSEARCH_H
+#ifndef PLAINTEXTEDITSEARCH_H
+#define PLAINTEXTEDITSEARCH_H
 
 #include <qwidget.h>
+#include <qplaintextedit.h>
+#include <qtextdocument.h>
 
 #include "ui_searchbanner.h"
+#include "searchbar.h"
 
-QT_BEGIN_NAMESPACE
-class QTimeLine;
-QT_END_NAMESPACE
-
-class ViewSearch : public QWidget
+class PlainTextEditSearch : public SearchBar
 {
     Q_OBJECT
 
 public:
-    ViewSearch(QWidget *parent = 0);
-    void setView(QWidget *view);
-    QWidget *getView() const;
+    PlainTextEditSearch(QWidget *parent = 0);
+    void setPlainTextEdit(QPlainTextEdit *plainTextEdit);
+    QPlainTextEdit *plainTextEdit() const;
+
 public slots:
-    void animateHide();
-    void clear();
-    void showFind();
-protected:
-    void resizeEvent(QResizeEvent *event);
-    QWidget *m_view;
-    Ui_SearchBanner ui;
+    void findNext();
+    void findPrevious();
+
 private slots:
-    void frameChanged(int frame);
-private:
-    void initializeSearchWidget();
-    QWidget *m_widget;
-    QTimeLine *m_timeLine;
+    void find(QTextDocument::FindFlags flags);
 };
 
-#endif // VIEWSEARCH_H
+#endif // PLAINTEXTEDITSEARCH_H
 

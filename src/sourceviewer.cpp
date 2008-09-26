@@ -25,21 +25,27 @@ SourceViewer::SourceViewer(QString &source, QString &title)
     setWindowTitle(QString(QLatin1String("Source of Page ")).append(title));
     setMinimumWidth(640); setMinimumHeight(480);
 
-    edit = new QPlainTextEdit(source);
-    edit->setLineWrapMode(QPlainTextEdit::NoWrap);
-    edit->setReadOnly(true);
-    edit->setFont(QFont(QLatin1String("Monospace"),9,QFont::Normal));
-    highlighter = new SourceHighlighter(edit->document());
+    m_edit = new QPlainTextEdit(source);
+    m_edit->setLineWrapMode(QPlainTextEdit::NoWrap);
+    m_edit->setReadOnly(true);
+    m_edit->setFont(QFont(QLatin1String("Monospace"),9,QFont::Normal));
+    m_highlighter = new SourceHighlighter(m_edit->document());
 
     layout = new QVBoxLayout;
-    layout->addWidget(edit);
+    layout->setSpacing(0);
+    layout->setContentsMargins(0, 0, 0, 0);
+    m_plainTextEditSearch = new PlainTextEditSearch(this);
+    layout->addWidget(m_plainTextEditSearch);
+    layout->addWidget(m_edit);
     setLayout(layout);
     show();
+    m_plainTextEditSearch->showFind();
 }
 
 SourceViewer::~SourceViewer()
 {
     delete layout;
-    delete highlighter;
-    delete edit;
+    delete m_highlighter;
+    delete m_edit;
+    delete m_plainTextEditSearch;
 }

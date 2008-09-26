@@ -29,7 +29,7 @@
 #include <qdebug.h>
 
 WebViewSearch::WebViewSearch(QWidget *parent)
-    : ViewSearch(parent)
+    : SearchBar(parent)
 {
     connect(ui.nextButton, SIGNAL(clicked()),
             this, SLOT(findNext()));
@@ -43,12 +43,12 @@ WebViewSearch::WebViewSearch(QWidget *parent)
 
 void WebViewSearch::setWebView(QWebView *webView)
 {
-    setView(webView);
+    setObject(webView);
 }
 
 QWebView *WebViewSearch::webView() const
 {
-    return (QWebView*)getView();
+    return (QWebView*)getObject();
 }
 
 void WebViewSearch::findNext()
@@ -64,10 +64,10 @@ void WebViewSearch::findPrevious()
 void WebViewSearch::find(QWebPage::FindFlags flags)
 {
     QString searchString = ui.searchLineEdit->text();
-    if (!m_view || searchString.isEmpty())
+    if (!m_object || searchString.isEmpty())
         return;
     QString infoString;
-    if (!((QWebView*)m_view)->findText(searchString, flags))
+    if (!((QWebView*)m_object)->findText(searchString, flags))
         infoString = tr("Not Found");
     ui.searchInfo->setText(infoString);
 }

@@ -54,6 +54,8 @@ HEADERS += \
     locationbar_p.h \
     modelmenu.h \
     networkaccessmanager.h \
+    plaintexteditsearch.h \
+    searchbar.h \
     searchlineedit.h \
     settings.h \
     sourcehighlighter.h \
@@ -61,7 +63,6 @@ HEADERS += \
     tabbar.h \
     tabwidget.h \
     toolbarsearch.h \
-    viewsearch.h \
     webactionmapper.h \
     webview.h \
     webviewsearch.h \
@@ -81,6 +82,8 @@ SOURCES += \
     locationbar.cpp \
     modelmenu.cpp \
     networkaccessmanager.cpp \
+    plaintexteditsearch.cpp \
+    searchbar.cpp \
     searchlineedit.cpp \
     settings.cpp \
     sourcehighlighter.cpp \
@@ -88,7 +91,6 @@ SOURCES += \
     tabbar.cpp \
     tabwidget.cpp \
     toolbarsearch.cpp \
-    viewsearch.cpp \
     webactionmapper.cpp \
     webview.cpp \
     webviewsearch.cpp \

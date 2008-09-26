@@ -17,49 +17,40 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef WEBVIEWSEARCH_H
-#define WEBVIEWSEARCH_H
+#ifndef SEARCHBAR_H
+#define SEARCHBAR_H
 
 #include <qwidget.h>
 
-#include <qwebpage.h>
-
 #include "ui_searchbanner.h"
-#include "searchbar.h"
 
 QT_BEGIN_NAMESPACE
-class QWebView;
+class QTimeLine;
 QT_END_NAMESPACE
 
-class WebViewSearch : public SearchBar
+class SearchBar : public QWidget
 {
     Q_OBJECT
 
 public:
-    WebViewSearch(QWidget *parent = 0);
-    void setWebView(QWebView *webView);
-    QWebView *webView() const;
-
+    SearchBar(QWidget *parent = 0);
+    void setObject(QObject *object);
+    QObject *getObject() const;
 public slots:
-    void findNext();
-    void findPrevious();
-
+    void animateHide();
+    void clear();
+    void showFind();
+protected:
+    void resizeEvent(QResizeEvent *event);
+    QObject *m_object;
+    Ui_SearchBanner ui;
 private slots:
-    void find(QWebPage::FindFlags flags);
+    void frameChanged(int frame);
+private:
+    void initializeSearchWidget();
+    QWidget *m_widget;
+    QTimeLine *m_timeLine;
 };
 
-#include "webview.h"
-
-class WebViewWithSearch : public QWidget
-{
-    Q_OBJECT
-
-public:
-    WebViewWithSearch(WebView *webView, QWidget *parent = 0);
-    WebView *m_webView;
-    WebViewSearch *m_webViewSearch;
-};
-
-
-#endif // WEBVIEWSEARCH_H
+#endif // VIEWSEARCH_H
 
