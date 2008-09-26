@@ -29,14 +29,16 @@
 PlainTextEditSearch::PlainTextEditSearch(QWidget *parent)
     : SearchBar(parent)
 {
-/*    connect(ui.nextButton, SIGNAL(clicked()),
+    connect(ui.nextButton, SIGNAL(clicked()),
             this, SLOT(findNext()));
     connect(ui.previousButton, SIGNAL(clicked()),
             this, SLOT(findPrevious()));
     connect(ui.searchLineEdit, SIGNAL(returnPressed()),
             this, SLOT(findNext()));
+    connect(ui.searchLineEdit, SIGNAL(textChanged(QString&)),
+            this, SLOT(findNext()));
     connect(ui.doneButton, SIGNAL(clicked()),
-            this, SLOT(animateHide()));*/
+            this, SLOT(animateHide()));
 }
 
 void PlainTextEditSearch::setPlainTextEdit(QPlainTextEdit *plainTextEdit)
@@ -51,21 +53,21 @@ QPlainTextEdit *PlainTextEditSearch::plainTextEdit() const
 
 void PlainTextEditSearch::findNext()
 {
-/*    find(QWebPage::FindWrapsAroundDocument);*/
+    find(0);
 }
 
 void PlainTextEditSearch::findPrevious()
 {
-/*    find(QWebPage::FindBackward | QWebPage::FindWrapsAroundDocument);*/
+    find(QTextDocument::FindBackward);
 }
 
 void PlainTextEditSearch::find(QTextDocument::FindFlags flags)
 {
-/*    QString searchString = ui.searchLineEdit->text();
-    if (!m_view || searchString.isEmpty())
+    QString searchString = ui.searchLineEdit->text();
+    if (!m_object || searchString.isEmpty())
         return;
     QString infoString;
-    if (!((QWebView*)m_view)->findText(searchString, flags))
+    if (!((QPlainTextEdit*)m_object)->find(searchString, flags))
         infoString = tr("Not Found");
-    ui.searchInfo->setText(infoString);*/
+    ui.searchInfo->setText(infoString);
 }

@@ -35,6 +35,7 @@ SourceViewer::SourceViewer(QString &source, QString &title)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
     m_plainTextEditSearch = new PlainTextEditSearch(this);
+    m_plainTextEditSearch->setPlainTextEdit(m_edit);
     layout->addWidget(m_plainTextEditSearch);
     layout->addWidget(m_edit);
     setLayout(layout);
