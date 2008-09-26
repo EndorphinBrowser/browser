@@ -30,18 +30,7 @@
 
 WebViewSearch::WebViewSearch(QWidget *parent)
     : SearchBar(parent)
-{
-    connect(ui.nextButton, SIGNAL(clicked()),
-            this, SLOT(findNext()));
-    connect(ui.previousButton, SIGNAL(clicked()),
-            this, SLOT(findPrevious()));
-    connect(ui.searchLineEdit, SIGNAL(returnPressed()),
-            this, SLOT(findNext()));
-    connect(ui.searchLineEdit, SIGNAL(textChanged(QString&)),
-            this, SLOT(findNext()));
-    connect(ui.doneButton, SIGNAL(clicked()),
-            this, SLOT(animateHide()));
-}
+{ }
 
 void WebViewSearch::setWebView(QWebView *webView)
 {

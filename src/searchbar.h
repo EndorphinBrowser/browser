@@ -40,6 +40,8 @@ public slots:
     void animateHide();
     void clear();
     void showFind();
+    virtual void findNext() = 0;
+    virtual void findPrevious() = 0;
 protected:
     void resizeEvent(QResizeEvent *event);
     QObject *m_object;

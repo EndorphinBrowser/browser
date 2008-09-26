@@ -39,6 +39,16 @@ SearchBar::SearchBar(QWidget *parent)
                           m_widget->width(), m_widget->height());
     hide();
 
+    connect(ui.nextButton, SIGNAL(clicked()),
+            this, SLOT(findNext()));
+    connect(ui.previousButton, SIGNAL(clicked()),
+            this, SLOT(findPrevious()));
+    connect(ui.searchLineEdit, SIGNAL(returnPressed()),
+            this, SLOT(findNext()));
+    connect(ui.searchLineEdit, SIGNAL(textEdited(const QString &)),
+            this, SLOT(findNext()));
+    connect(ui.doneButton, SIGNAL(clicked()),
+            this, SLOT(animateHide()));
     connect(m_timeLine, SIGNAL(frameChanged(int)),
             this, SLOT(frameChanged(int)));
 
