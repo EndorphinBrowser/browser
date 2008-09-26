@@ -22,20 +22,27 @@
 
 #include <qboxlayout.h>
 #include <qplaintextedit.h>
+#include <qmenu.h>
+#include <qmenubar.h>
 #include "plaintexteditsearch.h"
 #include "sourcehighlighter.h"
 
 
 class SourceViewer : public QWidget
 {
+    Q_OBJECT
 public:
     SourceViewer(QString &source, QString &title);
-    ~SourceViewer();
+public slots:
+    void slotEditFind();
 private:
-    PlainTextEditSearch *m_plainTextEditSearch;
-    QVBoxLayout *layout;
-    QPlainTextEdit *m_edit;
-    SourceHighlighter *m_highlighter;
+    QPlainTextEdit m_edit;
+    SourceHighlighter m_highlighter;
+    PlainTextEditSearch m_plainTextEditSearch;
+    QMenuBar m_menuBar;
+    QMenu m_editMenu;
+    QAction m_findAction;
+    QVBoxLayout layout;
 };
 
 #endif

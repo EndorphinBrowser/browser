@@ -18,35 +18,43 @@
  */
 
 #include "sourceviewer.h"
+#include "qaction.h"
+#include "qshortcut.h"
 
 SourceViewer::SourceViewer(QString &source, QString &title)
     : QWidget()
+    , m_edit(source)
+    , m_highlighter(m_edit.document())
+    , m_plainTextEditSearch(this)
+    , m_menuBar(this)
+    , m_editMenu(tr("&Edit"),&m_menuBar)
+    , m_findAction(tr("&Find"),&m_editMenu)
+    , layout(this)
 {
-    setWindowTitle(QString(QLatin1String("Source of Page ")).append(title));
+    setWindowTitle(QString(tr("Source of Page ")).append(title));
     setMinimumWidth(640); setMinimumHeight(480);
 
-    m_edit = new QPlainTextEdit(source);
-    m_edit->setLineWrapMode(QPlainTextEdit::NoWrap);
-    m_edit->setReadOnly(true);
-    m_edit->setFont(QFont(QLatin1String("Monospace"),9,QFont::Normal));
-    m_highlighter = new SourceHighlighter(m_edit->document());
+    m_edit.setLineWrapMode(QPlainTextEdit::NoWrap);
+    m_edit.setReadOnly(true);
+    m_edit.setFont(QFont(QLatin1String("Monospace"),9,QFont::Normal));
 
-    layout = new QVBoxLayout;
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 0, 0);
-    m_plainTextEditSearch = new PlainTextEditSearch(this);
-    m_plainTextEditSearch->setPlainTextEdit(m_edit);
-    layout->addWidget(m_plainTextEditSearch);
-    layout->addWidget(m_edit);
-    setLayout(layout);
+    m_plainTextEditSearch.setPlainTextEdit(&m_edit);
+
+    m_menuBar.addMenu(&m_editMenu);
+    m_editMenu.addAction(&m_findAction);
+    m_findAction.setShortcuts(QKeySequence::Find);
+    connect(&m_findAction, SIGNAL(triggered()), this, SLOT(slotEditFind()));
+
+    layout.setSpacing(0);
+    layout.setContentsMargins(0, 0, 0, 0);
+    layout.addWidget(&m_menuBar);
+    layout.addWidget(&m_plainTextEditSearch);
+    layout.addWidget(&m_edit);
+    setLayout(&layout);
     show();
-    m_plainTextEditSearch->showFind();
 }
 
-SourceViewer::~SourceViewer()
+void SourceViewer::slotEditFind()
 {
-    delete layout;
-    delete m_highlighter;
-    delete m_edit;
-    delete m_plainTextEditSearch;
+    m_plainTextEditSearch.showFind();
 }
