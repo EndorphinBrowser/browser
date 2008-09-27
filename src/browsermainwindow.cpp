@@ -458,7 +458,7 @@ void BrowserMainWindow::setupMenu()
     m_tabWidget->addWebAction(m_stop, QWebPage::Stop);
 
     if (m_reload)
-    	delete m_reload;
+        delete m_reload;
     m_reload = viewMenu->addAction(tr("&Reload Page"));
     m_reload->setShortcuts(QKeySequence::Refresh);
     m_tabWidget->addWebAction(m_reload, QWebPage::Reload);
@@ -900,15 +900,11 @@ void BrowserMainWindow::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void BrowserMainWindow::changeEvent(QEvent* event)
+void BrowserMainWindow::changeEvent(QEvent *event)
 {
-	if (event->type() == QEvent::LanguageChange)
-	{
-		slotRetranslate();
-	}
-	
-	// remember to call base class implementation
-	 QMainWindow::changeEvent(event);
+    if (event->type() == QEvent::LanguageChange)
+        slotRetranslate();
+    QMainWindow::changeEvent(event);
 }
 
 void BrowserMainWindow::slotEditFind()
@@ -981,12 +977,10 @@ void BrowserMainWindow::slotHome()
 // TODO we really need to regenerate the main toolbar
 void BrowserMainWindow::slotRetranslate()
 {
-	// to re-translate the menus, the only doable thing it to re-create it
-	setupMenu();
-	
-	// however, for toolbars, we can just do it smartly
-	m_navigationBar->setWindowTitle (tr("Navigation"));
-	
+    // to re-translate the menus, the only doable thing it to re-create it
+    setupMenu();
+    // however, for toolbars, we can just do it smartly
+    m_navigationBar->setWindowTitle(tr("Navigation"));
 }
 
 void BrowserMainWindow::slotWebSearch()
