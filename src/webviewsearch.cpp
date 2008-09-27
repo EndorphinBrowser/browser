@@ -60,6 +60,8 @@ void WebViewSearch::initializeSearchWidget()
             this, SLOT(findNext()));
     connect(ui.previousButton, SIGNAL(clicked()),
             this, SLOT(findPrevious()));
+    connect(ui.searchLineEdit, SIGNAL(textEdited(const QString&)),
+            this, SLOT(findNext()));
     connect(ui.searchLineEdit, SIGNAL(returnPressed()),
             this, SLOT(findNext()));
     connect(ui.doneButton, SIGNAL(clicked()),
