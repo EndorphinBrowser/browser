@@ -532,15 +532,6 @@ LanguageManager* BrowserApplication::languageManager()
     return s_languageManager;
 }
 
-QString BrowserApplication::dataDirectory()
-{
-#if defined(Q_WS_X11)
-    return QLatin1String(PKGDATADIR);
-#else
-    return qApp->applicationDirPath();
-#endif
-}
-
 QIcon BrowserApplication::icon(const QUrl &url)
 {
     QIcon icon = QWebSettings::iconForUrl(url);
@@ -555,5 +546,14 @@ QIcon BrowserApplication::icon(const QUrl &url)
         return pixmap;
     }
     return icon;
+}
+
+QString BrowserApplication::dataDirectory()
+{
+#if defined(Q_WS_X11)
+    return QLatin1String(PKGDATADIR);
+#else
+    return qApp->applicationDirPath();
+#endif
 }
 

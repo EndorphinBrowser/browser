@@ -93,10 +93,6 @@
 #include <qinputdialog.h>
 #include <qsplitter.h>
 
-// lets use the corrent headers...
-#include <QTranslator>
-#include <QLibraryInfo>
-
 #include <qwebframe.h>
 #include <qwebhistory.h>
 
@@ -111,14 +107,13 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     , m_stop(0)
     , m_reload(0)
 {
-    setupMenu();
-    setupToolBar();
-
     setAttribute(Qt::WA_DeleteOnClose, true);
     statusBar()->setSizeGripEnabled(true);
     // fixes https://bugzilla.mozilla.org/show_bug.cgi?id=219070
     // yes, that's a Firefox bug!
     statusBar()->setLayoutDirection(Qt::LeftToRight);
+    setupMenu();
+    setupToolBar();
 
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
@@ -903,7 +898,7 @@ void BrowserMainWindow::mousePressEvent(QMouseEvent *event)
 void BrowserMainWindow::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange)
-        slotRetranslate();
+        retranslate();
     QMainWindow::changeEvent(event);
 }
 
@@ -973,13 +968,9 @@ void BrowserMainWindow::slotHome()
     loadPage(home);
 }
 
-// TODO should it be a normal method, not a slot...?
-// TODO we really need to regenerate the main toolbar
-void BrowserMainWindow::slotRetranslate()
+void BrowserMainWindow::retranslate()
 {
-    // to re-translate the menus, the only doable thing it to re-create it
     setupMenu();
-    // however, for toolbars, we can just do it smartly
     m_navigationBar->setWindowTitle(tr("Navigation"));
 }
 

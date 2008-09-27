@@ -70,14 +70,12 @@
 class AutoSaver;
 class BookmarksToolBar;
 class ChaseWidget;
-class LanguageChooser;
 class QWebFrame;
 class TabWidget;
 class ToolbarSearch;
 class WebView;
 class QSplitter;
 class QFrame;
-class QTranslator;
 
 /*!
     The MainWindow of the Browser Application.
@@ -105,12 +103,12 @@ public:
 public slots:
     void loadPage(const QString &url);
     void slotHome();
-    void slotRetranslate();
 
 protected:
     void closeEvent(QCloseEvent *event);
     void mousePressEvent(QMouseEvent *event);
-    void changeEvent(QEvent* event);
+    void changeEvent(QEvent *event);
+
 private slots:
     void save();
 
@@ -161,6 +159,7 @@ private slots:
     void updateBookmarksToolbarActionText(bool visible);
 
 private:
+    void retranslate();
     void loadDefaultState();
     void setupMenu();
     void setupToolBar();
