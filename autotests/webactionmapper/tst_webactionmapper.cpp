@@ -54,7 +54,7 @@ class SubWebActionMapper : public WebActionMapper
 {
 public:
     SubWebActionMapper(QAction *root, QWebPage::WebAction webAction, QObject *parent)
-        : WebActionMapper(root, webAction, parent){}
+        : WebActionMapper(root, webAction, parent) {}
 
 };
 

@@ -101,7 +101,7 @@ void tst_LineEdit::addWidget_data()
     }
 }
 
-// public void addWidget(QWidget* widget, LineEdit::WidgetPosition position)
+// public void addWidget(QWidget *widget, LineEdit::WidgetPosition position)
 void tst_LineEdit::addWidget()
 {
     QFETCH(LineEdit::WidgetPosition, position);

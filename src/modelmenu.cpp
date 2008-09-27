@@ -66,7 +66,7 @@
 
 #include <qdebug.h>
 
-ModelMenu::ModelMenu(QWidget * parent)
+ModelMenu::ModelMenu(QWidget *parent)
     : QMenu(parent)
     , m_maxRows(7)
     , m_firstSeparator(-1)

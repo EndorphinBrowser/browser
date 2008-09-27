@@ -98,10 +98,10 @@ public:
         { return style->eventFilter(o, e); }
 
 protected slots:
-    int layoutSpacingImplementation ( QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption * option = 0, const QWidget * widget = 0 ) const
+    int layoutSpacingImplementation(QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption *option = 0, const QWidget *widget = 0) const
         { return style->layoutSpacing(control1, control2, orientation, option, widget); }
 
-    QIcon standardIconImplementation ( StandardPixmap standardIcon, const QStyleOption * option = 0, const QWidget * widget = 0 ) const
+    QIcon standardIconImplementation(StandardPixmap standardIcon, const QStyleOption *option = 0, const QWidget *widget = 0) const
         { return style->standardIcon(standardIcon, option, widget); }
 
 private:

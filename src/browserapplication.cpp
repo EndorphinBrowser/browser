@@ -427,7 +427,7 @@ bool BrowserApplication::isTheOnlyBrowser() const
 }
 
 #if defined(Q_WS_MAC)
-bool BrowserApplication::event(QEvent* event)
+bool BrowserApplication::event(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::ApplicationActivate: {

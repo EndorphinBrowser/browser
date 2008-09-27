@@ -43,7 +43,7 @@ private slots:
 class SubAutoSaver : public AutoSaver
 {
 public:
-    SubAutoSaver(QObject *parent = 0) : AutoSaver(parent){}
+    SubAutoSaver(QObject *parent = 0) : AutoSaver(parent) {}
     void call_timerEvent(QTimerEvent* event)
         { return SubAutoSaver::timerEvent(event); }
 };
