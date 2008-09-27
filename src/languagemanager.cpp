@@ -44,9 +44,9 @@
 
 LanguageManager::LanguageManager(QObject *parent)
     : QObject(parent)
-    , m_loaded(false)
     , m_sysTranslator(0)
     , m_appTranslator(0)
+    , m_loaded(false)
 {
 }
 
@@ -63,10 +63,7 @@ QString LanguageManager::currentLanguage() const
 
 bool LanguageManager::isLanguageAvailable(const QString &language) const
 {
-    if (!m_loaded) {
-        LanguageManager *that = const_cast<LanguageManager*>(this);
-        that->loadAvailableLanguages();
-    }
+    loadAvailableLanguages();
     return language.isEmpty() || m_languages.contains(language);
 }
 
@@ -118,10 +115,15 @@ void LanguageManager::setCurrentLanguage(const QString &language)
     m_sysTranslator = newSysTranslator;
 }
 
+QStringList LanguageManager::languages() const
+{
+    loadAvailableLanguages();
+    return m_languages;
+}
+
 void LanguageManager::chooseNewLanguage()
 {
-    if (!m_loaded)
-        loadAvailableLanguages();
+    loadAvailableLanguages();
 
     QStringList items;
     QString systemLocaleString = QLocale::system().name();
@@ -175,12 +177,14 @@ QString LanguageManager::translationLocation() const
 /*!
     Find all *.qm files in the data directory that have a Qt translation.
  */
-void LanguageManager::loadAvailableLanguages()
+void LanguageManager::loadAvailableLanguages() const
 {
+    if (m_loaded)
+        return;
     m_loaded = true;
     QDir appLangsDir(translationLocation());
-    appLangsDir.setNameFilters(QStringList(QLatin1String("*.qm")));
-    QFileInfoList list = appLangsDir.entryInfoList();
+    QStringList nameFilters(QLatin1String("*.qm"));
+    QFileInfoList list = appLangsDir.entryInfoList(nameFilters);
 
     QString sysLangsDirName = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
     sysLangsDirName += QLatin1Char('/') + QLatin1String("qt_");

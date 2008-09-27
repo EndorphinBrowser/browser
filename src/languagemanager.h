@@ -38,12 +38,14 @@ class QTranslator;
 class LanguageManager : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString currentLanguage READ currentLanguage WRITE setCurrentLanguage)
 
 public:
     LanguageManager(QObject *parent = 0);
 
     QString currentLanguage() const;
     void setCurrentLanguage(const QString &language);
+    QStringList languages() const;
 
 public slots:
     void chooseNewLanguage();
@@ -51,13 +53,13 @@ public slots:
 private:
     bool isLanguageAvailable(const QString &language) const;
     QString translationLocation() const;
-    void loadAvailableLanguages();
+    void loadAvailableLanguages() const;
 
-    bool m_loaded;
+    QString m_currentLanguage;
     QTranslator *m_sysTranslator;
     QTranslator *m_appTranslator;
-    QStringList m_languages;
-    QString m_currentLanguage;
+    mutable bool m_loaded;
+    mutable QStringList m_languages;
 };
 
 #endif //LANGUAGEMANAGER_H
