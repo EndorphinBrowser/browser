@@ -107,6 +107,8 @@ public slots:
 protected:
     void closeEvent(QCloseEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void changeEvent(QEvent *event);
+
 private slots:
     void save();
 
@@ -157,6 +159,7 @@ private slots:
     void updateBookmarksToolbarActionText(bool visible);
 
 private:
+    void retranslate();
     void loadDefaultState();
     void setupMenu();
     void setupToolBar();

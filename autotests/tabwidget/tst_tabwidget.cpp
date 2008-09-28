@@ -148,7 +148,7 @@ void tst_TabWidget::addWebAction_data()
     QTest::newRow("back") << QWebPage::Back;
 }
 
-// public void addWebAction(QAction* action, QWebPage::WebAction webAction)
+// public void addWebAction(QAction *action, QWebPage::WebAction webAction)
 void tst_TabWidget::addWebAction()
 {
     QFETCH(QWebPage::WebAction, webAction);

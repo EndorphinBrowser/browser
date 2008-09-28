@@ -71,6 +71,7 @@
 #include "clearprivatedata.h"
 #include "downloadmanager.h"
 #include "history.h"
+#include "languagemanager.h"
 #include "settings.h"
 #include "sourceviewer.h"
 #include "tabbar.h"
@@ -343,6 +344,7 @@ QAction *BrowserMainWindow::showMenuBarAction() const
 
 void BrowserMainWindow::setupMenu()
 {
+    menuBar()->clear();
     new QShortcut(QKeySequence(Qt::Key_F6), this, SLOT(slotSwapFocus()));
 
     // File
@@ -451,6 +453,8 @@ void BrowserMainWindow::setupMenu()
     m_stop->setShortcuts(shortcuts);
     m_tabWidget->addWebAction(m_stop, QWebPage::Stop);
 
+    if (m_reload)
+        delete m_reload;
     m_reload = viewMenu->addAction(tr("&Reload Page"));
     m_reload->setShortcuts(QKeySequence::Refresh);
     m_tabWidget->addWebAction(m_reload, QWebPage::Reload);
@@ -540,6 +544,8 @@ void BrowserMainWindow::setupMenu()
 
     // Help
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
+    helpMenu->addAction(tr("Switch application language "), BrowserApplication::languageManager(), SLOT(chooseNewLanguage()));
+    helpMenu->addSeparator();
     helpMenu->addAction(tr("About &Qt"), qApp, SLOT(aboutQt()));
     helpMenu->addAction(tr("About &Arora"), this, SLOT(slotAboutApplication()));
 }
@@ -572,11 +578,11 @@ void BrowserMainWindow::setupToolBar()
     m_stopReload = new QAction(this);
     m_reloadIcon = style()->standardIcon(QStyle::SP_BrowserReload);
     m_stopReload->setIcon(m_reloadIcon);
-
     m_navigationBar->addAction(m_stopReload);
 
     m_navigationSplitter = new QSplitter(m_navigationBar);
     m_navigationSplitter->addWidget(m_tabWidget->lineEditStack());
+
     m_toolbarSearch = new ToolbarSearch(m_navigationBar);
     m_navigationSplitter->addWidget(m_toolbarSearch);
     connect(m_toolbarSearch, SIGNAL(search(const QUrl&)),
@@ -890,6 +896,13 @@ void BrowserMainWindow::mousePressEvent(QMouseEvent *event)
     }
 }
 
+void BrowserMainWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+        retranslate();
+    QMainWindow::changeEvent(event);
+}
+
 void BrowserMainWindow::slotEditFind()
 {
     tabWidget()->webViewSearch(m_tabWidget->currentIndex())->showFind();
@@ -952,6 +965,12 @@ void BrowserMainWindow::slotHome()
     settings.beginGroup(QLatin1String("MainWindow"));
     QString home = settings.value(QLatin1String("home"), QLatin1String("http://www.arora-browser.org")).toString();
     loadPage(home);
+}
+
+void BrowserMainWindow::retranslate()
+{
+    setupMenu();
+    m_navigationBar->setWindowTitle(tr("Navigation"));
 }
 
 void BrowserMainWindow::slotWebSearch()

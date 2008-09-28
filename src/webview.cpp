@@ -226,7 +226,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
 }
 
 
-WebView::WebView(QWidget* parent)
+WebView::WebView(QWidget *parent)
     : QWebView(parent)
     , m_progress(0)
     , m_currentZoom(100)

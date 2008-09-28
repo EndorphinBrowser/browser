@@ -67,6 +67,7 @@
 #include "cookiejar.h"
 #include "downloadmanager.h"
 #include "history.h"
+#include "languagemanager.h"
 #include "networkaccessmanager.h"
 #include "tabwidget.h"
 #include "webview.h"
@@ -93,6 +94,7 @@ DownloadManager *BrowserApplication::s_downloadManager = 0;
 HistoryManager *BrowserApplication::s_historyManager = 0;
 NetworkAccessManager *BrowserApplication::s_networkAccessManager = 0;
 BookmarksManager *BrowserApplication::s_bookmarksManager = 0;
+LanguageManager *BrowserApplication::s_languageManager = 0;
 
 BrowserApplication::BrowserApplication(int &argc, char **argv)
     : QApplication(argc, argv)
@@ -150,21 +152,6 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 #endif
 
     QDesktopServices::setUrlHandler(QLatin1String("http"), this, "openUrl");
-    const QString localSysName = QLocale::system().name();
-
-    QTranslator *translator = new QTranslator(this);
-    QTranslator *qtTranslator = new QTranslator(this);
-    QString translatorFileName = dataDirectory() + QDir::separator() + QLatin1String("locale") + QDir::separator() + localSysName;
-    QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-    bool loaded = translator->load(translatorFileName, resourceDir);
-
-    translatorFileName = QLatin1String("qt_");
-    translatorFileName += localSysName;
-    loaded &= qtTranslator->load(translatorFileName, resourceDir);
-    if (loaded) {
-        installTranslator(translator);
-        installTranslator(qtTranslator);
-    }
 
     // Until QtWebkit defaults to 16
     QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, 16);
@@ -173,6 +160,11 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QSettings settings;
     settings.beginGroup(QLatin1String("sessions"));
     m_lastSession = settings.value(QLatin1String("lastSession")).toByteArray();
+    settings.endGroup();
+
+    settings.beginGroup(QLatin1String("LanguageManager"));
+    if (settings.contains(QLatin1String("language")))
+        languageManager()->setCurrentLanguage(settings.value(QLatin1String("language")).toString());
     settings.endGroup();
 
 #if defined(Q_WS_MAC)
@@ -427,7 +419,7 @@ bool BrowserApplication::isTheOnlyBrowser() const
 }
 
 #if defined(Q_WS_MAC)
-bool BrowserApplication::event(QEvent* event)
+bool BrowserApplication::event(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::ApplicationActivate: {
@@ -533,6 +525,13 @@ BookmarksManager *BrowserApplication::bookmarksManager()
     return s_bookmarksManager;
 }
 
+LanguageManager* BrowserApplication::languageManager()
+{
+    if (!s_languageManager)
+        s_languageManager = new LanguageManager;
+    return s_languageManager;
+}
+
 QIcon BrowserApplication::icon(const QUrl &url)
 {
     QIcon icon = QWebSettings::iconForUrl(url);
@@ -549,11 +548,12 @@ QIcon BrowserApplication::icon(const QUrl &url)
     return icon;
 }
 
-QString BrowserApplication::dataDirectory() const
+QString BrowserApplication::dataDirectory()
 {
 #if defined(Q_WS_X11)
     return QLatin1String(PKGDATADIR);
 #else
-    return applicationDirPath();
+    return qApp->applicationDirPath();
 #endif
 }
+
