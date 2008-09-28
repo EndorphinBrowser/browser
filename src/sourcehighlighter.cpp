@@ -18,27 +18,66 @@
  */
 
 #include "sourcehighlighter.h"
+#include "qpalette.h"
 
 SourceHighlighter::SourceHighlighter(QTextDocument *document)
     : QSyntaxHighlighter(document)
 {
+    QPalette palette;
+    QColor foreground = palette.text().color();
+    QColor background = palette.base().color();
+
     QTextCharFormat entityFormat;
-    entityFormat.setForeground(QColor(30, 180,30));
+    QColor entityColor;
+    entityColor.setRed((foreground.red()+background.red()) / 2);
+    entityColor.setGreen(
+            (foreground.green()+background.green()) / 2);
+    entityColor.setBlue(
+            (foreground.blue()+background.blue()) / 2);
+    if (abs(entityColor.red()-background.red()) > 80)
+        entityColor.setRed(foreground.red());
+    else if (abs(entityColor.green()-background.green()) > 80)
+        entityColor.setGreen(foreground.green());
+    else entityColor.setBlue(foreground.blue());
+    entityFormat.setForeground(entityColor);
     entityFormat.setFontWeight(QFont::Normal);
     setFormatFor(Entity, entityFormat);
 
     QTextCharFormat tagFormat;
-    tagFormat.setForeground(QColor(30, 30, 60));
+    QColor tagColor;
+    tagColor.setRed(foreground.red()+(background.red()-foreground.red()) / 4);
+    tagColor.setGreen(
+            foreground.green()+(background.green()-foreground.green()) / 4);
+    tagColor.setBlue(
+            foreground.blue()+(background.blue()-foreground.blue()) / 4);
+    tagFormat.setForeground(tagColor);
     tagFormat.setFontWeight(QFont::Bold);
     setFormatFor(Tag, tagFormat);
 
     QTextCharFormat commentFormat;
-    commentFormat.setForeground(QColor(120, 120, 160));
+    QColor commentColor;
+    commentColor.setRed(background.red()+(foreground.red()-background.red()) / 3);
+    commentColor.setGreen(
+            background.green()+(foreground.green()-background.green()) / 3);
+    commentColor.setBlue(
+            background.blue()+(foreground.blue()-background.blue()) / 3);
+    commentFormat.setForeground(commentColor);
     commentFormat.setFontWeight(QFont::Normal);
     setFormatFor(Comment, commentFormat);
 
     QTextCharFormat attributeFormat;
-    attributeFormat.setForeground(QColor(200, 30, 30));
+    QColor attributeColor;
+    attributeColor.setRed((foreground.red()+background.red()) / 2);
+    attributeColor.setGreen(
+            (foreground.green()+background.green()) / 2);
+    attributeColor.setBlue(
+            (foreground.blue()+background.blue()) / 2);
+    if (abs(attributeColor.red()-background.red()) > 80)
+        attributeColor.setRed(background.red());
+    else if (abs(attributeColor.green()-background.green()) > 80)
+        attributeColor.setGreen(background.green());
+    else attributeColor.setBlue(background.blue());
+    attributeFormat.setForeground(attributeColor);
     attributeFormat.setFontWeight(QFont::Normal);
     setFormatFor(Attribute, attributeFormat);
 }
