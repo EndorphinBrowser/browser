@@ -242,12 +242,16 @@ public:
 protected:
     bool prePopulated();
 
+protected:
+    virtual void mouseReleaseEvent(QMouseEvent *ev);
+
 private slots:
     void activated(const QModelIndex &index);
 
 private:
     BookmarksManager *m_bookmarksManager;
     QList<QAction*> m_initialActions;
+    Qt::MouseButton m_lastMouseButton;
 };
 
 /*
@@ -345,9 +349,14 @@ signals:
 public:
     BookmarksToolBarMenu(QWidget *parent = 0);
 
+protected:
+    virtual void mouseReleaseEvent(QMouseEvent *ev);
+
 private slots:
     void activated(const QModelIndex &index);
 
+private:
+    Qt::MouseButton m_lastMouseButton;
 };
 
 

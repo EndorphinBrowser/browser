@@ -752,6 +752,7 @@ void AddBookmarkDialog::accept()
 BookmarksMenu::BookmarksMenu(QWidget *parent)
     : ModelMenu(parent)
     , m_bookmarksManager(0)
+    , m_lastMouseButton(Qt::NoButton)
 {
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
@@ -762,10 +763,16 @@ BookmarksMenu::BookmarksMenu(QWidget *parent)
 
 void BookmarksMenu::activated(const QModelIndex &index)
 {
-    emit openUrl(
-          index.data(BookmarksModel::UrlRole).toUrl(),
-          TabWidget::CurrentTab,
-          index.data(Qt::DisplayRole).toString());
+    if (m_lastMouseButton == Qt::MidButton)
+        emit openUrl(
+            index.data(BookmarksModel::UrlRole).toUrl(),
+            TabWidget::NewTab,
+            index.data(Qt::DisplayRole).toString());
+    else
+        emit openUrl(
+            index.data(BookmarksModel::UrlRole).toUrl(),
+            TabWidget::CurrentTab,
+            index.data(Qt::DisplayRole).toString());
 }
 
 bool BookmarksMenu::prePopulated()
@@ -780,6 +787,15 @@ bool BookmarksMenu::prePopulated()
         addSeparator();
     createMenu(model()->index(0, 0), 1, this);
     return true;
+}
+
+void BookmarksMenu::mouseReleaseEvent(QMouseEvent *ev)
+{
+    m_lastMouseButton = ev->button();
+    //alow normal processing
+    ModelMenu::mouseReleaseEvent(ev);
+    //reset
+    m_lastMouseButton = Qt::NoButton;
 }
 
 void BookmarksMenu::setInitialActions(QList<QAction*> actions)
@@ -1011,6 +1027,7 @@ QModelIndex BookmarksToolBar::rootIndex() const
 
 BookmarksToolBarMenu::BookmarksToolBarMenu(QWidget *parent)
     : ModelMenu(parent)
+    , m_lastMouseButton(Qt::NoButton)
 {
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
@@ -1020,10 +1037,16 @@ BookmarksToolBarMenu::BookmarksToolBarMenu(QWidget *parent)
 
 void BookmarksToolBarMenu::activated(const QModelIndex &index)
 {
-    emit openUrl(
-          index.data(BookmarksModel::UrlRole).toUrl(),
-          TabWidget::CurrentTab,
-          index.data(Qt::DisplayRole).toString());
+    if (m_lastMouseButton == Qt::MidButton)
+        emit openUrl(
+            index.data(BookmarksModel::UrlRole).toUrl(),
+            TabWidget::NewTab,
+            index.data(Qt::DisplayRole).toString());
+    else
+        emit openUrl(
+            index.data(BookmarksModel::UrlRole).toUrl(),
+            TabWidget::CurrentTab,
+            index.data(Qt::DisplayRole).toString());
 }
 
 void BookmarksToolBar::build()
@@ -1057,3 +1080,11 @@ void BookmarksToolBar::build()
     }
 }
 
+void BookmarksToolBarMenu::mouseReleaseEvent(QMouseEvent *ev)
+{
+    m_lastMouseButton = ev->button();
+    //alow normal processing
+    ModelMenu::mouseReleaseEvent(ev);
+    //reset
+    m_lastMouseButton = Qt::NoButton;
+}
