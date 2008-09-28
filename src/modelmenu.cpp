@@ -161,6 +161,8 @@ void ModelMenu::aboutToShow()
     }
 
     clear();
+    disconnect(this, SIGNAL(triggered(QAction*)), this, SLOT(triggered(QAction*)));
+
     if (prePopulated())
         addSeparator();
     int max = m_maxRows;
