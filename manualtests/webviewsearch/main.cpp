@@ -54,16 +54,15 @@ int main(int argc, char **argv)
     QApplication application(argc, argv);
     QMainWindow mainWindow;
 
-    WebViewSearch *webViewSearch = new WebViewSearch;
 
     QWidget *window = new QWidget;
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-    layout->addWidget(webViewSearch);
     WebViewWSearch *webView = new WebViewWSearch(&mainWindow);
+    WebViewSearch *webViewSearch = new WebViewSearch(webView);
+    layout->addWidget(webViewSearch);
     webView->load(QUrl("http://reddit.com"));
-    webViewSearch->setWebView(webView);
     layout->addWidget(webView);
     window->setLayout(layout);
     mainWindow.setCentralWidget(window);
