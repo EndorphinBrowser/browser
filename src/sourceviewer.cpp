@@ -18,43 +18,48 @@
  */
 
 #include "sourceviewer.h"
-#include "qaction.h"
-#include "qshortcut.h"
 
-SourceViewer::SourceViewer(QString &source, QString &title)
-    : QWidget()
-    , m_edit(source)
-    , m_highlighter(m_edit.document())
-    , m_plainTextEditSearch(this)
-    , m_menuBar(this)
-    , m_editMenu(tr("&Edit"),&m_menuBar)
-    , m_findAction(tr("&Find"),&m_editMenu)
-    , layout(this)
+#include <qlayout.h>
+#include <qplaintextedit.h>
+#include <qshortcut.h>
+#include <qmenubar.h>
+
+#include "plaintexteditsearch.h"
+#include "sourcehighlighter.h"
+
+SourceViewer::SourceViewer(const QString &source, const QString &title, QWidget *parent)
+    : QDialog(parent)
+    , m_edit(new QPlainTextEdit(source))
+    , m_highlighter(new SourceHighlighter(m_edit->document()))
+    , m_plainTextEditSearch(new PlainTextEditSearch(m_edit, this))
+    , layout(new QVBoxLayout(this))
+    , m_menuBar(new QMenuBar(this))
+    , m_editMenu(new QMenu(tr("&Edit"), m_menuBar))
+    , m_findAction(new QAction(tr("&Find"), m_editMenu))
+
 {
     setWindowTitle(QString(tr("Source of Page ")).append(title));
-    setMinimumWidth(640); setMinimumHeight(480);
+    resize(640, 480);
 
-    m_edit.setLineWrapMode(QPlainTextEdit::NoWrap);
-    m_edit.setReadOnly(true);
-    m_edit.setFont(QFont(QLatin1String("Monospace"),9,QFont::Normal));
+    m_edit->setLineWrapMode(QPlainTextEdit::NoWrap);
+    m_edit->setReadOnly(true);
+    QFont mFont = m_edit->font();
+    mFont.setFamily(QLatin1String("Monospace"));
+    m_edit->setFont(mFont);
+    m_edit->setLineWidth(0);
+    m_edit->setFrameShape(QFrame::NoFrame);
 
-    m_plainTextEditSearch.setPlainTextEdit(&m_edit);
+    m_menuBar->addMenu(m_editMenu);
+    m_editMenu->addAction(m_findAction);
+    m_findAction->setShortcuts(QKeySequence::Find);
+    connect(m_findAction, SIGNAL(triggered()),
+            m_plainTextEditSearch, SLOT(showFind()));
 
-    m_menuBar.addMenu(&m_editMenu);
-    m_editMenu.addAction(&m_findAction);
-    m_findAction.setShortcuts(QKeySequence::Find);
-    connect(&m_findAction, SIGNAL(triggered()), this, SLOT(slotEditFind()));
-
-    layout.setSpacing(0);
-    layout.setContentsMargins(0, 0, 0, 0);
-    layout.addWidget(&m_menuBar);
-    layout.addWidget(&m_plainTextEditSearch);
-    layout.addWidget(&m_edit);
-    setLayout(&layout);
-    show();
+    layout->setSpacing(0);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->addWidget(m_menuBar);
+    layout->addWidget(m_plainTextEditSearch);
+    layout->addWidget(m_edit);
+    setLayout(layout);
 }
 
-void SourceViewer::slotEditFind()
-{
-    m_plainTextEditSearch.showFind();
-}

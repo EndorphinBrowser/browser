@@ -34,25 +34,29 @@ class SearchBar : public QWidget
 
 public:
     SearchBar(QWidget *parent = 0);
-    void setObject(QObject *object);
-    QObject *getObject() const;
+    void setSearchObject(QObject *object);
+    QObject *searchObject() const;
+
 public slots:
     void animateHide();
     void clear();
     void showFind();
     virtual void findNext() = 0;
     virtual void findPrevious() = 0;
+
 protected:
     void resizeEvent(QResizeEvent *event);
-    QObject *m_object;
     Ui_SearchBanner ui;
+
 private slots:
     void frameChanged(int frame);
+
 private:
     void initializeSearchWidget();
+    QObject *m_object;
     QWidget *m_widget;
     QTimeLine *m_timeLine;
 };
 
-#endif // VIEWSEARCH_H
+#endif
 

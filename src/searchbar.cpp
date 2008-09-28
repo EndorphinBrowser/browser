@@ -20,15 +20,15 @@
 #include "searchbar.h"
 
 #include <qevent.h>
-#include <qshortcut.h>
 #include <qtimeline.h>
+#include <qshortcut.h>
 
 #include <qdebug.h>
 
 SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)
-    , m_widget(0)
     , m_object(0)
+    , m_widget(0)
     , m_timeLine(new QTimeLine(150, this))
 {
     initializeSearchWidget();
@@ -60,9 +60,8 @@ void SearchBar::initializeSearchWidget()
     m_widget = new QWidget(this);
     m_widget->setContentsMargins(0, 0, 0, 0);
     ui.setupUi(m_widget);
-    ui.previousButton->
-        setText(m_widget->layoutDirection()
-                == Qt::LeftToRight? QChar(9664): QChar(9654) );
+    ui.previousButton->setText(m_widget->layoutDirection()
+                == Qt::LeftToRight? QChar(9664): QChar(9654));
     ui.nextButton->setText(m_widget->layoutDirection()
                 == Qt::LeftToRight? QChar(9654): QChar(9664));
     ui.searchInfo->setText(QString());
@@ -71,12 +70,12 @@ void SearchBar::initializeSearchWidget()
     setMinimumHeight(m_widget->minimumHeight());
 }
 
-void SearchBar::setObject(QObject *object)
+void SearchBar::setSearchObject(QObject *object)
 {
     m_object = object;
 }
 
-QObject *SearchBar::getObject() const
+QObject *SearchBar::searchObject() const
 {
     return m_object;
 }

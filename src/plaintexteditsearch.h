@@ -20,28 +20,25 @@
 #ifndef PLAINTEXTEDITSEARCH_H
 #define PLAINTEXTEDITSEARCH_H
 
-#include <qwidget.h>
-#include <qplaintextedit.h>
-#include <qtextdocument.h>
-#include "ui_searchbanner.h"
 #include "searchbar.h"
 
+#include <qtextdocument.h>
+
+class QPlainTextEdit;
 class PlainTextEditSearch : public SearchBar
 {
     Q_OBJECT
 
 public:
-    PlainTextEditSearch(QWidget *parent = 0);
-    void setPlainTextEdit(QPlainTextEdit *plainTextEdit);
-    QPlainTextEdit *plainTextEdit() const;
+    PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget *parent = 0);
 
 public slots:
     void findNext();
     void findPrevious();
 
-private slots:
-    void find(QTextDocument::FindFlags flags);
 private:
+    void find(QTextDocument::FindFlags flags);
+    QPlainTextEdit *m_edit;
     QString lastSearchTerm;
 };
 

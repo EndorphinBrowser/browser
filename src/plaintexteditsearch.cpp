@@ -19,22 +19,15 @@
 
 #include "plaintexteditsearch.h"
 
+#include <qplaintextedit.h>
+
 #include "qtextcursor.h"
 
-#define m_edit ((QPlainTextEdit*)m_object)
-
-PlainTextEditSearch::PlainTextEditSearch(QWidget *parent)
+PlainTextEditSearch::PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget *parent)
     : SearchBar(parent)
-{ }
-
-void PlainTextEditSearch::setPlainTextEdit(QPlainTextEdit *plainTextEdit)
+    , m_edit(plainTextEdit)
 {
-    setObject(plainTextEdit);
-}
-
-QPlainTextEdit *PlainTextEditSearch::plainTextEdit() const
-{
-    return (QPlainTextEdit*)getObject();
+    setSearchObject(plainTextEdit);
 }
 
 void PlainTextEditSearch::findNext()
@@ -50,7 +43,7 @@ void PlainTextEditSearch::findPrevious()
 void PlainTextEditSearch::find(QTextDocument::FindFlags flags)
 {
     QString searchString = ui.searchLineEdit->text();
-    if (!m_object || searchString.isEmpty())
+    if (!m_edit || searchString.isEmpty())
         return;
     if (searchString != lastSearchTerm) {
         QTextCursor cursor = m_edit->textCursor();
@@ -74,3 +67,4 @@ void PlainTextEditSearch::find(QTextDocument::FindFlags flags)
     }
     ui.searchInfo->setText(infoString);
 }
+

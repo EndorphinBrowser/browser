@@ -28,18 +28,10 @@
 
 #include <qdebug.h>
 
-WebViewSearch::WebViewSearch(QWidget *parent)
+WebViewSearch::WebViewSearch(QWebView *webView, QWidget *parent)
     : SearchBar(parent)
-{ }
-
-void WebViewSearch::setWebView(QWebView *webView)
 {
-    setObject(webView);
-}
-
-QWebView *WebViewSearch::webView() const
-{
-    return (QWebView*)getObject();
+    setSearchObject(webView);
 }
 
 void WebViewSearch::findNext()
@@ -55,10 +47,10 @@ void WebViewSearch::findPrevious()
 void WebViewSearch::find(QWebPage::FindFlags flags)
 {
     QString searchString = ui.searchLineEdit->text();
-    if (!m_object || searchString.isEmpty())
+    if (!searchObject() || searchString.isEmpty())
         return;
     QString infoString;
-    if (!((QWebView*)m_object)->findText(searchString, flags))
+    if (!((QWebView*)searchObject())->findText(searchString, flags))
         infoString = tr("Not Found");
     ui.searchInfo->setText(infoString);
 }
@@ -71,9 +63,9 @@ WebViewWithSearch::WebViewWithSearch(WebView *webView, QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-    m_webViewSearch = new WebViewSearch(this);
+    m_webViewSearch = new WebViewSearch(m_webView, this);
     layout->addWidget(m_webViewSearch);
-    m_webViewSearch->setWebView(m_webView);
     layout->addWidget(m_webView);
     setLayout(layout);
 }
+

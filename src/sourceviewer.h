@@ -20,29 +20,31 @@
 #ifndef SOURCEVIEWER_H
 #define SOURCEVIEWER_H
 
-#include <qboxlayout.h>
-#include <qplaintextedit.h>
-#include <qmenu.h>
-#include <qmenubar.h>
-#include "plaintexteditsearch.h"
-#include "sourcehighlighter.h"
+#include <qdialog.h>
 
-
-class SourceViewer : public QWidget
+class QVBoxLayout;
+class SourceHighlighter;
+class PlainTextEditSearch;
+class QPlainTextEdit;
+class QMenuBar;
+class QMenu;
+class QAction;
+class SourceViewer : public QDialog
 {
     Q_OBJECT
+
 public:
-    SourceViewer(QString &source, QString &title);
-public slots:
-    void slotEditFind();
+    SourceViewer(const QString &source, const QString &title, QWidget *parent = 0);
+
 private:
-    QPlainTextEdit m_edit;
-    SourceHighlighter m_highlighter;
-    PlainTextEditSearch m_plainTextEditSearch;
-    QMenuBar m_menuBar;
-    QMenu m_editMenu;
-    QAction m_findAction;
-    QVBoxLayout layout;
+    QPlainTextEdit *m_edit;
+    SourceHighlighter *m_highlighter;
+    PlainTextEditSearch *m_plainTextEditSearch;
+    QVBoxLayout *layout;
+    QMenuBar *m_menuBar;
+    QMenu *m_editMenu;
+    QAction *m_findAction;
+
 };
 
 #endif

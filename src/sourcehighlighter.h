@@ -20,9 +20,6 @@
 #ifndef SOURCEHIGHLIGHTER_H
 #define SOURCEHIGHLIGHTER_H
 
-#include <qchar.h>
-#include <qtextformat.h>
-#include <qstring.h>
 #include <qsyntaxhighlighter.h>
 
 class SourceHighlighter : public QSyntaxHighlighter
@@ -38,6 +35,7 @@ public:
         LastConstruct = Attribute
     };
     SourceHighlighter(QTextDocument *document);
+
     QTextCharFormat getFormatFor(Construct construct);
     void setFormatFor(Construct construct, QTextCharFormat &format);
 
@@ -49,8 +47,9 @@ protected:
         InAttribute
     };
     void highlightBlock(const QString &text);
+
 private:
-    QTextCharFormat formats[LastConstruct+1];
+    QTextCharFormat formats[LastConstruct + 1];
 };
 
 #endif

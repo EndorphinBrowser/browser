@@ -81,8 +81,8 @@
 #include "webviewsearch.h"
 
 #include <qdesktopwidget.h>
+#include <qevent.h>
 #include <qfiledialog.h>
-#include <qplaintextedit.h>
 #include <qprintdialog.h>
 #include <qprintpreviewdialog.h>
 #include <qprinter.h>
@@ -955,8 +955,9 @@ void BrowserMainWindow::slotViewPageSource()
 
     QString title = currentTab()->title();
     QString markup = currentTab()->page()->mainFrame()->toHtml();
-    SourceViewer *viewer = new SourceViewer(markup,title);
+    SourceViewer *viewer = new SourceViewer(markup, title, this);
     viewer->setAttribute(Qt::WA_DeleteOnClose);
+    viewer->show();
 }
 
 void BrowserMainWindow::slotHome()

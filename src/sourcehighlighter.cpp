@@ -23,22 +23,22 @@ SourceHighlighter::SourceHighlighter(QTextDocument *document)
     : QSyntaxHighlighter(document)
 {
     QTextCharFormat entityFormat;
-    entityFormat.setForeground(QColor(30,180,30));
+    entityFormat.setForeground(QColor(30, 180,30));
     entityFormat.setFontWeight(QFont::Normal);
     setFormatFor(Entity, entityFormat);
 
     QTextCharFormat tagFormat;
-    tagFormat.setForeground(QColor(30,30,60));
+    tagFormat.setForeground(QColor(30, 30, 60));
     tagFormat.setFontWeight(QFont::Bold);
     setFormatFor(Tag, tagFormat);
 
     QTextCharFormat commentFormat;
-    commentFormat.setForeground(QColor(120,120,160));
+    commentFormat.setForeground(QColor(120, 120, 160));
     commentFormat.setFontWeight(QFont::Normal);
     setFormatFor(Comment, commentFormat);
 
     QTextCharFormat attributeFormat;
-    attributeFormat.setForeground(QColor(200,30,30));
+    attributeFormat.setForeground(QColor(200, 30, 30));
     attributeFormat.setFontWeight(QFont::Normal);
     setFormatFor(Attribute, attributeFormat);
 }
@@ -62,16 +62,16 @@ void SourceHighlighter::highlightBlock(const QString &text)
     int pos = 0;
     QRegExp regex;
 
-    while (pos >= 0 && pos < len && len>0) {
+    while (pos >= 0 && pos < len && len > 0) {
         switch (state) {
         default:
         case Normal:
             regex.setPattern(QLatin1String("[<&]"));
-            pos = regex.indexIn(text,pos);
+            pos = regex.indexIn(text, pos);
             if (pos>=0) {
                 if (text.at(pos) == QLatin1Char('<')) {
                     start = pos;
-                    if (text.mid(pos,4) == QLatin1String("<!--")) {
+                    if (text.mid(pos, 4) == QLatin1String("<!--")) {
                         state = InComment;
                     } else {
                         state = InTag;
@@ -79,8 +79,8 @@ void SourceHighlighter::highlightBlock(const QString &text)
                     pos++;
                 } else if (text.at(pos) == QLatin1Char('&')) {
                     regex.setPattern(QLatin1String("&[a-zA-Z0-9]+;"));
-                    if (regex.indexIn(text,pos) == pos) {
-                        setFormat(pos,regex.matchedLength(),formats[Entity]);
+                    if (regex.indexIn(text, pos) == pos) {
+                        setFormat(pos, regex.matchedLength(), formats[Entity]);
                     }
                     pos++;
                 }
@@ -88,43 +88,43 @@ void SourceHighlighter::highlightBlock(const QString &text)
             break;
         case InComment:
             regex.setPattern(QLatin1String("-->"));
-            pos = regex.indexIn(text,pos);
-            if (pos>=0) {
+            pos = regex.indexIn(text, pos);
+            if (pos >= 0) {
                 state = Normal;
-                pos+=3;
-                setFormat(start,pos-start,formats[Comment]);
+                pos += 3;
+                setFormat(start, pos-start, formats[Comment]);
                 pos++;
             } else {
-                setFormat(start,len-start,formats[Comment]);
+                setFormat(start, len-start, formats[Comment]);
             }
             break;
          case InTag:
             regex.setPattern(QLatin1String("[>\"]"));
-            pos = regex.indexIn(text,pos);
-            if (pos>=0) {
+            pos = regex.indexIn(text, pos);
+            if (pos >= 0) {
                 if (text.at(pos) == QLatin1Char('>')) {
                     state = Normal;
                     pos++;
-                    setFormat(start,pos-start,formats[Tag]);
+                    setFormat(start, pos-start, formats[Tag]);
                 } else if (text.at(pos)== QLatin1Char('"')) {
-                    setFormat(start,pos-start,formats[Tag]);
+                    setFormat(start, pos-start, formats[Tag]);
                     start = pos;
                     state = InAttribute;
                     pos++;
                 }
             } else {
-                setFormat(start,len-start,formats[Tag]);
+                setFormat(start, len-start, formats[Tag]);
             }
             break;
         case InAttribute:
             regex.setPattern(QLatin1String("\""));
-            pos = regex.indexIn(text,pos);
-            if (pos>=0) {
-                setFormat(start,pos-start,formats[Attribute]);
+            pos = regex.indexIn(text, pos);
+            if (pos >= 0) {
+                setFormat(start, pos-start, formats[Attribute]);
                 state = InTag;
                 start = ++pos;
             } else {
-                setFormat(start,len-start,formats[Attribute]);
+                setFormat(start, len-start, formats[Attribute]);
             }
             break;
         }
