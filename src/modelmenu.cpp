@@ -233,7 +233,6 @@ QAction *ModelMenu::makeAction(const QIcon &icon, const QString &text, QObject *
 void ModelMenu::triggered(QAction *action)
 {
     QVariant v = action->data();
-    fprintf(stderr, "ModelMenu::triggered\n");
     if (v.canConvert<QModelIndex>()) {
         QModelIndex idx = qvariant_cast<QModelIndex>(v);
         emit activated(idx);

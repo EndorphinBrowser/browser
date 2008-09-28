@@ -243,7 +243,7 @@ protected:
     bool prePopulated();
 
 protected:
-    virtual void mouseReleaseEvent(QMouseEvent *ev);
+    virtual void mouseReleaseEvent(QMouseEvent *event);
 
 private slots:
     void activated(const QModelIndex &index);

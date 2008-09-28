@@ -789,11 +789,11 @@ bool BookmarksMenu::prePopulated()
     return true;
 }
 
-void BookmarksMenu::mouseReleaseEvent(QMouseEvent *ev)
+void BookmarksMenu::mouseReleaseEvent(QMouseEvent *event)
 {
-    m_lastMouseButton = ev->button();
+    m_lastMouseButton = event->button();
     //alow normal processing
-    ModelMenu::mouseReleaseEvent(ev);
+    ModelMenu::mouseReleaseEvent(event);
     //reset
     m_lastMouseButton = Qt::NoButton;
 }
