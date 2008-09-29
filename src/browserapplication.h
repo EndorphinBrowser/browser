@@ -63,15 +63,11 @@
 #ifndef BROWSERAPPLICATION_H
 #define BROWSERAPPLICATION_H
 
-#include <qapplication.h>
+#include "singleapplication.h"
 
 #include <qicon.h>
 #include <qpointer.h>
 #include <qurl.h>
-
-QT_BEGIN_NAMESPACE
-class QLocalServer;
-QT_END_NAMESPACE
 
 class BookmarksManager;
 class BrowserMainWindow;
@@ -80,7 +76,7 @@ class DownloadManager;
 class HistoryManager;
 class NetworkAccessManager;
 class LanguageManager;
-class BrowserApplication : public QApplication
+class BrowserApplication : public SingleApplication
 {
     Q_OBJECT
 
@@ -90,7 +86,6 @@ public:
     static BrowserApplication *instance();
     void loadSettings();
 
-    bool isTheOnlyBrowser() const;
     BrowserMainWindow *mainWindow();
     QList<BrowserMainWindow*> mainWindows();
     static QIcon icon(const QUrl &url);
@@ -119,9 +114,9 @@ public slots:
 #endif
 
 private slots:
+    void messageRecieved(const QString &message);
     void postLaunch();
     void openUrl(const QUrl &url);
-    void newLocalSocketConnection();
 
 private:
     void clean();
@@ -133,7 +128,6 @@ private:
     static LanguageManager *s_languageManager;
 
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
-    QLocalServer *m_localServer;
     QByteArray m_lastSession;
     bool quiting;
 };

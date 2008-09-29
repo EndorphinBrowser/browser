@@ -5,5 +5,6 @@ SUBDIRS = bookmarks \
 	lineedit \
 	locationbar \
 	searchlineedit \
-	squeezelabel
+	singleapplication \
+        squeezelabel
 

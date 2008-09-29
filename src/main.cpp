@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     Q_INIT_RESOURCE(htmls);
     Q_INIT_RESOURCE(data);
     BrowserApplication application(argc, argv);
-    if (!application.isTheOnlyBrowser())
+    if (!application.isRunning())
         return 0;
 #ifdef Q_OS_WIN
     application.setStyle(new ExplorerStyle);

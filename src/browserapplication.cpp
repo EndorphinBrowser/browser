@@ -79,13 +79,6 @@
 #include <qlibraryinfo.h>
 #include <qmessagebox.h>
 #include <qsettings.h>
-#include <qtextstream.h>
-#include <qtranslator.h>
-
-#include <qlocalserver.h>
-#include <qlocalsocket.h>
-#include <qnetworkproxy.h>
-
 #include <qwebsettings.h>
 
 #include <qdebug.h>
@@ -97,8 +90,7 @@ BookmarksManager *BrowserApplication::s_bookmarksManager = 0;
 LanguageManager *BrowserApplication::s_languageManager = 0;
 
 BrowserApplication::BrowserApplication(int &argc, char **argv)
-    : QApplication(argc, argv)
-    , m_localServer(0)
+    : SingleApplication(argc, argv)
     , quiting(false)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
@@ -111,39 +103,16 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 
     QCoreApplication::setApplicationVersion(version);
 #ifndef AUTOTESTS
-#ifdef Q_WS_QWS
-    // Use a different server name for QWS so we can run an X11
-    // browser and a QWS browser in parallel on the same machine for
-    // debugging
-    QString serverName = QCoreApplication::applicationName() + QLatin1String("_qws");
-#else
-    QString serverName = QCoreApplication::applicationName();
-#endif // Q_WS_QWS
-    QLocalSocket socket;
-    socket.connectToServer(serverName);
-    if (socket.waitForConnected(500)) {
-        QTextStream stream(&socket);
-        QStringList args = QCoreApplication::arguments();
-        if (args.count() > 1)
-            stream << args.last();
-        else
-            stream << QString();
-        stream.flush();
-        socket.waitForBytesWritten();
+    QStringList args = QCoreApplication::arguments();
+    QString message = (args.count() > 1) ? args.last() : QString();
+    if (sendMessage(args.last()))
         return;
-    }
-
-    m_localServer = new QLocalServer(this);
-    connect(m_localServer, SIGNAL(newConnection()),
-            this, SLOT(newLocalSocketConnection()));
-    if (!m_localServer->listen(serverName)) {
-        if (m_localServer->serverError() == QAbstractSocket::AddressInUseError
-            && QFile::exists(m_localServer->serverName())) {
-            QFile::remove(m_localServer->serverName());
-            m_localServer->listen(serverName);
-        }
-    }
-#endif // AUTOTESTS
+    // not sure what else to do...
+    if(!startSingleServer())
+        return;
+    connect(this, SIGNAL(messageRecieved(const QString &)),
+            this, SLOT(messageRecieved(const QString &)));
+#endif
 
 #if defined(Q_WS_MAC)
     QApplication::setQuitOnLastWindowClosed(false);
@@ -174,7 +143,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 
 #ifndef AUTOTESTS
     QTimer::singleShot(0, this, SLOT(postLaunch()));
-#endif // AUTOTESTS
+#endif
 }
 
 BrowserApplication::~BrowserApplication()
@@ -199,6 +168,24 @@ void BrowserApplication::lastWindowClosed()
 BrowserApplication *BrowserApplication::instance()
 {
     return (static_cast<BrowserApplication *>(QCoreApplication::instance()));
+}
+
+void BrowserApplication::messageRecieved(const QString &message)
+{
+    QUrl url(message);
+    if (!url.isEmpty()) {
+        QSettings settings;
+        settings.beginGroup(QLatin1String("general"));
+        int openLinksIn = settings.value(QLatin1String("openLinksIn"), 0).toInt();
+        settings.endGroup();
+        if (openLinksIn == 1)
+            newMainWindow();
+        else
+            mainWindow()->tabWidget()->newTab();
+        openUrl(url);
+    }
+    mainWindow()->raise();
+    mainWindow()->activateWindow();
 }
 
 #if defined(Q_WS_MAC)
@@ -413,11 +400,6 @@ bool BrowserApplication::restoreLastSession()
     return true;
 }
 
-bool BrowserApplication::isTheOnlyBrowser() const
-{
-    return (m_localServer != 0);
-}
-
 #if defined(Q_WS_MAC)
 bool BrowserApplication::event(QEvent *event)
 {
@@ -463,31 +445,6 @@ BrowserMainWindow *BrowserApplication::mainWindow()
     if (m_mainWindows.isEmpty())
         newMainWindow();
     return m_mainWindows[0];
-}
-
-void BrowserApplication::newLocalSocketConnection()
-{
-    QLocalSocket *socket = m_localServer->nextPendingConnection();
-    if (!socket)
-        return;
-    socket->waitForReadyRead(1000);
-    QTextStream stream(socket);
-    QString url;
-    stream >> url;
-    if (!url.isEmpty()) {
-        QSettings settings;
-        settings.beginGroup(QLatin1String("general"));
-        int openLinksIn = settings.value(QLatin1String("openLinksIn"), 0).toInt();
-        settings.endGroup();
-        if (openLinksIn == 1)
-            newMainWindow();
-        else
-            mainWindow()->tabWidget()->newTab();
-        openUrl(url);
-    }
-    delete socket;
-    mainWindow()->raise();
-    mainWindow()->activateWindow();
 }
 
 CookieJar *BrowserApplication::cookieJar()
