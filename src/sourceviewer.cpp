@@ -37,7 +37,7 @@
 SourceViewer::SourceViewer(const QString &source,
         const QString &title, const QUrl &url, QWidget *parent)
     : QDialog(parent)
-    , m_edit(new QPlainTextEdit(tr("Loading...")))
+    , m_edit(new QPlainTextEdit(tr("Loading..."),this))
     , m_highlighter(new SourceHighlighter(m_edit->document()))
     , m_plainTextEditSearch(new PlainTextEditSearch(m_edit, this))
     , layout(new QVBoxLayout(this))
@@ -90,4 +90,6 @@ void SourceViewer::loadingFinished()
         m_edit->setPlainText(*m_source);
     else m_edit->setPlainText(QLatin1String(response));
     m_reply->close();
+    delete m_request;
+    delete m_source;
 }
