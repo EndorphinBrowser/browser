@@ -28,13 +28,17 @@ class PlainTextEditSearch;
 class QPlainTextEdit;
 class QMenuBar;
 class QMenu;
+class QUrl;
 class QAction;
+class QNetworkReply;
+class QNetworkRequest;
 class SourceViewer : public QDialog
 {
     Q_OBJECT
 
 public:
-    SourceViewer(const QString &source, const QString &title, QWidget *parent = 0);
+    SourceViewer(const QString &source, const QString &title,
+                    const QUrl &url, QWidget *parent = 0);
 
 private:
     QPlainTextEdit *m_edit;
@@ -44,7 +48,12 @@ private:
     QMenuBar *m_menuBar;
     QMenu *m_editMenu;
     QAction *m_findAction;
+    QNetworkReply *m_reply;
+    QNetworkRequest *m_request;
+    QString *m_source;
 
+private slots:
+    void loadingFinished();
 };
 
 #endif

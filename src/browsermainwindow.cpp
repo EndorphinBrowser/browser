@@ -94,6 +94,7 @@
 #include <qinputdialog.h>
 #include <qsplitter.h>
 
+#include <qurl.h>
 #include <qwebframe.h>
 #include <qwebhistory.h>
 
@@ -955,7 +956,8 @@ void BrowserMainWindow::slotViewPageSource()
 
     QString title = currentTab()->title();
     QString markup = currentTab()->page()->mainFrame()->toHtml();
-    SourceViewer *viewer = new SourceViewer(markup, title, this);
+    QUrl url = currentTab()->url();
+    SourceViewer *viewer = new SourceViewer(markup, title, url, this);
     viewer->setAttribute(Qt::WA_DeleteOnClose);
     viewer->show();
 }
