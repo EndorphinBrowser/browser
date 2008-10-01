@@ -1,4 +1,33 @@
 0.4
+Interface
+- New source viewer with search and syntax highlighting.
+- Make middle click on bookmarks menus open the user in a new tab.
+- Added the ability to change the language from the Help menu.
+- Double left click location bar selects all of the text.
+- Incorporate Jens Explorer style into Arora on Window for a better look and feel on XP and Vista. http://labs.trolltech.com/blogs/2007/06/08/explorer-style-toolbars/
+- Change the "icon" on the next/prev search for RTL desktops: next points to the right, and previous points to the right
+- Various RightToLeft fixes for for Mozilla's bug https://bugzilla.mozilla.org/show_bug.cgi?id=219070
+- When the url scheme is https make the location bar background turn yellow.
+- When the history is cleared also clear the recently closed tabs list
+- Always populate the location bar with the completer
+- Only shrink the toolbar icons on OS X.
+- Only offset the search widget text when using Qt 4.5
+- When clicking on a bookmark in a folder in the toolbar emit the proper signals to the url is opened.
+- When dropping text on the webpage load the url
+- When the location bar has focus don't change the text.
+
+Behind the scenes
+- Make a dedicated SingleApplication class
+- Tweak HistoryManager API to be easier to read.
+- Improvements to the code style to be more consistent
+- Move the binaries for autotests and manual tests into the .gitignore in that directory rather then all in one file at the top.
+- Update manualtest for the location bar now that the urllineedit class has become the new location bar class and add a new git hook to make sure manual tests build.
+
+Build system
+- Move locale build instructions to its own pri file in the locale directory
+- Correctly detect qt3's qmake on Debian
+- Enhance support for building with WebKit trunk
+
 
 0.3
 - With Qt 4.5 use movable tabs
