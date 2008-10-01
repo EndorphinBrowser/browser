@@ -30,20 +30,7 @@ InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
 
-Section -Icons
-  CreateShortCut "$SMPROGRAMS\Arora.lnk" "$INSTDIR\arora.exe"
-SectionEnd
-
-Section -UninstallInfo
-  WriteUninstaller "$INSTDIR\uninst.exe"
-  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\arora.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\arora.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
-SectionEnd
-
-Section "Main Components" SEC01
+Section "Main Components"
   KillProcDLL::KillProc "arora.exe"
   Sleep 100
   SetOverwrite on
@@ -76,7 +63,22 @@ Section "Main Components" SEC01
   File "C:\qt-snapshot\plugins\codecs\qkrcodecs4.dll"
   File "C:\qt-snapshot\plugins\codecs\qjpcodecs4.dll"
   File "C:\qt-snapshot\plugins\codecs\qcncodecs4.dll"
+SectionEnd
 
+Section Icons
+  CreateShortCut "$SMPROGRAMS\Arora.lnk" "$INSTDIR\arora.exe"
+SectionEnd
+
+Section Uninstaller
+  WriteUninstaller "$INSTDIR\uninst.exe"
+  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\arora.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\arora.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
+SectionEnd
+
+Section MSVC
   InitPluginsDir
   SetOutPath $PLUGINSDIR
   File "C:\Program Files\Microsoft Visual Studio 8\SDK\v2.0\BootStrapper\Packages\vcredist_x86\vcredist_x86.exe"
@@ -92,4 +94,5 @@ Section Uninstall
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
 SectionEnd
+
 BrandingText "arora-browser.org"
