@@ -281,7 +281,7 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         menu->addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(r.imageUrl().toString());
     }
 
-#ifdef WEBKIT_TRUNK // i.e. Qt 4.5, but not in Qt 4.5 yet
+#if QT_VERSION >= 0x040500
     if (menu->isEmpty())
         menu = page()->createStandardContextMenu();
 #endif
