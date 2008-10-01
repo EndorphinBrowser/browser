@@ -1,1 +1,1 @@
-git log --pretty="format:%an %ae" | sort | sed -e s/smart2128\ /Vincenzo\ Reale\ /g | uniq -c | sort -n -r | sed -e 's/^ *[0-9]* //g'
+git log --pretty="format:%an %ae" | sed -e s/smart2128\ /Vincenzo\ Reale\ /g | sort | uniq -c | sort -n -r | sed -e 's/^ *[0-9]* //g'
