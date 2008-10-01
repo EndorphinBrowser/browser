@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="de_DE">
+<!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name></name>
     <message>
@@ -11,7 +12,7 @@
         <translation type="obsolete">Arora läuft bereits.</translation>
     </message>
 </context>
-<context>
+<context encoding="UTF-8">
     <name>AboutDialog</name>
     <message>
         <location filename="../aboutdialog.cpp" line="34"/>
@@ -33,15 +34,6 @@
         <source>Lightweight WebKit-based web browser</source>
         <translation>leichgewichtiger WebKit basierender Webbrowser</translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../aboutdialog.ui" line="100"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../aboutdialog.ui" line="123"/>
         <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
@@ -51,6 +43,15 @@ p, li { white-space: pre-wrap; }
         <location filename="../aboutdialog.ui" line="165"/>
         <source>Close</source>
         <translation>Schließen</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../aboutdialog.ui" line="100"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -69,17 +70,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksDialog</name>
     <message>
-        <location filename="../bookmarks.cpp" line="873"/>
+        <location filename="../bookmarks.cpp" line="889"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="877"/>
+        <location filename="../bookmarks.cpp" line="893"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="914"/>
+        <location filename="../bookmarks.cpp" line="930"/>
         <source>New Folder</source>
         <translation>Neuer Ordner</translation>
     </message>
@@ -99,7 +100,7 @@ p, li { white-space: pre-wrap; }
         <translation>Ordner hinzufügen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="874"/>
+        <location filename="../bookmarks.cpp" line="890"/>
         <source>Open in New Tab</source>
         <translation>In einem neuen tab öffnen</translation>
     </message>
@@ -110,7 +111,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../bookmarks.cpp" line="285"/>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="139"/>
@@ -194,7 +195,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <location filename="../bookmarks.cpp" line="943"/>
+        <location filename="../bookmarks.cpp" line="962"/>
         <source>Bookmark</source>
         <translation>Leszeichen</translation>
     </message>
@@ -202,112 +203,122 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BrowserApplication</name>
     <message>
-        <location filename="../browserapplication.cpp" line="203"/>
+        <location filename="../browserapplication.cpp" line="204"/>
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
         <translation>%1 Fenster und %2 Tabs sind geöffnet
 Arora wirklich beenden?</translation>
     </message>
     <message>
-        <location filename="../browserapplication.cpp" line="356"/>
+        <location filename="../browserapplication.cpp" line="363"/>
         <source>Restore failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiederherstellung fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../browserapplication.cpp" line="357"/>
         <source>The saved session will not being restored because last time it was restored Arora crashed.</source>
+        <translation type="obsolete">Die gespeicherte Sitzung wird nicht wiederhergestellt weil bei der letzten Wiederherstellung Arora abgestürzt ist.</translation>
+    </message>
+    <message>
+        <location filename="../browserapplication.cpp" line="100"/>
+        <source> (Change: %1 %2)</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browserapplication.cpp" line="364"/>
+        <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
+        <translation>Die gespeicherte Sitzung wird nicht wiederhergestellt weil bei der letzten Wiederherstellung Arora abgestürzt ist.</translation>
     </message>
 </context>
 <context>
     <name>BrowserMainWindow</name>
     <message>
-        <location filename="../browsermainwindow.cpp" line="328"/>
+        <location filename="../browsermainwindow.cpp" line="352"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="330"/>
+        <location filename="../browsermainwindow.cpp" line="354"/>
         <source>&amp;New Window</source>
         <translation>&amp;Neues Fenster</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="332"/>
+        <location filename="../browsermainwindow.cpp" line="356"/>
         <source>&amp;Open File...</source>
         <translation>&amp;Datei öffnen...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="333"/>
+        <location filename="../browsermainwindow.cpp" line="357"/>
         <source>Open &amp;Location...</source>
         <translation>&amp;Adresse aufrufen...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="338"/>
+        <location filename="../browsermainwindow.cpp" line="362"/>
         <source>&amp;Save As...</source>
         <translation>&amp;Speichern unter...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="342"/>
+        <location filename="../browsermainwindow.cpp" line="366"/>
         <source>&amp;Import Bookmarks...</source>
         <translation>&amp;Lesezeichen importieren...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="343"/>
+        <location filename="../browsermainwindow.cpp" line="367"/>
         <source>&amp;Export Bookmarks...</source>
         <translation>&amp;Lesezeichen exportieren...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="345"/>
+        <location filename="../browsermainwindow.cpp" line="369"/>
         <source>P&amp;rint Preview...</source>
         <translation>Druckvorschau</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="346"/>
+        <location filename="../browsermainwindow.cpp" line="370"/>
         <source>&amp;Print...</source>
         <translation>&amp;Drucken...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="348"/>
+        <location filename="../browsermainwindow.cpp" line="372"/>
         <source>Private &amp;Browsing...</source>
         <translation>Private &amp;Browsing...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="355"/>
+        <location filename="../browsermainwindow.cpp" line="379"/>
         <source>&amp;Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="359"/>
+        <location filename="../browsermainwindow.cpp" line="383"/>
         <source>&amp;Edit</source>
         <translation>&amp;Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="360"/>
+        <location filename="../browsermainwindow.cpp" line="384"/>
         <source>&amp;Undo</source>
         <translation>&amp;Rückgängig</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="363"/>
+        <location filename="../browsermainwindow.cpp" line="387"/>
         <source>&amp;Redo</source>
         <translation>&amp;Wiederholen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="367"/>
+        <location filename="../browsermainwindow.cpp" line="391"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Ausschneiden</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="370"/>
+        <location filename="../browsermainwindow.cpp" line="394"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopieren</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="373"/>
+        <location filename="../browsermainwindow.cpp" line="397"/>
         <source>&amp;Paste</source>
         <translation>&amp;Einfügen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="378"/>
+        <location filename="../browsermainwindow.cpp" line="402"/>
         <source>&amp;Find</source>
         <translation>&amp;Suchen</translation>
     </message>
@@ -327,32 +338,32 @@ Arora wirklich beenden?</translation>
         <translation type="obsolete">&amp;Einstellungen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="392"/>
+        <location filename="../browsermainwindow.cpp" line="416"/>
         <source>Ctrl+,</source>
         <translation>Strg+,</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="395"/>
+        <location filename="../browsermainwindow.cpp" line="419"/>
         <source>&amp;View</source>
         <translation>&amp;Ansicht</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="409"/>
+        <location filename="../browsermainwindow.cpp" line="433"/>
         <source>Shift+Ctrl+B</source>
         <translation>Shift+Strg+B</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="403"/>
+        <location filename="../browsermainwindow.cpp" line="427"/>
         <source>Ctrl+|</source>
         <translation>Strg+|</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="420"/>
+        <location filename="../browsermainwindow.cpp" line="444"/>
         <source>Ctrl+/</source>
         <translation>Strg+/</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="426"/>
+        <location filename="../browsermainwindow.cpp" line="450"/>
         <source>&amp;Stop</source>
         <translation>&amp;Stop</translation>
     </message>
@@ -377,123 +388,123 @@ Arora wirklich beenden?</translation>
         <translation type="obsolete">&amp;Text verkleinern</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="442"/>
+        <location filename="../browsermainwindow.cpp" line="468"/>
         <source>Page S&amp;ource</source>
         <translation>&amp;Quelltext</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="442"/>
+        <location filename="../browsermainwindow.cpp" line="468"/>
         <source>Ctrl+Alt+U</source>
         <translation>Strg+Alt+U</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="443"/>
+        <location filename="../browsermainwindow.cpp" line="469"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Vollbild</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="450"/>
+        <location filename="../browsermainwindow.cpp" line="476"/>
         <source>Hi&amp;story</source>
         <translation>&amp;Verlauf</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="454"/>
+        <location filename="../browsermainwindow.cpp" line="480"/>
         <source>Back</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="459"/>
+        <location filename="../browsermainwindow.cpp" line="485"/>
         <source>Forward</source>
         <translation>Vorwärts</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="464"/>
+        <location filename="../browsermainwindow.cpp" line="490"/>
         <source>Home</source>
         <translation>Startseite</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="468"/>
+        <location filename="../browsermainwindow.cpp" line="494"/>
         <source>Restore Last Session</source>
         <translation>Letzte Sitzung wiederherstellen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="483"/>
+        <location filename="../browsermainwindow.cpp" line="509"/>
         <source>&amp;Bookmarks</source>
         <translation>&amp;Lesezeichen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="488"/>
+        <location filename="../browsermainwindow.cpp" line="514"/>
         <source>Manage Bookmarks...</source>
         <translation>Lesezeichen verwalten...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="490"/>
+        <location filename="../browsermainwindow.cpp" line="517"/>
         <source>Add Bookmark...</source>
         <translation>Lesezeichen hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="501"/>
+        <location filename="../browsermainwindow.cpp" line="528"/>
         <source>&amp;Window</source>
         <translation>&amp;Fenster</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="506"/>
+        <location filename="../browsermainwindow.cpp" line="533"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="507"/>
+        <location filename="../browsermainwindow.cpp" line="534"/>
         <source>Web &amp;Search</source>
         <translation>Web &amp;Suche</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="508"/>
+        <location filename="../browsermainwindow.cpp" line="535"/>
         <source>Ctrl+K</source>
         <comment>Web Search</comment>
         <translation>Strg+K</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="512"/>
+        <location filename="../browsermainwindow.cpp" line="539"/>
         <source>Enable Web &amp;Inspector</source>
         <translation>Web Inspector aktivieren</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="519"/>
+        <location filename="../browsermainwindow.cpp" line="547"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="520"/>
+        <location filename="../browsermainwindow.cpp" line="550"/>
         <source>About &amp;Qt</source>
         <translation>Über &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="521"/>
+        <location filename="../browsermainwindow.cpp" line="551"/>
         <source>About &amp;Arora</source>
         <translation>Über &amp;Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="527"/>
+        <location filename="../browsermainwindow.cpp" line="976"/>
         <source>Navigation</source>
         <translation>Navigation</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="625"/>
+        <location filename="../browsermainwindow.cpp" line="655"/>
         <source>Show Status Bar</source>
         <translation>Statusleiste zeigen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="625"/>
+        <location filename="../browsermainwindow.cpp" line="655"/>
         <source>Hide Status Bar</source>
         <translation>Statusleiste verbergen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="630"/>
+        <location filename="../browsermainwindow.cpp" line="660"/>
         <source>Show Toolbar</source>
         <translation>Werkzeugleiste zeigen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="630"/>
+        <location filename="../browsermainwindow.cpp" line="660"/>
         <source>Hide Toolbar</source>
         <translation>Werkzeugleiste verbergen</translation>
     </message>
@@ -508,75 +519,75 @@ Arora wirklich beenden?</translation>
         <translation type="obsolete">Lesezeichenleiste verbergen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="733"/>
+        <location filename="../browsermainwindow.cpp" line="768"/>
         <source>Arora</source>
         <translation>Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="738"/>
+        <location filename="../browsermainwindow.cpp" line="773"/>
         <source>%1 - Arora</source>
         <comment>Page title and Browser name</comment>
         <translation>%1 - Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="758"/>
+        <location filename="../browsermainwindow.cpp" line="793"/>
         <source>Open Web Resource</source>
         <translation>Webinhalte öffnen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="759"/>
+        <location filename="../browsermainwindow.cpp" line="794"/>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
         <translation>Webinhalte (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="788"/>
+        <location filename="../browsermainwindow.cpp" line="823"/>
         <source>Print Document</source>
         <translation>Dokument drucken</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="799"/>
+        <location filename="../browsermainwindow.cpp" line="834"/>
         <source>Are you sure you want to turn on private browsing?</source>
         <translation>Private Browsing wirklich aktivieren?</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="837"/>
+        <location filename="../browsermainwindow.cpp" line="872"/>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Soll das Fenster wirklich geschlossen werden? Es sind %1 Tabs geöffnet</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="902"/>
         <source>Page Source of %1</source>
-        <translation>Quelltext von %1</translation>
+        <translation type="obsolete">Quelltext von %1</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="932"/>
+        <location filename="../browsermainwindow.cpp" line="995"/>
         <source>Web Inspector</source>
         <translation>Web Inspector</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="934"/>
+        <location filename="../browsermainwindow.cpp" line="997"/>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
         <translation>Der Web Inspector funktioniert nur auf neu geladenen Seiten.
 Sollen alle Seiten neu geladen werden?</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="988"/>
+        <location filename="../browsermainwindow.cpp" line="1051"/>
         <source>Stop loading the current page</source>
         <translation>Ladevorgang abbrechen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="993"/>
+        <location filename="../browsermainwindow.cpp" line="1056"/>
         <source>Reload the current page</source>
         <translation>Seite aktualisieren</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1039"/>
+        <location filename="../browsermainwindow.cpp" line="1102"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1039"/>
+        <location filename="../browsermainwindow.cpp" line="1102"/>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
         <translation>Alt+Strg+L</translation>
@@ -586,71 +597,91 @@ Sollen alle Seiten neu geladen werden?</translation>
         <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Wenn Private Browsing aktiviert ist, werden einige Funktionen deaktiviert die Ihre Privatsphäre betreffen:&lt;ul&gt;&lt;li&gt; Aufgerufene Webseiten erscheinen nicht im Verlauf.&lt;/li&gt;&lt;li&gt; Einträge im Downloadfenster werden automatisch entfernt.&lt;/li&gt;&lt;li&gt; Neue Cookies werden nicht gespeichert, auf bestehende Cookies gibt es keinen Zugriff.&lt;/li&gt;&lt;li&gt; Seitensymbole und Sitzungen werden nicht gespeichert.&lt;/li&gt;&lt;li&gt; Suchen erscheinen nicht im Suchverlauf.&lt;/li&gt;&lt;/ul&gt;Die Zurück- und Vorwärtsbuttons funktionieren noch auf offenen Webseiten bis das Fenster geschlossen wird.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="509"/>
+        <location filename="../browsermainwindow.cpp" line="536"/>
         <source>&amp;Clear Private Data</source>
         <translation>Private Daten löschen...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="510"/>
+        <location filename="../browsermainwindow.cpp" line="537"/>
         <source>Ctrl+Shift+Delete</source>
         <comment>Clear Private Data</comment>
         <translation>Ctrl+Shift+Delete</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="808"/>
+        <location filename="../browsermainwindow.cpp" line="843"/>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Wenn Private Browsing aktiviert ist, werden einige Funktionen deaktiviert die Ihre Privatsphäre betreffen:&lt;ul&gt;&lt;li&gt; Aufgerufene Webseiten erscheinen nicht im Verlauf.&lt;/li&gt;&lt;li&gt; Einträge im Downloadfenster werden automatisch entfernt.&lt;/li&gt;&lt;li&gt; Neue Cookies werden nicht gespeichert, auf bestehende Cookies gibt es keinen Zugriff.&lt;/li&gt;&lt;li&gt; Seitensymbole und Sitzungen werden nicht gespeichert.&lt;/li&gt;&lt;li&gt; Suchen erscheinen nicht im Suchverlauf.&lt;/li&gt;&lt;/ul&gt;Die Zurück- und Vorwärtsbuttons funktionieren noch auf offenen Webseiten bis das Fenster geschlossen wird.</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="383"/>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Nächstes &amp;Ergebnis</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="387"/>
+        <location filename="../browsermainwindow.cpp" line="411"/>
         <source>Find P&amp;revious</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorheriges &amp;Ergebnis</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="392"/>
         <source>Prefe&amp;rences</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Einstellungen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="433"/>
+        <location filename="../browsermainwindow.cpp" line="459"/>
         <source>&amp;Reload Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Seite aktualisieren</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="437"/>
+        <location filename="../browsermainwindow.cpp" line="463"/>
         <source>Make Text &amp;Bigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Text ver&amp;größern</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="438"/>
+        <location filename="../browsermainwindow.cpp" line="464"/>
         <source>Make Text &amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Normale Textgröße</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="439"/>
+        <location filename="../browsermainwindow.cpp" line="465"/>
         <source>Make Text &amp;Smaller</source>
-        <translation type="unfinished"></translation>
+        <translation>Text ver&amp;kleinern</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="635"/>
+        <location filename="../browsermainwindow.cpp" line="665"/>
         <source>Show Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesezeichenleiste zeigen</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="635"/>
+        <location filename="../browsermainwindow.cpp" line="665"/>
         <source>Hide Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesezeichenleiste verbergen</translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="407"/>
+        <source>Find Nex&amp;t</source>
+        <translation>Nächstes &amp;Ergebnis</translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="416"/>
+        <source>Prefere&amp;nces...</source>
+        <translation>&amp;Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="420"/>
+        <source>Show Menu Bar</source>
+        <translation>Menüleiste zeigen</translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="548"/>
+        <source>Switch application language </source>
+        <translation>Sprache ändern</translation>
     </message>
 </context>
 <context>
     <name>ClearButton</name>
     <message>
-        <location filename="../searchlineedit.cpp" line="74"/>
+        <location filename="../searchlineedit.cpp" line="77"/>
         <source>Clear</source>
         <translation>Leeren</translation>
     </message>
@@ -658,54 +689,59 @@ Sollen alle Seiten neu geladen werden?</translation>
 <context>
     <name>ClearPrivateData</name>
     <message>
-        <location filename="../clearprivatedata.cpp" line="38"/>
+        <location filename="../clearprivatedata.cpp" line="41"/>
         <source>Clear Private Data</source>
         <translation>Private Daten löschen...</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="41"/>
+        <location filename="../clearprivatedata.cpp" line="44"/>
         <source>Clear the following items:</source>
         <translation>Folgende Einträge löschen:</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="43"/>
+        <location filename="../clearprivatedata.cpp" line="46"/>
         <source>&amp;Browsing History</source>
         <translation>&amp;Seitenverlauf</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="47"/>
+        <location filename="../clearprivatedata.cpp" line="50"/>
         <source>&amp;Download History</source>
         <translation>&amp;Downloadverlauf</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="51"/>
+        <location filename="../clearprivatedata.cpp" line="54"/>
         <source>&amp;Search History</source>
         <translation>&amp;Suchverlauf</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="55"/>
+        <location filename="../clearprivatedata.cpp" line="58"/>
         <source>&amp;Cookies</source>
         <translation>&amp;Cookies</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="59"/>
         <source>C&amp;ache</source>
-        <translation>C&amp;ache</translation>
+        <translation type="obsolete">C&amp;ache</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="63"/>
+        <location filename="../clearprivatedata.cpp" line="69"/>
         <source>Website &amp;Icons</source>
         <translation>&amp;Webseiten Symbole</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="67"/>
+        <location filename="../clearprivatedata.cpp" line="73"/>
         <source>Clear &amp;Private Data</source>
         <translation>&amp;Private Daten löschen...</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="69"/>
+        <location filename="../clearprivatedata.cpp" line="75"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../clearprivatedata.cpp" line="62"/>
+        <source>C&amp;ached Web Pages</source>
+        <translation>&amp;Zwischengespeicherte Webseiten</translation>
     </message>
 </context>
 <context>
@@ -718,7 +754,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../cookiejar.cpp" line="598"/>
         <source>Status</source>
-        <translation>Status</translation>
+        <translation type="obsolete">Status</translation>
     </message>
     <message>
         <location filename="../cookiejar.cpp" line="618"/>
@@ -734,6 +770,11 @@ Sollen alle Seiten neu geladen werden?</translation>
         <location filename="../cookiejar.cpp" line="636"/>
         <source>Allow For Session</source>
         <translation>Für diese Sitzung erlauben</translation>
+    </message>
+    <message>
+        <location filename="../cookiejar.cpp" line="598"/>
+        <source>Rule</source>
+        <translation>Regel</translation>
     </message>
 </context>
 <context>
@@ -767,6 +808,16 @@ Sollen alle Seiten neu geladen werden?</translation>
         <location filename="../cookiejar.cpp" line="451"/>
         <source>Contents</source>
         <translation>Inhalte</translation>
+    </message>
+    <message>
+        <location filename="../cookiejar.cpp" line="479"/>
+        <source>true</source>
+        <translation>wahr</translation>
+    </message>
+    <message>
+        <location filename="../cookiejar.cpp" line="479"/>
+        <source>false</source>
+        <translation>falsch</translation>
     </message>
 </context>
 <context>
@@ -852,6 +903,11 @@ Sollen alle Seiten neu geladen werden?</translation>
         <source>0 Items</source>
         <translation>0 Einträge</translation>
     </message>
+    <message>
+        <location filename="../downloads.ui" line="81"/>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
 </context>
 <context>
     <name>DownloadItem</name>
@@ -868,7 +924,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../downloadmanager.cpp" line="265"/>
         <source>Error opening save file: %1</source>
-        <translation>Fehler beim öffnen der gespeicherten Datei: %1</translation>
+        <translation type="obsolete">Fehler beim öffnen der gespeicherten Datei: %1</translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="274"/>
@@ -958,18 +1014,23 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message numerus="yes">
         <location filename="../downloadmanager.cpp" line="343"/>
         <source>- %n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>- noch %n Minute(n)</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../downloadmanager.cpp" line="347"/>
         <source>- %n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>- noch %n Sekunden</numerusform>
             <numerusform></numerusform>
         </translation>
+    </message>
+    <message>
+        <location filename="../downloadmanager.cpp" line="265"/>
+        <source>Error opening output file: %1</source>
+        <translation>Fehler beim öffnen der Ausgabedatei: %1</translation>
     </message>
 </context>
 <context>
@@ -985,10 +1046,10 @@ Sollen alle Seiten neu geladen werden?</translation>
         <translation type="obsolete">%1 Downloads</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="618"/>
+        <location filename="../downloadmanager.cpp" line="619"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Download(s)</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -996,17 +1057,17 @@ Sollen alle Seiten neu geladen werden?</translation>
 <context>
     <name>HistoryDialog</name>
     <message>
-        <location filename="../history.cpp" line="725"/>
+        <location filename="../history.cpp" line="738"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="727"/>
+        <location filename="../history.cpp" line="740"/>
         <source>Copy</source>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="729"/>
+        <location filename="../history.cpp" line="742"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -1029,25 +1090,35 @@ Sollen alle Seiten neu geladen werden?</translation>
 <context>
     <name>HistoryMenu</name>
     <message>
-        <location filename="../history.cpp" line="651"/>
+        <location filename="../history.cpp" line="653"/>
         <source>Show All History</source>
         <translation>Kompletten Verlauf zeigen</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="655"/>
+        <location filename="../history.cpp" line="675"/>
         <source>Clear History</source>
         <translation>Verlauf leeren</translation>
+    </message>
+    <message>
+        <location filename="../history.cpp" line="660"/>
+        <source>Clear History...</source>
+        <translation>Verlauf leeren...</translation>
+    </message>
+    <message>
+        <location filename="../history.cpp" line="675"/>
+        <source>Do you want to clear the history?</source>
+        <translation>Soll der Verlauf geleert werden?</translation>
     </message>
 </context>
 <context>
     <name>HistoryModel</name>
     <message>
-        <location filename="../history.cpp" line="424"/>
+        <location filename="../history.cpp" line="426"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="425"/>
+        <location filename="../history.cpp" line="427"/>
         <source>Address</source>
         <translation>Adresse</translation>
     </message>
@@ -1055,7 +1126,7 @@ Sollen alle Seiten neu geladen werden?</translation>
 <context>
     <name>HistoryTreeModel</name>
     <message>
-        <location filename="../history.cpp" line="1058"/>
+        <location filename="../history.cpp" line="1074"/>
         <source>Earlier Today</source>
         <translation>Heute</translation>
     </message>
@@ -1065,28 +1136,46 @@ Sollen alle Seiten neu geladen werden?</translation>
         <translation type="obsolete">%1 Einträge</translation>
     </message>
     <message numerus="yes">
-        <location filename="../history.cpp" line="1062"/>
+        <location filename="../history.cpp" line="1078"/>
         <source>%n item(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Einträge</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
 </context>
 <context>
+    <name>LanguageManager</name>
+    <message>
+        <location filename="../languagemanager.cpp" line="131"/>
+        <source>System locale (%1) %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../languagemanager.cpp" line="152"/>
+        <source>Choose language</source>
+        <translation>Sprache wählen</translation>
+    </message>
+    <message>
+        <location filename="../languagemanager.cpp" line="155"/>
+        <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NetworkAccessManager</name>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="138"/>
+        <location filename="../networkaccessmanager.cpp" line="151"/>
         <source>&lt;qt&gt;Enter username and password for &quot;%1&quot; at %2&lt;/qt&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="162"/>
+        <location filename="../networkaccessmanager.cpp" line="175"/>
         <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="199"/>
+        <location filename="../networkaccessmanager.cpp" line="212"/>
         <source>SSL Errors:
 
 %1
@@ -1103,7 +1192,7 @@ Do you want to ignore these errors?</source>
 Möchten Sie diese Fehler ignorieren?</translation>
     </message>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="206"/>
+        <location filename="../networkaccessmanager.cpp" line="219"/>
         <source>Do you want to accept all these certificates?</source>
         <translation>Alle Zertifikate akzeptieren?</translation>
     </message>
@@ -1134,6 +1223,14 @@ Möchten Sie diese Fehler ignorieren?</translation>
         <location filename="../passworddialog.ui" line="53"/>
         <source>Password:</source>
         <translation>Passwort:</translation>
+    </message>
+</context>
+<context>
+    <name>PlainTextEditSearch</name>
+    <message>
+        <location filename="../plaintexteditsearch.cpp" line="63"/>
+        <source>Not Found</source>
+        <translation>Nicht gefunden</translation>
     </message>
 </context>
 <context>
@@ -1208,7 +1305,7 @@ Möchten Sie diese Fehler ignorieren?</translation>
 <context>
     <name>SearchLineEdit</name>
     <message>
-        <location filename="../searchlineedit.cpp" line="193"/>
+        <location filename="../searchlineedit.cpp" line="198"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
@@ -1218,7 +1315,7 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="13"/>
         <source>Settings</source>
-        <translation>Einstellungen</translation>
+        <translation type="obsolete">Einstellungen</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="33"/>
@@ -1228,45 +1325,45 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="68"/>
         <source>Home:</source>
-        <translation>Startseite:</translation>
+        <translation type="obsolete">Startseite:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="81"/>
+        <location filename="../settings.ui" line="85"/>
         <source>Set to current page</source>
         <translation>Aktuelle Seite</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="101"/>
+        <location filename="../settings.ui" line="105"/>
         <source>Remove history items:</source>
         <translation>Verlauf Einträge löschen:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="112"/>
+        <location filename="../settings.ui" line="116"/>
         <source>After one day</source>
         <translation>Nach einem Tag</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="117"/>
+        <location filename="../settings.ui" line="121"/>
         <source>After one week</source>
         <translation>Nach einer Woche</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="122"/>
+        <location filename="../settings.ui" line="126"/>
         <source>After two weeks</source>
         <translation>Nach zwei Wochen</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="127"/>
+        <location filename="../settings.ui" line="131"/>
         <source>After one month</source>
         <translation>Nach einem Monat</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="132"/>
+        <location filename="../settings.ui" line="136"/>
         <source>After one year</source>
         <translation>Nach einem Jahr</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="137"/>
+        <location filename="../settings.ui" line="141"/>
         <source>Manually</source>
         <translation>Manuell</translation>
     </message>
@@ -1275,157 +1372,157 @@ Möchten Sie diese Fehler ignorieren?</translation>
         <translation type="obsolete">Downloads speichern nach:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="150"/>
+        <location filename="../settings.ui" line="154"/>
         <source>Open links from applications:</source>
         <translation>Links von Programmen öffnen in:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="161"/>
+        <location filename="../settings.ui" line="165"/>
         <source>In a tab in the current window</source>
         <translation>in einem Tab im aktuellen Fenster</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="166"/>
+        <location filename="../settings.ui" line="170"/>
         <source>In a new window</source>
         <translation>In einem neuen Fenster</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="222"/>
+        <location filename="../settings.ui" line="229"/>
         <source>Appearance</source>
         <translation>Aussehen</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="264"/>
+        <location filename="../settings.ui" line="271"/>
         <source>Fixed-width font:</source>
         <translation>Schrift fester Breite:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="308"/>
+        <location filename="../settings.ui" line="315"/>
         <source>Privacy</source>
         <translation>Privatsphäre</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="314"/>
+        <location filename="../settings.ui" line="321"/>
         <source>Web Content</source>
         <translation>Webinhalt</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="320"/>
+        <location filename="../settings.ui" line="327"/>
         <source>Enable Plugins</source>
         <translation>Plugins aktivieren</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="330"/>
+        <location filename="../settings.ui" line="337"/>
         <source>Enable Javascript</source>
         <translation>Javascript aktivieren</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="353"/>
+        <location filename="../settings.ui" line="360"/>
         <source>Cookies</source>
         <translation>Cookies</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="359"/>
+        <location filename="../settings.ui" line="366"/>
         <source>Accept Cookies:</source>
         <translation>Cookies akzeptieren:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="370"/>
+        <location filename="../settings.ui" line="377"/>
         <source>Always</source>
         <translation>Immer</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="375"/>
+        <location filename="../settings.ui" line="382"/>
         <source>Never</source>
         <translation>Nie</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="380"/>
+        <location filename="../settings.ui" line="387"/>
         <source>Only from sites you navigate to</source>
         <translation>Nur von besuchten Seiten</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="388"/>
+        <location filename="../settings.ui" line="395"/>
         <source>Exceptions...</source>
         <translation>Ausnahmen...</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="395"/>
         <source>Keep until:</source>
-        <translation>Speichern bis:</translation>
+        <translation type="obsolete">Speichern bis:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="406"/>
+        <location filename="../settings.ui" line="413"/>
         <source>They expire</source>
         <translation>die Cookies ablaufen</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="411"/>
+        <location filename="../settings.ui" line="418"/>
         <source>I exit the application</source>
         <translation>Ich beende das Programm</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="416"/>
+        <location filename="../settings.ui" line="423"/>
         <source>At most 90 days</source>
         <translation>Maximal 90 Tage</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="424"/>
+        <location filename="../settings.ui" line="431"/>
         <source>Cookies...</source>
         <translation>Cookies...</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="485"/>
+        <location filename="../settings.ui" line="492"/>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="491"/>
         <source>Enable proxy</source>
-        <translation>Proxy aktivieren</translation>
+        <translation type="obsolete">Proxy aktivieren</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="500"/>
+        <location filename="../settings.ui" line="507"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="511"/>
+        <location filename="../settings.ui" line="518"/>
         <source>Socks5</source>
         <translation>Socks5</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="516"/>
+        <location filename="../settings.ui" line="523"/>
         <source>Http</source>
         <translation>Http</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="524"/>
         <source>Host:</source>
-        <translation>Host:</translation>
+        <translation type="obsolete">Host:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="537"/>
+        <location filename="../settings.ui" line="548"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="570"/>
+        <location filename="../settings.ui" line="581"/>
         <source>User Name:</source>
         <translation>Benutzername:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="583"/>
+        <location filename="../settings.ui" line="598"/>
         <source>Password:</source>
         <translation>Passwort:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="617"/>
+        <location filename="../settings.ui" line="635"/>
         <source>Advanced</source>
         <translation>Erweitert</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="623"/>
+        <location filename="../settings.ui" line="641"/>
         <source>Style Sheet:</source>
         <translation>Style Sheet:</translation>
     </message>
@@ -1446,84 +1543,137 @@ Möchten Sie diese Fehler ignorieren?</translation>
         <translation type="obsolete">Serif</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="174"/>
+        <location filename="../settings.ui" line="178"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="180"/>
+        <location filename="../settings.ui" line="184"/>
         <source>Ask for a destination each time</source>
         <translation>Jedes Mal nach Ziel fragen</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="189"/>
+        <location filename="../settings.ui" line="193"/>
         <source>Use this destination:</source>
         <translation>Hier speichern:</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="228"/>
+        <location filename="../settings.ui" line="235"/>
         <source>Standard font:</source>
         <translation>Standard Schriftart</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="247"/>
+        <location filename="../settings.ui" line="254"/>
         <source>Times 16</source>
         <translation>Times 16</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="287"/>
+        <location filename="../settings.ui" line="294"/>
         <source>Select...</source>
         <translation>Auswahl...</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="277"/>
+        <location filename="../settings.ui" line="284"/>
         <source>Courier 13</source>
         <translation>Courier 13</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="448"/>
+        <location filename="../settings.ui" line="455"/>
         <source>Tabs</source>
         <translation>Tabs</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="454"/>
+        <location filename="../settings.ui" line="461"/>
         <source>Select tabs and windows as they are created</source>
         <translation>Neue Tabs und Fenster anzeigen</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="461"/>
+        <location filename="../settings.ui" line="468"/>
         <source>Confirm when closing multiple tabs</source>
         <translation>Nachfragen wenn mehrere Tabs geschlossen werden</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="340"/>
         <source>Enable Images</source>
-        <translation>Bilder anzeigen</translation>
+        <translation type="obsolete">Bilder anzeigen</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="39"/>
         <source>On startup:</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Starten:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="50"/>
         <source>Show my home page</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Homepage zeigen</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="55"/>
         <source>Show a blank page</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine leere Seite zeigen</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="60"/>
         <source>Restore windows and tabs from last time</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenster und Tabs vom letzten Mal wiederherstellen</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="142"/>
+        <location filename="../settings.ui" line="146"/>
         <source>On application exit</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="13"/>
+        <source>Preferences</source>
+        <translation>&amp;Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="68"/>
+        <source>Home Page:</source>
+        <translation>Startseite:</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="347"/>
+        <source>View Images</source>
+        <translation>Bilder anzeigen</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="402"/>
+        <source>Keep Cookies Until:</source>
+        <translation>Cookies speichern bis:</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="498"/>
+        <source>Use proxy server</source>
+        <translation>Proxyserver verwenden</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="531"/>
+        <source>Host name:</source>
+        <translation>Hostname:</translation>
+    </message>
+</context>
+<context>
+    <name>SourceViewer</name>
+    <message>
+        <location filename="../sourceviewer.cpp" line="40"/>
+        <source>Loading...</source>
+        <translation>Laden...</translation>
+    </message>
+    <message>
+        <location filename="../sourceviewer.cpp" line="45"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;Bearbeiten</translation>
+    </message>
+    <message>
+        <location filename="../sourceviewer.cpp" line="46"/>
+        <source>&amp;Find</source>
+        <translation>&amp;Suchen</translation>
+    </message>
+    <message>
+        <location filename="../sourceviewer.cpp" line="48"/>
+        <source>Source of Page </source>
+        <translation>Quelltext der Seite</translation>
     </message>
 </context>
 <context>
@@ -1577,47 +1727,52 @@ Möchten Sie diese Fehler ignorieren?</translation>
 <context>
     <name>TabWidget</name>
     <message>
-        <location filename="../tabwidget.cpp" line="122"/>
+        <location filename="../tabwidget.cpp" line="123"/>
         <source>New &amp;Tab</source>
         <translation>Neuer &amp;Tab</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="126"/>
+        <location filename="../tabwidget.cpp" line="127"/>
         <source>&amp;Close Tab</source>
         <translation>&amp;Tab schließen</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="138"/>
+        <location filename="../tabwidget.cpp" line="139"/>
         <source>Show Next Tab</source>
         <translation>Nächster Tab</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="148"/>
+        <location filename="../tabwidget.cpp" line="149"/>
         <source>Show Previous Tab</source>
         <translation>Vorheriger Tab</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="163"/>
+        <location filename="../tabwidget.cpp" line="164"/>
         <source>Recently Closed Tabs</source>
         <translation>Zuletzt geschlossene Tabs</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="454"/>
         <source>(Untitled)</source>
-        <translation>(Unbetitelt)</translation>
+        <translation type="obsolete">(Unbetitelt)</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="562"/>
+        <location filename="../tabwidget.cpp" line="595"/>
         <source>Do you really want to close this page?</source>
         <translation>Diese Seite wirklich schließen?</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="564"/>
+        <location filename="../tabwidget.cpp" line="597"/>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
         <translation>Die Seite wurde modifiziert. Wenn die Seite geschlossen wird gehen die Änderungen verloren.
 Diese Seite wirklich schließen?</translation>
+    </message>
+    <message>
+        <location filename="../tabwidget.cpp" line="489"/>
+        <source>Untitled</source>
+        <translation>Namenlos</translation>
     </message>
 </context>
 <context>
@@ -1625,7 +1780,7 @@ Diese Seite wirklich schließen?</translation>
     <message>
         <location filename="../toolbarsearch.cpp" line="94"/>
         <source>Google</source>
-        <translation>Google</translation>
+        <translation type="obsolete">Google</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="153"/>
@@ -1646,7 +1801,7 @@ Diese Seite wirklich schließen?</translation>
 <context>
     <name>WebPage</name>
     <message>
-        <location filename="../webview.cpp" line="195"/>
+        <location filename="../webview.cpp" line="196"/>
         <source>Error loading page: %1</source>
         <translation>Fehler beim Laden von: %1</translation>
     </message>
@@ -1654,65 +1809,65 @@ Diese Seite wirklich schließen?</translation>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../webview.cpp" line="255"/>
+        <location filename="../webview.cpp" line="262"/>
         <source>Open in New &amp;Window</source>
         <translation>In einem neuen &amp;Fenster öffnen</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="256"/>
+        <location filename="../webview.cpp" line="263"/>
         <source>Open in New &amp;Tab</source>
         <translation>In einem neuen &amp;Tab öffnen</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="258"/>
+        <location filename="../webview.cpp" line="265"/>
         <source>Save Lin&amp;k</source>
         <translation>Lin&amp;k speichern</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="259"/>
+        <location filename="../webview.cpp" line="266"/>
         <source>&amp;Bookmark This Link</source>
         <translation>&amp;Lesezeichen für diesen Link setzen</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="261"/>
+        <location filename="../webview.cpp" line="268"/>
         <source>&amp;Copy Link Location</source>
         <translation>Linkadresse &amp;kopieren</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="269"/>
+        <location filename="../webview.cpp" line="276"/>
         <source>Open Image in New &amp;Window</source>
         <translation>Bild in einem neuen &amp;Fenster öffnen</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="270"/>
+        <location filename="../webview.cpp" line="277"/>
         <source>Open Image in New &amp;Tab</source>
         <translation>Bild in einem neuen &amp;Tab öffnen</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="272"/>
+        <location filename="../webview.cpp" line="279"/>
         <source>&amp;Save Image</source>
         <translation>Bild &amp;speichern</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="273"/>
+        <location filename="../webview.cpp" line="280"/>
         <source>&amp;Copy Image</source>
         <translation>Bild &amp;kopieren</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="274"/>
+        <location filename="../webview.cpp" line="281"/>
         <source>C&amp;opy Image Location</source>
         <translation>Bildadresse &amp;kopieren</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="413"/>
+        <location filename="../webview.cpp" line="448"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Laden...</translation>
     </message>
 </context>
 <context>
     <name>WebViewSearch</name>
     <message>
-        <location filename="../webviewsearch.cpp" line="119"/>
+        <location filename="../webviewsearch.cpp" line="54"/>
         <source>Not Found</source>
         <translation>Nicht gefunden</translation>
     </message>
