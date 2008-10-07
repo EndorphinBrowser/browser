@@ -16,6 +16,7 @@ TRANSLATIONS += \
     he.ts \
     hu.ts \
     it.ts \
+    ms.ts \
     nl.ts \
     pl.ts \
     pt_BR.ts \
