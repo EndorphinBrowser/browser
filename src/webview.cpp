@@ -191,8 +191,10 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
     }
 
     QFile file(QLatin1String(":/notfound.html"));
-    bool isOpened = file.open(QIODevice::ReadOnly);
-    Q_ASSERT(isOpened);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning() << "WebPage::handleUnsupportedContent" << "Unable to open notfound.html";
+        return;
+    }
     QString title = tr("Error loading page: %1").arg(reply->url().toString());
     QString html = QString(QLatin1String(file.readAll()))
                         .arg(title)
