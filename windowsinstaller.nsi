@@ -40,7 +40,8 @@ Section "Main Components"
   File "C:\qt-snapshot\bin\QtCore4.dll"
   File "C:\qt-snapshot\bin\QtGui4.dll"
   File "C:\qt-snapshot\bin\QtNetwork4.dll"
-  File "C:\qt-snapshot\bin\QtWebKit4.dll" ;"C:\WebKit\WebKitBuild\Release\lib\QtWebKit4.dll"
+  File "C:\qt-snapshot\bin\QtWebKit4.dll"
+  File "C:\qt-snapshot\bin\phonon4.dll"
   File "C:\openssl-0.9.8h\out32dll\ssleay32.dll"
   File "C:\openssl-0.9.8h\out32dll\libeay32.dll"
 
@@ -63,6 +64,9 @@ Section "Main Components"
   File "C:\qt-snapshot\plugins\codecs\qkrcodecs4.dll"
   File "C:\qt-snapshot\plugins\codecs\qjpcodecs4.dll"
   File "C:\qt-snapshot\plugins\codecs\qcncodecs4.dll"
+
+  SetOutPath "$INSTDIR\phonon_backend"
+  File "C:\qt-snapshot\plugins\phonon_backend\phonon_ds94.dll"
 SectionEnd
 
 Section Icons
