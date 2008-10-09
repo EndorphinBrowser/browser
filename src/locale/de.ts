@@ -32,12 +32,12 @@
     <message>
         <location filename="../aboutdialog.ui" line="84"/>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>leichgewichtiger WebKit basierender Webbrowser</translation>
+        <translation>leichtgewichtiger WebKit-basierter Webbrowser</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="123"/>
         <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="165"/>
@@ -51,7 +51,7 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;￼&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;￼p, li { white-space: pre-wrap; }￼&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;￼&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -111,7 +111,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../bookmarks.cpp" line="285"/>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
-        <translation></translation>
+        <translation>Fehler beim Laden der Lesezeichen in Zeile %1, Spalte %2￼:
+%3</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="139"/>
@@ -151,7 +152,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="303"/>
         <source>Export error</source>
-        <translation>Export Fehler</translation>
+        <translation>Exportfehler</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="303"/>
@@ -197,7 +198,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="962"/>
         <source>Bookmark</source>
-        <translation>Leszeichen</translation>
+        <translation>Lesezeichen</translation>
     </message>
 </context>
 <context>
@@ -222,12 +223,12 @@ Arora wirklich beenden?</translation>
     <message>
         <location filename="../browserapplication.cpp" line="100"/>
         <source> (Change: %1 %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Änderung: %1 %2)</translation>
     </message>
     <message>
         <location filename="../browserapplication.cpp" line="364"/>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
-        <translation>Die gespeicherte Sitzung wird nicht wiederhergestellt weil bei der letzten Wiederherstellung Arora abgestürzt ist.</translation>
+        <translation>Die gespeicherte Sitzung wird nicht wiederhergestellt, weil bei der letzten Wiederherstellung Arora abgestürzt ist.</translation>
     </message>
 </context>
 <context>
@@ -260,17 +261,17 @@ Arora wirklich beenden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="366"/>
         <source>&amp;Import Bookmarks...</source>
-        <translation>&amp;Lesezeichen importieren...</translation>
+        <translation>Lesezeichen &amp;importieren...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="367"/>
         <source>&amp;Export Bookmarks...</source>
-        <translation>&amp;Lesezeichen exportieren...</translation>
+        <translation>Lesezeichen &amp;exportieren...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="369"/>
         <source>P&amp;rint Preview...</source>
-        <translation>Druckvorschau</translation>
+        <translation>Druck&amp;vorschau...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="370"/>
@@ -280,12 +281,12 @@ Arora wirklich beenden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="372"/>
         <source>Private &amp;Browsing...</source>
-        <translation>Private &amp;Browsing...</translation>
+        <translation>&amp;Private Browsing...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="379"/>
         <source>&amp;Quit</source>
-        <translation>Beenden</translation>
+        <translation>&amp;Beenden</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="383"/>
@@ -455,7 +456,7 @@ Arora wirklich beenden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="534"/>
         <source>Web &amp;Search</source>
-        <translation>Web &amp;Suche</translation>
+        <translation>Web&amp;suche</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="535"/>
@@ -466,7 +467,7 @@ Arora wirklich beenden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="539"/>
         <source>Enable Web &amp;Inspector</source>
-        <translation>Web Inspector aktivieren</translation>
+        <translation>Web-&amp;Inspector aktivieren</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="547"/>
@@ -599,7 +600,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="536"/>
         <source>&amp;Clear Private Data</source>
-        <translation>Private Daten löschen...</translation>
+        <translation>Private Daten &amp;löschen</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="537"/>
@@ -620,7 +621,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="411"/>
         <source>Find P&amp;revious</source>
-        <translation>Vorheriges &amp;Ergebnis</translation>
+        <translation>&amp;Vorheriges Ergebnis</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="392"/>
@@ -630,7 +631,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="459"/>
         <source>&amp;Reload Page</source>
-        <translation>Seite aktualisieren</translation>
+        <translation>Seite &amp;aktualisieren</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="463"/>
@@ -660,12 +661,12 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="407"/>
         <source>Find Nex&amp;t</source>
-        <translation>Nächstes &amp;Ergebnis</translation>
+        <translation>&amp;Nächstes Ergebnis</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="416"/>
         <source>Prefere&amp;nces...</source>
-        <translation>&amp;Einstellungen</translation>
+        <translation>Einstellun&amp;gen...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="420"/>
@@ -691,7 +692,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../clearprivatedata.cpp" line="41"/>
         <source>Clear Private Data</source>
-        <translation>Private Daten löschen...</translation>
+        <translation>Private Daten löschen</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="44"/>
@@ -726,12 +727,12 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../clearprivatedata.cpp" line="69"/>
         <source>Website &amp;Icons</source>
-        <translation>&amp;Webseiten Symbole</translation>
+        <translation>&amp;Webseiten-Symbole</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="73"/>
         <source>Clear &amp;Private Data</source>
-        <translation>&amp;Private Daten löschen...</translation>
+        <translation>&amp;Private Daten löschen</translation>
     </message>
     <message>
         <location filename="../clearprivatedata.cpp" line="75"/>
@@ -843,7 +844,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../cookiesexceptions.ui" line="13"/>
         <source>Cookie Exceptions</source>
-        <translation>Cookie Ausnahme</translation>
+        <translation>Cookie Ausnahmen</translation>
     </message>
     <message>
         <location filename="../cookiesexceptions.ui" line="19"/>
@@ -919,7 +920,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../downloadmanager.cpp" line="170"/>
         <source>Download canceled: %1</source>
-        <translation>Downloads abgebrochen: %1</translation>
+        <translation>Download abgebrochen: %1</translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="265"/>
@@ -934,7 +935,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../downloadmanager.cpp" line="286"/>
         <source>Network Error: %1</source>
-        <translation>Netzwerk Fehler: %1</translation>
+        <translation>Netzwerk-Fehler: %1</translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="328"/>
@@ -1030,7 +1031,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../downloadmanager.cpp" line="265"/>
         <source>Error opening output file: %1</source>
-        <translation>Fehler beim öffnen der Ausgabedatei: %1</translation>
+        <translation>Fehler beim Öffnen der Ausgabedatei: %1</translation>
     </message>
 </context>
 <context>
@@ -1149,7 +1150,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../languagemanager.cpp" line="131"/>
         <source>System locale (%1) %2</source>
-        <translation type="unfinished"></translation>
+        <translation>System-Vorgabe (%1) %2</translation>
     </message>
     <message>
         <location filename="../languagemanager.cpp" line="152"/>
@@ -1159,7 +1160,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../languagemanager.cpp" line="155"/>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Sie können eine andere Sprache wählen,&lt;br&gt;als im Betriebssystem voreingestellt.&lt;/p&gt;&lt;p&gt;Bitte wählen Sie die Sprache,&lt;br&gt; die verwendet werden soll</translation>
     </message>
 </context>
 <context>
@@ -1167,12 +1168,12 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../networkaccessmanager.cpp" line="151"/>
         <source>&lt;qt&gt;Enter username and password for &quot;%1&quot; at %2&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Benutzernamen und Password eingeben für &quot;%1&quot; bei &quot;%2&quot;&lt;/qt&gt;</translation>
     </message>
     <message>
         <location filename="../networkaccessmanager.cpp" line="175"/>
         <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Mit Proxy &quot;%1&quot; verbinden mit:&lt;/qt&gt;</translation>
     </message>
     <message>
         <location filename="../networkaccessmanager.cpp" line="212"/>
@@ -1183,7 +1184,7 @@ Sollen alle Seiten neu geladen werden?</translation>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>SSL Errors:
+        <translation>SSL-Fehler:
 
 %1
 
@@ -1379,12 +1380,12 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="165"/>
         <source>In a tab in the current window</source>
-        <translation>in einem Tab im aktuellen Fenster</translation>
+        <translation>einem Tab im aktuellen Fenster</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="170"/>
         <source>In a new window</source>
-        <translation>In einem neuen Fenster</translation>
+        <translation>einem neuen Fenster</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="229"/>
@@ -1459,12 +1460,12 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="418"/>
         <source>I exit the application</source>
-        <translation>Ich beende das Programm</translation>
+        <translation>das Programm beende</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="423"/>
         <source>At most 90 days</source>
-        <translation>Maximal 90 Tage</translation>
+        <translation>maximal 90 Tage</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="431"/>
@@ -1560,7 +1561,7 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="235"/>
         <source>Standard font:</source>
-        <translation>Standard Schriftart</translation>
+        <translation>Standard-Schriftart:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="254"/>
@@ -1585,12 +1586,12 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="461"/>
         <source>Select tabs and windows as they are created</source>
-        <translation>Neue Tabs und Fenster anzeigen</translation>
+        <translation>Neue erzeugte Tabs und Fenster selektieren</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="468"/>
         <source>Confirm when closing multiple tabs</source>
-        <translation>Nachfragen wenn mehrere Tabs geschlossen werden</translation>
+        <translation>Nachfragen, wenn mehrere Tabs geschlossen werden</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="340"/>
@@ -1615,17 +1616,17 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="60"/>
         <source>Restore windows and tabs from last time</source>
-        <translation>Fenster und Tabs vom letzten Mal wiederherstellen</translation>
+        <translation>Letzte Sitzung wiederherstellen</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="146"/>
         <source>On application exit</source>
-        <translation></translation>
+        <translation>Beim Beenden</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="13"/>
         <source>Preferences</source>
-        <translation>&amp;Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="68"/>
@@ -1681,7 +1682,7 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../tabbar.cpp" line="162"/>
         <source>New &amp;Tab</source>
-        <translation>Neuer Tab</translation>
+        <translation>Neuer &amp;Tab</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="165"/>
