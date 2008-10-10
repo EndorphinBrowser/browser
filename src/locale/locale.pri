@@ -20,7 +20,7 @@ TRANSLATIONS += \
     nl.ts \
     pl.ts \
     pt_BR.ts \
-    ru.ts \
+    ru_RU.ts \
     tr.ts \
     uk.ts
 
