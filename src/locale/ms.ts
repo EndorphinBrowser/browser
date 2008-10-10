@@ -225,12 +225,12 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="354"/>
         <source>&amp;New Window</source>
-        <translation>&amp;Tetingkap Baru</translation>
+        <translation>Tetin&amp;gkap Baru</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="356"/>
         <source>&amp;Open File...</source>
-        <translation>&amp;Buka Fail...</translation>
+        <translation>Buka &amp;Fail...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="357"/>
@@ -280,27 +280,27 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="384"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Batalkan</translation>
+        <translation>&amp;Batal</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="387"/>
         <source>&amp;Redo</source>
-        <translation>Buat &amp;Semula</translation>
+        <translation>&amp;Semula</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="391"/>
         <source>Cu&amp;t</source>
-        <translation>Po&amp;tong</translation>
+        <translation>P&amp;otong</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="394"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Salin</translation>
+        <translation>Sa&amp;lin</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="397"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Tampal</translation>
+        <translation>Tam&amp;pal</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="402"/>
@@ -310,12 +310,12 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="407"/>
         <source>Find Nex&amp;t</source>
-        <translation>Cari Sete&amp;rusnya</translation>
+        <translation>Ca&amp;ri Seterusnya</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="411"/>
         <source>Find P&amp;revious</source>
-        <translation>Cari Seb&amp;elumnya</translation>
+        <translation>C&amp;ari Sebelumnya</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="416"/>
@@ -335,7 +335,7 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="420"/>
         <source>Show Menu Bar</source>
-        <translation>Tunjuk Bar Menu</translation>
+        <translation>Papar Bar Menu</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="427"/>
@@ -360,7 +360,7 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="459"/>
         <source>&amp;Reload Page</source>
-        <translation>&amp;Ulangmuat Laman</translation>
+        <translation>&amp;Muatsemula Laman</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="463"/>
@@ -435,7 +435,7 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="528"/>
         <source>&amp;Window</source>
-        <translation>&amp;Tetingkap</translation>
+        <translation>Tetin&amp;gkap</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="533"/>
@@ -472,7 +472,7 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="547"/>
         <source>&amp;Help</source>
-        <translation>&amp;Bantuan</translation>
+        <translation>Bant&amp;uan</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="548"/>
@@ -482,12 +482,12 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="550"/>
         <source>About &amp;Qt</source>
-        <translation>Berkenaan &amp;Qt</translation>
+        <translation>Perihal &amp;Qt</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="551"/>
         <source>About &amp;Arora</source>
-        <translation>Berkenaan &amp;Arora</translation>
+        <translation>Perihal &amp;Arora</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="976"/>
@@ -497,7 +497,7 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="655"/>
         <source>Show Status Bar</source>
-        <translation>Tunjuk Bar Status</translation>
+        <translation>Papar Bar Status</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="655"/>
@@ -507,7 +507,7 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="660"/>
         <source>Show Toolbar</source>
-        <translation>Tunjuk Bar Alat</translation>
+        <translation>Papar Bar Alat</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="660"/>
@@ -517,7 +517,7 @@ Teruskan untuk keluar?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="665"/>
         <source>Show Bookmarks Bar</source>
-        <translation>Tunjuk Bar Tandabuku</translation>
+        <translation>Papar Bar Tandabuku</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="665"/>
@@ -574,8 +574,8 @@ Teruskan untuk keluar?</translation>
         <location filename="../browsermainwindow.cpp" line="997"/>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation>Penyiasat Web cuma akan berfungsi dengan betul di laman yang dibuka selepas ia dibenarkan berfungsi. 
-Anda mahu ulangmuat kesemua laman?</translation>
+        <translation>Penyiasat Web cuma akan berfungsi dengan baik di laman yang dibuka selepas ia dibenarkan berfungsi. 
+Anda mahu memuatsemula kesemua laman?</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="1051"/>
@@ -585,7 +585,7 @@ Anda mahu ulangmuat kesemua laman?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="1056"/>
         <source>Reload the current page</source>
-        <translation>Ulangmuat laman semasa</translation>
+        <translation>Muatsemula laman semasa</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="1102"/>
@@ -736,7 +736,7 @@ Anda mahu ulangmuat kesemua laman?</translation>
     <message>
         <location filename="../cookies.ui" line="13"/>
         <source>Cookies</source>
-        <translation>Cookies</translation>
+        <translation>Cookie</translation>
     </message>
     <message>
         <location filename="../cookies.ui" line="40"/>
@@ -746,7 +746,7 @@ Anda mahu ulangmuat kesemua laman?</translation>
     <message>
         <location filename="../cookies.ui" line="47"/>
         <source>Remove &amp;All Cookies</source>
-        <translation>Buang Semu&amp;a Cookies</translation>
+        <translation>Buang Semu&amp;a Cookie</translation>
     </message>
 </context>
 <context>
@@ -825,7 +825,7 @@ Anda mahu ulangmuat kesemua laman?</translation>
     <message>
         <location filename="../downloaditem.ui" line="13"/>
         <source>Form</source>
-        <translation>Borang</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../downloaditem.ui" line="28"/>
@@ -988,7 +988,7 @@ Anda mahu ulangmuat kesemua laman?</translation>
     <message>
         <location filename="../history.cpp" line="675"/>
         <source>Clear History</source>
-        <translation>Hapus Sejarah...</translation>
+        <translation>Hapus Sejarah</translation>
     </message>
     <message>
         <location filename="../history.cpp" line="675"/>
@@ -1030,7 +1030,7 @@ Anda mahu ulangmuat kesemua laman?</translation>
     <message>
         <location filename="../languagemanager.cpp" line="131"/>
         <source>System locale (%1) %2</source>
-        <translation>Sistem Tempatan (%1) %2</translation>
+        <translation>Sistem Lokal (%1) %2</translation>
     </message>
     <message>
         <location filename="../languagemanager.cpp" line="152"/>
@@ -1088,12 +1088,12 @@ Anda mahu abaikan ralat ini?</translation>
     <message>
         <location filename="../passworddialog.ui" line="21"/>
         <source>DUMMY ICON</source>
-        <translation>IKON DUMMY</translation>
+        <translation>DUMMY ICON</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="34"/>
         <source>INTRO TEXT DUMMY</source>
-        <translation>TEXT PENGENALAN DUMMY</translation>
+        <translation>INTRO TEXT DUMMY</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="43"/>
@@ -1103,7 +1103,7 @@ Anda mahu abaikan ralat ini?</translation>
     <message>
         <location filename="../passworddialog.ui" line="53"/>
         <source>Password:</source>
-        <translation>Katalaluan</translation>
+        <translation>Katalaluan:</translation>
     </message>
 </context>
 <context>
@@ -1111,7 +1111,7 @@ Anda mahu abaikan ralat ini?</translation>
     <message>
         <location filename="../plaintexteditsearch.cpp" line="63"/>
         <source>Not Found</source>
-        <translation>Tidak Jumpa</translation>
+        <translation>Tiada di laman ini</translation>
     </message>
 </context>
 <context>
@@ -1124,7 +1124,7 @@ Anda mahu abaikan ralat ini?</translation>
     <message>
         <location filename="../proxy.ui" line="19"/>
         <source>ICON</source>
-        <translation>IKON</translation>
+        <translation>ICON</translation>
     </message>
     <message>
         <location filename="../proxy.ui" line="26"/>
@@ -1139,7 +1139,7 @@ Anda mahu abaikan ralat ini?</translation>
     <message>
         <location filename="../proxy.ui" line="46"/>
         <source>Password:</source>
-        <translation>Katalaluan</translation>
+        <translation>Katalaluan:</translation>
     </message>
 </context>
 <context>
@@ -1160,12 +1160,12 @@ Anda mahu abaikan ralat ini?</translation>
     <message>
         <location filename="../searchbanner.ui" line="19"/>
         <source>Form</source>
-        <translation>Borang</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../searchbanner.ui" line="50"/>
         <source>TextLabel</source>
-        <translation>LabelText</translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../searchbanner.ui" line="57"/>
@@ -1180,7 +1180,7 @@ Anda mahu abaikan ralat ini?</translation>
     <message>
         <location filename="../searchbanner.ui" line="74"/>
         <source>Done</source>
-        <translation>Siap</translation>
+        <translation>Sudah</translation>
     </message>
 </context>
 <context>
@@ -1391,22 +1391,22 @@ Anda mahu abaikan ralat ini?</translation>
     <message>
         <location filename="../settings.ui" line="402"/>
         <source>Keep Cookies Until:</source>
-        <translation>Simpan Cookie Sehingga:</translation>
+        <translation>Simpan cookie sehingga:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="413"/>
         <source>They expire</source>
-        <translation>Ia Lupus</translation>
+        <translation>ia lupus</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="418"/>
         <source>I exit the application</source>
-        <translation>Saya keluar dari aplikasi</translation>
+        <translation>saya keluar dari aplikasi</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="423"/>
         <source>At most 90 days</source>
-        <translation>Paling lama 90 hari</translation>
+        <translation>sehingga 90 hari</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="431"/>
@@ -1542,12 +1542,12 @@ Anda mahu abaikan ralat ini?</translation>
     <message>
         <location filename="../tabbar.cpp" line="181"/>
         <source>Reload Tab</source>
-        <translation>Ulangmuat Tab</translation>
+        <translation>Muatsemula Tab</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="187"/>
         <source>Reload All Tabs</source>
-        <translation>Ulangmuat Semua Tab</translation>
+        <translation>Muatsemula Semua Tab</translation>
     </message>
 </context>
 <context>
@@ -1633,7 +1633,7 @@ Anda benar-benar mahu teruskan dengan menutup laman ini?
     <message>
         <location filename="../webview.cpp" line="263"/>
         <source>Open in New &amp;Tab</source>
-        <translation>Buka di Tab &amp;Baru</translation>
+        <translation>Buka di &amp;Tab Baru</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="265"/>
@@ -1653,12 +1653,12 @@ Anda benar-benar mahu teruskan dengan menutup laman ini?
     <message>
         <location filename="../webview.cpp" line="276"/>
         <source>Open Image in New &amp;Window</source>
-        <translation>Buka Imej di Tetin&amp;gkap Baru</translation>
+        <translation>Buka I&amp;mej di Tetingkap Baru</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="277"/>
         <source>Open Image in New &amp;Tab</source>
-        <translation>Buka Imej di Tab &amp;Baru</translation>
+        <translation>Buka &amp;Imej di Tab Baru</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="279"/>
@@ -1668,7 +1668,7 @@ Anda benar-benar mahu teruskan dengan menutup laman ini?
     <message>
         <location filename="../webview.cpp" line="280"/>
         <source>&amp;Copy Image</source>
-        <translation>&amp;Salin Imej</translation>
+        <translation>Sa&amp;lin Imej</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="281"/>
