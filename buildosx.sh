@@ -5,7 +5,7 @@
 
 APP="Arora"
 VERSION="0.4"
-BACKGROUND="src/data/512x512/arora.png"
+#BACKGROUND="src/data/512x512/arora.png"
 
 DIR="bundle"
 if [ -d $DIR.app ] ; then
@@ -21,10 +21,11 @@ $QTDIR/bin/macdeployqt $APP.app/
 
 # Create Bundle
 mkdir $DIR
-cp $BACKGROUND $DIR/.Background.png
+#cp $BACKGROUND $DIR/.Background.png
 cp -rf $APP.app $DIR/
 hdiutil create -ov -srcfolder $DIR -format UDBZ -volname "$APP $VERSION" "$APP.dmg"
 hdiutil internet-enable -yes "$APP.dmg"
 rm -rf $DIR
 
-mv $APP.dmg $APP-intel-qt4.5.dmg
+DATE=`date +"%m-%d-%Y"`
+mv $APP.dmg "$APP Snapshot ($DATE) Intel-qt4.5.dmg"
