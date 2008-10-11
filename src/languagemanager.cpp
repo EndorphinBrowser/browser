@@ -48,6 +48,13 @@ LanguageManager::LanguageManager(QObject *parent)
     , m_appTranslator(0)
     , m_loaded(false)
 {
+    QSettings settings;
+    settings.beginGroup(QLatin1String("LanguageManager"));
+    if (settings.contains(QLatin1String("language"))) {
+        setCurrentLanguage(settings.value(QLatin1String("language")).toString());
+    } else if (!currentLanguage().isEmpty()) {
+        setCurrentLanguage(currentLanguage());
+    }
 }
 
 QString LanguageManager::currentLanguage() const

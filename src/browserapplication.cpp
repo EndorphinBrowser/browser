@@ -131,11 +131,6 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     m_lastSession = settings.value(QLatin1String("lastSession")).toByteArray();
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("LanguageManager"));
-    if (settings.contains(QLatin1String("language")))
-        languageManager()->setCurrentLanguage(settings.value(QLatin1String("language")).toString());
-    settings.endGroup();
-
 #if defined(Q_WS_MAC)
     connect(this, SIGNAL(lastWindowClosed()),
             this, SLOT(lastWindowClosed()));
@@ -144,6 +139,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 #ifndef AUTOTESTS
     QTimer::singleShot(0, this, SLOT(postLaunch()));
 #endif
+    LanguageManager();
 }
 
 BrowserApplication::~BrowserApplication()
