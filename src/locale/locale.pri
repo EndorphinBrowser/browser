@@ -21,7 +21,7 @@ TRANSLATIONS += \
     pl.ts \
     pt_BR.ts \
     ru_RU.ts \
-    tr.ts \
+    tr_TR.ts \
     uk.ts
 
 isEmpty(QMAKE_LRELEASE) {
