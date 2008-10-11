@@ -617,6 +617,7 @@ QModelIndex HistoryMenuModel::parent(const QModelIndex &index) const
 HistoryMenu::HistoryMenu(QWidget *parent)
     : ModelMenu(parent)
     , m_history(0)
+    , m_historyMenuModel(0)
 {
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));

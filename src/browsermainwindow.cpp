@@ -102,12 +102,30 @@
 
 BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)
+    , m_navigationBar(0)
+    , m_navigationSplitter(0)
+    , m_toolbarSearch(0)
+#if defined(Q_WS_MAC)
+    , m_bookmarksToolbarFrame(0)
+#endif
+    , m_bookmarksToolbar(0)
     , m_tabWidget(new TabWidget(this))
     , m_autoSaver(new AutoSaver(this))
+    , m_showMenuBarAction(0)
     , m_historyBack(0)
+    , m_historyBackMenu(0)
     , m_historyForward(0)
+    , m_historyForwardMenu(0)
+    , m_windowMenu(0)
+    , m_privateBrowsing(0)
     , m_stop(0)
     , m_reload(0)
+    , m_stopReload(0)
+    , m_viewToolbar(0)
+    , m_viewBookmarkBar(0)
+    , m_viewStatusbar(0)
+    , m_restoreLastSession(0)
+    , m_addBookmark(0)
 {
     setAttribute(Qt::WA_DeleteOnClose, true);
     statusBar()->setSizeGripEnabled(true);

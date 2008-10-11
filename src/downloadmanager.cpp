@@ -90,6 +90,8 @@ DownloadItem::DownloadItem(QNetworkReply *reply, bool requestFileName, QWidget *
     , m_reply(reply)
     , m_requestFileName(requestFileName)
     , m_bytesReceived(0)
+    , m_startedSaving(false)
+    , m_finishedDownloading(false)
     , m_gettingFileName(false)
 {
     setupUi(this);
@@ -414,6 +416,7 @@ void DownloadItem::finished()
 DownloadManager::DownloadManager(QWidget *parent)
     : QDialog(parent)
     , m_autoSaver(new AutoSaver(this))
+    , m_model(new DownloadModel(this))
     , m_manager(BrowserApplication::networkAccessManager())
     , m_iconProvider(0)
     , m_removePolicy(Never)
@@ -424,7 +427,6 @@ DownloadManager::DownloadManager(QWidget *parent)
     downloadsView->horizontalHeader()->hide();
     downloadsView->setAlternatingRowColors(true);
     downloadsView->horizontalHeader()->setStretchLastSection(true);
-    m_model = new DownloadModel(this);
     downloadsView->setModel(m_model);
     connect(cleanupButton, SIGNAL(clicked()), this, SLOT(cleanup()));
     connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));

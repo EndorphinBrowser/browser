@@ -51,6 +51,8 @@ LineEdit::LineEdit(QWidget *parent)
 
 LineEdit::LineEdit(const QString &contents, QWidget *parent)
     : QLineEdit(contents, parent)
+    , m_leftWidget(0)
+    , m_rightWidget(0)
     , m_leftLayout(0)
     , m_rightLayout(0)
 {

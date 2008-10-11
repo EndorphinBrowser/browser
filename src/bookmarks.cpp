@@ -709,6 +709,7 @@ AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, Q
     : QDialog(parent)
     , m_url(url)
     , m_bookmarksManager(bookmarkManager)
+    , m_proxyModel(0)
 {
     setWindowFlags(Qt::Sheet);
     if (!m_bookmarksManager)
@@ -807,6 +808,9 @@ void BookmarksMenu::setInitialActions(QList<QAction*> actions)
 
 BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     : QDialog(parent)
+    , m_bookmarksManager(0)
+    , m_bookmarksModel(0)
+    , m_proxyModel(0)
 {
     m_bookmarksManager = manager;
     if (!m_bookmarksManager)
