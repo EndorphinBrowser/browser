@@ -229,6 +229,7 @@ void TabBar::mouseReleaseEvent(QMouseEvent *event)
         int index = tabAt(event->pos());
         if (index != -1) {
             emit closeTab(index);
+            return;
         } else {
             QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
             if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty())
