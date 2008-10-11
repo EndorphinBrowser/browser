@@ -4,21 +4,21 @@ DEPENDPATH += $$PWD
 
 TRANSLATIONS += \
     cs_CZ.ts \
-    da.ts \
-    de.ts \
-    en.ts \
+    da_DK.ts \
+    de_DE.ts \
+    en_US.ts \
     es.ts \
     es_CR.ts \
-    et.ts \
-    fr_FR.ts \
+    et_EE.ts \
     fr_CA.ts \
+    fr_FR.ts \
     gl.ts \
-    he.ts \
-    hu.ts \
-    it.ts \
+    he_IL.ts \
+    hu_HU.ts \
+    it_IT.ts \
     ms.ts \
-    nl.ts \
-    pl.ts \
+    nl_NL.ts \
+    pl_PL.ts \
     pt_BR.ts \
     ru_RU.ts \
     tr_TR.ts \
