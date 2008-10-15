@@ -133,25 +133,28 @@ void LanguageManager::chooseNewLanguage()
     loadAvailableLanguages();
 
     QStringList items;
-    QString systemLocaleString = QLocale::system().name();
-    systemLocaleString = tr("System locale (%1) %2")
-        .arg(systemLocaleString)
-        // this is for pretty RTL support
-        .arg(QChar(0x200E)); // LRM = 0x200E;
-    items << systemLocaleString;
-
-    int defaultItem = 0;
+    int defaultItem = -1;
+    QString current = currentLanguage();
     foreach (QString name, m_languages) {
         QLocale locale(name);
-        if (name == m_currentLanguage)
-            defaultItem = items.count();
         QString string = QString(QLatin1String("%1, %2 (%3) %4"))
             .arg(QLocale::languageToString(locale.language()))
             .arg(QLocale::countryToString(locale.country()))
             .arg(name)
             // this is for pretty RTL support
             .arg(QChar(0x200E)); // LRM = 0x200E
+        if (name == current)
+            defaultItem = items.count();
         items << string;
+    }
+    if (defaultItem == -1) {
+        QString systemLocaleString = QLocale::system().name();
+        systemLocaleString = tr("System locale (%1) %2")
+            .arg(systemLocaleString)
+            // this is for pretty RTL support
+            .arg(QChar(0x200E)); // LRM = 0x200E;
+        items << systemLocaleString;
+        defaultItem = items.count();
     }
 
     bool ok;
@@ -165,11 +168,8 @@ void LanguageManager::chooseNewLanguage()
         return;
 
     int selection = items.indexOf(item);
-    if (selection == 0) {
-        setCurrentLanguage(QString());
-    } else {
-        setCurrentLanguage(m_languages.value(selection - 1));
-    }
+    if (selection != m_languages.count())
+        setCurrentLanguage(m_languages.value(selection));
 }
 
 QString LanguageManager::translationLocation() const
