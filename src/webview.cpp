@@ -111,7 +111,7 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
     // ctrl open in new tab
     // ctrl-shift open in new tab and select
     // ctrl-alt open in new window
-    if (type == QWebPage::NavigationTypeLinkClicked
+    if ((type == QWebPage::NavigationTypeLinkClicked || type == QWebPage::NavigationTypeOther)
         && (m_keyboardModifiers & Qt::ControlModifier
             || m_pressedButtons == Qt::MidButton)) {
         bool newWindow = (m_keyboardModifiers & Qt::AltModifier);
