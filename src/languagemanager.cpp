@@ -148,12 +148,7 @@ void LanguageManager::chooseNewLanguage()
         items << string;
     }
     if (defaultItem == -1) {
-        QString systemLocaleString = QLocale::system().name();
-        systemLocaleString = tr("System locale (%1) %2")
-            .arg(systemLocaleString)
-            // this is for pretty RTL support
-            .arg(QChar(0x200E)); // LRM = 0x200E;
-        items << systemLocaleString;
+        items << tr("Default");
         defaultItem = items.count();
     }
 
