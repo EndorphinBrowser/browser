@@ -1,1 +1,5 @@
-git log --pretty="format:%an %ae" | sed -e s/smart2128\ /Vincenzo\ Reale\ /g | sort | uniq -c | sort -n -r | sed -e 's/^ *[0-9]* //g'
+git log --pretty="format:%an %ae" \
+	| sed -e 's/smart2128 /Vincenzo Reale /g' \
+	| sed -e 's/buster\.xtense\.dyndns\.org/ts2server\.com/g' \
+	| sed -e 's/^cfchris6 /Christian Franke /g' \
+	| sort | uniq -c | sort -n -r | sed -e 's/^ *[0-9]* //g'
