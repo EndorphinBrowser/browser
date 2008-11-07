@@ -9,4 +9,4 @@ Makefile
 .qm
 .gdb_history
 *.swp
-
+*~
