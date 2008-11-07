@@ -135,6 +135,8 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     setupMenu();
     setupToolBar();
 
+    m_privateBrowsing->setChecked(QWebSettings::globalSettings()->testAttribute(QWebSettings::PrivateBrowsingEnabled));
+
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
     m_bookmarksToolbar = new BookmarksToolBar(boomarksModel, this);
@@ -865,6 +867,13 @@ void BrowserMainWindow::slotPrivateBrowsing()
                                QMessageBox::Ok);
         if (button == QMessageBox::Ok) {
             settings->setAttribute(QWebSettings::PrivateBrowsingEnabled, true);
+            m_privateBrowsing->setChecked(true);
+
+            QList<BrowserMainWindow*> windows = BrowserApplication::instance()->mainWindows();
+            for (int i = 0; i < windows.count(); ++i) {
+                BrowserMainWindow *window = windows.at(i);
+                window->m_privateBrowsing->setChecked(true);
+            }
         }
     } else {
         settings->setAttribute(QWebSettings::PrivateBrowsingEnabled, false);
@@ -873,9 +882,9 @@ void BrowserMainWindow::slotPrivateBrowsing()
         for (int i = 0; i < windows.count(); ++i) {
             BrowserMainWindow *window = windows.at(i);
             window->tabWidget()->clear();
+            window->m_privateBrowsing->setChecked(false);
         }
     }
-    m_privateBrowsing->setChecked(settings->testAttribute(QWebSettings::PrivateBrowsingEnabled));
 }
 
 void BrowserMainWindow::closeEvent(QCloseEvent *event)
