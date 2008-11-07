@@ -284,8 +284,10 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     }
 
 #if QT_VERSION >= 0x040500
-    if (menu->isEmpty())
+    if (menu->isEmpty()) {
+        delete menu;
         menu = page()->createStandardContextMenu();
+    }
 #endif
 
     if (!menu->isEmpty()) {
