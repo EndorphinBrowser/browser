@@ -342,11 +342,11 @@ void DownloadItem::updateInfoLabel()
             if (timeRemaining > 60) {
                 timeRemaining = timeRemaining / 60;
                 timeRemaining = floor(timeRemaining);
-                remaining = tr("- %n minutes remaining", "", timeRemaining);
+                remaining = tr("- %n minutes remaining", "", int(timeRemaining));
             }
             else {
                 timeRemaining = floor(timeRemaining);
-                remaining = tr("- %n seconds remaining", "", timeRemaining);
+                remaining = tr("- %n seconds remaining", "", int(timeRemaining));
             }
         }
         info = QString(tr("%1 of %2 (%3/sec) %4"))
