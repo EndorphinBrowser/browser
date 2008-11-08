@@ -230,6 +230,9 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
 #if defined(Q_WS_MAC)
     setWindowIcon(QIcon());
 #endif
+#if defined(Q_WS_X11)
+    setWindowRole(QLatin1String("browser"));
+#endif
 }
 
 BrowserMainWindow::~BrowserMainWindow()
