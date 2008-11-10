@@ -69,6 +69,7 @@
 #include "history.h"
 #include "languagemanager.h"
 #include "networkaccessmanager.h"
+#include "networkaccesseditor.h"
 #include "tabwidget.h"
 #include "webview.h"
 
@@ -86,6 +87,7 @@
 DownloadManager *BrowserApplication::s_downloadManager = 0;
 HistoryManager *BrowserApplication::s_historyManager = 0;
 NetworkAccessManager *BrowserApplication::s_networkAccessManager = 0;
+NetworkAccessEditor *BrowserApplication::s_networkAccessEditor = 0;
 BookmarksManager *BrowserApplication::s_bookmarksManager = 0;
 LanguageManager *BrowserApplication::s_languageManager = 0;
 
@@ -464,6 +466,14 @@ NetworkAccessManager *BrowserApplication::networkAccessManager()
         s_networkAccessManager->setCookieJar(new CookieJar);
     }
     return s_networkAccessManager;
+}
+
+NetworkAccessEditor *BrowserApplication::networkAccessEditor()
+{
+    if (!s_networkAccessEditor) {
+        s_networkAccessEditor = new NetworkAccessEditor();
+    }
+    return s_networkAccessEditor;
 }
 
 HistoryManager *BrowserApplication::historyManager()

@@ -75,6 +75,7 @@ class CookieJar;
 class DownloadManager;
 class HistoryManager;
 class NetworkAccessManager;
+class NetworkAccessEditor;
 class LanguageManager;
 class BrowserApplication : public SingleApplication
 {
@@ -97,6 +98,7 @@ public:
     static CookieJar *cookieJar();
     static DownloadManager *downloadManager();
     static NetworkAccessManager *networkAccessManager();
+    static NetworkAccessEditor *networkAccessEditor();
     static BookmarksManager *bookmarksManager();
     static LanguageManager *languageManager();
     static QString dataDirectory();
@@ -130,6 +132,7 @@ private:
     static HistoryManager *s_historyManager;
     static DownloadManager *s_downloadManager;
     static NetworkAccessManager *s_networkAccessManager;
+    static NetworkAccessEditor *s_networkAccessEditor;
     static BookmarksManager *s_bookmarksManager;
     static LanguageManager *s_languageManager;
 

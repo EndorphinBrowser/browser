@@ -72,6 +72,8 @@
 #include "downloadmanager.h"
 #include "history.h"
 #include "languagemanager.h"
+#include "networkaccessmanager.h"
+#include "networkaccesseditor.h"
 #include "settings.h"
 #include "sourceviewer.h"
 #include "tabbar.h"
@@ -562,6 +564,10 @@ void BrowserMainWindow::setupMenu()
                          QKeySequence(tr("Ctrl+K", "Web Search")));
     toolsMenu->addAction(tr("&Clear Private Data"), this, SLOT(slotClearPrivateData()),
                          QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
+
+    QAction *networkEditorAction = toolsMenu->addAction(tr("Show &Network Requests"), this, SLOT(slotToggleNetworkAccessEditor(bool)) );
+    networkEditorAction->setCheckable( true );
+
 #ifndef Q_CC_MINGW
     QAction *m_enableInspector = toolsMenu->addAction(tr("Enable Web &Inspector"), this, SLOT(slotToggleInspector(bool)));
     m_enableInspector->setCheckable(true);
@@ -1177,5 +1183,23 @@ void BrowserMainWindow::slotOpenActionUrl(QAction *action)
 void BrowserMainWindow::geometryChangeRequested(const QRect &geometry)
 {
     setGeometry(geometry);
+}
+
+void BrowserMainWindow::slotToggleNetworkAccessEditor( bool enabled )
+{
+    NetworkAccessManager *manager = BrowserApplication::networkAccessManager();
+
+    if ( enabled ) {
+        NetworkAccessEditor *editor = BrowserApplication::networkAccessEditor();
+        manager->setNetworkAccessEditor( editor );
+        editor->show();
+        return;
+    }
+
+    NetworkAccessEditor *editor = manager->networkAccessEditor();
+    if ( editor ) {
+        editor->hide();
+        manager->setNetworkAccessEditor( 0 );
+    }
 }
 

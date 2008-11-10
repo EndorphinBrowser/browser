@@ -76,6 +76,7 @@ class ToolbarSearch;
 class WebView;
 class QSplitter;
 class QFrame;
+class QSignalMapper;
 
 /*!
     The MainWindow of the Browser Application.
@@ -158,6 +159,7 @@ private slots:
     void geometryChangeRequested(const QRect &geometry);
     void updateToolbarActionText(bool visible);
     void updateBookmarksToolbarActionText(bool visible);
+    void slotToggleNetworkAccessEditor( bool enable );
 
 private:
     void retranslate();

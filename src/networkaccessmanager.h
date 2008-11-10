@@ -65,12 +65,19 @@
 
 #include <qnetworkaccessmanager.h>
 
+class NetworkAccessEditor;
+
 class NetworkAccessManager : public QNetworkAccessManager
 {
     Q_OBJECT
 
 public:
     NetworkAccessManager(QObject *parent = 0);
+    void setNetworkAccessEditor( NetworkAccessEditor *editor );
+    NetworkAccessEditor *networkAccessEditor() const;
+
+protected:
+    virtual QNetworkReply * createRequest( QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData=0 );
 
 public slots:
     void loadSettings();
@@ -81,6 +88,8 @@ private slots:
 #ifndef QT_NO_OPENSSL
     void sslErrors(QNetworkReply *reply, const QList<QSslError> &error);
 #endif
+private:
+    NetworkAccessEditor *m_networkAccessEditor;
 };
 
 #endif // NETWORKACCESSMANAGER_H

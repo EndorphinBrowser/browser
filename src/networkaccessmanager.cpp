@@ -84,8 +84,11 @@
 #include <qdesktopservices.h>
 #endif
 
+#include "networkaccesseditor.h"
+
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
-    : QNetworkAccessManager(parent)
+    : QNetworkAccessManager(parent),
+      m_networkAccessEditor(0)
 {
     connect(this, SIGNAL(authenticationRequired(QNetworkReply*, QAuthenticator*)),
             SLOT(authenticationRequired(QNetworkReply*, QAuthenticator*)));
@@ -106,6 +109,15 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
 #endif
 }
 
+void NetworkAccessManager::setNetworkAccessEditor( NetworkAccessEditor *editor )
+{
+    m_networkAccessEditor = editor;
+}
+
+NetworkAccessEditor *NetworkAccessManager::networkAccessEditor() const
+{
+    return m_networkAccessEditor;
+}
 void NetworkAccessManager::loadSettings()
 {
     QSettings settings;
@@ -238,3 +250,19 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
     }
 }
 #endif
+
+QNetworkReply * NetworkAccessManager::createRequest( QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData )
+{
+    QNetworkRequest actual;
+    if ( m_networkAccessEditor )
+        actual = m_networkAccessEditor->tamperRequest( op, req, outgoingData );
+    else
+        actual = req;
+
+    QNetworkReply *reply = QNetworkAccessManager::createRequest( op, actual, outgoingData );
+
+    if ( m_networkAccessEditor )
+        m_networkAccessEditor->addRequest( op, actual, outgoingData, reply );
+
+    return reply;
+}
