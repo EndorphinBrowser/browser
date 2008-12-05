@@ -19,7 +19,6 @@ TRANSLATIONS += \
     ms.ts \
     nl_NL.ts \
     pl_PL.ts \
-    pt_BR.ts \
     ru_RU.ts \
     tr_TR.ts \
     uk.ts \
