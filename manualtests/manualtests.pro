@@ -6,5 +6,5 @@ SUBDIRS = bookmarks \
 	locationbar \
 	searchlineedit \
 	singleapplication \
-        squeezelabel
-
+        squeezelabel \
+        webviewsearch
