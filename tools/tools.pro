@@ -1,2 +1,3 @@
 TEMPLATE = subdirs
-SUBDIRS  = cacheinfo
+SUBDIRS  = cacheinfo \
+           htmlToXBel
