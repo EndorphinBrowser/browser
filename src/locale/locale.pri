@@ -20,6 +20,7 @@ TRANSLATIONS += \
     nl_NL.ts \
     pl_PL.ts \
     ru_RU.ts \
+    sk_SK.ts \
     tr_TR.ts \
     uk.ts \
     zh_CN.ts \
