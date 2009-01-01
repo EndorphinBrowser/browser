@@ -193,6 +193,9 @@ private:
     QAction *m_restoreLastSession;
     QAction *m_addBookmark;
 
+    bool m_menuBarVisible;
+    bool m_statusBarVisible;
+
     QIcon m_reloadIcon;
     QIcon m_stopIcon;
 };

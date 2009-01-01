@@ -343,6 +343,8 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
 
     statusBar()->setVisible(showStatusbar);
     updateStatusbarActionText(showStatusbar);
+    
+    m_statusBarVisible = showStatusbar;
 
     m_navigationSplitter->restoreState(splitterState);
 
@@ -368,6 +370,8 @@ QAction *BrowserMainWindow::showMenuBarAction() const
 
 void BrowserMainWindow::setupMenu()
 {
+    m_menuBarVisible = true;
+
     menuBar()->clear();
     new QShortcut(QKeySequence(Qt::Key_F6), this, SLOT(slotSwapFocus()));
 
@@ -641,6 +645,8 @@ void BrowserMainWindow::slotAddBookmark()
 void BrowserMainWindow::slotViewMenuBar()
 {
     menuBar()->setVisible(!menuBar()->isVisible());
+    
+    m_menuBarVisible = menuBar()->isVisible();
 }
 
 void BrowserMainWindow::slotViewToolbar()
@@ -697,6 +703,9 @@ void BrowserMainWindow::slotViewStatusbar()
         updateStatusbarActionText(true);
         statusBar()->show();
     }
+
+    m_statusBarVisible = statusBar()->isVisible();
+
     m_autoSaver->changeOccurred();
 }
 
@@ -976,8 +985,14 @@ void BrowserMainWindow::slotViewFullScreen(bool makeFullScreen)
 {
     if (makeFullScreen) {
         setWindowState(windowState() | Qt::WindowFullScreen);
+        
+        menuBar()->hide();
+        statusBar()->hide();
     } else {
         setWindowState(windowState() & ~Qt::WindowFullScreen);
+        
+        menuBar()->setVisible(m_menuBarVisible);
+        statusBar()->setVisible(m_statusBarVisible);
     }
 }
 
