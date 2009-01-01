@@ -267,6 +267,8 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         menu->addAction(tr("Save Lin&k"), this, SLOT(downloadLinkToDisk()));
         menu->addAction(tr("&Bookmark This Link"), this, SLOT(bookmarkLink()))->setData(r.linkUrl().toString());
         menu->addSeparator();
+        if (!page()->selectedText().isEmpty())
+            menu->addAction(pageAction(QWebPage::Copy));
         menu->addAction(tr("&Copy Link Location"), this, SLOT(copyLinkToClipboard()));
         if (page()->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled))
             menu->addAction(pageAction(QWebPage::InspectElement));
