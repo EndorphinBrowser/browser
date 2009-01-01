@@ -48,12 +48,15 @@ private:
     QMenuBar *m_menuBar;
     QMenu *m_editMenu;
     QAction *m_findAction;
+    QMenu *m_viewMenu;
+    QAction *m_setWrappingAction;
     QNetworkReply *m_reply;
     QNetworkRequest *m_request;
     QString *m_source;
 
 private slots:
     void loadingFinished();
+    void setWrapping(bool wrap);
 };
 
 #endif
