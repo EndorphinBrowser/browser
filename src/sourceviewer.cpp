@@ -68,7 +68,7 @@ SourceViewer::SourceViewer(const QString &source,
 
     m_menuBar->addMenu(m_viewMenu);
     m_viewMenu->addAction(m_setWrappingAction);
-    m_setWrappingAction->setShortcut(tr("Ctrl+W"));
+    m_setWrappingAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_W));
     m_setWrappingAction->setCheckable(true);
     connect(m_setWrappingAction, SIGNAL(triggered(bool)),
             this, SLOT(setWrapping(bool)));

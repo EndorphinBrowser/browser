@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="pl_PL">
-<defaultcodec></defaultcodec>
 <context encoding="UTF-8">
     <name>AboutDialog</name>
     <message>
@@ -1659,11 +1658,6 @@ Czy chcesz zignorować te błędy?</translation>
         <location filename="../sourceviewer.cpp" line="50"/>
         <source>Source of Page </source>
         <translation type="unfinished">Źródło strony</translation>
-    </message>
-    <message>
-        <location filename="../sourceviewer.cpp" line="71"/>
-        <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
