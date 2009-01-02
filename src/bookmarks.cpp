@@ -902,7 +902,7 @@ void BookmarksDialog::customContextMenuRequested(const QPoint &pos)
 void BookmarksDialog::open(TabWidget::Tab tab)
 {
     QModelIndex index = tree->currentIndex();
-    if (!index.parent().isValid())
+    if (tree->model()->hasChildren(index))
         return;
     emit openUrl(
           index.sibling(index.row(), 1).data(BookmarksModel::UrlRole).toUrl(),
