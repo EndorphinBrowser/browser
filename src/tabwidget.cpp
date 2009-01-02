@@ -235,9 +235,9 @@ void TabWidget::reloadTab(int index)
     if (index < 0 || index >= count())
         return;
 
-    QWidget *widget = this->widget(index);
-    if (WebView *tab = qobject_cast<WebView*>(widget))
+    if (WebView *tab = webView(index)) {
         tab->reload();
+    }
 }
 
 void TabWidget::moveTab(int fromIndex, int toIndex)
@@ -543,8 +543,7 @@ void TabWidget::toolBarVisibilityChangeRequestedCheck(bool visible)
 void TabWidget::reloadAllTabs()
 {
     for (int i = 0; i < count(); ++i) {
-        QWidget *tabWidget = widget(i);
-        if (WebView *tab = qobject_cast<WebView*>(tabWidget)) {
+        if (WebView *tab = webView(i)) {
             tab->reload();
         }
     }
