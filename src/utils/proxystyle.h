@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008, Benjamin C. Meyer
+ * Copyright (c) 2008, Benjamin C. Meyer <ben@meyerhome.net>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
