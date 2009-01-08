@@ -473,6 +473,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="oneCloseButton" >
+         <property name="text" >
+          <string>Show only one close button instead of one for each tab</string>
+         </property>
+         <property name="checked" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_4" >
          <property name="orientation" >
           <enum>Qt::Vertical</enum>

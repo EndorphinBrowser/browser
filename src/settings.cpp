@@ -85,6 +85,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(standardFontButton, SIGNAL(clicked()), this, SLOT(chooseFont()));
     connect(fixedFontButton, SIGNAL(clicked()), this, SLOT(chooseFixedFont()));
 
+#if QT_VERSION < 0x040500
+    oneCloseButton->setVisible(false); // no other mode than one close button with qt <4.5
+#endif
     loadDefaults();
     loadFromSettings();
 }
@@ -216,6 +219,9 @@ void SettingsDialog::loadFromSettings()
     settings.beginGroup(QLatin1String("tabs"));
     selectTabsWhenCreated->setChecked(settings.value(QLatin1String("selectNewTabs"), false).toBool());
     confirmClosingMultipleTabs->setChecked(settings.value(QLatin1String("confirmClosingMultipleTabs"), true).toBool());
+#if QT_VERSION >= 0x040500
+    oneCloseButton->setChecked(settings.value(QLatin1String("oneCloseButton"),false).toBool());
+#endif
     settings.endGroup();
 }
 
@@ -318,6 +324,9 @@ void SettingsDialog::saveToSettings()
     settings.beginGroup(QLatin1String("tabs"));
     settings.setValue(QLatin1String("selectNewTabs"), selectTabsWhenCreated->isChecked());
     settings.setValue(QLatin1String("confirmClosingMultipleTabs"), confirmClosingMultipleTabs->isChecked());
+#if QT_VERSION >= 0x040500
+    settings.setValue(QLatin1String("oneCloseButton"), oneCloseButton->isChecked());
+#endif
     settings.endGroup();
 
     BrowserApplication::instance()->loadSettings();
