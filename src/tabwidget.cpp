@@ -128,12 +128,20 @@ TabWidget::TabWidget(QWidget *parent)
     m_closeTabAction->setShortcuts(QKeySequence::Close);
     connect(m_closeTabAction, SIGNAL(triggered()), this, SLOT(closeTab()));
 
-#if QT_VERSION < 0x040500
-    m_newTabAction->setIcon(QIcon(QLatin1String(":addtab.png")));
-    m_newTabAction->setIconVisibleInMenu(false);
+#if QT_VERSION >= 0x040500
+    QSettings settings;
+    settings.beginGroup(QLatin1String("tabs"));
+    bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
+    if (oneCloseButton) {
+#endif
+        // With Qt < 4.5 do this always, with >=4.5 only if enabled.
+        m_newTabAction->setIcon(QIcon(QLatin1String(":addtab.png")));
+        m_newTabAction->setIconVisibleInMenu(false);
 
-    m_closeTabAction->setIcon(QIcon(QLatin1String(":closetab.png")));
-    m_closeTabAction->setIconVisibleInMenu(false);
+        m_closeTabAction->setIcon(QIcon(QLatin1String(":closetab.png")));
+        m_closeTabAction->setIconVisibleInMenu(false);
+#if QT_VERSION >= 0x040500
+    }
 #endif
 
     m_nextTabAction = new QAction(tr("Show Next Tab"), this);
@@ -166,23 +174,29 @@ TabWidget::TabWidget(QWidget *parent)
     m_recentlyClosedTabsAction->setEnabled(false);
 
 #if QT_VERSION >= 0x040500
-    m_tabBar->setTabsClosable(true);
-    connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
-            this, SLOT(closeTab(int)));
-    m_tabBar->setSelectionBehaviorOnRemove(QTabBar::SelectPreviousTab);
-#else
-    // corner buttons
-    QToolButton *addTabButton = new QToolButton(this);
-    addTabButton->setDefaultAction(m_newTabAction);
-    addTabButton->setAutoRaise(true);
-    addTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    setCornerWidget(addTabButton, Qt::TopLeftCorner);
+    if(oneCloseButton) {
+#endif
+        // corner buttons
+        // With Qt < 4.5 do this always, with >=4.5 only if enabled.
+        QToolButton *addTabButton = new QToolButton(this);
+        addTabButton->setDefaultAction(m_newTabAction);
+        addTabButton->setAutoRaise(true);
+        addTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        setCornerWidget(addTabButton, Qt::TopLeftCorner);
 
-    QToolButton *closeTabButton = new QToolButton(this);
-    closeTabButton->setDefaultAction(m_closeTabAction);
-    closeTabButton->setAutoRaise(true);
-    closeTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    setCornerWidget(closeTabButton, Qt::TopRightCorner);
+        QToolButton *closeTabButton = new QToolButton(this);
+        closeTabButton->setDefaultAction(m_closeTabAction);
+        closeTabButton->setAutoRaise(true);
+        closeTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        setCornerWidget(closeTabButton, Qt::TopRightCorner);
+#if QT_VERSION >= 0x040500
+    } else {
+        m_tabBar->setTabsClosable(true);
+
+        connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
+                this, SLOT(closeTab(int)));
+        m_tabBar->setSelectionBehaviorOnRemove(QTabBar::SelectPreviousTab);
+    }
 #endif
 
     connect(this, SIGNAL(currentChanged(int)),
