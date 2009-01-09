@@ -822,7 +822,7 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
 
     tree->setUniformRowHeights(true);
     tree->setSelectionBehavior(QAbstractItemView::SelectRows);
-    tree->setSelectionMode(QAbstractItemView::ContiguousSelection);
+    tree->setSelectionMode(QAbstractItemView::ExtendedSelection);
     tree->setTextElideMode(Qt::ElideMiddle);
     m_bookmarksModel = m_bookmarksManager->bookmarksModel();
     m_proxyModel = new TreeProxyModel(this);
