@@ -823,6 +823,7 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     tree->setTextElideMode(Qt::ElideMiddle);
     m_bookmarksModel = m_bookmarksManager->bookmarksModel();
     m_proxyModel = new TreeProxyModel(this);
+    m_proxyModel->setFilterKeyColumn(-1);
     connect(search, SIGNAL(textChanged(QString)),
             m_proxyModel, SLOT(setFilterFixedString(QString)));
     connect(removeButton, SIGNAL(clicked()), tree, SLOT(removeSelected()));

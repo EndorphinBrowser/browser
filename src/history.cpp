@@ -711,6 +711,7 @@ HistoryDialog::HistoryDialog(QWidget *parent, HistoryManager *setHistory) : QDia
     tree->setTextElideMode(Qt::ElideMiddle);
     QAbstractItemModel *model = history->historyTreeModel();
     TreeProxyModel *proxyModel = new TreeProxyModel(this);
+    proxyModel->setFilterKeyColumn(-1);
     connect(search, SIGNAL(textChanged(QString)),
             proxyModel, SLOT(setFilterFixedString(QString)));
     connect(removeButton, SIGNAL(clicked()), tree, SLOT(removeSelected()));
