@@ -889,7 +889,9 @@ void BookmarksDialog::customContextMenuRequested(const QPoint &pos)
     QMenu menu;
     QModelIndex index = tree->indexAt(pos);
     index = index.sibling(index.row(), 0);
-    if (index.isValid() && !tree->model()->hasChildren(index)) {
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
+    const BookmarkNode *node = m_bookmarksModel->node(sourceIndex);
+    if (index.isValid() && node->type() != BookmarkNode::Folder) {
         menu.addAction(tr("Open"), this, SLOT(openInCurrentTab()));
         menu.addAction(tr("Open in New Tab"), this, SLOT(openInNewTab()));
         menu.addSeparator();
