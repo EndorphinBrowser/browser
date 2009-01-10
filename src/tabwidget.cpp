@@ -602,7 +602,9 @@ void TabWidget::closeTab(int index)
         return;
 
     bool hasFocus = false;
-    if (WebView *tab = webView(index)) {
+    WebView *tab = webView(index);
+
+    if (tab && !tab->url().isEmpty()) {
         if (tab->isModified()) {
             QMessageBox closeConfirmation(tab);
             closeConfirmation.setWindowFlags(Qt::Sheet);
