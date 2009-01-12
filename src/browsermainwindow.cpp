@@ -877,6 +877,8 @@ void BrowserMainWindow::slotPrivateBrowsing()
                 BrowserMainWindow *window = windows.at(i);
                 window->m_privateBrowsing->setChecked(true);
             }
+        } else {
+            m_privateBrowsing->setChecked(false);
         }
     } else {
         settings->setAttribute(QWebSettings::PrivateBrowsingEnabled, false);
