@@ -442,6 +442,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
         HistoryCompletionModel *completionModel = new HistoryCompletionModel(this);
         completionModel->setSourceModel(BrowserApplication::historyManager()->historyFilterModel());
         m_lineEditCompleter = new QCompleter(completionModel, this);
+        connect(m_lineEditCompleter, SIGNAL(activated(QString)), mainWindow(), SLOT(loadPage(QString)));
         // Should this be in Qt by default?
         QAbstractItemView *popup = m_lineEditCompleter->popup();
         QListView *listView = qobject_cast<QListView*>(popup);
