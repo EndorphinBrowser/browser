@@ -992,27 +992,30 @@ void BookmarksToolBar::dropEvent(QDropEvent *event)
     const QMimeData *mimeData = event->mimeData();
     if (mimeData->hasUrls() && mimeData->hasText()) {
         QList<QUrl> urls = mimeData->urls();
-        QAction *action = actionAt(event->pos());
-        QString dropText;
-        if (action)
-            dropText = action->text();
+        QString title = mimeData->text();
+        QUrl url = urls.at(0);
+
+        if (url.isEmpty()) {
+            QToolBar::dropEvent(event);
+            return;
+        }
+
+        if (title.isEmpty()) {
+            title = url.toString();
+        }
+
         int row = -1;
         QModelIndex parentIndex = m_root;
-        for (int i = 0; i < m_bookmarksModel->rowCount(m_root); ++i) {
-            QModelIndex idx = m_bookmarksModel->index(i, 0, m_root);
-            QString title = idx.data().toString();
-            if (title == dropText) {
-                row = i;
-                if (m_bookmarksModel->hasChildren(idx)) {
-                    parentIndex = idx;
-                    row = -1;
-                }
-                break;
-            }
+        QToolButton* target = qobject_cast<QToolButton *>(childAt(event->pos()));
+
+        if (target && target->menu()) {
+            ModelMenu *menu = qobject_cast<ModelMenu *>(target->menu());
+            parentIndex = menu->rootIndex();
         }
+
         BookmarkNode *bookmark = new BookmarkNode(BookmarkNode::Bookmark);
-        bookmark->url = urls.at(0).toString();
-        bookmark->title = mimeData->text();
+        bookmark->url = url.toString();
+        bookmark->title = title;
 
         BookmarkNode *parent = m_bookmarksModel->node(parentIndex);
         BookmarksManager *bookmarksManager = m_bookmarksModel->bookmarksManager();
