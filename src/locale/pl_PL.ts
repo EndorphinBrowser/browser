@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<defaultcodec></defaultcodec>
 <context encoding="UTF-8">
     <name>AboutDialog</name>
     <message>
@@ -58,22 +59,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksDialog</name>
     <message>
-        <location filename="../bookmarks.cpp" line="893"/>
+        <location filename="../bookmarks.cpp" line="894"/>
         <source>Open</source>
         <translation>Otwórz</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="894"/>
+        <location filename="../bookmarks.cpp" line="895"/>
         <source>Open in New Tab</source>
         <translation>Otwórz w nowej karcie</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="897"/>
+        <location filename="../bookmarks.cpp" line="898"/>
         <source>Delete</source>
         <translation>Usuń</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="934"/>
+        <location filename="../bookmarks.cpp" line="937"/>
         <source>New Folder</source>
         <translation>Nowy katalog</translation>
     </message>
@@ -184,7 +185,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <location filename="../bookmarks.cpp" line="966"/>
+        <location filename="../bookmarks.cpp" line="969"/>
         <source>Bookmark</source>
         <translation>Zakładka</translation>
     </message>
@@ -484,7 +485,7 @@ Czy mimo to chcesz zakończyć?</translation>
         <translation>Informacje o programie &amp;Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1021"/>
+        <location filename="../browsermainwindow.cpp" line="1028"/>
         <source>Navigation</source>
         <translation>Nawigacja</translation>
     </message>
@@ -555,7 +556,7 @@ Czy mimo to chcesz zakończyć?</translation>
         <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kiedy prywatne przeglądanie sieci jest włączone, niektóre działania dotyczące twojej prywatności są wyłączone:&lt;ul&gt;&lt;li&gt; Strony internetowe nie są dodawane do historii.&lt;/li&gt;&lt;li&gt;  Lista pobierania jest automatycznie czyszczona.&lt;/li&gt;&lt;li&gt; Nowe ciasteczka nie są zapisywane a dostęp do przechowywanych jest uniemożliwiony.&lt;/li&gt;&lt;li&gt; Ikony stron nie są przechowywane a sesje nie będą zapisane.&lt;/li&gt;&lt;li&gt; Wyszukiwania nie są dodawane do listy w menu pola wyszukiwania.&lt;/li&gt;&lt;/ul&gt;Dopóki okno nie zostanie zamknięte, można używać przycisków Wstecz i Do przodu, by powrócić do wcześniej otwartych stron.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="911"/>
+        <location filename="../browsermainwindow.cpp" line="918"/>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Czy jesteś pewien, że chcesz zamknąć okno? %1 kart jest otwartych</translation>
     </message>
@@ -565,34 +566,34 @@ Czy mimo to chcesz zakończyć?</translation>
         <translation type="obsolete">Źródło strony %1</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1040"/>
+        <location filename="../browsermainwindow.cpp" line="1047"/>
         <source>Web Inspector</source>
         <translation>Inspektor stron</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1042"/>
+        <location filename="../browsermainwindow.cpp" line="1049"/>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
         <translation>Inspektor stron porawnie działa tylko dla stron, które zostały załadowane po włączeniu inspektora.
 Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1096"/>
+        <location filename="../browsermainwindow.cpp" line="1103"/>
         <source>Stop loading the current page</source>
         <translation>Zatrzymaj ładowenie strony</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1101"/>
+        <location filename="../browsermainwindow.cpp" line="1108"/>
         <source>Reload the current page</source>
         <translation>Odśwież stronę</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1147"/>
+        <location filename="../browsermainwindow.cpp" line="1154"/>
         <source>Downloads</source>
         <translation>Pobieranie</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1147"/>
+        <location filename="../browsermainwindow.cpp" line="1154"/>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
         <translation>Alt+Ctrl+L</translation>
@@ -1050,17 +1051,17 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
 <context>
     <name>HistoryDialog</name>
     <message>
-        <location filename="../history.cpp" line="739"/>
+        <location filename="../history.cpp" line="740"/>
         <source>Open</source>
         <translation>Otwórz</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="741"/>
+        <location filename="../history.cpp" line="742"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="743"/>
+        <location filename="../history.cpp" line="744"/>
         <source>Delete</source>
         <translation>Skasuj</translation>
     </message>
@@ -1119,7 +1120,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
 <context>
     <name>HistoryTreeModel</name>
     <message>
-        <location filename="../history.cpp" line="1075"/>
+        <location filename="../history.cpp" line="1076"/>
         <source>Earlier Today</source>
         <translation>Dzisiaj</translation>
     </message>
@@ -1129,7 +1130,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
         <translation type="obsolete">%1 elementów</translation>
     </message>
     <message numerus="yes">
-        <location filename="../history.cpp" line="1079"/>
+        <location filename="../history.cpp" line="1080"/>
         <source>%n item(s)</source>
         <translation>
             <numerusform>%n element</numerusform>
@@ -1632,32 +1633,32 @@ Czy chcesz zignorować te błędy?</translation>
     <message>
         <location filename="../sourceviewer.cpp" line="40"/>
         <source>Loading...</source>
-        <translation type="unfinished">Ładowanie...</translation>
+        <translation>Ładowanie...</translation>
     </message>
     <message>
         <location filename="../sourceviewer.cpp" line="45"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Edytuj</translation>
+        <translation>&amp;Edytuj</translation>
     </message>
     <message>
         <location filename="../sourceviewer.cpp" line="46"/>
         <source>&amp;Find</source>
-        <translation type="unfinished">&amp;Znajdź</translation>
+        <translation>&amp;Znajdź</translation>
     </message>
     <message>
         <location filename="../sourceviewer.cpp" line="47"/>
         <source>&amp;View</source>
-        <translation type="unfinished">&amp;Widok</translation>
+        <translation>&amp;Widok</translation>
     </message>
     <message>
         <location filename="../sourceviewer.cpp" line="48"/>
         <source>&amp;Wrap lines</source>
-        <translation type="unfinished">Za&amp;wijaj wiersze</translation>
+        <translation>Za&amp;wijaj wiersze</translation>
     </message>
     <message>
         <location filename="../sourceviewer.cpp" line="50"/>
         <source>Source of Page </source>
-        <translation type="unfinished">Źródło strony</translation>
+        <translation>Źródło strony</translation>
     </message>
 </context>
 <context>
@@ -1736,12 +1737,12 @@ Czy chcesz zignorować te błędy?</translation>
         <translation type="obsolete">(Bez nazwy)</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="595"/>
+        <location filename="../tabwidget.cpp" line="597"/>
         <source>Do you really want to close this page?</source>
         <translation>Czy na pewno chcesz zamknąć tę stronę?</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="597"/>
+        <location filename="../tabwidget.cpp" line="599"/>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
@@ -1749,7 +1750,7 @@ Do you really want to close this page?
 Czy na pewno chcesz zamknąć tę stronę?</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="489"/>
+        <location filename="../tabwidget.cpp" line="490"/>
         <source>Untitled</source>
         <translation>Nowy</translation>
     </message>
@@ -1784,61 +1785,86 @@ Czy na pewno chcesz zamknąć tę stronę?</translation>
         <source>Error loading page: %1</source>
         <translation>Błąd podczas ładowania strony: %1</translation>
     </message>
+    <message>
+        <location filename="../webview.cpp" line="202"/>
+        <source>When connecting to: %3.</source>
+        <translation type="obsolete">Podczas łączenia z: %1.</translation>
+    </message>
+    <message>
+        <location filename="../webview.cpp" line="203"/>
+        <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.trolltech.com instead of &lt;b&gt;www&lt;/b&gt;.trolltech.com.</source>
+        <translation>Sprawdź, czy adres nie zawiera żadnych błędów np. &lt;b&gt;ww&lt;/b&gt;.trolltech.com zamiast &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
+    </message>
+    <message>
+        <location filename="../webview.cpp" line="204"/>
+        <source>If the address is correct, try to check the network connection.</source>
+        <translation>Jeśli adres jest prawidłowy, sprawdź działanie swojego połączenia internetowego.</translation>
+    </message>
+    <message>
+        <location filename="../webview.cpp" line="205"/>
+        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
+        <translation>Jeśli twój komputer lub sieć jest chroniona zaporą sieciową lub proxy, upewnij się, że przeglądarka ma dostęp do sieci.</translation>
+    </message>
+    <message>
+        <location filename="../webview.cpp" line="202"/>
+        <source>When connecting to: %1.</source>
+        <translation>Podczas łączenia z: %1.</translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../webview.cpp" line="264"/>
+        <location filename="../webview.cpp" line="267"/>
         <source>Open in New &amp;Window</source>
         <translation>Otwórz w nowym &amp;oknie</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="265"/>
+        <location filename="../webview.cpp" line="268"/>
         <source>Open in New &amp;Tab</source>
         <translation>Otwórz w nowej &amp;karcie</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="267"/>
+        <location filename="../webview.cpp" line="270"/>
         <source>Save Lin&amp;k</source>
         <translation>&amp;Zapisz element docelowy</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="268"/>
+        <location filename="../webview.cpp" line="271"/>
         <source>&amp;Bookmark This Link</source>
         <translation>Dodaj ten odnośnik do &amp;zakładek</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="272"/>
+        <location filename="../webview.cpp" line="275"/>
         <source>&amp;Copy Link Location</source>
         <translation>&amp;Kopiuj adres odnośnika</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="280"/>
+        <location filename="../webview.cpp" line="283"/>
         <source>Open Image in New &amp;Window</source>
         <translation>Otwórz obrazek w nowym o&amp;knie</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="281"/>
+        <location filename="../webview.cpp" line="284"/>
         <source>Open Image in New &amp;Tab</source>
         <translation>Otwórz obrazek w nowej k&amp;arcie</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="283"/>
+        <location filename="../webview.cpp" line="286"/>
         <source>&amp;Save Image</source>
         <translation>&amp;Zapisz obrazek</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="284"/>
+        <location filename="../webview.cpp" line="287"/>
         <source>&amp;Copy Image</source>
         <translation>&amp;Kopiuj obrazek</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="285"/>
+        <location filename="../webview.cpp" line="288"/>
         <source>C&amp;opy Image Location</source>
         <translation>K&amp;opiuj adres obrazka</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="454"/>
+        <location filename="../webview.cpp" line="457"/>
         <source>Loading...</source>
         <translation>Ładowanie...</translation>
     </message>

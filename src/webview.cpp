@@ -199,7 +199,10 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
     QString html = QString(QLatin1String(file.readAll()))
                         .arg(title)
                         .arg(reply->errorString())
-                        .arg(reply->url().toString());
+                        .arg(tr("When connecting to: %1.").arg(reply->url().toString()))
+                        .arg(tr("Check the address for errors such as <b>ww</b>.trolltech.com instead of <b>www</b>.trolltech.com."))
+                        .arg(tr("If the address is correct, try to check the network connection."))
+                        .arg(tr("If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network."));
 
     QBuffer imageBuffer;
     imageBuffer.open(QBuffer::ReadWrite);
