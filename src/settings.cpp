@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,6 +64,8 @@
 
 #include "browserapplication.h"
 #include "browsermainwindow.h"
+#include "cookiedialog.h"
+#include "cookieexceptionsdialog.h"
 #include "cookiejar.h"
 #include "history.h"
 #include "networkaccessmanager.h"
@@ -343,13 +345,13 @@ void SettingsDialog::accept()
 
 void SettingsDialog::showCookies()
 {
-    CookiesDialog *dialog = new CookiesDialog(BrowserApplication::cookieJar(), this);
+    CookieDialog *dialog = new CookieDialog(BrowserApplication::cookieJar(), this);
     dialog->exec();
 }
 
 void SettingsDialog::showExceptions()
 {
-    CookiesExceptionsDialog *dialog = new CookiesExceptionsDialog(BrowserApplication::cookieJar(), this);
+    CookieExceptionsDialog *dialog = new CookieExceptionsDialog(BrowserApplication::cookieJar(), this);
     dialog->exec();
 }
 

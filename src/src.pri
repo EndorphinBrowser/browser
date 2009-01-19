@@ -29,8 +29,6 @@ FORMS += \
     aboutdialog.ui \
     addbookmarkdialog.ui \
     bookmarks.ui \
-    cookies.ui \
-    cookiesexceptions.ui \
     downloaditem.ui \
     downloads.ui \
     history.ui \
@@ -45,7 +43,6 @@ HEADERS += \
     browserapplication.h \
     browsermainwindow.h \
     clearprivatedata.h \
-    cookiejar.h \
     downloadmanager.h \
     edittableview.h \
     edittreeview.h \
@@ -75,7 +72,6 @@ SOURCES += \
     browserapplication.cpp \
     browsermainwindow.cpp \
     clearprivatedata.cpp \
-    cookiejar.cpp \
     downloadmanager.cpp \
     edittableview.cpp \
     edittreeview.cpp \
@@ -98,6 +94,7 @@ SOURCES += \
     webviewsearch.cpp \
     xbel.cpp
 
+include(cookiejar/cookiejar.pri)
 include(utils/utils.pri)
 
 RESOURCES += data/data.qrc \
