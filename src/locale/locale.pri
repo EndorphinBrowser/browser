@@ -16,6 +16,7 @@ TRANSLATIONS += \
     he_IL.ts \
     hu_HU.ts \
     it_IT.ts \
+    ja_JP.ts \
     ms.ts \
     nl_NL.ts \
     pl_PL.ts \
