@@ -95,9 +95,12 @@ LocationBar::LocationBar(QWidget *parent)
     addWidget(m_siteIcon, LeftSide);
 
     // privacy indicator at rightmost position
-    m_privacyIndicator = new QLabel;
+    m_privacyIndicator = new QLabel(this);
     m_privacyIndicator->setPixmap(QPixmap(QLatin1String(":private.png")));
     addWidget(m_privacyIndicator, RightSide);
+    connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
+            this, SLOT(setPrivate(bool)));
+    setPrivate(BrowserApplication::isPrivate());
 
     // clear button on the right
     ClearButton *m_clearButton = new ClearButton(this);

@@ -103,6 +103,7 @@ public:
 
     static bool isPrivate();
     static void setPrivate(bool isPrivate);
+
 #if defined(Q_WS_MAC)
     bool event(QEvent *event);
 #endif

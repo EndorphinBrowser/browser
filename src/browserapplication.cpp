@@ -431,8 +431,8 @@ BrowserMainWindow *BrowserApplication::newMainWindow()
 {
     BrowserMainWindow *browser = new BrowserMainWindow();
     m_mainWindows.prepend(browser);
-    connect(this, SIGNAL(privacyChanged(bool)), browser, SLOT(slotPrivacyChanged(bool)));
-    browser->slotPrivacyChanged(isPrivate());
+    connect(this, SIGNAL(privacyChanged(bool)),
+            browser, SLOT(slotPrivacyChanged(bool)));
     browser->show();
     return browser;
 }

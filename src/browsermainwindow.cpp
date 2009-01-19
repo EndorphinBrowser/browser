@@ -135,7 +135,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     setupMenu();
     setupToolBar();
 
-    m_privateBrowsing->setChecked(QWebSettings::globalSettings()->testAttribute(QWebSettings::PrivateBrowsingEnabled));
+    m_privateBrowsing->setChecked(BrowserApplication::isPrivate());
 
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
@@ -875,12 +875,14 @@ void BrowserMainWindow::slotPrivateBrowsing()
         QMessageBox::StandardButton button = QMessageBox::question(this, QString(), text,
                                QMessageBox::Ok | QMessageBox::Cancel,
                                QMessageBox::Ok);
-        if (button == QMessageBox::Ok)
+        if (button == QMessageBox::Ok) {
             BrowserApplication::setPrivate(true);
-        else
+        } else {
             m_privateBrowsing->setChecked(false);
-    } else
+        }
+    } else {
         BrowserApplication::setPrivate(false);
+    }
 }
 
 void BrowserMainWindow::slotPrivacyChanged(bool isPrivate)

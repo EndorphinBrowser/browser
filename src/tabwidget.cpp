@@ -453,8 +453,6 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     }
     locationBar->setCompleter(m_lineEditCompleter);
     connect(locationBar, SIGNAL(returnPressed()), this, SLOT(lineEditReturnPressed()));
-    connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)), locationBar, SLOT(setPrivate(bool)));
-    locationBar->setPrivate(BrowserApplication::isPrivate());
     m_lineEdits->addWidget(locationBar);
     m_lineEdits->setSizePolicy(locationBar->sizePolicy());
 
