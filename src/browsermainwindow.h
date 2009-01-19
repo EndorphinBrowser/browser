@@ -103,6 +103,7 @@ public:
 public slots:
     void loadPage(const QString &url);
     void slotHome();
+    void slotPrivacyChanged(bool isPrivate);
 
 protected:
     void closeEvent(QCloseEvent *event);

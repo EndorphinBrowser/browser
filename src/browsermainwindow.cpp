@@ -860,9 +860,7 @@ void BrowserMainWindow::printRequested(QWebFrame *frame)
 
 void BrowserMainWindow::slotPrivateBrowsing()
 {
-    QWebSettings *settings = QWebSettings::globalSettings();
-    bool pb = settings->testAttribute(QWebSettings::PrivateBrowsingEnabled);
-    if (!pb) {
+    if (!BrowserApplication::isPrivate()) {
         QString title = tr("Are you sure you want to turn on private browsing?");
         QString text = tr("<b>%1</b><br><br>When private browsing is turned on,"
             " some actions concerning your privacy will be disabled:"
@@ -877,28 +875,19 @@ void BrowserMainWindow::slotPrivateBrowsing()
         QMessageBox::StandardButton button = QMessageBox::question(this, QString(), text,
                                QMessageBox::Ok | QMessageBox::Cancel,
                                QMessageBox::Ok);
-        if (button == QMessageBox::Ok) {
-            settings->setAttribute(QWebSettings::PrivateBrowsingEnabled, true);
-            m_privateBrowsing->setChecked(true);
-
-            QList<BrowserMainWindow*> windows = BrowserApplication::instance()->mainWindows();
-            for (int i = 0; i < windows.count(); ++i) {
-                BrowserMainWindow *window = windows.at(i);
-                window->m_privateBrowsing->setChecked(true);
-            }
-        } else {
+        if (button == QMessageBox::Ok)
+            BrowserApplication::setPrivate(true);
+        else
             m_privateBrowsing->setChecked(false);
-        }
-    } else {
-        settings->setAttribute(QWebSettings::PrivateBrowsingEnabled, false);
+    } else
+        BrowserApplication::setPrivate(false);
+}
 
-        QList<BrowserMainWindow*> windows = BrowserApplication::instance()->mainWindows();
-        for (int i = 0; i < windows.count(); ++i) {
-            BrowserMainWindow *window = windows.at(i);
-            window->tabWidget()->clear();
-            window->m_privateBrowsing->setChecked(false);
-        }
-    }
+void BrowserMainWindow::slotPrivacyChanged(bool isPrivate)
+{
+    m_privateBrowsing->setChecked(isPrivate);
+    if (!isPrivate)
+        tabWidget()->clear();
 }
 
 void BrowserMainWindow::closeEvent(QCloseEvent *event)

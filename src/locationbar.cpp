@@ -26,6 +26,7 @@
 
 #include <qdrag.h>
 #include <qevent.h>
+#include <qlabel.h>
 #include <qpainter.h>
 #include <qstyleoption.h>
 
@@ -83,6 +84,7 @@ LocationBar::LocationBar(QWidget *parent)
     : LineEdit(parent)
     , m_webView(0)
     , m_siteIcon(0)
+    , m_privacyIndicator(0)
 {
     // Urls are always LeftToRight
     setLayoutDirection(Qt::LeftToRight);
@@ -91,6 +93,11 @@ LocationBar::LocationBar(QWidget *parent)
     // site icon on the left
     m_siteIcon = new LocationBarSiteIcon(this);
     addWidget(m_siteIcon, LeftSide);
+
+    // privacy indicator at rightmost position
+    m_privacyIndicator = new QLabel;
+    m_privacyIndicator->setPixmap(QPixmap(QLatin1String(":private.png")));
+    addWidget(m_privacyIndicator, RightSide);
 
     // clear button on the right
     ClearButton *m_clearButton = new ClearButton(this);
@@ -119,6 +126,11 @@ void LocationBar::setWebView(WebView *webView)
             this, SLOT(webViewUrlChanged(const QUrl &)));
     connect(webView, SIGNAL(loadProgress(int)),
             this, SLOT(update()));
+}
+
+void LocationBar::setPrivate(bool isPrivate)
+{
+    m_privacyIndicator->setVisible(isPrivate);
 }
 
 void LocationBar::webViewUrlChanged(const QUrl &url)

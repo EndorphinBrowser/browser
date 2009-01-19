@@ -101,6 +101,8 @@ public:
     static LanguageManager *languageManager();
     static QString dataDirectory();
 
+    static bool isPrivate();
+    static void setPrivate(bool isPrivate);
 #if defined(Q_WS_MAC)
     bool event(QEvent *event);
 #endif
@@ -117,6 +119,9 @@ private slots:
     void messageRecieved(const QString &message);
     void postLaunch();
     void openUrl(const QUrl &url);
+
+signals:
+    void privacyChanged(bool isPrivate);
 
 private:
     void clean();

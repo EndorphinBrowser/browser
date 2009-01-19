@@ -431,6 +431,8 @@ BrowserMainWindow *BrowserApplication::newMainWindow()
 {
     BrowserMainWindow *browser = new BrowserMainWindow();
     m_mainWindows.prepend(browser);
+    connect(this, SIGNAL(privacyChanged(bool)), browser, SLOT(slotPrivacyChanged(bool)));
+    browser->slotPrivacyChanged(isPrivate());
     browser->show();
     return browser;
 }
@@ -510,3 +512,13 @@ QString BrowserApplication::dataDirectory()
 #endif
 }
 
+bool BrowserApplication::isPrivate()
+{
+    return QWebSettings::globalSettings()->testAttribute(QWebSettings::PrivateBrowsingEnabled);
+}
+
+void BrowserApplication::setPrivate(bool isPrivate)
+{
+    QWebSettings::globalSettings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, isPrivate);
+    emit instance()->privacyChanged(isPrivate);
+}
