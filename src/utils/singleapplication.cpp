@@ -69,6 +69,11 @@ bool SingleApplication::startSingleServer()
     if (!m_localServer->listen(serverName())) {
         if (QAbstractSocket::AddressInUseError == m_localServer->serverError()) {
             // cleanup from a segfaulted server
+#ifdef Q_OS_UNIX
+            QString fullServerName = QLatin1String("/tmp/") + serverName();
+            if (QFile::exists(fullServerName))
+                QFile::remove(fullServerName);
+#endif
             if (!m_localServer->listen(serverName())) {
                 qWarning() << "SingleApplication: Unable to start single server.";
             } else {
