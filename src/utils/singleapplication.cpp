@@ -62,7 +62,7 @@ bool SingleApplication::startSingleServer()
     if (m_localServer)
         return false;
 
-    m_localServer = new QLocalServer();
+    m_localServer = new QLocalServer(this);
     connect(m_localServer, SIGNAL(newConnection()),
             this, SLOT(newConnection()));
     bool success = false;
