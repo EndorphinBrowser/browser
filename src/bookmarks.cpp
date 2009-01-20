@@ -1001,7 +1001,7 @@ void BookmarksToolBar::dropEvent(QDropEvent *event)
         }
 
         if (title.isEmpty()) {
-            title = url.toEncoded();
+            title = QLatin1String(url.toEncoded());
         }
 
         int row = -1;
@@ -1014,7 +1014,7 @@ void BookmarksToolBar::dropEvent(QDropEvent *event)
         }
 
         BookmarkNode *bookmark = new BookmarkNode(BookmarkNode::Bookmark);
-        bookmark->url = url.toEncoded();
+        bookmark->url = QLatin1String(url.toEncoded());
         bookmark->title = title;
 
         BookmarkNode *parent = m_bookmarksModel->node(parentIndex);
