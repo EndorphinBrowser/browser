@@ -907,7 +907,7 @@ void BookmarksDialog::open(TabWidget::Tab tab)
     QModelIndex index = tree->currentIndex();
     QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
     const BookmarkNode *node = m_bookmarksModel->node(sourceIndex);
-    if (node->type() == BookmarkNode::Folder)
+    if (!index.parent().isValid() || !node || node->type() == BookmarkNode::Folder)
         return;
     emit openUrl(
           index.sibling(index.row(), 1).data(BookmarksModel::UrlRole).toUrl(),
