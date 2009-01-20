@@ -63,12 +63,12 @@
 #ifndef COOKIEJAR_H
 #define COOKIEJAR_H
 
-#include <qnetworkcookie.h>
+#include <networkcookiejar.h>
 
 #include <qstringlist.h>
 
 class AutoSaver;
-class CookieJar : public QNetworkCookieJar
+class CookieJar : public NetworkCookieJar
 {
     friend class CookieModel;
     Q_OBJECT

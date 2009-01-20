@@ -116,7 +116,7 @@ QDataStream &operator>>(QDataStream &stream, QList<QNetworkCookie> &list)
 QT_END_NAMESPACE
 
 CookieJar::CookieJar(QObject *parent)
-    : QNetworkCookieJar(parent)
+    : NetworkCookieJar(parent)
     , m_loaded(false)
     , m_saveTimer(new AutoSaver(this))
     , m_acceptCookies(AcceptOnlyFromSitesNavigatedTo)
@@ -243,17 +243,7 @@ QList<QNetworkCookie> CookieJar::cookiesForUrl(const QUrl &url) const
         return noCookies;
     }
 
-    // Not sure if this conforms to the cookie specification, in fact I am
-    // pretty sure it incomplete and in the worst case a security hole.
-    QList<QNetworkCookie> cookies;
-    QString host = url.host();
-    while (host.count(QLatin1Char('.')) > 0) {
-        QUrl subUrl = url;
-        subUrl.setHost(host);
-        cookies += QNetworkCookieJar::cookiesForUrl(subUrl);
-        host = host.mid(host.indexOf(QLatin1Char('.')) + 1);
-    }
-    return cookies;
+    return NetworkCookieJar::cookiesForUrl(url);
 }
 
 bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
@@ -286,7 +276,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
                 cookie.setExpirationDate(soon);
             }
             lst += cookie;
-            if (QNetworkCookieJar::setCookiesFromUrl(lst, url)) {
+            if (NetworkCookieJar::setCookiesFromUrl(lst, url)) {
                 addedCookies = true;
             } else {
                 // finally force it in if wanted

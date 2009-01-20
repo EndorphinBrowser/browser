@@ -19,3 +19,5 @@ FORMS += \
     cookies.ui \
     cookiesexceptions.ui
 
+include($$PWD/networkcookiejar/src.pri)
+
