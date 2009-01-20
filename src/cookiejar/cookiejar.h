@@ -65,18 +65,9 @@
 
 #include <qnetworkcookie.h>
 
-#include <qabstractitemmodel.h>
-#include <qdialog.h>
 #include <qstringlist.h>
-#include <qtableview.h>
-
-QT_BEGIN_NAMESPACE
-class QSortFilterProxyModel;
-class QKeyEvent;
-QT_END_NAMESPACE
 
 class AutoSaver;
-
 class CookieJar : public QNetworkCookieJar
 {
     friend class CookieModel;

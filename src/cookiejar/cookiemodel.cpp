@@ -62,9 +62,10 @@
 
 #include "cookiemodel.h"
 
-#include <qdatetime.h>
-
 #include "cookiejar.h"
+
+#include <qdatetime.h>
+#include <qfontmetrics.h>
 
 CookieModel::CookieModel(CookieJar *cookieJar, QObject *parent)
     : QAbstractTableModel(parent)

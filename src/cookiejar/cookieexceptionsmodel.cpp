@@ -64,6 +64,8 @@
 
 #include "cookiejar.h"
 
+#include <qfontmetrics.h>
+
 CookieExceptionsModel::CookieExceptionsModel(CookieJar *cookiejar, QObject *parent)
     : QAbstractTableModel(parent)
     , m_cookieJar(cookiejar)
