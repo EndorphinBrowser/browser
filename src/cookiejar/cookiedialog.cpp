@@ -64,6 +64,7 @@
 
 #include <qsortfilterproxymodel.h>
 #include <qdatetime.h>
+#include <qheaderview.h>
 
 #include "cookiemodel.h"
 

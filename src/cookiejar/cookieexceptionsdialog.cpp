@@ -64,6 +64,7 @@
 
 #include <qsortfilterproxymodel.h>
 
+#include <qheaderview.h>
 #include <qcompleter.h>
 #include "cookiemodel.h"
 #include "cookiejar.h"
