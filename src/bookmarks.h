@@ -308,6 +308,7 @@ private slots:
     void open(TabWidget::Tab tab);
     void openInNewTab();
     void openInCurrentTab();
+    void rename();
     void newFolder();
 
 private:
