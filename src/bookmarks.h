@@ -309,6 +309,7 @@ private slots:
     void openInNewTab();
     void openInCurrentTab();
     void rename();
+    void changeURL();
     void newFolder();
 
 private:

@@ -898,9 +898,14 @@ void BookmarksDialog::customContextMenuRequested(const QPoint &pos)
     if (index.isValid() && node->type() != BookmarkNode::Folder) {
         menu.addAction(tr("Open"), this, SLOT(openInCurrentTab()));
         menu.addAction(tr("Open in New Tab"), this, SLOT(openInNewTab()));
-        menu.addAction(tr("Rename"), this, SLOT(rename()));
         menu.addSeparator();
     }
+    QAction *renameAction = menu.addAction(tr("Rename"), this, SLOT(rename()));
+    renameAction->setEnabled(index.flags() & Qt::ItemIsEditable);
+    if (index.isValid() && node->type() != BookmarkNode::Folder) {
+        menu.addAction(tr("Change URL"), this, SLOT(changeURL()));
+    }
+    menu.addSeparator();
     QAction *deleteAction = menu.addAction(tr("Delete"), tree, SLOT(removeSelected()));
     deleteAction->setEnabled(index.flags() & Qt::ItemIsDragEnabled);
     menu.exec(QCursor::pos());
@@ -932,6 +937,11 @@ void BookmarksDialog::openInNewTab()
 void BookmarksDialog::rename()
 {
     tree->edit(tree->currentIndex());
+}
+
+void BookmarksDialog::changeURL()
+{
+    tree->edit(tree->model()->index(tree->currentIndex().row(), 1, tree->currentIndex().parent()));
 }
 
 void BookmarksDialog::newFolder()
