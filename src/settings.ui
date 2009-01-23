@@ -149,30 +149,6 @@
          </item>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>Open links from applications:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1" colspan="2">
-        <widget class="QComboBox" name="openLinksIn">
-         <item>
-          <property name="text">
-           <string>In a tab in the current window</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>In a new window</string>
-          </property>
-         </item>
-        </widget>
-       </item>
        <item row="5" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
@@ -484,6 +460,83 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox">
+         <property name="title">
+          <string>Opening links</string>
+         </property>
+         <layout class="QGridLayout">
+          <item row="1" column="0">
+           <widget class="QLabel">
+            <property name="text">
+             <string>Open target="_blank" links:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QComboBox" name="openTargetBlankLinksIn">
+            <item>
+             <property name="text">
+              <string>In a new window</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>In a new active tab in the current window</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>In a new inactive tab in the current window</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>In the current tab</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel">
+            <property name="text">
+             <string>Open links from applications:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QComboBox" name="openLinksFromAppsIn">
+            <item>
+             <property name="text">
+              <string>In a new window</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>In a new active tab in the current window</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>In a new inactive tab in the current window</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>In the current tab</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_4">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -686,10 +739,10 @@
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
+  <tabstop>startupBehavior</tabstop>
   <tabstop>homeLineEdit</tabstop>
   <tabstop>setHomeToCurrentPageButton</tabstop>
   <tabstop>expireHistory</tabstop>
-  <tabstop>openLinksIn</tabstop>
   <tabstop>downloadAsk</tabstop>
   <tabstop>downloadDestination</tabstop>
   <tabstop>downloadsLocation</tabstop>
@@ -697,10 +750,16 @@
   <tabstop>fixedFontButton</tabstop>
   <tabstop>enablePlugins</tabstop>
   <tabstop>enableJavascript</tabstop>
+  <tabstop>enableImages</tabstop>
   <tabstop>acceptCombo</tabstop>
   <tabstop>exceptionsButton</tabstop>
   <tabstop>keepUntilCombo</tabstop>
   <tabstop>cookiesButton</tabstop>
+  <tabstop>selectTabsWhenCreated</tabstop>
+  <tabstop>confirmClosingMultipleTabs</tabstop>
+  <tabstop>oneCloseButton</tabstop>
+  <tabstop>openTargetBlankLinksIn</tabstop>
+  <tabstop>openLinksFromAppsIn</tabstop>
   <tabstop>proxySupport</tabstop>
   <tabstop>proxyType</tabstop>
   <tabstop>proxyHostName</tabstop>

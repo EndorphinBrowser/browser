@@ -108,40 +108,50 @@ BrowserMainWindow *WebPage::mainWindow()
 
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type)
 {
+    QString scheme = request.url().scheme();
+    if (scheme == QLatin1String("mailto") || scheme == QLatin1String("ftp")) {
+        QDesktopServices::openUrl(request.url());
+        return false;
+    }
+
+    WebView::OpenLinkIn openIn = WebView::CurrentTab;
+
     // ctrl open in new tab
     // ctrl-shift open in new tab and select
     // ctrl-alt open in new window
-    if ((type == QWebPage::NavigationTypeLinkClicked || type == QWebPage::NavigationTypeOther)
-        && (m_keyboardModifiers & Qt::ControlModifier
-            || m_pressedButtons == Qt::MidButton)) {
-        bool newWindow = (m_keyboardModifiers & Qt::AltModifier);
-        WebView *webView;
-        if (newWindow) {
-            BrowserApplication::instance()->newMainWindow();
-            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->mainWindow();
-            webView = newMainWindow->currentTab();
-            newMainWindow->raise();
-            newMainWindow->activateWindow();
-            webView->setFocus();
-        } else {
-            bool selectNewTab = (m_keyboardModifiers & Qt::ShiftModifier);
-            webView = mainWindow()->tabWidget()->makeNewTab(selectNewTab);
+    if (m_keyboardModifiers & Qt::ControlModifier || m_pressedButtons == Qt::MidButton) {
+
+        if (m_keyboardModifiers & Qt::AltModifier)
+            openIn = WebView::NewWindow;
+        else if (m_keyboardModifiers & Qt::ShiftModifier)
+            openIn = WebView::NewActiveTab;
+        else
+            openIn = WebView::NewInactiveTab;
+
+    } else if (!frame) {
+
+        QSettings settings;
+        settings.beginGroup(QLatin1String("tabs"));
+        openIn = WebView::OpenLinkIn(
+            settings.value(QLatin1String("openTargetBlankLinksIn"), 0).toInt());
+        settings.endGroup();
+
+        if (openIn == WebView::CurrentTab) {
+            mainFrame()->load(request.url());
+            return false;
         }
-        webView->loadUrl(request);
+    }
+
+    if (openIn != WebView::CurrentTab) {
+        mainWindow()->tabWidget()->currentWebView()->loadUrl(request, openIn);
         m_keyboardModifiers = Qt::NoModifier;
         m_pressedButtons = Qt::NoButton;
         return false;
     }
+
     if (frame == mainFrame()) {
         m_loadingUrl = request.url();
         emit loadingUrl(m_loadingUrl);
-    }
-
-    QString scheme = request.url().scheme();
-    if (scheme == QLatin1String("mailto")
-        || scheme == QLatin1String("ftp")) {
-        QDesktopServices::openUrl(request.url());
-        return false;
     }
 
     return QWebPage::acceptNavigationRequest(frame, request, type);
@@ -489,6 +499,36 @@ void WebView::loadUrl(const QNetworkRequest &request, QNetworkAccessManager::Ope
     m_initialUrl = request.url();
     emit titleChanged(tr("Loading..."));
     QWebView::load(request, operation, body);
+}
+
+void WebView::loadUrl(const QNetworkRequest &request, OpenLinkIn openIn)
+{
+    WebView *webView;
+    switch (openIn) {
+        case NewWindow: {
+            BrowserApplication::instance()->newMainWindow();
+            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->mainWindow();
+            webView = newMainWindow->currentTab();
+            newMainWindow->raise();
+            newMainWindow->activateWindow();
+            webView->setFocus();
+            break; }
+
+        case NewActiveTab:
+            webView = BrowserApplication::instance()->mainWindow()->tabWidget()->makeNewTab(true);
+            webView->setFocus();
+            break;
+
+        case NewInactiveTab:
+            webView = BrowserApplication::instance()->mainWindow()->tabWidget()->makeNewTab(false);
+            break;
+
+        case CurrentTab:
+            webView = this;
+            break;
+    }
+
+    webView->loadUrl(request);
 }
 
 QString WebView::lastStatusBarText() const

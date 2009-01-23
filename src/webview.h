@@ -111,11 +111,14 @@ class WebView : public QWebView
     Q_OBJECT
 
 public:
+    enum OpenLinkIn { NewWindow = 0, NewActiveTab = 1, NewInactiveTab = 2, CurrentTab = 3 };
+
     WebView(QWidget *parent = 0);
     WebPage *webPage() const { return m_page; }
 
     void loadUrl(const QUrl &url, const QString &title = QString());
     void loadUrl(const QNetworkRequest &request, QNetworkAccessManager::Operation operation = QNetworkAccessManager::GetOperation, const QByteArray &body = QByteArray());
+    void loadUrl(const QNetworkRequest &request, OpenLinkIn openIn);
     QUrl url() const;
 
     QString lastStatusBarText() const;

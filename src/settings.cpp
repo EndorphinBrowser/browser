@@ -148,11 +148,6 @@ void SettingsDialog::loadFromSettings()
     downloadsLocation->setText(downloadDirectory);
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("general"));
-    openLinksIn->setCurrentIndex(settings.value(QLatin1String("openLinksIn"), openLinksIn->currentIndex()).toInt());
-
-    settings.endGroup();
-
     // Appearance
     settings.beginGroup(QLatin1String("websettings"));
     fixedFont = qVariantValue<QFont>(settings.value(QLatin1String("fixedFont"), fixedFont));
@@ -224,6 +219,8 @@ void SettingsDialog::loadFromSettings()
 #if QT_VERSION >= 0x040500
     oneCloseButton->setChecked(settings.value(QLatin1String("oneCloseButton"),false).toBool());
 #endif
+    openTargetBlankLinksIn->setCurrentIndex(settings.value(QLatin1String("openTargetBlankLinksIn"), WebView::NewWindow).toInt());
+    openLinksFromAppsIn->setCurrentIndex(settings.value(QLatin1String("openLinksFromAppsIn"), WebView::NewWindow).toInt());
     settings.endGroup();
 }
 
@@ -238,10 +235,6 @@ void SettingsDialog::saveToSettings()
     settings.beginGroup(QLatin1String("downloadmanager"));
     settings.setValue(QLatin1String("alwaysPromptForFileName"), downloadAsk->isChecked());
     settings.setValue(QLatin1String("downloadDirectory"), downloadsLocation->text());
-    settings.endGroup();
-
-    settings.beginGroup(QLatin1String("general"));
-    settings.setValue(QLatin1String("openLinksIn"), openLinksIn->currentIndex());
     settings.endGroup();
 
     settings.beginGroup(QLatin1String("history"));
@@ -329,6 +322,8 @@ void SettingsDialog::saveToSettings()
 #if QT_VERSION >= 0x040500
     settings.setValue(QLatin1String("oneCloseButton"), oneCloseButton->isChecked());
 #endif
+    settings.setValue(QLatin1String("openTargetBlankLinksIn"), openTargetBlankLinksIn->currentIndex());
+    settings.setValue(QLatin1String("openLinksFromAppsIn"), openLinksFromAppsIn->currentIndex());
     settings.endGroup();
 
     BrowserApplication::instance()->loadSettings();

@@ -171,14 +171,11 @@ void BrowserApplication::messageRecieved(const QString &message)
     QUrl url(message);
     if (!url.isEmpty()) {
         QSettings settings;
-        settings.beginGroup(QLatin1String("general"));
-        int openLinksIn = settings.value(QLatin1String("openLinksIn"), 0).toInt();
+        settings.beginGroup(QLatin1String("tabs"));
+        WebView::OpenLinkIn openIn = WebView::OpenLinkIn(settings.value(QLatin1String("openLinksFromAppsIn"), 0).toInt());
         settings.endGroup();
-        if (openLinksIn == 1)
-            newMainWindow();
-        else
-            mainWindow()->tabWidget()->newTab();
-        openUrl(url);
+
+        mainWindow()->tabWidget()->currentWebView()->loadUrl(QNetworkRequest(url), openIn);
     }
     mainWindow()->raise();
     mainWindow()->activateWindow();
