@@ -180,7 +180,7 @@ void NetworkCookieJar::endSession()
     QList<QNetworkCookie>::const_iterator i = cookies.constBegin();
     for (; i != cookies.constEnd();) {
         if (i->isSessionCookie()
-            || !i->isSessionCookie() && now > i->expirationDate()) {
+            || (!i->isSessionCookie() && now > i->expirationDate())) {
                 d->tree.remove(splitHost(i->domain()), *i);
         }
         ++i;
@@ -266,7 +266,7 @@ void NetworkCookieJar::setAllCookies(const QList<QNetworkCookie> &cookieList)
     qDebug() << "NetworkCookieJar::" << __FUNCTION__ << cookieList.count();
 #endif
     d->tree.clear();
-    foreach (QNetworkCookie cookie, cookieList) {
+    foreach (const QNetworkCookie &cookie, cookieList) {
         QString domain = cookie.domain();
         d->tree.insert(splitHost(domain), cookie);
     }
