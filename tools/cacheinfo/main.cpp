@@ -97,7 +97,7 @@ int main(int argc, char **argv)
     stream << "Last Modified Date: " << metaData.lastModified().toString() << endl;
     stream << "Save to disk: " << metaData.saveToDisk() << endl;
     stream << "Headers:" << endl;
-    foreach(QNetworkCacheMetaData::RawHeader header, metaData.rawHeaders())
+    foreach(const QNetworkCacheMetaData::RawHeader &header, metaData.rawHeaders())
         stream << "\t" << header.first << ": " << header.second << endl;
     QIODevice *device = diskCache.data(metaData.url());
     if (device) {

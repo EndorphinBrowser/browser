@@ -592,7 +592,7 @@ QMimeData *BookmarksModel::mimeData(const QModelIndexList &indexes) const
     QMimeData *mimeData = new QMimeData();
     QByteArray data;
     QDataStream stream(&data, QIODevice::WriteOnly);
-    foreach (QModelIndex index, indexes) {
+    foreach (const QModelIndex &index, indexes) {
         if (index.column() != 0 || !index.isValid())
             continue;
         QByteArray encodedData;

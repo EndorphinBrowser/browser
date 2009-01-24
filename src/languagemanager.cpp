@@ -135,7 +135,7 @@ void LanguageManager::chooseNewLanguage()
     QStringList items;
     int defaultItem = -1;
     QString current = currentLanguage();
-    foreach (const QString name, m_languages) {
+    foreach (const QString &name, m_languages) {
         QLocale locale(name);
         QString string = QString(QLatin1String("%1, %2 (%3) %4"))
             .arg(QLocale::languageToString(locale.language()))

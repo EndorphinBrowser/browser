@@ -723,7 +723,7 @@ QUrl BrowserMainWindow::guessUrlFromString(const QString &string)
     bool hasSchema = test.exactMatch(urlStr);
     if (hasSchema) {
         bool isAscii = true;
-        foreach (QChar c, urlStr) {
+        foreach (const QChar &c, urlStr) {
             if (c >= 0x80) {
                 isAscii = false;
                 break;

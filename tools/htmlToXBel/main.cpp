@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     bool setOutput = false;
     QStringList args = application.arguments();
     args.pop_front();
-    foreach (QString arg, args) {
+    foreach (const QString &arg, args) {
         if (arg == QLatin1String("-o")) {
             setOutput = true;
         } else if (setOutput) {
