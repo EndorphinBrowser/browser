@@ -151,9 +151,8 @@ Q_DECLARE_METATYPE(QModelIndex)
 void ModelMenu::aboutToShow()
 {
     if (QMenu *menu = qobject_cast<QMenu*>(sender())) {
-        QVariant v = menu->menuAction()->data();
-        if (v.canConvert<QModelIndex>()) {
-            QModelIndex idx = qvariant_cast<QModelIndex>(v);
+        QModelIndex idx = index(menu->menuAction());
+        if (idx.isValid()) {
             createMenu(idx, -1, menu, menu);
             disconnect(menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShow()));
             return;
@@ -232,10 +231,18 @@ QAction *ModelMenu::makeAction(const QIcon &icon, const QString &text, QObject *
 
 void ModelMenu::triggered(QAction *action)
 {
-    QVariant v = action->data();
-    if (v.canConvert<QModelIndex>()) {
-        QModelIndex idx = qvariant_cast<QModelIndex>(v);
+    QModelIndex idx = index(action);
+    if (idx.isValid())
         emit activated(idx);
-    }
 }
 
+QModelIndex ModelMenu::index(QAction *action)
+{
+    if (!action)
+        return QModelIndex();
+    QVariant variant = action->data();
+    if (!variant.canConvert<QModelIndex>())
+        return QModelIndex();
+
+    return qvariant_cast<QModelIndex>(variant);
+}

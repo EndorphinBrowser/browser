@@ -96,6 +96,7 @@ public:
     int separatorRole() const;
 
     QAction *makeAction(const QIcon &icon, const QString &text, QObject *parent);
+    QModelIndex index(QAction *action);
 
 protected:
     // add any actions before the tree, return true if any actions are added.
