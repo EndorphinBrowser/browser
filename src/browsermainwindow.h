@@ -76,7 +76,6 @@ class ToolbarSearch;
 class WebView;
 class QSplitter;
 class QFrame;
-class QSignalMapper;
 
 /*!
     The MainWindow of the Browser Application.

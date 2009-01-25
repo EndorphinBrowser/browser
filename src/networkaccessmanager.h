@@ -73,11 +73,11 @@ class NetworkAccessManager : public QNetworkAccessManager
 
 public:
     NetworkAccessManager(QObject *parent = 0);
-    void setNetworkAccessEditor( NetworkAccessEditor *editor );
+    void setNetworkAccessEditor(NetworkAccessEditor *editor);
     NetworkAccessEditor *networkAccessEditor() const;
 
 protected:
-    virtual QNetworkReply * createRequest( QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData=0 );
+    QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0);
 
 public slots:
     void loadSettings();

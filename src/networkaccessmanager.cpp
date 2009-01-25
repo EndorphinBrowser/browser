@@ -109,7 +109,7 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
 #endif
 }
 
-void NetworkAccessManager::setNetworkAccessEditor( NetworkAccessEditor *editor )
+void NetworkAccessManager::setNetworkAccessEditor(NetworkAccessEditor *editor)
 {
     m_networkAccessEditor = editor;
 }
@@ -118,6 +118,7 @@ NetworkAccessEditor *NetworkAccessManager::networkAccessEditor() const
 {
     return m_networkAccessEditor;
 }
+
 void NetworkAccessManager::loadSettings()
 {
     QSettings settings;
@@ -251,18 +252,18 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
 }
 #endif
 
-QNetworkReply * NetworkAccessManager::createRequest( QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData )
+QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
 {
     QNetworkRequest actual;
-    if ( m_networkAccessEditor )
-        actual = m_networkAccessEditor->tamperRequest( op, req, outgoingData );
+    if (m_networkAccessEditor)
+        actual = m_networkAccessEditor->tamperRequest(op, request, outgoingData);
     else
-        actual = req;
+        actual = request;
 
-    QNetworkReply *reply = QNetworkAccessManager::createRequest( op, actual, outgoingData );
+    QNetworkReply *reply = QNetworkAccessManager::createRequest(op, actual, outgoingData);
 
-    if ( m_networkAccessEditor )
-        m_networkAccessEditor->addRequest( op, actual, outgoingData, reply );
+    if (m_networkAccessEditor)
+        m_networkAccessEditor->addRequest(op, actual, outgoingData, reply);
 
     return reply;
 }

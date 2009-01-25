@@ -1,9 +1,29 @@
-#include <qdebug.h>
+/*
+ * Copyright 2008-2009 Arora Developers
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA  02110-1301  USA
+ */
+
+#include "networkaccesseditor.h"
+
 #include <qnetworkrequest.h>
 #include <qnetworkreply.h>
 #include <qsignalmapper.h>
 
-#include "networkaccesseditor.h"
+#include <qdebug.h>
 
 NetworkAccessEditor::NetworkAccessEditor()
         : tamperingEnabled(false),
@@ -15,10 +35,12 @@ NetworkAccessEditor::NetworkAccessEditor()
     dialog->show();
 
     mapper = new QSignalMapper(this);
-    connect( mapper, SIGNAL(mapped(QObject *)), SLOT(requestFinished(QObject *)) );
+    connect(mapper, SIGNAL(mapped(QObject *)), SLOT(requestFinished(QObject *)));
 
-    connect( networkRequestsDialog->requestList, SIGNAL( currentItemChanged( QTreeWidgetItem*, QTreeWidgetItem* ) ), SLOT( showItemDetails( QTreeWidgetItem *) ) );
-    connect( networkRequestsDialog->clearButton, SIGNAL( clicked() ), SLOT( clear() ) );
+    connect(networkRequestsDialog->requestList, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem* )),
+            this, SLOT(showItemDetails(QTreeWidgetItem *)));
+    connect(networkRequestsDialog->clearButton, SIGNAL(clicked()),
+            this, SLOT(clear()));
 }
 
 NetworkAccessEditor::~NetworkAccessEditor()
@@ -27,9 +49,11 @@ NetworkAccessEditor::~NetworkAccessEditor()
     delete dialog;
 }
 
-QNetworkRequest NetworkAccessEditor::tamperRequest( QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData )
+QNetworkRequest NetworkAccessEditor::tamperRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData)
 {
-    if ( !tamperingEnabled)
+    Q_UNUSED(op);
+    Q_UNUSED(outgoingData);
+    if (!tamperingEnabled)
         return req;
 
     QNetworkRequest tampered( req );
@@ -37,21 +61,22 @@ QNetworkRequest NetworkAccessEditor::tamperRequest( QNetworkAccessManager::Opera
     return tampered;
 }
 
-void NetworkAccessEditor::addRequest( QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply )
+void NetworkAccessEditor::addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply)
 {
+    Q_UNUSED(outgoingData);
     // Add to list of requests
     QStringList cols;
-    switch( op ) {
-    case   QNetworkAccessManager::HeadOperation:
+    switch (op) {
+    case QNetworkAccessManager::HeadOperation:
         cols << QString::fromLatin1("HEAD");
         break;
-    case   QNetworkAccessManager::GetOperation:
+    case QNetworkAccessManager::GetOperation:
         cols << QString::fromLatin1("GET");
         break;
     case   QNetworkAccessManager::PutOperation:
         cols << QString::fromLatin1("PUT");
         break;
-    case   QNetworkAccessManager::PostOperation:
+    case QNetworkAccessManager::PostOperation:
         cols << QString::fromLatin1("POST");
         break;
     default:
@@ -96,7 +121,7 @@ void NetworkAccessEditor::clear()
 void NetworkAccessEditor::requestFinished( QObject *replyObject )
 {
     QNetworkReply *reply = qobject_cast<QNetworkReply *>( replyObject );
-    if ( !reply ) {
+    if (!reply) {
         qWarning() << "Failed to downcast reply";
         return;
     }
@@ -131,7 +156,7 @@ void NetworkAccessEditor::requestFinished( QObject *replyObject )
     }
 }
 
-void NetworkAccessEditor::showItemDetails( QTreeWidgetItem *item )
+void NetworkAccessEditor::showItemDetails(QTreeWidgetItem *item)
 {
     // Show request details
     QTreeWidget *reqTree = networkRequestsDialog->requestDetails;
@@ -151,7 +176,7 @@ void NetworkAccessEditor::showItemDetails( QTreeWidgetItem *item )
     respTree->clear();
 
     QPair< QList<QByteArray>, QList<QByteArray> > replyHeaders = itemReplyMap[item];
-    for ( int i = 0; i < replyHeaders.first.count(); i++ ) {
+    for (int i = 0; i < replyHeaders.first.count(); ++i) {
         QTreeWidgetItem *item = new QTreeWidgetItem();
         item->setText( 0, QString::fromLatin1( replyHeaders.first[i] ) );
         item->setText( 1, QString::fromLatin1( replyHeaders.second[i] ) );
