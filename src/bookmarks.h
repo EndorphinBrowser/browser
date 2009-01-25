@@ -308,8 +308,8 @@ private slots:
     void open(TabWidget::Tab tab);
     void openInNewTab();
     void openInCurrentTab();
-    void rename();
-    void changeURL();
+    void editName();
+    void editAddress();
     void newFolder();
 
 private:
