@@ -1185,7 +1185,7 @@ void BrowserMainWindow::geometryChangeRequested(const QRect &geometry)
 
 void BrowserMainWindow::showNetworkMonitor()
 {
-    NetworkMonitor *monitor = new NetworkMonitor(this);
+    NetworkMonitor *monitor = NetworkMonitor::self();
     monitor->show();
 }
 

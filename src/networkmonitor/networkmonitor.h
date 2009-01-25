@@ -27,21 +27,26 @@
 
 class RequestModel;
 class QStandardItemModel;
+class QSortFilterProxyModel;
 class NetworkMonitor : public QDialog, public Ui_NetworkMonitorDialog
 {
     Q_OBJECT
 
-public:
+protected:
     NetworkMonitor(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    static NetworkMonitor *m_self;
 
 private slots:
-    void clear();
-    void clicked(const QModelIndex &index);
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous);
+
+public:
+    static NetworkMonitor *self();
 
 private:
-    RequestModel *model;
-    QStandardItemModel *requestHeaders;
-    QStandardItemModel *replyHeaders;
+    QSortFilterProxyModel *m_proxyModel;
+    RequestModel *m_model;
+    QStandardItemModel *m_requestHeaders;
+    QStandardItemModel *m_replyHeaders;
 };
 
 #include <qnetworkrequest.h>
@@ -65,13 +70,13 @@ class RequestModel : public QAbstractTableModel
 
 public:
     RequestModel(QObject *parent = 0);
-    void clear();
 
     void addRequest(const Request &request);
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    bool removeRows(int row, int count, const QModelIndex &parent);
 
 private slots:
     void requestCreated(QNetworkAccessManager::Operation op, const QNetworkRequest &req, QNetworkReply *reply);
@@ -79,7 +84,8 @@ private slots:
 
 private:
     friend class NetworkMonitor;
-    QList<Request> requests;
+    QList<Request> m_requests;
 };
 
 #endif // NETWORKMONITOR_H
+
