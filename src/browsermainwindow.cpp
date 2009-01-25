@@ -343,7 +343,7 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
 
     statusBar()->setVisible(showStatusbar);
     updateStatusbarActionText(showStatusbar);
-    
+
     m_statusBarVisible = showStatusbar;
 
     m_navigationSplitter->restoreState(splitterState);
@@ -645,7 +645,7 @@ void BrowserMainWindow::slotAddBookmark()
 void BrowserMainWindow::slotViewMenuBar()
 {
     menuBar()->setVisible(!menuBar()->isVisible());
-    
+
     m_menuBarVisible = menuBar()->isVisible();
 }
 
@@ -976,12 +976,12 @@ void BrowserMainWindow::slotViewFullScreen(bool makeFullScreen)
 {
     if (makeFullScreen) {
         setWindowState(windowState() | Qt::WindowFullScreen);
-        
+
         menuBar()->hide();
         statusBar()->hide();
     } else {
         setWindowState(windowState() & ~Qt::WindowFullScreen);
-        
+
         menuBar()->setVisible(m_menuBarVisible);
         statusBar()->setVisible(m_statusBarVisible);
     }
