@@ -32,7 +32,6 @@ FORMS += \
     downloaditem.ui \
     downloads.ui \
     history.ui \
-    networkrequests.ui \
     passworddialog.ui \
     proxy.ui \
     searchbanner.ui \
@@ -52,7 +51,6 @@ HEADERS += \
     locationbar_p.h \
     languagemanager.h \
     modelmenu.h \
-    networkaccesseditor.h \
     networkaccessmanager.h \
     plaintexteditsearch.h \
     searchbar.h \
@@ -81,7 +79,6 @@ SOURCES += \
     locationbar.cpp \
     languagemanager.cpp \
     modelmenu.cpp \
-    networkaccesseditor.cpp \
     networkaccessmanager.cpp \
     plaintexteditsearch.cpp \
     searchbar.cpp \
@@ -97,6 +94,7 @@ SOURCES += \
     webviewsearch.cpp \
     xbel.cpp
 
+include(networkmonitor/networkmonitor.pri)
 include(cookiejar/cookiejar.pri)
 include(utils/utils.pri)
 
