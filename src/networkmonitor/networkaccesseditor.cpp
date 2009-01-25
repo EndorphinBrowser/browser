@@ -25,9 +25,10 @@
 
 #include <qdebug.h>
 
-NetworkAccessEditor::NetworkAccessEditor()
-        : tamperingEnabled(false),
-          interactiveTamperingEnabled(false)
+NetworkAccessEditor::NetworkAccessEditor(QObject *parent)
+    : QObject(parent)
+    , tamperingEnabled(false)
+    , interactiveTamperingEnabled(false)
 {
     dialog = new QDialog();
     networkRequestsDialog = new Ui::NetworkRequestsDialog;

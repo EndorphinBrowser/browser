@@ -39,7 +39,7 @@ class NetworkAccessEditor : public QObject
     Q_OBJECT
 
 public:
-    NetworkAccessEditor();
+    NetworkAccessEditor(QObject *parent = 0);
     ~NetworkAccessEditor();
 
     QNetworkRequest tamperRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData);

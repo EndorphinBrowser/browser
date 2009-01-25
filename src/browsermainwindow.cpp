@@ -1190,7 +1190,9 @@ void BrowserMainWindow::slotToggleNetworkAccessEditor( bool enabled )
     NetworkAccessManager *manager = BrowserApplication::networkAccessManager();
 
     if ( enabled ) {
-        NetworkAccessEditor *editor = BrowserApplication::networkAccessEditor();
+        NetworkAccessEditor *editor = manager->networkAccessEditor();
+        if (!editor)
+            editor = new NetworkAccessEditor(manager);
         manager->setNetworkAccessEditor( editor );
         editor->show();
         return;

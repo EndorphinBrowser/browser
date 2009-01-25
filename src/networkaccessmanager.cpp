@@ -87,8 +87,8 @@
 #include "networkaccesseditor.h"
 
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
-    : QNetworkAccessManager(parent),
-      m_networkAccessEditor(0)
+    : QNetworkAccessManager(parent)
+    , m_networkAccessEditor(0)
 {
     connect(this, SIGNAL(authenticationRequired(QNetworkReply*, QAuthenticator*)),
             SLOT(authenticationRequired(QNetworkReply*, QAuthenticator*)));

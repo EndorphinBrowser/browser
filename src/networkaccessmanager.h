@@ -88,6 +88,7 @@ private slots:
 #ifndef QT_NO_OPENSSL
     void sslErrors(QNetworkReply *reply, const QList<QSslError> &error);
 #endif
+
 private:
     NetworkAccessEditor *m_networkAccessEditor;
 };
