@@ -65,7 +65,7 @@
 
 #include <qnetworkaccessmanager.h>
 
-class NetworkAccessEditor;
+class NetworkMonitor;
 
 class NetworkAccessManager : public QNetworkAccessManager
 {
@@ -73,8 +73,8 @@ class NetworkAccessManager : public QNetworkAccessManager
 
 public:
     NetworkAccessManager(QObject *parent = 0);
-    void setNetworkAccessEditor(NetworkAccessEditor *editor);
-    NetworkAccessEditor *networkAccessEditor() const;
+    void setNetworkMonitor(NetworkMonitor *editor);
+    NetworkMonitor *networkMonitor() const;
 
 protected:
     QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0);
@@ -90,7 +90,7 @@ private slots:
 #endif
 
 private:
-    NetworkAccessEditor *m_networkAccessEditor;
+    NetworkMonitor *m_networkMonitor;
 };
 
 #endif // NETWORKACCESSMANAGER_H

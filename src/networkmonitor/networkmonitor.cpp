@@ -17,7 +17,7 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include "networkaccesseditor.h"
+#include "networkmonitor.h"
 
 #include <qnetworkrequest.h>
 #include <qnetworkreply.h>
@@ -25,7 +25,7 @@
 
 #include <qdebug.h>
 
-NetworkAccessEditor::NetworkAccessEditor(QObject *parent)
+NetworkMonitor::NetworkMonitor(QObject *parent)
     : QObject(parent)
     , interactiveTamperingEnabled(false)
 {
@@ -43,13 +43,13 @@ NetworkAccessEditor::NetworkAccessEditor(QObject *parent)
             this, SLOT(clear()));
 }
 
-NetworkAccessEditor::~NetworkAccessEditor()
+NetworkMonitor::~NetworkMonitor()
 {
     delete networkRequestsDialog;
     delete dialog;
 }
 
-void NetworkAccessEditor::addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply)
+void NetworkMonitor::addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply)
 {
     Q_UNUSED(outgoingData);
     // Add to list of requests
@@ -85,17 +85,17 @@ void NetworkAccessEditor::addRequest(QNetworkAccessManager::Operation op, const 
     connect( reply, SIGNAL( finished() ), mapper, SLOT( map() ) );
 }
 
-void NetworkAccessEditor::show()
+void NetworkMonitor::show()
 {
     dialog->show();
 }
 
-void NetworkAccessEditor::hide()
+void NetworkMonitor::hide()
 {
     dialog->hide();
 }
 
-void NetworkAccessEditor::clear()
+void NetworkMonitor::clear()
 {
     requestMap.clear();
     itemMap.clear();
@@ -106,7 +106,7 @@ void NetworkAccessEditor::clear()
     networkRequestsDialog->responseDetails->clear();
 }
 
-void NetworkAccessEditor::requestFinished( QObject *replyObject )
+void NetworkMonitor::requestFinished( QObject *replyObject )
 {
     QNetworkReply *reply = qobject_cast<QNetworkReply *>( replyObject );
     if (!reply) {
@@ -144,7 +144,7 @@ void NetworkAccessEditor::requestFinished( QObject *replyObject )
     }
 }
 
-void NetworkAccessEditor::showItemDetails(QTreeWidgetItem *item)
+void NetworkMonitor::showItemDetails(QTreeWidgetItem *item)
 {
     // Show request details
     QTreeWidget *reqTree = networkRequestsDialog->requestDetails;

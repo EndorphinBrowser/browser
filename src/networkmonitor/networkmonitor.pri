@@ -2,11 +2,11 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 HEADERS += \
-  networkaccesseditor.h
+  networkmonitor.h
 
 SOURCES += \
-  networkaccesseditor.cpp
+  networkmonitor.cpp
 
 FORMS += \
-    networkrequests.ui
+    networkmonitor.ui
 

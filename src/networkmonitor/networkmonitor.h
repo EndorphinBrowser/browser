@@ -17,8 +17,8 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef NETWORKACCESSEDITOR_H
-#define NETWORKACCESSEDITOR_H
+#ifndef NETWORKMONITOR_H
+#define NETWORKMONITOR_H
 
 #include <qobject.h>
 
@@ -28,19 +28,19 @@
 #include <qbytearray.h>
 #include <qnetworkaccessmanager.h>
 
-#include "ui_networkrequests.h"
+#include "ui_networkmonitor.h"
 
 class QDialog;
 class QTreeWidgetItem;
 class QSignalMapper;
 
-class NetworkAccessEditor : public QObject
+class NetworkMonitor : public QObject
 {
     Q_OBJECT
 
 public:
-    NetworkAccessEditor(QObject *parent = 0);
-    ~NetworkAccessEditor();
+    NetworkMonitor(QObject *parent = 0);
+    ~NetworkMonitor();
 
     void addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply);
 
@@ -63,4 +63,4 @@ private:
     bool interactiveTamperingEnabled;
 };
 
-#endif // NETWORKACCESSEDITOR_H
+#endif // NETWORKMONITOR_H

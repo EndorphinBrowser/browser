@@ -64,6 +64,7 @@
 
 #include "browserapplication.h"
 #include "browsermainwindow.h"
+#include "networkmonitor.h"
 #include "ui_passworddialog.h"
 #include "ui_proxy.h"
 
@@ -84,11 +85,9 @@
 #include <qdesktopservices.h>
 #endif
 
-#include "networkaccesseditor.h"
-
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
     : QNetworkAccessManager(parent)
-    , m_networkAccessEditor(0)
+    , m_networkMonitor(0)
 {
     connect(this, SIGNAL(authenticationRequired(QNetworkReply*, QAuthenticator*)),
             SLOT(authenticationRequired(QNetworkReply*, QAuthenticator*)));
@@ -109,14 +108,14 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
 #endif
 }
 
-void NetworkAccessManager::setNetworkAccessEditor(NetworkAccessEditor *editor)
+void NetworkAccessManager::setNetworkMonitor(NetworkMonitor *editor)
 {
-    m_networkAccessEditor = editor;
+    m_networkMonitor = editor;
 }
 
-NetworkAccessEditor *NetworkAccessManager::networkAccessEditor() const
+NetworkMonitor *NetworkAccessManager::networkMonitor() const
 {
-    return m_networkAccessEditor;
+    return m_networkMonitor;
 }
 
 void NetworkAccessManager::loadSettings()
@@ -256,8 +255,8 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
 {
     QNetworkReply *reply = QNetworkAccessManager::createRequest(op, request, outgoingData);
 
-    if (m_networkAccessEditor)
-        m_networkAccessEditor->addRequest(op, request, outgoingData, reply);
+    if (m_networkMonitor)
+        m_networkMonitor->addRequest(op, request, outgoingData, reply);
 
     return reply;
 }
