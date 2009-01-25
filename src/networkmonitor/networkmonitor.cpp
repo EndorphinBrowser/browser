@@ -19,9 +19,13 @@
 
 #include "networkmonitor.h"
 
+#include "browserapplication.h"
+#include "networkaccessmanager.h"
+
 #include <qnetworkrequest.h>
 #include <qnetworkreply.h>
 #include <qstandarditemmodel.h>
+#include <qheaderview.h>
 
 #include <qdebug.h>
 
@@ -30,7 +34,6 @@ NetworkMonitor::NetworkMonitor(QWidget *parent, Qt::WindowFlags flags)
 {
     setupUi(this);
     requestList->setSelectionBehavior(QAbstractItemView::SelectRows);
-
     requestHeaders = new QStandardItemModel(this);
     requestHeaders->setHorizontalHeaderLabels(QStringList() << tr("Name") << tr("Value"));
     requestDetailsView->setModel(requestHeaders);
@@ -53,7 +56,6 @@ NetworkMonitor::NetworkMonitor(QWidget *parent, Qt::WindowFlags flags)
     requestList->horizontalHeader()->resizeSection(1, m * 20);
     requestList->horizontalHeader()->resizeSection(3, m * 5);
     requestList->horizontalHeader()->resizeSection(4, m * 15);
-    setModal(false);
 }
 
 void NetworkMonitor::clear()
@@ -61,17 +63,6 @@ void NetworkMonitor::clear()
     model->clear();
     requestHeaders->setRowCount(0);
     replyHeaders->setRowCount(0);
-}
-
-void NetworkMonitor::addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply)
-{
-    Q_UNUSED(outgoingData);
-    Request r;
-    r.op = op;
-    r.request = req;
-    r.reply = reply;
-    r.length = 0;
-    model->addRequest(r);
 }
 
 void NetworkMonitor::clicked(const QModelIndex &index)
@@ -106,6 +97,9 @@ void NetworkMonitor::clicked(const QModelIndex &index)
 RequestModel::RequestModel(QObject *parent)
     : QAbstractTableModel(parent)
 {
+    NetworkAccessManager *manager = BrowserApplication::networkAccessManager();
+    connect(manager, SIGNAL(requestCreated(QNetworkAccessManager::Operation, const QNetworkRequest &, QNetworkReply *)),
+            this, SLOT(requestCreated(QNetworkAccessManager::Operation, const QNetworkRequest &, QNetworkReply *)));
 }
 
 void RequestModel::clear()
@@ -114,7 +108,17 @@ void RequestModel::clear()
     reset();
 }
 
-void RequestModel::addRequest(Request request)
+void RequestModel::requestCreated(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QNetworkReply *reply)
+{
+    Request request;
+    request.op = op;
+    request.request = req;
+    request.reply = reply;
+    request.length = 0;
+    addRequest(request);
+}
+
+void RequestModel::addRequest(const Request &request)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     requests.append(request);

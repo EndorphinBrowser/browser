@@ -564,9 +564,7 @@ void BrowserMainWindow::setupMenu()
                          QKeySequence(tr("Ctrl+K", "Web Search")));
     toolsMenu->addAction(tr("&Clear Private Data"), this, SLOT(slotClearPrivateData()),
                          QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
-
-    QAction *networkEditorAction = toolsMenu->addAction(tr("Show &Network Monitor"), this, SLOT(toggleNetworkMonitor(bool)) );
-    networkEditorAction->setCheckable( true );
+    toolsMenu->addAction(tr("Show &Network Monitor"), this, SLOT(showNetworkMonitor()) );
 
 #ifndef Q_CC_MINGW
     QAction *m_enableInspector = toolsMenu->addAction(tr("Enable Web &Inspector"), this, SLOT(slotToggleInspector(bool)));
@@ -1185,21 +1183,9 @@ void BrowserMainWindow::geometryChangeRequested(const QRect &geometry)
     setGeometry(geometry);
 }
 
-void BrowserMainWindow::toggleNetworkMonitor(bool enabled)
+void BrowserMainWindow::showNetworkMonitor()
 {
-    NetworkAccessManager *manager = BrowserApplication::networkAccessManager();
-    NetworkMonitor *monitor = manager->networkMonitor();
-
-    if (enabled) {
-        if (!monitor) {
-            monitor = new NetworkMonitor(this);
-            manager->setNetworkMonitor(monitor);
-        }
-        monitor->show();
-    } else if (monitor) {
-        monitor->hide();
-        manager->setNetworkMonitor(0);
-        monitor->deleteLater();
-    }
+    NetworkMonitor *monitor = new NetworkMonitor(this);
+    monitor->show();
 }
 

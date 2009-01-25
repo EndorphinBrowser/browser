@@ -85,10 +85,6 @@
     </widget>
    </item>
   </layout>
-  <zorder>splitter</zorder>
-  <zorder>label</zorder>
-  <zorder>clearButton</zorder>
-  <zorder>requestList</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -34,8 +34,6 @@ class NetworkMonitor : public QDialog, public Ui_NetworkMonitorDialog
 public:
     NetworkMonitor(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
-    void addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply);
-
 private slots:
     void clear();
     void clicked(const QModelIndex &index);
@@ -68,14 +66,15 @@ class RequestModel : public QAbstractTableModel
 public:
     RequestModel(QObject *parent = 0);
     void clear();
-    void addRequest(Request request);
 
+    void addRequest(const Request &request);
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
 
 private slots:
+    void requestCreated(QNetworkAccessManager::Operation op, const QNetworkRequest &req, QNetworkReply *reply);
     void update();
 
 private:

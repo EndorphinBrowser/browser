@@ -65,16 +65,15 @@
 
 #include <qnetworkaccessmanager.h>
 
-class NetworkMonitor;
-
 class NetworkAccessManager : public QNetworkAccessManager
 {
     Q_OBJECT
 
+signals:
+    void requestCreated(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QNetworkReply *reply);
+
 public:
     NetworkAccessManager(QObject *parent = 0);
-    void setNetworkMonitor(NetworkMonitor *editor);
-    NetworkMonitor *networkMonitor() const;
 
 protected:
     QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0);
@@ -89,8 +88,6 @@ private slots:
     void sslErrors(QNetworkReply *reply, const QList<QSslError> &error);
 #endif
 
-private:
-    NetworkMonitor *m_networkMonitor;
 };
 
 #endif // NETWORKACCESSMANAGER_H
