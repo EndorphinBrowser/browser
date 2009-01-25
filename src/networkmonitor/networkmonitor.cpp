@@ -21,154 +21,208 @@
 
 #include <qnetworkrequest.h>
 #include <qnetworkreply.h>
-#include <qsignalmapper.h>
+#include <qstandarditemmodel.h>
 
 #include <qdebug.h>
 
-NetworkMonitor::NetworkMonitor(QObject *parent)
-    : QObject(parent)
-    , interactiveTamperingEnabled(false)
+NetworkMonitor::NetworkMonitor(QWidget *parent, Qt::WindowFlags flags)
+    : QDialog(parent, flags)
 {
-    dialog = new QDialog();
-    networkRequestsDialog = new Ui::NetworkRequestsDialog;
-    networkRequestsDialog->setupUi(dialog);
-    dialog->show();
+    setupUi(this);
+    requestList->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    mapper = new QSignalMapper(this);
-    connect(mapper, SIGNAL(mapped(QObject *)), SLOT(requestFinished(QObject *)));
+    requestHeaders = new QStandardItemModel(this);
+    requestHeaders->setHorizontalHeaderLabels(QStringList() << tr("Name") << tr("Value"));
+    requestDetailsView->setModel(requestHeaders);
+    replyHeaders = new QStandardItemModel(this);
+    replyHeaders->setHorizontalHeaderLabels(QStringList() << tr("Name") << tr("Value"));
+    responseDetailsView->setModel(replyHeaders);
+    requestDetailsView->horizontalHeader()->setStretchLastSection(true);
+    responseDetailsView->horizontalHeader()->setStretchLastSection(true);
 
-    connect(networkRequestsDialog->requestList, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem* )),
-            this, SLOT(showItemDetails(QTreeWidgetItem *)));
-    connect(networkRequestsDialog->clearButton, SIGNAL(clicked()),
+    connect(requestList, SIGNAL(clicked(const QModelIndex &)),
+            this, SLOT(clicked(const QModelIndex &)));
+    connect(clearButton, SIGNAL(clicked()),
             this, SLOT(clear()));
+    model = new RequestModel(this);
+    requestList->setModel(model);
+
+    QFontMetrics fm = fontMetrics();
+    int m = fm.width(QLatin1Char('m'));
+    requestList->horizontalHeader()->resizeSection(0, m * 5);
+    requestList->horizontalHeader()->resizeSection(1, m * 20);
+    requestList->horizontalHeader()->resizeSection(3, m * 5);
+    requestList->horizontalHeader()->resizeSection(4, m * 15);
+    setModal(false);
 }
 
-NetworkMonitor::~NetworkMonitor()
+void NetworkMonitor::clear()
 {
-    delete networkRequestsDialog;
-    delete dialog;
+    model->clear();
+    requestHeaders->setRowCount(0);
+    replyHeaders->setRowCount(0);
 }
 
 void NetworkMonitor::addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply)
 {
     Q_UNUSED(outgoingData);
-    // Add to list of requests
-    QStringList cols;
-    switch (op) {
-    case QNetworkAccessManager::HeadOperation:
-        cols << QString::fromLatin1("HEAD");
-        break;
-    case QNetworkAccessManager::GetOperation:
-        cols << QString::fromLatin1("GET");
-        break;
-    case   QNetworkAccessManager::PutOperation:
-        cols << QString::fromLatin1("PUT");
-        break;
-    case QNetworkAccessManager::PostOperation:
-        cols << QString::fromLatin1("POST");
-        break;
-    default:
-        qWarning() << "Unknown network operation";
-    }
-    cols << req.url().toString();
-    cols << tr("Pending");
-
-    QTreeWidgetItem *item = new QTreeWidgetItem( cols );
-    networkRequestsDialog->requestList->addTopLevelItem( item );
-
-    // Add to maps
-    requestMap.insert( reply, req );
-    itemMap.insert( reply, item );
-    itemRequestMap.insert( item, req );
-
-    mapper->setMapping( reply, reply );
-    connect( reply, SIGNAL( finished() ), mapper, SLOT( map() ) );
+    Request r;
+    r.op = op;
+    r.request = req;
+    r.reply = reply;
+    r.length = 0;
+    model->addRequest(r);
 }
 
-void NetworkMonitor::show()
+void NetworkMonitor::clicked(const QModelIndex &index)
 {
-    dialog->show();
-}
+    requestHeaders->setRowCount(0);
+    replyHeaders->setRowCount(0);
 
-void NetworkMonitor::hide()
-{
-    dialog->hide();
-}
-
-void NetworkMonitor::clear()
-{
-    requestMap.clear();
-    itemMap.clear();
-    itemReplyMap.clear();
-    itemRequestMap.clear();
-    networkRequestsDialog->requestList->clear();
-    networkRequestsDialog->requestDetails->clear();
-    networkRequestsDialog->responseDetails->clear();
-}
-
-void NetworkMonitor::requestFinished( QObject *replyObject )
-{
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>( replyObject );
-    if (!reply) {
-        qWarning() << "Failed to downcast reply";
+    if (!index.isValid())
         return;
+
+    QNetworkRequest req = model->requests[index.row()].request;
+
+    foreach(const QByteArray &header, req.rawHeaderList()) {
+        requestHeaders->insertRows(0, 1, QModelIndex());
+        requestHeaders->setData(requestHeaders->index(0, 0), QString::fromLatin1(header));
+        requestHeaders->setData(requestHeaders->index(0, 1), QString::fromLatin1(req.rawHeader(header)));
+        requestHeaders->item(0, 0)->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        requestHeaders->item(0, 1)->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
     }
 
-    QTreeWidgetItem *item = itemMap[reply];
-
-    // Record the reply headers
-    QList<QByteArray> headerValues;
-    QByteArray header;
-    foreach( header, reply->rawHeaderList() ) {
-        headerValues += reply->rawHeader( header );
-    }
-    QPair< QList<QByteArray>, QList<QByteArray> > replyHeaders;
-    replyHeaders.first = reply->rawHeaderList();
-    replyHeaders.second = headerValues;
-    itemReplyMap[item] = replyHeaders;
-
-    // Display the request
-    int status = reply->attribute( QNetworkRequest::HttpStatusCodeAttribute ).toInt();
-    QString reason = reply->attribute( QNetworkRequest::HttpReasonPhraseAttribute ).toString();
-    item->setText( 2, tr("%1 %2").arg(status).arg(reason) );
-
-    QString length = reply->header( QNetworkRequest::ContentLengthHeader ).toString();
-    item->setText( 3, length );
-
-    QString contentType = reply->header( QNetworkRequest::ContentTypeHeader ).toString();
-    item->setText( 4, contentType );
-
-    if ( status == 302 ) {
-        QUrl target = reply->attribute( QNetworkRequest::RedirectionTargetAttribute ).toUrl();
-        item->setText( 5, tr("Redirect: %1").arg( target.toString() ) );
+    for (int i = 0; i < model->requests[index.row()].replyHeaders.count(); ++i) {
+        QByteArray first = model->requests[index.row()].replyHeaders[i].first;
+        QByteArray second = model->requests[index.row()].replyHeaders[i].second;
+        replyHeaders->insertRows(0, 1, QModelIndex());
+        replyHeaders->setData(replyHeaders->index(0, 0), first);
+        replyHeaders->setData(replyHeaders->index(0, 1), second);
+        replyHeaders->item(0, 0)->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        replyHeaders->item(0, 1)->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
     }
 }
 
-void NetworkMonitor::showItemDetails(QTreeWidgetItem *item)
+RequestModel::RequestModel(QObject *parent)
+    : QAbstractTableModel(parent)
 {
-    // Show request details
-    QTreeWidget *reqTree = networkRequestsDialog->requestDetails;
-    reqTree->clear();
+}
 
-    QNetworkRequest req = itemRequestMap[item];
+void RequestModel::clear()
+{
+    requests.clear();
+    reset();
+}
+
+void RequestModel::addRequest(Request request)
+{
+    beginInsertRows(QModelIndex(), rowCount(), rowCount());
+    requests.append(request);
+    connect(request.reply, SIGNAL(finished()),
+            this, SLOT(update()));
+    endInsertRows();
+}
+
+void RequestModel::update()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    if (!reply)
+        return;
+
+    int offset;
+    for (offset = requests.count() - 1; offset >= 0; --offset) {
+        if (requests[offset].reply == reply)
+            break;
+    }
+    if (offset < 0)
+        return;
+
+    // Save reply headers
     QByteArray header;
-    foreach( header, req.rawHeaderList() ) {
-        QTreeWidgetItem *item = new QTreeWidgetItem();
-        item->setText( 0, QString::fromLatin1( header ) );
-        item->setText( 1, QString::fromLatin1( req.rawHeader( header ) ) );
-        reqTree->addTopLevelItem( item );
+    foreach(header, reply->rawHeaderList() ) {
+        QPair<QByteArray, QByteArray> pair(header, reply->rawHeader(header));
+        requests[offset].replyHeaders.append(pair);
     }
 
-    // Show reply headers
-    QTreeWidget *respTree = networkRequestsDialog->responseDetails;
-    respTree->clear();
+    // Save reply info to be displayed
+    int status = reply->attribute( QNetworkRequest::HttpStatusCodeAttribute ).toInt();
+    QString reason = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
+    requests[offset].response = QString(QLatin1String("%1 %2")).arg(status).arg(reason);
+    requests[offset].length = reply->header(QNetworkRequest::ContentLengthHeader).toInt();
+    requests[offset].contentType = reply->header(QNetworkRequest::ContentTypeHeader).toString();
 
-    QPair< QList<QByteArray>, QList<QByteArray> > replyHeaders = itemReplyMap[item];
-    for (int i = 0; i < replyHeaders.first.count(); ++i) {
-        QTreeWidgetItem *item = new QTreeWidgetItem();
-        item->setText( 0, QString::fromLatin1( replyHeaders.first[i] ) );
-        item->setText( 1, QString::fromLatin1( replyHeaders.second[i] ) );
-        respTree->addTopLevelItem( item );
+    if (status == 302) {
+        QUrl target = reply->attribute( QNetworkRequest::RedirectionTargetAttribute ).toUrl();
+        requests[offset].info = tr("Redirect: %1").arg(target.toString());
     }
 }
+
+QVariant RequestModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
+        switch (section) {
+        case 0: return tr("Method");
+        case 1: return tr("Address");
+        case 2: return tr("Response");
+        case 3: return tr("Length");
+        case 4: return tr("Content Type");
+        case 5: return tr("Info");
+        }
+    }
+    return QAbstractItemModel::headerData(section, orientation, role);
+}
+
+QVariant RequestModel::data(const QModelIndex &index, int role) const
+{
+    if (index.row() < 0 || index.row() >= requests.size())
+        return QVariant();
+
+    switch (role) {
+    case Qt::DisplayRole:
+    case Qt::EditRole: {
+        switch (index.column()) {
+        case 0:
+            switch (requests[index.row()].op) {
+                case QNetworkAccessManager::HeadOperation:
+                    return QLatin1String("HEAD");
+                    break;
+                case QNetworkAccessManager::GetOperation:
+                    return QLatin1String("GET");
+                    break;
+                case   QNetworkAccessManager::PutOperation:
+                    return QLatin1String("PUT");
+                    break;
+                case QNetworkAccessManager::PostOperation:
+                    return QLatin1String("POST");
+                    break;
+                default:
+                    return QLatin1String("Unknown");
+            }
+        case 1:
+            return requests[index.row()].request.url().toEncoded();
+        case 2:
+            return requests[index.row()].response;
+        case 3:
+            return requests[index.row()].length;
+        case 4:
+            return requests[index.row()].contentType;
+        case 5:
+            return requests[index.row()].info;
+
+        }
+        }
+    }
+    return QVariant();
+}
+
+int RequestModel::columnCount(const QModelIndex &parent) const
+{
+    return (parent.column() > 0) ? 0 : 6;
+}
+
+int RequestModel::rowCount(const QModelIndex &parent) const
+{
+    return (parent.isValid()) ? 0 : requests.count();
+}
+
 

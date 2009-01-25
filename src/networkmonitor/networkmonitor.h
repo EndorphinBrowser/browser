@@ -20,47 +20,67 @@
 #ifndef NETWORKMONITOR_H
 #define NETWORKMONITOR_H
 
-#include <qobject.h>
+#include "ui_networkmonitor.h"
+#include <qdialog.h>
 
-#include <qmap.h>
-#include <qpair.h>
-#include <qlist.h>
-#include <qbytearray.h>
 #include <qnetworkaccessmanager.h>
 
-#include "ui_networkmonitor.h"
-
-class QDialog;
-class QTreeWidgetItem;
-class QSignalMapper;
-
-class NetworkMonitor : public QObject
+class RequestModel;
+class QStandardItemModel;
+class NetworkMonitor : public QDialog, public Ui_NetworkMonitorDialog
 {
     Q_OBJECT
 
 public:
-    NetworkMonitor(QObject *parent = 0);
-    ~NetworkMonitor();
+    NetworkMonitor(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
     void addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply);
 
-    void show();
-    void hide();
-
 private slots:
     void clear();
-    void requestFinished(QObject *replyObject);
-    void showItemDetails(QTreeWidgetItem *item);
+    void clicked(const QModelIndex &index);
 
 private:
-    QDialog *dialog;
-    Ui::NetworkRequestsDialog *networkRequestsDialog;
-    QMap<QNetworkReply *, QNetworkRequest> requestMap;
-    QMap<QTreeWidgetItem *, QNetworkRequest> itemRequestMap;
-    QMap<QNetworkReply *, QTreeWidgetItem *> itemMap;
-    QMap<QTreeWidgetItem *, QPair< QList<QByteArray>, QList<QByteArray> > > itemReplyMap;
-    QSignalMapper *mapper;
-    bool interactiveTamperingEnabled;
+    RequestModel *model;
+    QStandardItemModel *requestHeaders;
+    QStandardItemModel *replyHeaders;
+};
+
+#include <qnetworkrequest.h>
+
+class Request {
+public:
+    QNetworkAccessManager::Operation op;
+    QNetworkRequest request;
+    QNetworkReply *reply;
+
+    QString response;
+    int length;
+    QString contentType;
+    QString info;
+    QList<QPair<QByteArray, QByteArray> > replyHeaders;
+};
+
+class RequestModel : public QAbstractTableModel
+{
+    Q_OBJECT
+
+public:
+    RequestModel(QObject *parent = 0);
+    void clear();
+    void addRequest(Request request);
+
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+
+private slots:
+    void update();
+
+private:
+    friend class NetworkMonitor;
+    QList<Request> requests;
 };
 
 #endif // NETWORKMONITOR_H

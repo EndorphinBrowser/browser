@@ -1192,7 +1192,7 @@ void BrowserMainWindow::toggleNetworkMonitor(bool enabled)
 
     if (enabled) {
         if (!monitor) {
-            monitor = new NetworkMonitor(manager);
+            monitor = new NetworkMonitor(this);
             manager->setNetworkMonitor(monitor);
         }
         monitor->show();
