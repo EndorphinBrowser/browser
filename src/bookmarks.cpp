@@ -592,6 +592,7 @@ QMimeData *BookmarksModel::mimeData(const QModelIndexList &indexes) const
     QMimeData *mimeData = new QMimeData();
     QByteArray data;
     QDataStream stream(&data, QIODevice::WriteOnly);
+    QList<QUrl> urls;
     foreach (const QModelIndex &index, indexes) {
         if (index.column() != 0 || !index.isValid())
             continue;
@@ -602,8 +603,10 @@ QMimeData *BookmarksModel::mimeData(const QModelIndexList &indexes) const
         const BookmarkNode *parentNode = node(index);
         writer.write(&buffer, parentNode);
         stream << encodedData;
+        urls.append(index.data(BookmarksModel::UrlRole).toUrl());
     }
     mimeData->setData(MIMETYPE, data);
+    mimeData->setUrls(urls);
     return mimeData;
 }
 
