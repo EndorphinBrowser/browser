@@ -42,7 +42,6 @@ public:
     NetworkAccessEditor(QObject *parent = 0);
     ~NetworkAccessEditor();
 
-    QNetworkRequest tamperRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData);
     void addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply);
 
     void show();
@@ -61,7 +60,6 @@ private:
     QMap<QNetworkReply *, QTreeWidgetItem *> itemMap;
     QMap<QTreeWidgetItem *, QPair< QList<QByteArray>, QList<QByteArray> > > itemReplyMap;
     QSignalMapper *mapper;
-    bool tamperingEnabled;
     bool interactiveTamperingEnabled;
 };
 

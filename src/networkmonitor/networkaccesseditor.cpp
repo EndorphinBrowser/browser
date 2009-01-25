@@ -27,7 +27,6 @@
 
 NetworkAccessEditor::NetworkAccessEditor(QObject *parent)
     : QObject(parent)
-    , tamperingEnabled(false)
     , interactiveTamperingEnabled(false)
 {
     dialog = new QDialog();
@@ -48,18 +47,6 @@ NetworkAccessEditor::~NetworkAccessEditor()
 {
     delete networkRequestsDialog;
     delete dialog;
-}
-
-QNetworkRequest NetworkAccessEditor::tamperRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData)
-{
-    Q_UNUSED(op);
-    Q_UNUSED(outgoingData);
-    if (!tamperingEnabled)
-        return req;
-
-    QNetworkRequest tampered( req );
-    tampered.setRawHeader( QByteArray("Host"), QByteArray("www.needcoffee.co.uk") );
-    return tampered;
 }
 
 void NetworkAccessEditor::addRequest(QNetworkAccessManager::Operation op, const QNetworkRequest&req, QIODevice *outgoingData, QNetworkReply *reply)

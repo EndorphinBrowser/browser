@@ -254,16 +254,10 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
 
 QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
 {
-    QNetworkRequest actual;
-    if (m_networkAccessEditor)
-        actual = m_networkAccessEditor->tamperRequest(op, request, outgoingData);
-    else
-        actual = request;
-
-    QNetworkReply *reply = QNetworkAccessManager::createRequest(op, actual, outgoingData);
+    QNetworkReply *reply = QNetworkAccessManager::createRequest(op, request, outgoingData);
 
     if (m_networkAccessEditor)
-        m_networkAccessEditor->addRequest(op, actual, outgoingData, reply);
+        m_networkAccessEditor->addRequest(op, request, outgoingData, reply);
 
     return reply;
 }
