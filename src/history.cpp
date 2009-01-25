@@ -77,6 +77,7 @@
 #include <qtemporaryfile.h>
 #include <qtextstream.h>
 #include <qmessagebox.h>
+#include <qmimedata.h>
 
 #include <qwebhistoryinterface.h>
 #include <qwebsettings.h>
@@ -611,6 +612,18 @@ QModelIndex HistoryMenuModel::parent(const QModelIndex &index) const
     if (bumpedItems <= MOVEDROWS && bumpedItems == sourceModel()->rowCount(sourceModel()->index(0, 0)))
         --bumpedItems;
     return createIndex(bumpedItems + treeIndexParent.row(), treeIndexParent.column(), sr);
+}
+
+QMimeData *HistoryMenuModel::mimeData(const QModelIndexList &indexes) const
+{
+    QMimeData *mimeData = new QMimeData;
+    QList<QUrl> urls;
+    foreach(const QModelIndex &idx, indexes) {
+        QUrl url = idx.data(HistoryModel::UrlRole).toUrl();
+        urls.append(url);
+    }
+    mimeData->setUrls(urls);
+    return mimeData;
 }
 
 

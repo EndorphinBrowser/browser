@@ -245,6 +245,7 @@ public:
     QModelIndex mapToSource(const QModelIndex & proxyIndex) const;
     QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
     QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
+    QMimeData *mimeData(const QModelIndexList &indexes) const;
 
     int bumpedRows() const;
 
