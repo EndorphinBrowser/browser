@@ -106,6 +106,9 @@ protected:
     // put all of the children of parent into menu up to max
     void createMenu(const QModelIndex &parent, int max, QMenu *parentMenu = 0, QMenu *menu = 0);
 
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+
 private slots:
     void aboutToShow();
     void triggered(QAction *action);
@@ -119,6 +122,7 @@ private:
     int m_separatorRole;
     QAbstractItemModel *m_model;
     QPersistentModelIndex m_root;
+    QPoint m_dragStartPos;
 };
 
 #endif // MODELMENU_H

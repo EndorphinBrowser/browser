@@ -63,6 +63,8 @@
 #include "modelmenu.h"
 
 #include <qabstractitemmodel.h>
+#include <qapplication.h>
+#include <qevent.h>
 
 #include <qdebug.h>
 
@@ -246,3 +248,29 @@ QModelIndex ModelMenu::index(QAction *action)
 
     return qvariant_cast<QModelIndex>(variant);
 }
+
+void ModelMenu::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+        m_dragStartPos = event->pos();
+    QMenu::mousePressEvent(event);
+}
+
+void ModelMenu::mouseMoveEvent(QMouseEvent *event)
+{
+    if ((event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()) {
+        QAction *action = actionAt(event->pos());
+        QModelIndex idx = index(action);
+        if (event->buttons() == Qt::LeftButton
+            && idx.isValid()
+            && !m_model->hasChildren(idx)) {
+            QDrag *drag = new QDrag(this);
+            drag->setMimeData(m_model->mimeData((QModelIndexList() << idx)));
+            QRect actionRect = actionGeometry(action);
+            drag->setPixmap(QPixmap::grabWidget(this, actionRect));
+            drag->exec();
+        }
+    }
+    QMenu::mouseMoveEvent(event);
+}
+
