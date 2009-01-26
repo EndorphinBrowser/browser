@@ -18,6 +18,7 @@ TRANSLATIONS += \
     it_IT.ts \
     ja_JP.ts \
     ms.ts \
+    nb_NO.ts \
     nl_NL.ts \
     pl_PL.ts \
     ru_RU.ts \
