@@ -30,6 +30,9 @@
     <widget class="QLineEdit" name="name" />
    </item>
    <item>
+    <widget class="QLineEdit" name="address" />
+   </item>
+   <item>
     <widget class="QComboBox" name="location" />
    </item>
    <item>

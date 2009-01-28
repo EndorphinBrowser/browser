@@ -285,7 +285,6 @@ private slots:
     void accept();
 
 private:
-    QString m_url;
     BookmarksManager *m_bookmarksManager;
     AddBookmarkProxyModel *m_proxyModel;
 };
@@ -329,14 +328,15 @@ signals:
     void openBookmark(const QUrl &url, TabWidget::Tab tab, const QString &title);
 
 public:
-    BookmarkToolButton(QUrl url, QWidget *parent = 0);
+    BookmarkToolButton(const QModelIndex &index, QWidget *parent = 0);
+    QModelIndex index() const;
     QUrl url() const;
 
 protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
 private:
-    QUrl m_url;
+    QModelIndex m_index;
 
 };
 
@@ -380,6 +380,13 @@ protected:
 
 private slots:
     void build();
+
+protected slots:
+    void contextMenuRequested(const QPoint &position);
+    void openBookmark();
+    void openBookmarkInNewTab();
+    void removeBookmark();
+    void newBookmark();
 
 private:
     BookmarksModel *m_bookmarksModel;
