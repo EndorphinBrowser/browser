@@ -282,7 +282,7 @@ class AddBookmarkDialog : public QDialog, public Ui_AddBookmarkDialog
     Q_OBJECT
 
 public:
-    AddBookmarkDialog(const QString &url, const QString &title, QWidget *parent = 0, BookmarksManager *bookmarkManager = 0);
+    AddBookmarkDialog(const QString &url, const QString &title, QModelIndex defaultIndex = QModelIndex(), QWidget *parent = 0, BookmarksManager *bookmarkManager = 0);
 
 private slots:
     void accept();

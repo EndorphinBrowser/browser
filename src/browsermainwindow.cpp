@@ -816,7 +816,11 @@ void BrowserMainWindow::slotAddBookmark()
     WebView *webView = currentTab();
     QString url = QLatin1String(webView->url().toEncoded());
     QString title = webView->title();
-    AddBookmarkDialog dialog(url, title);
+
+    BookmarkNode *menu = BrowserApplication::bookmarksManager()->menu();
+    QModelIndex index = BrowserApplication::bookmarksManager()->bookmarksModel()->index(menu);
+
+    AddBookmarkDialog dialog(url, title, index);
     dialog.exec();
 }
 

@@ -710,7 +710,7 @@ bool AddBookmarkProxyModel::filterAcceptsRow(int source_row, const QModelIndex &
     return sourceModel()->hasChildren(idx);
 }
 
-AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, QWidget *parent, BookmarksManager *bookmarkManager)
+AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, QModelIndex defaultIndex, QWidget *parent, BookmarksManager *bookmarkManager)
     : QDialog(parent)
     , m_bookmarksManager(bookmarkManager)
     , m_proxyModel(0)
@@ -733,10 +733,12 @@ AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, Q
     location->setModel(m_proxyModel);
     view->show();
     location->setView(view);
-    BookmarkNode *menu = m_bookmarksManager->menu();
-    QModelIndex idx = m_proxyModel->mapFromSource(model->index(menu));
-    view->setCurrentIndex(idx);
-    location->setCurrentIndex(idx.row());
+
+    if (defaultIndex.isValid()) {
+        view->setCurrentIndex(defaultIndex);
+        location->setCurrentIndex(defaultIndex.row());
+    }
+
     name->setText(title);
     address->setText(url);
     if (!url.isEmpty())
@@ -1120,7 +1122,10 @@ void BookmarksToolBar::removeBookmark()
 
 void BookmarksToolBar::newBookmark()
 {
-    AddBookmarkDialog *dialog = new AddBookmarkDialog(QString(), QString());
+    BookmarkNode *toolbar = BrowserApplication::bookmarksManager()->toolbar();
+    QModelIndex index = m_bookmarksModel->index(toolbar);
+
+    AddBookmarkDialog* dialog = new AddBookmarkDialog(QString(), QString(), index);
     dialog->exec();
     delete dialog;
 }
