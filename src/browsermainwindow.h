@@ -158,6 +158,7 @@ private slots:
     void geometryChangeRequested(const QRect &geometry);
     void updateToolbarActionText(bool visible);
     void updateBookmarksToolbarActionText(bool visible);
+    void showNetworkMonitor();
 
 private:
     void retranslate();

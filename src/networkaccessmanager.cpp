@@ -238,3 +238,10 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
     }
 }
 #endif
+
+QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
+{
+    QNetworkReply *reply = QNetworkAccessManager::createRequest(op, request, outgoingData);
+    emit requestCreated(op, request, reply);
+    return reply;
+}

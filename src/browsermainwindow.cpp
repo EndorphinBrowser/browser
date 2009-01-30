@@ -72,6 +72,8 @@
 #include "downloadmanager.h"
 #include "history.h"
 #include "languagemanager.h"
+#include "networkaccessmanager.h"
+#include "networkmonitor.h"
 #include "settings.h"
 #include "sourceviewer.h"
 #include "tabbar.h"
@@ -562,6 +564,8 @@ void BrowserMainWindow::setupMenu()
                          QKeySequence(tr("Ctrl+K", "Web Search")));
     toolsMenu->addAction(tr("&Clear Private Data"), this, SLOT(slotClearPrivateData()),
                          QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
+    toolsMenu->addAction(tr("Show &Network Monitor"), this, SLOT(showNetworkMonitor()) );
+
 #ifndef Q_CC_MINGW
     QAction *m_enableInspector = toolsMenu->addAction(tr("Enable Web &Inspector"), this, SLOT(slotToggleInspector(bool)));
     m_enableInspector->setCheckable(true);
@@ -1177,5 +1181,11 @@ void BrowserMainWindow::slotOpenActionUrl(QAction *action)
 void BrowserMainWindow::geometryChangeRequested(const QRect &geometry)
 {
     setGeometry(geometry);
+}
+
+void BrowserMainWindow::showNetworkMonitor()
+{
+    NetworkMonitor *monitor = NetworkMonitor::self();
+    monitor->show();
 }
 

@@ -69,8 +69,14 @@ class NetworkAccessManager : public QNetworkAccessManager
 {
     Q_OBJECT
 
+signals:
+    void requestCreated(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QNetworkReply *reply);
+
 public:
     NetworkAccessManager(QObject *parent = 0);
+
+protected:
+    QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0);
 
 public slots:
     void loadSettings();
@@ -81,6 +87,7 @@ private slots:
 #ifndef QT_NO_OPENSSL
     void sslErrors(QNetworkReply *reply, const QList<QSslError> &error);
 #endif
+
 };
 
 #endif // NETWORKACCESSMANAGER_H

@@ -94,6 +94,7 @@ SOURCES += \
     webviewsearch.cpp \
     xbel.cpp
 
+include(networkmonitor/networkmonitor.pri)
 include(cookiejar/cookiejar.pri)
 include(utils/utils.pri)
 
