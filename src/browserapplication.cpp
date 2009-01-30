@@ -108,7 +108,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     if (sendMessage(args.last()))
         return;
     // not sure what else to do...
-    if(!startSingleServer())
+    if (!startSingleServer())
         return;
     connect(this, SIGNAL(messageRecieved(const QString &)),
             this, SLOT(messageRecieved(const QString &)));

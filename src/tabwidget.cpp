@@ -174,7 +174,7 @@ TabWidget::TabWidget(QWidget *parent)
     m_recentlyClosedTabsAction->setEnabled(false);
 
 #if QT_VERSION >= 0x040500
-    if(oneCloseButton) {
+    if (oneCloseButton) {
 #endif
         // corner buttons
         // With Qt < 4.5 do this always, with >=4.5 only if enabled.
