@@ -2,4 +2,7 @@ git log --pretty="format:%an %ae" \
 	| sed -e 's/smart2128 /Vincenzo Reale /g' \
 	| sed -e 's/buster\.xtense\.dyndns\.org/ts2server\.com/g' \
 	| sed -e 's/^cfchris6 /Christian Franke /g' \
+	| sed -e 's/^faw /Jakub Wieczorek /g' \
+	| sed -e 's/^LEW21 /Janusz Lewandowski /g' \
+	| sed -e 's/lew21@pecet.(none)$/lew21st@gmail.com/g' \
 	| sort | uniq -c | sort -n -r | sed -e 's/^ *[0-9]* //g'
