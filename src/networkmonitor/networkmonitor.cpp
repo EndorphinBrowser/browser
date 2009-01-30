@@ -78,6 +78,11 @@ NetworkMonitor::NetworkMonitor(QWidget *parent, Qt::WindowFlags flags)
     requestList->horizontalHeader()->resizeSection(4, m * 15);
 }
 
+NetworkMonitor::~NetworkMonitor()
+{
+    m_self = 0;
+}
+
 void NetworkMonitor::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     Q_UNUSED(previous);

@@ -34,6 +34,7 @@ class NetworkMonitor : public QDialog, public Ui_NetworkMonitorDialog
 
 protected:
     NetworkMonitor(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    ~NetworkMonitor();
     static NetworkMonitor *m_self;
 
 private slots:
