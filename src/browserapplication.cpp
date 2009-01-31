@@ -105,7 +105,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 #ifndef AUTOTESTS
     QStringList args = QCoreApplication::arguments();
     QString message = (args.count() > 1) ? args.last() : QString();
-    if (sendMessage(args.last()))
+    if (sendMessage(message))
         return;
     // not sure what else to do...
     if (!startSingleServer())
