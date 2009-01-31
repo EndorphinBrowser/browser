@@ -1181,6 +1181,7 @@ void BrowserMainWindow::slotShowWindow()
             int offset = qvariant_cast<int>(v);
             QList<BrowserMainWindow*> windows = BrowserApplication::instance()->mainWindows();
             windows.at(offset)->activateWindow();
+            windows.at(offset)->raise();
             windows.at(offset)->currentTab()->setFocus();
         }
     }
