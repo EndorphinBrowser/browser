@@ -32,6 +32,7 @@
 #include <qevent.h>
 #include <qlayout.h>
 #include <qstyleoption.h>
+#include <qpainter.h>
 
 #include <qdebug.h>
 
@@ -211,5 +212,35 @@ void LineEdit::resizeEvent(QResizeEvent *event)
 {
     updateSideWidgetLocations();
     QLineEdit::resizeEvent(event);
+}
+
+QString LineEdit::inactiveText() const
+{
+    return m_inactiveText;
+}
+
+void LineEdit::setInactiveText(const QString &text)
+{
+    m_inactiveText = text;
+}
+
+void LineEdit::paintEvent(QPaintEvent *event)
+{
+    QLineEdit::paintEvent(event);
+    if (text().isEmpty() && !m_inactiveText.isEmpty() && !hasFocus()) {
+        QStyleOptionFrameV2 panel;
+        initStyleOption(&panel);
+        QRect textRect = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
+        int horizontalMargin = 2;
+        textRect.adjust(horizontalMargin, 0, 0, 0);
+#if QT_VERSION >= 0x040500
+        int left = textMargin(LineEdit::LeftSide);
+        int right = textMargin(LineEdit::RightSide);
+        textRect.adjust(left, 0, -right, 0);
+#endif
+        QPainter painter(this);
+        painter.setPen(palette().brush(QPalette::Disabled, QPalette::Text).color());
+        painter.drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, m_inactiveText);
+    }
 }
 

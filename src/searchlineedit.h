@@ -100,21 +100,16 @@ class SearchLineEdit : public LineEdit
 public:
     SearchLineEdit(QWidget *parent = 0);
 
-    QString inactiveText() const;
-    void setInactiveText(const QString &text);
-
     QMenu *menu() const;
     void setMenu(QMenu *menu);
 
 protected:
     void resizeEvent(QResizeEvent *event);
-    void paintEvent(QPaintEvent *event);
 
 private:
     void updateGeometries();
 
     SearchButton *m_searchButton;
-    QString m_inactiveText;
 };
 
 #endif // SEARCHLINEEDIT_H

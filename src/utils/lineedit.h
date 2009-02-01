@@ -62,6 +62,10 @@ public:
     void setWidgetSpacing(int spacing);
     int widgetSpacing() const;
     int textMargin(WidgetPosition position) const;
+    QString inactiveText() const;
+    void setInactiveText(const QString &text);
+
+    void paintEvent(QPaintEvent *event);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -78,7 +82,7 @@ private:
     SideWidget *m_rightWidget;
     QHBoxLayout *m_leftLayout;
     QHBoxLayout *m_rightLayout;
-
+    QString m_inactiveText;
 };
 
 #endif // LINEEDIT_H
