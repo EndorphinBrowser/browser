@@ -13,3 +13,7 @@ grep '^{ }*{' * | grep -v Makefile | grep -v Binary
 grep '){' * | grep -v Makefile | grep -v Binary
 grep '	' * | grep -v Makefile | grep -v Binary
 egrep '\(.*\* .*\)' * | grep -v Makefile | grep -v Binary | grep '::'
+
+# var *name;
+grep '[^\* \/]\* ' * | grep -v Binary
+grep '[^& ]& ' * | grep -v Binary

@@ -1029,7 +1029,7 @@ void BookmarksToolBar::dropEvent(QDropEvent *event)
 
         int row = -1;
         QModelIndex parentIndex = m_root;
-        QToolButton* target = qobject_cast<QToolButton *>(childAt(event->pos()));
+        QToolButton *target = qobject_cast<QToolButton *>(childAt(event->pos()));
 
         if (target && target->menu()) {
             ModelMenu *menu = qobject_cast<ModelMenu *>(target->menu());

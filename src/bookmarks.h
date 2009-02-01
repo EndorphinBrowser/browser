@@ -205,8 +205,8 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex index(int, int, const QModelIndex& = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index = QModelIndex()) const;
+    QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
+    QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
     Qt::DropActions supportedDropActions() const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());

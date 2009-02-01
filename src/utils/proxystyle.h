@@ -105,7 +105,7 @@ protected slots:
         { return style->standardIcon(standardIcon, option, widget); }
 
 private:
-    QStyle* style;
+    QStyle *style;
 
 };
 

@@ -84,7 +84,7 @@ void ExplorerStyle::drawPrimitive(PrimitiveElement element, const QStyleOption *
             if (QMainWindow *window = qobject_cast<QMainWindow*>(widget->window())) {
                 QRegion topreg;
                 QRegion bottomreg;
-                QMenuBar* menubar = qFindChild<QMenuBar*>(window);
+                QMenuBar *menubar = qFindChild<QMenuBar*>(window);
 
                 //We draw the menubar as part of the top toolbar area
                 if (menubar) {
@@ -187,7 +187,7 @@ void ExplorerStyle::drawControl(ControlElement element, const QStyleOption *opti
 
     case CE_ToolBar:
         if (isAppThemed()) {
-            if (const QStyleOptionToolBar* toolbar = qstyleoption_cast<const QStyleOptionToolBar*>(option)) {
+            if (const QStyleOptionToolBar *toolbar = qstyleoption_cast<const QStyleOptionToolBar*>(option)) {
                 QStyleOptionToolBar adjustedToolBar = *toolbar;
                 adjustedToolBar.palette.setBrush(QPalette::All, QPalette::Dark, shadow);
                 QWindowsXPStyle::drawControl(element, &adjustedToolBar, painter, widget);

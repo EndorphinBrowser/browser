@@ -206,8 +206,8 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex index(int, int, const QModelIndex& = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index = QModelIndex()) const;
+    QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
+    QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
@@ -293,8 +293,8 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
     QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
-    QModelIndex index(int, int, const QModelIndex& = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index = QModelIndex()) const;
+    QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
+    QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
     void setSourceModel(QAbstractItemModel *sourceModel);
 
 private slots:

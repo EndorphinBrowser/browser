@@ -480,7 +480,7 @@ BookmarksManager *BrowserApplication::bookmarksManager()
     return s_bookmarksManager;
 }
 
-LanguageManager* BrowserApplication::languageManager()
+LanguageManager *BrowserApplication::languageManager()
 {
     if (!s_languageManager)
         s_languageManager = new LanguageManager;
