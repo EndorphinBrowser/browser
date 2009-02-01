@@ -125,6 +125,7 @@ public slots:
     void zoomIn();
     void zoomOut();
     void resetZoom();
+    void applyZoom();
 
 protected:
     void mousePressEvent(QMouseEvent *event);
@@ -135,6 +136,9 @@ protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dragMoveEvent(QDragMoveEvent *event);
     void dropEvent(QDropEvent *event);
+
+private:
+    int levelForZoom(int zoom);
 
 private slots:
     void setProgress(int progress);

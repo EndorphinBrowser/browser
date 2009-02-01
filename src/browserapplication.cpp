@@ -512,6 +512,19 @@ QString BrowserApplication::dataDirectory()
 #endif
 }
 
+#if QT_VERSION >= 0x040500
+bool BrowserApplication::zoomTextOnly()
+{
+    return QWebSettings::globalSettings()->testAttribute(QWebSettings::ZoomTextOnly);
+}
+
+void BrowserApplication::setZoomTextOnly(bool textOnly)
+{
+    QWebSettings::globalSettings()->setAttribute(QWebSettings::ZoomTextOnly, textOnly);
+    emit instance()->zoomTextOnlyChanged(textOnly);
+}
+#endif
+
 bool BrowserApplication::isPrivate()
 {
     return QWebSettings::globalSettings()->testAttribute(QWebSettings::PrivateBrowsingEnabled);

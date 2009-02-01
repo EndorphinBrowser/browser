@@ -101,6 +101,10 @@ public:
     static LanguageManager *languageManager();
     static QString dataDirectory();
 
+#if QT_VERSION >= 0x040500
+    static bool zoomTextOnly();
+#endif
+
     static bool isPrivate();
     static void setPrivate(bool isPrivate);
 
@@ -116,12 +120,19 @@ public slots:
     void quitBrowser();
 #endif
 
+#if QT_VERSION >= 0x040500
+    static void setZoomTextOnly(bool textOnly);
+#endif
+
 private slots:
     void messageRecieved(const QString &message);
     void postLaunch();
     void openUrl(const QUrl &url);
 
 signals:
+#if QT_VERSION >= 0x040500
+    void zoomTextOnlyChanged(bool textOnly);
+#endif
     void privacyChanged(bool isPrivate);
 
 private:

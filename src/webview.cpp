@@ -248,6 +248,10 @@ WebView::WebView(QWidget *parent)
             this, SIGNAL(urlChanged(const QUrl &)));
     connect(page(), SIGNAL(downloadRequested(const QNetworkRequest &)),
             this, SLOT(downloadRequested(const QNetworkRequest &)));
+#if QT_VERSION >= 0x040500
+    connect(BrowserApplication::instance(), SIGNAL(zoomTextOnlyChanged(bool)),
+            this, SLOT(applyZoom()));
+#endif
     page()->setForwardUnsupportedContent(true);
     setAcceptDrops(true);
 
@@ -315,7 +319,8 @@ void WebView::wheelEvent(QWheelEvent *event)
     if (event->modifiers() & Qt::ControlModifier) {
         int numDegrees = event->delta() / 8;
         int numSteps = numDegrees / 15;
-        setTextSizeMultiplier(textSizeMultiplier() + numSteps * 0.1);
+        m_currentZoom = m_currentZoom + numSteps * 10;
+        applyZoom();
         event->accept();
         return;
     }
@@ -395,32 +400,60 @@ void WebView::setProgress(int progress)
     m_progress = progress;
 }
 
+int WebView::levelForZoom(int zoom)
+{
+    int i;
+
+    i = m_zoomLevels.indexOf(zoom);
+    if (i >= 0)
+        return i;
+
+    for (i = 0 ; i < m_zoomLevels.count(); i++)
+        if (zoom <= m_zoomLevels[i])
+            break;
+
+    if (i == m_zoomLevels.count())
+        return i - 1;
+    if (i == 0)
+        return i;
+
+    if (zoom - m_zoomLevels[i-1] > m_zoomLevels[i] - zoom)
+        return i;
+    else
+        return i-1;
+}
+
+void WebView::applyZoom()
+{
+#if QT_VERSION >= 0x040500
+    setZoomFactor(qreal(m_currentZoom) / 100.0);
+#else
+    setTextSizeMultiplier(qreal(m_currentZoom) / 100.0);
+#endif
+}
+
 void WebView::zoomIn()
 {
-    int i = m_zoomLevels.indexOf(m_currentZoom);
-    Q_ASSERT(i >= 0);
+    int i = levelForZoom(m_currentZoom);
 
     if (i < m_zoomLevels.count() - 1)
         m_currentZoom = m_zoomLevels[i + 1];
-
-    setTextSizeMultiplier(qreal(m_currentZoom) / 100.0);
+    applyZoom();
 }
 
 void WebView::zoomOut()
 {
-    int i = m_zoomLevels.indexOf(m_currentZoom);
-    Q_ASSERT(i >= 0);
+    int i = levelForZoom(m_currentZoom);
 
     if (i > 0)
         m_currentZoom = m_zoomLevels[i - 1];
-
-    setTextSizeMultiplier(qreal(m_currentZoom) / 100.0);
+    applyZoom();
 }
 
 void WebView::resetZoom()
 {
     m_currentZoom = 100;
-    setTextSizeMultiplier(1.0);
+    applyZoom();
 }
 
 void WebView::loadFinished()

@@ -104,6 +104,9 @@ public slots:
     void loadPage(const QString &url);
     void slotHome();
     void slotPrivacyChanged(bool isPrivate);
+#if QT_VERSION >= 0x040500
+    void slotZoomTextOnlyChanged(bool textOnly);
+#endif
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -130,9 +133,9 @@ private slots:
     void slotEditFindPrevious();
     void slotShowBookmarksDialog();
     void slotAddBookmark();
-    void slotViewTextBigger();
-    void slotViewTextNormal();
-    void slotViewTextSmaller();
+    void slotZoomIn();
+    void slotZoomNormal();
+    void slotZoomOut();
     void slotViewMenuBar();
     void slotViewToolbar();
     void slotViewBookmarksBar();
@@ -192,6 +195,9 @@ private:
     QAction *m_viewToolbar;
     QAction *m_viewBookmarkBar;
     QAction *m_viewStatusbar;
+#if QT_VERSION >= 0x040500
+    QAction *m_zoomTextOnly;
+#endif
     QAction *m_restoreLastSession;
     QAction *m_addBookmark;
 
