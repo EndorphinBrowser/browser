@@ -1,12 +1,19 @@
 #
 # export QT_WEBKIT=webkit_trunk
 # export WEBKITDIR=$HOME/dev/webkit
+# export WEBKITBRANCH=some_cool_git_branch_of_webkit
 #
 CONFIG += $$(QT_WEBKIT)
 webkit_trunk {
     WEBKITDIR = $$(WEBKITDIR)
-    CONFIG(release):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Release/lib
-    CONFIG(debug):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Debug/lib
+    WEBKITBRANCH = $$(WEBKITBRANCH)
+    isEmpty(WEBKITBRANCH) {
+        CONFIG(release):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Release/lib
+        CONFIG(debug):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Debug/lib
+    } else {
+        CONFIG(release):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/$$WEBKITBRANCH/Release/lib
+        CONFIG(debug):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/$$WEBKITBRANCH/Debug/lib
+    }
     message(Using WebKit Trunk at $$WEBKITDIR)
     message(Using WebKit Build at $$WEBKITBUILD)
     QT -= webkit
