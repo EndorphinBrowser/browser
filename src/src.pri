@@ -128,7 +128,7 @@ unix {
     DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
 }
 
-include(webkittrunk.pri)
+include(../webkittrunk.pri)
 
 win32 {
     include(explorerstyle.pri)

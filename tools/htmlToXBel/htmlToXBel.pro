@@ -18,3 +18,4 @@ OBJECTS_DIR = $$PWD/.obj
 
 RESOURCES += source.qrc
 
+include(../../webkittrunk.pri)
