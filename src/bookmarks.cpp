@@ -1219,6 +1219,7 @@ void BookmarksToolBar::build()
             button->setArrowType(Qt::DownArrow);
             button->setText(idx.data().toString());
             ModelMenu *menu = new BookmarksToolBarMenu(this);
+            menu->setMaxRows(-1);
             menu->setModel(m_bookmarksModel);
             menu->setRootIndex(idx);
             menu->addAction(new QAction(menu));
