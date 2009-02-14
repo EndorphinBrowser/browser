@@ -35,6 +35,8 @@
 
 #ifndef Q_OS_WIN
 #include <unistd.h>
+#else
+#include <windows.h>
 #endif
 
 SingleApplication::SingleApplication(int &argc, char **argv)
