@@ -141,7 +141,7 @@ QString SingleApplication::serverName() const
             login = QString::fromLocal8Bit(buffer);
         });
     }
-    serverName += QString("_%1").arg(login);
+    serverName += QString::fromAscii("_%1").arg(login);
 #endif
     return serverName;
 }
