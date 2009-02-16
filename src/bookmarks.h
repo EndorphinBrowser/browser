@@ -96,6 +96,7 @@ public:
     void setTitle(BookmarkNode *node, const QString &newTitle);
     void setUrl(BookmarkNode *node, const QString &newUrl);
     void changeExpanded();
+    void retranslate() const;
 
     BookmarkNode *bookmarks();
     BookmarkNode *menu();
@@ -119,6 +120,8 @@ private:
     bool m_loaded;
     AutoSaver *m_saveTimer;
     BookmarkNode *m_bookmarkRootNode;
+    BookmarkNode *m_toolbar;
+    BookmarkNode *m_menu;
     BookmarksModel *m_bookmarkModel;
     QUndoStack m_commands;
 

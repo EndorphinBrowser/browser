@@ -82,14 +82,16 @@
 
 #include <qdebug.h>
 
-#define BOOKMARKBAR "Bookmarks Bar"
-#define BOOKMARKMENU "Bookmarks Menu"
+#define BOOKMARKBAR QT_TRANSLATE_NOOP("BookmarksManager", "Bookmarks Bar")
+#define BOOKMARKMENU QT_TRANSLATE_NOOP("BookmarksManager", "Bookmarks Menu")
 
 BookmarksManager::BookmarksManager(QObject *parent)
     : QObject(parent)
     , m_loaded(false)
     , m_saveTimer(new AutoSaver(this))
     , m_bookmarkRootNode(0)
+    , m_toolbar(0)
+    , m_menu(0)
     , m_bookmarkModel(0)
 {
     connect(this, SIGNAL(entryAdded(BookmarkNode *)),
@@ -129,26 +131,23 @@ void BookmarksManager::load()
                "%3").arg(reader.lineNumber()).arg(reader.columnNumber()).arg(reader.errorString()));
     }
 
-    BookmarkNode *toolbar = 0;
-    BookmarkNode *menu = 0;
     QList<BookmarkNode*> others;
     for (int i = m_bookmarkRootNode->children().count() - 1; i >= 0; --i) {
         BookmarkNode *node = m_bookmarkRootNode->children().at(i);
         if (node->type() == BookmarkNode::Folder) {
             // Automatically convert
-            if (node->title == tr("Toolbar Bookmarks") && !toolbar) {
+            if ((node->title == tr("Toolbar Bookmarks")
+                 || node->title == QLatin1String(BOOKMARKBAR)) && !m_toolbar) {
                 node->title = tr(BOOKMARKBAR);
-            }
-            if (node->title == tr(BOOKMARKBAR) && !toolbar) {
-                toolbar = node;
+
+                m_toolbar = node;
             }
 
             // Automatically convert
-            if (node->title == tr("Menu") && !menu) {
+            if ((node->title == tr("Menu")
+                 || node->title == QLatin1String(BOOKMARKMENU)) && !m_menu) {
                 node->title = tr(BOOKMARKMENU);
-            }
-            if (node->title == tr(BOOKMARKMENU) && !menu) {
-                menu = node;
+                m_menu = node;
             }
         } else {
             others.append(node);
@@ -156,22 +155,22 @@ void BookmarksManager::load()
         m_bookmarkRootNode->remove(node);
     }
     Q_ASSERT(m_bookmarkRootNode->children().count() == 0);
-    if (!toolbar) {
-        toolbar = new BookmarkNode(BookmarkNode::Folder, m_bookmarkRootNode);
-        toolbar->title = tr(BOOKMARKBAR);
+    if (!m_toolbar) {
+        m_toolbar = new BookmarkNode(BookmarkNode::Folder, m_bookmarkRootNode);
+        m_toolbar->title = tr(BOOKMARKBAR);
     } else {
-        m_bookmarkRootNode->add(toolbar);
+        m_bookmarkRootNode->add(m_toolbar);
     }
 
-    if (!menu) {
-        menu = new BookmarkNode(BookmarkNode::Folder, m_bookmarkRootNode);
-        menu->title = tr(BOOKMARKMENU);
+    if (!m_menu) {
+        m_menu = new BookmarkNode(BookmarkNode::Folder, m_bookmarkRootNode);
+        m_menu->title = tr(BOOKMARKMENU);
     } else {
-        m_bookmarkRootNode->add(menu);
+        m_bookmarkRootNode->add(m_menu);
     }
 
     for (int i = 0; i < others.count(); ++i)
-        menu->add(others.at(i));
+        m_menu->add(others.at(i));
 }
 
 void BookmarksManager::save() const
@@ -182,8 +181,21 @@ void BookmarksManager::save() const
     XbelWriter writer;
     QString dir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     QString bookmarkFile = dir + QLatin1String("/bookmarks.xbel");
+    // Save root folder titles in English (i.e. not localized)
+    m_menu->title = QLatin1String(BOOKMARKMENU);
+    m_toolbar->title = QLatin1String(BOOKMARKBAR);
     if (!writer.write(bookmarkFile, m_bookmarkRootNode))
         qWarning() << "BookmarkManager: error saving to" << bookmarkFile;
+    // Restore localized titles
+    retranslate();
+}
+
+void BookmarksManager::retranslate() const
+{
+    if (m_menu)
+        m_menu->title = tr(BOOKMARKMENU);
+    if (m_toolbar)
+        m_toolbar->title = tr(BOOKMARKBAR);
 }
 
 void BookmarksManager::addBookmark(BookmarkNode *parent, BookmarkNode *node, int row)
@@ -239,13 +251,8 @@ BookmarkNode *BookmarksManager::menu()
     if (!m_loaded)
         load();
 
-    for (int i = m_bookmarkRootNode->children().count() - 1; i >= 0; --i) {
-        BookmarkNode *node = m_bookmarkRootNode->children().at(i);
-        if (node->title == tr(BOOKMARKMENU))
-            return node;
-    }
-    Q_ASSERT(false);
-    return 0;
+    Q_ASSERT(m_menu);
+    return m_menu;
 }
 
 BookmarkNode *BookmarksManager::toolbar()
@@ -253,13 +260,8 @@ BookmarkNode *BookmarksManager::toolbar()
     if (!m_loaded)
         load();
 
-    for (int i = m_bookmarkRootNode->children().count() - 1; i >= 0; --i) {
-        BookmarkNode *node = m_bookmarkRootNode->children().at(i);
-        if (node->title == tr(BOOKMARKBAR))
-            return node;
-    }
-    Q_ASSERT(false);
-    return 0;
+    Q_ASSERT(m_toolbar);
+    return m_toolbar;
 }
 
 BookmarksModel *BookmarksManager::bookmarksModel()

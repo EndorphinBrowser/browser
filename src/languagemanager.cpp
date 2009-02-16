@@ -29,6 +29,7 @@
 
 #include "languagemanager.h"
 
+#include "bookmarks.h"
 #include "browserapplication.h"
 
 #include <qapplication.h>
@@ -120,6 +121,7 @@ void LanguageManager::setCurrentLanguage(const QString &language)
     qApp->installTranslator(newSysTranslator);
     m_appTranslator = newAppTranslator;
     m_sysTranslator = newSysTranslator;
+    BrowserApplication::bookmarksManager()->retranslate();
 }
 
 QStringList LanguageManager::languages() const
