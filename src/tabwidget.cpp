@@ -148,7 +148,7 @@ TabWidget::TabWidget(QWidget *parent)
     QList<QKeySequence> shortcuts;
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceRight));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageDown));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BracketRight));
+    shortcuts.append(tr("Ctrl-]"));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Less));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Tab));
     m_nextTabAction->setShortcuts(shortcuts);
@@ -158,7 +158,7 @@ TabWidget::TabWidget(QWidget *parent)
     shortcuts.clear();
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceLeft));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageUp));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BracketLeft));
+    shortcuts.append(tr("Ctrl-["));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Greater));
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab));
     m_previousTabAction->setShortcuts(shortcuts);
