@@ -97,9 +97,9 @@ void ExplorerStyle::drawPrimitive(PrimitiveElement element, const QStyleOption *
                 foreach(const QToolBar *tb, toolbars) {
                     if (!tb->isFloating()) {
                         QRect rect(tb->mapToParent(tb->rect().topLeft()), tb->rect().size());
-                        if (window->toolBarArea(tb) == Qt::TopToolBarArea)
+                        if (window->toolBarArea(const_cast<QToolBar*>(tb)) == Qt::TopToolBarArea)
                             topreg += rect;
-                        else if (window->toolBarArea(tb) == Qt::BottomToolBarArea)
+                        else if (window->toolBarArea(const_cast<QToolBar*>(tb)) == Qt::BottomToolBarArea)
                             bottomreg += rect;
                     }
                 }
