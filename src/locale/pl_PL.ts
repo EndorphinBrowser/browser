@@ -18,7 +18,7 @@
     </message>
     <message>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>Lekka bazująca na silniku WebKit przeglądarka</translation>
+        <translation>Lekka przeglądarka internetowa bazująca na silniku WebKit</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
@@ -458,7 +458,7 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source>Open Web Resource</source>
-        <translation>Otwórz plik internetowy</translation>
+        <translation>Otwórz zasób internetowy</translation>
     </message>
     <message>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
@@ -566,6 +566,10 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <message>
         <source>Switch application language </source>
         <translation>Zmień język aplikacji</translation>
+    </message>
+    <message>
+        <source>Show &amp;Network Monitor</source>
+        <translation>Pokaż Monitor &amp;Sieci</translation>
     </message>
 </context>
 <context>
@@ -1002,6 +1006,44 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
 </context>
 <context>
+    <name>NetworkMonitor</name>
+    <message>
+        <source>Name</source>
+        <translation>Nazwa</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>Wartość</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitorDialog</name>
+    <message>
+        <source>Network Monitor</source>
+        <translation>Monitor Sieci</translation>
+    </message>
+    <message>
+        <source>Network Requests</source>
+        <translation>Rządania sieciowe</translation>
+    </message>
+    <message>
+        <source>Request Headers</source>
+        <translation>Nagłówki rządań</translation>
+    </message>
+    <message>
+        <source>Response Headers</source>
+        <translation>Nagłówki odpowiedzi</translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation>&amp;Usuń</translation>
+    </message>
+    <message>
+        <source>Remove &amp;All Requests</source>
+        <translation>Usuń &amp;Wszystkie Rządania</translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
@@ -1009,11 +1051,11 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>DUMMY ICON</source>
-        <translation type="unfinished">ATRAPA IKONY</translation>
+        <translation>ATRAPA IKONY</translation>
     </message>
     <message>
         <source>INTRO TEXT DUMMY</source>
-        <translation type="unfinished">ATRAPA TEKSTU WSTĘPNEGO</translation>
+        <translation>ATRAPA TEKSTU WSTĘPNEGO</translation>
     </message>
     <message>
         <source>Username:</source>
@@ -1039,7 +1081,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>ICON</source>
-        <translation type="unfinished">IKONA</translation>
+        <translation>IKONA</translation>
     </message>
     <message>
         <source>Connect to proxy</source>
@@ -1063,6 +1105,37 @@ Czy chcesz zignorować te błędy?</translation>
     <message>
         <source>Unknown title</source>
         <translation>Nieznany tytuł</translation>
+    </message>
+</context>
+<context>
+    <name>RequestModel</name>
+    <message>
+        <source>Redirect: %1</source>
+        <translation>Przekierowanie: %1</translation>
+    </message>
+    <message>
+        <source>Method</source>
+        <translation>Metoda</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Adres</translation>
+    </message>
+    <message>
+        <source>Response</source>
+        <translation>Odpowiedź</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <translation>Długość</translation>
+    </message>
+    <message>
+        <source>Content Type</source>
+        <translation>Typ zawartości</translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation>Informacje</translation>
     </message>
 </context>
 <context>
@@ -1203,7 +1276,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Enable Javascript</source>
-        <translation>Włącz obsługę języka Javascript</translation>
+        <translation>Włącz obsługę Javascript</translation>
     </message>
     <message>
         <source>Cookies</source>
@@ -1295,7 +1368,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>On startup:</source>
-        <translation>Po uruchomieniu:</translation>
+        <translation>Podczas uruchamiania:</translation>
     </message>
     <message>
         <source>Show my home page</source>
@@ -1331,7 +1404,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Preferencje</translation>
+        <translation>Ustawienia</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -1455,11 +1528,12 @@ Czy chcesz zignorować te błędy?</translation>
 Do you really want to close this page?
 </source>
         <translation>Wprowadziłeś modyfikacje na tej strone i kiedy ją zamkniesz to utracisz wszystkie zmiany.
-Czy na pewno chcesz zamknąć tę stronę?</translation>
+Czy na pewno chcesz zamknąć tę stronę?
+</translation>
     </message>
     <message>
         <source>Untitled</source>
-        <translation>Nowy</translation>
+        <translation>Bez tytułu</translation>
     </message>
 </context>
 <context>
@@ -1493,19 +1567,23 @@ Czy na pewno chcesz zamknąć tę stronę?</translation>
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.trolltech.com instead of &lt;b&gt;www&lt;/b&gt;.trolltech.com.</source>
-        <translation>Sprawdź, czy adres nie zawiera żadnych błędów np. &lt;b&gt;ww&lt;/b&gt;.trolltech.com zamiast &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
+        <translation type="obsolete">Sprawdź, czy adres nie zawiera żadnych błędów np. &lt;b&gt;ww&lt;/b&gt;.trolltech.com zamiast &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
-        <translation>Jeśli adres jest prawidłowy, sprawdź działanie swojego połączenia internetowego.</translation>
+        <translation>Jeśli adres jest prawidłowy, spróbuj sprawdź czy Twoje połączenia internetowe działa poprawnie.</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation>Jeśli twój komputer lub sieć jest chroniona zaporą sieciową lub proxy, upewnij się, że przeglądarka ma dostęp do sieci.</translation>
+        <translation>Jeśli twój komputer lub sieć jest chroniona zaporą sieciową lub proxy, upewnij się, że przeglądarka ma uprawnienia dostępu do sieci.</translation>
     </message>
     <message>
         <source>When connecting to: %1.</source>
         <translation>Podczas łączenia z: %1.</translation>
+    </message>
+    <message>
+        <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
+        <translation>Sprawdź, czy adres nie zawiera żadnych błędów np. &lt;b&gt;ww&lt;/b&gt;.arora-browser.org zamiast &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
 </context>
 <context>
