@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="cs">
+<!DOCTYPE TS>
+<TS version="2.0" language="cs">
 <defaultcodec></defaultcodec>
-<context encoding="UTF-8">
+<context>
     <name>AboutDialog</name>
     <message>
         <location filename="../aboutdialog.cpp" line="34"/>
@@ -9,11 +10,13 @@
         <translation>O prohlížeči</translation>
     </message>
     <message>
+        <location filename="../aboutdialog.cpp" line="76"/>
         <location filename="../aboutdialog.ui" line="151"/>
         <source>Authors</source>
         <translation>Autoři</translation>
     </message>
     <message>
+        <location filename="../aboutdialog.cpp" line="81"/>
         <location filename="../aboutdialog.ui" line="158"/>
         <source>License</source>
         <translation>Licence</translation>
@@ -33,7 +36,7 @@
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../aboutdialog.ui" line="100"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -46,12 +49,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddBookmarkDialog</name>
     <message>
-        <location filename="../addbookmarkdialog.ui" line="13"/>
+        <location filename="../addbookmarkdialog.ui" line="14"/>
         <source>Add Bookmark</source>
         <translation>Přidat záložku</translation>
     </message>
     <message>
-        <location filename="../addbookmarkdialog.ui" line="19"/>
+        <location filename="../addbookmarkdialog.ui" line="20"/>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Napiš jméno pro záložku, a vyber, kam ji uchovat.</translation>
     </message>
@@ -59,17 +62,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksDialog</name>
     <message>
-        <location filename="../bookmarks.cpp" line="896"/>
+        <location filename="../bookmarks.cpp" line="909"/>
         <source>Open</source>
         <translation>Otevřít</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="900"/>
+        <location filename="../bookmarks.cpp" line="920"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="939"/>
+        <location filename="../bookmarks.cpp" line="972"/>
         <source>New Folder</source>
         <translation>Nová složka</translation>
     </message>
@@ -89,15 +92,26 @@ p, li { white-space: pre-wrap; }
         <translation>Přidat složku</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="897"/>
+        <location filename="../bookmarks.cpp" line="910"/>
         <source>Open in New Tab</source>
         <translation>Otevřít v novém panelu</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="914"/>
+        <source>Edit Name</source>
+        <translation>Upravit název</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="917"/>
+        <source>Edit Address</source>
+        <translation>Upravit adresu</translation>
     </message>
 </context>
 <context>
     <name>BookmarksManager</name>
     <message>
-        <location filename="../bookmarks.cpp" line="285"/>
+        <location filename="../bookmarks.cpp" line="128"/>
+        <location filename="../bookmarks.cpp" line="284"/>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
         <translation>Chyba při načítání záložek na řádku %1, sloupci %2: %3</translation>
@@ -118,6 +132,7 @@ p, li { white-space: pre-wrap; }
         <translation>Otevřít soubor</translation>
     </message>
     <message>
+        <location filename="../bookmarks.cpp" line="276"/>
         <location filename="../bookmarks.cpp" line="297"/>
         <source>XBEL (*.xbel *.xml)</source>
         <translation>XBEL (*.xbel *.xml)</translation>
@@ -184,15 +199,35 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <location filename="../bookmarks.cpp" line="971"/>
+        <location filename="../bookmarks.cpp" line="1009"/>
         <source>Bookmark</source>
         <translation>Záložky</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="1045"/>
+        <source>Open</source>
+        <translation>Otevřít</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="1048"/>
+        <source>Open in New &amp;Tab</source>
+        <translation>Otevřít v &amp;novém panelu</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="1055"/>
+        <source>Remove</source>
+        <translation>Smazat</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="1062"/>
+        <source>Add Bookmark...</source>
+        <translation>Přidat záložku...</translation>
     </message>
 </context>
 <context>
     <name>BrowserApplication</name>
     <message>
-        <location filename="../browserapplication.cpp" line="200"/>
+        <location filename="../browserapplication.cpp" line="199"/>
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
         <translation>Je otevřeno %1 oken a %2 panelů
@@ -217,462 +252,453 @@ Přesto ukončit?</translation>
 <context>
     <name>BrowserMainWindow</name>
     <message>
-        <location filename="../browsermainwindow.cpp" line="379"/>
+        <location filename="../browsermainwindow.cpp" line="381"/>
         <source>&amp;File</source>
         <translation>&amp;Soubor</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="381"/>
+        <location filename="../browsermainwindow.cpp" line="383"/>
         <source>&amp;New Window</source>
         <translation>&amp;Nové okno</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="383"/>
+        <location filename="../browsermainwindow.cpp" line="385"/>
         <source>&amp;Open File...</source>
         <translation>Otevřít &amp;soubor...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="384"/>
+        <location filename="../browsermainwindow.cpp" line="386"/>
         <source>Open &amp;Location...</source>
         <translation>&amp;Otevřít adresu...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="389"/>
+        <location filename="../browsermainwindow.cpp" line="391"/>
         <source>&amp;Save As...</source>
         <translation>&amp;Uložit jako...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="393"/>
+        <location filename="../browsermainwindow.cpp" line="395"/>
         <source>&amp;Import Bookmarks...</source>
         <translation>&amp;Importovat záložky...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="394"/>
+        <location filename="../browsermainwindow.cpp" line="396"/>
         <source>&amp;Export Bookmarks...</source>
         <translation>&amp;Exportovat záložky...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="396"/>
+        <location filename="../browsermainwindow.cpp" line="398"/>
         <source>P&amp;rint Preview...</source>
         <translation>Ná&amp;hled tisku...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="397"/>
+        <location filename="../browsermainwindow.cpp" line="399"/>
         <source>&amp;Print...</source>
         <translation>&amp;Tisk...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="399"/>
+        <location filename="../browsermainwindow.cpp" line="401"/>
         <source>Private &amp;Browsing...</source>
         <translation>Soukro&amp;mé prohlížení...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="406"/>
+        <location filename="../browsermainwindow.cpp" line="408"/>
         <source>&amp;Quit</source>
         <translation>U&amp;končit</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="410"/>
+        <location filename="../browsermainwindow.cpp" line="412"/>
         <source>&amp;Edit</source>
         <translation>Úpr&amp;avy</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="411"/>
+        <location filename="../browsermainwindow.cpp" line="413"/>
         <source>&amp;Undo</source>
         <translation>&amp;Zpět</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="414"/>
+        <location filename="../browsermainwindow.cpp" line="416"/>
         <source>&amp;Redo</source>
         <translation>Zn&amp;ovu</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="418"/>
+        <location filename="../browsermainwindow.cpp" line="420"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Vyjmout</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="421"/>
+        <location filename="../browsermainwindow.cpp" line="423"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopírovat</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="424"/>
+        <location filename="../browsermainwindow.cpp" line="426"/>
         <source>&amp;Paste</source>
         <translation>V&amp;ložit</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="429"/>
+        <location filename="../browsermainwindow.cpp" line="431"/>
         <source>&amp;Find</source>
         <translation>Na&amp;jít</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="354"/>
         <source>&amp;Find Next</source>
         <translation type="obsolete">Nají&amp;t další</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="358"/>
         <source>&amp;Find Previous</source>
         <translation type="obsolete">Najít &amp;předchozí</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="363"/>
         <source>&amp;Preferences</source>
         <translation type="obsolete">Před&amp;volby</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="443"/>
+        <location filename="../browsermainwindow.cpp" line="445"/>
         <source>Ctrl+,</source>
         <translation>Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="446"/>
+        <location filename="../browsermainwindow.cpp" line="448"/>
         <source>&amp;View</source>
         <translation>&amp;Zobrazit</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="460"/>
+        <location filename="../browsermainwindow.cpp" line="462"/>
         <source>Shift+Ctrl+B</source>
         <translation>Shift+Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="454"/>
+        <location filename="../browsermainwindow.cpp" line="456"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="471"/>
+        <location filename="../browsermainwindow.cpp" line="473"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="477"/>
+        <location filename="../browsermainwindow.cpp" line="479"/>
         <source>&amp;Stop</source>
         <translation>Z&amp;astavit</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="404"/>
         <source>Reload Page</source>
         <translation type="obsolete">O&amp;bnovit</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="408"/>
         <source>&amp;Make Text Bigger</source>
         <translation type="obsolete">Z&amp;většit písmo</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="409"/>
         <source>&amp;Make Text Normal</source>
         <translation type="obsolete">&amp;Normální velikost písma</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="410"/>
         <source>&amp;Make Text Smaller</source>
         <translation type="obsolete">Z&amp;menšit písmo</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="495"/>
+        <location filename="../browsermainwindow.cpp" line="497"/>
         <source>Page S&amp;ource</source>
         <translation>&amp;Zdrojový kód stránky</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="495"/>
+        <location filename="../browsermainwindow.cpp" line="497"/>
         <source>Ctrl+Alt+U</source>
         <translation>Ctrl+Alt+U</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="496"/>
+        <location filename="../browsermainwindow.cpp" line="498"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Celá obrazovka</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="503"/>
+        <location filename="../browsermainwindow.cpp" line="505"/>
         <source>Hi&amp;story</source>
         <translation>&amp;Historie</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="507"/>
+        <location filename="../browsermainwindow.cpp" line="509"/>
         <source>Back</source>
         <translation>Zpět</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="512"/>
+        <location filename="../browsermainwindow.cpp" line="514"/>
         <source>Forward</source>
         <translation>Vpřed</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="517"/>
+        <location filename="../browsermainwindow.cpp" line="519"/>
         <source>Home</source>
         <translation>Domů</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="521"/>
+        <location filename="../browsermainwindow.cpp" line="523"/>
         <source>Restore Last Session</source>
         <translation>Obnovit poslední relaci</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="536"/>
+        <location filename="../browsermainwindow.cpp" line="538"/>
         <source>&amp;Bookmarks</source>
         <translation>Zál&amp;ožky</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="541"/>
+        <location filename="../browsermainwindow.cpp" line="543"/>
         <source>Manage Bookmarks...</source>
         <translation>Spravovat záložky...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="544"/>
+        <location filename="../browsermainwindow.cpp" line="546"/>
         <source>Add Bookmark...</source>
         <translation>Přidat záložku...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="555"/>
+        <location filename="../browsermainwindow.cpp" line="557"/>
         <source>&amp;Window</source>
         <translation>&amp;Okno</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="560"/>
+        <location filename="../browsermainwindow.cpp" line="562"/>
         <source>&amp;Tools</source>
         <translation>&amp;Nástroje</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="561"/>
+        <location filename="../browsermainwindow.cpp" line="563"/>
         <source>Web &amp;Search</source>
         <translation>&amp;Hledání na webu</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="562"/>
+        <location filename="../browsermainwindow.cpp" line="564"/>
         <source>Ctrl+K</source>
         <comment>Web Search</comment>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="566"/>
+        <location filename="../browsermainwindow.cpp" line="567"/>
+        <source>Show &amp;Network Monitor</source>
+        <translation>Zobrazit &amp;monitor sítě</translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="570"/>
         <source>Enable Web &amp;Inspector</source>
         <translation>Povolit Web &amp;Inspector</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="574"/>
+        <location filename="../browsermainwindow.cpp" line="578"/>
         <source>&amp;Help</source>
         <translation>Nápo&amp;věda</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="577"/>
+        <location filename="../browsermainwindow.cpp" line="581"/>
         <source>About &amp;Qt</source>
         <translation>O &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="578"/>
+        <location filename="../browsermainwindow.cpp" line="582"/>
         <source>About &amp;Arora</source>
         <translation>O &amp;Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1014"/>
+        <location filename="../browsermainwindow.cpp" line="588"/>
+        <location filename="../browsermainwindow.cpp" line="1018"/>
         <source>Navigation</source>
         <translation>Navigace</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="684"/>
+        <location filename="../browsermainwindow.cpp" line="688"/>
         <source>Show Status Bar</source>
         <translation>Zobrazit stavový řádek</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="684"/>
+        <location filename="../browsermainwindow.cpp" line="688"/>
         <source>Hide Status Bar</source>
         <translation>Skrýt stavový řádek</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="689"/>
+        <location filename="../browsermainwindow.cpp" line="693"/>
         <source>Show Toolbar</source>
         <translation>Zobrazit panel nástrojů</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="689"/>
+        <location filename="../browsermainwindow.cpp" line="693"/>
         <source>Hide Toolbar</source>
         <translation>Skrýt panel nástrojů</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="584"/>
         <source>Show Bookmarks bar</source>
         <translation type="obsolete">Zobrazit panel záložek</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="584"/>
         <source>Hide Bookmarks bar</source>
         <translation type="obsolete">Skrýt panel záložek</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="800"/>
+        <location filename="../browsermainwindow.cpp" line="804"/>
         <source>Arora</source>
         <translation>Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="805"/>
+        <location filename="../browsermainwindow.cpp" line="809"/>
         <source>%1 - Arora</source>
         <comment>Page title and Browser name</comment>
         <translation>%1 - Arora</translation>
     </message>
     <message>
-        <location filename="src/browsermainwindow.cpp" line="672"/>
         <source>About</source>
         <translation type="obsolete">O prohlížeči</translation>
     </message>
     <message>
-        <location filename="src/browsermainwindow.cpp" line="678"/>
         <source>Version %1&lt;p&gt;This demo demonstrates Qt&apos;s webkit facilities in action, providing an example browser for you to experiment with.&lt;p&gt;&lt;p&gt;QtWebKit is based on the Open Source WebKit Project developed at &lt;a href=&quot;http://webkit.org/&quot;&gt;http://webkit.org/&lt;/a&gt;.</source>
         <translation type="obsolete">Verze %1&lt;p&gt;Tato ukázka předvádí schopnosti WebKitu v Qt v akci, poskytnutím vzorového prohlížeče, abys s ním mohl(a) experimentovat.&lt;p&gt;&lt;p&gt;QtWebKit je založen na open-source projektu WebKit vyvíjeného na &lt;a href=&quot;http://webkit.org/&quot;&gt;http://webkit.org/&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="825"/>
+        <location filename="../browsermainwindow.cpp" line="829"/>
         <source>Open Web Resource</source>
         <translation>Otevřít webovou stránku</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="826"/>
+        <location filename="../browsermainwindow.cpp" line="830"/>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
         <translation>Webové stránky (*.html *.htm *.svg *.png *.gif *.svgz);;Všechny soubory (*.*)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="855"/>
+        <location filename="../browsermainwindow.cpp" line="859"/>
         <source>Print Document</source>
         <translation>Vytisknout dokument</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="864"/>
+        <location filename="../browsermainwindow.cpp" line="868"/>
         <source>Are you sure you want to turn on private browsing?</source>
         <translation>Opravdu chceš zapnout soukromé prohlížení?</translation>
     </message>
     <message>
-        <location filename="src/browsermainwindow.cpp" line="739"/>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing in turned on, webpages are not added to the history, items are automatically removed from the Downloads window, new cookies are not stored, current cookies can&apos;t be accessed, site icons wont be stored, session wont be saved,  and searches are not addded to the pop-up menu in the Google search box.  Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
         <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Když je zapnuto soukromé prohlížení, stránky nejsou přidávány do historie, soubory jsou automaticky smazány z okna stahování, nové cookies nejsou ukládány, aktuální cookies nejsou přístupné, ikony stránek nejsou ukládány, relace se neukádá a hledání nejsou přidávány do vysouvacího menu v políčku Google hledání. Dokud nezavřeš okno, můžeš vždy klikat Zpět a Vpřed pro vrácení na dříve otevřené stránky.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="904"/>
+        <location filename="../browsermainwindow.cpp" line="907"/>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Opravdu chceš zavřít okno? Je tu otevřeno %1 panelů</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="943"/>
         <source>Page Source of %1</source>
         <translation type="obsolete">Zdrojový kód stránky %1</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1033"/>
+        <location filename="../browsermainwindow.cpp" line="1037"/>
         <source>Web Inspector</source>
         <translation>Web Inspector</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1035"/>
+        <location filename="../browsermainwindow.cpp" line="1038"/>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
         <translation>Webový inspektor bude fungovat pouze pro stránky načtené po jeho povolení. Chceš znovu načíst všechny stránky?</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1089"/>
+        <location filename="../browsermainwindow.cpp" line="1093"/>
         <source>Stop loading the current page</source>
         <translation>Zastaví načítání aktuální stránky</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1094"/>
+        <location filename="../browsermainwindow.cpp" line="1098"/>
         <source>Reload the current page</source>
         <translation>Znovu načte aktuální stránku</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1140"/>
+        <location filename="../browsermainwindow.cpp" line="1144"/>
         <source>Downloads</source>
         <translation>Stahování</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1140"/>
+        <location filename="../browsermainwindow.cpp" line="1144"/>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
         <translation>Alt+Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="563"/>
+        <location filename="../browsermainwindow.cpp" line="565"/>
         <source>&amp;Clear Private Data</source>
         <translation>Smazat &amp;soukromá data</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="564"/>
+        <location filename="../browsermainwindow.cpp" line="566"/>
         <source>Ctrl+Shift+Delete</source>
         <comment>Clear Private Data</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="743"/>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttonsto return to the webpages you have opened.</source>
         <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Když je zapnuto soukromé prohlížení, některé akce narušující tvoje soukromí budou zakázány:&lt;ul&gt;&lt;li&gt; Stránky nejsou přidávány do historie.&lt;/li&gt;&lt;li&gt; Položky jsou automaticky smazány z okna stahování.&lt;/li&gt;&lt;li&gt; Nové cookies nejsou uloženy, aktuální nebudou přístupné.&lt;/li&gt;&lt;li&gt; Ikony stránek nejsou ukládány, relace taky ne.&lt;/li&gt;&lt;li&gt; Hledání nejsou přidávány do vyjížděcího menu v políčku hledání.&lt;/li&gt;&lt;/ul&gt;Dokud nezavřeš okno, můžeš vždy klikat Zpět a Vpřed pro vrácení na dříve otevřené stránky.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="873"/>
+        <location filename="../browsermainwindow.cpp" line="869"/>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Když je zapnuto soukromé prohlížení, některé akce narušující tvoje soukromí budou zakázány:&lt;ul&gt;&lt;li&gt; Stránky nejsou přidávány do historie.&lt;/li&gt;&lt;li&gt; Položky jsou automaticky smazány z okna stahování.&lt;/li&gt;&lt;li&gt; Nové cookies nejsou uloženy, aktuální nebudou přístupné.&lt;/li&gt;&lt;li&gt; Ikony stránek nejsou ukládány, relace taky ne.&lt;/li&gt;&lt;li&gt; Hledání nejsou přidávány do vyjížděcího menu v políčku hledání.&lt;/li&gt;&lt;/ul&gt;Dokud nezavřeš okno, můžeš vždy klikat Zpět a Vpřed pro vrácení na dříve otevřené stránky.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="694"/>
+        <location filename="../browsermainwindow.cpp" line="698"/>
         <source>Show Bookmarks Bar</source>
         <translation>Zobrazit panel záložek</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="694"/>
+        <location filename="../browsermainwindow.cpp" line="698"/>
         <source>Hide Bookmarks Bar</source>
         <translation>Skrýt panel záložek</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="397"/>
         <source>Find &amp;Next</source>
         <translation type="obsolete">Nají&amp;t další</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="438"/>
+        <location filename="../browsermainwindow.cpp" line="440"/>
         <source>Find P&amp;revious</source>
         <translation>Najít &amp;předchozí</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="406"/>
         <source>Prefe&amp;rences</source>
         <translation type="obsolete">Před&amp;volby</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="486"/>
+        <location filename="../browsermainwindow.cpp" line="488"/>
         <source>&amp;Reload Page</source>
         <translation>O&amp;bnovit stránku</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="490"/>
+        <location filename="../browsermainwindow.cpp" line="492"/>
         <source>Make Text &amp;Bigger</source>
         <translation>Z&amp;většit text</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="491"/>
+        <location filename="../browsermainwindow.cpp" line="493"/>
         <source>Make Text &amp;Normal</source>
         <translation>&amp;Normální velikost textu</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="492"/>
+        <location filename="../browsermainwindow.cpp" line="494"/>
         <source>Make Text &amp;Smaller</source>
         <translation>Z&amp;menšit text</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="434"/>
+        <location filename="../browsermainwindow.cpp" line="436"/>
         <source>Find Nex&amp;t</source>
         <translation>Nají&amp;t další</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="443"/>
+        <location filename="../browsermainwindow.cpp" line="445"/>
         <source>Prefere&amp;nces...</source>
         <translation>Před&amp;volby...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="447"/>
+        <location filename="../browsermainwindow.cpp" line="449"/>
         <source>Show Menu Bar</source>
         <translation>Zobrazit menu</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="575"/>
+        <location filename="../browsermainwindow.cpp" line="579"/>
         <source>Switch application language </source>
         <translation>Přepnout jazyk aplikace </translation>
     </message>
@@ -718,7 +744,6 @@ Do you want to reload all pages?</source>
         <translation>&amp;Cookies</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="59"/>
         <source>C&amp;ache</source>
         <translation type="obsolete">Vyrovnávací &amp;paměť</translation>
     </message>
@@ -751,7 +776,6 @@ Do you want to reload all pages?</source>
         <translation>Adresa</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="598"/>
         <source>Status</source>
         <translation type="obsolete">Stav</translation>
     </message>
@@ -951,12 +975,11 @@ Do you want to reload all pages?</source>
         <translation>Stahování zrušeno: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="265"/>
         <source>Error opening save file: %1</source>
         <translation type="obsolete">Chyba při otevírání souboru pro uložení: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="276"/>
+        <location filename="../downloadmanager.cpp" line="275"/>
         <source>Error saving: %1</source>
         <translation>Chyba při ukládání: %1</translation>
     </message>
@@ -971,12 +994,10 @@ Do you want to reload all pages?</source>
         <translation>sekund</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="316"/>
         <source>minutes</source>
         <translation type="obsolete">minut</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="329"/>
         <source>- %4 %5 remaining</source>
         <translation type="obsolete">- %4 %5 zbývá</translation>
     </message>
@@ -991,7 +1012,7 @@ Do you want to reload all pages?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="362"/>
+        <location filename="../downloadmanager.cpp" line="361"/>
         <source>%1 of %2 - Stopped</source>
         <translation>%1 z %2 - Zastaveno</translation>
     </message>
@@ -1029,7 +1050,7 @@ Do you want to reload all pages?</source>
         </translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="267"/>
+        <location filename="../downloadmanager.cpp" line="266"/>
         <source>Error opening output file: %1</source>
         <translation>Chyba při otevírání výstupního souboru: %1</translation>
     </message>
@@ -1037,12 +1058,10 @@ Do you want to reload all pages?</source>
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="../downloadmanager.cpp" line="596"/>
         <source>1 Download</source>
         <translation type="obsolete">1 stahování</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="596"/>
         <source>%1 Downloads</source>
         <translation type="obsolete">%1 stahování</translation>
     </message>
@@ -1059,17 +1078,17 @@ Do you want to reload all pages?</source>
 <context>
     <name>HistoryDialog</name>
     <message>
-        <location filename="../history.cpp" line="740"/>
+        <location filename="../history.cpp" line="753"/>
         <source>Open</source>
         <translation>Otevřít</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="742"/>
+        <location filename="../history.cpp" line="755"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="744"/>
+        <location filename="../history.cpp" line="757"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
@@ -1092,22 +1111,22 @@ Do you want to reload all pages?</source>
 <context>
     <name>HistoryMenu</name>
     <message>
-        <location filename="../history.cpp" line="654"/>
+        <location filename="../history.cpp" line="667"/>
         <source>Show All History</source>
         <translation>Zobrazit všechnu historii</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="676"/>
+        <location filename="../history.cpp" line="689"/>
         <source>Clear History</source>
         <translation>Vyčistit historii</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="661"/>
+        <location filename="../history.cpp" line="674"/>
         <source>Clear History...</source>
         <translation>Vyčistit historii...</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="676"/>
+        <location filename="../history.cpp" line="689"/>
         <source>Do you want to clear the history?</source>
         <translation>Chceš smazat historii?</translation>
     </message>
@@ -1115,12 +1134,12 @@ Do you want to reload all pages?</source>
 <context>
     <name>HistoryModel</name>
     <message>
-        <location filename="../history.cpp" line="426"/>
+        <location filename="../history.cpp" line="427"/>
         <source>Title</source>
         <translation>Titulek</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="427"/>
+        <location filename="../history.cpp" line="428"/>
         <source>Address</source>
         <translation>Adresa</translation>
     </message>
@@ -1128,17 +1147,16 @@ Do you want to reload all pages?</source>
 <context>
     <name>HistoryTreeModel</name>
     <message>
-        <location filename="../history.cpp" line="1076"/>
+        <location filename="../history.cpp" line="1089"/>
         <source>Earlier Today</source>
         <translation>Dříve dnes</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="1062"/>
         <source>%1 items</source>
         <translation type="obsolete">%1 položek</translation>
     </message>
     <message numerus="yes">
-        <location filename="../history.cpp" line="1080"/>
+        <location filename="../history.cpp" line="1093"/>
         <source>%n item(s)</source>
         <translation>
             <numerusform>%n položka</numerusform>
@@ -1160,7 +1178,7 @@ Do you want to reload all pages?</source>
         <translation>Vyber jazyk</translation>
     </message>
     <message>
-        <location filename="../languagemanager.cpp" line="160"/>
+        <location filename="../languagemanager.cpp" line="158"/>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
         <translation>&lt;p&gt;Arora může používat jiný jazyk, než&lt;br&gt;je výchozí operačního systému.&lt;/p&gt;&lt;p&gt;Prosím vyber, který jazyk má být použit&lt;/p&gt;</translation>
     </message>
@@ -1178,7 +1196,7 @@ Do you want to reload all pages?</source>
         <translation>&lt;qt&gt;Připojit k proxy &quot;%1&quot; použitím:&lt;/qt&gt;</translation>
     </message>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="212"/>
+        <location filename="../networkaccessmanager.cpp" line="211"/>
         <source>SSL Errors:
 
 %1
@@ -1198,6 +1216,54 @@ Chceš ignorovat tyto chyby?</translation>
         <location filename="../networkaccessmanager.cpp" line="219"/>
         <source>Do you want to accept all these certificates?</source>
         <translation>Chceš přijmout všechny tyto certifikáty?</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitor</name>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="47"/>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="50"/>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="47"/>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="50"/>
+        <source>Value</source>
+        <translation>Hodnota</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitorDialog</name>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.ui" line="14"/>
+        <source>Network Monitor</source>
+        <translation>Monitor sítě</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.ui" line="26"/>
+        <source>Network Requests</source>
+        <translation>Síťové požadavky</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.ui" line="50"/>
+        <source>Request Headers</source>
+        <translation>Hlavičky požadavku</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.ui" line="68"/>
+        <source>Response Headers</source>
+        <translation>Hlavičky odpovědi</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.ui" line="88"/>
+        <source>&amp;Remove</source>
+        <translation>&amp;Smazat</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.ui" line="95"/>
+        <source>Remove &amp;All Requests</source>
+        <translation>Smazat &amp;všechny požadavky</translation>
     </message>
 </context>
 <context>
@@ -1278,6 +1344,44 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
 </context>
 <context>
+    <name>RequestModel</name>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="176"/>
+        <source>Redirect: %1</source>
+        <translation>Přesměrování: %1</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="184"/>
+        <source>Method</source>
+        <translation>Metoda</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="185"/>
+        <source>Address</source>
+        <translation>Adresa</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="186"/>
+        <source>Response</source>
+        <translation>Odpověď</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="187"/>
+        <source>Length</source>
+        <translation>Délka</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="188"/>
+        <source>Content Type</source>
+        <translation>Typ obsahu</translation>
+    </message>
+    <message>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="189"/>
+        <source>Info</source>
+        <translation>Info</translation>
+    </message>
+</context>
+<context>
     <name>SearchBanner</name>
     <message>
         <location filename="../searchbanner.ui" line="19"/>
@@ -1316,7 +1420,6 @@ Chceš ignorovat tyto chyby?</translation>
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../settings.ui" line="13"/>
         <source>Settings</source>
         <translation type="obsolete">Nastavení</translation>
     </message>
@@ -1326,7 +1429,6 @@ Chceš ignorovat tyto chyby?</translation>
         <translation>Hlavní</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="68"/>
         <source>Home:</source>
         <translation type="obsolete">Domov:</translation>
     </message>
@@ -1371,7 +1473,6 @@ Chceš ignorovat tyto chyby?</translation>
         <translation>Ručně</translation>
     </message>
     <message>
-        <location filename="src/settings.ui" line="124"/>
         <source>Save downloads to:</source>
         <translation type="obsolete">Uložit stahování do:</translation>
     </message>
@@ -1406,6 +1507,7 @@ Chceš ignorovat tyto chyby?</translation>
         <translation>Times 16</translation>
     </message>
     <message>
+        <location filename="../settings.ui" line="264"/>
         <location filename="../settings.ui" line="294"/>
         <source>Select...</source>
         <translation>Vybrat...</translation>
@@ -1471,7 +1573,6 @@ Chceš ignorovat tyto chyby?</translation>
         <translation>Výjimky...</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="395"/>
         <source>Keep until:</source>
         <translation type="obsolete">Uchovat dokud:</translation>
     </message>
@@ -1501,7 +1602,6 @@ Chceš ignorovat tyto chyby?</translation>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="491"/>
         <source>Enable proxy</source>
         <translation type="obsolete">Povolit proxy</translation>
     </message>
@@ -1521,7 +1621,6 @@ Chceš ignorovat tyto chyby?</translation>
         <translation>Http</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="524"/>
         <source>Host:</source>
         <translation type="obsolete">Server:</translation>
     </message>
@@ -1571,7 +1670,6 @@ Chceš ignorovat tyto chyby?</translation>
         <translation>Při ukončení aplikace</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="340"/>
         <source>Enable Images</source>
         <translation type="obsolete">Povolit obrázky</translation>
     </message>
@@ -1704,12 +1802,12 @@ Chceš ignorovat tyto chyby?</translation>
     <message>
         <location filename="../tabbar.cpp" line="181"/>
         <source>Reload Tab</source>
-        <translation>&amp;Obnovit panel</translation>
+        <translation>Obnovit panel</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="187"/>
         <source>Reload All Tabs</source>
-        <translation>O&amp;bnovit všechny panely</translation>
+        <translation>Obnovit všechny panely</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="144"/>
@@ -1740,9 +1838,19 @@ Chceš ignorovat tyto chyby?</translation>
         <translation>Zobrazit další panel</translation>
     </message>
     <message>
+        <location filename="../tabwidget.cpp" line="151"/>
+        <source>Ctrl-]</source>
+        <translation>Ctrl-]</translation>
+    </message>
+    <message>
         <location filename="../tabwidget.cpp" line="157"/>
         <source>Show Previous Tab</source>
         <translation>Zobrazit předchozí panel</translation>
+    </message>
+    <message>
+        <location filename="../tabwidget.cpp" line="161"/>
+        <source>Ctrl-[</source>
+        <translation>Ctrl-[</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="172"/>
@@ -1750,12 +1858,11 @@ Chceš ignorovat tyto chyby?</translation>
         <translation>Posledně zavřené panely</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="450"/>
         <source>(Untitled)</source>
         <translation type="obsolete">(Bez titulku)</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="610"/>
+        <location filename="../tabwidget.cpp" line="611"/>
         <source>Do you really want to close this page?</source>
         <translation>Opravdu chceš zavřít tuto stránku?</translation>
     </message>
@@ -1769,7 +1876,8 @@ Opravdu chceš zavřít tuto stránku?
 </translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="503"/>
+        <location filename="../tabwidget.cpp" line="471"/>
+        <location filename="../tabwidget.cpp" line="504"/>
         <source>Untitled</source>
         <translation>Bez názvu</translation>
     </message>
@@ -1805,9 +1913,8 @@ Opravdu chceš zavřít tuto stránku?
         <translation>Při připojování k: %1.</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="203"/>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.trolltech.com instead of &lt;b&gt;www&lt;/b&gt;.trolltech.com.</source>
-        <translation>Zkontroluj adresu na chyby jako &lt;b&gt;ww&lt;/b&gt;.trolltech.com místo &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
+        <translation type="obsolete">Zkontroluj adresu na chyby jako &lt;b&gt;ww&lt;/b&gt;.trolltech.com místo &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="204"/>
@@ -1819,18 +1926,22 @@ Opravdu chceš zavřít tuto stránku?
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation>Pokud je tvůj počítač nebo tvá síť chráněna firewallem nebo proxy, ujisti se, že je prohlížeči povolen přístup k síti.</translation>
     </message>
+    <message>
+        <location filename="../webview.cpp" line="203"/>
+        <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
+        <translation>Zkontroluj adresu na chyby jako &lt;b&gt;ww&lt;/b&gt;.arora-browser.org namísto &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="webview.cpp" line="230"/>
         <source>Open in New Tab</source>
         <translation type="obsolete">Otevřít v novém panelu</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="267"/>
         <source>Open in New &amp;Window</source>
-        <translation>Otevřít v novém okně</translation>
+        <translation>&amp;Otevřít v novém okně</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="268"/>
@@ -1878,6 +1989,7 @@ Opravdu chceš zavřít tuto stránku?
         <translation>Kopírovat adresu ob&amp;rázku</translation>
     </message>
     <message>
+        <location filename="../webview.cpp" line="448"/>
         <location filename="../webview.cpp" line="457"/>
         <source>Loading...</source>
         <translation>Načítám...</translation>
