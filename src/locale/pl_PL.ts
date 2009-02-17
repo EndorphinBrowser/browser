@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<!DOCTYPE TS><TS version="1.1" language="pl_PL">
 <defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -33,7 +32,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright &#xa9; 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
 </context>
@@ -567,10 +566,6 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
         <source>Switch application language </source>
         <translation>Zmień język aplikacji</translation>
     </message>
-    <message>
-        <source>Show &amp;Network Monitor</source>
-        <translation>Pokaż Monitor &amp;Sieci</translation>
-    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -1006,44 +1001,6 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
 </context>
 <context>
-    <name>NetworkMonitor</name>
-    <message>
-        <source>Name</source>
-        <translation>Nazwa</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation>Wartość</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkMonitorDialog</name>
-    <message>
-        <source>Network Monitor</source>
-        <translation>Monitor Sieci</translation>
-    </message>
-    <message>
-        <source>Network Requests</source>
-        <translation>Rządania sieciowe</translation>
-    </message>
-    <message>
-        <source>Request Headers</source>
-        <translation>Nagłówki rządań</translation>
-    </message>
-    <message>
-        <source>Response Headers</source>
-        <translation>Nagłówki odpowiedzi</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation>&amp;Usuń</translation>
-    </message>
-    <message>
-        <source>Remove &amp;All Requests</source>
-        <translation>Usuń &amp;Wszystkie Rządania</translation>
-    </message>
-</context>
-<context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
@@ -1105,37 +1062,6 @@ Czy chcesz zignorować te błędy?</translation>
     <message>
         <source>Unknown title</source>
         <translation>Nieznany tytuł</translation>
-    </message>
-</context>
-<context>
-    <name>RequestModel</name>
-    <message>
-        <source>Redirect: %1</source>
-        <translation>Przekierowanie: %1</translation>
-    </message>
-    <message>
-        <source>Method</source>
-        <translation>Metoda</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adres</translation>
-    </message>
-    <message>
-        <source>Response</source>
-        <translation>Odpowiedź</translation>
-    </message>
-    <message>
-        <source>Length</source>
-        <translation>Długość</translation>
-    </message>
-    <message>
-        <source>Content Type</source>
-        <translation>Typ zawartości</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation>Informacje</translation>
     </message>
 </context>
 <context>
@@ -1567,7 +1493,7 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.trolltech.com instead of &lt;b&gt;www&lt;/b&gt;.trolltech.com.</source>
-        <translation type="obsolete">Sprawdź, czy adres nie zawiera żadnych błędów np. &lt;b&gt;ww&lt;/b&gt;.trolltech.com zamiast &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
+        <translation>Sprawdź, czy adres nie zawiera żadnych błędów np. &lt;b&gt;ww&lt;/b&gt;.trolltech.com zamiast &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
@@ -1580,10 +1506,6 @@ Czy na pewno chcesz zamknąć tę stronę?
     <message>
         <source>When connecting to: %1.</source>
         <translation>Podczas łączenia z: %1.</translation>
-    </message>
-    <message>
-        <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation>Sprawdź, czy adres nie zawiera żadnych błędów np. &lt;b&gt;ww&lt;/b&gt;.arora-browser.org zamiast &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
 </context>
 <context>
