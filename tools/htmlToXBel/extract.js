@@ -21,7 +21,7 @@ function walk() {
                 folded = "true";
         }
         if (object.nodeName == "A") {
-            result += indent + "<bookmark href=\"" + encodeURI(object.href) + "\">\n";
+            result += indent + "<bookmark href=\"" + encodeURI(object.href).replace(/&/g, '&amp;') + "\">\n";
             result += indent + indent + "<title>" + object.innerHTML + "</title>\n";
             result += indent + "</bookmark>\n";
         }
