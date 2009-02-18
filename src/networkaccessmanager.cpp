@@ -84,6 +84,34 @@
 #include <qdesktopservices.h>
 #endif
 
+#if QT_VERSION >= 0x040500
+NetworkProxyFactory::NetworkProxyFactory()
+    : QNetworkProxyFactory()
+{
+}
+
+void NetworkProxyFactory::setHttpProxy(const QNetworkProxy &proxy)
+{
+    m_httpProxy = proxy;
+}
+
+void NetworkProxyFactory::setGlobalProxy(const QNetworkProxy &proxy)
+{
+    m_globalProxy = proxy;
+}
+
+QList<QNetworkProxy> NetworkProxyFactory::queryProxy(const QNetworkProxyQuery &query)
+{
+    QList<QNetworkProxy> ret;
+
+    if (query.protocolTag() == QLatin1String("http") && m_httpProxy.type() != QNetworkProxy::DefaultProxy)
+	ret << m_httpProxy;
+    ret << m_globalProxy;
+
+    return ret;
+}
+#endif
+
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
     : QNetworkAccessManager(parent)
 {
@@ -112,16 +140,33 @@ void NetworkAccessManager::loadSettings()
     settings.beginGroup(QLatin1String("proxy"));
     QNetworkProxy proxy;
     if (settings.value(QLatin1String("enabled"), false).toBool()) {
-        if (settings.value(QLatin1String("type"), 0).toInt() == 0)
+        int proxyType = settings.value(QLatin1String("type"), 0).toInt();
+        if (proxyType == 0)
             proxy.setType(QNetworkProxy::Socks5Proxy);
-        else
+        else if (proxyType == 1)
             proxy.setType(QNetworkProxy::HttpProxy);
+	else { // 2
+	    proxy.setType(QNetworkProxy::HttpCachingProxy);
+	    proxy.setCapabilities(QNetworkProxy::CachingCapability | QNetworkProxy::HostNameLookupCapability);
+	}
         proxy.setHostName(settings.value(QLatin1String("hostName")).toString());
         proxy.setPort(settings.value(QLatin1String("port"), 1080).toInt());
         proxy.setUser(settings.value(QLatin1String("userName")).toString());
         proxy.setPassword(settings.value(QLatin1String("password")).toString());
     }
+#if QT_VERSION >= 0x040500
+    NetworkProxyFactory *proxyFactory = new NetworkProxyFactory;
+    if (proxy.type() == QNetworkProxy::HttpCachingProxy) {
+      proxyFactory->setHttpProxy(proxy);
+      proxyFactory->setGlobalProxy(QNetworkProxy::DefaultProxy);
+    } else {
+      proxyFactory->setHttpProxy(QNetworkProxy::DefaultProxy);
+      proxyFactory->setGlobalProxy(proxy);
+    }
+    setProxyFactory(proxyFactory);
+#else
     setProxy(proxy);
+#endif
     settings.endGroup();
 
 #ifndef QT_NO_OPENSSL
