@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
     NetworkDiskCache diskCache;
     QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
-            + QLatin1String("browser/");
+            + QLatin1String("/browser/");
     diskCache.setCacheDirectory(location);
 
     QNetworkCacheMetaData metaData;
