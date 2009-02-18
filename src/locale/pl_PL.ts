@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<!DOCTYPE TS>
+<TS version="2.0" language="pl_PL">
 <defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -32,7 +33,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright &#xa9; 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
 </context>
@@ -199,7 +200,7 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation>(Zmiana: %1 %2)</translation>
+        <translation> (Zmiana: %1 %2)</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -566,6 +567,10 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
         <source>Switch application language </source>
         <translation>Zmień język aplikacji</translation>
     </message>
+    <message>
+        <source>Show &amp;Network Monitor</source>
+        <translation>Pokaż &amp;monitor sieci</translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -872,9 +877,9 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <message numerus="yes">
         <source>%n Download(s)</source>
         <translation>
-            <numerusform>%n pobieranie</numerusform>
-            <numerusform>%n pobierania</numerusform>
-            <numerusform>%n pobierań</numerusform>
+            <numerusform>%n pobierany plik</numerusform>
+            <numerusform>%n pobierane pliki</numerusform>
+            <numerusform>%n pobieranych plików</numerusform>
         </translation>
     </message>
 </context>
@@ -1001,6 +1006,44 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
 </context>
 <context>
+    <name>NetworkMonitor</name>
+    <message>
+        <source>Name</source>
+        <translation>Nazwa</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>Wartość</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitorDialog</name>
+    <message>
+        <source>Network Monitor</source>
+        <translation>Monitor sieci</translation>
+    </message>
+    <message>
+        <source>Network Requests</source>
+        <translation>Żądania sieciowe</translation>
+    </message>
+    <message>
+        <source>Request Headers</source>
+        <translation>Nagłówki żądań</translation>
+    </message>
+    <message>
+        <source>Response Headers</source>
+        <translation>Nagłówki odpowiedzi</translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation>&amp;Usuń</translation>
+    </message>
+    <message>
+        <source>Remove &amp;All Requests</source>
+        <translation>Usuń &amp;wszystkie żądania</translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
@@ -1065,6 +1108,37 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
 </context>
 <context>
+    <name>RequestModel</name>
+    <message>
+        <source>Redirect: %1</source>
+        <translation>Przekierowanie: %1</translation>
+    </message>
+    <message>
+        <source>Method</source>
+        <translation>Metoda</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Adres</translation>
+    </message>
+    <message>
+        <source>Response</source>
+        <translation>Odpowiedź</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <translation>Długość</translation>
+    </message>
+    <message>
+        <source>Content Type</source>
+        <translation>Rodzaj zawartości</translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation>Informacje</translation>
+    </message>
+</context>
+<context>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
@@ -1072,7 +1146,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation>Etykietka Tekstowa</translation>
+        <translation>Etykietka tekstowa</translation>
     </message>
     <message>
         <source>&lt;</source>
@@ -1084,7 +1158,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>Zrobione</translation>
+        <translation>Zakończono</translation>
     </message>
 </context>
 <context>
@@ -1182,7 +1256,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Fixed-width font:</source>
-        <translation>O stałej szerokości:</translation>
+        <translation>Czcionka o stałej szerokości:</translation>
     </message>
     <message>
         <source>Courier 13</source>
@@ -1266,7 +1340,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Http</source>
-        <translation>Http</translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -1298,11 +1372,11 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Show my home page</source>
-        <translation>Pokaż moją stronę domową</translation>
+        <translation>Otwórz moją stronę domową</translation>
     </message>
     <message>
         <source>Show a blank page</source>
-        <translation>Pokaż pustą stronę</translation>
+        <translation>Otwórz pustą stronę</translation>
     </message>
     <message>
         <source>Restore windows and tabs from last time</source>
@@ -1326,7 +1400,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs</source>
-        <translation>Potwierdź przy zamykaniu wielu kart</translation>
+        <translation>Potwierdź zamknięcie wielu kart naraz</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1453,13 +1527,21 @@ Czy chcesz zignorować te błędy?</translation>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
-        <translation>Wprowadziłeś modyfikacje na tej strone i kiedy ją zamkniesz to utracisz wszystkie zmiany.
+        <translation>Wprowadziłeś modyfikacje na tej stronie i kiedy ją zamkniesz to utracisz wszystkie zmiany.
 Czy na pewno chcesz zamknąć tę stronę?
 </translation>
     </message>
     <message>
         <source>Untitled</source>
         <translation>Bez tytułu</translation>
+    </message>
+    <message>
+        <source>Ctrl-]</source>
+        <translation>Ctrl-]</translation>
+    </message>
+    <message>
+        <source>Ctrl-[</source>
+        <translation>Ctrl-[</translation>
     </message>
 </context>
 <context>
@@ -1470,15 +1552,15 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>No Recent Searches</source>
-        <translation>Brak ostatnich wyszukiwań</translation>
+        <translation>Brak ostatnio wyszukiwanych fraz</translation>
     </message>
     <message>
         <source>Recent Searches</source>
-        <translation>Ostatnie wyszukiwań</translation>
+        <translation>Ostatnio wyszukiwane frazy</translation>
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Wyczyść listę wyszukiwań</translation>
+        <translation>Wyczyść listę ostatnio wyszukiwanych fraz</translation>
     </message>
 </context>
 <context>
@@ -1493,19 +1575,23 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.trolltech.com instead of &lt;b&gt;www&lt;/b&gt;.trolltech.com.</source>
-        <translation>Sprawdź, czy adres nie zawiera żadnych błędów np. &lt;b&gt;ww&lt;/b&gt;.trolltech.com zamiast &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
+        <translation type="obsolete">Sprawdź, czy adres nie zawiera żadnych błędów np. &lt;b&gt;ww&lt;/b&gt;.trolltech.com zamiast &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
-        <translation>Jeśli adres jest prawidłowy, spróbuj sprawdź czy Twoje połączenia internetowe działa poprawnie.</translation>
+        <translation>Jeśli adres jest prawidłowy, sprawdź czy Twoje połączenie internetowe działa poprawnie.</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation>Jeśli twój komputer lub sieć jest chroniona zaporą sieciową lub proxy, upewnij się, że przeglądarka ma uprawnienia dostępu do sieci.</translation>
+        <translation>Jeśli twój komputer lub sieć jest chroniona zaporą sieciową lub proxy, upewnij się, że przeglądarka ma uprawnienia do dostępu do sieci.</translation>
     </message>
     <message>
         <source>When connecting to: %1.</source>
         <translation>Podczas łączenia z: %1.</translation>
+    </message>
+    <message>
+        <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
+        <translation>Sprawdź adres pod kątem błędów takich jak &lt;b&gt;ww&lt;/b&gt;.arora-browser.org zamiast &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
 </context>
 <context>
