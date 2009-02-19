@@ -107,7 +107,7 @@ void SourceHighlighter::highlightBlock(const QString &text)
         case Normal:
             regex.setPattern(QLatin1String("[<&]"));
             pos = regex.indexIn(text, pos);
-            if (pos>=0) {
+            if (pos >= 0) {
                 if (text.at(pos) == QLatin1Char('<')) {
                     start = pos;
                     if (text.mid(pos, 4) == QLatin1String("<!--")) {
