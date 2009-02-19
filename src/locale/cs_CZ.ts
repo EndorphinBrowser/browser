@@ -62,17 +62,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksDialog</name>
     <message>
-        <location filename="../bookmarks.cpp" line="909"/>
+        <location filename="../bookmarks.cpp" line="911"/>
         <source>Open</source>
         <translation>Otevřít</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="920"/>
+        <location filename="../bookmarks.cpp" line="922"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="972"/>
+        <location filename="../bookmarks.cpp" line="981"/>
         <source>New Folder</source>
         <translation>Nová složka</translation>
     </message>
@@ -92,17 +92,17 @@ p, li { white-space: pre-wrap; }
         <translation>Přidat složku</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="910"/>
+        <location filename="../bookmarks.cpp" line="912"/>
         <source>Open in New Tab</source>
         <translation>Otevřít v novém panelu</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="914"/>
+        <location filename="../bookmarks.cpp" line="916"/>
         <source>Edit Name</source>
         <translation>Upravit název</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="917"/>
+        <location filename="../bookmarks.cpp" line="919"/>
         <source>Edit Address</source>
         <translation>Upravit adresu</translation>
     </message>
@@ -110,11 +110,21 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksManager</name>
     <message>
-        <location filename="../bookmarks.cpp" line="128"/>
-        <location filename="../bookmarks.cpp" line="284"/>
+        <location filename="../bookmarks.cpp" line="130"/>
+        <location filename="../bookmarks.cpp" line="286"/>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
         <translation>Chyba při načítání záložek na řádku %1, sloupci %2: %3</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="85"/>
+        <source>Bookmarks Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="86"/>
+        <source>Bookmarks Menu</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="139"/>
@@ -127,58 +137,58 @@ p, li { white-space: pre-wrap; }
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="274"/>
+        <location filename="../bookmarks.cpp" line="276"/>
         <source>Open File</source>
         <translation>Otevřít soubor</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="276"/>
-        <location filename="../bookmarks.cpp" line="297"/>
+        <location filename="../bookmarks.cpp" line="278"/>
+        <location filename="../bookmarks.cpp" line="299"/>
         <source>XBEL (*.xbel *.xml)</source>
         <translation>XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="289"/>
+        <location filename="../bookmarks.cpp" line="291"/>
         <source>Imported %1</source>
         <translation>Importováno %1</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="295"/>
+        <location filename="../bookmarks.cpp" line="297"/>
         <source>Save File</source>
         <translation>Uložit soubor</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="296"/>
+        <location filename="../bookmarks.cpp" line="298"/>
         <source>%1 Bookmarks.xbel</source>
         <translation>%1 Bookmarks.xbel</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="303"/>
+        <location filename="../bookmarks.cpp" line="305"/>
         <source>Export error</source>
         <translation>Chyba exportu</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="303"/>
+        <location filename="../bookmarks.cpp" line="305"/>
         <source>error saving bookmarks</source>
         <translation>chyba při ukládání záložek</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="307"/>
+        <location filename="../bookmarks.cpp" line="309"/>
         <source>Remove Bookmark</source>
         <translation>Smazat záložku</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="341"/>
+        <location filename="../bookmarks.cpp" line="343"/>
         <source>Insert Bookmark</source>
         <translation>Vložit záložku</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="355"/>
+        <location filename="../bookmarks.cpp" line="357"/>
         <source>Name Change</source>
         <translation>Změna jména</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="358"/>
+        <location filename="../bookmarks.cpp" line="360"/>
         <source>Address Change</source>
         <translation>Změna adresy</translation>
     </message>
@@ -186,12 +196,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksModel</name>
     <message>
-        <location filename="../bookmarks.cpp" line="453"/>
+        <location filename="../bookmarks.cpp" line="455"/>
         <source>Title</source>
         <translation>Titulek</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="454"/>
+        <location filename="../bookmarks.cpp" line="456"/>
         <source>Address</source>
         <translation>Adresa</translation>
     </message>
@@ -199,27 +209,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <location filename="../bookmarks.cpp" line="1009"/>
+        <location filename="../bookmarks.cpp" line="1018"/>
         <source>Bookmark</source>
         <translation>Záložky</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1045"/>
+        <location filename="../bookmarks.cpp" line="1054"/>
         <source>Open</source>
         <translation>Otevřít</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1048"/>
+        <location filename="../bookmarks.cpp" line="1057"/>
         <source>Open in New &amp;Tab</source>
         <translation>Otevřít v &amp;novém panelu</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1055"/>
+        <location filename="../bookmarks.cpp" line="1064"/>
         <source>Remove</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1062"/>
+        <location filename="../bookmarks.cpp" line="1071"/>
         <source>Add Bookmark...</source>
         <translation>Přidat záložku...</translation>
     </message>
@@ -1168,17 +1178,17 @@ Do you want to reload all pages?</source>
 <context>
     <name>LanguageManager</name>
     <message>
-        <location filename="../languagemanager.cpp" line="152"/>
+        <location filename="../languagemanager.cpp" line="154"/>
         <source>Default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../languagemanager.cpp" line="157"/>
+        <location filename="../languagemanager.cpp" line="159"/>
         <source>Choose language</source>
         <translation>Vyber jazyk</translation>
     </message>
     <message>
-        <location filename="../languagemanager.cpp" line="158"/>
+        <location filename="../languagemanager.cpp" line="160"/>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
         <translation>&lt;p&gt;Arora může používat jiný jazyk, než&lt;br&gt;je výchozí operačního systému.&lt;/p&gt;&lt;p&gt;Prosím vyber, který jazyk má být použit&lt;/p&gt;</translation>
     </message>
