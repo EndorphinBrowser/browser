@@ -147,6 +147,14 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <translation>Zmiana adresu</translation>
     </message>
+    <message>
+        <source>Bookmarks Bar</source>
+        <translation>Pasek zakładek</translation>
+    </message>
+    <message>
+        <source>Bookmarks Menu</source>
+        <translation>Menu zakładek</translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -1513,7 +1521,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Recently Closed Tabs</source>
-        <translation>Ostatnio zamykane karty</translation>
+        <translation>Ostatnio zamknięte karty</translation>
     </message>
     <message>
         <source>(Untitled)</source>
