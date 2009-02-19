@@ -964,15 +964,22 @@ void BookmarksDialog::newFolder()
 {
     QModelIndex currentIndex = tree->currentIndex();
     QModelIndex idx = currentIndex;
-    if (idx.isValid() && !idx.model()->hasChildren(idx))
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(idx);
+    const BookmarkNode *sourceNode = m_bookmarksModel->node(sourceIndex);
+    int row = -1; // default: append new folder as last item in selected folder
+    if (sourceNode && sourceNode->type() != BookmarkNode::Folder) {
+        // if selected item is not a folder, add new folder to parent folder,
+        // but direcly below the selected item
         idx = idx.parent();
+        row = currentIndex.row() + 1;
+    }
     if (!idx.isValid())
-        idx = tree->rootIndex();
+        idx = m_proxyModel->index(1, 0); // Select Bookmarks menu as default
     idx = m_proxyModel->mapToSource(idx);
     BookmarkNode *parent = m_bookmarksManager->bookmarksModel()->node(idx);
     BookmarkNode *node = new BookmarkNode(BookmarkNode::Folder);
     node->title = tr("New Folder");
-    m_bookmarksManager->addBookmark(parent, node, currentIndex.row() + 1);
+    m_bookmarksManager->addBookmark(parent, node, row);
 }
 
 BookmarkToolButton::BookmarkToolButton(const QModelIndex &index, QWidget *parent)
