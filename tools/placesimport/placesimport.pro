@@ -11,6 +11,10 @@ QT += sql
 # Input
 SOURCES += main.cpp
 
+# This can be improved to just include the history manager and utility classes
+# once the history classes are separated out into individual files.
+include(../../src/src.pri)
+
 RCC_DIR     = $$PWD/.rcc
 UI_DIR      = $$PWD/.ui
 MOC_DIR     = $$PWD/.moc
