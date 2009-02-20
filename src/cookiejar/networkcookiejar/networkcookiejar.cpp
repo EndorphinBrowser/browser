@@ -117,17 +117,28 @@ QList<QNetworkCookie> NetworkCookieJar::cookiesForUrl(const QUrl &url) const
     QList<QNetworkCookie>::iterator i = cookies.begin();
     for (; i != cookies.end();) {
         if (!d->matchingPath(*i, urlPath)) {
+#if defined(NETWORKCOOKIEJAR_DEBUG)
+            qDebug() << __FUNCTION__ << "Ignoring cookie, path does not match" << *i << urlPath;
+#endif
             i = cookies.erase(i);
             continue;
         }
         if (!isSecure && i->isSecure()) {
             i = cookies.erase(i);
+#if defined(NETWORKCOOKIEJAR_DEBUG)
+            qDebug() << __FUNCTION__ << "Ignoring cookie, security mismatch"
+                     << *i << !isSecure;
+#endif
             continue;
         }
         if (!i->isSessionCookie() && now > i->expirationDate()) {
             // remove now (expensive short term) because there will
             // probably be many more cookiesForUrl calls for this host
             d->tree.remove(splitHost(i->domain()), *i);
+#if defined(NETWORKCOOKIEJAR_DEBUG)
+            qDebug() << __FUNCTION__ << "Ignoring cookie, expiration issue"
+                     << *i << now;
+#endif
             i = cookies.erase(i);
             continue;
         }
@@ -136,6 +147,10 @@ QList<QNetworkCookie> NetworkCookieJar::cookiesForUrl(const QUrl &url) const
 
     // shorter paths should go first
     qSort(cookies.begin(), cookies.end(), shorterPaths);
+#if defined(NETWORKCOOKIEJAR_DEBUG)
+    qDebug() << "NetworkCookieJar::" << __FUNCTION__ << "returning" << cookies.count();
+    qDebug() << cookies;
+#endif
     return cookies;
 }
 
@@ -191,6 +206,7 @@ bool NetworkCookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList
 {
 #if defined(NETWORKCOOKIEJAR_DEBUG)
     qDebug() << "NetworkCookieJar::" << __FUNCTION__ << url;
+    qDebug() << cookieList;
 #endif
     QDateTime now = QDateTime::currentDateTime().toTimeSpec(Qt::UTC);
     bool changed = false;
@@ -204,7 +220,7 @@ bool NetworkCookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList
         bool alreadyDead = !cookie.isSessionCookie() && cookie.expirationDate() < now;
 
         if (cookie.path().isEmpty()) {
-            cookie.setPath(fullUrlPath);
+            cookie.setPath(defaultPath);
         } else if (!d->matchingPath(cookie, urlPath)) {
 #ifdef NETWORKCOOKIEJAR_LOGREJECTEDCOOKIES
             qDebug() << "NetworkCookieJar::" << __FUNCTION__
