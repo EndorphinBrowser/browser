@@ -5,4 +5,7 @@ git log --pretty="format:%an %ae" \
 	| sed -e 's/^faw /Jakub Wieczorek /g' \
 	| sed -e 's/^LEW21 /Janusz Lewandowski /g' \
 	| sed -e 's/lew21@pecet.(none)$/lew21st@gmail.com/g' \
+        | sed -e 's/adam.treat@torchmobile.com/treat@kde.org/g' \
+        | sed -e 's/torarnv@gmail.com/tavestbo@trolltech.com/g' \
+        | sed -e 's/bks@coldkeck2.colorado.edu/bks24@cornell.edu/g' \
 	| sort | uniq -c | sort -n -r | sed -e 's/^ *[0-9]* //g'
