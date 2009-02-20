@@ -1,3 +1,51 @@
+0.5
+Interface
+- Add new Network Access Monitor tool that shows each network request as it passes.
+- Added option for showing only one close Button
+- Don't add empty tabs if closed to recently closed tabs menu.
+- Support HTTP proxies which listen in ports higher than 10000
+- Save more space in full screen mode - hide menu and status bars.
+- Added an option in source viewer menu for wrapping code lines.
+- Open pages from autocompletion list directly instead of filling the bar with their addresses.
+
+- Don't show Open actions if the item is a Folder in the Bookmark Manager
+- Allow filtering bookmarks and histories by URLs as well.
+- Add drag functionality to Bookmark and History menu's
+- Allow selecting multiple bookmarks when ctrl is pressed.
+- Added support for renaming bookmarks through their context menus.
+- Expanded bookmark menu - added Change URL and made Rename displayed also on folders.
+- Allow for unlimited bookmarks in a folder on bookmark bar
+
+- Added privacy indicator to the location bar
+- Uncheck the privacy action when user aborts initial private browsing dialog.
+- When enabling or disabling private browsing only the checkbox on the current window is updated
+
+- Display missing Copy action in context menu if a link is selected.
+- Make tab reload action in the context menu work
+- Fix Middleclick on open tab to not have inconsistent behavior.
+- On some web pages, middle-clicking a link opened it in the same window.
+- Refined drag & drop handling in bookmarks toolbar. Fixed a bug, when page was assigned to inappropriate folder due to more than one folder having same name.
+- Implement simple context menu in bookmarks toolbar. Let user change bookmark URL in Add Bookmark dialog.
+
+Behind the scenes
+- Brand new more compliant, faster cookie jar
+- Brand new Language Manager which selects the correct language on start and lets you choose a different language via the Help menu.
+- Separate the cookie classes into separate files.
+- Fix a memory leak when creating the context menu under Qt 4.5+
+- LineEdit utility class is now under the BSD license
+- The error web pages are now translatable.
+- Encode urls rather then use toString in various places to prevent loss of url data.
+- When using foreach try to use a const reference so a copy isn't made (slower) compared to the reference (faster).
+- Add a new tool to convert bookmarks that are in the html format into the XBel format (not used in Arora yet).
+- Various code style and general keeping the code clean fixes
+- Add Implementation to get the current username on Windows for the single application
+
+Build system
+- Add script to build OS X package using the new macdeployqt tool in Qt 4.5
+- Building with QT_STRICT_ITERATORS to catch errors.
+- Enhance support for building with multiple WebKit trunk branches
+- Adds the ability to generate code documentation with doxygen
+
 0.4
 Interface
 - New source viewer with search and syntax highlighting.
