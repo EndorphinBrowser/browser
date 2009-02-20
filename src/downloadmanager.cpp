@@ -121,6 +121,8 @@ void DownloadItem::init()
     m_startedSaving = false;
     m_finishedDownloading = false;
 
+    openButton->setEnabled(false);
+
     // attach to the m_reply
     m_url = m_reply->url();
     m_reply->setParent(this);
@@ -402,6 +404,7 @@ void DownloadItem::finished()
     progressBar->hide();
     stopButton->setEnabled(false);
     stopButton->hide();
+    openButton->setEnabled(true);
     m_output.close();
     updateInfoLabel();
     emit statusChanged();
