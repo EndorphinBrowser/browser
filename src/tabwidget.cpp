@@ -120,11 +120,11 @@ TabWidget::TabWidget(QWidget *parent)
 #endif
 
     // Actions
-    m_newTabAction = new QAction(tr("New &Tab"), this);
+    m_newTabAction = new QAction(this);
     m_newTabAction->setShortcuts(QKeySequence::AddTab);
     connect(m_newTabAction, SIGNAL(triggered()), this, SLOT(newTab()));
 
-    m_closeTabAction = new QAction(tr("&Close Tab"), this);
+    m_closeTabAction = new QAction(this);
     m_closeTabAction->setShortcuts(QKeySequence::Close);
     connect(m_closeTabAction, SIGNAL(triggered()), this, SLOT(closeTab()));
 
@@ -144,24 +144,10 @@ TabWidget::TabWidget(QWidget *parent)
     }
 #endif
 
-    m_nextTabAction = new QAction(tr("Show Next Tab"), this);
-    QList<QKeySequence> shortcuts;
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceRight));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageDown));
-    shortcuts.append(tr("Ctrl-]"));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Less));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Tab));
-    m_nextTabAction->setShortcuts(shortcuts);
+    m_nextTabAction = new QAction(this);
     connect(m_nextTabAction, SIGNAL(triggered()), this, SLOT(nextTab()));
 
-    m_previousTabAction = new QAction(tr("Show Previous Tab"), this);
-    shortcuts.clear();
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceLeft));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageUp));
-    shortcuts.append(tr("Ctrl-["));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Greater));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab));
-    m_previousTabAction->setShortcuts(shortcuts);
+    m_previousTabAction = new QAction(this);
     connect(m_previousTabAction, SIGNAL(triggered()), this, SLOT(previousTab()));
 
     m_recentlyClosedTabsMenu = new QMenu(this);
@@ -169,7 +155,7 @@ TabWidget::TabWidget(QWidget *parent)
             this, SLOT(aboutToShowRecentTabsMenu()));
     connect(m_recentlyClosedTabsMenu, SIGNAL(triggered(QAction *)),
             this, SLOT(aboutToShowRecentTriggeredAction(QAction *)));
-    m_recentlyClosedTabsAction = new QAction(tr("Recently Closed Tabs"), this);
+    m_recentlyClosedTabsAction = new QAction(this);
     m_recentlyClosedTabsAction->setMenu(m_recentlyClosedTabsMenu);
     m_recentlyClosedTabsAction->setEnabled(false);
 
@@ -206,6 +192,9 @@ TabWidget::TabWidget(QWidget *parent)
 
     connect(BrowserApplication::historyManager(), SIGNAL(historyCleared()),
         this, SLOT(historyCleared()));
+
+    // Initialize Actions' labels
+    retranslate();
 }
 
 void TabWidget::historyCleared()
@@ -817,6 +806,36 @@ void TabWidget::wheelEvent(QWheelEvent *event)
     }
 }
 #endif
+
+void TabWidget::retranslate() {
+    m_nextTabAction->setText(tr("Show Next Tab"));
+    QList<QKeySequence> shortcuts;
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceRight));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageDown));
+    shortcuts.append(tr("Ctrl-]"));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Less));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Tab));
+    m_nextTabAction->setShortcuts(shortcuts);
+    m_previousTabAction->setText(tr("Show Previous Tab"));
+    shortcuts.clear();
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceLeft));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageUp));
+    shortcuts.append(tr("Ctrl-["));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Greater));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab));
+    m_previousTabAction->setShortcuts(shortcuts);
+    m_recentlyClosedTabsAction->setText(tr("Recently Closed Tabs"));
+    m_newTabAction->setText(tr("New &Tab"));
+    m_closeTabAction->setText(tr("&Close Tab"));
+}
+
+void TabWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) 
+        retranslate();
+    QTabWidget::changeEvent(event);
+}
+
 
 void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
 {

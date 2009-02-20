@@ -145,6 +145,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
 #endif
+    void changeEvent(QEvent *event);
     BrowserMainWindow *mainWindow();
 
 public slots:
@@ -179,6 +180,7 @@ private slots:
 
 private:
     QLabel *animationLabel(int index, bool addMovie);
+    void retranslate();
 
     QAction *m_recentlyClosedTabsAction;
     QAction *m_newTabAction;
