@@ -73,17 +73,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksDialog</name>
     <message>
-        <location filename="../bookmarks.cpp" line="909"/>
+        <location filename="../bookmarks.cpp" line="911"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="920"/>
+        <location filename="../bookmarks.cpp" line="922"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="972"/>
+        <location filename="../bookmarks.cpp" line="981"/>
         <source>New Folder</source>
         <translation>Neuer Ordner</translation>
     </message>
@@ -103,17 +103,17 @@ p, li { white-space: pre-wrap; }
         <translation>Ordner hinzufügen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="910"/>
+        <location filename="../bookmarks.cpp" line="912"/>
         <source>Open in New Tab</source>
         <translation>In einem neuen tab öffnen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="914"/>
+        <location filename="../bookmarks.cpp" line="916"/>
         <source>Edit Name</source>
         <translation>Titel editieren</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="917"/>
+        <location filename="../bookmarks.cpp" line="919"/>
         <source>Edit Address</source>
         <translation>Adresse editieren</translation>
     </message>
@@ -121,12 +121,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksManager</name>
     <message>
-        <location filename="../bookmarks.cpp" line="128"/>
-        <location filename="../bookmarks.cpp" line="284"/>
+        <location filename="../bookmarks.cpp" line="130"/>
+        <location filename="../bookmarks.cpp" line="286"/>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
         <translation>Fehler beim Laden der Lesezeichen in Zeile %1, Spalte %2￼:
 %3</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="85"/>
+        <source>Bookmarks Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="86"/>
+        <source>Bookmarks Menu</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="139"/>
@@ -139,58 +149,58 @@ p, li { white-space: pre-wrap; }
         <translation>Menü</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="274"/>
+        <location filename="../bookmarks.cpp" line="276"/>
         <source>Open File</source>
         <translation>Datei öffnen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="276"/>
-        <location filename="../bookmarks.cpp" line="297"/>
+        <location filename="../bookmarks.cpp" line="278"/>
+        <location filename="../bookmarks.cpp" line="299"/>
         <source>XBEL (*.xbel *.xml)</source>
         <translation>XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="289"/>
+        <location filename="../bookmarks.cpp" line="291"/>
         <source>Imported %1</source>
         <translation>Importiert %1</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="295"/>
+        <location filename="../bookmarks.cpp" line="297"/>
         <source>Save File</source>
         <translation>Datei speichern</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="296"/>
+        <location filename="../bookmarks.cpp" line="298"/>
         <source>%1 Bookmarks.xbel</source>
         <translation>%1 Bookmarks.xbel</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="303"/>
+        <location filename="../bookmarks.cpp" line="305"/>
         <source>Export error</source>
         <translation>Exportfehler</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="303"/>
+        <location filename="../bookmarks.cpp" line="305"/>
         <source>error saving bookmarks</source>
         <translation>Fehler beim Speichern der Lesezeichen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="307"/>
+        <location filename="../bookmarks.cpp" line="309"/>
         <source>Remove Bookmark</source>
         <translation>Lesezeichen entfernen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="341"/>
+        <location filename="../bookmarks.cpp" line="343"/>
         <source>Insert Bookmark</source>
         <translation>Lesezeichen einfügen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="355"/>
+        <location filename="../bookmarks.cpp" line="357"/>
         <source>Name Change</source>
         <translation>Namensänderung</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="358"/>
+        <location filename="../bookmarks.cpp" line="360"/>
         <source>Address Change</source>
         <translation>Adressänderung</translation>
     </message>
@@ -198,12 +208,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksModel</name>
     <message>
-        <location filename="../bookmarks.cpp" line="453"/>
+        <location filename="../bookmarks.cpp" line="455"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="454"/>
+        <location filename="../bookmarks.cpp" line="456"/>
         <source>Address</source>
         <translation>Adresse</translation>
     </message>
@@ -211,27 +221,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <location filename="../bookmarks.cpp" line="1009"/>
+        <location filename="../bookmarks.cpp" line="1018"/>
         <source>Bookmark</source>
         <translation>Lesezeichen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1045"/>
+        <location filename="../bookmarks.cpp" line="1054"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1048"/>
+        <location filename="../bookmarks.cpp" line="1057"/>
         <source>Open in New &amp;Tab</source>
         <translation>In einem neuen &amp;Tab öffnen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1055"/>
+        <location filename="../bookmarks.cpp" line="1064"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1062"/>
+        <location filename="../bookmarks.cpp" line="1071"/>
         <source>Add Bookmark...</source>
         <translation>Lesezeichen hinzufügen...</translation>
     </message>
@@ -1173,17 +1183,17 @@ Sollen alle Seiten neu geladen werden?</translation>
         <translation type="obsolete">System-Vorgabe (%1) %2</translation>
     </message>
     <message>
-        <location filename="../languagemanager.cpp" line="152"/>
+        <location filename="../languagemanager.cpp" line="154"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../languagemanager.cpp" line="157"/>
+        <location filename="../languagemanager.cpp" line="159"/>
         <source>Choose language</source>
         <translation>Sprache wählen</translation>
     </message>
     <message>
-        <location filename="../languagemanager.cpp" line="158"/>
+        <location filename="../languagemanager.cpp" line="160"/>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
         <translation>&lt;p&gt;Sie können eine andere Sprache wählen,&lt;br&gt;als im Betriebssystem voreingestellt.&lt;/p&gt;&lt;p&gt;Bitte wählen Sie die Sprache,&lt;br&gt; die verwendet werden soll</translation>
     </message>
@@ -1863,9 +1873,19 @@ Möchten Sie diese Fehler ignorieren?</translation>
         <translation>Nächster Tab</translation>
     </message>
     <message>
+        <location filename="../tabwidget.cpp" line="151"/>
+        <source>Ctrl-]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../tabwidget.cpp" line="157"/>
         <source>Show Previous Tab</source>
         <translation>Vorheriger Tab</translation>
+    </message>
+    <message>
+        <location filename="../tabwidget.cpp" line="161"/>
+        <source>Ctrl-[</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="172"/>

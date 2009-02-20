@@ -1,11 +1,13 @@
-<!DOCTYPE TS><TS>
-<context encoding="UTF-8">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
+<context>
     <name>AboutDialog</name>
     <message>
         <source>Lightweight WebKit-based web browser</source>
         <translation>Navegador lixeiro baseado en WebKit</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -79,6 +81,14 @@ p, li { white-space: pre-wrap; }(new line)
         <source>New Folder</source>
         <translation>Novo cartafol</translation>
     </message>
+    <message>
+        <source>Edit Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksManager</name>
@@ -140,6 +150,14 @@ p, li { white-space: pre-wrap; }(new line)
         <source>Address Change</source>
         <translation>Cambiar o enderezo</translation>
     </message>
+    <message>
+        <source>Bookmarks Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmarks Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -157,6 +175,22 @@ p, li { white-space: pre-wrap; }(new line)
     <message>
         <source>Bookmark</source>
         <translation>Marcador</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Abrir</translation>
+    </message>
+    <message>
+        <source>Open in New &amp;Tab</source>
+        <translation type="unfinished">Abrir nunha lingüe&amp;ta nova</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Bookmark...</source>
+        <translation type="unfinished">Engadir marcador...</translation>
     </message>
 </context>
 <context>
@@ -459,7 +493,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Page Source of %1</source>
-        <translation>Código fonte de %1</translation>
+        <translation type="obsolete">Código fonte de %1</translation>
     </message>
     <message>
         <source>Web Inspector</source>
@@ -487,6 +521,14 @@ Do you want to reload all pages?</source>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
         <translation>Alt+Ctrl+L</translation>
+    </message>
+    <message>
+        <source>Show &amp;Network Monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switch application language </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -744,6 +786,27 @@ Do you want to reload all pages?</source>
         <source>MB</source>
         <translation>MB</translation>
     </message>
+    <message numerus="yes">
+        <source>- %n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>- %n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>DownloadManager</name>
+    <message numerus="yes">
+        <source>%n Download(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>HistoryDialog</name>
@@ -808,6 +871,27 @@ Do you want to reload all pages?</source>
         <source>Earlier Today</source>
         <translation>Antes de hoxe</translation>
     </message>
+    <message numerus="yes">
+        <source>%n item(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>LanguageManager</name>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkAccessManager</name>
@@ -841,6 +925,44 @@ Do you want to ignore these errors?</source>
     </message>
 </context>
 <context>
+    <name>NetworkMonitor</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nome</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitorDialog</name>
+    <message>
+        <source>Network Monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network Requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Request Headers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Response Headers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">&amp;Eliminar</translation>
+    </message>
+    <message>
+        <source>Remove &amp;All Requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
@@ -861,6 +983,13 @@ Do you want to ignore these errors?</source>
     <message>
         <source>Password:</source>
         <translation>Contrasinal:</translation>
+    </message>
+</context>
+<context>
+    <name>PlainTextEditSearch</name>
+    <message>
+        <source>Not Found</source>
+        <translation type="unfinished">Non atopado</translation>
     </message>
 </context>
 <context>
@@ -895,6 +1024,37 @@ Do you want to ignore these errors?</source>
     <message>
         <source>Unknown title</source>
         <translation>Título descoñecido</translation>
+    </message>
+</context>
+<context>
+    <name>RequestModel</name>
+    <message>
+        <source>Redirect: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished">Enderezo</translation>
+    </message>
+    <message>
+        <source>Response</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1161,6 +1321,37 @@ Do you want to ignore these errors?</source>
         <source>Style Sheet:</source>
         <translation>Estilo de folla:</translation>
     </message>
+    <message>
+        <source>Show only one close button instead of one for each tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SourceViewer</name>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished">Cargando...</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished">&amp;Editar</translation>
+    </message>
+    <message>
+        <source>&amp;Find</source>
+        <translation type="unfinished">&amp;Buscar</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished">&amp;Ver</translation>
+    </message>
+    <message>
+        <source>&amp;Wrap lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source of Page </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabBar</name>
@@ -1234,6 +1425,14 @@ Do you really want to close this page?
         <translation>Esta páxina foi modificada e si a pecha perderá os cambios.
 ¿Está seguro de que quere pechar esta páxina?</translation>
     </message>
+    <message>
+        <source>Ctrl-]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl-[</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1255,6 +1454,22 @@ Do you really want to close this page?
     <message>
         <source>Error loading page: %1</source>
         <translation>Atopouse un erro ao cargar a páxina: %1</translation>
+    </message>
+    <message>
+        <source>When connecting to: %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the address is correct, try to check the network connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -78,6 +78,14 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder</source>
         <translation>添加文件夹</translation>
     </message>
+    <message>
+        <source>Edit Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksManager</name>
@@ -139,6 +147,14 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <translation>地址变更</translation>
     </message>
+    <message>
+        <source>Bookmarks Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmarks Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -156,6 +172,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Bookmark</source>
         <translation>书签</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">打开</translation>
+    </message>
+    <message>
+        <source>Open in New &amp;Tab</source>
+        <translation type="unfinished">在新标签页中打开(&amp;T)</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Bookmark...</source>
+        <translation type="unfinished">添加标签...</translation>
     </message>
 </context>
 <context>
@@ -486,6 +518,10 @@ Do you want to reload all pages?</source>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
         <translation></translation>
+    </message>
+    <message>
+        <source>Show &amp;Network Monitor</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -876,6 +912,44 @@ Do you want to ignore these errors?</source>
     </message>
 </context>
 <context>
+    <name>NetworkMonitor</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">名字</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitorDialog</name>
+    <message>
+        <source>Network Monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network Requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Request Headers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Response Headers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">移除(&amp;R)</translation>
+    </message>
+    <message>
+        <source>Remove &amp;All Requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
@@ -937,6 +1011,37 @@ Do you want to ignore these errors?</source>
     <message>
         <source>Unknown title</source>
         <translation>未知文件</translation>
+    </message>
+</context>
+<context>
+    <name>RequestModel</name>
+    <message>
+        <source>Redirect: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished">地址</translation>
+    </message>
+    <message>
+        <source>Response</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1306,6 +1411,14 @@ Do you really want to close this page?
 </source>
         <translation>页面已被修改，如果关闭，将丢失所有修改。确认关闭该页面？</translation>
     </message>
+    <message>
+        <source>Ctrl-]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl-[</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1334,7 +1447,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.trolltech.com instead of &lt;b&gt;www&lt;/b&gt;.trolltech.com.</source>
-        <translation>检查地址是否错误，比如输入的是 &lt;b&gt;ww&lt;/b&gt;.trolltech.com 而不是 &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
+        <translation type="obsolete">检查地址是否错误，比如输入的是 &lt;b&gt;ww&lt;/b&gt;.trolltech.com 而不是 &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
@@ -1343,6 +1456,10 @@ Do you really want to close this page?
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation>如果计算机或网络被防火墙或代理所保护，请确认浏览器被允许访问网络。</translation>
+    </message>
+    <message>
+        <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
