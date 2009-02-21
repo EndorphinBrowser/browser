@@ -44,7 +44,7 @@ public:
     LanguageManager(QObject *parent = 0);
 
     QString currentLanguage() const;
-    void setCurrentLanguage(const QString &language);
+    bool setCurrentLanguage(const QString &language);
     QStringList languages() const;
 
 public slots:

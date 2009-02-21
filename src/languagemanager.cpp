@@ -43,16 +43,32 @@
 
 #include <qdebug.h>
 
+// #define LANGUAGEMANAGER_DEBUG
+
 LanguageManager::LanguageManager(QObject *parent)
     : QObject(parent)
     , m_sysTranslator(0)
     , m_appTranslator(0)
     , m_loaded(false)
 {
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__;
+#endif
     QSettings settings;
     settings.beginGroup(QLatin1String("LanguageManager"));
     if (settings.contains(QLatin1String("language"))) {
-        setCurrentLanguage(settings.value(QLatin1String("language")).toString());
+        QString selectedLanguage = settings.value(QLatin1String("language")).toString();
+#ifdef LANGUAGEMANAGER_DEBUG
+        qDebug() << "LanguageManager::" << __FUNCTION__ << "Loading language from settings" << selectedLanguage;
+#endif
+        // When a translation fails to load remove it from the settings
+        // to prevent it from being loaded every time.
+        if (!setCurrentLanguage(selectedLanguage)) {
+#ifdef LANGUAGEMANAGER_DEBUG
+            qDebug() << "LanguageManager::" << __FUNCTION__ << "Failed to load language";
+#endif
+            settings.remove(QLatin1String("language"));
+        }
     } else if (!currentLanguage().isEmpty()) {
         setCurrentLanguage(currentLanguage());
     }
@@ -60,6 +76,9 @@ LanguageManager::LanguageManager(QObject *parent)
 
 QString LanguageManager::currentLanguage() const
 {
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__;
+#endif
     if (!m_currentLanguage.isEmpty())
         return m_currentLanguage;
 
@@ -71,15 +90,21 @@ QString LanguageManager::currentLanguage() const
 
 bool LanguageManager::isLanguageAvailable(const QString &language) const
 {
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__;
+#endif
     loadAvailableLanguages();
     return language.isEmpty() || m_languages.contains(language);
 }
 
-void LanguageManager::setCurrentLanguage(const QString &language)
+bool LanguageManager::setCurrentLanguage(const QString &language)
 {
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__ << language;
+#endif
     if (m_currentLanguage == language
         || !isLanguageAvailable(language))
-        return;
+        return false;
 
     m_currentLanguage = language;
 
@@ -92,7 +117,7 @@ void LanguageManager::setCurrentLanguage(const QString &language)
         delete m_sysTranslator;
         m_appTranslator = 0;
         m_sysTranslator = 0;
-        return;
+        return true;
     }
 
     QTranslator *newAppTranslator = new QTranslator(this);
@@ -110,7 +135,7 @@ void LanguageManager::setCurrentLanguage(const QString &language)
         qWarning() << "Failed to load translation:" << currentLanguage();
         delete newAppTranslator;
         delete newSysTranslator;
-        return;
+        return false;
     }
 
     // A new language event is sent to all widgets in the application
@@ -122,16 +147,23 @@ void LanguageManager::setCurrentLanguage(const QString &language)
     m_appTranslator = newAppTranslator;
     m_sysTranslator = newSysTranslator;
     BrowserApplication::bookmarksManager()->retranslate();
+    return true;
 }
 
 QStringList LanguageManager::languages() const
 {
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__;
+#endif
     loadAvailableLanguages();
     return m_languages;
 }
 
 void LanguageManager::chooseNewLanguage()
 {
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__;
+#endif
     loadAvailableLanguages();
 
     QStringList items;
@@ -171,6 +203,9 @@ void LanguageManager::chooseNewLanguage()
 
 QString LanguageManager::translationLocation() const
 {
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__;
+#endif
     QString directory = BrowserApplication::dataDirectory() + QLatin1Char('/') + QLatin1String("locale");
     // work without installing
     if (!QFile::exists(directory))
@@ -183,6 +218,9 @@ QString LanguageManager::translationLocation() const
  */
 void LanguageManager::loadAvailableLanguages() const
 {
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__;
+#endif
     if (m_loaded)
         return;
     m_loaded = true;
