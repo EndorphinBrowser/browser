@@ -6,7 +6,6 @@ TRANSLATIONS += \
     cs_CZ.ts \
     da_DK.ts \
     de_DE.ts \
-    en_US.ts \
     es.ts \
     es_CR.ts \
     et_EE.ts \
