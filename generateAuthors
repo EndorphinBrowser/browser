@@ -8,4 +8,5 @@ git log --pretty="format:%an %ae" \
         | sed -e 's/adam.treat@torchmobile.com/treat@kde.org/g' \
         | sed -e 's/torarnv@gmail.com/tavestbo@trolltech.com/g' \
         | sed -e 's/bks@coldkeck2.colorado.edu/bks24@cornell.edu/g' \
+        | sed -e 's/porphyr /Mark Reiche /g' \
 	| sort | uniq -c | sort -n -r | sed -e 's/^ *[0-9]* //g'
