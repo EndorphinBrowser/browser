@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
+ * Copyright 2008-2009 Jason A. Donenfeld <Jason@zx2c4.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
 #if QT_VERSION < 0x040500
     m_cache->setEnabled(false);
 #endif
-    m_cookies->setChecked(true);
+    m_cache->setChecked(true);
     layout->addWidget(m_cache);
 
     m_favIcons = new QCheckBox(tr("Website &Icons"));
