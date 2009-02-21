@@ -498,7 +498,10 @@ void BrowserMainWindow::setupMenu()
 #if QT_VERSION >= 0x040500
     m_zoomTextOnly = viewMenu->addAction(tr("Zoom &Text Only"));
     m_zoomTextOnly->setCheckable(true);
-    connect(m_zoomTextOnly, SIGNAL(toggled(bool)), BrowserApplication::instance(), SLOT(setZoomTextOnly(bool)));
+    connect(m_zoomTextOnly, SIGNAL(toggled(bool)),
+            BrowserApplication::instance(), SLOT(setZoomTextOnly(bool)));
+    connect(BrowserApplication::instance(), SIGNAL(zoomTextOnlyChanged(bool)),
+            this, SLOT(slotZoomTextOnlyChanged(bool)));
 #endif
 
     viewMenu->addSeparator();
