@@ -146,8 +146,10 @@ void NetworkAccessManager::loadSettings()
         else if (proxyType == 1)
             proxy.setType(QNetworkProxy::HttpProxy);
 	else { // 2
+#if QT_VERSION >= 0x040500
 	    proxy.setType(QNetworkProxy::HttpCachingProxy);
 	    proxy.setCapabilities(QNetworkProxy::CachingCapability | QNetworkProxy::HostNameLookupCapability);
+#endif
 	}
         proxy.setHostName(settings.value(QLatin1String("hostName")).toString());
         proxy.setPort(settings.value(QLatin1String("port"), 1080).toInt());
