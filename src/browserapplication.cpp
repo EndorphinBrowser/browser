@@ -139,7 +139,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 #ifndef AUTOTESTS
     QTimer::singleShot(0, this, SLOT(postLaunch()));
 #endif
-    LanguageManager();
+    languageManager();
 }
 
 BrowserApplication::~BrowserApplication()
