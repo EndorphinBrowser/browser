@@ -35,10 +35,10 @@ SqueezeLabel::SqueezeLabel(QWidget *parent)
 
 void SqueezeLabel::paintEvent(QPaintEvent *event)
 {
-    if (mSqueezedTextCache != text()) {
-        mSqueezedTextCache = text();
+    if (m_SqueezedTextCache != text()) {
+        m_SqueezedTextCache = text();
         QFontMetrics fm = fontMetrics();
-        if (fm.width(mSqueezedTextCache) > contentsRect().width()) {
+        if (fm.width(m_SqueezedTextCache) > contentsRect().width()) {
             QString elided = fm.elidedText(text(), Qt::ElideMiddle, width());
             setText(elided);
         }

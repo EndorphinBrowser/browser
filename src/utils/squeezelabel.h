@@ -46,7 +46,7 @@ protected:
     void paintEvent(QPaintEvent *event);
 
 private:
-    QString mSqueezedTextCache;
+    QString m_SqueezedTextCache;
 };
 
 #endif // SQUEEZELABEL_H
