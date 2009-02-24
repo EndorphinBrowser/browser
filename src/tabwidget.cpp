@@ -159,11 +159,13 @@ TabWidget::TabWidget(QWidget *parent)
     m_recentlyClosedTabsAction->setMenu(m_recentlyClosedTabsMenu);
     m_recentlyClosedTabsAction->setEnabled(false);
 
+#if QT_VERSION < 0x040500
     QToolButton *addTabButton = new QToolButton(this);
     addTabButton->setDefaultAction(m_newTabAction);
     addTabButton->setAutoRaise(true);
     addTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
     setCornerWidget(addTabButton, Qt::TopLeftCorner);
+#endif
 
 #if QT_VERSION >= 0x040500
     if (oneCloseButton) {
