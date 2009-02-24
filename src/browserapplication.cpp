@@ -179,8 +179,6 @@ void BrowserApplication::messageRecieved(const QString &message)
     mainWindow()->activateWindow();
 }
 
-#if defined(Q_WS_MAC)
-#include <qmessagebox.h>
 void BrowserApplication::quitBrowser()
 {
     clean();
@@ -202,7 +200,6 @@ void BrowserApplication::quitBrowser()
     saveSession();
     exit(0);
 }
-#endif
 
 /*!
     Any actions that can be delayed until the window is visible

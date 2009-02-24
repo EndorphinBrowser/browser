@@ -122,8 +122,8 @@ public slots:
     bool restoreLastSession();
 #if defined(Q_WS_MAC)
     void lastWindowClosed();
-    void quitBrowser();
 #endif
+    void quitBrowser();
 
 #if QT_VERSION >= 0x040500
     static void setZoomTextOnly(bool textOnly);
