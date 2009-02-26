@@ -105,6 +105,9 @@ private slots:
 #ifndef QT_NO_OPENSSL
     void sslErrors(QNetworkReply *reply, const QList<QSslError> &error);
 #endif
+
+private:
+    QString acceptLanguage;
 };
 
 #endif // NETWORKACCESSMANAGER_H

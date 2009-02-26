@@ -219,7 +219,7 @@
        <item row="0" column="1">
         <widget class="QLabel" name="standardLabel">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <sizepolicy vsizetype="Preferred" hsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -272,7 +272,7 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="5" column="1">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -284,6 +284,73 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>Preferred languages for websites: </string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <widget class="QPushButton" name="websiteLanguageMoveUpButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Move up</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="websiteLanguageMoveDownButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Move down</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="websiteLanguageRemoveButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Remove</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="websiteLanguageAddButton">
+           <property name="text">
+            <string>Add...</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="3" column="1">
+        <widget class="QListWidget" name="websiteLanguageListWidget" />
        </item>
       </layout>
      </widget>
@@ -758,6 +825,11 @@
   <tabstop>downloadsLocation</tabstop>
   <tabstop>standardFontButton</tabstop>
   <tabstop>fixedFontButton</tabstop>
+  <tabstop>websiteLanguageListWidget</tabstop>
+  <tabstop>websiteLanguageMoveUpButton</tabstop>
+  <tabstop>websiteLanguageMoveDownButton</tabstop>
+  <tabstop>websiteLanguageRemoveButton</tabstop>
+  <tabstop>websiteLanguageAddButton</tabstop>
   <tabstop>enablePlugins</tabstop>
   <tabstop>enableJavascript</tabstop>
   <tabstop>enableImages</tabstop>

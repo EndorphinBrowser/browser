@@ -75,6 +75,7 @@
 #include <qdesktopservices.h>
 #include <qfile.h>
 #include <qfontdialog.h>
+#include <qinputdialog.h>
 #include <qmetaobject.h>
 #include <qsettings.h>
 
@@ -87,6 +88,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(cookiesButton, SIGNAL(clicked()), this, SLOT(showCookies()));
     connect(standardFontButton, SIGNAL(clicked()), this, SLOT(chooseFont()));
     connect(fixedFontButton, SIGNAL(clicked()), this, SLOT(chooseFixedFont()));
+    connect(websiteLanguageAddButton, SIGNAL(clicked()), this, SLOT(addLanguage()));
+    connect(websiteLanguageRemoveButton, SIGNAL(clicked()), this, SLOT(removeLanguage()));
+    connect(websiteLanguageMoveUpButton, SIGNAL(clicked()), this, SLOT(moveUpLanguage()));
+    connect(websiteLanguageMoveDownButton, SIGNAL(clicked()), this, SLOT(moveDownLanguage()));
+    connect(websiteLanguageListWidget, SIGNAL(currentRowChanged(int)), this, SLOT(languageEntrySelected(int)));
 
 #if QT_VERSION < 0x040500
     oneCloseButton->setVisible(false); // no other mode than one close button with qt <4.5
@@ -163,6 +169,10 @@ void SettingsDialog::loadFromSettings()
     enablePlugins->setChecked(settings.value(QLatin1String("enablePlugins"), enablePlugins->isChecked()).toBool());
     enableImages->setChecked(settings.value(QLatin1String("enableImages"), enableImages->isChecked()).toBool());
     userStyleSheet->setText(QString::fromUtf8(settings.value(QLatin1String("userStyleSheet")).toUrl().toEncoded()));
+
+    QStringList list = settings.value(QLatin1String("websiteLanguages")).toStringList();
+    for (int i = 0; i < list.size(); ++i)
+        new QListWidgetItem(list.at(i), websiteLanguageListWidget);
     settings.endGroup();
 
     // Privacy
@@ -269,6 +279,10 @@ void SettingsDialog::saveToSettings()
         settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromLocalFile(userStyleSheetString));
     else
         settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromEncoded(userStyleSheetString.toUtf8()));
+    QStringList list;
+    for (int i = 0; i < websiteLanguageListWidget->count(); ++i)
+        list << websiteLanguageListWidget->item(i)->text();
+    settings.setValue(QLatin1String("websiteLanguages"), list);
     settings.endGroup();
 
     //Privacy
@@ -383,3 +397,76 @@ void SettingsDialog::setHomeToCurrentPage()
         homeLineEdit->setText(QString::fromUtf8(webView->url().toEncoded()));
 }
 
+void SettingsDialog::addLanguage()
+{
+    QStringList items;
+
+    for (int l = 1 + (int)QLocale::C; l <= (int)QLocale::LastLanguage; ++l) {
+        QLocale::Language lang = QLocale::Language(l);
+
+        QList<QLocale::Country> list = QLocale::countriesForLanguage(lang);
+	// If QLocale does not contain a country for the language, it will also
+        // not correctly name it. So skip languages without country
+        if (list.size()) {
+            QString item = QString(QLatin1String("%1 [%2]"))
+                .arg(QLocale::languageToString(lang))
+                .arg(QLocale(lang).name().split(QLatin1Char('_')).at(0));
+            if (websiteLanguageListWidget->findItems(item, Qt::MatchExactly).empty())
+                items << item;
+            // Country distinction is only really useful if there is more than one country
+            if (list.size()>1)
+                for (int i=0; i<list.size(); ++i) {
+                    QString item = QString(QLatin1String("%1, %2 [%3]"))
+                        .arg(QLocale::languageToString(lang))
+                        .arg(QLocale::countryToString(list.at(i)))
+                        .arg(QLocale(lang, list.at(i)).name().split(QLatin1Char('_')).join(QLatin1String("-")).toLower());
+                    if (websiteLanguageListWidget->findItems(item, Qt::MatchExactly).empty())
+                        items << item;
+                }
+        }
+    }
+
+
+    bool ok;
+    QString item = QInputDialog::getItem(0,
+        tr("Choose language"),
+        tr("Please choose the language which should be used</p>"),
+        items, 0, false, &ok);
+    if (!ok)
+        return;
+
+    new QListWidgetItem(item, websiteLanguageListWidget);
+    languageEntrySelected(websiteLanguageListWidget->currentRow());
+}
+
+void SettingsDialog::removeLanguage()
+{
+    QListWidgetItem* item = websiteLanguageListWidget
+        ->takeItem(websiteLanguageListWidget->currentRow());
+    delete item;
+    languageEntrySelected(websiteLanguageListWidget->currentRow());
+}
+
+void SettingsDialog::moveUpLanguage()
+{
+    int row = websiteLanguageListWidget->currentRow();
+    QListWidgetItem* item = websiteLanguageListWidget->takeItem(row);
+    websiteLanguageListWidget->insertItem(row-1, item);
+    websiteLanguageListWidget->setCurrentRow(row-1);
+}
+
+void SettingsDialog::moveDownLanguage()
+{
+    int row = websiteLanguageListWidget->currentRow();
+    QListWidgetItem* item = websiteLanguageListWidget->takeItem(row);
+    websiteLanguageListWidget->insertItem(row+1, item);
+    websiteLanguageListWidget->setCurrentRow(row+1);
+}
+
+void SettingsDialog::languageEntrySelected(int row)
+{
+    websiteLanguageRemoveButton->setEnabled(row!=-1);
+    websiteLanguageMoveUpButton->setEnabled(row>0);
+    websiteLanguageMoveDownButton->setEnabled((row!=-1)
+        && (row<websiteLanguageListWidget->count()-1));
+}
