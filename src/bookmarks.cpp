@@ -710,7 +710,7 @@ bool AddBookmarkProxyModel::filterAcceptsRow(int source_row, const QModelIndex &
     return sourceModel()->hasChildren(idx);
 }
 
-AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, QModelIndex defaultIndex, QWidget *parent, BookmarksManager *bookmarkManager)
+AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, QWidget *parent, BookmarksManager *bookmarkManager)
     : QDialog(parent)
     , m_bookmarksManager(bookmarkManager)
     , m_proxyModel(0)
@@ -719,25 +719,20 @@ AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, Q
     if (!m_bookmarksManager)
         m_bookmarksManager = BrowserApplication::bookmarksManager();
     setupUi(this);
-    QTreeView *view = new QTreeView(this);
+    m_treeView = new QTreeView(this);
     m_proxyModel = new AddBookmarkProxyModel(this);
     BookmarksModel *model = m_bookmarksManager->bookmarksModel();
     m_proxyModel->setSourceModel(model);
-    view->setModel(m_proxyModel);
-    view->expandAll();
-    view->header()->setStretchLastSection(true);
-    view->header()->hide();
-    view->setItemsExpandable(false);
-    view->setRootIsDecorated(false);
-    view->setIndentation(10);
+    m_treeView->setModel(m_proxyModel);
+    m_treeView->expandAll();
+    m_treeView->header()->setStretchLastSection(true);
+    m_treeView->header()->hide();
+    m_treeView->setItemsExpandable(false);
+    m_treeView->setRootIsDecorated(false);
+    m_treeView->setIndentation(10);
     location->setModel(m_proxyModel);
-    view->show();
-    location->setView(view);
-
-    if (defaultIndex.isValid()) {
-        view->setCurrentIndex(defaultIndex);
-        location->setCurrentIndex(defaultIndex.row());
-    }
+    m_treeView->show();
+    location->setView(m_treeView);
 
     name->setText(title);
     address->setText(url);
@@ -746,6 +741,14 @@ AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, Q
     address->setInactiveText(QLatin1String("Url"));
     name->setInactiveText(QLatin1String("Title"));
     resize(sizeHint());
+}
+
+void AddBookmarkDialog::setCurrentIndex(const QModelIndex &index)
+{
+    if (!index.isValid())
+        return;
+    m_treeView->setCurrentIndex(index);
+    location->setCurrentIndex(index.row());
 }
 
 void AddBookmarkDialog::accept()
@@ -1122,10 +1125,10 @@ void BookmarksToolBar::removeBookmark()
 
 void BookmarksToolBar::newBookmark()
 {
+    AddBookmarkDialog* dialog = new AddBookmarkDialog(QString(), QString());
     BookmarkNode *toolbar = BrowserApplication::bookmarksManager()->toolbar();
     QModelIndex index = m_bookmarksModel->index(toolbar);
-
-    AddBookmarkDialog* dialog = new AddBookmarkDialog(QString(), QString(), index);
+    dialog->setCurrentIndex(index);
     dialog->exec();
     delete dialog;
 }

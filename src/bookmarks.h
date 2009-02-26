@@ -277,17 +277,20 @@ protected:
     Add bookmark dialog
  */
 #include "ui_addbookmarkdialog.h"
+class QTreeView;
 class AddBookmarkDialog : public QDialog, public Ui_AddBookmarkDialog
 {
     Q_OBJECT
 
 public:
-    AddBookmarkDialog(const QString &url, const QString &title, QModelIndex defaultIndex = QModelIndex(), QWidget *parent = 0, BookmarksManager *bookmarkManager = 0);
+    AddBookmarkDialog(const QString &url, const QString &title, QWidget *parent = 0, BookmarksManager *bookmarkManager = 0);
+    void setCurrentIndex(const QModelIndex &index);
 
 private slots:
     void accept();
 
 private:
+    QTreeView *m_treeView;
     BookmarksManager *m_bookmarksManager;
     AddBookmarkProxyModel *m_proxyModel;
 };
