@@ -84,11 +84,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Name</source>
-        <translation type="unfinished"></translation>
+        <translation>名前を編集</translation>
     </message>
     <message>
         <source>Edit Address</source>
-        <translation type="unfinished"></translation>
+        <translation>URLを編集</translation>
     </message>
 </context>
 <context>
@@ -125,7 +125,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Menu</source>
-        <translation>Menu</translation>
+        <translation>メニュー</translation>
     </message>
     <message>
         <source>Export error</source>
@@ -153,18 +153,18 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>ブックマーク バー</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>ブックマーク メニュー</translation>
     </message>
 </context>
 <context>
     <name>BookmarksModel</name>
     <message>
         <source>Title</source>
-        <translation>タイトル</translation>
+        <translation>名前</translation>
     </message>
     <message>
         <source>Address</source>
@@ -179,19 +179,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">開く</translation>
+        <translation>開く</translation>
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
-        <translation type="unfinished">新しいタブで開く(&amp;T)</translation>
+        <translation>新しいタブで開く(&amp;T)</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>削除</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
-        <translation type="unfinished">ブックマークに追加...</translation>
+        <translation>ブックマークに追加...</translation>
     </message>
 </context>
 <context>
@@ -525,7 +525,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>ネットワーク モニタを表示(&amp;N)</translation>
     </message>
 </context>
 <context>
@@ -925,38 +925,38 @@ Do you want to ignore these errors?</source>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">名前</translation>
+        <translation>名前</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>値</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>ネットワーク モニタ</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>ネットワーク リクエスト</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation type="unfinished"></translation>
+        <translation>リクエスト ヘッダ</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation type="unfinished"></translation>
+        <translation>レスポンス ヘッダ</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">削除(&amp;R)</translation>
+        <translation>削除(&amp;R)</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>全てのリクエストを削除(&amp;A)</translation>
     </message>
 </context>
 <context>
@@ -1027,31 +1027,31 @@ Do you want to ignore these errors?</source>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>リダイレクト: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>メソッド</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="unfinished">アドレス</translation>
+        <translation>アドレス</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation type="unfinished"></translation>
+        <translation>レスポンス</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation type="unfinished"></translation>
+        <translation>長さ</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Content Type</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>情報</translation>
     </message>
 </context>
 <context>
@@ -1343,11 +1343,11 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">表示(&amp;V)</translation>
+        <translation>表示(&amp;V)</translation>
     </message>
     <message>
         <source>&amp;Wrap lines</source>
-        <translation type="unfinished"></translation>
+        <translation>行を折り返す(&amp;W)</translation>
     </message>
 </context>
 <context>
@@ -1424,11 +1424,11 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-]</translation>
     </message>
     <message>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-[</translation>
     </message>
 </context>
 <context>
@@ -1454,19 +1454,19 @@ Do you really want to close this page?
     </message>
     <message>
         <source>When connecting to: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 への接続中にエラーが発生しました。</translation>
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;www&lt;/b&gt;.arora-browser.org ではなく &lt;b&gt;ww&lt;/b&gt;.arora-browser.org のような、URL誤りがないか確認してください</translation>
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>URLが正しい場合は、ネットワークの接続状況を確認してみてください。</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>あなたのコンピュータやネットワークがファイアウォールやプロキシによって保護されている場合、Arora ブラウザにネットワークへのアクセスを許可してください。</translation>
     </message>
 </context>
 <context>
