@@ -28,6 +28,7 @@
 
 #include "singleapplication.h"
 
+#include <qdir.h>
 #include <qlocalserver.h>
 #include <qlocalsocket.h>
 #include <qtextstream.h>
@@ -72,24 +73,28 @@ bool SingleApplication::startSingleServer()
         if (QAbstractSocket::AddressInUseError == m_localServer->serverError()) {
             // cleanup from a segfaulted server
 #ifdef Q_OS_UNIX
-            QString fullServerName = QLatin1String("/tmp/") + serverName();
+            QString fullServerName = QDir::tempPath() + QLatin1String("/") + serverName();
             if (QFile::exists(fullServerName))
                 QFile::remove(fullServerName);
 #endif
-            if (!m_localServer->listen(serverName())) {
-                qWarning() << "SingleApplication: Unable to start single server.";
-            } else {
+            if (m_localServer->listen(serverName())) {
                 success = true;
             }
+        }
+        if (!success) {
+            qWarning() << "SingleApplication: Unable to listen:" << m_localServer->errorString();
         }
     } else {
         success = true;
     }
 
-    QFile file(m_localServer->fullServerName());
-    if (!file.setPermissions(QFile::ReadUser | QFile::WriteUser))
-        qWarning() << "SingleApplication: Unable to set permissions on:"
-                   << file.fileName();
+    if (success) {
+        QFile file(m_localServer->fullServerName());
+        if (!file.setPermissions(QFile::ReadUser | QFile::WriteUser))
+            qWarning() << "SingleApplication: Unable to set permissions on:"
+                       << file.fileName() << file.errorString();
+    }
+
     if (!success) {
         delete m_localServer;
         m_localServer = 0;
