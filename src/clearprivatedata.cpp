@@ -63,7 +63,9 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
 #if QT_VERSION < 0x040500
     m_cache->setEnabled(false);
 #endif
+#if QT_VERSION >= 0x040500
     m_cache->setChecked(true);
+#endif
     layout->addWidget(m_cache);
 
     m_favIcons = new QCheckBox(tr("Website &Icons"));
