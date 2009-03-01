@@ -62,6 +62,8 @@
 
 #include "modelmenu.h"
 
+#include "browserapplication.h"
+
 #include <qabstractitemmodel.h>
 #include <qapplication.h>
 #include <qevent.h>
@@ -254,6 +256,13 @@ void ModelMenu::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
         m_dragStartPos = event->pos();
     QMenu::mousePressEvent(event);
+}
+
+void ModelMenu::mouseReleaseEvent(QMouseEvent *event)
+{
+    BrowserApplication::instance()->setEventMouseButtons(event->button());
+    BrowserApplication::instance()->setEventKeyboardModifiers(event->modifiers());
+    QMenu::mouseReleaseEvent(event);
 }
 
 void ModelMenu::mouseMoveEvent(QMouseEvent *event)

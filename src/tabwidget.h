@@ -109,9 +109,13 @@ signals:
     void printRequested(QWebFrame *frame);
 
 public:
-    enum Tab {
+    enum OpenUrlIn {
+        NewWindow,
+        NewSelectedTab,
+        NewNotSelectedTab,
         CurrentTab,
-        NewTab
+        UserOrCurrent,
+        NewTab = NewNotSelectedTab
     };
 
     TabWidget(QWidget *parent = 0);
@@ -137,6 +141,9 @@ public:
     QByteArray saveState() const;
     bool restoreState(const QByteArray &state);
 
+    static OpenUrlIn modifyWithUserBehavior(OpenUrlIn tab);
+    WebView *getView(OpenUrlIn tab, WebView *currentView);
+
 #if QT_VERSION < 0x040500
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
@@ -149,7 +156,8 @@ protected:
 
 public slots:
     void loadString(const QString &string);
-    void loadUrl(const QUrl &url, TabWidget::Tab type = CurrentTab, const QString &title = QString());
+    void loadUrlFromUser(const QUrl &url, const QString &title = QString());
+    void loadUrl(const QUrl &url, OpenUrlIn tab = CurrentTab, const QString &title = QString());
     void newTab();
     void cloneTab(int index = -1);
     void closeTab(int index = -1);

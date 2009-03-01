@@ -236,7 +236,7 @@ class BookmarksMenu : public ModelMenu
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url, TabWidget::Tab type, const QString &title);
+    void openUrl(const QUrl &url, const QString &title);
 
 public:
     BookmarksMenu(QWidget *parent = 0);
@@ -245,16 +245,12 @@ public:
 protected:
     bool prePopulated();
 
-protected:
-    virtual void mouseReleaseEvent(QMouseEvent *event);
-
 private slots:
     void activated(const QModelIndex &index);
 
 private:
     BookmarksManager *m_bookmarksManager;
     QList<QAction*> m_initialActions;
-    Qt::MouseButton m_lastMouseButton;
 };
 
 /*
@@ -302,7 +298,7 @@ class BookmarksDialog : public QDialog, public Ui_BookmarksDialog
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url, TabWidget::Tab, const QString &title);
+    void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
     BookmarksDialog(QWidget *parent = 0, BookmarksManager *manager = 0);
@@ -310,7 +306,8 @@ public:
 
 private slots:
     void customContextMenuRequested(const QPoint &pos);
-    void open(TabWidget::Tab tab);
+    void open(TabWidget::OpenUrlIn tab);
+    void open();
     void openInNewTab();
     void openInCurrentTab();
     void editName();
@@ -331,7 +328,7 @@ class BookmarkToolButton : public QToolButton
     Q_OBJECT
 
 signals:
-    void openBookmark(const QUrl &url, TabWidget::Tab tab, const QString &title);
+    void openBookmark(const QUrl &url, const QString &title);
 
 public:
     BookmarkToolButton(const QModelIndex &index, QWidget *parent = 0);
@@ -352,19 +349,14 @@ class BookmarksToolBarMenu : public ModelMenu
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url, TabWidget::Tab type, const QString &title);
+    void openUrl(const QUrl &url, const QString &title);
 
 public:
     BookmarksToolBarMenu(QWidget *parent = 0);
 
-protected:
-    virtual void mouseReleaseEvent(QMouseEvent *ev);
-
 private slots:
     void activated(const QModelIndex &index);
 
-private:
-    Qt::MouseButton m_lastMouseButton;
 };
 
 
@@ -373,7 +365,8 @@ class BookmarksToolBar : public QToolBar
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url, TabWidget::Tab tab, const QString &title);
+    void openUrl(const QUrl &url, const QString &title);
+    void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
     BookmarksToolBar(BookmarksModel *model, QWidget *parent = 0);

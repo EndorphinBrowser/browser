@@ -74,6 +74,7 @@ class QNetworkReply;
 class QSslError;
 QT_END_NAMESPACE
 
+class TabWidget;
 class BrowserMainWindow;
 class WebPage : public QWebPage
 {
@@ -88,6 +89,7 @@ public:
 
 protected:
     bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type);
+
     QWebPage *createWindow(QWebPage::WebWindowType type);
 #if !defined(QT_NO_UITOOLS)
     QObject *createPlugin(const QString &classId, const QUrl &url, const QStringList &paramNames, const QStringList &paramValues);
@@ -98,11 +100,10 @@ private slots:
 
 private:
     friend class WebView;
+    TabWidget *tabWidget() const;
 
     // set the webview mousepressedevent
-    Qt::KeyboardModifiers m_keyboardModifiers;
-    Qt::MouseButtons m_pressedButtons;
-    bool m_openInNewTab;
+    bool m_forceInNewTab;
     QUrl m_loadingUrl;
 };
 
@@ -111,14 +112,10 @@ class WebView : public QWebView
     Q_OBJECT
 
 public:
-    enum OpenLinkIn { NewWindow = 0, NewActiveTab = 1, NewInactiveTab = 2, CurrentTab = 3 };
-
     WebView(QWidget *parent = 0);
     WebPage *webPage() const { return m_page; }
 
     void loadUrl(const QUrl &url, const QString &title = QString());
-    void loadUrl(const QNetworkRequest &request, QNetworkAccessManager::Operation operation = QNetworkAccessManager::GetOperation, const QByteArray &body = QByteArray());
-    void loadUrl(const QNetworkRequest &request, OpenLinkIn openIn);
     QUrl url() const;
 
     QString lastStatusBarText() const;

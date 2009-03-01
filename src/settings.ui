@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>616</width>
+    <width>631</width>
     <height>399</height>
    </rect>
   </property>
@@ -460,15 +460,15 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox">
+        <widget class="QGroupBox" name="openLinksGroupBox">
          <property name="title">
           <string>Opening links</string>
          </property>
          <layout class="QGridLayout">
           <item row="1" column="0">
-           <widget class="QLabel">
+           <widget class="QLabel" name="linksInNewWindowLabel">
             <property name="text">
-             <string>Open target="_blank" links:</string>
+             <string>Links that want to open in a new window:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -484,12 +484,12 @@
             </item>
             <item>
              <property name="text">
-              <string>In a new active tab in the current window</string>
+              <string>In a new selected tab in the current window</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>In a new inactive tab in the current window</string>
+              <string>In a new tab in the current window</string>
              </property>
             </item>
             <item>
@@ -500,7 +500,7 @@
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel">
+           <widget class="QLabel" name="linkFromApplicationLabel">
             <property name="text">
              <string>Open links from applications:</string>
             </property>
@@ -518,12 +518,12 @@
             </item>
             <item>
              <property name="text">
-              <string>In a new active tab in the current window</string>
+              <string>In a new selected tab in the current window</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>In a new inactive tab in the current window</string>
+              <string>In a new tab in the current window</string>
              </property>
             </item>
             <item>
@@ -758,8 +758,8 @@
   <tabstop>selectTabsWhenCreated</tabstop>
   <tabstop>confirmClosingMultipleTabs</tabstop>
   <tabstop>oneCloseButton</tabstop>
-  <tabstop>openTargetBlankLinksIn</tabstop>
   <tabstop>openLinksFromAppsIn</tabstop>
+  <tabstop>openTargetBlankLinksIn</tabstop>
   <tabstop>proxySupport</tabstop>
   <tabstop>proxyType</tabstop>
   <tabstop>proxyHostName</tabstop>

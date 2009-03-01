@@ -86,9 +86,7 @@
 
 WebPage::WebPage(QObject *parent)
     : QWebPage(parent)
-    , m_keyboardModifiers(Qt::NoModifier)
-    , m_pressedButtons(Qt::NoButton)
-    , m_openInNewTab(false)
+    , m_forceInNewTab(false)
 {
     setNetworkAccessManager(BrowserApplication::networkAccessManager());
     connect(this, SIGNAL(unsupportedContent(QNetworkReply *)),
@@ -106,6 +104,13 @@ BrowserMainWindow *WebPage::mainWindow()
     return BrowserApplication::instance()->mainWindow();
 }
 
+TabWidget *WebPage::tabWidget() const
+{
+    TabWidget *tabWidget = qobject_cast<TabWidget*>(view()->parentWidget()->parentWidget()->parentWidget());
+    Q_ASSERT(tabWidget);
+    return tabWidget;
+}
+
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type)
 {
     QString scheme = request.url().scheme();
@@ -114,38 +119,17 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
         return false;
     }
 
-    WebView::OpenLinkIn openIn = WebView::CurrentTab;
-
-    // ctrl open in new tab
-    // ctrl-shift open in new tab and select
-    // ctrl-alt open in new window
-    if (m_keyboardModifiers & Qt::ControlModifier || m_pressedButtons == Qt::MidButton) {
-
-        if (m_keyboardModifiers & Qt::AltModifier)
-            openIn = WebView::NewWindow;
-        else if (m_keyboardModifiers & Qt::ShiftModifier)
-            openIn = WebView::NewActiveTab;
-        else
-            openIn = WebView::NewInactiveTab;
-
-    } else if (!frame) {
-
-        QSettings settings;
-        settings.beginGroup(QLatin1String("tabs"));
-        openIn = WebView::OpenLinkIn(
-            settings.value(QLatin1String("openTargetBlankLinksIn"), 0).toInt());
-        settings.endGroup();
-
-        if (openIn == WebView::CurrentTab) {
-            mainFrame()->load(request.url());
-            return false;
-        }
+    TabWidget::OpenUrlIn openIn = frame ? TabWidget::CurrentTab : TabWidget::NewWindow;
+    if (type == QWebPage::NavigationTypeBackOrForward) {
+        BrowserApplication::instance()->setEventMouseButtons(qApp->mouseButtons());
+        BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
     }
 
-    if (openIn != WebView::CurrentTab) {
-        mainWindow()->tabWidget()->currentWebView()->loadUrl(request, openIn);
-        m_keyboardModifiers = Qt::NoModifier;
-        m_pressedButtons = Qt::NoButton;
+    openIn = TabWidget::modifyWithUserBehavior(openIn);
+
+    if (openIn != TabWidget::CurrentTab) {
+        WebView *webView = tabWidget()->getView(openIn,  qobject_cast<WebView*>(this->view()));
+        webView->page()->mainFrame()->load(request);
         return false;
     }
 
@@ -160,15 +144,16 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
 QWebPage *WebPage::createWindow(QWebPage::WebWindowType type)
 {
     Q_UNUSED(type);
-    if (m_keyboardModifiers & Qt::ControlModifier || m_pressedButtons == Qt::MidButton)
-        m_openInNewTab = true;
-    if (m_openInNewTab) {
-        m_openInNewTab = false;
-        return mainWindow()->tabWidget()->makeNewTab()->page();
+    QSettings settings;
+    settings.beginGroup(QLatin1String("tabs"));
+    TabWidget::OpenUrlIn openIn = TabWidget::NewWindow;
+    openIn = TabWidget::OpenUrlIn(settings.value(QLatin1String("openTargetBlankLinksIn"), openIn).toInt());
+
+    if (m_forceInNewTab) {
+        openIn = TabWidget::NewTab;
+        m_forceInNewTab = false;
     }
-    BrowserApplication::instance()->newMainWindow();
-    BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
-    return mainWindow->currentTab()->page();
+    return tabWidget()->getView(openIn,  qobject_cast<WebView*>(this->view()))->page();
 }
 
 #if !defined(QT_NO_UITOOLS)
@@ -349,13 +334,12 @@ void WebView::resizeEvent(QResizeEvent *event)
 
 void WebView::openLinkInNewTab()
 {
-    m_page->m_openInNewTab = true;
+    m_page->m_forceInNewTab = true;
     pageAction(QWebPage::OpenLinkInNewWindow)->trigger();
 }
 
 void WebView::openLinkInNewWindow()
 {
-    m_page->m_openInNewTab = false;
     pageAction(QWebPage::OpenLinkInNewWindow)->trigger();
 }
 
@@ -371,7 +355,7 @@ void WebView::copyLinkToClipboard()
 
 void WebView::openImageInNewTab()
 {
-    m_page->m_openInNewTab = true;
+    m_page->m_forceInNewTab = true;
     pageAction(QWebPage::OpenImageInNewWindow)->trigger();
 }
 
@@ -494,43 +478,6 @@ void WebView::loadUrl(const QUrl &url, const QString &title)
     load(url);
 }
 
-void WebView::loadUrl(const QNetworkRequest &request, QNetworkAccessManager::Operation operation, const QByteArray &body)
-{
-    m_initialUrl = request.url();
-    emit titleChanged(tr("Loading..."));
-    QWebView::load(request, operation, body);
-}
-
-void WebView::loadUrl(const QNetworkRequest &request, OpenLinkIn openIn)
-{
-    WebView *webView;
-    switch (openIn) {
-        case NewWindow: {
-            BrowserApplication::instance()->newMainWindow();
-            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->mainWindow();
-            webView = newMainWindow->currentTab();
-            newMainWindow->raise();
-            newMainWindow->activateWindow();
-            webView->setFocus();
-            break; }
-
-        case NewActiveTab:
-            webView = BrowserApplication::instance()->mainWindow()->tabWidget()->makeNewTab(true);
-            webView->setFocus();
-            break;
-
-        case NewInactiveTab:
-            webView = BrowserApplication::instance()->mainWindow()->tabWidget()->makeNewTab(false);
-            break;
-
-        case CurrentTab:
-            webView = this;
-            break;
-    }
-
-    webView->loadUrl(request);
-}
-
 QString WebView::lastStatusBarText() const
 {
     return m_statusBarText;
@@ -547,8 +494,8 @@ QUrl WebView::url() const
 
 void WebView::mousePressEvent(QMouseEvent *event)
 {
-    m_page->m_pressedButtons = event->buttons();
-    m_page->m_keyboardModifiers = event->modifiers();
+    BrowserApplication::instance()->setEventMouseButtons(event->buttons());
+    BrowserApplication::instance()->setEventKeyboardModifiers(event->modifiers());
     QWebView::mousePressEvent(event);
 }
 
@@ -591,7 +538,8 @@ void WebView::dropEvent(QDropEvent *event)
 void WebView::mouseReleaseEvent(QMouseEvent *event)
 {
     QWebView::mouseReleaseEvent(event);
-    if (!event->isAccepted() && (m_page->m_pressedButtons & Qt::MidButton)) {
+    if (!event->isAccepted()
+        && (BrowserApplication::instance()->eventMouseButtons() & Qt::MidButton)) {
         QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
         if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
             loadUrl(url);

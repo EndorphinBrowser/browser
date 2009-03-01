@@ -84,7 +84,7 @@ signals:
 #if QT_VERSION < 0x040500
     void tabMoveRequested(int fromIndex, int toIndex);
 #endif
-    void loadUrl(const QUrl &url, TabWidget::Tab type);
+    void loadUrl(const QUrl &url, TabWidget::OpenUrlIn tab);
 
 public:
     TabBar(QWidget *parent = 0);

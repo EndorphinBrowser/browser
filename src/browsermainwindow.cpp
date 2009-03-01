@@ -127,6 +127,8 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
     m_bookmarksToolbar = new BookmarksToolBar(boomarksModel, this);
+    connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&, const QString&)),
+            m_tabWidget, SLOT(loadUrlFromUser(const QUrl&, const QString&)));
     connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&, TabWidget::Tab, const QString&)),
             m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::Tab, const QString&)));
     connect(m_bookmarksToolbar->toggleViewAction(), SIGNAL(toggled(bool)),
@@ -603,8 +605,8 @@ void BrowserMainWindow::setupMenu()
 
     // Bookmarks
     m_bookmarksMenu = new BookmarksMenu(this);
-    connect(m_bookmarksMenu, SIGNAL(openUrl(const QUrl&, TabWidget::Tab, const QString &)),
-            m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::Tab, const QString&)));
+    connect(m_bookmarksMenu, SIGNAL(openUrl(const QUrl&, const QString &)),
+            m_tabWidget, SLOT(loadUrlFromUser(const QUrl&, const QString&)));
     menuBar()->addMenu(m_bookmarksMenu);
 
     m_bookmarksShowAllAction = new QAction(this);

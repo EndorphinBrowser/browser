@@ -101,6 +101,11 @@ public:
     static LanguageManager *languageManager();
     static QString dataDirectory();
 
+    Qt::MouseButtons eventMouseButtons() const;
+    Qt::KeyboardModifiers eventKeyboardModifiers() const;
+    void setEventMouseButtons(Qt::MouseButtons buttons);
+    void setEventKeyboardModifiers(Qt::KeyboardModifiers modifiers);
+
 #if QT_VERSION >= 0x040500
     static bool zoomTextOnly();
 #endif
@@ -147,6 +152,9 @@ private:
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
     QByteArray m_lastSession;
     bool quiting;
+
+    Qt::MouseButtons m_eventMouseButtons;
+    Qt::KeyboardModifiers m_eventKeyboardModifiers;
 };
 
 #endif // BROWSERAPPLICATION_H

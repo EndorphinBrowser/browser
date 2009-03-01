@@ -172,10 +172,9 @@ void BrowserApplication::messageRecieved(const QString &message)
     if (!url.isEmpty()) {
         QSettings settings;
         settings.beginGroup(QLatin1String("tabs"));
-        WebView::OpenLinkIn openIn = WebView::OpenLinkIn(settings.value(QLatin1String("openLinksFromAppsIn"), 0).toInt());
+        TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewWindow).toInt());
         settings.endGroup();
-
-        mainWindow()->tabWidget()->currentWebView()->loadUrl(QNetworkRequest(url), openIn);
+        mainWindow()->tabWidget()->loadUrl(url, tab);
     }
     mainWindow()->raise();
     mainWindow()->activateWindow();
@@ -421,6 +420,8 @@ bool BrowserApplication::event(QEvent *event)
 
 void BrowserApplication::openUrl(const QUrl &url)
 {
+    setEventMouseButtons(mouseButtons());
+    setEventKeyboardModifiers(keyboardModifiers());
     mainWindow()->tabWidget()->loadUrl(url);
 }
 
@@ -532,3 +533,24 @@ void BrowserApplication::setPrivate(bool isPrivate)
     QWebSettings::globalSettings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, isPrivate);
     emit instance()->privacyChanged(isPrivate);
 }
+
+Qt::MouseButtons BrowserApplication::eventMouseButtons() const
+{
+    return m_eventMouseButtons;
+}
+
+Qt::KeyboardModifiers BrowserApplication::eventKeyboardModifiers() const
+{
+    return m_eventKeyboardModifiers;
+}
+
+void BrowserApplication::setEventMouseButtons(Qt::MouseButtons buttons)
+{
+    m_eventMouseButtons = buttons;
+}
+
+void BrowserApplication::setEventKeyboardModifiers(Qt::KeyboardModifiers modifiers)
+{
+    m_eventKeyboardModifiers = modifiers;
+}
+

@@ -773,7 +773,6 @@ void AddBookmarkDialog::accept()
 BookmarksMenu::BookmarksMenu(QWidget *parent)
     : ModelMenu(parent)
     , m_bookmarksManager(0)
-    , m_lastMouseButton(Qt::NoButton)
 {
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
@@ -784,16 +783,8 @@ BookmarksMenu::BookmarksMenu(QWidget *parent)
 
 void BookmarksMenu::activated(const QModelIndex &index)
 {
-    if (m_lastMouseButton == Qt::MidButton)
-        emit openUrl(
-            index.data(BookmarksModel::UrlRole).toUrl(),
-            TabWidget::NewTab,
-            index.data(Qt::DisplayRole).toString());
-    else
-        emit openUrl(
-            index.data(BookmarksModel::UrlRole).toUrl(),
-            TabWidget::CurrentTab,
-            index.data(Qt::DisplayRole).toString());
+    emit openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
+                 index.data(Qt::DisplayRole).toString());
 }
 
 bool BookmarksMenu::prePopulated()
@@ -808,15 +799,6 @@ bool BookmarksMenu::prePopulated()
         addSeparator();
     createMenu(model()->index(0, 0), 1, this);
     return true;
-}
-
-void BookmarksMenu::mouseReleaseEvent(QMouseEvent *event)
-{
-    m_lastMouseButton = event->button();
-    //alow normal processing
-    ModelMenu::mouseReleaseEvent(event);
-    //reset
-    m_lastMouseButton = Qt::NoButton;
 }
 
 void BookmarksMenu::setInitialActions(QList<QAction*> actions)
@@ -857,7 +839,7 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     tree->header()->resizeSection(0, header);
     tree->header()->setStretchLastSection(true);
     connect(tree, SIGNAL(activated(const QModelIndex&)),
-            this, SLOT(openInCurrentTab()));
+            this, SLOT(open()));
     tree->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(tree, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(customContextMenuRequested(const QPoint &)));
@@ -929,7 +911,7 @@ void BookmarksDialog::customContextMenuRequested(const QPoint &pos)
     menu.exec(QCursor::pos());
 }
 
-void BookmarksDialog::open(TabWidget::Tab tab)
+void BookmarksDialog::open(TabWidget::OpenUrlIn tab)
 {
     QModelIndex index = tree->currentIndex();
     QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
@@ -940,6 +922,13 @@ void BookmarksDialog::open(TabWidget::Tab tab)
           index.sibling(index.row(), 1).data(BookmarksModel::UrlRole).toUrl(),
           tab,
           index.sibling(index.row(), 0).data(Qt::DisplayRole).toString());
+}
+
+void BookmarksDialog::open()
+{
+    BrowserApplication::instance()->setEventMouseButtons(qApp->mouseButtons());
+    BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
+    open(TabWidget::UserOrCurrent);
 }
 
 void BookmarksDialog::openInCurrentTab()
@@ -995,18 +984,11 @@ BookmarkToolButton::BookmarkToolButton(const QModelIndex &index, QWidget *parent
 
 void BookmarkToolButton::mouseReleaseEvent(QMouseEvent *event)
 {
+    BrowserApplication::instance()->setEventMouseButtons(event->button());
+    BrowserApplication::instance()->setEventKeyboardModifiers(event->modifiers());
     QToolButton::mouseReleaseEvent(event);
-    if (hitButton(event->pos())) {
-        if (event->button() == Qt::MidButton)
-            emit openBookmark(url(), TabWidget::NewTab, text());
-        if (event->button() == Qt::LeftButton) {
-            TabWidget::Tab openLocation =
-                (event->modifiers() & Qt::ControlModifier)
-                ? TabWidget::NewTab
-                : TabWidget::CurrentTab;
-            emit openBookmark(url(), openLocation, text());
-        }
-    }
+    if (hitButton(event->pos()))
+        emit openBookmark(url(), text());
 }
 
 QModelIndex BookmarkToolButton::index() const
@@ -1194,7 +1176,6 @@ QModelIndex BookmarksToolBar::rootIndex() const
 
 BookmarksToolBarMenu::BookmarksToolBarMenu(QWidget *parent)
     : ModelMenu(parent)
-    , m_lastMouseButton(Qt::NoButton)
 {
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
@@ -1204,16 +1185,8 @@ BookmarksToolBarMenu::BookmarksToolBarMenu(QWidget *parent)
 
 void BookmarksToolBarMenu::activated(const QModelIndex &index)
 {
-    if (m_lastMouseButton == Qt::MidButton)
-        emit openUrl(
-            index.data(BookmarksModel::UrlRole).toUrl(),
-            TabWidget::NewTab,
-            index.data(Qt::DisplayRole).toString());
-    else
-        emit openUrl(
-            index.data(BookmarksModel::UrlRole).toUrl(),
-            TabWidget::CurrentTab,
-            index.data(Qt::DisplayRole).toString());
+    emit openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
+                 index.data(Qt::DisplayRole).toString());
 }
 
 void BookmarksToolBar::build()
@@ -1235,23 +1208,15 @@ void BookmarksToolBar::build()
             button->setToolButtonStyle(Qt::ToolButtonTextOnly);
             QAction *a = addWidget(button);
             a->setText(idx.data().toString());
-            connect(menu, SIGNAL(openUrl(const QUrl &, TabWidget::Tab, const QString &)),
-                    this, SIGNAL(openUrl(const QUrl &, TabWidget::Tab, const QString &)));
+            connect(menu, SIGNAL(openUrl(const QUrl &, const QString &)),
+                    this, SIGNAL(openUrl(const QUrl &, const QString &)));
         } else {
             BookmarkToolButton *button = new BookmarkToolButton(idx, this);
             button->setText(idx.data().toString());
-            connect(button, SIGNAL(openBookmark(const QUrl &, TabWidget::Tab, const QString &)),
-                    this, SIGNAL(openUrl(const QUrl &, TabWidget::Tab, const QString &)));
+            connect(button, SIGNAL(openBookmark(const QUrl &, const QString &)),
+                    this, SIGNAL(openUrl(const QUrl &, const QString &)));
             addWidget(button);
         }
     }
 }
 
-void BookmarksToolBarMenu::mouseReleaseEvent(QMouseEvent *ev)
-{
-    m_lastMouseButton = ev->button();
-    //alow normal processing
-    ModelMenu::mouseReleaseEvent(ev);
-    //reset
-    m_lastMouseButton = Qt::NoButton;
-}

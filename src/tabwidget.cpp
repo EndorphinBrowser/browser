@@ -840,6 +840,11 @@ void TabWidget::changeEvent(QEvent *event)
     QTabWidget::changeEvent(event);
 }
 
+/*
+    Transform string into a QUrl and then load it.
+
+    When you already have a QUrl call loadUrl()
+ */
 void TabWidget::loadString(const QString &string)
 {
     if (string.isEmpty())
@@ -908,21 +913,92 @@ QUrl TabWidget::guessUrlFromString(const QString &string)
     return url;
 }
 
-void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
-{
-    WebView *webView;
-    if (NewTab == type) {
-        webView = makeNewTab();
-        if (count() == 1)
-            webView = this->webView(0);
-    } else {
-        webView = currentWebView();
-    }
+/*
+   Somewhere in the browser interface a users wants to open a url
 
-    if (webView) {
-        webView->loadUrl(url, title);
-        webView->setFocus();
+   By default open this url in the current tab, unless mouse or keyboard
+   modifiers are set.
+ */
+void TabWidget::loadUrlFromUser(const QUrl &url, const QString &title)
+{
+    loadUrl(url, modifyWithUserBehavior(CurrentTab), title);
+}
+
+/*
+    Replace the openIn behavior with the behavior the user wants.
+
+    // ctrl open in new tab
+    // ctrl-shift open in new tab and select
+    // ctrl-alt open in new window
+ */
+TabWidget::OpenUrlIn TabWidget::modifyWithUserBehavior(OpenUrlIn tab) {
+    Qt::KeyboardModifiers modifiers = BrowserApplication::instance()->eventKeyboardModifiers();
+    Qt::MouseButtons buttons = BrowserApplication::instance()->eventMouseButtons();
+    if (modifiers & Qt::ControlModifier || buttons == Qt::MidButton) {
+        if (modifiers & Qt::AltModifier)
+            tab = NewWindow;
+        else if (modifiers & Qt::ShiftModifier)
+            tab = NewSelectedTab;
+        else
+            tab = NewNotSelectedTab;
     }
+    BrowserApplication::instance()->setEventKeyboardModifiers(0);
+    BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
+    return tab;
+}
+
+/*
+   Somewhere in the browser interface a users wants to open a url in a specific tab.
+ */
+void TabWidget::loadUrl(const QUrl &url, OpenUrlIn tab, const QString &title)
+{
+    if (tab == UserOrCurrent) {
+        loadUrlFromUser(url, title);
+        return;
+    }
+    if (!url.isValid())
+        return;
+    WebView *webView = getView(tab, currentWebView());
+    if (webView)
+        webView->loadUrl(url, title);
+}
+
+/*
+    Return the view that matches the openIn behavior creating
+    a new view/window if necessary.
+ */
+WebView *TabWidget::getView(OpenUrlIn tab, WebView *currentView)
+{
+    WebView *webView = 0;
+    switch (tab) {
+        case NewWindow: {
+            BrowserApplication::instance()->newMainWindow();
+            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->mainWindow();
+            webView = newMainWindow->currentTab();
+            webView->setFocus();
+            break;
+        }
+
+        case NewSelectedTab: {
+            webView = makeNewTab(true);
+            webView->setFocus();
+            break;
+        }
+
+        case NewNotSelectedTab: {
+            webView = makeNewTab(false);
+            break;
+        }
+
+        case CurrentTab:
+        default:
+            webView = currentView;
+            if (!webView)
+                return 0;
+            webView->setFocus();
+            break;
+    }
+    return webView;
 }
 
 void TabWidget::nextTab()

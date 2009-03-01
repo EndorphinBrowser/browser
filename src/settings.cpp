@@ -69,6 +69,7 @@
 #include "cookiejar.h"
 #include "history.h"
 #include "networkaccessmanager.h"
+#include "tabwidget.h"
 #include "webview.h"
 
 #include <qdesktopservices.h>
@@ -219,8 +220,8 @@ void SettingsDialog::loadFromSettings()
 #if QT_VERSION >= 0x040500
     oneCloseButton->setChecked(settings.value(QLatin1String("oneCloseButton"),false).toBool());
 #endif
-    openTargetBlankLinksIn->setCurrentIndex(settings.value(QLatin1String("openTargetBlankLinksIn"), WebView::NewWindow).toInt());
-    openLinksFromAppsIn->setCurrentIndex(settings.value(QLatin1String("openLinksFromAppsIn"), WebView::NewWindow).toInt());
+    openTargetBlankLinksIn->setCurrentIndex(settings.value(QLatin1String("openTargetBlankLinksIn"), TabWidget::NewWindow).toInt());
+    openLinksFromAppsIn->setCurrentIndex(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewWindow).toInt());
     settings.endGroup();
 }
 
