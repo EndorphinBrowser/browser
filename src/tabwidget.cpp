@@ -720,7 +720,7 @@ void TabWidget::webViewTitleChanged(const QString &title)
     if (-1 != index) {
         QString tabTitle = title;
         if (title.isEmpty())
-            tabTitle = webView->url().toString();
+            tabTitle = QString::fromUtf8(webView->url().toEncoded());
         tabTitle.replace(QLatin1Char('&'), QLatin1String("&&"));
         setTabText(index, tabTitle);
     }
@@ -886,7 +886,7 @@ QByteArray TabWidget::saveState() const
     QStringList tabs;
     for (int i = 0; i < count(); ++i) {
         if (WebView *tab = webView(i)) {
-            tabs.append(tab->url().toString());
+            tabs.append(QString::fromUtf8(tab->url().toEncoded()));
         } else {
             tabs.append(QString::null);
         }
@@ -913,8 +913,10 @@ bool TabWidget::restoreState(const QByteArray &state)
 
     QStringList openTabs;
     stream >> openTabs;
-    for (int i = 0; i < openTabs.count(); ++i)
-        loadUrl(openTabs.at(i), i == 0 && currentWebView()->url() == QUrl() ? CurrentTab : NewTab);
+    for (int i = 0; i < openTabs.count(); ++i) {
+        QUrl url = QUrl::fromEncoded(openTabs.at(i).toUtf8());
+        loadUrl(url, i == 0 && currentWebView()->url() == QUrl() ? CurrentTab : NewTab);
+    }
 
     int currentTab;
     stream >> currentTab;

@@ -164,7 +164,7 @@ void SettingsDialog::loadFromSettings()
     enableJavascript->setChecked(settings.value(QLatin1String("enableJavascript"), enableJavascript->isChecked()).toBool());
     enablePlugins->setChecked(settings.value(QLatin1String("enablePlugins"), enablePlugins->isChecked()).toBool());
     enableImages->setChecked(settings.value(QLatin1String("enableImages"), enableImages->isChecked()).toBool());
-    userStyleSheet->setText(settings.value(QLatin1String("userStyleSheet")).toUrl().toString());
+    userStyleSheet->setText(QString::fromUtf8(settings.value(QLatin1String("userStyleSheet")).toUrl().toEncoded()));
     settings.endGroup();
 
     // Privacy
@@ -270,7 +270,7 @@ void SettingsDialog::saveToSettings()
     if (QFile::exists(userStyleSheetString))
         settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromLocalFile(userStyleSheetString));
     else
-        settings.setValue(QLatin1String("userStyleSheet"), QUrl(userStyleSheetString));
+        settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromEncoded(userStyleSheetString.toUtf8()));
     settings.endGroup();
 
     //Privacy
@@ -380,6 +380,6 @@ void SettingsDialog::setHomeToCurrentPage()
     BrowserMainWindow *mw = static_cast<BrowserMainWindow*>(parent());
     WebView *webView = mw->currentTab();
     if (webView)
-        homeLineEdit->setText(webView->url().toString());
+        homeLineEdit->setText(QString::fromUtf8(webView->url().toEncoded()));
 }
 

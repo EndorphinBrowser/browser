@@ -71,7 +71,7 @@ void LocationBarSiteIcon::mouseMoveEvent(QMouseEvent *event)
         && m_webView) {
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
-        mimeData->setText(m_webView->url().toString());
+        mimeData->setText(QString::fromUtf8(m_webView->url().toEncoded()));
         QList<QUrl> urls;
         urls.append(m_webView->url());
         mimeData->setUrls(urls);
@@ -140,7 +140,7 @@ void LocationBar::webViewUrlChanged(const QUrl &url)
 {
     if (hasFocus())
         return;
-    setText(url.toString());
+    setText(QString::fromUtf8(url.toEncoded()));
     setCursorPosition(0);
 }
 
