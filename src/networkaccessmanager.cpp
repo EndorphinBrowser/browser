@@ -142,9 +142,9 @@ void NetworkAccessManager::loadSettings()
     if (settings.value(QLatin1String("enabled"), false).toBool()) {
         int proxyType = settings.value(QLatin1String("type"), 0).toInt();
         if (proxyType == 0)
-            proxy.setType(QNetworkProxy::Socks5Proxy);
+            proxy = QNetworkProxy::Socks5Proxy;
         else if (proxyType == 1)
-            proxy.setType(QNetworkProxy::HttpProxy);
+            proxy = QNetworkProxy::HttpProxy;
 	else { // 2
 	    proxy.setType(QNetworkProxy::HttpCachingProxy);
 #if QT_VERSION >= 0x040500
