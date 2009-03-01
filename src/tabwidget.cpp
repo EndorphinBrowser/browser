@@ -74,6 +74,7 @@
 
 #include <qcompleter.h>
 #include <qevent.h>
+#include <qfileinfo.h>
 #include <qlistview.h>
 #include <qmenu.h>
 #include <qmessagebox.h>
@@ -433,7 +434,8 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
         HistoryCompletionModel *completionModel = new HistoryCompletionModel(this);
         completionModel->setSourceModel(BrowserApplication::historyManager()->historyFilterModel());
         m_lineEditCompleter = new QCompleter(completionModel, this);
-        connect(m_lineEditCompleter, SIGNAL(activated(QString)), mainWindow(), SLOT(loadPage(QString)));
+        connect(m_lineEditCompleter, SIGNAL(activated(const QString &)),
+                this, SLOT(loadString(const QString &)));
         // Should this be in Qt by default?
         QAbstractItemView *popup = m_lineEditCompleter->popup();
         QListView *listView = qobject_cast<QListView*>(popup);
@@ -544,7 +546,7 @@ void TabWidget::reloadAllTabs()
 void TabWidget::lineEditReturnPressed()
 {
     if (QLineEdit *lineEdit = qobject_cast<QLineEdit*>(sender())) {
-        emit loadPage(lineEdit->text());
+        loadString(lineEdit->text());
         if (m_lineEdits->currentWidget() == lineEdit)
             currentWebView()->setFocus();
     }
@@ -838,6 +840,73 @@ void TabWidget::changeEvent(QEvent *event)
     QTabWidget::changeEvent(event);
 }
 
+void TabWidget::loadString(const QString &string)
+{
+    if (string.isEmpty())
+        return;
+
+    QUrl url = guessUrlFromString(string);
+    currentLineEdit()->setText(QString::fromUtf8(url.toEncoded()));
+    loadUrl(url, TabWidget::CurrentTab);
+}
+
+QUrl TabWidget::guessUrlFromString(const QString &string)
+{
+    QString urlStr = string.trimmed();
+
+    // check if the string is just a host with a port
+    QRegExp hostWithPort(QLatin1String("^[a-zA-Z\\.]+\\:[0-9]*$"));
+    if (hostWithPort.exactMatch(urlStr))
+        urlStr = QLatin1String("http://") + urlStr;
+
+    // Check if it looks like a qualified URL. Try parsing it and see.
+    QRegExp test(QLatin1String("^[a-zA-Z]+\\:.*"));
+    bool hasSchema = test.exactMatch(urlStr);
+    if (hasSchema) {
+        bool isAscii = true;
+        foreach (const QChar &c, urlStr) {
+            if (c >= 0x80) {
+                isAscii = false;
+                break;
+            }
+        }
+
+        QUrl url;
+        if (isAscii) {
+            url = QUrl::fromEncoded(urlStr.toAscii(), QUrl::TolerantMode);
+        } else {
+            url = QUrl::fromEncoded(urlStr.toUtf8(), QUrl::TolerantMode);
+        }
+        if (url.isValid())
+            return url;
+    }
+
+    // Might be a file.
+    if (QFile::exists(urlStr)) {
+        QFileInfo info(urlStr);
+        return QUrl::fromLocalFile(info.absoluteFilePath());
+    }
+
+    // Might be a shorturl - try to detect the schema.
+    if (!hasSchema) {
+        int dotIndex = urlStr.indexOf(QLatin1Char('.'));
+        if (dotIndex != -1) {
+            QString prefix = urlStr.left(dotIndex).toLower();
+            QByteArray schema = (prefix == QLatin1String("ftp")) ? "ftp" : "http";
+            QUrl url = QUrl::fromEncoded(schema + "://" + urlStr.toUtf8(), QUrl::TolerantMode);
+            if (url.isValid())
+                return url;
+        }
+    }
+
+    // Fall back to QUrl's own tolerant parser.
+    QUrl url = QUrl::fromEncoded(string.toUtf8(), QUrl::TolerantMode);
+
+    // finally for cases where the user just types in a hostname add http
+    if (url.scheme().isEmpty())
+        url = QUrl::fromEncoded("http://" + string.toUtf8(), QUrl::TolerantMode);
+    return url;
+}
 
 void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
 {

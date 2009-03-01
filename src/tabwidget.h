@@ -94,7 +94,6 @@ class TabWidget : public QTabWidget
 
 signals:
     // tab widget signals
-    void loadPage(const QString &url);
     void tabsChanged();
     void lastTabClosed();
 
@@ -149,6 +148,7 @@ protected:
     BrowserMainWindow *mainWindow();
 
 public slots:
+    void loadString(const QString &string);
     void loadUrl(const QUrl &url, TabWidget::Tab type = CurrentTab, const QString &title = QString());
     void newTab();
     void cloneTab(int index = -1);
@@ -179,6 +179,7 @@ private slots:
     void historyCleared();
 
 private:
+    static QUrl guessUrlFromString(const QString &url);
     QLabel *animationLabel(int index, bool addMovie);
     void retranslate();
 

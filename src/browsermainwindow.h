@@ -95,7 +95,6 @@ public:
     QSize sizeHint() const;
 
 public:
-    static QUrl guessUrlFromString(const QString &url);
     TabWidget *tabWidget() const;
     WebView *currentTab() const;
     ToolbarSearch *toolbarSearch() const;
@@ -104,7 +103,6 @@ public:
     QAction *showMenuBarAction() const;
 
 public slots:
-    void loadPage(const QString &url);
     void slotHome();
     void slotPrivacyChanged(bool isPrivate);
     void slotZoomTextOnlyChanged(bool textOnly);

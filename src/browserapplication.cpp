@@ -239,7 +239,7 @@ void BrowserApplication::postLaunch()
                 break;
             }
             default:
-                mainWindow()->loadPage(args.last());
+                mainWindow()->tabWidget()->loadString(args.last());
                 break;
             }
         } else {
@@ -424,7 +424,7 @@ bool BrowserApplication::event(QEvent *event)
 
 void BrowserApplication::openUrl(const QUrl &url)
 {
-    mainWindow()->loadPage(url.toString());
+    mainWindow()->tabWidget()->loadUrl(url);
 }
 
 BrowserMainWindow *BrowserApplication::newMainWindow()

@@ -59,8 +59,6 @@ private slots:
     void recentlyClosedTabsAction();
     void linkHovered_data();
     void linkHovered(const QString &);
-    void loadPage_data();
-    void loadPage(const QString &);
     void loadProgress_data();
     void loadProgress(int);
     void setCurrentTitle_data();
@@ -79,9 +77,6 @@ class SubTabWidget : public TabWidget
 public:
     void call_linkHovered(QString const& link)
         { return SubTabWidget::linkHovered(link); }
-
-    void call_loadPage(QString const& url)
-        { return SubTabWidget::loadPage(url); }
 
     void call_loadProgress(int progress)
         { return SubTabWidget::loadProgress(progress); }
@@ -156,7 +151,6 @@ void tst_TabWidget::addWebAction()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -180,7 +174,6 @@ void tst_TabWidget::addWebAction()
     QVERIFY(!action->isEnabled());
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QVERIFY(spy2.count() > 0);
     QCOMPARE(spy3.count(), 8);
     QVERIFY(spy4.count() > 0);
@@ -202,7 +195,6 @@ void tst_TabWidget::closeTab()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -218,7 +210,6 @@ void tst_TabWidget::closeTab()
     return;
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 4);
     QCOMPARE(spy3.count(), 2);
     QCOMPARE(spy4.count(), 4);
@@ -244,7 +235,6 @@ void tst_TabWidget::currentLineEdit()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -254,7 +244,6 @@ void tst_TabWidget::currentLineEdit()
     QCOMPARE(widget.currentLineEdit(), currentLineEdit);
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -282,7 +271,6 @@ void tst_TabWidget::currentWebView()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -292,7 +280,6 @@ void tst_TabWidget::currentWebView()
     QCOMPARE(widget.currentWebView(), currentWebView);
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -320,7 +307,6 @@ void tst_TabWidget::lineEditStack()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -330,7 +316,6 @@ void tst_TabWidget::lineEditStack()
     QCOMPARE(widget.lineEditStack(), lineEditStack);
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -355,7 +340,6 @@ void tst_TabWidget::loadUrl()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -365,7 +349,6 @@ void tst_TabWidget::loadUrl()
     widget.loadUrl(url);
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -390,7 +373,6 @@ void tst_TabWidget::newTab()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -400,7 +382,6 @@ void tst_TabWidget::newTab()
     widget.newTab();
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -425,7 +406,6 @@ void tst_TabWidget::nextTab()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -435,7 +415,6 @@ void tst_TabWidget::nextTab()
     widget.nextTab();
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -460,7 +439,6 @@ void tst_TabWidget::previousTab()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -470,7 +448,6 @@ void tst_TabWidget::previousTab()
     widget.previousTab();
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -497,7 +474,6 @@ void tst_TabWidget::recentlyClosedTabsAction()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -507,7 +483,6 @@ void tst_TabWidget::recentlyClosedTabsAction()
     QCOMPARE(widget.recentlyClosedTabsAction(), recentlyClosedTabsAction);
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -532,7 +507,6 @@ void tst_TabWidget::linkHovered(const QString &)
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -542,42 +516,6 @@ void tst_TabWidget::linkHovered(const QString &)
     widget.call_linkHovered(link);
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
-    QCOMPARE(spy2.count(), 0);
-    QCOMPARE(spy3.count(), 0);
-    QCOMPARE(spy4.count(), 0);
-    QCOMPARE(spy5.count(), 0);
-    QCOMPARE(spy6.count(), 0);
-    */
-    QSKIP("Test is not implemented.", SkipAll);
-}
-
-void tst_TabWidget::loadPage_data()
-{
-    QTest::addColumn<QString>("url");
-    QTest::newRow("null") << QString("foo");
-}
-
-// protected void loadPage(QString const& url)
-void tst_TabWidget::loadPage(const QString &)
-{
-    /*
-    QFETCH(QString, url);
-
-    SubTabWidget widget;
-
-    QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
-    QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
-    QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
-    QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
-    QSignalSpy spy5(&widget, SIGNAL(tabsChanged()));
-    QSignalSpy spy6(&widget, SIGNAL(lastTabClosed()));
-
-    widget.call_loadPage(url);
-
-    QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -602,7 +540,6 @@ void tst_TabWidget::loadProgress(int)
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -612,7 +549,6 @@ void tst_TabWidget::loadProgress(int)
     widget.call_loadProgress(progress);
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -637,7 +573,6 @@ void tst_TabWidget::setCurrentTitle(const QString &)
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -647,7 +582,6 @@ void tst_TabWidget::setCurrentTitle(const QString &)
     widget.call_setCurrentTitle(url);
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -672,7 +606,6 @@ void tst_TabWidget::showStatusBarMessage(const QString &)
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -682,7 +615,6 @@ void tst_TabWidget::showStatusBarMessage(const QString &)
     widget.call_showStatusBarMessage(message);
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);
@@ -707,7 +639,6 @@ void tst_TabWidget::tabsChanged()
     SubTabWidget widget;
 
     QSignalSpy spy0(&widget, SIGNAL(linkHovered(const QString &)));
-    QSignalSpy spy1(&widget, SIGNAL(loadPage(const QString &)));
     QSignalSpy spy2(&widget, SIGNAL(loadProgress(int)));
     QSignalSpy spy3(&widget, SIGNAL(setCurrentTitle(const QString &)));
     QSignalSpy spy4(&widget, SIGNAL(showStatusBarMessage(const QString &)));
@@ -717,7 +648,6 @@ void tst_TabWidget::tabsChanged()
     widget.call_tabsChanged();
 
     QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
     QCOMPARE(spy2.count(), 0);
     QCOMPARE(spy3.count(), 0);
     QCOMPARE(spy4.count(), 0);

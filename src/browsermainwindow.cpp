@@ -171,8 +171,6 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
 
-    connect(m_tabWidget, SIGNAL(loadPage(const QString &)),
-            this, SLOT(loadPage(const QString &)));
     connect(m_tabWidget, SIGNAL(setCurrentTitle(const QString &)),
             this, SLOT(slotUpdateWindowTitle(const QString &)));
     connect(m_tabWidget, SIGNAL(showStatusBarMessage(const QString&)),
@@ -891,64 +889,6 @@ void BrowserMainWindow::slotViewStatusbar()
     m_autoSaver->changeOccurred();
 }
 
-QUrl BrowserMainWindow::guessUrlFromString(const QString &string)
-{
-    QString urlStr = string.trimmed();
-
-    // check if the string is just a host with a port
-    QRegExp hostWithPort(QLatin1String("^[a-zA-Z\\.]+\\:[0-9]*$"));
-    if (hostWithPort.exactMatch(urlStr))
-        urlStr = QLatin1String("http://") + urlStr;
-
-    // Check if it looks like a qualified URL. Try parsing it and see.
-    QRegExp test(QLatin1String("^[a-zA-Z]+\\:.*"));
-    bool hasSchema = test.exactMatch(urlStr);
-    if (hasSchema) {
-        bool isAscii = true;
-        foreach (const QChar &c, urlStr) {
-            if (c >= 0x80) {
-                isAscii = false;
-                break;
-            }
-        }
-
-        QUrl url;
-        if (isAscii) {
-            url = QUrl::fromEncoded(urlStr.toAscii(), QUrl::TolerantMode);
-        } else {
-            url = QUrl::fromEncoded(urlStr.toUtf8(), QUrl::TolerantMode);
-        }
-        if (url.isValid())
-            return url;
-    }
-
-    // Might be a file.
-    if (QFile::exists(urlStr)) {
-        QFileInfo info(urlStr);
-        return QUrl::fromLocalFile(info.absoluteFilePath());
-    }
-
-    // Might be a shorturl - try to detect the schema.
-    if (!hasSchema) {
-        int dotIndex = urlStr.indexOf(QLatin1Char('.'));
-        if (dotIndex != -1) {
-            QString prefix = urlStr.left(dotIndex).toLower();
-            QByteArray schema = (prefix == QLatin1String("ftp")) ? "ftp" : "http";
-            QUrl url = QUrl::fromEncoded(schema + "://" + urlStr.toUtf8(), QUrl::TolerantMode);
-            if (url.isValid())
-                return url;
-        }
-    }
-
-    // Fall back to QUrl's own tolerant parser.
-    QUrl url = QUrl::fromEncoded(string.toUtf8(), QUrl::TolerantMode);
-
-    // finally for cases where the user just types in a hostname add http
-    if (url.scheme().isEmpty())
-        url = QUrl::fromEncoded("http://" + string.toUtf8(), QUrl::TolerantMode);
-    return url;
-}
-
 void BrowserMainWindow::slotDownloadManager()
 {
     BrowserApplication::downloadManager()->show();
@@ -1010,7 +950,7 @@ void BrowserMainWindow::slotFileOpen()
     if (file.isEmpty())
         return;
 
-    loadPage(file);
+    tabWidget()->loadString(file);
 }
 
 void BrowserMainWindow::slotFilePrintPreview()
@@ -1192,7 +1132,7 @@ void BrowserMainWindow::slotHome()
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));
     QString home = settings.value(QLatin1String("home"), QLatin1String("http://www.arora-browser.org")).toString();
-    loadPage(home);
+    tabWidget()->loadString(home);
 }
 
 void BrowserMainWindow::slotWebSearch()
@@ -1232,16 +1172,6 @@ void BrowserMainWindow::slotSwapFocus()
     } else {
         currentTab()->setFocus();
     }
-}
-
-void BrowserMainWindow::loadPage(const QString &page)
-{
-    if (!currentTab() || page.isEmpty())
-        return;
-
-    QUrl url = guessUrlFromString(page);
-    m_tabWidget->currentLineEdit()->setText(QString::fromUtf8(url.toEncoded()));
-    m_tabWidget->loadUrl(url, TabWidget::CurrentTab);
 }
 
 TabWidget *BrowserMainWindow::tabWidget() const
