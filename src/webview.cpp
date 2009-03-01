@@ -201,7 +201,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
                         .arg(reply->errorString())
                         .arg(tr("When connecting to: %1.").arg(reply->url().toString()))
                         .arg(tr("Check the address for errors such as <b>ww</b>.arora-browser.org instead of <b>www</b>.arora-browser.org"))
-                        .arg(tr("If the address is correct, try to check the network connection."))
+                        .arg(tr("If the address is correct, try checking the network connection."))
                         .arg(tr("If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network."));
 
     QBuffer imageBuffer;
