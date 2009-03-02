@@ -570,8 +570,8 @@ void BrowserMainWindow::setupMenu()
 
     // History
     m_historyMenu = new HistoryMenu(this);
-    connect(m_historyMenu, SIGNAL(openUrl(const QUrl&)),
-            m_tabWidget, SLOT(loadUrl(const QUrl&)));
+    connect(m_historyMenu, SIGNAL(openUrl(const QUrl&, const QString&)),
+            m_tabWidget, SLOT(loadUrlFromUser(const QUrl&, const QString&)));
     menuBar()->addMenu(m_historyMenu);
     QList<QAction*> historyActions;
 

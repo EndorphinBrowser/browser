@@ -91,6 +91,8 @@ public:
     inline bool operator <(const HistoryEntry &other) const
         { return dateTime > other.dateTime; }
 
+    QString userTitle() const;
+
     QString url;
     QString title;
     QDateTime dateTime;
@@ -170,7 +172,8 @@ public:
         DateRole = Qt::UserRole + 1,
         DateTimeRole = Qt::UserRole + 2,
         UrlRole = Qt::UserRole + 3,
-        UrlStringRole = Qt::UserRole + 4
+        UrlStringRole = Qt::UserRole + 4,
+        TitleRole = Qt::UserRole + 5
     };
 
     HistoryModel(HistoryManager *history, QObject *parent = 0);
@@ -259,7 +262,7 @@ class HistoryMenu : public ModelMenu
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url);
+    void openUrl(const QUrl &url, const QString &title);
 
 public:
     HistoryMenu(QWidget *parent = 0);
@@ -358,7 +361,7 @@ class HistoryDialog : public QDialog, public Ui_HistoryDialog
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url);
+    void openUrl(const QUrl &url, const QString &title);
 
 public:
     HistoryDialog(QWidget *parent = 0, HistoryManager *history = 0);

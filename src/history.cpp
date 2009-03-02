@@ -84,6 +84,18 @@
 
 #include <qdebug.h>
 
+QString HistoryEntry::userTitle() const
+{
+    // when there is no title try to generate one from the url
+    if (title.isEmpty()) {
+        QString page = QFileInfo(QUrl(url).path()).fileName();
+        if (!page.isEmpty())
+            return page;
+        return url;
+    }
+    return title;
+}
+
 static const unsigned int HISTORY_VERSION = 23;
 
 HistoryManager::HistoryManager(QObject *parent)
@@ -447,18 +459,13 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const
         return QUrl(item.url);
     case UrlStringRole:
         return item.url;
+    case TitleRole:
+        return item.userTitle();
     case Qt::DisplayRole:
     case Qt::EditRole: {
         switch (index.column()) {
         case 0:
-            // when there is no title try to generate one from the url
-            if (item.title.isEmpty()) {
-                QString page = QFileInfo(QUrl(item.url).path()).fileName();
-                if (!page.isEmpty())
-                    return page;
-                return item.url;
-            }
-            return item.title;
+            return item.userTitle();
         case 1:
             return item.url;
         }
@@ -639,7 +646,8 @@ HistoryMenu::HistoryMenu(QWidget *parent)
 
 void HistoryMenu::activated(const QModelIndex &index)
 {
-    emit openUrl(index.data(HistoryModel::UrlRole).toUrl());
+    emit openUrl(index.data(HistoryModel::UrlRole).toUrl(),
+                 index.data(HistoryModel::TitleRole).toString());
 }
 
 bool HistoryMenu::prePopulated()
@@ -679,8 +687,8 @@ void HistoryMenu::postPopulated()
 void HistoryMenu::showHistoryDialog()
 {
     HistoryDialog *dialog = new HistoryDialog(this);
-    connect(dialog, SIGNAL(openUrl(const QUrl&)),
-            this, SIGNAL(openUrl(const QUrl&)));
+    connect(dialog, SIGNAL(openUrl(const QUrl&, const QString &)),
+            this, SIGNAL(openUrl(const QUrl&, const QString &)));
     dialog->show();
 }
 
@@ -763,7 +771,8 @@ void HistoryDialog::open()
     QModelIndex index = tree->currentIndex();
     if (!index.parent().isValid())
         return;
-    emit openUrl(index.data(HistoryModel::UrlRole).toUrl());
+    emit openUrl(index.data(HistoryModel::UrlRole).toUrl(),
+                 index.data(HistoryModel::TitleRole).toString());
 }
 
 void HistoryDialog::copy()
