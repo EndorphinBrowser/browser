@@ -102,8 +102,8 @@ TabWidget::TabWidget(QWidget *parent)
 
     new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_T), this, SLOT(openLastTab()));
 
-    connect(m_tabBar, SIGNAL(loadUrl(const QUrl&, TabWidget::Tab)),
-            this, SLOT(loadUrl(const QUrl&, TabWidget::Tab)));
+    connect(m_tabBar, SIGNAL(loadUrl(const QUrl&, TabWidget::OpenUrlIn)),
+            this, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
     connect(m_tabBar, SIGNAL(newTab()), this, SLOT(newTab()));
     connect(m_tabBar, SIGNAL(closeTab(int)), this, SLOT(closeTab(int)));
     connect(m_tabBar, SIGNAL(cloneTab(int)), this, SLOT(cloneTab(int)));

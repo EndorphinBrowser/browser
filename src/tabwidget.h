@@ -157,7 +157,7 @@ protected:
 public slots:
     void loadString(const QString &string);
     void loadUrlFromUser(const QUrl &url, const QString &title = QString());
-    void loadUrl(const QUrl &url, OpenUrlIn tab = CurrentTab, const QString &title = QString());
+    void loadUrl(const QUrl &url, TabWidget::OpenUrlIn tab = CurrentTab, const QString &title = QString());
     void newTab();
     void cloneTab(int index = -1);
     void closeTab(int index = -1);
