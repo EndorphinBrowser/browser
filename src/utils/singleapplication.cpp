@@ -56,6 +56,10 @@ bool SingleApplication::sendMessage(const QString &message)
         stream.flush();
         if (socket.waitForBytesWritten())
             return true;
+        // if the message was sent before waitForBytesWritten was called
+        // it will return false
+        if (socket.error() == QLocalSocket::UnknownSocketError)
+            return true;
     }
     return false;
 }
