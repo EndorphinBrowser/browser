@@ -833,7 +833,7 @@ void TabWidget::retranslate() {
 
 void TabWidget::changeEvent(QEvent *event)
 {
-    if (event->type() == QEvent::LanguageChange) 
+    if (event->type() == QEvent::LanguageChange)
         retranslate();
     QTabWidget::changeEvent(event);
 }
