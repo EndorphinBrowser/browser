@@ -422,12 +422,6 @@ BrowserMainWindow *TabWidget::mainWindow()
 
 WebView *TabWidget::makeNewTab(bool makeCurrent)
 {
-    if (!makeCurrent) {
-        QSettings settings;
-        settings.beginGroup(QLatin1String("tabs"));
-        makeCurrent = settings.value(QLatin1String("selectNewTabs"), false).toBool();
-    }
-
     // line edit
     LocationBar *locationBar = new LocationBar;
     if (!m_lineEditCompleter) {
@@ -934,12 +928,17 @@ TabWidget::OpenUrlIn TabWidget::modifyWithUserBehavior(OpenUrlIn tab) {
     Qt::KeyboardModifiers modifiers = BrowserApplication::instance()->eventKeyboardModifiers();
     Qt::MouseButtons buttons = BrowserApplication::instance()->eventMouseButtons();
     if (modifiers & Qt::ControlModifier || buttons == Qt::MidButton) {
-        if (modifiers & Qt::AltModifier)
+        if (modifiers & Qt::AltModifier) {
             tab = NewWindow;
-        else if (modifiers & Qt::ShiftModifier)
-            tab = NewSelectedTab;
-        else
-            tab = NewNotSelectedTab;
+        } else {
+            QSettings settings;
+            settings.beginGroup(QLatin1String("tabs"));
+            bool select = settings.value(QLatin1String("selectNewTabs"), false).toBool();
+            if (modifiers & Qt::ShiftModifier)
+                tab = !select ? NewSelectedTab : NewNotSelectedTab;
+            else
+                tab = select ? NewSelectedTab : NewNotSelectedTab;
+        }
     }
     BrowserApplication::instance()->setEventKeyboardModifiers(0);
     BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
