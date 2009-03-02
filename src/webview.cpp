@@ -125,6 +125,17 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
         BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
     }
 
+    // A short term hack until QtWebKit can get a reload without cache QAction
+    // *FYI* currently type is never NavigationTypeReload
+    // See: https://bugs.webkit.org/show_bug.cgi?id=24283
+    if (type == QWebPage::NavigationTypeReload
+        && (qApp->keyboardModifiers() & Qt::ShiftModifier)) {
+        QNetworkRequest newRequest(request);
+        newRequest.setAttribute(QNetworkRequest::CacheLoadControlAttribute,
+                                QNetworkRequest::AlwaysNetwork);
+        mainFrame()->load(request);
+        return false;
+    }
     openIn = TabWidget::modifyWithUserBehavior(openIn);
 
     if (openIn != TabWidget::CurrentTab) {
