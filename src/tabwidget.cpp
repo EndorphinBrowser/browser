@@ -73,8 +73,8 @@
 #include "webviewsearch.h"
 
 #include <qcompleter.h>
+#include <qdir.h>
 #include <qevent.h>
-#include <qfileinfo.h>
 #include <qlistview.h>
 #include <qmenu.h>
 #include <qmessagebox.h>
@@ -887,9 +887,8 @@ QUrl TabWidget::guessUrlFromString(const QString &string)
     }
 
     // Might be a file.
-    if (QFile::exists(urlStr)) {
-        QFileInfo info(urlStr);
-        return QUrl::fromLocalFile(info.absoluteFilePath());
+    if (QDir::isAbsolutePath(urlStr) && QFile::exists(urlStr)) {
+        return QUrl::fromLocalFile(urlStr);
     }
 
     // Might be a shorturl - try to detect the schema.
