@@ -155,7 +155,7 @@ protected:
     BrowserMainWindow *mainWindow();
 
 public slots:
-    void loadString(const QString &string);
+    void loadString(const QString &string, OpenUrlIn tab = CurrentTab);
     void loadUrlFromUser(const QUrl &url, const QString &title = QString());
     void loadUrl(const QUrl &url, TabWidget::OpenUrlIn tab = CurrentTab, const QString &title = QString());
     void newTab();

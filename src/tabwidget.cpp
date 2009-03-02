@@ -845,14 +845,14 @@ void TabWidget::changeEvent(QEvent *event)
 
     When you already have a QUrl call loadUrl()
  */
-void TabWidget::loadString(const QString &string)
+void TabWidget::loadString(const QString &string, OpenUrlIn tab)
 {
     if (string.isEmpty())
         return;
 
     QUrl url = guessUrlFromString(string);
     currentLineEdit()->setText(QString::fromUtf8(url.toEncoded()));
-    loadUrl(url, TabWidget::CurrentTab);
+    loadUrl(url, tab);
 }
 
 QUrl TabWidget::guessUrlFromString(const QString &string)

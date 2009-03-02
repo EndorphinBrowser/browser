@@ -168,13 +168,12 @@ BrowserApplication *BrowserApplication::instance()
 
 void BrowserApplication::messageRecieved(const QString &message)
 {
-    QUrl url(message);
-    if (!url.isEmpty()) {
+    if (!message.isEmpty()) {
         QSettings settings;
         settings.beginGroup(QLatin1String("tabs"));
         TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewWindow).toInt());
         settings.endGroup();
-        mainWindow()->tabWidget()->loadUrl(url, tab);
+        mainWindow()->tabWidget()->loadString(message, tab);
     }
     mainWindow()->raise();
     mainWindow()->activateWindow();
@@ -230,8 +229,7 @@ void BrowserApplication::postLaunch()
             switch (startup) {
             case 2: {
                 restoreLastSession();
-                WebView *webView = mainWindow()->tabWidget()->makeNewTab(true);
-                webView->loadUrl(args.last());
+                mainWindow()->tabWidget()->loadString(args.last(), TabWidget::NewSelectedTab);
                 break;
             }
             default:
