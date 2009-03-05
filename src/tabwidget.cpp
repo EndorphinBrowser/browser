@@ -186,7 +186,6 @@ TabWidget::TabWidget(QWidget *parent)
 
         connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
                 this, SLOT(closeTab(int)));
-        m_tabBar->setSelectionBehaviorOnRemove(QTabBar::SelectPreviousTab);
     }
 #endif
 
