@@ -180,9 +180,7 @@ private:
     QAction *m_filePrintPreviewAction;
     QAction *m_filePrintAction;
     QAction *m_filePrivateBrowsingAction;
-#ifndef Q_WS_MAC
     QAction *m_fileCloseWindow;
-#endif
     QAction *m_fileQuit;
 
     QMenu *m_editMenu;

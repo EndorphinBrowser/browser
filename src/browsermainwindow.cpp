@@ -426,11 +426,10 @@ void BrowserMainWindow::setupMenu()
     m_fileMenu->addAction(m_filePrivateBrowsingAction);
     m_fileMenu->addSeparator();
 
-#ifndef Q_WS_MAC
     m_fileCloseWindow = new QAction(m_fileMenu);
     connect(m_fileCloseWindow, SIGNAL(triggered()), this, SLOT(close()));
+    m_fileCloseWindow->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_W));
     m_fileMenu->addAction(m_fileCloseWindow);
-#endif
 
     m_fileQuit = new QAction(m_fileMenu);
     connect(m_fileQuit, SIGNAL(triggered()), BrowserApplication::instance(), SLOT(quitBrowser()));
@@ -696,9 +695,7 @@ void BrowserMainWindow::retranslate()
     m_filePrintPreviewAction->setText(tr("P&rint Preview..."));
     m_filePrintAction->setText(tr("&Print..."));
     m_filePrivateBrowsingAction->setText(tr("Private &Browsing..."));
-#ifndef Q_WS_MAC
     m_fileCloseWindow->setText(tr("Close Window"));
-#endif
     m_fileQuit->setText(tr("&Quit"));
 
     m_editMenu->setTitle(tr("&Edit"));
