@@ -275,6 +275,7 @@ void BrowserApplication::loadSettings()
     defaultSettings->setFontFamily(QWebSettings::FixedFont, fixedFont.family());
     defaultSettings->setFontSize(QWebSettings::DefaultFixedFontSize, fixedFont.pointSize());
 
+    defaultSettings->setAttribute(QWebSettings::JavascriptCanOpenWindows, !(settings.value(QLatin1String("blockPopupWindows"), true).toBool()));
     defaultSettings->setAttribute(QWebSettings::JavascriptEnabled, settings.value(QLatin1String("enableJavascript"), true).toBool());
     defaultSettings->setAttribute(QWebSettings::PluginsEnabled, settings.value(QLatin1String("enablePlugins"), true).toBool());
     defaultSettings->setAttribute(QWebSettings::AutoLoadImages, settings.value(QLatin1String("enableImages"), true).toBool());

@@ -110,6 +110,7 @@ void SettingsDialog::loadDefaults()
 
     downloadsLocation->setText(QDesktopServices::storageLocation(QDesktopServices::DesktopLocation));
 
+    blockPopupWindows->setChecked(!defaultSettings->testAttribute(QWebSettings::JavascriptCanOpenWindows));
     enableJavascript->setChecked(defaultSettings->testAttribute(QWebSettings::JavascriptEnabled));
     enablePlugins->setChecked(defaultSettings->testAttribute(QWebSettings::PluginsEnabled));
     enableImages->setChecked(defaultSettings->testAttribute(QWebSettings::AutoLoadImages));
@@ -157,6 +158,7 @@ void SettingsDialog::loadFromSettings()
     standardLabel->setText(QString(QLatin1String("%1 %2")).arg(standardFont.family()).arg(standardFont.pointSize()));
     fixedLabel->setText(QString(QLatin1String("%1 %2")).arg(fixedFont.family()).arg(fixedFont.pointSize()));
 
+    blockPopupWindows->setChecked(settings.value(QLatin1String("blockPopupWindows"), blockPopupWindows->isChecked()).toBool());
     enableJavascript->setChecked(settings.value(QLatin1String("enableJavascript"), enableJavascript->isChecked()).toBool());
     enablePlugins->setChecked(settings.value(QLatin1String("enablePlugins"), enablePlugins->isChecked()).toBool());
     enableImages->setChecked(settings.value(QLatin1String("enableImages"), enableImages->isChecked()).toBool());
@@ -257,6 +259,8 @@ void SettingsDialog::saveToSettings()
     settings.beginGroup(QLatin1String("websettings"));
     settings.setValue(QLatin1String("fixedFont"), fixedFont);
     settings.setValue(QLatin1String("standardFont"), standardFont);
+
+    settings.setValue(QLatin1String("blockPopupWindows"), blockPopupWindows->isChecked());
     settings.setValue(QLatin1String("enableJavascript"), enableJavascript->isChecked());
     settings.setValue(QLatin1String("enablePlugins"), enablePlugins->isChecked());
     settings.setValue(QLatin1String("enableImages"), enableImages->isChecked());

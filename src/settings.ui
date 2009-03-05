@@ -299,6 +299,16 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
+           <widget class="QCheckBox" name="blockPopupWindows">
+            <property name="text">
+             <string>Block Popup Windows</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QCheckBox" name="enablePlugins">
             <property name="text">
              <string>Enable Plugins</string>
