@@ -273,23 +273,23 @@ void SettingsDialog::saveToSettings()
 
     //Privacy
     settings.beginGroup(QLatin1String("cookies"));
-
-    CookieJar::KeepPolicy keepCookies;
+    CookieJar::AcceptPolicy acceptCookies;
     switch (acceptCombo->currentIndex()) {
     default:
     case 0:
-        keepCookies = CookieJar::KeepUntilExpire;
+        acceptCookies = CookieJar::AcceptAlways;
         break;
     case 1:
-        keepCookies = CookieJar::KeepUntilExit;
+        acceptCookies = CookieJar::AcceptNever;
         break;
     case 2:
-        keepCookies = CookieJar::KeepUntilTimeLimit;
+        acceptCookies = CookieJar::AcceptOnlyFromSitesNavigatedTo;
         break;
     }
+
     CookieJar *jar = BrowserApplication::cookieJar();
     QMetaEnum acceptPolicyEnum = jar->staticMetaObject.enumerator(jar->staticMetaObject.indexOfEnumerator("AcceptPolicy"));
-    settings.setValue(QLatin1String("acceptCookies"), QLatin1String(acceptPolicyEnum.valueToKey(keepCookies)));
+    settings.setValue(QLatin1String("acceptCookies"), QLatin1String(acceptPolicyEnum.valueToKey(acceptCookies)));
 
     CookieJar::KeepPolicy keepPolicy;
     switch (keepUntilCombo->currentIndex()) {
