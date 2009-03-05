@@ -512,7 +512,18 @@ void WebView::mousePressEvent(QMouseEvent *event)
 {
     BrowserApplication::instance()->setEventMouseButtons(event->buttons());
     BrowserApplication::instance()->setEventKeyboardModifiers(event->modifiers());
-    QWebView::mousePressEvent(event);
+
+    switch(event->button()) {
+    case Qt::XButton1:
+        pageAction(WebPage::Back)->trigger();
+        break;
+    case Qt::XButton2:
+        pageAction(WebPage::Forward)->trigger();
+        break;
+    default:
+        QWebView::mousePressEvent(event);
+        break;
+    }
 }
 
 void WebView::dragEnterEvent(QDragEnterEvent *event)
