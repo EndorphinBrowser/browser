@@ -38,6 +38,33 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AcceptLanguage</name>
+    <message>
+        <source>Languages</source>
+        <translation>Języki</translation>
+    </message>
+    <message>
+        <source>Languages: in order of preference:</source>
+        <translation>Języki: w kolejności preferencji:</translation>
+    </message>
+    <message>
+        <source>Move &amp;Up</source>
+        <translation>Przesuń w &amp;górę</translation>
+    </message>
+    <message>
+        <source>Move &amp;Down</source>
+        <translation>Przesuń w &amp;dół</translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation>&amp;Usuń</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation>Dodaj...</translation>
+    </message>
+</context>
+<context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
@@ -46,6 +73,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Podaj nazwę dla zakładki i wybierz gdzie chcesz ją umieścić.</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation>URL</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation>Tytuł</translation>
     </message>
 </context>
 <context>
@@ -154,6 +189,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Bookmarks Menu</source>
         <translation>Menu zakładek</translation>
+    </message>
+</context>
+<context>
+    <name>BookmarksMenu</name>
+    <message>
+        <source>Open in Tabs</source>
+        <translation>Otwórz w kartach</translation>
     </message>
 </context>
 <context>
@@ -425,7 +467,7 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source>About &amp;Arora</source>
-        <translation>Informacje o programie &amp;Arora</translation>
+        <translation type="obsolete">Informacje o programie &amp;Arora</translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -457,7 +499,7 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source>Arora</source>
-        <translation>Arora</translation>
+        <translation type="obsolete">Arora</translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -517,7 +559,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <message>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
-        <translation>Alt+Ctrl+L</translation>
+        <translation type="obsolete">Alt+Ctrl+L</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
@@ -537,15 +579,15 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
-        <translation>Zwiększ rozmiar tekstu</translation>
+        <translation type="obsolete">Zwiększ rozmiar tekstu</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation>Znormalizuj rozmiar tekstu</translation>
+        <translation type="obsolete">Znormalizuj rozmiar tekstu</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation>Zmniejsz rozmiar tekstu</translation>
+        <translation type="obsolete">Zmniejsz rozmiar tekstu</translation>
     </message>
     <message>
         <source>Show Bookmarks Bar</source>
@@ -557,7 +599,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone.&lt;ul&gt;&lt;li&gt;Historia nie jest uzupełniana o odwiedzane strony.&lt;/li&gt;&lt;li&gt;Pobrane pliki są automatycznie usuwane z okna Pobierania.&lt;/li&gt;&lt;li&gt;Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.&lt;/li&gt;&lt;li&gt;Ikony stron nie będą przechowywane&lt;/li&gt;&lt;li&gt;Sesja nie zostanie zapisana.&lt;/li&gt;&lt;li&gt;Wyszukiwania nie są dodawane do historii wyszukiwań.&lt;/li&gt;&lt;/ul&gt;Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone.&lt;ul&gt;&lt;li&gt;Historia nie jest uzupełniana o odwiedzane strony.&lt;/li&gt;&lt;li&gt;Pobrane pliki są automatycznie usuwane z okna Pobierania.&lt;/li&gt;&lt;li&gt;Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.&lt;/li&gt;&lt;li&gt;Ikony stron nie będą przechowywane&lt;/li&gt;&lt;li&gt;Sesja nie zostanie zapisana.&lt;/li&gt;&lt;li&gt;Wyszukiwania nie są dodawane do historii wyszukiwań.&lt;/li&gt;&lt;/ul&gt;Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
     </message>
     <message>
         <source>Find Nex&amp;t</source>
@@ -565,7 +607,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>Prefere&amp;nces...</source>
-        <translation>Prefe&amp;rencje</translation>
+        <translation>Prefe&amp;rencje...</translation>
     </message>
     <message>
         <source>Show Menu Bar</source>
@@ -578,6 +620,40 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <message>
         <source>Show &amp;Network Monitor</source>
         <translation>Pokaż &amp;monitor sieci</translation>
+    </message>
+    <message>
+        <source>Close Window</source>
+        <translation>Zamknij okno</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation>Pow&amp;iększ</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Normal</source>
+        <translation>Rozmiar pierwot&amp;ny</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation>P&amp;omniejsz</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Text Only</source>
+        <translation>Zwiększaj tylko &amp;tekst</translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation>Informacje o &amp;%1</translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
+        <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone.&lt;ul&gt;&lt;li&gt;Historia nie jest uzupełniana o odwiedzane strony.&lt;/li&gt;&lt;li&gt;Pobrane pliki są automatycznie usuwane z okna Pobierania.&lt;/li&gt;&lt;li&gt;Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.&lt;/li&gt;&lt;li&gt;Ikony stron nie będą przechowywane&lt;/li&gt;&lt;li&gt;Sesja nie zostanie zapisana.&lt;/li&gt;&lt;li&gt;Wyszukiwania nie są dodawane do historii wyszukiwań.&lt;/li&gt;&lt;/ul&gt;Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
     </message>
 </context>
 <context>
@@ -631,7 +707,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>C&amp;ached Web Pages</source>
-        <translation>Zapisane w cache strony</translation>
+        <translation>Z&amp;apisane w cache strony</translation>
     </message>
 </context>
 <context>
@@ -890,6 +966,12 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
             <numerusform>%n pobieranych plików</numerusform>
         </translation>
     </message>
+    <message>
+        <source>There are %1 downloads in progress
+Do you want to quit anyway?</source>
+        <translation>Trwa pobieranie %1 plików.
+Czy mimo to chcesz zakończyć?</translation>
+    </message>
 </context>
 <context>
     <name>HistoryDialog</name>
@@ -971,7 +1053,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <name>LanguageManager</name>
     <message>
         <source>Default</source>
-        <translation>Domyślny</translation>
+        <translation type="obsolete">Domyślny</translation>
     </message>
     <message>
         <source>Choose language</source>
@@ -980,6 +1062,10 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
         <translation>&lt;p&gt;Możesz używać innego języka niż&lt;br /&gt;domyślny systemowy.&lt;/p&gt;&lt;p&gt;Wybierz język, z którego chciałbyś korzystać.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>No translation files are installed.</source>
+        <translation>Nie znaleziono żadnych plików językowych.</translation>
     </message>
 </context>
 <context>
@@ -1000,7 +1086,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>Błędy SSL:
+        <translation type="obsolete">Błędy SSL:
 
 %1
 
@@ -1010,7 +1096,23 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Do you want to accept all these certificates?</source>
-        <translation>Czy chcesz zaakceptować te certyfikaty?</translation>
+        <translation type="obsolete">Czy chcesz zaakceptować te certyfikaty?</translation>
+    </message>
+    <message>
+        <source> - SSL Errors</source>
+        <translation> - Błędy SSL</translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Do you want to ignore these errors?&lt;/qt&gt;</source>
+        <translation>&lt;qt&gt;Błędy SSL:&lt;br/&gt;&lt;br/&gt;dla: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation>&lt;qt&gt;Certyfikaty:&lt;br/&gt;%1&lt;br/&gt;Czy chcesz zaakceptować wszystkie certyfikaty?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1228,7 +1330,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>In a tab in the current window</source>
-        <translation>W karcie w obecnym oknie</translation>
+        <translation type="obsolete">W karcie w obecnym oknie</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1348,7 +1450,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Http</source>
-        <translation>HTTP</translation>
+        <translation type="obsolete">HTTP</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -1428,7 +1530,7 @@ Czy chcesz zignorować te błędy?</translation>
     </message>
     <message>
         <source>Use proxy server</source>
-        <translation>Użyj serwera proxy:</translation>
+        <translation>Użyj serwera proxy</translation>
     </message>
     <message>
         <source>Host name:</source>
@@ -1437,6 +1539,54 @@ Czy chcesz zignorować te błędy?</translation>
     <message>
         <source>Show only one close button instead of one for each tab</source>
         <translation>Wyświetlaj tylko jeden przycisk zamknięcia karty zamiast jednego dla każdej karty</translation>
+    </message>
+    <message>
+        <source>Block Popup Windows</source>
+        <translation>Blokuj wyskakujące okna</translation>
+    </message>
+    <message>
+        <source>Opening links</source>
+        <translation>Otwieraj łącza</translation>
+    </message>
+    <message>
+        <source>Links that want to open in a new window:</source>
+        <translation>Łącza, które chcą utworzyć nowe okno:</translation>
+    </message>
+    <message>
+        <source>In a new selected tab in the current window</source>
+        <translation>W nowej aktywnej karcie w bieżącym oknie</translation>
+    </message>
+    <message>
+        <source>In a new tab in the current window</source>
+        <translation>W nowej karcie w bieżącym oknie</translation>
+    </message>
+    <message>
+        <source>In the current tab</source>
+        <translation>W bieżącej karcie</translation>
+    </message>
+    <message>
+        <source>Http (Secure)</source>
+        <translation>Http (bezpieczny)</translation>
+    </message>
+    <message>
+        <source>Http (Transparent)</source>
+        <translation>Http (przejrzysty)</translation>
+    </message>
+    <message>
+        <source>Prefured langauges for viewing webpages in:</source>
+        <translation type="obsolete">Preferowane języki do przeglądania stron:</translation>
+    </message>
+    <message>
+        <source>Prefered langauges for viewing webpages in:</source>
+        <translation type="obsolete">Preferowane języki do przeglądania stron:</translation>
+    </message>
+    <message>
+        <source>Prefered languages for viewing webpages in:</source>
+        <translation type="obsolete">Preferowane języki do przeglądania stron:</translation>
+    </message>
+    <message>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation>Preferowane języki do przeglądania stron:</translation>
     </message>
 </context>
 <context>
@@ -1551,6 +1701,22 @@ Czy na pewno chcesz zamknąć tę stronę?
         <source>Ctrl-[</source>
         <translation>Ctrl-[</translation>
     </message>
+    <message>
+        <source>Loading...</source>
+        <translation>Ładowanie...</translation>
+    </message>
+    <message>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation>Ładowanie %1 (%2 %3)...</translation>
+    </message>
+    <message>
+        <source>Finished loading</source>
+        <translation>Zakończono ładowanie</translation>
+    </message>
+    <message>
+        <source>Failed to load</source>
+        <translation>Ładowanie nie powiodło się</translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1587,7 +1753,7 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
-        <translation>Jeśli adres jest prawidłowy, sprawdź czy Twoje połączenie internetowe działa poprawnie.</translation>
+        <translation type="obsolete">Jeśli adres jest prawidłowy, sprawdź czy Twoje połączenie internetowe działa poprawnie.</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
@@ -1600,6 +1766,10 @@ Czy na pewno chcesz zamknąć tę stronę?
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
         <translation>Sprawdź adres pod kątem błędów takich jak &lt;b&gt;ww&lt;/b&gt;.arora-browser.org zamiast &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
+    </message>
+    <message>
+        <source>If the address is correct, try checking the network connection.</source>
+        <translation>Jeśli adres jest prawiedłowy, sprawdź poprawność połączenia internetowego.</translation>
     </message>
 </context>
 <context>
