@@ -135,8 +135,7 @@ QString SingleApplication::serverName() const
     serverName += QString(QLatin1String("_%1_%2")).arg(getuid()).arg(getgid());
 #else
     static QString login;
-    if (login.isEmpty())
-    {
+    if (login.isEmpty()) {
         QT_WA({
             wchar_t buffer[256];
             DWORD bufferSize = sizeof(buffer) / sizeof(wchar_t) - 1;
