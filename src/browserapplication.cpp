@@ -187,6 +187,20 @@ void BrowserApplication::quitBrowser()
         tabCount += m_mainWindows.at(i)->tabWidget()->count();
     }
 
+    int activeDownloads = BrowserApplication::instance()->downloadManager()->activeDownloads();
+
+    if (activeDownloads >= 1) {
+            int ret = QMessageBox::warning(mainWindow(), QString(),
+                                            tr("There are %1 downloads in progress\n"
+                                               "Do you want to quit anyway?").arg(activeDownloads),
+                                            QMessageBox::Yes | QMessageBox::No,
+                                            QMessageBox::No);
+            if (ret == QMessageBox::No) {
+                BrowserApplication::instance()->downloadManager()->show();
+                return;
+            }
+    }
+
     if (tabCount > 1) {
         int ret = QMessageBox::warning(mainWindow(), QString(),
                            tr("There are %1 windows and %2 tabs open\n"
