@@ -1,14 +1,15 @@
 [Desktop Entry]
-Exec=arora %U
+Name=Arora
+Name[en_US]=Arora
+Comment=Browse the World Wide Web
 GenericName=Web Browser
 GenericName[en_US]=Web Browser
 GenericName[cs_CZ]=Webový prohlížeč
 GenericName[nl]=Webbrowser
-Icon=arora
-MimeType=text/html;
-Name=Arora
-Name[en_US]=Arora
-StartupNotify=true
+Exec=arora %u
 Terminal=false
 Type=Application
-Categories=Qt;Network;WebBrowser;
+Icon=arora
+Categories=Application;Qt;Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;image/gif;image/jpeg;image/png;
+StartupNotify=true
