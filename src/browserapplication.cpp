@@ -404,7 +404,8 @@ bool BrowserApplication::event(QEvent *event)
     }
     case QEvent::FileOpen:
         if (!m_mainWindows.isEmpty()) {
-            mainWindow()->loadPage(static_cast<QFileOpenEvent *>(event)->file());
+            QString file = static_cast<QFileOpenEvent *>(event)->file();
+            mainWindow()->tabWidget()->loadUrl(QUrl::fromLocalFile(file));
             return true;
         }
     default:
