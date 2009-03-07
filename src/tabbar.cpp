@@ -330,7 +330,9 @@ void TabBar::tabRemoved(int position)
 void TabBar::updateVisibility()
 {
     setVisible((count()) > 1 || m_showTabBarWhenOneTab);
-    m_viewTabBarAction->setEnabled(count() == 1);
+    bool enabled = (count() == 1);
+    if (m_viewTabBarAction->isEnabled() != enabled)
+        m_viewTabBarAction->setEnabled(enabled);
     updateViewToolBarAction();
 }
 
