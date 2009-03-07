@@ -189,10 +189,9 @@ void LanguageManager::chooseNewLanguage()
             defaultItem = items.count();
         items << string;
     }
-    if (defaultItem == -1) {
-        defaultItem = items.count();
-        items << tr("Default");
-    }
+    items << QLatin1String("English (en_US)");
+    if (defaultItem == -1)
+        defaultItem = items.count() - 1;
 
     bool ok;
     QString item = QInputDialog::getItem(0,
@@ -205,8 +204,7 @@ void LanguageManager::chooseNewLanguage()
         return;
 
     int selection = items.indexOf(item);
-    if (selection != m_languages.count())
-        setCurrentLanguage(m_languages.value(selection));
+    setCurrentLanguage(m_languages.value(selection));
 }
 
 QString LanguageManager::translationLocation() const
