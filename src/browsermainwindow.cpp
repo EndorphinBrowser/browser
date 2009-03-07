@@ -548,7 +548,6 @@ void BrowserMainWindow::setupMenu()
 #if QT_VERSION >= 0x040500
     m_viewZoomTextOnlyAction = new QAction(m_viewMenu);
     m_viewZoomTextOnlyAction->setCheckable(true);
-#if QT_VERSION >= 0x040500
     connect(m_viewZoomTextOnlyAction, SIGNAL(toggled(bool)),
             BrowserApplication::instance(), SLOT(setZoomTextOnly(bool)));
     connect(BrowserApplication::instance(), SIGNAL(zoomTextOnlyChanged(bool)),
