@@ -37,6 +37,7 @@
 #include <qfileinfo.h>
 #include <qinputdialog.h>
 #include <qlibraryinfo.h>
+#include <qmessagebox.h>
 #include <qlocale.h>
 #include <qsettings.h>
 #include <qtranslator.h>
@@ -165,6 +166,13 @@ void LanguageManager::chooseNewLanguage()
     qDebug() << "LanguageManager::" << __FUNCTION__;
 #endif
     loadAvailableLanguages();
+    if (m_languages.isEmpty()) {
+        QMessageBox messageBox;
+        messageBox.setText(tr("No translation files are installed."));
+        messageBox.setStandardButtons(QMessageBox::Ok);
+        messageBox.exec();
+        return;
+    }
 
     QStringList items;
     int defaultItem = -1;
