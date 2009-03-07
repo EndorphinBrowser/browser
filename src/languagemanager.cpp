@@ -211,13 +211,13 @@ void LanguageManager::chooseNewLanguage()
 
 QString LanguageManager::translationLocation() const
 {
-#ifdef LANGUAGEMANAGER_DEBUG
-    qDebug() << "LanguageManager::" << __FUNCTION__;
-#endif
     QString directory = BrowserApplication::dataDirectory() + QLatin1Char('/') + QLatin1String("locale");
     // work without installing
     if (!QFile::exists(directory))
         directory = QLatin1String(".qm/locale");
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__ << directory;
+#endif
     return directory;
 }
 
