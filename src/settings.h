@@ -85,17 +85,11 @@ private slots:
 
     void chooseFont();
     void chooseFixedFont();
-
-    void addLanguage();
-    void removeLanguage();
-    void moveUpLanguage();
-    void moveDownLanguage();
-    void languageEntrySelected(int row);
+    void chooseAcceptLanguage();
 
 private:
     QFont standardFont;
     QFont fixedFont;
-    QList<QString> languages;
 };
 
 #endif // SETTINGS_H

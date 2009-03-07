@@ -62,6 +62,7 @@
 
 #include "networkaccessmanager.h"
 
+#include "acceptlanguagedialog.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "ui_passworddialog.h"
@@ -181,22 +182,9 @@ void NetworkAccessManager::loadSettings()
     QSslConfiguration::setDefaultConfiguration(sslCfg);
 #endif
 
-    settings.beginGroup(QLatin1String("websettings"));
-    QStringList list = settings.value(QLatin1String("websiteLanguages")).toStringList();
-
-    /* This constructs the Accept-Language header with a comma-separated list of
-    languages in descending order; all but the first have a "qvalue" assigned.
-    Example: de, de-de;q=0.8, en-us;q=0.5, en;q=0.2
-    */
-    for (int i=0; i<list.size(); ++i) {
-        QString entry = list.at(i);
-        int offset = entry.indexOf(QLatin1Char('['))+1;
-        entry = entry.mid(offset, entry.indexOf(QLatin1Char(']'))-offset);
-        if (i)
-            entry += QLatin1String(";q=") + QString::number( 1 - 1.0 / list.size() * i, 'f', 1 );
-        list[i] = entry;
-    }
-    acceptLanguage = list.join(QLatin1String(", "));
+    settings.beginGroup(QLatin1String("network"));
+    QStringList acceptList = settings.value(QLatin1String("acceptLanguages")).toStringList();
+    acceptLanguage = AcceptLanguageDialog::httpString(acceptList);
     settings.endGroup();
 }
 
@@ -306,10 +294,15 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
 
 QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
 {
-    QNetworkRequest req = request;
-    if (!acceptLanguage.isEmpty())
-        req.setRawHeader("Accept-Language", acceptLanguage.toLatin1());
-    QNetworkReply *reply = QNetworkAccessManager::createRequest(op, req, outgoingData);
-    emit requestCreated(op, req, reply);
+    QNetworkReply *reply;
+    if (!acceptLanguage.isEmpty()) {
+        QNetworkRequest req = request;
+        req.setRawHeader("Accept-Language", acceptLanguage);
+        reply = QNetworkAccessManager::createRequest(op, req, outgoingData);
+        emit requestCreated(op, req, reply);
+    } else {
+        reply = QNetworkAccessManager::createRequest(op, request, outgoingData);
+        emit requestCreated(op, request, reply);
+    }
     return reply;
 }

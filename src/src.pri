@@ -33,6 +33,7 @@ win32 {
 FORMS += \
     aboutdialog.ui \
     addbookmarkdialog.ui \
+    acceptlanguagedialog.ui \
     bookmarks.ui \
     downloaditem.ui \
     downloads.ui \
@@ -44,6 +45,7 @@ FORMS += \
 
 HEADERS += \
     aboutdialog.h \
+    acceptlanguagedialog.h \
     bookmarks.h \
     browserapplication.h \
     browsermainwindow.h \
@@ -73,6 +75,7 @@ HEADERS += \
 
 SOURCES += \
     aboutdialog.cpp \
+    acceptlanguagedialog.cpp \
     bookmarks.cpp \
     browserapplication.cpp \
     browsermainwindow.cpp \
