@@ -623,7 +623,7 @@ void TabWidget::closeTab(int index)
     webViewWithSearch->deleteLater();
 
     emit tabsChanged();
-    if (hasFocus && count() > 0)
+    if (hasFocus && count() > 0 && currentWebView())
         currentWebView()->setFocus();
     if (count() == 0)
         emit lastTabClosed();
