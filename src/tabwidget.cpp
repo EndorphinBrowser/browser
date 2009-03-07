@@ -469,8 +469,10 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     locationBar->setWebView(webView);
     connect(webView, SIGNAL(loadStarted()),
             this, SLOT(webViewLoadStarted()));
+    connect(webView, SIGNAL(loadProgress(int)),
+                this, SLOT(webViewLoadProgress(int)));
     connect(webView, SIGNAL(loadFinished(bool)),
-            this, SLOT(webViewLoadFinished()));
+            this, SLOT(webViewLoadFinished(bool)));
     connect(webView, SIGNAL(iconChanged()),
             this, SLOT(webViewIconChanged()));
     connect(webView, SIGNAL(titleChanged(const QString &)),
@@ -670,9 +672,30 @@ void TabWidget::webViewLoadStarted()
         setTabIcon(index, icon);
 #endif
     }
+
+    if (index != currentIndex())
+        return;
+
+    emit showStatusBarMessage(tr("Loading..."));
 }
 
-void TabWidget::webViewLoadFinished()
+void TabWidget::webViewLoadProgress(int progress)
+{
+    Q_UNUSED(progress)
+
+    WebView *webView = qobject_cast<WebView*>(sender());
+    int index = webViewIndex(webView);
+
+    if (index != currentIndex())
+        return;
+
+    double totalBytes = (double) webView->webPage()->totalBytes() / 1024;
+
+    QString message = tr("Loading (%1 %2)...").arg(totalBytes, 0, 'f', 2).arg(QLatin1String("kB"));
+    emit showStatusBarMessage(message);
+}
+
+void TabWidget::webViewLoadFinished(bool ok)
 {
 #if QT_VERSION >= 0x040500
     WebView *webView = qobject_cast<WebView*>(sender());
@@ -689,6 +712,14 @@ void TabWidget::webViewLoadFinished()
     }
 #endif
     webViewIconChanged();
+
+    if (index != currentIndex())
+        return;
+
+    if (ok)
+        emit showStatusBarMessage(tr("Finished."));
+    else
+        emit showStatusBarMessage(tr("Failed."));
 }
 
 void TabWidget::webViewIconChanged()

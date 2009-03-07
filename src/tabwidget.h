@@ -173,7 +173,8 @@ private slots:
     void aboutToShowRecentTabsMenu();
     void aboutToShowRecentTriggeredAction(QAction *action);
     void webViewLoadStarted();
-    void webViewLoadFinished();
+    void webViewLoadProgress(int progress);
+    void webViewLoadFinished(bool ok);
     void webViewIconChanged();
     void webViewTitleChanged(const QString &title);
     void webViewUrlChanged(const QUrl &url);
