@@ -83,6 +83,8 @@ void tst_LanguageManager::cleanupTestCase()
 // This will be called before each test function is executed.
 void tst_LanguageManager::init()
 {
+    LanguageManager manager;
+    manager.setCurrentLanguage(QString());
 }
 
 // This will be called after every test function.
