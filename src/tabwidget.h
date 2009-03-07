@@ -201,6 +201,7 @@ private:
     static const int m_recentlyClosedTabsSize = 10;
     QList<QUrl> m_recentlyClosedTabs;
     QList<WebActionMapper*> m_actions;
+    bool m_swappedDelayedWidget;
 
     QCompleter *m_lineEditCompleter;
     QStackedWidget *m_lineEdits;
