@@ -549,11 +549,11 @@ void BrowserMainWindow::setupMenu()
     connect(m_viewZoomTextOnlyAction, SIGNAL(triggered()),
             this, SLOT(slotZoomOut()));
     m_viewZoomTextOnlyAction->setCheckable(true);
+#if QT_VERSION >= 0x040500
     connect(m_viewZoomTextOnlyAction, SIGNAL(toggled(bool)),
             BrowserApplication::instance(), SLOT(setZoomTextOnly(bool)));
     connect(BrowserApplication::instance(), SIGNAL(zoomTextOnlyChanged(bool)),
             this, SLOT(slotZoomTextOnlyChanged(bool)));
-#if QT_VERSION >= 0x040500
     m_viewMenu->addAction(m_viewZoomTextOnlyAction);
 #endif
 
