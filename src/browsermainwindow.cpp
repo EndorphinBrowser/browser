@@ -380,10 +380,16 @@ void BrowserMainWindow::setupMenu()
     m_fileMenu->addAction(m_fileOpenFileAction);
 
     m_fileOpenLocationAction = new QAction(m_fileMenu);
-    m_fileOpenLocationAction->setShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_L));
     connect(m_fileOpenLocationAction, SIGNAL(triggered()),
             this, SLOT(slotSelectLineEdit()));
     m_fileMenu->addAction(m_fileOpenLocationAction);
+
+    /* Add the location bar shortcuts familiar to users from other browsers */
+    QList<QKeySequence> openLocationShortcuts;
+    openLocationShortcuts.append(QKeySequence(Qt::ControlModifier + Qt::Key_L));
+    openLocationShortcuts.append(QKeySequence(Qt::AltModifier + Qt::Key_O));
+    openLocationShortcuts.append(QKeySequence(Qt::AltModifier + Qt::Key_D));
+    m_fileOpenLocationAction->setShortcuts(openLocationShortcuts);
 
     m_fileMenu->addSeparator();
     m_fileMenu->addAction(m_tabWidget->closeTabAction());
