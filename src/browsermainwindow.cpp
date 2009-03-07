@@ -509,7 +509,7 @@ void BrowserMainWindow::setupMenu()
 
     QAction *viewTabBarAction = m_tabWidget->tabBar()->viewTabBarAction();
     m_viewMenu->addAction(viewTabBarAction);
-    connect(viewTabBarAction, SIGNAL(changed()),
+    connect(viewTabBarAction, SIGNAL(toggled(bool)),
             m_autoSaver, SLOT(changeOccurred()));
 
     m_viewStatusbarAction = new QAction(m_viewMenu);
