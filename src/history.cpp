@@ -639,6 +639,7 @@ HistoryMenu::HistoryMenu(QWidget *parent)
     , m_history(0)
     , m_historyMenuModel(0)
 {
+    setMaxRows(7);
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
     setStatusBarTextRole(HistoryModel::UrlStringRole);

@@ -72,7 +72,7 @@
 
 ModelMenu::ModelMenu(QWidget *parent)
     : QMenu(parent)
-    , m_maxRows(-1)
+    , m_maxRows(7)
     , m_firstSeparator(-1)
     , m_maxWidth(-1)
     , m_statusBarTextRole(0)
