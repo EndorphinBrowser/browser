@@ -125,7 +125,7 @@ CookieJar::CookieJar(QObject *parent)
 
 CookieJar::~CookieJar()
 {
-    if (m_keepCookies == KeepUntilExit)
+    if (m_loaded && m_keepCookies == KeepUntilExit)
         clear();
     m_saveTimer->saveIfNeccessary();
 }
