@@ -129,31 +129,40 @@ void tst_LanguageManager::chooseNewLanguage()
 void tst_LanguageManager::setCurrentLanguage_data()
 {
     QTest::addColumn<QString>("language");
+    QTest::addColumn<bool>("success");
     QTest::addColumn<QString>("result");
-    QTest::newRow("null") << QString("foo") << QString();
+    QTest::newRow("null-foo") << QString("foo") << false << QString();
+    QTest::newRow("null-null") << QString() << false << QString();
 
     SubLanguageManager manager;
     QString validLanguage = manager.languages().value(0);
     if (validLanguage.isEmpty())
         qWarning() << "no languages to test with";
-    QTest::newRow(validLanguage.toLatin1()) << validLanguage << validLanguage;
+    QTest::newRow(validLanguage.toLatin1()) << validLanguage << true << validLanguage;
 }
 
 // public void setCurrentLanguage(QString const &language)
 void tst_LanguageManager::setCurrentLanguage()
 {
     QFETCH(QString, language);
+    QFETCH(bool, success);
     QFETCH(QString, result);
 
     SubLanguageManager manager;
     QString initialLanguage = manager.currentLanguage();
+    QSignalSpy spy(&manager, SIGNAL(languageChanged(const QString &)));
 
     TestWidget widget;
     widget.retranslate = false;
-    manager.setCurrentLanguage(language);
+    QCOMPARE(manager.setCurrentLanguage(language), success);
     QCOMPARE(manager.currentLanguage(), result);
     qApp->processEvents();
     QCOMPARE(widget.retranslate, !result.isEmpty());
+    QCOMPARE(spy.count(), success ? 1 : 0);
+    if (success) {
+        QVERIFY(manager.setCurrentLanguage(QString()));
+        QCOMPARE(spy.count(), 2);
+    }
 }
 
 QTEST_MAIN(tst_LanguageManager)

@@ -118,6 +118,7 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
         delete m_sysTranslator;
         m_appTranslator = 0;
         m_sysTranslator = 0;
+        emit languageChanged(currentLanguage());
         return true;
     }
 
@@ -148,6 +149,7 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
     m_appTranslator = newAppTranslator;
     m_sysTranslator = newSysTranslator;
     BrowserApplication::bookmarksManager()->retranslate();
+    emit languageChanged(currentLanguage());
     return true;
 }
 

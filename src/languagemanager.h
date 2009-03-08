@@ -40,6 +40,9 @@ class LanguageManager : public QObject
     Q_OBJECT
     Q_PROPERTY(QString currentLanguage READ currentLanguage WRITE setCurrentLanguage)
 
+signals:
+    void languageChanged(const QString &language);
+
 public:
     LanguageManager(QObject *parent = 0);
 
