@@ -770,21 +770,60 @@ void AddBookmarkDialog::accept()
     QDialog::accept();
 }
 
-BookmarksMenuBarMenu::BookmarksMenuBarMenu(QWidget *parent)
+BookmarksMenu::BookmarksMenu(QWidget *parent)
     : ModelMenu(parent)
-    , m_bookmarksManager(0)
 {
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
-    setMaxRows(-1);
     setStatusBarTextRole(BookmarksModel::UrlStringRole);
     setSeparatorRole(BookmarksModel::SeparatorRole);
 }
 
-void BookmarksMenuBarMenu::activated(const QModelIndex &index)
+ModelMenu *BookmarksMenu::createBaseMenu()
+{
+    BookmarksMenu *menu = new BookmarksMenu(this);
+    connect(menu, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)),
+            this, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)));
+    return menu;
+}
+
+void BookmarksMenu::activated(const QModelIndex &index)
 {
     emit openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
                  index.data(Qt::DisplayRole).toString());
+}
+
+void BookmarksMenu::postPopulated()
+{
+    addSeparator();
+    QAction *action = addAction(tr("Open in Tabs"));
+    connect(action, SIGNAL(triggered()),
+            this, SLOT(openAll()));
+}
+
+void BookmarksMenu::openAll()
+{
+    ModelMenu *menu = qobject_cast<ModelMenu*>(sender()->parent());
+    if (!menu)
+        return;
+    QModelIndex parent = menu->rootIndex();
+    if (!parent.isValid())
+        return;
+    for (int i = 0; i < parent.model()->rowCount(parent); ++i) {
+        QModelIndex child = parent.model()->index(i, 0, parent);
+        TabWidget::OpenUrlIn tab;
+        tab = (i == 0) ? TabWidget::CurrentTab : TabWidget::NewTab;
+        emit openUrl(child.data(BookmarksModel::UrlRole).toUrl(),
+                     tab,
+                     child.data(Qt::DisplayRole).toString());
+    }
+}
+
+
+BookmarksMenuBarMenu::BookmarksMenuBarMenu(QWidget *parent)
+    : BookmarksMenu(parent)
+    , m_bookmarksManager(0)
+{
 }
 
 bool BookmarksMenuBarMenu::prePopulated()
@@ -1174,21 +1213,6 @@ QModelIndex BookmarksToolBar::rootIndex() const
     return m_root;
 }
 
-BookmarksToolBarMenu::BookmarksToolBarMenu(QWidget *parent)
-    : ModelMenu(parent)
-{
-    connect(this, SIGNAL(activated(const QModelIndex &)),
-            this, SLOT(activated(const QModelIndex &)));
-    setStatusBarTextRole(BookmarksModel::UrlStringRole);
-    setSeparatorRole(BookmarksModel::SeparatorRole);
-}
-
-void BookmarksToolBarMenu::activated(const QModelIndex &index)
-{
-    emit openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
-                 index.data(Qt::DisplayRole).toString());
-}
-
 void BookmarksToolBar::build()
 {
     clear();
@@ -1199,8 +1223,7 @@ void BookmarksToolBar::build()
             button->setPopupMode(QToolButton::InstantPopup);
             button->setArrowType(Qt::DownArrow);
             button->setText(idx.data().toString());
-            ModelMenu *menu = new BookmarksToolBarMenu(this);
-            menu->setMaxRows(-1);
+            ModelMenu *menu = new BookmarksMenu(this);
             menu->setModel(m_bookmarksModel);
             menu->setRootIndex(idx);
             menu->addAction(new QAction(menu));
@@ -1210,6 +1233,8 @@ void BookmarksToolBar::build()
             a->setText(idx.data().toString());
             connect(menu, SIGNAL(openUrl(const QUrl &, const QString &)),
                     this, SIGNAL(openUrl(const QUrl &, const QString &)));
+            connect(menu, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)),
+                    this, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)));
         } else {
             BookmarkToolButton *button = new BookmarkToolButton(idx, this);
             button->setText(idx.data().toString());

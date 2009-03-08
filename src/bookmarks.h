@@ -229,14 +229,34 @@ private:
     BookmarksManager *m_bookmarksManager;
 };
 
-// Menu that is dynamically populated from the bookmarks
 #include "modelmenu.h"
-class BookmarksMenuBarMenu : public ModelMenu
+
+// Base class for BookmarksMenuBarMenu and BookmarksToolBarMenu
+class BookmarksMenu : public ModelMenu
 {
     Q_OBJECT
 
 signals:
     void openUrl(const QUrl &url, const QString &title);
+    void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
+
+public:
+    BookmarksMenu(QWidget *parent = 0);
+
+protected:
+    void postPopulated();
+    ModelMenu *createBaseMenu();
+
+private slots:
+    void openAll();
+    void activated(const QModelIndex &index);
+
+};
+
+// Menu that is dynamically populated from the bookmarks
+class BookmarksMenuBarMenu : public BookmarksMenu
+{
+    Q_OBJECT
 
 public:
     BookmarksMenuBarMenu(QWidget *parent = 0);
@@ -244,9 +264,6 @@ public:
 
 protected:
     bool prePopulated();
-
-private slots:
-    void activated(const QModelIndex &index);
 
 private:
     BookmarksManager *m_bookmarksManager;
@@ -340,22 +357,6 @@ protected:
 
 private:
     QModelIndex m_index;
-
-};
-
-
-class BookmarksToolBarMenu : public ModelMenu
-{
-    Q_OBJECT
-
-signals:
-    void openUrl(const QUrl &url, const QString &title);
-
-public:
-    BookmarksToolBarMenu(QWidget *parent = 0);
-
-private slots:
-    void activated(const QModelIndex &index);
 
 };
 

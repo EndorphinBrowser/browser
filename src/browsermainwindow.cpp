@@ -611,6 +611,8 @@ void BrowserMainWindow::setupMenu()
     m_bookmarksMenu = new BookmarksMenuBarMenu(this);
     connect(m_bookmarksMenu, SIGNAL(openUrl(const QUrl&, const QString &)),
             m_tabWidget, SLOT(loadUrlFromUser(const QUrl&, const QString&)));
+    connect(m_bookmarksMenu, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)),
+            m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)));
     menuBar()->addMenu(m_bookmarksMenu);
 
     m_bookmarksShowAllAction = new QAction(this);
