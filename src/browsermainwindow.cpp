@@ -672,6 +672,8 @@ void BrowserMainWindow::setupMenu()
     m_helpChangeLanguageAction = new QAction(m_helpMenu);
     connect(m_helpChangeLanguageAction, SIGNAL(triggered()),
             BrowserApplication::languageManager(), SLOT(chooseNewLanguage()));
+    connect(BrowserApplication::languageManager(), SIGNAL(languageChanged(const QString&)),
+            BrowserApplication::networkAccessManager(), SLOT(loadSettings()));
     m_helpMenu->addAction(m_helpChangeLanguageAction);
     m_helpMenu->addSeparator();
 

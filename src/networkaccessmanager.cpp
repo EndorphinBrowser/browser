@@ -183,7 +183,8 @@ void NetworkAccessManager::loadSettings()
 #endif
 
     settings.beginGroup(QLatin1String("network"));
-    QStringList acceptList = settings.value(QLatin1String("acceptLanguages")).toStringList();
+    QStringList acceptList = settings.value(QLatin1String("acceptLanguages"),
+            AcceptLanguageDialog::defaultAcceptList()).toStringList();
     acceptLanguage = AcceptLanguageDialog::httpString(acceptList);
     settings.endGroup();
 }
