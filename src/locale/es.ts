@@ -1,27 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
-<context>
+<!DOCTYPE TS><TS>
+<context encoding="UTF-8">
     <name>AboutDialog</name>
     <message>
         <source>Lightweight WebKit-based web browser</source>
         <translation>Navegador ligero basado en WebKit</translation>
     </message>
     <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
-        <translation></translation>
+        <translation>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -38,6 +24,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>About</source>
         <translation>Acerca de</translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -83,11 +81,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar nombre</translation>
     </message>
     <message>
         <source>Edit Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar dirección</translation>
     </message>
 </context>
 <context>
@@ -95,7 +93,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
-        <translation>Error al cargar los marcadores en la línea %1, columna %2: %3</translation>
+        <translation>Error al cargar los marcadores en la línea %1, columna %2: %3
+</translation>
     </message>
     <message>
         <source>Toolbar Bookmarks</source>
@@ -151,11 +150,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra de marcadores</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menú de marcadores</translation>
     </message>
 </context>
 <context>
@@ -177,19 +176,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Abrir</translation>
+        <translation>Abrir</translation>
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
-        <translation type="unfinished">Abrir en una &amp;pestaña nueva</translation>
+        <translation>Abrir en una &amp;pestaña nueva</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
-        <translation type="unfinished">Añadir marcador...</translation>
+        <translation>Añadir marcador...</translation>
     </message>
 </context>
 <context>
@@ -333,15 +332,15 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
-        <translation>&amp;Ampliar tamaño del texto</translation>
+        <translation type="obsolete">&amp;Ampliar tamaño del texto</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation>Tamaño &amp;normal del texto</translation>
+        <translation type="obsolete">Tamaño &amp;normal del texto</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation>&amp;Reducir tamaño del texto</translation>
+        <translation type="obsolete">&amp;Reducir tamaño del texto</translation>
     </message>
     <message>
         <source>Page S&amp;ource</source>
@@ -427,7 +426,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>About &amp;Arora</source>
-        <translation>Acerca de &amp;Arora</translation>
+        <translation type="obsolete">Acerca de &amp;Arora</translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -459,7 +458,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Arora</source>
-        <translation>Arora</translation>
+        <translation type="obsolete">Arora</translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -519,15 +518,45 @@ Do you want to reload all pages?</source>
     <message>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
-        <translation>Alt+Ctrl+L</translation>
+        <translation type="obsolete">Alt+Ctrl+L</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar mo&amp;nitor de red</translation>
     </message>
     <message>
         <source>Switch application language </source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar el idioma de la aplicación </translation>
+    </message>
+    <message>
+        <source>Close Window</source>
+        <translation>Cerrar ventana</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation>Zoom &amp;aumentar</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Normal</source>
+        <translation>Zoom &amp;normal</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation>Zoom &amp;reducir</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Text Only</source>
+        <translation>Zoom solo &amp;texto</translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation>Acerca de &amp;%1</translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
+        <translation>Ctrl+Y</translation>
     </message>
 </context>
 <context>
@@ -584,112 +613,112 @@ Do you want to reload all pages?</source>
     <name>CookieExceptionsModel</name>
     <message>
         <source>Website</source>
-        <translation>Sitio web</translation>
+        <translation type="obsolete">Sitio web</translation>
     </message>
     <message>
         <source>Rule</source>
-        <translation>Regla</translation>
+        <translation type="obsolete">Regla</translation>
     </message>
     <message>
         <source>Allow</source>
-        <translation>Permitir</translation>
+        <translation type="obsolete">Permitir</translation>
     </message>
     <message>
         <source>Block</source>
-        <translation>Bloquear</translation>
+        <translation type="obsolete">Bloquear</translation>
     </message>
     <message>
         <source>Allow For Session</source>
-        <translation>Permitir sólo durante esta sesión</translation>
+        <translation type="obsolete">Permitir sólo durante esta sesión</translation>
     </message>
 </context>
 <context>
     <name>CookieModel</name>
     <message>
         <source>Website</source>
-        <translation>Sitio web</translation>
+        <translation type="obsolete">Sitio web</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nombre</translation>
+        <translation type="obsolete">Nombre</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation>Ruta</translation>
+        <translation type="obsolete">Ruta</translation>
     </message>
     <message>
         <source>Secure</source>
-        <translation>Segura</translation>
+        <translation type="obsolete">Segura</translation>
     </message>
     <message>
         <source>Expires</source>
-        <translation>Caducidad</translation>
+        <translation type="obsolete">Caducidad</translation>
     </message>
     <message>
         <source>Contents</source>
-        <translation>Contenidos</translation>
+        <translation type="obsolete">Contenidos</translation>
     </message>
     <message>
         <source>true</source>
-        <translation>verdadero</translation>
+        <translation type="obsolete">verdadero</translation>
     </message>
     <message>
         <source>false</source>
-        <translation>falso</translation>
+        <translation type="obsolete">falso</translation>
     </message>
 </context>
 <context>
     <name>CookiesDialog</name>
     <message>
         <source>Cookies</source>
-        <translation>Cookies</translation>
+        <translation type="obsolete">Cookies</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Eliminar</translation>
+        <translation type="obsolete">&amp;Eliminar</translation>
     </message>
     <message>
         <source>Remove &amp;All Cookies</source>
-        <translation>Eliminar &amp;todas las cookies</translation>
+        <translation type="obsolete">Eliminar &amp;todas las cookies</translation>
     </message>
 </context>
 <context>
     <name>CookiesExceptionsDialog</name>
     <message>
         <source>Cookie Exceptions</source>
-        <translation>Cookies exentas</translation>
+        <translation type="obsolete">Cookies exentas</translation>
     </message>
     <message>
         <source>New Exception</source>
-        <translation>Nueva excepción</translation>
+        <translation type="obsolete">Nueva excepción</translation>
     </message>
     <message>
         <source>Domain:</source>
-        <translation>Dominio:</translation>
+        <translation type="obsolete">Dominio:</translation>
     </message>
     <message>
         <source>Block</source>
-        <translation>Bloquear</translation>
+        <translation type="obsolete">Bloquear</translation>
     </message>
     <message>
         <source>Allow For Session</source>
-        <translation>Permitir sólo durante esta sesión</translation>
+        <translation type="obsolete">Permitir sólo durante esta sesión</translation>
     </message>
     <message>
         <source>Allow</source>
-        <translation>Permitir</translation>
+        <translation type="obsolete">Permitir</translation>
     </message>
     <message>
         <source>Exceptions</source>
-        <translation>Excepciones</translation>
+        <translation type="obsolete">Excepciones</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Eliminar</translation>
+        <translation type="obsolete">&amp;Eliminar</translation>
     </message>
     <message>
         <source>Remove &amp;All</source>
-        <translation>Eliminar &amp;todas</translation>
+        <translation type="obsolete">Eliminar &amp;todas</translation>
     </message>
 </context>
 <context>
@@ -785,25 +814,22 @@ Do you want to reload all pages?</source>
         <source>MB</source>
         <translation>MB</translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>- %n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation type="obsolete">-%n minutos restantes
         </translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>- %n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation type="obsolete">-%s segundos restantes
         </translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message numerus="yes">
+    <message>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation type="obsolete">%n Descarga(s)
         </translation>
     </message>
 </context>
@@ -870,10 +896,9 @@ Do you want to reload all pages?</source>
         <source>Earlier Today</source>
         <translation>Hace un rato</translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n item(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation type="obsolete">%n elemento(s)
         </translation>
     </message>
 </context>
@@ -881,15 +906,15 @@ Do you want to reload all pages?</source>
     <name>LanguageManager</name>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Predeterminado</translation>
     </message>
     <message>
         <source>Choose language</source>
-        <translation type="unfinished"></translation>
+        <translation>Elegir idioma</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Puede ejecutarse con un idioma distinto&lt;br&gt;al predeterminado del sistema operativo.&lt;/p&gt;&lt;p&gt;Por favor, elija el idioma que desee utilizar&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -927,38 +952,38 @@ Do you want to ignore these errors?</source>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation type="obsolete">Nombre</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Valor</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Monitor de red</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Solicitudes de red</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Cabeceras de las solicitudes</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Cabeceras de respuesta</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">&amp;Eliminar</translation>
+        <translation type="obsolete">&amp;Eliminar</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Eliminar &amp;todas las solicitudes</translation>
     </message>
 </context>
 <context>
@@ -988,7 +1013,7 @@ Do you want to ignore these errors?</source>
     <name>PlainTextEditSearch</name>
     <message>
         <source>Not Found</source>
-        <translation type="unfinished">No encontrado</translation>
+        <translation>No encontrado</translation>
     </message>
 </context>
 <context>
@@ -1029,31 +1054,31 @@ Do you want to ignore these errors?</source>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Redirige a: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Método</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="unfinished">Dirección</translation>
+        <translation type="obsolete">Dirección</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Respuesta</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Longitud</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Tipo de contenido</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Información</translation>
     </message>
 </context>
 <context>
@@ -1158,7 +1183,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>In a tab in the current window</source>
-        <translation>En una pestaña en la ventana actual</translation>
+        <translation type="obsolete">En una pestaña en la ventana actual</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1294,7 +1319,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Http</source>
-        <translation>Http</translation>
+        <translation type="obsolete">Http</translation>
     </message>
     <message>
         <source>Host name:</source>
@@ -1322,34 +1347,66 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar sólo un botón de cierre en lugar de uno para cada pestaña</translation>
+    </message>
+    <message>
+        <source>Block Popup Windows</source>
+        <translation>Bloquear ventanas emergentes</translation>
+    </message>
+    <message>
+        <source>Opening links</source>
+        <translation>Abiendo enlaces</translation>
+    </message>
+    <message>
+        <source>Links that want to open in a new window:</source>
+        <translation>Enlaces que desea abrir en una nueva ventana:</translation>
+    </message>
+    <message>
+        <source>In a new selected tab in the current window</source>
+        <translation>En la pestaña seleccionada en la ventana actual</translation>
+    </message>
+    <message>
+        <source>In a new tab in the current window</source>
+        <translation>En una nueva pestaña en la ventana actual</translation>
+    </message>
+    <message>
+        <source>In the current tab</source>
+        <translation>En la pestaña actual</translation>
+    </message>
+    <message>
+        <source>Http (Secure)</source>
+        <translation>Http (Seguro)</translation>
+    </message>
+    <message>
+        <source>Http (Transparent)</source>
+        <translation>Http (Transparente)</translation>
     </message>
 </context>
 <context>
     <name>SourceViewer</name>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">Cargando...</translation>
+        <translation>Cargando...</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Editar</translation>
+        <translation>&amp;Editar</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished">&amp;Buscar</translation>
+        <translation>&amp;Buscar</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">&amp;Ver</translation>
+        <translation>&amp;Ver</translation>
     </message>
     <message>
         <source>&amp;Wrap lines</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;justar las líneas</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation type="unfinished"></translation>
+        <translation>Código fuente de la página </translation>
     </message>
 </context>
 <context>
@@ -1427,11 +1484,11 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-]</translation>
     </message>
     <message>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-[</translation>
     </message>
 </context>
 <context>
@@ -1457,19 +1514,19 @@ Do you really want to close this page?
     </message>
     <message>
         <source>When connecting to: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuando se conecta a: %1.</translation>
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation type="unfinished"></translation>
+        <translation>Compruebe que no hay errores en la dirección como&lt;b&gt;ww&lt;/b&gt;.arora-browser.org en lugar de &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si la dirección es correcta, copruebe la conexión de red.</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si su ordenador o red están protegidos por un cortafuegos o un proxy, asegúrese de que al navegador se le permite el acceso a la red.</translation>
     </message>
 </context>
 <context>
