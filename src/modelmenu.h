@@ -103,6 +103,9 @@ protected:
     virtual bool prePopulated();
     // add any actions after the tree
     virtual void postPopulated();
+    // return the QMenu that is used to populate sub menu's
+    virtual ModelMenu *createBaseMenu();
+
     // put all of the children of parent into menu up to max
     void createMenu(const QModelIndex &parent, int max, QMenu *parentMenu = 0, QMenu *menu = 0);
 
@@ -112,7 +115,7 @@ protected:
 
 private slots:
     void aboutToShow();
-    void triggered(QAction *action);
+    void actionTriggered(QAction *action);
 
 private:
     QAction *makeAction(const QModelIndex &index);
