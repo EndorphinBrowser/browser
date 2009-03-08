@@ -608,7 +608,7 @@ void BrowserMainWindow::setupMenu()
     m_historyMenu->setInitialActions(historyActions);
 
     // Bookmarks
-    m_bookmarksMenu = new BookmarksMenu(this);
+    m_bookmarksMenu = new BookmarksMenuBarMenu(this);
     connect(m_bookmarksMenu, SIGNAL(openUrl(const QUrl&, const QString &)),
             m_tabWidget, SLOT(loadUrlFromUser(const QUrl&, const QString&)));
     menuBar()->addMenu(m_bookmarksMenu);

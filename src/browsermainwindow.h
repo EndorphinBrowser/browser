@@ -77,7 +77,7 @@ class WebView;
 class QSplitter;
 class QFrame;
 class HistoryMenu;
-class BookmarksMenu;
+class BookmarksMenuBarMenu;
 
 
 /*!
@@ -214,7 +214,7 @@ private:
     QAction *m_historyHomeAction;
     QAction *m_historyRestoreLastSessionAction;
 
-    BookmarksMenu *m_bookmarksMenu;
+    BookmarksMenuBarMenu *m_bookmarksMenu;
     QAction *m_bookmarksShowAllAction;
     QAction *m_bookmarksAddAction;
 

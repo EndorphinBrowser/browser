@@ -770,7 +770,7 @@ void AddBookmarkDialog::accept()
     QDialog::accept();
 }
 
-BookmarksMenu::BookmarksMenu(QWidget *parent)
+BookmarksMenuBarMenu::BookmarksMenuBarMenu(QWidget *parent)
     : ModelMenu(parent)
     , m_bookmarksManager(0)
 {
@@ -781,13 +781,13 @@ BookmarksMenu::BookmarksMenu(QWidget *parent)
     setSeparatorRole(BookmarksModel::SeparatorRole);
 }
 
-void BookmarksMenu::activated(const QModelIndex &index)
+void BookmarksMenuBarMenu::activated(const QModelIndex &index)
 {
     emit openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
                  index.data(Qt::DisplayRole).toString());
 }
 
-bool BookmarksMenu::prePopulated()
+bool BookmarksMenuBarMenu::prePopulated()
 {
     m_bookmarksManager = BrowserApplication::bookmarksManager();
     setModel(m_bookmarksManager->bookmarksModel());
@@ -801,7 +801,7 @@ bool BookmarksMenu::prePopulated()
     return true;
 }
 
-void BookmarksMenu::setInitialActions(QList<QAction*> actions)
+void BookmarksMenuBarMenu::setInitialActions(QList<QAction*> actions)
 {
     m_initialActions = actions;
     for (int i = 0; i < m_initialActions.count(); ++i)

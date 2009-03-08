@@ -231,7 +231,7 @@ private:
 
 // Menu that is dynamically populated from the bookmarks
 #include "modelmenu.h"
-class BookmarksMenu : public ModelMenu
+class BookmarksMenuBarMenu : public ModelMenu
 {
     Q_OBJECT
 
@@ -239,7 +239,7 @@ signals:
     void openUrl(const QUrl &url, const QString &title);
 
 public:
-    BookmarksMenu(QWidget *parent = 0);
+    BookmarksMenuBarMenu(QWidget *parent = 0);
     void setInitialActions(QList<QAction*> actions);
 
 protected:
