@@ -90,8 +90,10 @@ void tst_Xbel::xbelreader_data()
 void tst_Xbel::xbelreader()
 {
     SubXbelReader reader;
-    QVERIFY(reader.read(QString()));
+    BookmarkNode *root = reader.read(QString());
+    QVERIFY(root);
     QVERIFY(reader.error() == QXmlStreamReader::NoError);
+    delete root;
 }
 
 Q_DECLARE_METATYPE(QXmlStreamReader::Error)
@@ -113,7 +115,9 @@ void tst_Xbel::read()
 
     SubXbelReader reader;
 
-    QVERIFY(reader.read(fileName));
+    BookmarkNode *root = reader.read(fileName);
+    QVERIFY(root);
+    delete root;
     QCOMPARE(reader.error(), error);
 }
 
@@ -185,6 +189,7 @@ void tst_Xbel::readProperly()
         QCOMPARE(children[2]->expanded, false);
         QCOMPARE(children[2]->type(), BookmarkNode::Separator);
     }
+    delete root;
 }
 
 
@@ -223,6 +228,8 @@ void tst_Xbel::write()
     QVERIFY(writer.write(file.fileName(), root));
     BookmarkNode *writtenRoot = reader.read(file.fileName());
     QVERIFY(*writtenRoot == *root);
+    delete root;
+    delete writtenRoot;
 }
 
 QTEST_MAIN(tst_Xbel)
