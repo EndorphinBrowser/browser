@@ -76,7 +76,6 @@ public:
 public slots:
     void removeSelected();
     void removeAll();
-    inline void edit(const QModelIndex &index) { QTreeView::edit(index); }
 
 };
 
