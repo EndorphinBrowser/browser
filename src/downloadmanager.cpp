@@ -492,6 +492,12 @@ void DownloadManager::handleUnsupportedContent(QNetworkReply *reply, bool reques
     qDebug() << "DownloadManager::handleUnsupportedContent" << reply->url() << "requestFileName" << requestFileName;
     DownloadItem *item = new DownloadItem(reply, requestFileName, this);
     addItem(item);
+
+    if (!isVisible())
+        show();
+
+    activateWindow();
+    raise();
 }
 
 void DownloadManager::addItem(DownloadItem *item)
@@ -502,8 +508,6 @@ void DownloadManager::addItem(DownloadItem *item)
     m_downloads.append(item);
     m_model->endInsertRows();
     updateItemCount();
-    if (row == 0)
-        show();
     downloadsView->setIndexWidget(m_model->index(row, 0), item);
     QIcon icon = style()->standardIcon(QStyle::SP_FileIcon);
     item->fileIcon->setPixmap(icon.pixmap(48, 48));
