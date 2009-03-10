@@ -79,6 +79,7 @@
 #include <qnetworkreply.h>
 #include <qsslconfiguration.h>
 #include <qsslerror.h>
+#include <qdatetime.h>
 
 #if QT_VERSION >= 0x040500
 #include <qnetworkdiskcache.h>
@@ -238,6 +239,33 @@ void NetworkAccessManager::proxyAuthenticationRequired(const QNetworkProxy &prox
 }
 
 #ifndef QT_NO_OPENSSL
+static QString certToFormattedString(QSslCertificate cert)
+{
+    QString resultstring = QLatin1String("<p>");
+    QStringList tmplist;
+
+    resultstring += cert.subjectInfo(QSslCertificate::CommonName);
+
+    resultstring += QString::fromLatin1("<br/>Issuer: %1")
+        .arg(cert.issuerInfo(QSslCertificate::CommonName));
+
+    resultstring += QString::fromLatin1("<br/>Not valid before: %1<br/>Valid Until: %2")
+        .arg(cert.effectiveDate().toString(Qt::ISODate))
+        .arg(cert.expiryDate().toString(Qt::ISODate));
+
+    QMultiMap<QSsl::AlternateNameEntryType, QString> names = cert.alternateSubjectNames();
+    if (names.count() > 0) {
+        tmplist = names.values(QSsl::DnsEntry);
+        resultstring += QLatin1String("<br/>Alternate Names:<ul><li>")
+            + tmplist.join(QLatin1String("</li><li>"))
+            + QLatin1String("</li><</ul>");
+    }
+
+    resultstring += QLatin1String("</p>");
+
+    return resultstring;
+}
+
 void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError> &error)
 {
     BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
@@ -260,17 +288,26 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
         return;
     }
 
-    QString errors = errorStrings.join(QLatin1String("\n"));
-    int ret = QMessageBox::warning(mainWindow, QCoreApplication::applicationName(),
-                           tr("SSL Errors:\n\n%1\n\n%2\n\n"
-                              "Do you want to ignore these errors?").arg(reply->url().toString()).arg(errors),
+    QString errors = errorStrings.join(QLatin1String("</li><li>"));
+    int ret = QMessageBox::warning(mainWindow,
+                           QCoreApplication::applicationName() + tr(" - SSL Errors"),
+                           tr("<qt>SSL Errors:"
+                              "<br/><br/>for: <tt>%1</tt>"
+                              "<ul><li>%2</li></ul>\n\n"
+                              "Do you want to ignore these errors?</qt>").arg(reply->url().toString()).arg(errors),
                            QMessageBox::Yes | QMessageBox::No,
                            QMessageBox::No);
 
     if (ret == QMessageBox::Yes) {
         if (ca_new.count() > 0) {
+            QStringList certinfos;
+            for (int i = 0; i < ca_new.count(); ++i)
+                certinfos += certToFormattedString(ca_new.at(i));
             ret = QMessageBox::question(mainWindow, QCoreApplication::applicationName(),
-                tr("Do you want to accept all these certificates?"),
+                tr("<qt>Certifactes:<br/>"
+                   "%1<br/>"
+                   "Do you want to accept all these certificates?</qt>")
+                    .arg(certinfos.join(QString())),
                 QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
             if (ret == QMessageBox::Yes) {
                 ca_merge += ca_new;
