@@ -854,13 +854,13 @@ bool BookmarksMenuBarMenu::prePopulated()
 {
     m_bookmarksManager = BrowserApplication::bookmarksManager();
     setModel(m_bookmarksManager->bookmarksModel());
-    setRootIndex(m_bookmarksManager->bookmarksModel()->index(1, 0));
+    setRootIndex(m_bookmarksManager->bookmarksModel()->index(m_bookmarksManager->menu()));
     // initial actions
     for (int i = 0; i < m_initialActions.count(); ++i)
         addAction(m_initialActions.at(i));
     if (!m_initialActions.isEmpty())
         addSeparator();
-    createMenu(model()->index(0, 0), 1, this);
+    createMenu(m_bookmarksManager->bookmarksModel()->index(m_bookmarksManager->toolbar()), 1, this);
     return true;
 }
 
@@ -1073,7 +1073,7 @@ BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(contextMenuRequested(const QPoint &)));
 
-    setRootIndex(model->index(0, 0));
+    setRootIndex(model->index(BrowserApplication::bookmarksManager()->toolbar()));
     connect(m_bookmarksModel, SIGNAL(modelReset()), this, SLOT(build()));
     connect(m_bookmarksModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(build()));
     connect(m_bookmarksModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), this, SLOT(build()));
