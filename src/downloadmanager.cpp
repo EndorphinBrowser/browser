@@ -74,6 +74,7 @@
 #include <qfileiconprovider.h>
 #include <qheaderview.h>
 #include <qmetaobject.h>
+#include <qmessagebox.h>
 #include <qsettings.h>
 
 #include <qdebug.h>
@@ -452,6 +453,23 @@ int DownloadManager::activeDownloads() const
             ++count;
     }
     return count;
+}
+
+bool DownloadManager::allowQuit()
+{
+    if (BrowserApplication::instance()->mainWindows().count() <= 1
+        && activeDownloads() >= 1) {
+        int choice = QMessageBox::warning(this, QString(),
+                                        tr("There are %1 downloads in progress\n"
+                                           "Do you want to quit anyway?").arg(activeDownloads()),
+                                        QMessageBox::Yes | QMessageBox::No,
+                                        QMessageBox::No);
+        if (choice == QMessageBox::No) {
+            show();
+            return false;
+        }
+    }
+    return true;
 }
 
 void DownloadManager::download(const QNetworkRequest &request, bool requestFileName)

@@ -138,6 +138,7 @@ public:
     DownloadManager(QWidget *parent = 0);
     ~DownloadManager();
     int activeDownloads() const;
+    bool allowQuit();
 
     RemovePolicy removePolicy() const;
     void setRemovePolicy(RemovePolicy policy);

@@ -1032,21 +1032,9 @@ void BrowserMainWindow::slotPrivacyChanged(bool isPrivate)
 
 void BrowserMainWindow::closeEvent(QCloseEvent *event)
 {
-    if (BrowserApplication::instance()->mainWindows().count() == 1 && !BrowserApplication::instance()->downloadManager()->isVisible()) {
-        int activeDownloads = BrowserApplication::instance()->downloadManager()->activeDownloads();
-
-        if (activeDownloads >= 1) {
-            int ret = QMessageBox::warning(this, QString(),
-                                            tr("Are you sure you want to close the window?\n"
-                                               "There are %1 downloads in progress").arg(activeDownloads),
-                                            QMessageBox::Yes | QMessageBox::No,
-                                            QMessageBox::No);
-            if (ret == QMessageBox::No) {
-                BrowserApplication::instance()->downloadManager()->show();
-                event->ignore();
-                return;
-            }
-        }
+    if (!BrowserApplication::instance()->downloadManager()->allowQuit()) {
+        event->ignore();
+        return;
     }
 
     if (m_tabWidget->count() > 1) {
