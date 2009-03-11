@@ -302,6 +302,8 @@ public:
 
     void setCurrentIndex(const QModelIndex &index);
     QModelIndex currentIndex() const;
+    void setFolder(bool addFolder);
+
 
 private slots:
     void accept();
@@ -310,6 +312,7 @@ private:
     QTreeView *m_treeView;
     BookmarksManager *m_bookmarksManager;
     AddBookmarkProxyModel *m_proxyModel;
+    bool m_addFolder;
 };
 
 #include "ui_bookmarks.h"
@@ -391,6 +394,7 @@ protected slots:
     void openBookmarkInNewTab();
     void removeBookmark();
     void newBookmark();
+    void newFolder();
 
 private:
     BookmarksModel *m_bookmarksModel;

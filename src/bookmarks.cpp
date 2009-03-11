@@ -715,6 +715,7 @@ AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmark
     : QDialog(parent)
     , m_bookmarksManager(bookmarkManager)
     , m_proxyModel(0)
+    , m_addFolder(false)
 {
     setWindowFlags(Qt::Sheet);
     if (!m_bookmarksManager)
@@ -767,9 +768,24 @@ QModelIndex AddBookmarkDialog::currentIndex() const
     return index;
 }
 
+void AddBookmarkDialog::setFolder(bool addFolder)
+{
+    m_addFolder = addFolder;
+
+    if (addFolder) {
+        setWindowTitle(tr("Add Folder"));
+        address->setVisible(false);
+    } else {
+        setWindowTitle(tr("Add Bookmark"));
+        address->setVisible(true);
+    }
+
+    resize(sizeHint());
+}
+
 void AddBookmarkDialog::accept()
 {
-    if (address->text().isEmpty() || name->text().isEmpty()) {
+    if ((!m_addFolder && address->text().isEmpty()) || name->text().isEmpty()) {
         QDialog::accept();
         return;
     }
@@ -778,9 +794,14 @@ void AddBookmarkDialog::accept()
     if (!index.isValid())
         index = m_bookmarksManager->bookmarksModel()->index(0, 0);
     BookmarkNode *parent = m_bookmarksManager->bookmarksModel()->node(index);
-    BookmarkNode *bookmark = new BookmarkNode(BookmarkNode::Bookmark);
-    bookmark->url = address->text();
+
+    BookmarkNode::Type type = (m_addFolder) ? BookmarkNode::Folder : BookmarkNode::Bookmark;
+    BookmarkNode *bookmark = new BookmarkNode(type);
     bookmark->title = name->text();
+
+    if (!m_addFolder)
+        bookmark->url = address->text();
+
     m_bookmarksManager->addBookmark(parent, bookmark);
     QDialog::accept();
 }
@@ -1135,6 +1156,8 @@ void BookmarksToolBar::contextMenuRequested(const QPoint &position)
 
     action = menu.addAction(tr("Add Bookmark..."), this, SLOT(newBookmark()));
 
+    action = menu.addAction(tr("Add Folder..."), this, SLOT(newFolder()));
+
     menu.exec(QCursor::pos());
 }
 
@@ -1189,6 +1212,17 @@ void BookmarksToolBar::newBookmark()
     BookmarkNode *toolbar = BrowserApplication::bookmarksManager()->toolbar();
     QModelIndex index = m_bookmarksModel->index(toolbar);
     dialog.setCurrentIndex(index);
+    dialog.exec();
+}
+
+void BookmarksToolBar::newFolder()
+{
+    BookmarkNode *toolbar = BrowserApplication::bookmarksManager()->toolbar();
+    QModelIndex index = m_bookmarksModel->index(toolbar);
+
+    AddBookmarkDialog dialog(this);
+    dialog.setCurrentIndex(index);
+    dialog.setFolder(true);
     dialog.exec();
 }
 
