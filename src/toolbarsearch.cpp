@@ -136,7 +136,8 @@ void ToolbarSearch::searchNow()
     }
 
     QUrl url(QLatin1String("http://www.google.com/search"));
-    url.addQueryItem(QLatin1String("q"), searchText);
+    url.addEncodedQueryItem(QUrl::toPercentEncoding(QLatin1String("q")),
+            QUrl::toPercentEncoding(searchText));
     url.addQueryItem(QLatin1String("ie"), QLatin1String("UTF-8"));
     url.addQueryItem(QLatin1String("oe"), QLatin1String("UTF-8"));
     url.addQueryItem(QLatin1String("client"), QCoreApplication::applicationName());
