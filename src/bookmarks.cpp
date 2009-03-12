@@ -739,8 +739,8 @@ AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, Q
     address->setText(url);
     if (!url.isEmpty())
         address->hide();
-    address->setInactiveText(QLatin1String("Url"));
-    name->setInactiveText(QLatin1String("Title"));
+    address->setInactiveText(tr("Url"));
+    name->setInactiveText(tr("Title"));
     resize(sizeHint());
 }
 
