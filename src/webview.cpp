@@ -164,6 +164,7 @@ QWebPage *WebPage::createWindow(QWebPage::WebWindowType type)
     settings.beginGroup(QLatin1String("tabs"));
     TabWidget::OpenUrlIn openIn = TabWidget::NewWindow;
     openIn = TabWidget::OpenUrlIn(settings.value(QLatin1String("openTargetBlankLinksIn"), openIn).toInt());
+    openIn = TabWidget::modifyWithUserBehavior(openIn);
 
     if (m_forceInNewTab) {
         openIn = TabWidget::NewTab;
