@@ -681,8 +681,6 @@ void TabWidget::webViewLoadStarted()
 
 void TabWidget::webViewLoadProgress(int progress)
 {
-    Q_UNUSED(progress)
-
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
 
@@ -691,7 +689,7 @@ void TabWidget::webViewLoadProgress(int progress)
 
     double totalBytes = (double) webView->webPage()->totalBytes() / 1024;
 
-    QString message = tr("Loading (%1 %2)...").arg(totalBytes, 0, 'f', 2).arg(QLatin1String("kB"));
+    QString message = tr("Loading %1% (%2 %3)...").arg(progress).arg(totalBytes, 0, 'f', 2).arg(QLatin1String("kB"));
     emit showStatusBarMessage(message);
 }
 
