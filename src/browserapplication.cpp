@@ -91,7 +91,7 @@ LanguageManager *BrowserApplication::s_languageManager = 0;
 
 BrowserApplication::BrowserApplication(int &argc, char **argv)
     : SingleApplication(argc, argv)
-    , quiting(false)
+    , quitting(false)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
@@ -144,7 +144,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 
 BrowserApplication::~BrowserApplication()
 {
-    quiting = true;
+    quitting = true;
     delete s_downloadManager;
     qDeleteAll(m_mainWindows);
     delete s_networkAccessManager;
@@ -314,7 +314,7 @@ static const qint32 BrowserApplicationMagic = 0xec;
 
 void BrowserApplication::saveSession()
 {
-    if (quiting)
+    if (quitting)
         return;
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));

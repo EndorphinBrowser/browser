@@ -275,7 +275,7 @@
        <item row="2" column="0" colspan="3">
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string>Prefered languages for viewing webpages in:</string>
+          <string>Preferred languages for viewing webpages in:</string>
          </property>
         </widget>
        </item>

@@ -470,7 +470,7 @@ void WebView::resetZoom()
 void WebView::loadFinished()
 {
     if (100 != m_progress) {
-        qWarning() << "Recieved finished signal while progress is still:" << progress()
+        qWarning() << "Received finished signal while progress is still:" << progress()
                    << "Url:" << url();
     }
     m_progress = 0;
