@@ -715,9 +715,9 @@ void TabWidget::webViewLoadFinished(bool ok)
         return;
 
     if (ok)
-        emit showStatusBarMessage(tr("Finished."));
+        emit showStatusBarMessage(tr("Finished loading"));
     else
-        emit showStatusBarMessage(tr("Failed."));
+        emit showStatusBarMessage(tr("Failed to load"));
 }
 
 void TabWidget::webViewIconChanged()
