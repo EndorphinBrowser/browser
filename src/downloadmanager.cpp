@@ -81,6 +81,8 @@
 
 #include <qwebsettings.h>
 
+//#define DOWNLOADMANAGER_DEBUG
+
 /*!
     DownloadItem is a widget that is displayed in the download manager list.
     It moves the data from the QNetworkReply into the QFile as well
@@ -205,7 +207,10 @@ QString DownloadItem::saveFileName(const QString &directory) const
 
     if (baseName.isEmpty()) {
         baseName = QLatin1String("unnamed_download");
-        qDebug() << "DownloadManager:: downloading unknown file:" << m_url;
+
+#ifdef DOWNLOADMANAGER_DEBUG
+        qDebug() << "DownloadItem::" << __FUNCTION__ << "downloading unknown file:" << m_url;
+#endif
     }
     QString name = directory + baseName + QLatin1Char('.') + endName;
     if (!m_requestFileName && QFile::exists(name)) {
@@ -287,7 +292,10 @@ void DownloadItem::downloadReadyRead()
 
 void DownloadItem::error(QNetworkReply::NetworkError)
 {
-    qDebug() << "DownloadItem::error" << m_reply->errorString() << m_url;
+#ifdef DOWNLOADMANAGER_DEBUG
+    qDebug() << "DownloadItem::" << __FUNCTION__ << m_reply->errorString() << m_url;
+#endif
+
     downloadInfoLabel->setText(tr("Network Error: %1").arg(m_reply->errorString()));
     tryAgainButton->setEnabled(true);
     tryAgainButton->setVisible(true);
@@ -303,7 +311,10 @@ void DownloadItem::metaDataChanged()
         init();
         return;
     }
-    qDebug() << "DownloadItem::metaDataChanged: not handled.";
+
+#ifdef DOWNLOADMANAGER_DEBUG
+    qDebug() << "DownloadItem::" << __FUNCTION__ << "not handled.";
+#endif
 }
 
 void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
@@ -489,7 +500,10 @@ void DownloadManager::handleUnsupportedContent(QNetworkReply *reply, bool reques
     if (ok && size == 0)
         return;
 
-    qDebug() << "DownloadManager::handleUnsupportedContent" << reply->url() << "requestFileName" << requestFileName;
+#ifdef DOWNLOADMANAGER_DEBUG
+    qDebug() << "DownloadManager::" << __FUNCTION__ << reply->url() << "requestFileName" << requestFileName;
+#endif
+
     DownloadItem *item = new DownloadItem(reply, requestFileName, this);
     addItem(item);
 
