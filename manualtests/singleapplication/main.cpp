@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     plainTextEdit.show();
     if (!app.startSingleServer())
         qWarning() << "Error starting server";
-    app.connect(&app, SIGNAL(messageRecieved(const QString &)),
+    app.connect(&app, SIGNAL(messageReceived(const QString &)),
                 &plainTextEdit, SLOT(appendPlainText(const QString &)));
     return app.exec();
 }

@@ -120,7 +120,7 @@ void SingleApplication::newConnection()
     QTextStream stream(socket);
     QString message;
     stream >> message;
-    emit messageRecieved(message);
+    emit messageReceived(message);
     delete socket;
 }
 

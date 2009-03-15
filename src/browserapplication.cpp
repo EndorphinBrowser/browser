@@ -110,8 +110,8 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     // not sure what else to do...
     if (!startSingleServer())
         return;
-    connect(this, SIGNAL(messageRecieved(const QString &)),
-            this, SLOT(messageRecieved(const QString &)));
+    connect(this, SIGNAL(messageReceived(const QString &)),
+            this, SLOT(messageReceived(const QString &)));
 #endif
 
 #if defined(Q_WS_MAC)
@@ -166,7 +166,7 @@ BrowserApplication *BrowserApplication::instance()
     return (static_cast<BrowserApplication *>(QCoreApplication::instance()));
 }
 
-void BrowserApplication::messageRecieved(const QString &message)
+void BrowserApplication::messageReceived(const QString &message)
 {
     if (!message.isEmpty()) {
         QSettings settings;

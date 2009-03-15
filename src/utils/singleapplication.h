@@ -41,7 +41,7 @@ class SingleApplication : public QApplication
     Q_OBJECT
 
 signals:
-    void messageRecieved(const QString &message);
+    void messageReceived(const QString &message);
 
 public:
     SingleApplication(int &argc, char **argv);

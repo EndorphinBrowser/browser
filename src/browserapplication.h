@@ -130,7 +130,7 @@ public slots:
 #endif
 
 private slots:
-    void messageRecieved(const QString &message);
+    void messageReceived(const QString &message);
     void postLaunch();
     void openUrl(const QUrl &url);
 
