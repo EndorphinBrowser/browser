@@ -67,6 +67,7 @@
 #include "cookiejar.h"
 #include "downloadmanager.h"
 #include "history.h"
+#include "languagemanager.h"
 #include "networkaccessmanager.h"
 #include "tabwidget.h"
 #include "webview.h"
@@ -78,13 +79,6 @@
 #include <qlibraryinfo.h>
 #include <qmessagebox.h>
 #include <qsettings.h>
-#include <qtextstream.h>
-#include <qtranslator.h>
-
-#include <qlocalserver.h>
-#include <qlocalsocket.h>
-#include <qnetworkproxy.h>
-
 #include <qwebsettings.h>
 
 #include <qdebug.h>
@@ -93,36 +87,32 @@ DownloadManager *BrowserApplication::s_downloadManager = 0;
 HistoryManager *BrowserApplication::s_historyManager = 0;
 NetworkAccessManager *BrowserApplication::s_networkAccessManager = 0;
 BookmarksManager *BrowserApplication::s_bookmarksManager = 0;
+LanguageManager *BrowserApplication::s_languageManager = 0;
 
 BrowserApplication::BrowserApplication(int &argc, char **argv)
-    : QApplication(argc, argv)
-    , m_localServer(0)
+    : SingleApplication(argc, argv)
+    , quiting(false)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
-    QString version = QString("0.3 (Change: %1 %2)").arg(GITCHANGENUMBER).arg(GITVERSION);
+    QString version = QLatin1String("0.5");
+    if (QLatin1String(GITCHANGENUMBER) != QLatin1String("0"))
+        version += QString(tr(" (Change: %1 %2)"))
+                    .arg(QLatin1String(GITCHANGENUMBER))
+                    .arg(QLatin1String(GITVERSION));
+
     QCoreApplication::setApplicationVersion(version);
-#ifdef Q_WS_QWS
-    // Use a different server name for QWS so we can run an X11
-    // browser and a QWS browser in parallel on the same machine for
-    // debugging
-    QString serverName = QCoreApplication::applicationName() + QLatin1String("_qws");
-#else
-    QString serverName = QCoreApplication::applicationName();
-#endif
-    QLocalSocket socket;
-    socket.connectToServer(serverName);
-    if (socket.waitForConnected(500)) {
-        QTextStream stream(&socket);
-        QStringList args = QCoreApplication::arguments();
-        if (args.count() > 1)
-            stream << args.last();
-        else
-            stream << QString();
-        stream.flush();
-        socket.waitForBytesWritten();
+#ifndef AUTOTESTS
+    QStringList args = QCoreApplication::arguments();
+    QString message = (args.count() > 1) ? args.last() : QString();
+    if (sendMessage(message))
         return;
-    }
+    // not sure what else to do...
+    if (!startSingleServer())
+        return;
+    connect(this, SIGNAL(messageRecieved(const QString &)),
+            this, SLOT(messageRecieved(const QString &)));
+#endif
 
 #if defined(Q_WS_MAC)
     QApplication::setQuitOnLastWindowClosed(false);
@@ -130,22 +120,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QApplication::setQuitOnLastWindowClosed(true);
 #endif
 
-    m_localServer = new QLocalServer(this);
-    connect(m_localServer, SIGNAL(newConnection()),
-            this, SLOT(newLocalSocketConnection()));
-    if (!m_localServer->listen(serverName)) {
-        if (m_localServer->serverError() == QAbstractSocket::AddressInUseError
-            && QFile::exists(m_localServer->serverName())) {
-            QFile::remove(m_localServer->serverName());
-            m_localServer->listen(serverName);
-        }
-    }
-
     QDesktopServices::setUrlHandler(QLatin1String("http"), this, "openUrl");
-    QString localSysName = QLocale::system().name();
-
-    installTranslator(QLatin1String("qt_") + localSysName);
-    installTranslator(dataDirectory() + QDir::separator() + "locale" + QDir::separator() + localSysName);
 
     // Until QtWebkit defaults to 16
     QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, 16);
@@ -161,11 +136,15 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
             this, SLOT(lastWindowClosed()));
 #endif
 
+#ifndef AUTOTESTS
     QTimer::singleShot(0, this, SLOT(postLaunch()));
+#endif
+    languageManager();
 }
 
 BrowserApplication::~BrowserApplication()
 {
+    quiting = true;
     delete s_downloadManager;
     qDeleteAll(m_mainWindows);
     delete s_networkAccessManager;
@@ -187,8 +166,19 @@ BrowserApplication *BrowserApplication::instance()
     return (static_cast<BrowserApplication *>(QCoreApplication::instance()));
 }
 
-#if defined(Q_WS_MAC)
-#include <qmessagebox.h>
+void BrowserApplication::messageRecieved(const QString &message)
+{
+    if (!message.isEmpty()) {
+        QSettings settings;
+        settings.beginGroup(QLatin1String("tabs"));
+        TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewWindow).toInt());
+        settings.endGroup();
+        mainWindow()->tabWidget()->loadString(message, tab);
+    }
+    mainWindow()->raise();
+    mainWindow()->activateWindow();
+}
+
 void BrowserApplication::quitBrowser()
 {
     clean();
@@ -196,6 +186,9 @@ void BrowserApplication::quitBrowser()
     for (int i = 0; i < m_mainWindows.count(); ++i) {
         tabCount += m_mainWindows.at(i)->tabWidget()->count();
     }
+
+    if (!downloadManager()->allowQuit())
+        return;
 
     if (tabCount > 1) {
         int ret = QMessageBox::warning(mainWindow(), QString(),
@@ -207,16 +200,22 @@ void BrowserApplication::quitBrowser()
             return;
     }
 
+    saveSession();
     exit(0);
 }
-#endif
 
 /*!
     Any actions that can be delayed until the window is visible
  */
 void BrowserApplication::postLaunch()
 {
-    QString directory = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QDesktopServices::StandardLocation location;
+#if QT_VERSION >= 0x040500
+    location = QDesktopServices::CacheLocation;
+#else
+    location = QDesktopServices::DataLocation;
+#endif
+    QString directory = QDesktopServices::storageLocation(location);
     if (directory.isEmpty())
         directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
     QWebSettings::setIconDatabasePath(directory);
@@ -233,15 +232,14 @@ void BrowserApplication::postLaunch()
         QStringList args = QCoreApplication::arguments();
 
         if (args.count() > 1) {
-            switch(startup) {
+            switch (startup) {
             case 2: {
                 restoreLastSession();
-                WebView *webView = mainWindow()->tabWidget()->makeNewTab(true);
-                webView->loadUrl(args.last());
+                mainWindow()->tabWidget()->loadString(args.last(), TabWidget::NewSelectedTab);
                 break;
             }
             default:
-                mainWindow()->loadPage(args.last());
+                mainWindow()->tabWidget()->loadString(args.last());
                 break;
             }
         } else {
@@ -272,6 +270,9 @@ void BrowserApplication::loadSettings()
     standardFont = qVariantValue<QFont>(settings.value(QLatin1String("standardFont"), standardFont));
     defaultSettings->setFontFamily(QWebSettings::StandardFont, standardFont.family());
     defaultSettings->setFontSize(QWebSettings::DefaultFontSize, standardFont.pointSize());
+    int minimumFontSize = settings.value(QLatin1String("minimumFontSize"),
+                defaultSettings->fontSize(QWebSettings::MinimumFontSize)).toInt();
+    defaultSettings->setFontSize(QWebSettings::MinimumFontSize, minimumFontSize);
 
     QString fixedFontFamily = defaultSettings->fontFamily(QWebSettings::FixedFont);
     int fixedFontSize = defaultSettings->fontSize(QWebSettings::DefaultFixedFontSize);
@@ -280,6 +281,7 @@ void BrowserApplication::loadSettings()
     defaultSettings->setFontFamily(QWebSettings::FixedFont, fixedFont.family());
     defaultSettings->setFontSize(QWebSettings::DefaultFixedFontSize, fixedFont.pointSize());
 
+    defaultSettings->setAttribute(QWebSettings::JavascriptCanOpenWindows, !(settings.value(QLatin1String("blockPopupWindows"), true).toBool()));
     defaultSettings->setAttribute(QWebSettings::JavascriptEnabled, settings.value(QLatin1String("enableJavascript"), true).toBool());
     defaultSettings->setAttribute(QWebSettings::PluginsEnabled, settings.value(QLatin1String("enablePlugins"), true).toBool());
     defaultSettings->setAttribute(QWebSettings::AutoLoadImages, settings.value(QLatin1String("enableImages"), true).toBool());
@@ -312,6 +314,8 @@ static const qint32 BrowserApplicationMagic = 0xec;
 
 void BrowserApplication::saveSession()
 {
+    if (quiting)
+        return;
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));
     settings.setValue(QLatin1String("restoring"), false);
@@ -354,7 +358,7 @@ bool BrowserApplication::restoreLastSession()
         settings.beginGroup(QLatin1String("MainWindow"));
         if (settings.value(QLatin1String("restoring"), false).toBool()) {
             QMessageBox::information(0, tr("Restore failed"),
-                tr("The saved session will not being restored because last time it was restored Arora crashed."));
+                tr("The saved session will not be restored because Arora crashed while trying to restore this session."));
             return false;
         }
         // saveSession will be called by an AutoSaver timer from the set tabs
@@ -383,9 +387,7 @@ bool BrowserApplication::restoreLastSession()
     }
     for (int i = 0; i < windows.count(); ++i) {
         BrowserMainWindow *newWindow = 0;
-        if (m_mainWindows.count() == 1
-            && mainWindow()->tabWidget()->count() == 1
-            && mainWindow()->currentTab()->url() == QUrl()) {
+        if (i == 0 && m_mainWindows.count() >= 1) {
             newWindow = mainWindow();
         } else {
             newWindow = newMainWindow();
@@ -395,20 +397,8 @@ bool BrowserApplication::restoreLastSession()
     return true;
 }
 
-bool BrowserApplication::isTheOnlyBrowser() const
-{
-    return (m_localServer != 0);
-}
-
-void BrowserApplication::installTranslator(const QString &name)
-{
-    QTranslator *translator = new QTranslator(this);
-    translator->load(name, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    QApplication::installTranslator(translator);
-}
-
 #if defined(Q_WS_MAC)
-bool BrowserApplication::event(QEvent* event)
+bool BrowserApplication::event(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::ApplicationActivate: {
@@ -423,7 +413,8 @@ bool BrowserApplication::event(QEvent* event)
     }
     case QEvent::FileOpen:
         if (!m_mainWindows.isEmpty()) {
-            mainWindow()->loadPage(static_cast<QFileOpenEvent *>(event)->file());
+            QString file = static_cast<QFileOpenEvent *>(event)->file();
+            mainWindow()->tabWidget()->loadUrl(QUrl::fromLocalFile(file));
             return true;
         }
     default:
@@ -435,13 +426,17 @@ bool BrowserApplication::event(QEvent* event)
 
 void BrowserApplication::openUrl(const QUrl &url)
 {
-    mainWindow()->loadPage(url.toString());
+    setEventMouseButtons(mouseButtons());
+    setEventKeyboardModifiers(keyboardModifiers());
+    mainWindow()->tabWidget()->loadUrl(url);
 }
 
 BrowserMainWindow *BrowserApplication::newMainWindow()
 {
     BrowserMainWindow *browser = new BrowserMainWindow();
     m_mainWindows.prepend(browser);
+    connect(this, SIGNAL(privacyChanged(bool)),
+            browser, SLOT(slotPrivacyChanged(bool)));
     browser->show();
     return browser;
 }
@@ -454,31 +449,6 @@ BrowserMainWindow *BrowserApplication::mainWindow()
     return m_mainWindows[0];
 }
 
-void BrowserApplication::newLocalSocketConnection()
-{
-    QLocalSocket *socket = m_localServer->nextPendingConnection();
-    if (!socket)
-        return;
-    socket->waitForReadyRead(1000);
-    QTextStream stream(socket);
-    QString url;
-    stream >> url;
-    if (!url.isEmpty()) {
-        QSettings settings;
-        settings.beginGroup(QLatin1String("general"));
-        int openLinksIn = settings.value(QLatin1String("openLinksIn"), 0).toInt();
-        settings.endGroup();
-        if (openLinksIn == 1)
-            newMainWindow();
-        else
-            mainWindow()->tabWidget()->newTab();
-        openUrl(url);
-    }
-    delete socket;
-    mainWindow()->raise();
-    mainWindow()->activateWindow();
-}
-
 CookieJar *BrowserApplication::cookieJar()
 {
     return (CookieJar*)networkAccessManager()->cookieJar();
@@ -486,9 +456,8 @@ CookieJar *BrowserApplication::cookieJar()
 
 DownloadManager *BrowserApplication::downloadManager()
 {
-    if (!s_downloadManager) {
+    if (!s_downloadManager)
         s_downloadManager = new DownloadManager();
-    }
     return s_downloadManager;
 }
 
@@ -510,10 +479,16 @@ HistoryManager *BrowserApplication::historyManager()
 
 BookmarksManager *BrowserApplication::bookmarksManager()
 {
-    if (!s_bookmarksManager) {
+    if (!s_bookmarksManager)
         s_bookmarksManager = new BookmarksManager;
-    }
     return s_bookmarksManager;
+}
+
+LanguageManager *BrowserApplication::languageManager()
+{
+    if (!s_languageManager)
+        s_languageManager = new LanguageManager;
+    return s_languageManager;
 }
 
 QIcon BrowserApplication::icon(const QUrl &url)
@@ -532,11 +507,56 @@ QIcon BrowserApplication::icon(const QUrl &url)
     return icon;
 }
 
-QString BrowserApplication::dataDirectory() const
+QString BrowserApplication::dataDirectory()
 {
 #if defined(Q_WS_X11)
-    return PKGDATADIR;
+    return QLatin1String(PKGDATADIR);
 #else
-    return applicationDirPath();
+    return qApp->applicationDirPath();
 #endif
 }
+
+#if QT_VERSION >= 0x040500
+bool BrowserApplication::zoomTextOnly()
+{
+    return QWebSettings::globalSettings()->testAttribute(QWebSettings::ZoomTextOnly);
+}
+
+void BrowserApplication::setZoomTextOnly(bool textOnly)
+{
+    QWebSettings::globalSettings()->setAttribute(QWebSettings::ZoomTextOnly, textOnly);
+    emit instance()->zoomTextOnlyChanged(textOnly);
+}
+#endif
+
+bool BrowserApplication::isPrivate()
+{
+    return QWebSettings::globalSettings()->testAttribute(QWebSettings::PrivateBrowsingEnabled);
+}
+
+void BrowserApplication::setPrivate(bool isPrivate)
+{
+    QWebSettings::globalSettings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, isPrivate);
+    emit instance()->privacyChanged(isPrivate);
+}
+
+Qt::MouseButtons BrowserApplication::eventMouseButtons() const
+{
+    return m_eventMouseButtons;
+}
+
+Qt::KeyboardModifiers BrowserApplication::eventKeyboardModifiers() const
+{
+    return m_eventKeyboardModifiers;
+}
+
+void BrowserApplication::setEventMouseButtons(Qt::MouseButtons buttons)
+{
+    m_eventMouseButtons = buttons;
+}
+
+void BrowserApplication::setEventKeyboardModifiers(Qt::KeyboardModifiers modifiers)
+{
+    m_eventKeyboardModifiers = modifiers;
+}
+

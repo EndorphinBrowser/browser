@@ -229,6 +229,7 @@ void TabBar::mouseReleaseEvent(QMouseEvent *event)
         int index = tabAt(event->pos());
         if (index != -1) {
             emit closeTab(index);
+            return;
         } else {
             QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
             if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty())
@@ -329,7 +330,9 @@ void TabBar::tabRemoved(int position)
 void TabBar::updateVisibility()
 {
     setVisible((count()) > 1 || m_showTabBarWhenOneTab);
-    m_viewTabBarAction->setEnabled(count() == 1);
+    bool enabled = (count() == 1);
+    if (m_viewTabBarAction->isEnabled() != enabled)
+        m_viewTabBarAction->setEnabled(enabled);
     updateViewToolBarAction();
 }
 

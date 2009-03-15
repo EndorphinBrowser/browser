@@ -14,17 +14,27 @@ OBJECTS_DIR = .obj
 
 QT += webkit network
 
-GITVERSION=$$system(git log -n1 --pretty=format:%h)
-GITCHANGENUMBER=$$system(git log --pretty=format:%h | wc -l)
-DEFINES += GITVERSION=\"\\\"$$GITVERSION\\\"\"
-DEFINES += GITCHANGENUMBER=\"\\\"$$GITCHANGENUMBER\\\"\"
+win32 {
+    DEFINES += GITVERSION=0
+    DEFINES += GITCHANGENUMBER=0
+}
+!win32 {
+    exists($$PWD/../.git/HEAD) {
+        GITVERSION=$$system(git log -n1 --pretty=format:%h)
+        DEFINES += GITVERSION=\"\\\"$$GITVERSION\\\"\"
+        GITCHANGENUMBER=$$system(git log --pretty=format:%h | wc -l)
+        DEFINES += GITCHANGENUMBER=\"\\\"$$GITCHANGENUMBER\\\"\"
+    } else {
+        DEFINES += GITVERSION=\"\\\"0\\\"\"
+        DEFINES += GITCHANGENUMBER=\"\\\"0\\\"\"
+    }
+}
 
 FORMS += \
     aboutdialog.ui \
     addbookmarkdialog.ui \
+    acceptlanguagedialog.ui \
     bookmarks.ui \
-    cookies.ui \
-    cookiesexceptions.ui \
     downloaditem.ui \
     downloads.ui \
     history.ui \
@@ -35,25 +45,29 @@ FORMS += \
 
 HEADERS += \
     aboutdialog.h \
-    autosaver.h \
+    acceptlanguagedialog.h \
     bookmarks.h \
     browserapplication.h \
     browsermainwindow.h \
     clearprivatedata.h \
-    cookiejar.h \
     downloadmanager.h \
     edittableview.h \
     edittreeview.h \
     history.h \
+    locationbar.h \
+    locationbar_p.h \
+    languagemanager.h \
     modelmenu.h \
     networkaccessmanager.h \
+    plaintexteditsearch.h \
+    searchbar.h \
     searchlineedit.h \
     settings.h \
-    squeezelabel.h \
+    sourcehighlighter.h \
+    sourceviewer.h \
     tabbar.h \
     tabwidget.h \
     toolbarsearch.h \
-    urllineedit.h \
     webactionmapper.h \
     webview.h \
     webviewsearch.h \
@@ -61,29 +75,36 @@ HEADERS += \
 
 SOURCES += \
     aboutdialog.cpp \
-    autosaver.cpp \
+    acceptlanguagedialog.cpp \
     bookmarks.cpp \
     browserapplication.cpp \
     browsermainwindow.cpp \
     clearprivatedata.cpp \
-    cookiejar.cpp \
     downloadmanager.cpp \
     edittableview.cpp \
     edittreeview.cpp \
     history.cpp \
+    locationbar.cpp \
+    languagemanager.cpp \
     modelmenu.cpp \
     networkaccessmanager.cpp \
+    plaintexteditsearch.cpp \
+    searchbar.cpp \
     searchlineedit.cpp \
     settings.cpp \
-    squeezelabel.cpp \
+    sourcehighlighter.cpp \
+    sourceviewer.cpp \
     tabbar.cpp \
     tabwidget.cpp \
     toolbarsearch.cpp \
-    urllineedit.cpp \
     webactionmapper.cpp \
     webview.cpp \
     webviewsearch.cpp \
     xbel.cpp
+
+include(networkmonitor/networkmonitor.pri)
+include(cookiejar/cookiejar.pri)
+include(utils/utils.pri)
 
 RESOURCES += data/data.qrc \
     htmls/htmls.qrc
@@ -104,7 +125,7 @@ mac {
 }
 
 unix {
-    isEmpty(PREFIX){
+    isEmpty(PREFIX) {
         PREFIX = /usr/local
     }
 
@@ -115,4 +136,9 @@ unix {
     DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
 }
 
-include(webkittrunk.pri)
+include(../webkittrunk.pri)
+
+win32 {
+    include(explorerstyle.pri)
+    LIBS += -ladvapi32
+}

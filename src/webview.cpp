@@ -1,6 +1,7 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
  * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
+ * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -85,9 +86,7 @@
 
 WebPage::WebPage(QObject *parent)
     : QWebPage(parent)
-    , m_keyboardModifiers(Qt::NoModifier)
-    , m_pressedButtons(Qt::NoButton)
-    , m_openInNewTab(false)
+    , m_forceInNewTab(false)
 {
     setNetworkAccessManager(BrowserApplication::networkAccessManager());
     connect(this, SIGNAL(unsupportedContent(QNetworkReply *)),
@@ -105,42 +104,54 @@ BrowserMainWindow *WebPage::mainWindow()
     return BrowserApplication::instance()->mainWindow();
 }
 
+TabWidget *WebPage::tabWidget() const
+{
+    TabWidget *tabWidget = qobject_cast<TabWidget*>(view()->parentWidget()->parentWidget()->parentWidget());
+    Q_ASSERT(tabWidget);
+    return tabWidget;
+}
+
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type)
 {
-    // ctrl open in new tab
-    // ctrl-shift open in new tab and select
-    // ctrl-alt open in new window
-    if (type == QWebPage::NavigationTypeLinkClicked
-        && (m_keyboardModifiers & Qt::ControlModifier
-            || m_pressedButtons == Qt::MidButton)) {
-        bool newWindow = (m_keyboardModifiers & Qt::AltModifier);
-        WebView *webView;
-        if (newWindow) {
-            BrowserApplication::instance()->newMainWindow();
-            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->mainWindow();
-            webView = newMainWindow->currentTab();
-            newMainWindow->raise();
-            newMainWindow->activateWindow();
-            webView->setFocus();
-        } else {
-            bool selectNewTab = (m_keyboardModifiers & Qt::ShiftModifier);
-            webView = mainWindow()->tabWidget()->makeNewTab(selectNewTab);
-        }
-        webView->loadUrl(request);
-        m_keyboardModifiers = Qt::NoModifier;
-        m_pressedButtons = Qt::NoButton;
+    QString scheme = request.url().scheme();
+    if (scheme == QLatin1String("mailto") || scheme == QLatin1String("ftp")) {
+        QDesktopServices::openUrl(request.url());
         return false;
     }
+
+    TabWidget::OpenUrlIn openIn = frame ? TabWidget::CurrentTab : TabWidget::NewWindow;
+    if (type == QWebPage::NavigationTypeBackOrForward) {
+        BrowserApplication::instance()->setEventMouseButtons(qApp->mouseButtons());
+        BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
+    }
+
+    // A short term hack until QtWebKit can get a reload without cache QAction
+    // *FYI* currently type is never NavigationTypeReload
+    // See: https://bugs.webkit.org/show_bug.cgi?id=24283
+    if (type == QWebPage::NavigationTypeReload
+        && (qApp->keyboardModifiers() & Qt::ShiftModifier)) {
+        QNetworkRequest newRequest(request);
+        newRequest.setAttribute(QNetworkRequest::CacheLoadControlAttribute,
+                                QNetworkRequest::AlwaysNetwork);
+        mainFrame()->load(request);
+        return false;
+    }
+    openIn = TabWidget::modifyWithUserBehavior(openIn);
+
+    // handle the case where we want to do something different then
+    // what qwebpage would do
+    if ((!frame && openIn == TabWidget::CurrentTab)
+        || openIn == TabWidget::NewSelectedTab
+        || openIn == TabWidget::NewNotSelectedTab
+        || (frame && openIn == TabWidget::NewWindow)) {
+        WebView *webView = tabWidget()->getView(openIn,  qobject_cast<WebView*>(this->view()));
+        webView->page()->mainFrame()->load(request);
+        return false;
+    }
+
     if (frame == mainFrame()) {
         m_loadingUrl = request.url();
         emit loadingUrl(m_loadingUrl);
-    }
-
-    QString scheme = request.url().scheme();
-    if (scheme == QLatin1String("mailto")
-        || scheme == QLatin1String("ftp")) {
-        QDesktopServices::openUrl(request.url());
-        return false;
     }
 
     return QWebPage::acceptNavigationRequest(frame, request, type);
@@ -149,15 +160,16 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
 QWebPage *WebPage::createWindow(QWebPage::WebWindowType type)
 {
     Q_UNUSED(type);
-    if (m_keyboardModifiers & Qt::ControlModifier || m_pressedButtons == Qt::MidButton)
-        m_openInNewTab = true;
-    if (m_openInNewTab) {
-        m_openInNewTab = false;
-        return mainWindow()->tabWidget()->makeNewTab()->page();
+    QSettings settings;
+    settings.beginGroup(QLatin1String("tabs"));
+    TabWidget::OpenUrlIn openIn = TabWidget::NewWindow;
+    openIn = TabWidget::OpenUrlIn(settings.value(QLatin1String("openTargetBlankLinksIn"), openIn).toInt());
+
+    if (m_forceInNewTab) {
+        openIn = TabWidget::NewTab;
+        m_forceInNewTab = false;
     }
-    BrowserApplication::instance()->newMainWindow();
-    BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
-    return mainWindow->currentTab()->page();
+    return tabWidget()->getView(openIn,  qobject_cast<WebView*>(this->view()))->page();
 }
 
 #if !defined(QT_NO_UITOOLS)
@@ -190,13 +202,18 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
     }
 
     QFile file(QLatin1String(":/notfound.html"));
-    bool isOpened = file.open(QIODevice::ReadOnly);
-    Q_ASSERT(isOpened);
-    QString title = tr("Error loading page: %1").arg(reply->url().toString());
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning() << "WebPage::handleUnsupportedContent" << "Unable to open notfound.html";
+        return;
+    }
+    QString title = tr("Error loading page: %1").arg(QString::fromUtf8(reply->url().toEncoded()));
     QString html = QString(QLatin1String(file.readAll()))
                         .arg(title)
                         .arg(reply->errorString())
-                        .arg(reply->url().toString());
+                        .arg(tr("When connecting to: %1.").arg(reply->url().toString()))
+                        .arg(tr("Check the address for errors such as <b>ww</b>.arora-browser.org instead of <b>www</b>.arora-browser.org"))
+                        .arg(tr("If the address is correct, try checking the network connection."))
+                        .arg(tr("If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network."));
 
     QBuffer imageBuffer;
     imageBuffer.open(QBuffer::ReadWrite);
@@ -216,7 +233,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
             return;
         }
         QList<QWebFrame *> children = frame->childFrames();
-        foreach(QWebFrame *frame, children)
+        foreach (QWebFrame *frame, children)
             frames.append(frame);
     }
     if (m_loadingUrl == reply->url()) {
@@ -225,9 +242,10 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
 }
 
 
-WebView::WebView(QWidget* parent)
+WebView::WebView(QWidget *parent)
     : QWebView(parent)
     , m_progress(0)
+    , m_currentZoom(100)
     , m_page(new WebPage(this))
 {
     setPage(m_page);
@@ -241,8 +259,17 @@ WebView::WebView(QWidget* parent)
             this, SIGNAL(urlChanged(const QUrl &)));
     connect(page(), SIGNAL(downloadRequested(const QNetworkRequest &)),
             this, SLOT(downloadRequested(const QNetworkRequest &)));
+#if QT_VERSION >= 0x040500
+    connect(BrowserApplication::instance(), SIGNAL(zoomTextOnlyChanged(bool)),
+            this, SLOT(applyZoom()));
+#endif
     page()->setForwardUnsupportedContent(true);
+    setAcceptDrops(true);
 
+    // the zoom values (in percent) are chosen to be like in Mozilla Firefox 3
+    m_zoomLevels << 30 << 50 << 67 << 80 << 90;
+    m_zoomLevels << 100;
+    m_zoomLevels << 110 << 120 << 133 << 150 << 170 << 200 << 240 << 300;
 }
 
 void WebView::contextMenuEvent(QContextMenuEvent *event)
@@ -258,6 +285,8 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         menu->addAction(tr("Save Lin&k"), this, SLOT(downloadLinkToDisk()));
         menu->addAction(tr("&Bookmark This Link"), this, SLOT(bookmarkLink()))->setData(r.linkUrl().toString());
         menu->addSeparator();
+        if (!page()->selectedText().isEmpty())
+            menu->addAction(pageAction(QWebPage::Copy));
         menu->addAction(tr("&Copy Link Location"), this, SLOT(copyLinkToClipboard()));
         if (page()->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled))
             menu->addAction(pageAction(QWebPage::InspectElement));
@@ -274,9 +303,11 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         menu->addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(r.imageUrl().toString());
     }
 
-#ifdef WEBKIT_TRUNK // i.e. Qt 4.5, but not in Qt 4.5 yet
-    if (menu->isEmpty())
+#if QT_VERSION >= 0x040500
+    if (menu->isEmpty()) {
+        delete menu;
         menu = page()->createStandardContextMenu();
+    }
 #endif
 
     if (!menu->isEmpty()) {
@@ -299,7 +330,8 @@ void WebView::wheelEvent(QWheelEvent *event)
     if (event->modifiers() & Qt::ControlModifier) {
         int numDegrees = event->delta() / 8;
         int numSteps = numDegrees / 15;
-        setTextSizeMultiplier(textSizeMultiplier() + numSteps * 0.1);
+        m_currentZoom = m_currentZoom + numSteps * 10;
+        applyZoom();
         event->accept();
         return;
     }
@@ -318,13 +350,12 @@ void WebView::resizeEvent(QResizeEvent *event)
 
 void WebView::openLinkInNewTab()
 {
-    m_page->m_openInNewTab = true;
+    m_page->m_forceInNewTab = true;
     pageAction(QWebPage::OpenLinkInNewWindow)->trigger();
 }
 
 void WebView::openLinkInNewWindow()
 {
-    m_page->m_openInNewTab = false;
     pageAction(QWebPage::OpenLinkInNewWindow)->trigger();
 }
 
@@ -340,7 +371,7 @@ void WebView::copyLinkToClipboard()
 
 void WebView::openImageInNewTab()
 {
-    m_page->m_openInNewTab = true;
+    m_page->m_forceInNewTab = true;
     pageAction(QWebPage::OpenImageInNewWindow)->trigger();
 }
 
@@ -369,7 +400,7 @@ void WebView::copyImageLocationToClipboard()
 void WebView::bookmarkLink()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
-        AddBookmarkDialog dialog(action->data().toString(), "");
+        AddBookmarkDialog dialog(action->data().toString(), QString());
         dialog.exec();
     }
 }
@@ -377,6 +408,62 @@ void WebView::bookmarkLink()
 void WebView::setProgress(int progress)
 {
     m_progress = progress;
+}
+
+int WebView::levelForZoom(int zoom)
+{
+    int i;
+
+    i = m_zoomLevels.indexOf(zoom);
+    if (i >= 0)
+        return i;
+
+    for (i = 0 ; i < m_zoomLevels.count(); i++)
+        if (zoom <= m_zoomLevels[i])
+            break;
+
+    if (i == m_zoomLevels.count())
+        return i - 1;
+    if (i == 0)
+        return i;
+
+    if (zoom - m_zoomLevels[i-1] > m_zoomLevels[i] - zoom)
+        return i;
+    else
+        return i-1;
+}
+
+void WebView::applyZoom()
+{
+#if QT_VERSION >= 0x040500
+    setZoomFactor(qreal(m_currentZoom) / 100.0);
+#else
+    setTextSizeMultiplier(qreal(m_currentZoom) / 100.0);
+#endif
+}
+
+void WebView::zoomIn()
+{
+    int i = levelForZoom(m_currentZoom);
+
+    if (i < m_zoomLevels.count() - 1)
+        m_currentZoom = m_zoomLevels[i + 1];
+    applyZoom();
+}
+
+void WebView::zoomOut()
+{
+    int i = levelForZoom(m_currentZoom);
+
+    if (i > 0)
+        m_currentZoom = m_zoomLevels[i - 1];
+    applyZoom();
+}
+
+void WebView::resetZoom()
+{
+    m_currentZoom = 100;
+    applyZoom();
 }
 
 void WebView::loadFinished()
@@ -407,13 +494,6 @@ void WebView::loadUrl(const QUrl &url, const QString &title)
     load(url);
 }
 
-void WebView::loadUrl(const QNetworkRequest &request, QNetworkAccessManager::Operation operation, const QByteArray &body)
-{
-    m_initialUrl = request.url();
-    emit titleChanged(tr("Loading..."));
-    QWebView::load(request, operation, body);
-}
-
 QString WebView::lastStatusBarText() const
 {
     return m_statusBarText;
@@ -430,15 +510,63 @@ QUrl WebView::url() const
 
 void WebView::mousePressEvent(QMouseEvent *event)
 {
-    m_page->m_pressedButtons = event->buttons();
-    m_page->m_keyboardModifiers = event->modifiers();
-    QWebView::mousePressEvent(event);
+    BrowserApplication::instance()->setEventMouseButtons(event->buttons());
+    BrowserApplication::instance()->setEventKeyboardModifiers(event->modifiers());
+
+    switch(event->button()) {
+    case Qt::XButton1:
+        pageAction(WebPage::Back)->trigger();
+        break;
+    case Qt::XButton2:
+        pageAction(WebPage::Forward)->trigger();
+        break;
+    default:
+        QWebView::mousePressEvent(event);
+        break;
+    }
+}
+
+void WebView::dragEnterEvent(QDragEnterEvent *event)
+{
+    event->acceptProposedAction();
+}
+
+void WebView::dragMoveEvent(QDragMoveEvent *event)
+{
+    if (!event->mimeData()->urls().isEmpty()) {
+        event->acceptProposedAction();
+    } else {
+        QUrl url(event->mimeData()->text());
+        if (url.isValid())
+            event->acceptProposedAction();
+    }
+    if (!event->isAccepted())
+        QWebView::dragMoveEvent(event);
+}
+
+void WebView::dropEvent(QDropEvent *event)
+{
+    QWebView::dropEvent(event);
+    if (!event->isAccepted()
+        && event->possibleActions() & Qt::CopyAction) {
+
+        QUrl url;
+        if (!event->mimeData()->urls().isEmpty())
+            url = event->mimeData()->urls().first();
+        if (!url.isValid())
+            url = event->mimeData()->text();
+        if (url.isValid()) {
+            loadUrl(url);
+            event->acceptProposedAction();
+        }
+    }
 }
 
 void WebView::mouseReleaseEvent(QMouseEvent *event)
 {
     QWebView::mouseReleaseEvent(event);
-    if (!event->isAccepted() && (m_page->m_pressedButtons & Qt::MidButton)) {
+    if (!event->isAccepted()
+        && (BrowserApplication::instance()->eventMouseButtons() & Qt::MidButton)) {
         QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
         if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
             loadUrl(url);

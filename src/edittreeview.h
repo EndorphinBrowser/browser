@@ -76,6 +76,7 @@ public:
 public slots:
     void removeSelected();
     void removeAll();
+
 };
 
 #endif // EDITTREEVIEW_H

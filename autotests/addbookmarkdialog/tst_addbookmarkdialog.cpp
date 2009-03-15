@@ -44,7 +44,7 @@ class SubAddBookmarkDialog : public AddBookmarkDialog
 
 public:
     SubAddBookmarkDialog(const QString &url, const QString &title, QWidget *parent, BookmarksManager *manager)
-        : AddBookmarkDialog(url, title, parent, manager){}
+        : AddBookmarkDialog(url, title, parent, manager) {}
 
 };
 

@@ -82,14 +82,16 @@
 
 #include <qdebug.h>
 
-#define BOOKMARKBAR "Bookmarks Bar"
-#define BOOKMARKMENU "Bookmarks Menu"
+#define BOOKMARKBAR QT_TRANSLATE_NOOP("BookmarksManager", "Bookmarks Bar")
+#define BOOKMARKMENU QT_TRANSLATE_NOOP("BookmarksManager", "Bookmarks Menu")
 
 BookmarksManager::BookmarksManager(QObject *parent)
     : QObject(parent)
     , m_loaded(false)
     , m_saveTimer(new AutoSaver(this))
     , m_bookmarkRootNode(0)
+    , m_toolbar(0)
+    , m_menu(0)
     , m_bookmarkModel(0)
 {
     connect(this, SIGNAL(entryAdded(BookmarkNode *)),
@@ -103,6 +105,7 @@ BookmarksManager::BookmarksManager(QObject *parent)
 BookmarksManager::~BookmarksManager()
 {
     m_saveTimer->saveIfNeccessary();
+    delete m_bookmarkRootNode;
 }
 
 void BookmarksManager::changeExpanded()
@@ -129,26 +132,23 @@ void BookmarksManager::load()
                "%3").arg(reader.lineNumber()).arg(reader.columnNumber()).arg(reader.errorString()));
     }
 
-    BookmarkNode *toolbar = 0;
-    BookmarkNode *menu = 0;
     QList<BookmarkNode*> others;
     for (int i = m_bookmarkRootNode->children().count() - 1; i >= 0; --i) {
         BookmarkNode *node = m_bookmarkRootNode->children().at(i);
         if (node->type() == BookmarkNode::Folder) {
             // Automatically convert
-            if (node->title == tr("Toolbar Bookmarks") && !toolbar) {
+            if ((node->title == tr("Toolbar Bookmarks")
+                 || node->title == QLatin1String(BOOKMARKBAR)) && !m_toolbar) {
                 node->title = tr(BOOKMARKBAR);
-            }
-            if (node->title == tr(BOOKMARKBAR) && !toolbar) {
-                toolbar = node;
+
+                m_toolbar = node;
             }
 
             // Automatically convert
-            if (node->title == tr("Menu") && !menu) {
+            if ((node->title == tr("Menu")
+                 || node->title == QLatin1String(BOOKMARKMENU)) && !m_menu) {
                 node->title = tr(BOOKMARKMENU);
-            }
-            if (node->title == tr(BOOKMARKMENU) && !menu) {
-                menu = node;
+                m_menu = node;
             }
         } else {
             others.append(node);
@@ -156,22 +156,22 @@ void BookmarksManager::load()
         m_bookmarkRootNode->remove(node);
     }
     Q_ASSERT(m_bookmarkRootNode->children().count() == 0);
-    if (!toolbar) {
-        toolbar = new BookmarkNode(BookmarkNode::Folder, m_bookmarkRootNode);
-        toolbar->title = tr(BOOKMARKBAR);
+    if (!m_toolbar) {
+        m_toolbar = new BookmarkNode(BookmarkNode::Folder, m_bookmarkRootNode);
+        m_toolbar->title = tr(BOOKMARKBAR);
     } else {
-        m_bookmarkRootNode->add(toolbar);
+        m_bookmarkRootNode->add(m_toolbar);
     }
 
-    if (!menu) {
-        menu = new BookmarkNode(BookmarkNode::Folder, m_bookmarkRootNode);
-        menu->title = tr(BOOKMARKMENU);
+    if (!m_menu) {
+        m_menu = new BookmarkNode(BookmarkNode::Folder, m_bookmarkRootNode);
+        m_menu->title = tr(BOOKMARKMENU);
     } else {
-        m_bookmarkRootNode->add(menu);
+        m_bookmarkRootNode->add(m_menu);
     }
 
     for (int i = 0; i < others.count(); ++i)
-        menu->add(others.at(i));
+        m_menu->add(others.at(i));
 }
 
 void BookmarksManager::save() const
@@ -182,8 +182,21 @@ void BookmarksManager::save() const
     XbelWriter writer;
     QString dir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     QString bookmarkFile = dir + QLatin1String("/bookmarks.xbel");
+    // Save root folder titles in English (i.e. not localized)
+    m_menu->title = QLatin1String(BOOKMARKMENU);
+    m_toolbar->title = QLatin1String(BOOKMARKBAR);
     if (!writer.write(bookmarkFile, m_bookmarkRootNode))
         qWarning() << "BookmarkManager: error saving to" << bookmarkFile;
+    // Restore localized titles
+    retranslate();
+}
+
+void BookmarksManager::retranslate() const
+{
+    if (m_menu)
+        m_menu->title = tr(BOOKMARKMENU);
+    if (m_toolbar)
+        m_toolbar->title = tr(BOOKMARKBAR);
 }
 
 void BookmarksManager::addBookmark(BookmarkNode *parent, BookmarkNode *node, int row)
@@ -239,13 +252,8 @@ BookmarkNode *BookmarksManager::menu()
     if (!m_loaded)
         load();
 
-    for (int i = m_bookmarkRootNode->children().count() - 1; i >= 0; --i) {
-        BookmarkNode *node = m_bookmarkRootNode->children().at(i);
-        if (node->title == tr(BOOKMARKMENU))
-            return node;
-    }
-    Q_ASSERT(false);
-    return 0;
+    Q_ASSERT(m_menu);
+    return m_menu;
 }
 
 BookmarkNode *BookmarksManager::toolbar()
@@ -253,13 +261,8 @@ BookmarkNode *BookmarksManager::toolbar()
     if (!m_loaded)
         load();
 
-    for (int i = m_bookmarkRootNode->children().count() - 1; i >= 0; --i) {
-        BookmarkNode *node = m_bookmarkRootNode->children().at(i);
-        if (node->title == tr(BOOKMARKBAR))
-            return node;
-    }
-    Q_ASSERT(false);
-    return 0;
+    Q_ASSERT(m_toolbar);
+    return m_toolbar;
 }
 
 BookmarksModel *BookmarksManager::bookmarksModel()
@@ -592,7 +595,8 @@ QMimeData *BookmarksModel::mimeData(const QModelIndexList &indexes) const
     QMimeData *mimeData = new QMimeData();
     QByteArray data;
     QDataStream stream(&data, QIODevice::WriteOnly);
-    foreach (QModelIndex index, indexes) {
+    QList<QUrl> urls;
+    foreach (const QModelIndex &index, indexes) {
         if (index.column() != 0 || !index.isValid())
             continue;
         QByteArray encodedData;
@@ -602,8 +606,10 @@ QMimeData *BookmarksModel::mimeData(const QModelIndexList &indexes) const
         const BookmarkNode *parentNode = node(index);
         writer.write(&buffer, parentNode);
         stream << encodedData;
+        urls.append(index.data(BookmarksModel::UrlRole).toUrl());
     }
     mimeData->setData(MIMETYPE, data);
+    mimeData->setUrls(urls);
     return mimeData;
 }
 
@@ -707,43 +713,59 @@ bool AddBookmarkProxyModel::filterAcceptsRow(int source_row, const QModelIndex &
 
 AddBookmarkDialog::AddBookmarkDialog(const QString &url, const QString &title, QWidget *parent, BookmarksManager *bookmarkManager)
     : QDialog(parent)
-    , m_url(url)
     , m_bookmarksManager(bookmarkManager)
+    , m_proxyModel(0)
 {
     setWindowFlags(Qt::Sheet);
     if (!m_bookmarksManager)
         m_bookmarksManager = BrowserApplication::bookmarksManager();
     setupUi(this);
-    QTreeView *view = new QTreeView(this);
+    m_treeView = new QTreeView(this);
     m_proxyModel = new AddBookmarkProxyModel(this);
     BookmarksModel *model = m_bookmarksManager->bookmarksModel();
     m_proxyModel->setSourceModel(model);
-    view->setModel(m_proxyModel);
-    view->expandAll();
-    view->header()->setStretchLastSection(true);
-    view->header()->hide();
-    view->setItemsExpandable(false);
-    view->setRootIsDecorated(false);
-    view->setIndentation(10);
+    m_treeView->setModel(m_proxyModel);
+    m_treeView->expandAll();
+    m_treeView->header()->setStretchLastSection(true);
+    m_treeView->header()->hide();
+    m_treeView->setItemsExpandable(false);
+    m_treeView->setRootIsDecorated(false);
+    m_treeView->setIndentation(10);
     location->setModel(m_proxyModel);
-    view->show();
-    location->setView(view);
-    BookmarkNode *menu = m_bookmarksManager->menu();
-    QModelIndex idx = m_proxyModel->mapFromSource(model->index(menu));
-    view->setCurrentIndex(idx);
-    location->setCurrentIndex(idx.row());
+    m_treeView->show();
+    location->setView(m_treeView);
+
     name->setText(title);
+    address->setText(url);
+    if (!url.isEmpty())
+        address->hide();
+    address->setInactiveText(QLatin1String("Url"));
+    name->setInactiveText(QLatin1String("Title"));
+    resize(sizeHint());
+}
+
+void AddBookmarkDialog::setCurrentIndex(const QModelIndex &index)
+{
+    if (!index.isValid())
+        return;
+    m_treeView->setCurrentIndex(index);
+    location->setCurrentIndex(index.row());
 }
 
 void AddBookmarkDialog::accept()
 {
+    if (address->text().isEmpty() || name->text().isEmpty()) {
+        QDialog::accept();
+        return;
+    }
+
     QModelIndex index = location->view()->currentIndex();
     index = m_proxyModel->mapToSource(index);
     if (!index.isValid())
         index = m_bookmarksManager->bookmarksModel()->index(0, 0);
     BookmarkNode *parent = m_bookmarksManager->bookmarksModel()->node(index);
     BookmarkNode *bookmark = new BookmarkNode(BookmarkNode::Bookmark);
-    bookmark->url = m_url;
+    bookmark->url = address->text();
     bookmark->title = name->text();
     m_bookmarksManager->addBookmark(parent, bookmark);
     QDialog::accept();
@@ -751,24 +773,84 @@ void AddBookmarkDialog::accept()
 
 BookmarksMenu::BookmarksMenu(QWidget *parent)
     : ModelMenu(parent)
-    , m_bookmarksManager(0)
 {
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
-    setMaxRows(-1);
     setStatusBarTextRole(BookmarksModel::UrlStringRole);
     setSeparatorRole(BookmarksModel::SeparatorRole);
 }
 
-void BookmarksMenu::activated(const QModelIndex &index)
+ModelMenu *BookmarksMenu::createBaseMenu()
 {
-    emit openUrl(
-          index.data(BookmarksModel::UrlRole).toUrl(),
-          TabWidget::CurrentTab,
-          index.data(Qt::DisplayRole).toString());
+    BookmarksMenu *menu = new BookmarksMenu(this);
+    connect(menu, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)),
+            this, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)));
+    return menu;
 }
 
-bool BookmarksMenu::prePopulated()
+void BookmarksMenu::activated(const QModelIndex &index)
+{
+    emit openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
+                 index.data(Qt::DisplayRole).toString());
+}
+
+void BookmarksMenu::postPopulated()
+{
+    if (isEmpty())
+        return;
+
+    QModelIndex parent = rootIndex();
+
+    bool hasBookmarks = false;
+
+    for (int i = 0; i < parent.model()->rowCount(parent); ++i) {
+        QModelIndex child = parent.model()->index(i, 0, parent);
+
+        if (child.data(BookmarksModel::TypeRole) == BookmarkNode::Bookmark) {
+            hasBookmarks = true;
+            break;
+        }
+    }
+
+    if (!hasBookmarks)
+        return;
+
+    addSeparator();
+    QAction *action = addAction(tr("Open in Tabs"));
+    connect(action, SIGNAL(triggered()),
+            this, SLOT(openAll()));
+}
+
+void BookmarksMenu::openAll()
+{
+    ModelMenu *menu = qobject_cast<ModelMenu*>(sender()->parent());
+    if (!menu)
+        return;
+    QModelIndex parent = menu->rootIndex();
+    if (!parent.isValid())
+        return;
+    for (int i = 0; i < parent.model()->rowCount(parent); ++i) {
+        QModelIndex child = parent.model()->index(i, 0, parent);
+
+        if (child.data(BookmarksModel::TypeRole) != BookmarkNode::Bookmark)
+            continue;
+
+        TabWidget::OpenUrlIn tab;
+        tab = (i == 0) ? TabWidget::CurrentTab : TabWidget::NewTab;
+        emit openUrl(child.data(BookmarksModel::UrlRole).toUrl(),
+                     tab,
+                     child.data(Qt::DisplayRole).toString());
+    }
+}
+
+
+BookmarksMenuBarMenu::BookmarksMenuBarMenu(QWidget *parent)
+    : BookmarksMenu(parent)
+    , m_bookmarksManager(0)
+{
+}
+
+bool BookmarksMenuBarMenu::prePopulated()
 {
     m_bookmarksManager = BrowserApplication::bookmarksManager();
     setModel(m_bookmarksManager->bookmarksModel());
@@ -782,7 +864,7 @@ bool BookmarksMenu::prePopulated()
     return true;
 }
 
-void BookmarksMenu::setInitialActions(QList<QAction*> actions)
+void BookmarksMenuBarMenu::setInitialActions(QList<QAction*> actions)
 {
     m_initialActions = actions;
     for (int i = 0; i < m_initialActions.count(); ++i)
@@ -791,6 +873,9 @@ void BookmarksMenu::setInitialActions(QList<QAction*> actions)
 
 BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     : QDialog(parent)
+    , m_bookmarksManager(0)
+    , m_bookmarksModel(0)
+    , m_proxyModel(0)
 {
     m_bookmarksManager = manager;
     if (!m_bookmarksManager)
@@ -799,10 +884,11 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
 
     tree->setUniformRowHeights(true);
     tree->setSelectionBehavior(QAbstractItemView::SelectRows);
-    tree->setSelectionMode(QAbstractItemView::ContiguousSelection);
+    tree->setSelectionMode(QAbstractItemView::ExtendedSelection);
     tree->setTextElideMode(Qt::ElideMiddle);
     m_bookmarksModel = m_bookmarksManager->bookmarksModel();
     m_proxyModel = new TreeProxyModel(this);
+    m_proxyModel->setFilterKeyColumn(-1);
     connect(search, SIGNAL(textChanged(QString)),
             m_proxyModel, SLOT(setFilterFixedString(QString)));
     connect(removeButton, SIGNAL(clicked()), tree, SLOT(removeSelected()));
@@ -816,7 +902,7 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     tree->header()->resizeSection(0, header);
     tree->header()->setStretchLastSection(true);
     connect(tree, SIGNAL(activated(const QModelIndex&)),
-            this, SLOT(openInCurrentTab()));
+            this, SLOT(open()));
     tree->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(tree, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(customContextMenuRequested(const QPoint &)));
@@ -869,25 +955,43 @@ void BookmarksDialog::customContextMenuRequested(const QPoint &pos)
     QMenu menu;
     QModelIndex index = tree->indexAt(pos);
     index = index.sibling(index.row(), 0);
-    if (index.isValid() && !tree->model()->hasChildren(index)) {
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
+    const BookmarkNode *node = m_bookmarksModel->node(sourceIndex);
+    if (index.isValid() && node->type() != BookmarkNode::Folder) {
         menu.addAction(tr("Open"), this, SLOT(openInCurrentTab()));
         menu.addAction(tr("Open in New Tab"), this, SLOT(openInNewTab()));
         menu.addSeparator();
     }
+    menu.addSeparator();
+    QAction *renameAction = menu.addAction(tr("Edit Name"), this, SLOT(editName()));
+    renameAction->setEnabled(index.flags() & Qt::ItemIsEditable);
+    if (index.isValid() && node->type() != BookmarkNode::Folder) {
+        menu.addAction(tr("Edit Address"), this, SLOT(editAddress()));
+    }
+    menu.addSeparator();
     QAction *deleteAction = menu.addAction(tr("Delete"), tree, SLOT(removeSelected()));
     deleteAction->setEnabled(index.flags() & Qt::ItemIsDragEnabled);
     menu.exec(QCursor::pos());
 }
 
-void BookmarksDialog::open(TabWidget::Tab tab)
+void BookmarksDialog::open(TabWidget::OpenUrlIn tab)
 {
     QModelIndex index = tree->currentIndex();
-    if (!index.parent().isValid())
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
+    const BookmarkNode *node = m_bookmarksModel->node(sourceIndex);
+    if (!index.parent().isValid() || !node || node->type() == BookmarkNode::Folder)
         return;
     emit openUrl(
           index.sibling(index.row(), 1).data(BookmarksModel::UrlRole).toUrl(),
           tab,
           index.sibling(index.row(), 0).data(Qt::DisplayRole).toString());
+}
+
+void BookmarksDialog::open()
+{
+    BrowserApplication::instance()->setEventMouseButtons(qApp->mouseButtons());
+    BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
+    open(TabWidget::UserOrCurrent);
 }
 
 void BookmarksDialog::openInCurrentTab()
@@ -900,55 +1004,179 @@ void BookmarksDialog::openInNewTab()
     open(TabWidget::NewTab);
 }
 
+void BookmarksDialog::editName()
+{
+    QModelIndex idx = tree->currentIndex();
+    idx = idx.sibling(idx.row(), 0);
+    tree->edit(idx);
+}
+
+void BookmarksDialog::editAddress()
+{
+    QModelIndex idx = tree->currentIndex();
+    idx = idx.sibling(idx.row(), 1);
+    tree->edit(idx);
+}
+
 void BookmarksDialog::newFolder()
 {
     QModelIndex currentIndex = tree->currentIndex();
     QModelIndex idx = currentIndex;
-    if (idx.isValid() && !idx.model()->hasChildren(idx))
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(idx);
+    const BookmarkNode *sourceNode = m_bookmarksModel->node(sourceIndex);
+    int row = -1; // default: append new folder as last item in selected folder
+    if (sourceNode && sourceNode->type() != BookmarkNode::Folder) {
+        // if selected item is not a folder, add new folder to parent folder,
+        // but direcly below the selected item
         idx = idx.parent();
+        row = currentIndex.row() + 1;
+    }
     if (!idx.isValid())
-        idx = tree->rootIndex();
+        idx = m_proxyModel->index(1, 0); // Select Bookmarks menu as default
     idx = m_proxyModel->mapToSource(idx);
     BookmarkNode *parent = m_bookmarksManager->bookmarksModel()->node(idx);
     BookmarkNode *node = new BookmarkNode(BookmarkNode::Folder);
     node->title = tr("New Folder");
-    m_bookmarksManager->addBookmark(parent, node, currentIndex.row() + 1);
+    m_bookmarksManager->addBookmark(parent, node, row);
 }
 
-BookmarkToolButton::BookmarkToolButton(QUrl url, QWidget *parent)
+BookmarkToolButton::BookmarkToolButton(const QModelIndex &index, QWidget *parent)
     : QToolButton(parent)
-    , m_url(url)
+    , m_index(index)
 {
-    connect(this, SIGNAL(clicked()), this, SLOT(openBookmark()));
 }
 
 void BookmarkToolButton::mouseReleaseEvent(QMouseEvent *event)
 {
+    BrowserApplication::instance()->setEventMouseButtons(event->button());
+    BrowserApplication::instance()->setEventKeyboardModifiers(event->modifiers());
     QToolButton::mouseReleaseEvent(event);
-    if (event->button() == Qt::MidButton)
-        emit openBookmark(url(), TabWidget::NewTab, text());
+    if (hitButton(event->pos()))
+        emit openBookmark(url(), text());
+}
+
+QModelIndex BookmarkToolButton::index() const
+{
+    return m_index;
 }
 
 QUrl BookmarkToolButton::url() const
 {
-    return m_url;
-}
-
-void BookmarkToolButton::openBookmark()
-{
-    emit openBookmark(url(), TabWidget::CurrentTab, text());
+    return m_index.data(BookmarksModel::UrlRole).toUrl();
 }
 
 BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
     : QToolBar(tr("Bookmark"), parent)
     , m_bookmarksModel(model)
 {
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(contextMenuRequested(const QPoint &)));
+
     setRootIndex(model->index(0, 0));
     connect(m_bookmarksModel, SIGNAL(modelReset()), this, SLOT(build()));
     connect(m_bookmarksModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(build()));
     connect(m_bookmarksModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), this, SLOT(build()));
     connect(m_bookmarksModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(build()));
     setAcceptDrops(true);
+}
+
+Q_DECLARE_METATYPE(QModelIndex)
+void BookmarksToolBar::contextMenuRequested(const QPoint &position)
+{
+    QToolButton *button = qobject_cast<QToolButton *>(childAt(position));
+
+    QMenu menu;
+    QAction *action;
+
+    if (button) {
+        QModelIndex index;
+        QVariant variant;
+
+        BookmarkToolButton *bookmarkButton = qobject_cast<BookmarkToolButton *>(button);
+        ModelMenu *modelMenu = qobject_cast<ModelMenu *>(button->menu());
+        if (modelMenu) {
+            index = modelMenu->rootIndex();
+            variant.setValue(index);
+        } else if (bookmarkButton) {
+            index = bookmarkButton->index();
+            variant.setValue(index);
+
+            action = menu.addAction(tr("Open"), this, SLOT(openBookmark()));
+            action->setData(variant);
+
+            action = menu.addAction(tr("Open in New &Tab"), this, SLOT(openBookmarkInNewTab()));
+            action->setData(variant);
+
+            menu.addSeparator();
+        }
+
+        if (variant.isValid()) {
+            action = menu.addAction(tr("Remove"), this, SLOT(removeBookmark()));
+            action->setData(variant);
+        }
+
+        menu.addSeparator();
+    }
+
+    action = menu.addAction(tr("Add Bookmark..."), this, SLOT(newBookmark()));
+
+    menu.exec(QCursor::pos());
+}
+
+void BookmarksToolBar::openBookmark()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action)
+        return;
+    QVariant variant = action->data();
+    if (!variant.canConvert<QModelIndex>())
+        return;
+    QModelIndex index = qvariant_cast<QModelIndex>(variant);
+
+    emit openUrl(
+        index.data(BookmarksModel::UrlRole).toUrl(),
+        TabWidget::CurrentTab,
+        index.data(Qt::DisplayRole).toString());
+}
+
+void BookmarksToolBar::openBookmarkInNewTab()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action)
+        return;
+    QVariant variant = action->data();
+    if (!variant.canConvert<QModelIndex>())
+        return;
+    QModelIndex index = qvariant_cast<QModelIndex>(variant);
+
+    emit openUrl(
+        index.data(BookmarksModel::UrlRole).toUrl(),
+        TabWidget::NewTab,
+        index.data(Qt::DisplayRole).toString());
+}
+
+void BookmarksToolBar::removeBookmark()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action)
+        return;
+    QVariant variant = action->data();
+    if (!variant.canConvert<QModelIndex>())
+        return;
+    QModelIndex index = qvariant_cast<QModelIndex>(variant);
+
+    m_bookmarksModel->removeRow(index.row(), m_root);
+}
+
+void BookmarksToolBar::newBookmark()
+{
+    AddBookmarkDialog* dialog = new AddBookmarkDialog(QString(), QString());
+    BookmarkNode *toolbar = BrowserApplication::bookmarksManager()->toolbar();
+    QModelIndex index = m_bookmarksModel->index(toolbar);
+    dialog->setCurrentIndex(index);
+    dialog->exec();
+    delete dialog;
 }
 
 void BookmarksToolBar::dragEnterEvent(QDragEnterEvent *event)
@@ -964,27 +1192,31 @@ void BookmarksToolBar::dropEvent(QDropEvent *event)
     const QMimeData *mimeData = event->mimeData();
     if (mimeData->hasUrls() && mimeData->hasText()) {
         QList<QUrl> urls = mimeData->urls();
-        QAction *action = actionAt(event->pos());
-        QString dropText;
-        if (action)
-            dropText = action->text();
+        QString title = mimeData->text();
+        QUrl url = urls.at(0);
+
+        if (url.isEmpty()) {
+            QToolBar::dropEvent(event);
+            return;
+        }
+
+        if (title.isEmpty()) {
+            title = QLatin1String(url.toEncoded());
+        }
+
         int row = -1;
         QModelIndex parentIndex = m_root;
-        for (int i = 0; i < m_bookmarksModel->rowCount(m_root); ++i) {
-            QModelIndex idx = m_bookmarksModel->index(i, 0, m_root);
-            QString title = idx.data().toString();
-            if (title == dropText) {
-                row = i;
-                if (m_bookmarksModel->hasChildren(idx)) {
-                    parentIndex = idx;
-                    row = -1;
-                }
-                break;
-            }
+        QToolButton *target = qobject_cast<QToolButton *>(childAt(event->pos()));
+
+        if (target && target->menu()) {
+            ModelMenu *menu = qobject_cast<ModelMenu *>(target->menu());
+            if (menu)
+                parentIndex = menu->rootIndex();
         }
+
         BookmarkNode *bookmark = new BookmarkNode(BookmarkNode::Bookmark);
-        bookmark->url = urls.at(0).toString();
-        bookmark->title = mimeData->text();
+        bookmark->url = QLatin1String(url.toEncoded());
+        bookmark->title = title;
 
         BookmarkNode *parent = m_bookmarksModel->node(parentIndex);
         BookmarksManager *bookmarksManager = m_bookmarksModel->bookmarksManager();
@@ -1016,7 +1248,7 @@ void BookmarksToolBar::build()
             button->setPopupMode(QToolButton::InstantPopup);
             button->setArrowType(Qt::DownArrow);
             button->setText(idx.data().toString());
-            ModelMenu *menu = new ModelMenu(this);
+            ModelMenu *menu = new BookmarksMenu(this);
             menu->setModel(m_bookmarksModel);
             menu->setRootIndex(idx);
             menu->addAction(new QAction(menu));
@@ -1024,12 +1256,15 @@ void BookmarksToolBar::build()
             button->setToolButtonStyle(Qt::ToolButtonTextOnly);
             QAction *a = addWidget(button);
             a->setText(idx.data().toString());
+            connect(menu, SIGNAL(openUrl(const QUrl &, const QString &)),
+                    this, SIGNAL(openUrl(const QUrl &, const QString &)));
+            connect(menu, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)),
+                    this, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)));
         } else {
-            QUrl url = idx.data(BookmarksModel::UrlRole).toUrl();
-            BookmarkToolButton *button = new BookmarkToolButton(url, this);
+            BookmarkToolButton *button = new BookmarkToolButton(idx, this);
             button->setText(idx.data().toString());
-            connect(button, SIGNAL(openBookmark(const QUrl &, TabWidget::Tab, const QString &)),
-                    this, SIGNAL(openUrl(const QUrl &, TabWidget::Tab, const QString &)));
+            connect(button, SIGNAL(openBookmark(const QUrl &, const QString &)),
+                    this, SIGNAL(openUrl(const QUrl &, const QString &)));
             addWidget(button);
         }
     }

@@ -59,7 +59,7 @@ public:
         history = new HistoryManager(this);
         historyModel = new HistoryModel(history, this);
         setSourceModel(historyModel);
-        history->setHistoryLimit(-1);
+        history->setDaysToExpire(-1);
     }
 
     HistoryModel *historyModel;
@@ -100,16 +100,16 @@ void tst_HistoryFilterModel::historyfiltermodel()
     model.historyLocation(QString());
 }
 
-typedef QList<HistoryItem> HistoryList;
+typedef QList<HistoryEntry> HistoryList;
 Q_DECLARE_METATYPE(HistoryList)
-Q_DECLARE_METATYPE(HistoryItem)
+Q_DECLARE_METATYPE(HistoryEntry)
 
 HistoryList makeHistoryList(int count)
 {
     HistoryList list;
     QDateTime dateTime = QDateTime::currentDateTime();
     for (int i = 0; i < count; ++i) {
-        HistoryItem item;
+        HistoryEntry item;
         QString url = QString("http://%1host-%2.com/")
             .arg(qrand() % 2 ? "www." : "")
             .arg(QString::number(i));

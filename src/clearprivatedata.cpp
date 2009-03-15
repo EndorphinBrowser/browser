@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
+ * Copyright 2008-2009 Jason A. Donenfeld <Jason@zx2c4.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include "cookiejar.h"
 #include "downloadmanager.h"
 #include "history.h"
+#include "networkaccessmanager.h"
 #include "toolbarsearch.h"
 
 #include <qcheckbox.h>
@@ -31,7 +32,9 @@
 #include <qlist.h>
 #include <qpushbutton.h>
 #include <qwebsettings.h>
-
+#if QT_VERSION >= 0x040500
+#include <qabstractnetworkcache.h>
+#endif
 ClearPrivateData::ClearPrivateData(QWidget *parent)
     : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint)
 {
@@ -56,8 +59,13 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
     m_cookies->setChecked(true);
     layout->addWidget(m_cookies);
 
-    m_cache = new QCheckBox(tr("C&ache"));
+    m_cache = new QCheckBox(tr("C&ached Web Pages"));
+#if QT_VERSION < 0x040500
     m_cache->setEnabled(false);
+#endif
+#if QT_VERSION >= 0x040500
+    m_cache->setChecked(true);
+#endif
     layout->addWidget(m_cache);
 
     m_favIcons = new QCheckBox(tr("Website &Icons"));
@@ -97,7 +105,9 @@ void ClearPrivateData::accept()
         BrowserApplication::cookieJar()->clear();
     }
     if (m_cache->isChecked()) {
-        //not implemented
+#if QT_VERSION >= 0x040500
+        BrowserApplication::networkAccessManager()->cache()->clear();
+#endif
     }
     if (m_favIcons->isChecked()) {
         QWebSettings::clearIconDatabase();

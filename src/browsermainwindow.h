@@ -76,6 +76,9 @@ class ToolbarSearch;
 class WebView;
 class QSplitter;
 class QFrame;
+class HistoryMenu;
+class BookmarksMenuBarMenu;
+
 
 /*!
     The MainWindow of the Browser Application.
@@ -92,7 +95,6 @@ public:
     QSize sizeHint() const;
 
 public:
-    static QUrl guessUrlFromString(const QString &url);
     TabWidget *tabWidget() const;
     WebView *currentTab() const;
     ToolbarSearch *toolbarSearch() const;
@@ -101,11 +103,14 @@ public:
     QAction *showMenuBarAction() const;
 
 public slots:
-    void loadPage(const QString &url);
     void slotHome();
+    void slotPrivacyChanged(bool isPrivate);
+    void slotZoomTextOnlyChanged(bool textOnly);
 
 protected:
     void closeEvent(QCloseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void changeEvent(QEvent *event);
 
 private slots:
     void save();
@@ -127,9 +132,9 @@ private slots:
     void slotEditFindPrevious();
     void slotShowBookmarksDialog();
     void slotAddBookmark();
-    void slotViewTextBigger();
-    void slotViewTextNormal();
-    void slotViewTextSmaller();
+    void slotZoomIn();
+    void slotZoomNormal();
+    void slotZoomOut();
     void slotViewMenuBar();
     void slotViewToolbar();
     void slotViewBookmarksBar();
@@ -155,43 +160,96 @@ private slots:
     void geometryChangeRequested(const QRect &geometry);
     void updateToolbarActionText(bool visible);
     void updateBookmarksToolbarActionText(bool visible);
+    void showNetworkMonitor();
 
 private:
+    void retranslate();
     void loadDefaultState();
     void setupMenu();
     void setupToolBar();
     void updateStatusbarActionText(bool visible);
 
 private:
+    QMenu *m_fileMenu;
+    QAction *m_fileNewWindowAction;
+    QAction *m_fileOpenFileAction;
+    QAction *m_fileOpenLocationAction;
+    QAction *m_fileSaveAsAction;
+    QAction *m_fileImportBookmarksAction;
+    QAction *m_fileExportBookmarksAction;
+    QAction *m_filePrintPreviewAction;
+    QAction *m_filePrintAction;
+    QAction *m_filePrivateBrowsingAction;
+    QAction *m_fileCloseWindow;
+    QAction *m_fileQuit;
+
+    QMenu *m_editMenu;
+    QAction *m_editUndoAction;
+    QAction *m_editRedoAction;
+    QAction *m_editCutAction;
+    QAction *m_editCopyAction;
+    QAction *m_editPasteAction;
+    QAction *m_editFindAction;
+    QAction *m_editFindNextAction;
+    QAction *m_editFindPreviousAction;
+    QAction *m_editPreferencesAction;
+
+    QMenu *m_viewMenu;
+    QAction *m_viewShowMenuBarAction;
+    QAction *m_viewToolbarAction;
+    QAction *m_viewBookmarkBarAction;
+    QAction *m_viewStatusbarAction;
+    QAction *m_viewStopAction;
+    QAction *m_viewReloadAction;
+    QAction *m_viewZoomInAction;
+    QAction *m_viewZoomNormalAction;
+    QAction *m_viewZoomOutAction;
+    QAction *m_viewZoomTextOnlyAction;
+    QAction *m_viewSourceAction;
+    QAction *m_viewFullScreenAction;
+
+    HistoryMenu *m_historyMenu;
+    QAction *m_historyBackAction;
+    QAction *m_historyForwardAction;
+    QAction *m_historyHomeAction;
+    QAction *m_historyRestoreLastSessionAction;
+
+    BookmarksMenuBarMenu *m_bookmarksMenu;
+    QAction *m_bookmarksShowAllAction;
+    QAction *m_bookmarksAddAction;
+
+    QMenu *m_windowMenu;
+
+    QMenu *m_toolsMenu;
+    QAction *m_toolsWebSearchAction;
+    QAction *m_toolsClearPrivateDataAction;
+    QAction *m_toolsShowNetworkMonitor;
+    QAction *m_toolsEnableInspector;
+
+    QMenu *m_helpMenu;
+    QAction *m_helpChangeLanguageAction;
+    QAction *m_helpAboutQtAction;
+    QAction *m_helpAboutApplicationAction;
+
+    // Toolbar
     QToolBar *m_navigationBar;
+    QMenu *m_historyBackMenu;
+    QMenu *m_historyForwardMenu;
+    QAction *m_stopReloadAction;
+    QIcon m_reloadIcon;
+    QIcon m_stopIcon;
     QSplitter *m_navigationSplitter;
     ToolbarSearch *m_toolbarSearch;
 #if defined(Q_WS_MAC)
     QFrame *m_bookmarksToolbarFrame;
 #endif
     BookmarksToolBar *m_bookmarksToolbar;
+
     TabWidget *m_tabWidget;
+
     AutoSaver *m_autoSaver;
-
-    QAction *m_showMenuBarAction;
-    QAction *m_historyBack;
-    QMenu *m_historyBackMenu;
-    QAction *m_historyForward;
-    QMenu *m_historyForwardMenu;
-    QMenu *m_windowMenu;
-    QAction *m_privateBrowsing;
-
-    QAction *m_stop;
-    QAction *m_reload;
-    QAction *m_stopReload;
-    QAction *m_viewToolbar;
-    QAction *m_viewBookmarkBar;
-    QAction *m_viewStatusbar;
-    QAction *m_restoreLastSession;
-    QAction *m_addBookmark;
-
-    QIcon m_reloadIcon;
-    QIcon m_stopIcon;
+    bool m_menuBarVisible;
+    bool m_statusBarVisible;
 };
 
 #endif // BROWSERMAINWINDOW_H

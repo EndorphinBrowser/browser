@@ -64,13 +64,37 @@
 #define NETWORKACCESSMANAGER_H
 
 #include <qnetworkaccessmanager.h>
+#include <qnetworkproxy.h>
+
+#if QT_VERSION >= 0x040500
+class NetworkProxyFactory : public QNetworkProxyFactory
+{
+public:
+    NetworkProxyFactory();
+
+    void setHttpProxy(const QNetworkProxy &proxy);
+    void setGlobalProxy(const QNetworkProxy &proxy);
+
+    virtual QList<QNetworkProxy> queryProxy(const QNetworkProxyQuery &query = QNetworkProxyQuery());
+
+private:
+    QNetworkProxy m_httpProxy;
+    QNetworkProxy m_globalProxy;
+};
+#endif
 
 class NetworkAccessManager : public QNetworkAccessManager
 {
     Q_OBJECT
 
+signals:
+    void requestCreated(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QNetworkReply *reply);
+
 public:
     NetworkAccessManager(QObject *parent = 0);
+
+protected:
+    QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0);
 
 public slots:
     void loadSettings();
@@ -81,6 +105,9 @@ private slots:
 #ifndef QT_NO_OPENSSL
     void sslErrors(QNetworkReply *reply, const QList<QSslError> &error);
 #endif
+
+private:
+    QByteArray acceptLanguage;
 };
 
 #endif // NETWORKACCESSMANAGER_H

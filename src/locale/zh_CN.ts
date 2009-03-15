@@ -1,1147 +1,902 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="zh_CN">
+<!DOCTYPE TS>
+<TS version="2.0" language="zh_CN">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../aboutdialog.cpp" line="34"/>
         <source>About</source>
-        <translation>����</translation>
+        <translation>关于</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="151"/>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>作者</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="158"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>许可证</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="84"/>
         <source>Lightweight WebKit-based web browser</source>
-        <translation type="unfinished"></translation>
+        <translation>轻快的浏览器-基于Webkit</translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../aboutdialog.ui" line="100"/>
+    <message>
+        <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>关闭</translation>
+    </message>
+    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../aboutdialog.ui" line="123"/>
-        <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../aboutdialog.ui" line="165"/>
-        <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>AddBookmarkDialog</name>
     <message>
-        <location filename="../addbookmarkdialog.ui" line="13"/>
         <source>Add Bookmark</source>
-        <translation>������ǩ</translation>
+        <translation>添加书签</translation>
     </message>
     <message>
-        <location filename="../addbookmarkdialog.ui" line="19"/>
-        <source>Type a name for the bookmark, and choose where to keep 
-it.</source>
-        <translation type="obsolete">��Ϊ����ǩ�������ƣ�Ȼ��ѡ��λ�ñ��档</translation>
-    </message>
-    <message>
-        <location filename="../addbookmarkdialog.ui" line="19"/>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入书签名，并选择保存位置</translation>
     </message>
 </context>
 <context>
     <name>BookmarksDialog</name>
     <message>
-        <location filename="../bookmarks.cpp" line="873"/>
         <source>Open</source>
-        <translation>����</translation>
+        <translation>打开</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="877"/>
-        <source>Delete</source>
-        <translation>ɾ��</translation>
-    </message>
-    <message>
-        <location filename="../bookmarks.cpp" line="914"/>
-        <source>New Folder</source>
-        <translation>�½��ļ���</translation>
-    </message>
-    <message>
-        <location filename="../bookmarks.ui" line="13"/>
-        <source>Bookmarks</source>
-        <translation>��ǩ</translation>
-    </message>
-    <message>
-        <location filename="../bookmarks.ui" line="40"/>
-        <source>&amp;Remove</source>
-        <translation>�Ƴ�(&amp;R)</translation>
-    </message>
-    <message>
-        <location filename="../bookmarks.ui" line="47"/>
-        <source>Add Folder</source>
-        <translation>�����ļ���</translation>
-    </message>
-    <message>
-        <location filename="../bookmarks.cpp" line="874"/>
         <source>Open in New Tab</source>
-        <translation>���±�ǩ�д���</translation>
+        <translation>在新标签页中打开</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <source>New Folder</source>
+        <translation>新建文件夹</translation>
+    </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation>书签</translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation>移除(&amp;R)</translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
+        <translation>添加文件夹</translation>
+    </message>
+    <message>
+        <source>Edit Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Address</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BookmarksManager</name>
     <message>
-        <location filename="../bookmarks.cpp" line="285"/>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
-        <translation>�ڴ�����ǩ�ĵ� %1 �к� %2 ��ʱ����</translation>
+        <translation>在行%1，列%2:
+%3导入书签时出错</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="139"/>
         <source>Toolbar Bookmarks</source>
-        <translation>�������ǩ</translation>
+        <translation>工具栏书签</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="147"/>
         <source>Menu</source>
-        <translation>�˵�</translation>
+        <translation>菜单</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="274"/>
         <source>Open File</source>
-        <translation>�����ļ�</translation>
+        <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="297"/>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="289"/>
         <source>Imported %1</source>
-        <translation>������ %1</translation>
+        <translation>导入的%1</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="295"/>
         <source>Save File</source>
-        <translation>�����ļ�</translation>
+        <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="296"/>
         <source>%1 Bookmarks.xbel</source>
-        <translation>%1 Bookmarks.xbel</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="303"/>
         <source>Export error</source>
-        <translation>��������</translation>
+        <translation>导出错误</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="303"/>
         <source>error saving bookmarks</source>
-        <translation>������ǩʱ����</translation>
+        <translation>保存书签出错</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="307"/>
         <source>Remove Bookmark</source>
-        <translation>�Ƴ���ǩ</translation>
+        <translation>移除书签</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="341"/>
         <source>Insert Bookmark</source>
-        <translation>������ǩ</translation>
+        <translation>插入书签</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="355"/>
         <source>Name Change</source>
-        <translation>��������</translation>
+        <translation>名字变更</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="358"/>
         <source>Address Change</source>
-        <translation>���ĵ�ַ</translation>
+        <translation>地址变更</translation>
+    </message>
+    <message>
+        <source>Bookmarks Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmarks Menu</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BookmarksModel</name>
     <message>
-        <location filename="../bookmarks.cpp" line="453"/>
         <source>Title</source>
-        <translation>����</translation>
+        <translation>标题</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="454"/>
         <source>Address</source>
-        <translation>��ַ</translation>
+        <translation>地址</translation>
     </message>
 </context>
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <location filename="../bookmarks.cpp" line="943"/>
         <source>Bookmark</source>
-        <translation>��ǩ</translation>
+        <translation>书签</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">打开</translation>
+    </message>
+    <message>
+        <source>Open in New &amp;Tab</source>
+        <translation type="unfinished">在新标签页中打开(&amp;T)</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Bookmark...</source>
+        <translation type="unfinished">添加标签...</translation>
     </message>
 </context>
 <context>
     <name>BrowserApplication</name>
     <message>
-        <location filename="../browserapplication.cpp" line="203"/>
+        <source> (Change: %1 %2)</source>
+        <translation>(变更： %1 %2)</translation>
+    </message>
+    <message>
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
-        <translation>��ǰ�� %1 ��ں� %2 
-����ǩ�򿪣�������Ҫ�˳�����</translation>
+        <translation>有%1个窗口和%2个标签为打开状态
+仍旧确认退出吗？</translation>
     </message>
     <message>
-        <location filename="../browserapplication.cpp" line="356"/>
         <source>Restore failed</source>
-        <translation type="unfinished"></translation>
+        <translation>恢复失败</translation>
     </message>
     <message>
-        <location filename="../browserapplication.cpp" line="357"/>
-        <source>The saved session will not being restored because last time it was restored Arora crashed.</source>
-        <translation type="unfinished"></translation>
+        <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
+        <translation>保存的会话不会恢复，因为Arora在尝试恢复该会话时已崩溃。</translation>
     </message>
 </context>
 <context>
     <name>BrowserMainWindow</name>
     <message>
-        <location filename="../browsermainwindow.cpp" line="328"/>
         <source>&amp;File</source>
-        <translation>�ļ�(&amp;F)</translation>
+        <translation>文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="330"/>
         <source>&amp;New Window</source>
-        <translation>�½�����(&amp;N)</translation>
+        <translation>新窗口(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="332"/>
         <source>&amp;Open File...</source>
-        <translation>�����ļ�(&amp;O)...</translation>
+        <translation>打开文件(&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="333"/>
         <source>Open &amp;Location...</source>
-        <translation>����λ��(&amp;L)...</translation>
+        <translation>打开位置(&amp;L)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="338"/>
         <source>&amp;Save As...</source>
-        <translation>����Ϊ(&amp;S)...</translation>
+        <translation>另存为(&amp;S)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="342"/>
         <source>&amp;Import Bookmarks...</source>
-        <translation>������ǩ(&amp;I)...</translation>
+        <translation>导入书签(&amp;I)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="343"/>
         <source>&amp;Export Bookmarks...</source>
-        <translation>������ǩ(&amp;E)...</translation>
+        <translation>导出书签(&amp;E)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="345"/>
         <source>P&amp;rint Preview...</source>
-        <translation>��ӡԤ��(&amp;r)...</translation>
+        <translation>打印预览(&amp;P)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="346"/>
         <source>&amp;Print...</source>
-        <translation>��ӡ(&amp;P)...</translation>
+        <translation>打印(&amp;P)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="348"/>
         <source>Private &amp;Browsing...</source>
-        <translation>��������(&amp;B)...</translation>
+        <translation>隐私浏览(&amp;B)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="355"/>
         <source>&amp;Quit</source>
-        <translation>�˳�(&amp;Q)</translation>
+        <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="359"/>
         <source>&amp;Edit</source>
-        <translation>�༭(&amp;E)</translation>
+        <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="360"/>
         <source>&amp;Undo</source>
-        <translation>����(&amp;U)</translation>
+        <translation>撤销(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="363"/>
         <source>&amp;Redo</source>
-        <translation>����(&amp;R)</translation>
+        <translation>重做(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="367"/>
         <source>Cu&amp;t</source>
-        <translation>����(&amp;t)</translation>
+        <translation>剪切(&amp;t)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="370"/>
         <source>&amp;Copy</source>
-        <translation>����(&amp;C)</translation>
+        <translation>复制(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="373"/>
         <source>&amp;Paste</source>
-        <translation>ճ��(&amp;P)</translation>
+        <translation>粘帖(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="378"/>
         <source>&amp;Find</source>
-        <translation>����(&amp;F)</translation>
+        <translation>查找(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="340"/>
-        <source>&amp;Find Next</source>
-        <translation type="obsolete">������һ��(&amp;F)</translation>
+        <source>Find Nex&amp;t</source>
+        <translation>查找下一个(&amp;t)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="344"/>
-        <source>&amp;Find Previous</source>
-        <translation type="obsolete">����ǰһ��(&amp;F)</translation>
+        <source>Find P&amp;revious</source>
+        <translation>查找前一个(&amp;r)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="349"/>
-        <source>&amp;Preferences</source>
-        <translation type="obsolete">ѡ��(&amp;P)</translation>
+        <source>Prefere&amp;nces...</source>
+        <translation>选项(&amp;r)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="392"/>
         <source>Ctrl+,</source>
-        <translation>Ctrl+,</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="395"/>
         <source>&amp;View</source>
-        <translation>��ͼ(&amp;V)</translation>
+        <translation>查看(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="409"/>
-        <source>Shift+Ctrl+B</source>
-        <translation>Shift+Ctrl+B</translation>
+        <source>Show Menu Bar</source>
+        <translation>显示菜单栏</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="403"/>
         <source>Ctrl+|</source>
-        <translation>Ctrl+|</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="420"/>
+        <source>Shift+Ctrl+B</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Ctrl+/</source>
-        <translation>Ctrl+/</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="426"/>
         <source>&amp;Stop</source>
-        <translation>ֹͣ(&amp;S)</translation>
+        <translation>停止(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="381"/>
-        <source>Reload Page</source>
-        <translation type="obsolete">ˢ��ҳ��</translation>
+        <source>&amp;Reload Page</source>
+        <translation>重新加载页面(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="385"/>
-        <source>&amp;Make Text Bigger</source>
-        <translation type="obsolete">��������(&amp;M)</translation>
+        <source>Make Text &amp;Bigger</source>
+        <translation>字体放大(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="386"/>
-        <source>&amp;Make Text Normal</source>
-        <translation type="obsolete">�ָ�����������С(&amp;M)</translation>
+        <source>Make Text &amp;Normal</source>
+        <translation>普通字体(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="387"/>
-        <source>&amp;Make Text Smaller</source>
-        <translation type="obsolete">��С����(&amp;M)</translation>
+        <source>Make Text &amp;Smaller</source>
+        <translation>字体缩小(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="442"/>
         <source>Page S&amp;ource</source>
-        <translation>ҳ��Դ�ļ�(&amp;o)</translation>
+        <translation>页面源码(&amp;o)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="442"/>
         <source>Ctrl+Alt+U</source>
-        <translation>Ctrl+Alt+U</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="443"/>
         <source>&amp;Full Screen</source>
-        <translation>ȫ��(&amp;F)</translation>
+        <translation>全屏(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="450"/>
         <source>Hi&amp;story</source>
-        <translation>��ʷ(&amp;s)</translation>
+        <translation>历史(&amp;s)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="454"/>
         <source>Back</source>
-        <translation>����</translation>
+        <translation>后退</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="459"/>
         <source>Forward</source>
-        <translation>ǰ��</translation>
+        <translation>前进</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="464"/>
         <source>Home</source>
-        <translation>��ҳ</translation>
+        <translation>主页</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="468"/>
         <source>Restore Last Session</source>
-        <translation>�ָ�����һ�εĻỰ</translation>
+        <translation>恢复最后一次会话</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="483"/>
         <source>&amp;Bookmarks</source>
-        <translation>��ǩ(&amp;B)</translation>
+        <translation>标签(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="488"/>
         <source>Manage Bookmarks...</source>
-        <translation>������ǩ...</translation>
+        <translation>管理标签...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="490"/>
         <source>Add Bookmark...</source>
-        <translation>������ǩ...</translation>
+        <translation>添加标签...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="501"/>
         <source>&amp;Window</source>
-        <translation>����(&amp;W)</translation>
+        <translation>窗口(&amp;W)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="506"/>
         <source>&amp;Tools</source>
-        <translation>����(&amp;T)</translation>
+        <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="507"/>
         <source>Web &amp;Search</source>
-        <translation>Web����(&amp;S)</translation>
+        <translation>Web搜索(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="508"/>
         <source>Ctrl+K</source>
         <comment>Web Search</comment>
-        <translation>Ctrl+K</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="512"/>
+        <source>&amp;Clear Private Data</source>
+        <translation>清除隐私数据(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+Delete</source>
+        <comment>Clear Private Data</comment>
+        <translation></translation>
+    </message>
+    <message>
         <source>Enable Web &amp;Inspector</source>
-        <translation>Enable Web &amp;Inspector</translation>
+        <translation>允许Web &amp;Inspector</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="519"/>
         <source>&amp;Help</source>
-        <translation>����(&amp;H)</translation>
+        <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="520"/>
+        <source>Switch application language </source>
+        <translation>切换应用程序语言</translation>
+    </message>
+    <message>
         <source>About &amp;Qt</source>
-        <translation>����Qt(&amp;Q)</translation>
+        <translation>关于&amp;Qt</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="521"/>
         <source>About &amp;Arora</source>
-        <translation>����Arora(&amp;A)</translation>
+        <translation>关于&amp;Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="527"/>
         <source>Navigation</source>
-        <translation>����</translation>
+        <translation>导航</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="625"/>
         <source>Show Status Bar</source>
-        <translation>��ʾ״̬�</translation>
+        <translation>显示状态栏</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="625"/>
         <source>Hide Status Bar</source>
-        <translation>����״̬�</translation>
+        <translation>隐藏状态栏</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="630"/>
         <source>Show Toolbar</source>
-        <translation>��ʾ�����</translation>
+        <translation>显示工具栏</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="630"/>
         <source>Hide Toolbar</source>
-        <translation>���ع����</translation>
+        <translation>隐藏工具栏</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="575"/>
-        <source>Show Bookmarks bar</source>
-        <translation type="obsolete">��ʾ��ǩ�</translation>
+        <source>Show Bookmarks Bar</source>
+        <translation>显示标签栏</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="575"/>
-        <source>Hide Bookmarks bar</source>
-        <translation type="obsolete">������ǩ�</translation>
+        <source>Hide Bookmarks Bar</source>
+        <translation>隐藏标签栏</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="733"/>
         <source>Arora</source>
-        <translation>Arora</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="738"/>
         <source>%1 - Arora</source>
         <comment>Page title and Browser name</comment>
         <translation>%1 - Arora</translation>
     </message>
     <message>
-        <location filename="src/browsermainwindow.cpp" line="672"/>
-        <source>About</source>
-        <translation type="obsolete">����</translation>
-    </message>
-    <message>
-        <location filename="src/browsermainwindow.cpp" line="678"/>
-        <source>Version %1&lt;p&gt;This demo demonstrates Qt&apos;s webkit 
-facilities in action, providing an example browser for you to experiment 
-with.&lt;p&gt;&lt;p&gt;QtWebKit is based on the Open Source WebKit Project 
-developed at &lt;a 
-href=&quot;http://webkit.org/&quot;&gt;http://webkit.org/&lt;/a&gt;.</source>
-        <translation type="obsolete">Version %1&lt;p&gt;This demo demonstrates Qt&apos;s webkit 
-facilities in action, providing an example browser for you to experiment 
-with.&lt;p&gt;&lt;p&gt;QtWebKit is based on the Open Source WebKit Project 
-developed at &lt;a 
-href=&quot;http://webkit.org/&quot;&gt;http://webkit.org/&lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="758"/>
         <source>Open Web Resource</source>
-        <translation>����������Դ</translation>
+        <translation>打开Web资源</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="694"/>
-        <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files 
-(*.*)</source>
-        <translation type="obsolete">������Դ (*.html *.htm *.svg *.png *.gif *.svgz);;���е��ļ� 
-(*.*)</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="788"/>
-        <source>Print Document</source>
-        <translation>��ӡ�ĵ�</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="799"/>
-        <source>Are you sure you want to turn on private browsing?</source>
-        <translation>��ȷ��Ҫ����������������</translation>
-    </message>
-    <message>
-        <location filename="src/browsermainwindow.cpp" line="739"/>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing in 
-turned on, webpages are not added to the history, items are automatically removed 
-from the Downloads window, new cookies are not stored, current cookies can&apos;t 
-be accessed, site icons wont be stored, session wont be saved,  and searches are 
-not addded to the pop-up menu in the Google search box.  Until you close the 
-window, you can still click the Back and Forward buttons to return to the webpages 
-you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;������������ʱ�������ҳ�治�ᱻ���ӵ���ʷ�У����ص����ݻᱻ�Զ������ش������Ƴ����µ�cookieҲ���ᱻ���棬��ǰ��cookieҲ���ܱ����ʣ�վ��ͼ�겻�ᱻ���棬�ỰҲ���������棬����Ҳ�������ӵ�Google�������ĵ����˵��С������رմ���ǰ������Ȼ����ʹ��ǰ���ͺ��˰�ť������������򿪵�ҳ�档</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="768"/>
-        <source>Are you sure you want to close the window?  There are %1 tab 
-open</source>
-        <translation type="obsolete">��ȷ��Ҫ�رմ������� ��ǰ�Ѿ������� %1 ����ǩ��</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="902"/>
-        <source>Page Source of %1</source>
-        <translation>ҳ�� %1 ��Դ��</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="932"/>
-        <source>Web Inspector</source>
-        <translation>Web Inspector</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="864"/>
-        <source>The web inspector will only work correctly for pages that were 
-loaded after enabling.
-Do you want to reload all pages?</source>
-        <translation type="obsolete">Web 
-inspactorֻ�����ú��򿪵�ҳ����Ч�����Ƿ�Ҫ�����������е�ҳ�棿</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="988"/>
-        <source>Stop loading the current page</source>
-        <translation>ֹͣ���뵱ǰҳ��</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="993"/>
-        <source>Reload the current page</source>
-        <translation>�������뵱ǰҳ��</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="1039"/>
-        <source>Downloads</source>
-        <translation>����</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="1039"/>
-        <source>Alt+Ctrl+L</source>
-        <comment>Download Manager</comment>
-        <translation>Alt+Ctrl+L</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="509"/>
-        <source>&amp;Clear Private Data</source>
-        <translation>������˽����(&amp;C)</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="510"/>
-        <source>Ctrl+Shift+Delete</source>
-        <comment>Clear Private Data</comment>
-        <translation>Ctrl+Shift+Delete</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="743"/>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is 
-turned on, some actions concerning your privacy will be 
-disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the 
-history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads 
-window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies 
-can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, 
-session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the 
-pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, 
-you can still click the Back and Forward buttonsto return to the webpages you have 
-opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;��������������ʱ���漰��������˽�Ĳ����Ǳ���ֹ�ģ�&lt;ul&gt;&lt;li&gt; 
-ҳ�治�ᱻ���ӵ���ʷ�С�&lt;/li&gt;&lt;li&gt;���ݻᱻ�Զ������ش������Ƴ���&lt;/li&gt;&lt;li&gt;�µ�cookie���ܱ����棬��ǰcookie���ܷ��ʡ�&lt;/li&gt;&lt;li&gt;վ��ͼ�겻�����档&lt;/li&gt;&lt;li&gt;�������Ĺؼ��ʲ��ᱻ���ӵ��������ĵ����˵���&lt;/li&gt;&lt;/ul&gt;�ڹرմ���ǰ������Ȼ����ͨ��ǰ���ͺ��˰�ť���ʴ򿪵�ҳ�档</translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="383"/>
-        <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="387"/>
-        <source>Find P&amp;revious</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="392"/>
-        <source>Prefe&amp;rences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="433"/>
-        <source>&amp;Reload Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="437"/>
-        <source>Make Text &amp;Bigger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="438"/>
-        <source>Make Text &amp;Normal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="439"/>
-        <source>Make Text &amp;Smaller</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="635"/>
-        <source>Show Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="635"/>
-        <source>Hide Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../browsermainwindow.cpp" line="759"/>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Web资源 (*.html *.htm *.svg *.png *.gif *.svgz);;所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="808"/>
+        <source>Print Document</source>
+        <translation>打印文档</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to turn on private browsing?</source>
+        <translation>是否确认打开隐私浏览？</translation>
+    </message>
+    <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;当开启隐私浏览时，关于你的某些隐私动作不会被记录：&lt;ul&gt;&lt;li&gt; 页面不会被添加到历史中。&lt;/li&gt;&lt;li&gt;下载项会自动从下载窗口移除。 &lt;/li&gt;&lt;li&gt; 新的cookies不会被存储，当前的cookies也不会被访问。&lt;/li&gt;&lt;li&gt;站点图标不会被存储，会话也不会被保存。 &lt;/li&gt;&lt;li&gt;搜索动作不会被添加到搜索框的弹出菜单中。&lt;/li&gt;&lt;/ul&gt;在关闭窗口之前，你可以一直通过点击后退和前进按钮来浏览已打开过的页面。</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="837"/>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
-        <translation type="unfinished"></translation>
+        <translation>是否确认关闭窗口？还有%1个标签打开着</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="934"/>
+        <source>Web Inspector</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
+        <translation>web inspector只在页面被允许且被加载后才能正常运行。
+希望重新加载所有页面吗？</translation>
+    </message>
+    <message>
+        <source>Stop loading the current page</source>
+        <translation>停止加载当前页面</translation>
+    </message>
+    <message>
+        <source>Reload the current page</source>
+        <translation>重新加载当前页面</translation>
+    </message>
+    <message>
+        <source>Downloads</source>
+        <translation>下载</translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+L</source>
+        <comment>Download Manager</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Show &amp;Network Monitor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ClearButton</name>
     <message>
-        <location filename="../searchlineedit.cpp" line="74"/>
         <source>Clear</source>
-        <translation>����</translation>
+        <translation>清除</translation>
     </message>
 </context>
 <context>
     <name>ClearPrivateData</name>
     <message>
-        <location filename="../clearprivatedata.cpp" line="38"/>
         <source>Clear Private Data</source>
-        <translation>����������Ϣ</translation>
+        <translation>清除隐私数据</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="41"/>
         <source>Clear the following items:</source>
-        <translation>�����������ݣ�</translation>
+        <translation>清除以下项：</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="43"/>
         <source>&amp;Browsing History</source>
-        <translation>������ʷ(B)</translation>
+        <translation>浏览历史(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="47"/>
         <source>&amp;Download History</source>
-        <translation>������ʷ(&amp;D)</translation>
+        <translation>下载历史(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="51"/>
         <source>&amp;Search History</source>
-        <translation>������ʷ(&amp;S)</translation>
+        <translation>搜索历史(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="55"/>
         <source>&amp;Cookies</source>
-        <translation>&amp;Cookies</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="59"/>
-        <source>C&amp;ache</source>
-        <translation>����(&amp;a)</translation>
+        <source>C&amp;ached Web Pages</source>
+        <translation>缓存的页面(&amp;a)</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="63"/>
         <source>Website &amp;Icons</source>
-        <translation>վ��ͼ��(&amp;I)</translation>
+        <translation>网站图标(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="67"/>
         <source>Clear &amp;Private Data</source>
-        <translation>������������(&amp;P)</translation>
+        <translation>清除隐私数据(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="69"/>
         <source>&amp;Cancel</source>
-        <translation>ȡ��(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
 </context>
 <context>
     <name>CookieExceptionsModel</name>
     <message>
-        <location filename="../cookiejar.cpp" line="596"/>
         <source>Website</source>
-        <translation>վ��</translation>
+        <translation>网站</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="598"/>
-        <source>Status</source>
-        <translation>״̬</translation>
+        <source>Rule</source>
+        <translation>规则</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="618"/>
         <source>Allow</source>
-        <translation>����</translation>
+        <translation>允许</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="627"/>
         <source>Block</source>
-        <translation>�ܾ�</translation>
+        <translation>阻挡</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="636"/>
         <source>Allow For Session</source>
-        <translation>�Դ˻Ự����</translation>
+        <translation>会话中允许</translation>
     </message>
 </context>
 <context>
     <name>CookieModel</name>
     <message>
-        <location filename="../cookiejar.cpp" line="441"/>
         <source>Website</source>
-        <translation>վ��</translation>
+        <translation>网站</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="443"/>
         <source>Name</source>
-        <translation>����</translation>
+        <translation>名字</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="445"/>
         <source>Path</source>
-        <translation>·��</translation>
+        <translation>路径</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="447"/>
         <source>Secure</source>
-        <translation>��ȫ</translation>
+        <translation>安全</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="449"/>
         <source>Expires</source>
-        <translation>����</translation>
+        <translation>失效</translation>
     </message>
     <message>
-        <location filename="../cookiejar.cpp" line="451"/>
         <source>Contents</source>
-        <translation>����</translation>
+        <translation>内容</translation>
+    </message>
+    <message>
+        <source>true</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>false</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>CookiesDialog</name>
     <message>
-        <location filename="../cookies.ui" line="13"/>
         <source>Cookies</source>
-        <translation>Cookies</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../cookies.ui" line="40"/>
         <source>&amp;Remove</source>
-        <translation>�Ƴ�(&amp;R)</translation>
+        <translation>移除(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../cookies.ui" line="47"/>
         <source>Remove &amp;All Cookies</source>
-        <translation>�Ƴ����е�Cookie(&amp;A)</translation>
+        <translation>移除所有Cookies(&amp;A)</translation>
     </message>
 </context>
 <context>
     <name>CookiesExceptionsDialog</name>
     <message>
-        <location filename="../cookiesexceptions.ui" line="13"/>
         <source>Cookie Exceptions</source>
-        <translation>������Cookie</translation>
+        <translation>Cookie例外</translation>
     </message>
     <message>
-        <location filename="../cookiesexceptions.ui" line="19"/>
         <source>New Exception</source>
-        <translation>�½�����</translation>
+        <translation>新建例外</translation>
     </message>
     <message>
-        <location filename="../cookiesexceptions.ui" line="27"/>
         <source>Domain:</source>
-        <translation>����</translation>
+        <translation>域：</translation>
     </message>
     <message>
-        <location filename="../cookiesexceptions.ui" line="57"/>
         <source>Block</source>
-        <translation>�ܾ�</translation>
+        <translation>阻挡</translation>
     </message>
     <message>
-        <location filename="../cookiesexceptions.ui" line="67"/>
         <source>Allow For Session</source>
-        <translation>�����еĻỰ����</translation>
+        <translation>会话中允许</translation>
     </message>
     <message>
-        <location filename="../cookiesexceptions.ui" line="77"/>
         <source>Allow</source>
-        <translation>����</translation>
+        <translation>允许</translation>
     </message>
     <message>
-        <location filename="../cookiesexceptions.ui" line="89"/>
         <source>Exceptions</source>
-        <translation>����</translation>
+        <translation>例外</translation>
     </message>
     <message>
-        <location filename="../cookiesexceptions.ui" line="114"/>
         <source>&amp;Remove</source>
-        <translation>�Ƴ�(&amp;R)</translation>
+        <translation>移除(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../cookiesexceptions.ui" line="121"/>
         <source>Remove &amp;All</source>
-        <translation>�Ƴ�����(&amp;A)</translation>
+        <translation>移除所有(&amp;A)</translation>
     </message>
 </context>
 <context>
     <name>DownloadDialog</name>
     <message>
-        <location filename="../downloads.ui" line="13"/>
         <source>Downloads</source>
-        <translation>����</translation>
+        <translation>下载</translation>
     </message>
     <message>
-        <location filename="../downloads.ui" line="37"/>
         <source>Clean up</source>
-        <translation>����</translation>
+        <translation>清除</translation>
     </message>
     <message>
-        <location filename="../downloads.ui" line="59"/>
         <source>0 Items</source>
-        <translation>0 ������</translation>
+        <translation>0项</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>DownloadItem</name>
     <message>
-        <location filename="../downloaditem.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>表单</translation>
     </message>
     <message>
-        <location filename="../downloaditem.ui" line="28"/>
         <source>Ico</source>
-        <translation>Ico</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../downloaditem.ui" line="43"/>
         <source>Filename</source>
-        <translation>�ļ���</translation>
+        <translation>文件名</translation>
     </message>
     <message>
-        <location filename="../downloaditem.ui" line="90"/>
         <source>Try Again</source>
-        <translation>����</translation>
+        <translation>重新尝试</translation>
     </message>
     <message>
-        <location filename="../downloaditem.ui" line="97"/>
         <source>Stop</source>
-        <translation>ֹͣ</translation>
+        <translation>停止</translation>
     </message>
     <message>
-        <location filename="../downloaditem.ui" line="104"/>
         <source>Open</source>
-        <translation>����</translation>
+        <translation>打开</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="165"/>
         <source>Save File</source>
-        <translation>�����ļ�</translation>
+        <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="170"/>
         <source>Download canceled: %1</source>
-        <translation>ȡ�����أ� %1</translation>
+        <translation>下载取消： %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="265"/>
-        <source>Error opening save file: %1</source>
-        <translation>�����Ѵ��ļ������� %1</translation>
+        <source>Error opening output file: %1</source>
+        <translation>打开输出文件出错： %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="274"/>
         <source>Error saving: %1</source>
-        <translation>���������� %1</translation>
+        <translation>保存出错： %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="286"/>
         <source>Network Error: %1</source>
-        <translation>��������: %1</translation>
+        <translation>网络出错： %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="328"/>
         <source>seconds</source>
-        <translation>��</translation>
-    </message>
-    <message>
-        <location filename="../downloadmanager.cpp" line="309"/>
-        <source>minutes</source>
-        <translation type="obsolete">����</translation>
-    </message>
-    <message>
-        <location filename="../downloadmanager.cpp" line="322"/>
-        <source>- %4 %5 remaining</source>
-        <translation type="obsolete">- %4 %5 ʣ��</translation>
-    </message>
-    <message>
-        <location filename="../downloadmanager.cpp" line="350"/>
-        <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 z %2 (%3/s) %4</translation>
-    </message>
-    <message>
-        <location filename="../downloadmanager.cpp" line="352"/>
-        <source>?</source>
-        <translation>��</translation>
-    </message>
-    <message>
-        <location filename="../downloadmanager.cpp" line="360"/>
-        <source>%1 of %2 - Stopped</source>
-        <translation>%1 z %2 - ֹͣ</translation>
-    </message>
-    <message>
-        <location filename="../downloadmanager.cpp" line="373"/>
-        <source>bytes</source>
-        <translation>bytes</translation>
-    </message>
-    <message>
-        <location filename="../downloadmanager.cpp" line="376"/>
-        <source>kB</source>
-        <translation>kB</translation>
-    </message>
-    <message>
-        <location filename="../downloadmanager.cpp" line="379"/>
-        <source>MB</source>
-        <translation>MB</translation>
+        <translation>秒</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="343"/>
         <source>- %n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>- 还有 %n 分钟</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="347"/>
         <source>- %n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>- 还有 %n 秒</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation>%1 of %2 (%3/秒) %4</translation>
+    </message>
+    <message>
+        <source>?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation>%1 of %2 - 停止</translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation>字节</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
-        <location filename="../downloadmanager.cpp" line="577"/>
-        <source>1 Download</source>
-        <translation type="obsolete">1 ������</translation>
-    </message>
-    <message>
-        <location filename="../downloadmanager.cpp" line="577"/>
-        <source>%1 Downloads</source>
-        <translation type="obsolete">%1 ������</translation>
-    </message>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="618"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 下载</numerusform>
         </translation>
     </message>
 </context>
 <context>
     <name>HistoryDialog</name>
     <message>
-        <location filename="../history.cpp" line="725"/>
         <source>Open</source>
-        <translation>����</translation>
+        <translation>打开</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="727"/>
         <source>Copy</source>
-        <translation>����</translation>
+        <translation>复制</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="729"/>
         <source>Delete</source>
-        <translation>ɾ��</translation>
+        <translation>删除</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="13"/>
         <source>History</source>
-        <translation>��ʷ</translation>
+        <translation>历史</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="40"/>
         <source>&amp;Remove</source>
-        <translation>�Ƴ�(&amp;R)</translation>
+        <translation>移除(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="47"/>
         <source>Remove &amp;All</source>
-        <translation>�Ƴ�ȫ��(&amp;A)</translation>
+        <translation>移除所有(&amp;A)</translation>
     </message>
 </context>
 <context>
     <name>HistoryMenu</name>
     <message>
-        <location filename="../history.cpp" line="651"/>
         <source>Show All History</source>
-        <translation>��ʾȫ����ʷ</translation>
+        <translation>显示所有历史</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="655"/>
+        <source>Clear History...</source>
+        <translation>清除历史...</translation>
+    </message>
+    <message>
         <source>Clear History</source>
-        <translation>������ʷ</translation>
+        <translation>清除历史</translation>
+    </message>
+    <message>
+        <source>Do you want to clear the history?</source>
+        <translation>希望清除历史吗？</translation>
     </message>
 </context>
 <context>
     <name>HistoryModel</name>
     <message>
-        <location filename="../history.cpp" line="424"/>
         <source>Title</source>
-        <translation>����</translation>
+        <translation>标题</translation>
     </message>
     <message>
-        <location filename="../history.cpp" line="425"/>
         <source>Address</source>
-        <translation>��ַ</translation>
+        <translation>地址</translation>
     </message>
 </context>
 <context>
     <name>HistoryTreeModel</name>
     <message>
-        <location filename="../history.cpp" line="1058"/>
         <source>Earlier Today</source>
-        <translation>������Щʱ��</translation>
-    </message>
-    <message>
-        <location filename="../history.cpp" line="1059"/>
-        <source>%1 items</source>
-        <translation type="obsolete">%1 ������</translation>
+        <translation>早些时候</translation>
     </message>
     <message numerus="yes">
-        <location filename="../history.cpp" line="1062"/>
         <source>%n item(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 项</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>LanguageManager</name>
+    <message>
+        <source>Default</source>
+        <translation>缺省</translation>
+    </message>
+    <message>
+        <source>Choose language</source>
+        <translation>选择语言</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
+        <translation>&lt;p&gt;你可以运行在其它语言环境下&lt;br&gt;而不采用操作系统所缺省的语言环境&lt;/p&gt;&lt;p&gt;请选择应该使用的语言环境&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
     <name>NetworkAccessManager</name>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="138"/>
-        <source>&lt;qt&gt;Enter username and password for &quot;%1&quot; at 
-%2&lt;/qt&gt;</source>
-        <translation type="obsolete">&lt;qt&gt;���� &quot;%1&quot; �� %2 
-���û���������&lt;/qt&gt;</translation>
+        <source>&lt;qt&gt;Enter username and password for &quot;%1&quot; at %2&lt;/qt&gt;</source>
+        <translation>&lt;qt&gt;为 &quot;%1&quot; 在 %2 输入用户名和密码&lt;/qt&gt;</translation>
     </message>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="162"/>
-        <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; 
-using:&lt;/qt&gt;</source>
-        <translation type="obsolete">&lt;qt&gt;ʹ�����·�ʽ��Ӵ��� 
-&quot;%1&quot;��&lt;/qt&gt;</translation>
+        <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</source>
+        <translation>&lt;qt&gt;连接到代理 &quot;%1&quot; 使用：&lt;/qt&gt;</translation>
     </message>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="199"/>
         <source>SSL Errors:
 
 %1
@@ -1149,630 +904,616 @@ using:&lt;/qt&gt;</source>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>SSL����:
-
-%1
-
-%2
-
-��Ҫ������Щ��������</translation>
+        <translation>SSL 错误：%1%2希望忽略该错误吗？</translation>
     </message>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="206"/>
         <source>Do you want to accept all these certificates?</source>
-        <translation>��Ҫ����ȫ����Щ��֤����</translation>
+        <translation>确认接受所有证书吗？</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitor</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">名字</translation>
     </message>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="138"/>
-        <source>&lt;qt&gt;Enter username and password for &quot;%1&quot; at %2&lt;/qt&gt;</source>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitorDialog</name>
+    <message>
+        <source>Network Monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../networkaccessmanager.cpp" line="162"/>
-        <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</source>
+        <source>Network Requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Request Headers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Response Headers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">移除(&amp;R)</translation>
+    </message>
+    <message>
+        <source>Remove &amp;All Requests</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
-        <location filename="../passworddialog.ui" line="13"/>
         <source>Authentication Required</source>
-        <translation>��Ҫ��֤</translation>
+        <translation>需要验证</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="21"/>
         <source>DUMMY ICON</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="34"/>
         <source>INTRO TEXT DUMMY</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="43"/>
         <source>Username:</source>
-        <translation>�û�����</translation>
+        <translation>用户名：</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="53"/>
         <source>Password:</source>
-        <translation>���룺</translation>
+        <translation>密码：</translation>
+    </message>
+</context>
+<context>
+    <name>PlainTextEditSearch</name>
+    <message>
+        <source>Not Found</source>
+        <translation>未找到</translation>
     </message>
 </context>
 <context>
     <name>ProxyDialog</name>
     <message>
-        <location filename="../proxy.ui" line="13"/>
         <source>Proxy Authentication</source>
-        <translation>������֤</translation>
+        <translation>代理验证</translation>
     </message>
     <message>
-        <location filename="../proxy.ui" line="19"/>
         <source>ICON</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../proxy.ui" line="26"/>
         <source>Connect to proxy</source>
-        <translation>��ӵ�����</translation>
+        <translation>连接到代理</translation>
     </message>
     <message>
-        <location filename="../proxy.ui" line="36"/>
         <source>Username:</source>
-        <translation>�û�����</translation>
+        <translation>用户名：</translation>
     </message>
     <message>
-        <location filename="../proxy.ui" line="46"/>
         <source>Password:</source>
-        <translation>���룺</translation>
+        <translation>密码：</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../xbel.cpp" line="165"/>
         <source>The file is not an XBEL version 1.0 file.</source>
-        <translation>���ļ���XBEL 1.0�档</translation>
+        <translation>该文件不是版本为1.0的XBEL文件</translation>
     </message>
     <message>
-        <location filename="../xbel.cpp" line="263"/>
         <source>Unknown title</source>
-        <translation>δ֪����</translation>
+        <translation>未知文件</translation>
+    </message>
+</context>
+<context>
+    <name>RequestModel</name>
+    <message>
+        <source>Redirect: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished">地址</translation>
+    </message>
+    <message>
+        <source>Response</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SearchBanner</name>
     <message>
-        <location filename="../searchbanner.ui" line="19"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>表单</translation>
     </message>
     <message>
-        <location filename="../searchbanner.ui" line="50"/>
         <source>TextLabel</source>
-        <translation>���ֱ�ǩ</translation>
+        <translation>文本标签</translation>
     </message>
     <message>
-        <location filename="../searchbanner.ui" line="57"/>
         <source>&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../searchbanner.ui" line="64"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../searchbanner.ui" line="74"/>
         <source>Done</source>
-        <translation>����</translation>
+        <translation>完成</translation>
     </message>
 </context>
 <context>
     <name>SearchLineEdit</name>
     <message>
-        <location filename="../searchlineedit.cpp" line="193"/>
         <source>Search</source>
-        <translation>����</translation>
+        <translation>搜索</translation>
     </message>
 </context>
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../settings.ui" line="13"/>
-        <source>Settings</source>
-        <translation>�趨</translation>
+        <source>Preferences</source>
+        <translation>选项</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="33"/>
         <source>General</source>
-        <translation>ͨ��</translation>
+        <translation>常规</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="68"/>
-        <source>Home:</source>
-        <translation>��ҳ��</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="81"/>
-        <source>Set to current page</source>
-        <translation>ʹ�õ�ǰҳ��</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="101"/>
-        <source>Remove history items:</source>
-        <translation>�Ƴ���ʷ���ݣ�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="112"/>
-        <source>After one day</source>
-        <translation>һ����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="117"/>
-        <source>After one week</source>
-        <translation>һ�ܺ�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="122"/>
-        <source>After two weeks</source>
-        <translation>��ܺ�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="127"/>
-        <source>After one month</source>
-        <translation>һ���º�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="132"/>
-        <source>After one year</source>
-        <translation>һ����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="137"/>
-        <source>Manually</source>
-        <translation>�ֶ�</translation>
-    </message>
-    <message>
-        <location filename="src/settings.ui" line="124"/>
-        <source>Save downloads to:</source>
-        <translation type="obsolete">�������ص���</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="150"/>
-        <source>Open links from applications:</source>
-        <translation>�ڳ����д�����ӣ�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="161"/>
-        <source>In a tab in the current window</source>
-        <translation>�ڵ�ǰ���ڵı�ǩ��</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="166"/>
-        <source>In a new window</source>
-        <translation>���´�����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="222"/>
-        <source>Appearance</source>
-        <translation>����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="228"/>
-        <source>Standard font:</source>
-        <translation>��׼���壺</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="247"/>
-        <source>Times 16</source>
-        <translation>Times 16</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="287"/>
-        <source>Select...</source>
-        <translation>ѡ��...</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="264"/>
-        <source>Fixed-width font:</source>
-        <translation>�ȿ����壺</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="277"/>
-        <source>Courier 13</source>
-        <translation>Courier 13</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="308"/>
-        <source>Privacy</source>
-        <translation>��˽</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="314"/>
-        <source>Web Content</source>
-        <translation>Web����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="320"/>
-        <source>Enable Plugins</source>
-        <translation>���ò���</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="330"/>
-        <source>Enable Javascript</source>
-        <translation>����JavaScript</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="353"/>
-        <source>Cookies</source>
-        <translation>Cookies</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="359"/>
-        <source>Accept Cookies:</source>
-        <translation>����cookies��</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="370"/>
-        <source>Always</source>
-        <translation>��Զ</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="375"/>
-        <source>Never</source>
-        <translation>���</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="380"/>
-        <source>Only from sites you navigate to</source>
-        <translation>ֻ����Щ�����ʵ�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="388"/>
-        <source>Exceptions...</source>
-        <translation>����...</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="395"/>
-        <source>Keep until:</source>
-        <translation>���浽��</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="406"/>
-        <source>They expire</source>
-        <translation>����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="411"/>
-        <source>I exit the application</source>
-        <translation>���˳�����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="416"/>
-        <source>At most 90 days</source>
-        <translation>����90��</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="424"/>
-        <source>Cookies...</source>
-        <translation>Cookies...</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="485"/>
-        <source>Proxy</source>
-        <translation>����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="491"/>
-        <source>Enable proxy</source>
-        <translation>���ô���</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="500"/>
-        <source>Type:</source>
-        <translation>���ͣ�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="511"/>
-        <source>Socks5</source>
-        <translation>Socks5</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="516"/>
-        <source>Http</source>
-        <translation>Http</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="524"/>
-        <source>Host:</source>
-        <translation>������</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="537"/>
-        <source>Port:</source>
-        <translation>�˿ڣ�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="570"/>
-        <source>User Name:</source>
-        <translation>�û�����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="583"/>
-        <source>Password:</source>
-        <translation>���룺</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="617"/>
-        <source>Advanced</source>
-        <translation>�߼�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="623"/>
-        <source>Style Sheet:</source>
-        <translation>��ʽ��</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="174"/>
-        <source>Downloads</source>
-        <translation>����</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="180"/>
-        <source>Ask for a destination each time</source>
-        <translation>ÿ�ζ�ѯ��Ŀ�ĵ�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="189"/>
-        <source>Use this destination:</source>
-        <translation>ʹ�ô�Ŀ�ĵأ�</translation>
-    </message>
-    <message>
-        <location filename="../settings.ui" line="39"/>
         <source>On startup:</source>
-        <translation type="unfinished"></translation>
+        <translation>启动时：</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="50"/>
         <source>Show my home page</source>
-        <translation type="unfinished"></translation>
+        <translation>显示我的主页</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="55"/>
         <source>Show a blank page</source>
-        <translation type="unfinished"></translation>
+        <translation>显示空白页</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="60"/>
         <source>Restore windows and tabs from last time</source>
-        <translation type="unfinished"></translation>
+        <translation>恢复最后一次的窗口和标签</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="142"/>
+        <source>Home Page:</source>
+        <translation>主页：</translation>
+    </message>
+    <message>
+        <source>Set to current page</source>
+        <translation>设置为当前页面</translation>
+    </message>
+    <message>
+        <source>Remove history items:</source>
+        <translation>移除历史项：</translation>
+    </message>
+    <message>
+        <source>After one day</source>
+        <translation>一天后</translation>
+    </message>
+    <message>
+        <source>After one week</source>
+        <translation>一周后</translation>
+    </message>
+    <message>
+        <source>After two weeks</source>
+        <translation>两周后</translation>
+    </message>
+    <message>
+        <source>After one month</source>
+        <translation>一个月后</translation>
+    </message>
+    <message>
+        <source>After one year</source>
+        <translation>一年后</translation>
+    </message>
+    <message>
+        <source>Manually</source>
+        <translation>手工</translation>
+    </message>
+    <message>
         <source>On application exit</source>
-        <translation type="unfinished"></translation>
+        <translation>应用退出</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="340"/>
-        <source>Enable Images</source>
-        <translation type="unfinished"></translation>
+        <source>Open links from applications:</source>
+        <translation>从应用程序打开链接：</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="448"/>
+        <source>In a tab in the current window</source>
+        <translation>在当前窗口的标签中</translation>
+    </message>
+    <message>
+        <source>In a new window</source>
+        <translation>在新窗口中</translation>
+    </message>
+    <message>
+        <source>Downloads</source>
+        <translation>下载</translation>
+    </message>
+    <message>
+        <source>Ask for a destination each time</source>
+        <translation>每次均询问目的地</translation>
+    </message>
+    <message>
+        <source>Use this destination:</source>
+        <translation>使用该目的地：</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>外观</translation>
+    </message>
+    <message>
+        <source>Standard font:</source>
+        <translation>标准字体：</translation>
+    </message>
+    <message>
+        <source>Times 16</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Select...</source>
+        <translation>选择...</translation>
+    </message>
+    <message>
+        <source>Fixed-width font:</source>
+        <translation>定宽字体：</translation>
+    </message>
+    <message>
+        <source>Courier 13</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Privacy</source>
+        <translation>隐私</translation>
+    </message>
+    <message>
+        <source>Web Content</source>
+        <translation>Web内容</translation>
+    </message>
+    <message>
+        <source>Enable Plugins</source>
+        <translation>允许插件</translation>
+    </message>
+    <message>
+        <source>Enable Javascript</source>
+        <translation>允许Javascript</translation>
+    </message>
+    <message>
+        <source>View Images</source>
+        <translation>查看图片</translation>
+    </message>
+    <message>
+        <source>Cookies</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Accept Cookies:</source>
+        <translation>接受Cookies：</translation>
+    </message>
+    <message>
+        <source>Always</source>
+        <translation>总是</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation>从不</translation>
+    </message>
+    <message>
+        <source>Only from sites you navigate to</source>
+        <translation>只允许从浏览过的站点</translation>
+    </message>
+    <message>
+        <source>Exceptions...</source>
+        <translation>例外...</translation>
+    </message>
+    <message>
+        <source>Keep Cookies Until:</source>
+        <translation>保持Cookies直到：</translation>
+    </message>
+    <message>
+        <source>They expire</source>
+        <translation>它们失效</translation>
+    </message>
+    <message>
+        <source>I exit the application</source>
+        <translation>退出应用程序</translation>
+    </message>
+    <message>
+        <source>At most 90 days</source>
+        <translation>最多90天</translation>
+    </message>
+    <message>
+        <source>Cookies...</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>标签</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="454"/>
         <source>Select tabs and windows as they are created</source>
-        <translation type="unfinished"></translation>
+        <translation>在标签和窗口被创建后选择它们</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="461"/>
         <source>Confirm when closing multiple tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭多个标签时进行确认</translation>
+    </message>
+    <message>
+        <source>Proxy</source>
+        <translation>代理</translation>
+    </message>
+    <message>
+        <source>Use proxy server</source>
+        <translation>使用代理服务器</translation>
+    </message>
+    <message>
+        <source>Type:</source>
+        <translation>类型：</translation>
+    </message>
+    <message>
+        <source>Socks5</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Http</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Host name:</source>
+        <translation>主机名：</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation>端口：</translation>
+    </message>
+    <message>
+        <source>User Name:</source>
+        <translation>用户名：</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>密码：</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>高级</translation>
+    </message>
+    <message>
+        <source>Style Sheet:</source>
+        <translation>样式表：</translation>
+    </message>
+    <message>
+        <source>Show only one close button instead of one for each tab</source>
+        <translation>只显示一个关闭按钮，而不是在每个标签上都显示一个关闭按钮</translation>
+    </message>
+</context>
+<context>
+    <name>SourceViewer</name>
+    <message>
+        <source>Loading...</source>
+        <translation>加载...</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation>编辑(&amp;E)</translation>
+    </message>
+    <message>
+        <source>&amp;Find</source>
+        <translation>查找(&amp;F)</translation>
+    </message>
+    <message>
+        <source>Source of Page </source>
+        <translation>页面源码</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>查看(&amp;V)</translation>
+    </message>
+    <message>
+        <source>&amp;Wrap lines</source>
+        <translation>折叠行(&amp;W)</translation>
     </message>
 </context>
 <context>
     <name>TabBar</name>
     <message>
-        <location filename="../tabbar.cpp" line="162"/>
-        <source>New &amp;Tab</source>
-        <translation>�½���ǩ(&amp;T)</translation>
-    </message>
-    <message>
-        <location filename="../tabbar.cpp" line="165"/>
-        <source>Duplicate Tab</source>
-        <translation>���Ʊ�ǩ</translation>
-    </message>
-    <message>
-        <location filename="../tabbar.cpp" line="171"/>
-        <source>&amp;Close Tab</source>
-        <translation>�رձ�ǩ(&amp;C)</translation>
-    </message>
-    <message>
-        <location filename="../tabbar.cpp" line="175"/>
-        <source>Close &amp;Other Tabs</source>
-        <translation>�ر�������ǩ(&amp;O)</translation>
-    </message>
-    <message>
-        <location filename="../tabbar.cpp" line="181"/>
-        <source>Reload Tab</source>
-        <translation>���ر�ǩ</translation>
-    </message>
-    <message>
-        <location filename="../tabbar.cpp" line="187"/>
-        <source>Reload All Tabs</source>
-        <translation>�����������б�ǩ</translation>
-    </message>
-    <message>
-        <location filename="../tabbar.cpp" line="144"/>
         <source>Show Tab Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>显示标签栏</translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="144"/>
         <source>Hide Tab Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>隐藏标签栏</translation>
+    </message>
+    <message>
+        <source>New &amp;Tab</source>
+        <translation>新标签页(&amp;T)</translation>
+    </message>
+    <message>
+        <source>Duplicate Tab</source>
+        <translation>复制标签</translation>
+    </message>
+    <message>
+        <source>&amp;Close Tab</source>
+        <translation>关闭标签(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Close &amp;Other Tabs</source>
+        <translation>关闭其它标签(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Reload Tab</source>
+        <translation>重新加载标签</translation>
+    </message>
+    <message>
+        <source>Reload All Tabs</source>
+        <translation>重新加载所有标签</translation>
     </message>
 </context>
 <context>
     <name>TabWidget</name>
     <message>
-        <location filename="../tabwidget.cpp" line="122"/>
         <source>New &amp;Tab</source>
-        <translation>�½���ǩ(&amp;T)</translation>
+        <translation>新标签页(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="126"/>
         <source>&amp;Close Tab</source>
-        <translation>�رձ�ǩ(&amp;C)</translation>
+        <translation>关闭标签(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="138"/>
         <source>Show Next Tab</source>
-        <translation>��ʾ��һ����ǩ</translation>
+        <translation>显示下一个标签</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="148"/>
         <source>Show Previous Tab</source>
-        <translation>��ʾǰһ����ǩ</translation>
+        <translation>显示前一个标签</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="163"/>
         <source>Recently Closed Tabs</source>
-        <translation>�����رյı�ǩ</translation>
+        <translation>最近关闭的标签</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="454"/>
-        <source>(Untitled)</source>
-        <translation>�ޱ���</translation>
+        <source>Untitled</source>
+        <translation>无标题</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="562"/>
         <source>Do you really want to close this page?</source>
-        <translation>��ȷ��Ҫ�رմ�ҳ��</translation>
+        <translation>确认关闭该页面？</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="649"/>
-        <source>You have modified this page and when closing it you would lose the 
-modification.
-Do you really want to close this page?
-</source>
-        <translation type="obsolete">���Ѿ��޸���ҳ�棬�رս����������޸Ķ�ʧ����ȷ��Ҫ�رմ�ҳ����
-</translation>
-    </message>
-    <message>
-        <location filename="../tabwidget.cpp" line="564"/>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
+        <translation>页面已被修改，如果关闭，将丢失所有修改。确认关闭该页面？</translation>
+    </message>
+    <message>
+        <source>Ctrl-]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl-[</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
     <message>
-        <location filename="../toolbarsearch.cpp" line="94"/>
-        <source>Google</source>
-        <translation>Google</translation>
-    </message>
-    <message>
-        <location filename="../toolbarsearch.cpp" line="153"/>
         <source>No Recent Searches</source>
-        <translation>������������</translation>
+        <translation>无最近搜索</translation>
     </message>
     <message>
-        <location filename="../toolbarsearch.cpp" line="157"/>
         <source>Recent Searches</source>
-        <translation>����������</translation>
+        <translation>最近搜索</translation>
     </message>
     <message>
-        <location filename="../toolbarsearch.cpp" line="164"/>
         <source>Clear Recent Searches</source>
-        <translation>��������������</translation>
+        <translation>清除最近搜索</translation>
     </message>
 </context>
 <context>
     <name>WebPage</name>
     <message>
-        <location filename="../webview.cpp" line="195"/>
         <source>Error loading page: %1</source>
-        <translation>����ҳ�棺 %1 ��������</translation>
+        <translation>加载页面出错： %1</translation>
+    </message>
+    <message>
+        <source>When connecting to: %1.</source>
+        <translation>当连接至：%1</translation>
+    </message>
+    <message>
+        <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.trolltech.com instead of &lt;b&gt;www&lt;/b&gt;.trolltech.com.</source>
+        <translation type="obsolete">检查地址是否错误，比如输入的是 &lt;b&gt;ww&lt;/b&gt;.trolltech.com 而不是 &lt;b&gt;www&lt;/b&gt;.trolltech.com.</translation>
+    </message>
+    <message>
+        <source>If the address is correct, try to check the network connection.</source>
+        <translation>如果地址正确，那么请检查网络是否连接。</translation>
+    </message>
+    <message>
+        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
+        <translation>如果计算机或网络被防火墙或代理所保护，请确认浏览器被允许访问网络。</translation>
+    </message>
+    <message>
+        <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="webview.cpp" line="230"/>
-        <source>Open in New Tab</source>
-        <translation type="obsolete">���±�ǩ�д���</translation>
-    </message>
-    <message>
-        <location filename="../webview.cpp" line="255"/>
         <source>Open in New &amp;Window</source>
-        <translation>���´����д���(&amp;W)</translation>
+        <translation>在新窗口中打开(&amp;W)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="256"/>
         <source>Open in New &amp;Tab</source>
-        <translation>���±�ǩ�д���(&amp;T)</translation>
+        <translation>在新标签页中打开(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="258"/>
         <source>Save Lin&amp;k</source>
-        <translation>�������(&amp;k)</translation>
+        <translation>保存链接(&amp;k)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="259"/>
         <source>&amp;Bookmark This Link</source>
-        <translation>���Ӵ���ӵ���ǩ(&amp;B)</translation>
+        <translation>添加该链接到书签(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="261"/>
         <source>&amp;Copy Link Location</source>
-        <translation>�������(&amp;C)</translation>
+        <translation>复制链接地址(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="269"/>
         <source>Open Image in New &amp;Window</source>
-        <translation>���´����д���ͼƬ(&amp;W)</translation>
+        <translation>在新窗口中打开图片(&amp;W)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="270"/>
         <source>Open Image in New &amp;Tab</source>
-        <translation>���±�ǩ�д���ͼƬ(&amp;T)</translation>
+        <translation>在新标签页中打开图片(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="272"/>
         <source>&amp;Save Image</source>
-        <translation>����ͼƬ(&amp;S)</translation>
+        <translation>保存图片(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="273"/>
         <source>&amp;Copy Image</source>
-        <translation>����ͼƬ(&amp;C)</translation>
+        <translation>复制图片(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="274"/>
         <source>C&amp;opy Image Location</source>
-        <translation>����ͼƬ��ַ(&amp;o)</translation>
+        <translation>复制图片地址(&amp;o)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="413"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>加载...</translation>
     </message>
 </context>
 <context>
     <name>WebViewSearch</name>
     <message>
-        <location filename="../webviewsearch.cpp" line="119"/>
         <source>Not Found</source>
-        <translation>δ����</translation>
+        <translation>未找到</translation>
     </message>
 </context>
 </TS>

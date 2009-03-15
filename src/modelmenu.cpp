@@ -62,13 +62,17 @@
 
 #include "modelmenu.h"
 
+#include "browserapplication.h"
+
 #include <qabstractitemmodel.h>
+#include <qapplication.h>
+#include <qevent.h>
 
 #include <qdebug.h>
 
-ModelMenu::ModelMenu(QWidget * parent)
+ModelMenu::ModelMenu(QWidget *parent)
     : QMenu(parent)
-    , m_maxRows(7)
+    , m_maxRows(-1)
     , m_firstSeparator(-1)
     , m_maxWidth(-1)
     , m_statusBarTextRole(0)
@@ -76,6 +80,7 @@ ModelMenu::ModelMenu(QWidget * parent)
     , m_model(0)
 {
     connect(this, SIGNAL(aboutToShow()), this, SLOT(aboutToShow()));
+    connect(this, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));
 }
 
 bool ModelMenu::prePopulated()
@@ -150,17 +155,8 @@ int ModelMenu::separatorRole() const
 Q_DECLARE_METATYPE(QModelIndex)
 void ModelMenu::aboutToShow()
 {
-    if (QMenu *menu = qobject_cast<QMenu*>(sender())) {
-        QVariant v = menu->menuAction()->data();
-        if (v.canConvert<QModelIndex>()) {
-            QModelIndex idx = qvariant_cast<QModelIndex>(v);
-            createMenu(idx, -1, menu, menu);
-            disconnect(menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShow()));
-            return;
-        }
-    }
-
     clear();
+
     if (prePopulated())
         addSeparator();
     int max = m_maxRows;
@@ -170,26 +166,35 @@ void ModelMenu::aboutToShow()
     postPopulated();
 }
 
+ModelMenu *ModelMenu::createBaseMenu()
+{
+    return new ModelMenu(this);
+}
+
 void ModelMenu::createMenu(const QModelIndex &parent, int max, QMenu *parentMenu, QMenu *menu)
 {
     if (!menu) {
         QString title = parent.data().toString();
-        menu = new QMenu(title, this);
+        ModelMenu *modelMenu = createBaseMenu();
+        // triggered goes all the way up the menu structure
+        disconnect(modelMenu, SIGNAL(triggered(QAction*)),
+                   modelMenu, SLOT(actionTriggered(QAction*)));
+        modelMenu->setTitle(title);
         QIcon icon = qvariant_cast<QIcon>(parent.data(Qt::DecorationRole));
-        menu->setIcon(icon);
-        parentMenu->addMenu(menu);
-        QVariant v;
-        v.setValue(parent);
-        menu->menuAction()->setData(v);
-        connect(menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShow()));
+        modelMenu->setIcon(icon);
+        parentMenu->addMenu(modelMenu);
+        modelMenu->setRootIndex(parent);
+        modelMenu->setModel(m_model);
         return;
     }
+
+    if (!m_model)
+        return;
 
     int end = m_model->rowCount(parent);
     if (max != -1)
         end = qMin(max, end);
 
-    connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(triggered(QAction*)));
 
     for (int i = 0; i < end; ++i) {
         QModelIndex idx = m_model->index(i, 0, parent);
@@ -228,12 +233,53 @@ QAction *ModelMenu::makeAction(const QIcon &icon, const QString &text, QObject *
     return new QAction(icon, smallText, parent);
 }
 
-void ModelMenu::triggered(QAction *action)
+void ModelMenu::actionTriggered(QAction *action)
 {
-    QVariant v = action->data();
-    if (v.canConvert<QModelIndex>()) {
-        QModelIndex idx = qvariant_cast<QModelIndex>(v);
+    QModelIndex idx = index(action);
+    if (idx.isValid())
         emit activated(idx);
+}
+
+QModelIndex ModelMenu::index(QAction *action)
+{
+    if (!action)
+        return QModelIndex();
+    QVariant variant = action->data();
+    if (!variant.canConvert<QModelIndex>())
+        return QModelIndex();
+
+    return qvariant_cast<QModelIndex>(variant);
+}
+
+void ModelMenu::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+        m_dragStartPos = event->pos();
+    QMenu::mousePressEvent(event);
+}
+
+void ModelMenu::mouseReleaseEvent(QMouseEvent *event)
+{
+    BrowserApplication::instance()->setEventMouseButtons(event->button());
+    BrowserApplication::instance()->setEventKeyboardModifiers(event->modifiers());
+    QMenu::mouseReleaseEvent(event);
+}
+
+void ModelMenu::mouseMoveEvent(QMouseEvent *event)
+{
+    if ((event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()) {
+        QAction *action = actionAt(event->pos());
+        QModelIndex idx = index(action);
+        if (event->buttons() == Qt::LeftButton
+            && idx.isValid()
+            && !m_model->hasChildren(idx)) {
+            QDrag *drag = new QDrag(this);
+            drag->setMimeData(m_model->mimeData((QModelIndexList() << idx)));
+            QRect actionRect = actionGeometry(action);
+            drag->setPixmap(QPixmap::grabWidget(this, actionRect));
+            drag->exec();
+        }
     }
+    QMenu::mouseMoveEvent(event);
 }
 

@@ -1,7 +1,11 @@
 TEMPLATE      = subdirs
 SUBDIRS = bookmarks \
-	downloadmanager \
-	history \
-	searchlineedit \
-	urllineedit
-
+          downloadmanager \
+          history \
+          lineedit \
+          locationbar \
+          modelmenu \
+          searchlineedit \
+          singleapplication \
+          squeezelabel \
+          webviewsearch

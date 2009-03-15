@@ -96,6 +96,7 @@ public:
     void setTitle(BookmarkNode *node, const QString &newTitle);
     void setUrl(BookmarkNode *node, const QString &newUrl);
     void changeExpanded();
+    void retranslate() const;
 
     BookmarkNode *bookmarks();
     BookmarkNode *menu();
@@ -119,6 +120,8 @@ private:
     bool m_loaded;
     AutoSaver *m_saveTimer;
     BookmarkNode *m_bookmarkRootNode;
+    BookmarkNode *m_toolbar;
+    BookmarkNode *m_menu;
     BookmarksModel *m_bookmarkModel;
     QUndoStack m_commands;
 
@@ -205,8 +208,8 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex index(int, int, const QModelIndex& = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index = QModelIndex()) const;
+    QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
+    QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
     Qt::DropActions supportedDropActions() const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
@@ -226,24 +229,41 @@ private:
     BookmarksManager *m_bookmarksManager;
 };
 
-// Menu that is dynamically populated from the bookmarks
 #include "modelmenu.h"
+
+// Base class for BookmarksMenuBarMenu and BookmarksToolBarMenu
 class BookmarksMenu : public ModelMenu
 {
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url, TabWidget::Tab type, const QString &title);
+    void openUrl(const QUrl &url, const QString &title);
+    void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
     BookmarksMenu(QWidget *parent = 0);
+
+protected:
+    void postPopulated();
+    ModelMenu *createBaseMenu();
+
+private slots:
+    void openAll();
+    void activated(const QModelIndex &index);
+
+};
+
+// Menu that is dynamically populated from the bookmarks
+class BookmarksMenuBarMenu : public BookmarksMenu
+{
+    Q_OBJECT
+
+public:
+    BookmarksMenuBarMenu(QWidget *parent = 0);
     void setInitialActions(QList<QAction*> actions);
 
 protected:
     bool prePopulated();
-
-private slots:
-    void activated(const QModelIndex &index);
 
 private:
     BookmarksManager *m_bookmarksManager;
@@ -270,18 +290,20 @@ protected:
     Add bookmark dialog
  */
 #include "ui_addbookmarkdialog.h"
+class QTreeView;
 class AddBookmarkDialog : public QDialog, public Ui_AddBookmarkDialog
 {
     Q_OBJECT
 
 public:
     AddBookmarkDialog(const QString &url, const QString &title, QWidget *parent = 0, BookmarksManager *bookmarkManager = 0);
+    void setCurrentIndex(const QModelIndex &index);
 
 private slots:
     void accept();
 
 private:
-    QString m_url;
+    QTreeView *m_treeView;
     BookmarksManager *m_bookmarksManager;
     AddBookmarkProxyModel *m_proxyModel;
 };
@@ -293,7 +315,7 @@ class BookmarksDialog : public QDialog, public Ui_BookmarksDialog
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url, TabWidget::Tab, const QString &title);
+    void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
     BookmarksDialog(QWidget *parent = 0, BookmarksManager *manager = 0);
@@ -301,9 +323,12 @@ public:
 
 private slots:
     void customContextMenuRequested(const QPoint &pos);
-    void open(TabWidget::Tab tab);
+    void open(TabWidget::OpenUrlIn tab);
+    void open();
     void openInNewTab();
     void openInCurrentTab();
+    void editName();
+    void editAddress();
     void newFolder();
 
 private:
@@ -320,20 +345,18 @@ class BookmarkToolButton : public QToolButton
     Q_OBJECT
 
 signals:
-    void openBookmark(const QUrl &url, TabWidget::Tab tab, const QString &title);
+    void openBookmark(const QUrl &url, const QString &title);
 
 public:
-    BookmarkToolButton(QUrl url, QWidget *parent = 0);
+    BookmarkToolButton(const QModelIndex &index, QWidget *parent = 0);
+    QModelIndex index() const;
     QUrl url() const;
 
 protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
-private slots:
-    void openBookmark();
-
 private:
-    QUrl m_url;
+    QModelIndex m_index;
 
 };
 
@@ -343,7 +366,8 @@ class BookmarksToolBar : public QToolBar
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url, TabWidget::Tab tab, const QString &title);
+    void openUrl(const QUrl &url, const QString &title);
+    void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
     BookmarksToolBar(BookmarksModel *model, QWidget *parent = 0);
@@ -356,6 +380,13 @@ protected:
 
 private slots:
     void build();
+
+protected slots:
+    void contextMenuRequested(const QPoint &position);
+    void openBookmark();
+    void openBookmarkInNewTab();
+    void removeBookmark();
+    void newBookmark();
 
 private:
     BookmarksModel *m_bookmarksModel;

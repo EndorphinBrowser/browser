@@ -27,56 +27,67 @@ Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME} ${PRODUCT_VERSION} Installer.exe"
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
-ShowInstDetails nevershow
-ShowUnInstDetails nevershow
+ShowInstDetails show
+ShowUnInstDetails show
 
-Section "Main Components" SEC01
+Section "Main Components"
   KillProcDLL::KillProc "arora.exe"
   Sleep 100
   SetOverwrite on
 
   SetOutPath "$INSTDIR"
   File "arora.exe"
-  File "C:\qt\4.4.0\bin\QtCore4.dll"
-  File "C:\qt\4.4.0\bin\QtGui4.dll"
-  File "C:\qt\4.4.0\bin\QtNetwork4.dll"
-  File "C:\qt\4.4.0\bin\QtWebKit4.dll"
-  File "C:\windows\system32\ssleay32.dll"
-  File "C:\windows\system32\libeay32.dll"
-  File "C:\windows\system32\msvcr71.dll"
+  File "C:\qt-snapshot\bin\QtCore4.dll"
+  File "C:\qt-snapshot\bin\QtGui4.dll"
+  File "C:\qt-snapshot\bin\QtNetwork4.dll"
+  File "C:\qt-snapshot\bin\QtWebKit4.dll"
+  File "C:\qt-snapshot\bin\phonon4.dll"
+  File "C:\openssl-0.9.8h\out32dll\ssleay32.dll"
+  File "C:\openssl-0.9.8h\out32dll\libeay32.dll"
 
   SetOutPath "$INSTDIR\locale"
   File "src\.qm\locale\*.qm"
 
   SetOutPath "$INSTDIR\imageformats"
-  File "C:\qt\4.4.0\plugins\imageformats\qtiff4.dll"
-  File "C:\qt\4.4.0\plugins\imageformats\qsvg4.dll"
-  File "C:\qt\4.4.0\plugins\imageformats\qmng4.dll"
-  File "C:\qt\4.4.0\plugins\imageformats\qjpeg4.dll"
-  File "C:\qt\4.4.0\plugins\imageformats\qico4.dll"
-  File "C:\qt\4.4.0\plugins\imageformats\qgif4.dll"
+  File "C:\qt-snapshot\plugins\imageformats\qtiff4.dll"
+  File "C:\qt-snapshot\plugins\imageformats\qsvg4.dll"
+  File "C:\qt-snapshot\plugins\imageformats\qmng4.dll"
+  File "C:\qt-snapshot\plugins\imageformats\qjpeg4.dll"
+  File "C:\qt-snapshot\plugins\imageformats\qico4.dll"
+  File "C:\qt-snapshot\plugins\imageformats\qgif4.dll"
 
   SetOutPath "$INSTDIR\iconengines"
-  File "C:\qt\4.4.0\plugins\iconengines\qsvgicon4.dll"
+  File "C:\qt-snapshot\plugins\iconengines\qsvgicon4.dll"
 
   SetOutPath "$INSTDIR\codecs"
-  File "C:\qt\4.4.0\plugins\codecs\qtwcodecs4.dll"
-  File "C:\qt\4.4.0\plugins\codecs\qkrcodecs4.dll"
-  File "C:\qt\4.4.0\plugins\codecs\qjpcodecs4.dll"
-  File "C:\qt\4.4.0\plugins\codecs\qcncodecs4.dll"
+  File "C:\qt-snapshot\plugins\codecs\qtwcodecs4.dll"
+  File "C:\qt-snapshot\plugins\codecs\qkrcodecs4.dll"
+  File "C:\qt-snapshot\plugins\codecs\qjpcodecs4.dll"
+  File "C:\qt-snapshot\plugins\codecs\qcncodecs4.dll"
+
+  SetOutPath "$INSTDIR\phonon_backend"
+  File "C:\qt-snapshot\plugins\phonon_backend\phonon_ds94.dll"
 SectionEnd
 
-Section -Icons
+Section Icons
   CreateShortCut "$SMPROGRAMS\Arora.lnk" "$INSTDIR\arora.exe"
 SectionEnd
 
-Section -UninstallInfo
+Section Uninstaller
   WriteUninstaller "$INSTDIR\uninst.exe"
   WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\arora.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\arora.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
+SectionEnd
+
+Section MSVC
+  InitPluginsDir
+  SetOutPath $PLUGINSDIR
+  File "C:\Program Files\Microsoft Visual Studio 8\SDK\v2.0\BootStrapper\Packages\vcredist_x86\vcredist_x86.exe"
+  DetailPrint "Installing Visual C++ 2005 Libraries"
+  ExecWait '"$PLUGINSDIR\vcredist_x86.exe" /q:a /c:"msiexec /i vcredist.msi /quiet"'
 SectionEnd
 
 Section Uninstall
@@ -87,4 +98,5 @@ Section Uninstall
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
 SectionEnd
+
 BrandingText "arora-browser.org"

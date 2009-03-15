@@ -74,6 +74,7 @@
 #include <qfileiconprovider.h>
 #include <qheaderview.h>
 #include <qmetaobject.h>
+#include <qmessagebox.h>
 #include <qsettings.h>
 
 #include <qdebug.h>
@@ -90,6 +91,8 @@ DownloadItem::DownloadItem(QNetworkReply *reply, bool requestFileName, QWidget *
     , m_reply(reply)
     , m_requestFileName(requestFileName)
     , m_bytesReceived(0)
+    , m_startedSaving(false)
+    , m_finishedDownloading(false)
     , m_gettingFileName(false)
 {
     setupUi(this);
@@ -118,6 +121,8 @@ void DownloadItem::init()
 
     m_startedSaving = false;
     m_finishedDownloading = false;
+
+    openButton->setEnabled(false);
 
     // attach to the m_reply
     m_url = m_reply->url();
@@ -182,7 +187,7 @@ QString DownloadItem::saveFileName(const QString &directory) const
     // Move this function into QNetworkReply to also get file name sent from the server
     QString path;
     if (m_reply->hasRawHeader("Content-Disposition")) {
-        QString value = m_reply->rawHeader("Content-Disposition");
+        QString value = QLatin1String(m_reply->rawHeader("Content-Disposition"));
         int pos = value.indexOf(QLatin1String("filename="));
         if (pos != -1) {
             QString name = value.mid(pos + 9);
@@ -261,7 +266,7 @@ void DownloadItem::downloadReadyRead()
         if (!m_requestFileName)
             getFileName();
         if (!m_output.open(QIODevice::WriteOnly)) {
-            downloadInfoLabel->setText(tr("Error opening save file: %1")
+            downloadInfoLabel->setText(tr("Error opening output file: %1")
                     .arg(m_output.errorString()));
             stop();
             emit statusChanged();
@@ -340,11 +345,11 @@ void DownloadItem::updateInfoLabel()
             if (timeRemaining > 60) {
                 timeRemaining = timeRemaining / 60;
                 timeRemaining = floor(timeRemaining);
-                remaining = tr("- %n minutes remaining", "", timeRemaining);
+                remaining = tr("- %n minutes remaining", "", int(timeRemaining));
             }
             else {
                 timeRemaining = floor(timeRemaining);
-                remaining = tr("- %n seconds remaining", "", timeRemaining);
+                remaining = tr("- %n seconds remaining", "", int(timeRemaining));
             }
         }
         info = QString(tr("%1 of %2 (%3/sec) %4"))
@@ -400,6 +405,7 @@ void DownloadItem::finished()
     progressBar->hide();
     stopButton->setEnabled(false);
     stopButton->hide();
+    openButton->setEnabled(true);
     m_output.close();
     updateInfoLabel();
     emit statusChanged();
@@ -414,6 +420,7 @@ void DownloadItem::finished()
 DownloadManager::DownloadManager(QWidget *parent)
     : QDialog(parent)
     , m_autoSaver(new AutoSaver(this))
+    , m_model(new DownloadModel(this))
     , m_manager(BrowserApplication::networkAccessManager())
     , m_iconProvider(0)
     , m_removePolicy(Never)
@@ -424,9 +431,9 @@ DownloadManager::DownloadManager(QWidget *parent)
     downloadsView->horizontalHeader()->hide();
     downloadsView->setAlternatingRowColors(true);
     downloadsView->horizontalHeader()->setStretchLastSection(true);
-    m_model = new DownloadModel(this);
     downloadsView->setModel(m_model);
     connect(cleanupButton, SIGNAL(clicked()), this, SLOT(cleanup()));
+    connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
     load();
 }
 
@@ -446,6 +453,23 @@ int DownloadManager::activeDownloads() const
             ++count;
     }
     return count;
+}
+
+bool DownloadManager::allowQuit()
+{
+    if (BrowserApplication::instance()->mainWindows().count() <= 1
+        && activeDownloads() >= 1) {
+        int choice = QMessageBox::warning(this, QString(),
+                                        tr("There are %1 downloads in progress\n"
+                                           "Do you want to quit anyway?").arg(activeDownloads()),
+                                        QMessageBox::Yes | QMessageBox::No,
+                                        QMessageBox::No);
+        if (choice == QMessageBox::No) {
+            show();
+            return false;
+        }
+    }
+    return true;
 }
 
 void DownloadManager::download(const QNetworkRequest &request, bool requestFileName)
@@ -504,7 +528,7 @@ void DownloadManager::updateRow(DownloadItem *item)
     if (icon.isNull())
         icon = style()->standardIcon(QStyle::SP_FileIcon);
     item->fileIcon->setPixmap(icon.pixmap(48, 48));
-    
+
     int oldHeight = downloadsView->rowHeight(row);
     downloadsView->setRowHeight(row, qMax(oldHeight, item->minimumSizeHint().height()));
 

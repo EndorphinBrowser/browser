@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,11 +62,15 @@
 
 #include "settings.h"
 
+#include "acceptlanguagedialog.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
+#include "cookiedialog.h"
+#include "cookieexceptionsdialog.h"
 #include "cookiejar.h"
 #include "history.h"
 #include "networkaccessmanager.h"
+#include "tabwidget.h"
 #include "webview.h"
 
 #include <qdesktopservices.h>
@@ -84,7 +88,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(cookiesButton, SIGNAL(clicked()), this, SLOT(showCookies()));
     connect(standardFontButton, SIGNAL(clicked()), this, SLOT(chooseFont()));
     connect(fixedFontButton, SIGNAL(clicked()), this, SLOT(chooseFixedFont()));
+    connect(languageButton, SIGNAL(clicked()), this, SLOT(chooseAcceptLanguage()));
 
+#if QT_VERSION < 0x040500
+    oneCloseButton->setVisible(false); // no other mode than one close button with qt <4.5
+#endif
     loadDefaults();
     loadFromSettings();
 }
@@ -104,6 +112,7 @@ void SettingsDialog::loadDefaults()
 
     downloadsLocation->setText(QDesktopServices::storageLocation(QDesktopServices::DesktopLocation));
 
+    blockPopupWindows->setChecked(!defaultSettings->testAttribute(QWebSettings::JavascriptCanOpenWindows));
     enableJavascript->setChecked(defaultSettings->testAttribute(QWebSettings::JavascriptEnabled));
     enablePlugins->setChecked(defaultSettings->testAttribute(QWebSettings::PluginsEnabled));
     enableImages->setChecked(defaultSettings->testAttribute(QWebSettings::AutoLoadImages));
@@ -143,11 +152,6 @@ void SettingsDialog::loadFromSettings()
     downloadsLocation->setText(downloadDirectory);
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("general"));
-    openLinksIn->setCurrentIndex(settings.value(QLatin1String("openLinksIn"), openLinksIn->currentIndex()).toInt());
-
-    settings.endGroup();
-
     // Appearance
     settings.beginGroup(QLatin1String("websettings"));
     fixedFont = qVariantValue<QFont>(settings.value(QLatin1String("fixedFont"), fixedFont));
@@ -156,10 +160,11 @@ void SettingsDialog::loadFromSettings()
     standardLabel->setText(QString(QLatin1String("%1 %2")).arg(standardFont.family()).arg(standardFont.pointSize()));
     fixedLabel->setText(QString(QLatin1String("%1 %2")).arg(fixedFont.family()).arg(fixedFont.pointSize()));
 
+    blockPopupWindows->setChecked(settings.value(QLatin1String("blockPopupWindows"), blockPopupWindows->isChecked()).toBool());
     enableJavascript->setChecked(settings.value(QLatin1String("enableJavascript"), enableJavascript->isChecked()).toBool());
     enablePlugins->setChecked(settings.value(QLatin1String("enablePlugins"), enablePlugins->isChecked()).toBool());
     enableImages->setChecked(settings.value(QLatin1String("enableImages"), enableImages->isChecked()).toBool());
-    userStyleSheet->setText(settings.value(QLatin1String("userStyleSheet")).toUrl().toString());
+    userStyleSheet->setText(QString::fromUtf8(settings.value(QLatin1String("userStyleSheet")).toUrl().toEncoded()));
     settings.endGroup();
 
     // Privacy
@@ -171,7 +176,7 @@ void SettingsDialog::loadFromSettings()
     CookieJar::AcceptPolicy acceptCookies = acceptPolicyEnum.keyToValue(value) == -1 ?
                         CookieJar::AcceptOnlyFromSitesNavigatedTo :
                         static_cast<CookieJar::AcceptPolicy>(acceptPolicyEnum.keyToValue(value));
-    switch(acceptCookies) {
+    switch (acceptCookies) {
     case CookieJar::AcceptAlways:
         acceptCombo->setCurrentIndex(0);
         break;
@@ -188,7 +193,7 @@ void SettingsDialog::loadFromSettings()
     CookieJar::KeepPolicy keepCookies = keepPolicyEnum.keyToValue(value) == -1 ?
                         CookieJar::KeepUntilExpire :
                         static_cast<CookieJar::KeepPolicy>(keepPolicyEnum.keyToValue(value));
-    switch(keepCookies) {
+    switch (keepCookies) {
     case CookieJar::KeepUntilExpire:
         keepUntilCombo->setCurrentIndex(0);
         break;
@@ -216,6 +221,11 @@ void SettingsDialog::loadFromSettings()
     settings.beginGroup(QLatin1String("tabs"));
     selectTabsWhenCreated->setChecked(settings.value(QLatin1String("selectNewTabs"), false).toBool());
     confirmClosingMultipleTabs->setChecked(settings.value(QLatin1String("confirmClosingMultipleTabs"), true).toBool());
+#if QT_VERSION >= 0x040500
+    oneCloseButton->setChecked(settings.value(QLatin1String("oneCloseButton"),false).toBool());
+#endif
+    openTargetBlankLinksIn->setCurrentIndex(settings.value(QLatin1String("openTargetBlankLinksIn"), TabWidget::NewWindow).toInt());
+    openLinksFromAppsIn->setCurrentIndex(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewWindow).toInt());
     settings.endGroup();
 }
 
@@ -230,10 +240,6 @@ void SettingsDialog::saveToSettings()
     settings.beginGroup(QLatin1String("downloadmanager"));
     settings.setValue(QLatin1String("alwaysPromptForFileName"), downloadAsk->isChecked());
     settings.setValue(QLatin1String("downloadDirectory"), downloadsLocation->text());
-    settings.endGroup();
-
-    settings.beginGroup(QLatin1String("general"));
-    settings.setValue(QLatin1String("openLinksIn"), openLinksIn->currentIndex());
     settings.endGroup();
 
     settings.beginGroup(QLatin1String("history"));
@@ -255,6 +261,8 @@ void SettingsDialog::saveToSettings()
     settings.beginGroup(QLatin1String("websettings"));
     settings.setValue(QLatin1String("fixedFont"), fixedFont);
     settings.setValue(QLatin1String("standardFont"), standardFont);
+
+    settings.setValue(QLatin1String("blockPopupWindows"), blockPopupWindows->isChecked());
     settings.setValue(QLatin1String("enableJavascript"), enableJavascript->isChecked());
     settings.setValue(QLatin1String("enablePlugins"), enablePlugins->isChecked());
     settings.setValue(QLatin1String("enableImages"), enableImages->isChecked());
@@ -262,32 +270,32 @@ void SettingsDialog::saveToSettings()
     if (QFile::exists(userStyleSheetString))
         settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromLocalFile(userStyleSheetString));
     else
-        settings.setValue(QLatin1String("userStyleSheet"), QUrl(userStyleSheetString));
+        settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromEncoded(userStyleSheetString.toUtf8()));
     settings.endGroup();
 
     //Privacy
     settings.beginGroup(QLatin1String("cookies"));
-
-    CookieJar::KeepPolicy keepCookies;
-    switch(acceptCombo->currentIndex()) {
+    CookieJar::AcceptPolicy acceptCookies;
+    switch (acceptCombo->currentIndex()) {
     default:
     case 0:
-        keepCookies = CookieJar::KeepUntilExpire;
+        acceptCookies = CookieJar::AcceptAlways;
         break;
     case 1:
-        keepCookies = CookieJar::KeepUntilExit;
+        acceptCookies = CookieJar::AcceptNever;
         break;
     case 2:
-        keepCookies = CookieJar::KeepUntilTimeLimit;
+        acceptCookies = CookieJar::AcceptOnlyFromSitesNavigatedTo;
         break;
     }
+
     CookieJar *jar = BrowserApplication::cookieJar();
     QMetaEnum acceptPolicyEnum = jar->staticMetaObject.enumerator(jar->staticMetaObject.indexOfEnumerator("AcceptPolicy"));
-    settings.setValue(QLatin1String("acceptCookies"), QLatin1String(acceptPolicyEnum.valueToKey(keepCookies)));
+    settings.setValue(QLatin1String("acceptCookies"), QLatin1String(acceptPolicyEnum.valueToKey(acceptCookies)));
 
     CookieJar::KeepPolicy keepPolicy;
-    switch(keepUntilCombo->currentIndex()) {
-        default:
+    switch (keepUntilCombo->currentIndex()) {
+    default:
     case 0:
         keepPolicy = CookieJar::KeepUntilExpire;
         break;
@@ -318,6 +326,11 @@ void SettingsDialog::saveToSettings()
     settings.beginGroup(QLatin1String("tabs"));
     settings.setValue(QLatin1String("selectNewTabs"), selectTabsWhenCreated->isChecked());
     settings.setValue(QLatin1String("confirmClosingMultipleTabs"), confirmClosingMultipleTabs->isChecked());
+#if QT_VERSION >= 0x040500
+    settings.setValue(QLatin1String("oneCloseButton"), oneCloseButton->isChecked());
+#endif
+    settings.setValue(QLatin1String("openTargetBlankLinksIn"), openTargetBlankLinksIn->currentIndex());
+    settings.setValue(QLatin1String("openLinksFromAppsIn"), openLinksFromAppsIn->currentIndex());
     settings.endGroup();
 
     BrowserApplication::instance()->loadSettings();
@@ -334,13 +347,13 @@ void SettingsDialog::accept()
 
 void SettingsDialog::showCookies()
 {
-    CookiesDialog *dialog = new CookiesDialog(BrowserApplication::cookieJar(), this);
+    CookieDialog *dialog = new CookieDialog(BrowserApplication::cookieJar(), this);
     dialog->exec();
 }
 
 void SettingsDialog::showExceptions()
 {
-    CookiesExceptionsDialog *dialog = new CookiesExceptionsDialog(BrowserApplication::cookieJar(), this);
+    CookieExceptionsDialog *dialog = new CookieExceptionsDialog(BrowserApplication::cookieJar(), this);
     dialog->exec();
 }
 
@@ -369,6 +382,12 @@ void SettingsDialog::setHomeToCurrentPage()
     BrowserMainWindow *mw = static_cast<BrowserMainWindow*>(parent());
     WebView *webView = mw->currentTab();
     if (webView)
-        homeLineEdit->setText(webView->url().toString());
+        homeLineEdit->setText(QString::fromUtf8(webView->url().toEncoded()));
+}
+
+void SettingsDialog::chooseAcceptLanguage()
+{
+    AcceptLanguageDialog dialog;
+    dialog.exec();
 }
 

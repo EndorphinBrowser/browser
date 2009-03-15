@@ -1,4 +1,119 @@
+0.5
+Interface
+- Add new Network Access Monitor tool that shows each network request as it passes.
+- Added option for showing only one close Button
+- Don't add empty tabs if closed to recently closed tabs menu.
+- Support HTTP proxies which listen in ports higher than 10000
+- Save more space in full screen mode - hide menu and status bars.
+- Added an option in source viewer menu for wrapping code lines.
+- Open pages from autocompletion list directly instead of filling the bar with their addresses.
+
+- Don't show Open actions if the item is a Folder in the Bookmark Manager
+- Allow filtering bookmarks and histories by URLs as well.
+- Add drag functionality to Bookmark and History menu's
+- Allow selecting multiple bookmarks when ctrl is pressed.
+- Added support for renaming bookmarks through their context menus.
+- Expanded bookmark menu - added Change URL and made Rename displayed also on folders.
+- Allow for unlimited bookmarks in a folder on bookmark bar
+
+- Added privacy indicator to the location bar
+- Uncheck the privacy action when user aborts initial private browsing dialog.
+- When enabling or disabling private browsing only the checkbox on the current window is updated
+
+- Display missing Copy action in context menu if a link is selected.
+- Make tab reload action in the context menu work
+- Fix Middleclick on open tab to not have inconsistent behavior.
+- On some web pages, middle-clicking a link opened it in the same window.
+- Refined drag & drop handling in bookmarks toolbar. Fixed a bug, when page was assigned to inappropriate folder due to more than one folder having same name.
+- Implement simple context menu in bookmarks toolbar. Let user change bookmark URL in Add Bookmark dialog.
+
+Behind the scenes
+- Brand new more compliant, faster cookie jar
+- Brand new Language Manager which selects the correct language on start and lets you choose a different language via the Help menu.
+- Separate the cookie classes into separate files.
+- Fix a memory leak when creating the context menu under Qt 4.5+
+- LineEdit utility class is now under the BSD license
+- The error web pages are now translatable.
+- Encode urls rather then use toString in various places to prevent loss of url data.
+- When using foreach try to use a const reference so a copy isn't made (slower) compared to the reference (faster).
+- Add a new tool to convert bookmarks that are in the html format into the XBel format (not used in Arora yet).
+- Various code style and general keeping the code clean fixes
+- Add Implementation to get the current username on Windows for the single application
+
+Build system
+- Add script to build OS X package using the new macdeployqt tool in Qt 4.5
+- Building with QT_STRICT_ITERATORS to catch errors.
+- Enhance support for building with multiple WebKit trunk branches
+- Adds the ability to generate code documentation with doxygen
+
+0.4
+Interface
+- New source viewer with search and syntax highlighting.
+- Make middle click on bookmarks menus open the user in a new tab.
+- Added the ability to change the language from the Help menu.
+- Double left click location bar selects all of the text.
+- Incorporate Jens Explorer style into Arora on Window for a better look and feel on XP and Vista. http://labs.trolltech.com/blogs/2007/06/08/explorer-style-toolbars/
+- Change the "icon" on the next/prev search for RTL desktops: next points to the right, and previous points to the right
+- Various RightToLeft fixes for for Mozilla's bug https://bugzilla.mozilla.org/show_bug.cgi?id=219070
+- When the url scheme is https make the location bar background turn yellow.
+- When the history is cleared also clear the recently closed tabs list
+- Always populate the location bar with the completer
+- Only shrink the toolbar icons on OS X.
+- Only offset the search widget text when using Qt 4.5
+- When clicking on a bookmark in a folder in the toolbar emit the proper signals to the url is opened.
+- When dropping text on the webpage load the url
+- When the location bar has focus don't change the text.
+
+Behind the scenes
+- Make a dedicated SingleApplication class
+- Tweak HistoryManager API to be easier to read.
+- Improvements to the code style to be more consistent
+- Move the binaries for autotests and manual tests into the .gitignore in that directory rather then all in one file at the top.
+- Update manualtest for the location bar now that the urllineedit class has become the new location bar class and add a new git hook to make sure manual tests build.
+
+Build system
+- Move locale build instructions to its own pri file in the locale directory
+- Correctly detect qt3's qmake on Debian
+- Enhance support for building with WebKit trunk
+
+
 0.3
+- With Qt 4.5 use movable tabs
+- With Qt 4.5 use disk cache
+- Created a new LineEdit that handles adding side widgets in a clean, simple and elegant way.
+- Add a way to set the minimum font size in the settings.
+- When you ctrl-click on a bookmark item in the bookmark toolbar open it in a new tab
+- Fix possible crash on startup; Initialize htmls resource
+- When making the text larger or smaller, use predefined zoom levels.
+- Mouse button 4 and 5 connected to action back and forward. like firefox and ie
+- Clear history: Added confirm dialog
+- Shortcuts in the Edit menu like in Firefox.
+- Save the state of inspector across sessions.
+- When only a hostname and port are entered in the url prepend http://
+- Base the width of the tab on a font rather then a hard coded value
+- Tweak the main window look better on OS X and less out of place
+- Add support for javascript bookmarklets
+- Add option to automatically restore the session on startup.
+- Fix segfault caused by the clear private data dialog.
+- Save the location of the toolbars
+- Improve a number of the strings (feedback from MentalMaelstrom)
+- Tweak action accelerators (the same ones were being used)
+
+Build system
+- Allow building Arora with both Debug/Release of WebKit trunk
+- Only include the sha1 and change number in the version when using git.
+- Create utils directory to contain non-Arora specific classes
+- Run desktop file through desktop-file-validate and correct the errors
+
+Autotests
+- Add QTRY_COMPARE and QTRY_VERIFY for the autotests to use.
+- add AUTOTESTS define when running autotests to prevent accessing running arora's and sending url's to it
+- Fix autotest failures (test related, not arora)
+- Detect which version of qmake to use when building the autotests
+- Give a 1 second punishment if there is no autotest for the source file that was changed
+- Emit a warning of a file doesn't have a matching autotest
+- Update modeltest code to match Trolltech's svn
+
 
 0.2
  - Many Bug fixes and improvements.

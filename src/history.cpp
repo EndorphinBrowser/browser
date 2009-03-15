@@ -76,18 +76,32 @@
 #include <qstyle.h>
 #include <qtemporaryfile.h>
 #include <qtextstream.h>
+#include <qmessagebox.h>
+#include <qmimedata.h>
 
 #include <qwebhistoryinterface.h>
 #include <qwebsettings.h>
 
 #include <qdebug.h>
 
+QString HistoryEntry::userTitle() const
+{
+    // when there is no title try to generate one from the url
+    if (title.isEmpty()) {
+        QString page = QFileInfo(QUrl(url).path()).fileName();
+        if (!page.isEmpty())
+            return page;
+        return url;
+    }
+    return title;
+}
+
 static const unsigned int HISTORY_VERSION = 23;
 
 HistoryManager::HistoryManager(QObject *parent)
     : QWebHistoryInterface(parent)
     , m_saveTimer(new AutoSaver(this))
-    , m_historyLimit(30)
+    , m_daysToExpire(30)
     , m_historyModel(0)
     , m_historyFilterModel(0)
     , m_historyTreeModel(0)
@@ -95,9 +109,9 @@ HistoryManager::HistoryManager(QObject *parent)
     m_expiredTimer.setSingleShot(true);
     connect(&m_expiredTimer, SIGNAL(timeout()),
             this, SLOT(checkForExpired()));
-    connect(this, SIGNAL(entryAdded(const HistoryItem &)),
+    connect(this, SIGNAL(entryAdded(const HistoryEntry &)),
             m_saveTimer, SLOT(changeOccurred()));
-    connect(this, SIGNAL(entryRemoved(const HistoryItem &)),
+    connect(this, SIGNAL(entryRemoved(const HistoryEntry &)),
             m_saveTimer, SLOT(changeOccurred()));
     load();
 
@@ -112,12 +126,12 @@ HistoryManager::HistoryManager(QObject *parent)
 HistoryManager::~HistoryManager()
 {
     // remove history items on application exit
-    if (m_historyLimit == -2)
+    if (m_daysToExpire == -2)
         clear();
     m_saveTimer->saveIfNeccessary();
 }
 
-QList<HistoryItem> HistoryManager::history() const
+QList<HistoryEntry> HistoryManager::history() const
 {
     return m_history;
 }
@@ -132,11 +146,11 @@ void HistoryManager::addHistoryEntry(const QString &url)
     QUrl cleanUrl(url);
     cleanUrl.setPassword(QString());
     cleanUrl.setHost(cleanUrl.host().toLower());
-    HistoryItem item(cleanUrl.toString(), QDateTime::currentDateTime());
-    addHistoryItem(item);
+    HistoryEntry item(cleanUrl.toString(), QDateTime::currentDateTime());
+    addHistoryEntry(item);
 }
 
-void HistoryManager::setHistory(const QList<HistoryItem> &history, bool loadedAndSorted)
+void HistoryManager::setHistory(const QList<HistoryEntry> &history, bool loadedAndSorted)
 {
     m_history = history;
 
@@ -172,7 +186,7 @@ HistoryTreeModel *HistoryManager::historyTreeModel() const
 
 void HistoryManager::checkForExpired()
 {
-    if (m_historyLimit < 0 || m_history.isEmpty())
+    if (m_daysToExpire < 0 || m_history.isEmpty())
         return;
 
     QDateTime now = QDateTime::currentDateTime();
@@ -180,7 +194,7 @@ void HistoryManager::checkForExpired()
 
     while (!m_history.isEmpty()) {
         QDateTime checkForExpired = m_history.last().dateTime;
-        checkForExpired.setDate(checkForExpired.date().addDays(m_historyLimit));
+        checkForExpired.setDate(checkForExpired.date().addDays(m_daysToExpire));
         if (now.daysTo(checkForExpired) > 7) {
             // check at most in a week to prevent int overflows on the timer
             nextTimeout = 7 * 86400;
@@ -189,7 +203,7 @@ void HistoryManager::checkForExpired()
         }
         if (nextTimeout > 0)
             break;
-        HistoryItem item = m_history.takeLast();
+        HistoryEntry item = m_history.takeLast();
         // remove from saved file also
         m_lastSavedUrl = QString();
         emit entryRemoved(item);
@@ -199,7 +213,7 @@ void HistoryManager::checkForExpired()
         m_expiredTimer.start(nextTimeout * 1000);
 }
 
-void HistoryManager::addHistoryItem(const HistoryItem &item)
+void HistoryManager::addHistoryEntry(const HistoryEntry &item)
 {
     QWebSettings *globalSettings = QWebSettings::globalSettings();
     if (globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled))
@@ -211,7 +225,7 @@ void HistoryManager::addHistoryItem(const HistoryItem &item)
         checkForExpired();
 }
 
-void HistoryManager::updateHistoryItem(const QUrl &url, const QString &title)
+void HistoryManager::updateHistoryEntry(const QUrl &url, const QString &title)
 {
     for (int i = 0; i < m_history.count(); ++i) {
         if (url == m_history.at(i).url) {
@@ -225,16 +239,16 @@ void HistoryManager::updateHistoryItem(const QUrl &url, const QString &title)
     }
 }
 
-int HistoryManager::historyLimit() const
+int HistoryManager::daysToExpire() const
 {
-    return m_historyLimit;
+    return m_daysToExpire;
 }
 
-void HistoryManager::setHistoryLimit(int limit)
+void HistoryManager::setDaysToExpire(int limit)
 {
-    if (m_historyLimit == limit)
+    if (m_daysToExpire == limit)
         return;
-    m_historyLimit = limit;
+    m_daysToExpire = limit;
     checkForExpired();
     m_saveTimer->changeOccurred();
 }
@@ -245,7 +259,8 @@ void HistoryManager::clear()
     m_lastSavedUrl = QString();
     m_saveTimer->changeOccurred();
     m_saveTimer->saveIfNeccessary();
-    historyReset();
+    emit historyReset();
+    emit historyCleared();
 }
 
 void HistoryManager::loadSettings()
@@ -253,7 +268,7 @@ void HistoryManager::loadSettings()
     // load settings
     QSettings settings;
     settings.beginGroup(QLatin1String("history"));
-    m_historyLimit = settings.value(QLatin1String("historyLimit"), 30).toInt();
+    m_daysToExpire = settings.value(QLatin1String("historyLimit"), 30).toInt();
 }
 
 void HistoryManager::load()
@@ -269,11 +284,11 @@ void HistoryManager::load()
         return;
     }
 
-    QList<HistoryItem> list;
+    QList<HistoryEntry> list;
     QDataStream in(&historyFile);
     // Double check that the history file is sorted as it is read in
     bool needToSort = false;
-    HistoryItem lastInsertedItem;
+    HistoryEntry lastInsertedItem;
     QByteArray data;
     QDataStream stream;
     QBuffer buffer;
@@ -287,7 +302,7 @@ void HistoryManager::load()
         stream >> ver;
         if (ver != HISTORY_VERSION)
             continue;
-        HistoryItem item;
+        HistoryEntry item;
         stream >> item.url;
         stream >> item.dateTime;
         stream >> item.title;
@@ -323,7 +338,7 @@ void HistoryManager::save()
 {
     QSettings settings;
     settings.beginGroup(QLatin1String("history"));
-    settings.setValue(QLatin1String("historyLimit"), m_historyLimit);
+    settings.setValue(QLatin1String("historyLimit"), m_daysToExpire);
 
     bool saveAll = m_lastSavedUrl.isEmpty();
     int first = m_history.count() - 1;
@@ -368,7 +383,7 @@ void HistoryManager::save()
     for (int i = first; i >= 0; --i) {
         QByteArray data;
         QDataStream stream(&data, QIODevice::WriteOnly);
-        HistoryItem item = m_history.at(i);
+        HistoryEntry item = m_history.at(i);
         stream << HISTORY_VERSION << item.url << item.dateTime << item.title;
         out << data;
     }
@@ -390,10 +405,10 @@ HistoryModel::HistoryModel(HistoryManager *history, QObject *parent)
     Q_ASSERT(m_history);
     connect(m_history, SIGNAL(historyReset()),
             this, SLOT(historyReset()));
-    connect(m_history, SIGNAL(entryRemoved(const HistoryItem &)),
+    connect(m_history, SIGNAL(entryRemoved(const HistoryEntry &)),
             this, SLOT(historyReset()));
 
-    connect(m_history, SIGNAL(entryAdded(const HistoryItem &)),
+    connect(m_history, SIGNAL(entryAdded(const HistoryEntry &)),
             this, SLOT(entryAdded()));
     connect(m_history, SIGNAL(entryUpdated(int)),
             this, SLOT(entryUpdated(int)));
@@ -430,11 +445,11 @@ QVariant HistoryModel::headerData(int section, Qt::Orientation orientation, int 
 
 QVariant HistoryModel::data(const QModelIndex &index, int role) const
 {
-    QList<HistoryItem> lst = m_history->history();
+    QList<HistoryEntry> lst = m_history->history();
     if (index.row() < 0 || index.row() >= lst.size())
         return QVariant();
 
-    const HistoryItem &item = lst.at(index.row());
+    const HistoryEntry &item = lst.at(index.row());
     switch (role) {
     case DateTimeRole:
         return item.dateTime;
@@ -444,18 +459,13 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const
         return QUrl(item.url);
     case UrlStringRole:
         return item.url;
+    case TitleRole:
+        return item.userTitle();
     case Qt::DisplayRole:
     case Qt::EditRole: {
         switch (index.column()) {
         case 0:
-            // when there is no title try to generate one from the url
-            if (item.title.isEmpty()) {
-                QString page = QFileInfo(QUrl(item.url).path()).fileName();
-                if (!page.isEmpty())
-                    return page;
-                return item.url;
-            }
-            return item.title;
+            return item.userTitle();
         case 1:
             return item.url;
         }
@@ -484,7 +494,7 @@ bool HistoryModel::removeRows(int row, int count, const QModelIndex &parent)
         return false;
     int lastRow = row + count - 1;
     beginRemoveRows(parent, row, lastRow);
-    QList<HistoryItem> lst = m_history->history();
+    QList<HistoryEntry> lst = m_history->history();
     for (int i = lastRow; i >= row; --i)
         lst.removeAt(i);
     disconnect(m_history, SIGNAL(historyReset()), this, SLOT(historyReset()));
@@ -611,11 +621,25 @@ QModelIndex HistoryMenuModel::parent(const QModelIndex &index) const
     return createIndex(bumpedItems + treeIndexParent.row(), treeIndexParent.column(), sr);
 }
 
+QMimeData *HistoryMenuModel::mimeData(const QModelIndexList &indexes) const
+{
+    QMimeData *mimeData = new QMimeData;
+    QList<QUrl> urls;
+    foreach(const QModelIndex &idx, indexes) {
+        QUrl url = idx.data(HistoryModel::UrlRole).toUrl();
+        urls.append(url);
+    }
+    mimeData->setUrls(urls);
+    return mimeData;
+}
+
 
 HistoryMenu::HistoryMenu(QWidget *parent)
     : ModelMenu(parent)
     , m_history(0)
+    , m_historyMenuModel(0)
 {
+    setMaxRows(7);
     connect(this, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(activated(const QModelIndex &)));
     setStatusBarTextRole(HistoryModel::UrlStringRole);
@@ -623,7 +647,8 @@ HistoryMenu::HistoryMenu(QWidget *parent)
 
 void HistoryMenu::activated(const QModelIndex &index)
 {
-    emit openUrl(index.data(HistoryModel::UrlRole).toUrl());
+    emit openUrl(index.data(HistoryModel::UrlRole).toUrl(),
+                 index.data(HistoryModel::TitleRole).toString());
 }
 
 bool HistoryMenu::prePopulated()
@@ -649,20 +674,31 @@ void HistoryMenu::postPopulated()
         addSeparator();
 
     QAction *showAllAction = new QAction(tr("Show All History"), this);
+#if !defined(Q_WS_MAC)
+    showAllAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_H));
+#endif
     connect(showAllAction, SIGNAL(triggered()), this, SLOT(showHistoryDialog()));
     addAction(showAllAction);
 
-    QAction *clearAction = new QAction(tr("Clear History"), this);
-    connect(clearAction, SIGNAL(triggered()), m_history, SLOT(clear()));
+    QAction *clearAction = new QAction(tr("Clear History..."), this);
+    connect(clearAction, SIGNAL(triggered()), this, SLOT(clearHistoryDialog()));
     addAction(clearAction);
 }
 
 void HistoryMenu::showHistoryDialog()
 {
     HistoryDialog *dialog = new HistoryDialog(this);
-    connect(dialog, SIGNAL(openUrl(const QUrl&)),
-            this, SIGNAL(openUrl(const QUrl&)));
+    connect(dialog, SIGNAL(openUrl(const QUrl&, const QString &)),
+            this, SIGNAL(openUrl(const QUrl&, const QString &)));
     dialog->show();
+}
+
+void HistoryMenu::clearHistoryDialog()
+{
+    if (m_history && QMessageBox::question(0, tr("Clear History"), tr("Do you want to clear the history?"),
+            QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
+        m_history->clear();
+    }
 }
 
 void HistoryMenu::setInitialActions(QList<QAction*> actions)
@@ -697,6 +733,7 @@ HistoryDialog::HistoryDialog(QWidget *parent, HistoryManager *setHistory) : QDia
     tree->setTextElideMode(Qt::ElideMiddle);
     QAbstractItemModel *model = history->historyTreeModel();
     TreeProxyModel *proxyModel = new TreeProxyModel(this);
+    proxyModel->setFilterKeyColumn(-1);
     connect(search, SIGNAL(textChanged(QString)),
             proxyModel, SLOT(setFilterFixedString(QString)));
     connect(removeButton, SIGNAL(clicked()), tree, SLOT(removeSelected()));
@@ -735,7 +772,10 @@ void HistoryDialog::open()
     QModelIndex index = tree->currentIndex();
     if (!index.parent().isValid())
         return;
-    emit openUrl(index.data(HistoryModel::UrlRole).toUrl());
+    BrowserApplication::instance()->setEventMouseButtons(qApp->mouseButtons());
+    BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
+    emit openUrl(index.data(HistoryModel::UrlRole).toUrl(),
+                 index.data(HistoryModel::TitleRole).toString());
 }
 
 void HistoryDialog::copy()
@@ -1036,6 +1076,7 @@ void HistoryCompletionModel::sourceReset()
 
 HistoryTreeModel::HistoryTreeModel(QAbstractItemModel *sourceModel, QObject *parent)
     : QAbstractProxyModel(parent)
+    , removingDown(false)
 {
     setSourceModel(sourceModel);
 }
@@ -1047,7 +1088,9 @@ QVariant HistoryTreeModel::headerData(int section, Qt::Orientation orientation, 
 
 QVariant HistoryTreeModel::data(const QModelIndex &index, int role) const
 {
-    if ((role == Qt::EditRole || role == Qt::DisplayRole)) {
+    switch (role) {
+    case Qt::DisplayRole:
+    case Qt::EditRole: {
         int start = index.internalId();
         if (start == 0) {
             int offset = sourceDateRow(index.row());
@@ -1063,12 +1106,17 @@ QVariant HistoryTreeModel::data(const QModelIndex &index, int role) const
             }
         }
     }
-    if (role == Qt::DecorationRole && index.column() == 0 && !index.parent().isValid())
-        return QIcon(QLatin1String(":history.png"));
-    if (role == HistoryModel::DateRole && index.column() == 0 && index.internalId() == 0) {
-        int offset = sourceDateRow(index.row());
-        QModelIndex idx = sourceModel()->index(offset, 0);
-        return idx.data(HistoryModel::DateRole);
+    case Qt::DecorationRole: {
+        if (index.column() == 0 && !index.parent().isValid())
+            return QIcon(QLatin1String(":history.png"));
+    }
+    case HistoryModel::DateRole: {
+        if (index.column() == 0 && index.internalId() == 0) {
+            int offset = sourceDateRow(index.row());
+            QModelIndex idx = sourceModel()->index(offset, 0);
+            return idx.data(HistoryModel::DateRole);
+        }
+    }
     }
 
     return QAbstractProxyModel::data(index, role);
@@ -1173,27 +1221,6 @@ Qt::ItemFlags HistoryTreeModel::flags(const QModelIndex &index) const
     return Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled;
 }
 
-bool HistoryTreeModel::removeRows(int row, int count, const QModelIndex &parent)
-{
-    if (row < 0 || count <= 0 || row + count > rowCount(parent))
-        return false;
-
-    if (parent.isValid()) {
-        // removing pages
-        int offset = sourceDateRow(parent.row());
-        return sourceModel()->removeRows(offset + row, count);
-    } else {
-        // removing whole dates
-        for (int i = row + count - 1; i >= row; --i) {
-            QModelIndex dateParent = index(i, 0);
-            int offset = sourceDateRow(dateParent.row());
-            if (!sourceModel()->removeRows(offset, rowCount(dateParent)))
-                return false;
-        }
-    }
-    return true;
-}
-
 void HistoryTreeModel::setSourceModel(QAbstractItemModel *newSourceModel)
 {
     if (sourceModel()) {
@@ -1264,22 +1291,45 @@ QModelIndex HistoryTreeModel::mapFromSource(const QModelIndex &sourceIndex) cons
     return createIndex(row, sourceIndex.column(), dateRow + 1);
 }
 
+bool HistoryTreeModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    if (row < 0 || count <= 0 || row + count > rowCount(parent))
+        return false;
+
+    removingDown = true;
+    if (parent.isValid() && rowCount(parent) == count - row)
+        beginRemoveRows(QModelIndex(), parent.row(), parent.row());
+    else
+        beginRemoveRows(parent, row, row + count - 1);
+    if (parent.isValid()) {
+        // removing pages
+        int offset = sourceDateRow(parent.row());
+        return sourceModel()->removeRows(offset + row, count);
+    } else {
+        // removing whole dates
+        for (int i = row + count - 1; i >= row; --i) {
+            QModelIndex dateParent = index(i, 0);
+            int offset = sourceDateRow(dateParent.row());
+            if (!sourceModel()->removeRows(offset, rowCount(dateParent)))
+                return false;
+        }
+    }
+    return true;
+}
+
 void HistoryTreeModel::sourceRowsRemoved(const QModelIndex &parent, int start, int end)
 {
+    if (!removingDown) {
+        reset();
+        m_sourceRowCache.clear();
+        return;
+    }
     Q_UNUSED(parent); // Avoid warnings when compiling release
     Q_ASSERT(!parent.isValid());
-    if (m_sourceRowCache.isEmpty())
-        return;
+    if (!m_sourceRowCache.isEmpty())
     for (int i = end; i >= start;) {
         QList<int>::iterator it;
         it = qLowerBound(m_sourceRowCache.begin(), m_sourceRowCache.end(), i);
-        // playing it safe
-        if (it == m_sourceRowCache.end()) {
-            m_sourceRowCache.clear();
-            reset();
-            return;
-        }
-
         if (*it != i)
             --it;
         int row = qMax(0, it - m_sourceRowCache.begin());
@@ -1288,17 +1338,18 @@ void HistoryTreeModel::sourceRowsRemoved(const QModelIndex &parent, int start, i
         // If we can remove all the rows in the date do that and skip over them
         int rc = rowCount(dateParent);
         if (i - rc + 1 == offset && start <= i - rc + 1) {
-            beginRemoveRows(QModelIndex(), row, row);
             m_sourceRowCache.removeAt(row);
             i -= rc + 1;
         } else {
-            beginRemoveRows(dateParent, i - offset, i - offset);
             ++row;
             --i;
         }
         for (int j = row; j < m_sourceRowCache.count(); ++j)
             --m_sourceRowCache[j];
+    }
+    if (removingDown) {
         endRemoveRows();
+        removingDown = false;
     }
 }
 

@@ -66,12 +66,14 @@
 #include "browsermainwindow.h"
 #include "history.h"
 #include "tabbar.h"
-#include "urllineedit.h"
+#include "locationbar.h"
+#include "toolbarsearch.h"
 #include "webactionmapper.h"
 #include "webview.h"
 #include "webviewsearch.h"
 
 #include <qcompleter.h>
+#include <qdir.h>
 #include <qevent.h>
 #include <qlistview.h>
 #include <qmenu.h>
@@ -84,6 +86,8 @@
 
 #include <qdebug.h>
 
+//#define USERMODIFIEDBEHAVIOR_DEBUG
+
 TabWidget::TabWidget(QWidget *parent)
     : QTabWidget(parent)
     , m_recentlyClosedTabsAction(0)
@@ -92,16 +96,17 @@ TabWidget::TabWidget(QWidget *parent)
     , m_nextTabAction(0)
     , m_previousTabAction(0)
     , m_recentlyClosedTabsMenu(0)
+    , m_swappedDelayedWidget(false)
     , m_lineEditCompleter(0)
     , m_lineEdits(0)
     , m_tabBar(new TabBar(this))
 {
     setElideMode(Qt::ElideRight);
 
-    new QShortcut(QKeySequence("Ctrl+Shift+T"), this, SLOT(openLastTab()));
+    new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_T), this, SLOT(openLastTab()));
 
-    connect(m_tabBar, SIGNAL(loadUrl(const QUrl&, TabWidget::Tab)),
-            this, SLOT(loadUrl(const QUrl&, TabWidget::Tab)));
+    connect(m_tabBar, SIGNAL(loadUrl(const QUrl&, TabWidget::OpenUrlIn)),
+            this, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
     connect(m_tabBar, SIGNAL(newTab()), this, SLOT(newTab()));
     connect(m_tabBar, SIGNAL(closeTab(int)), this, SLOT(closeTab(int)));
     connect(m_tabBar, SIGNAL(cloneTab(int)), this, SLOT(cloneTab(int)));
@@ -119,40 +124,34 @@ TabWidget::TabWidget(QWidget *parent)
 #endif
 
     // Actions
-    m_newTabAction = new QAction(tr("New &Tab"), this);
+    m_newTabAction = new QAction(this);
     m_newTabAction->setShortcuts(QKeySequence::AddTab);
     connect(m_newTabAction, SIGNAL(triggered()), this, SLOT(newTab()));
 
-    m_closeTabAction = new QAction(tr("&Close Tab"), this);
+    m_closeTabAction = new QAction(this);
     m_closeTabAction->setShortcuts(QKeySequence::Close);
     connect(m_closeTabAction, SIGNAL(triggered()), this, SLOT(closeTab()));
 
-#if QT_VERSION < 0x040500
     m_newTabAction->setIcon(QIcon(QLatin1String(":addtab.png")));
     m_newTabAction->setIconVisibleInMenu(false);
 
-    m_closeTabAction->setIcon(QIcon(QLatin1String(":closetab.png")));
-    m_closeTabAction->setIconVisibleInMenu(false);
+#if QT_VERSION >= 0x040500
+    QSettings settings;
+    settings.beginGroup(QLatin1String("tabs"));
+    bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
+    if (oneCloseButton) {
+#endif
+        // With Qt < 4.5 do this always, with >=4.5 only if enabled.
+        m_closeTabAction->setIcon(QIcon(QLatin1String(":closetab.png")));
+        m_closeTabAction->setIconVisibleInMenu(false);
+#if QT_VERSION >= 0x040500
+    }
 #endif
 
-    m_nextTabAction = new QAction(tr("Show Next Tab"), this);
-    QList<QKeySequence> shortcuts;
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceRight));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageDown));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BracketRight));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Less));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Tab));
-    m_nextTabAction->setShortcuts(shortcuts);
+    m_nextTabAction = new QAction(this);
     connect(m_nextTabAction, SIGNAL(triggered()), this, SLOT(nextTab()));
 
-    m_previousTabAction = new QAction(tr("Show Previous Tab"), this);
-    shortcuts.clear();
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceLeft));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageUp));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BracketLeft));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Greater));
-    shortcuts.append(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab));
-    m_previousTabAction->setShortcuts(shortcuts);
+    m_previousTabAction = new QAction(this);
     connect(m_previousTabAction, SIGNAL(triggered()), this, SLOT(previousTab()));
 
     m_recentlyClosedTabsMenu = new QMenu(this);
@@ -160,40 +159,60 @@ TabWidget::TabWidget(QWidget *parent)
             this, SLOT(aboutToShowRecentTabsMenu()));
     connect(m_recentlyClosedTabsMenu, SIGNAL(triggered(QAction *)),
             this, SLOT(aboutToShowRecentTriggeredAction(QAction *)));
-    m_recentlyClosedTabsAction = new QAction(tr("Recently Closed Tabs"), this);
+    m_recentlyClosedTabsAction = new QAction(this);
     m_recentlyClosedTabsAction->setMenu(m_recentlyClosedTabsMenu);
     m_recentlyClosedTabsAction->setEnabled(false);
 
-#if QT_VERSION >= 0x040500
-    m_tabBar->setTabsClosable(true);
-    connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
-                      this, SLOT(closeTab(int)));
-    m_tabBar->setSelectionBehaviorOnRemove(QTabBar::SelectPreviousTab);
-#else
-    // corner buttons
+#if QT_VERSION < 0x040500
     QToolButton *addTabButton = new QToolButton(this);
     addTabButton->setDefaultAction(m_newTabAction);
     addTabButton->setAutoRaise(true);
     addTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
     setCornerWidget(addTabButton, Qt::TopLeftCorner);
+#endif
 
-    QToolButton *closeTabButton = new QToolButton(this);
-    closeTabButton->setDefaultAction(m_closeTabAction);
-    closeTabButton->setAutoRaise(true);
-    closeTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    setCornerWidget(closeTabButton, Qt::TopRightCorner);
+#if QT_VERSION >= 0x040500
+    if (oneCloseButton) {
+#endif
+        // corner buttons
+        // With Qt < 4.5 do this always, with >=4.5 only if enabled.
+        QToolButton *closeTabButton = new QToolButton(this);
+        closeTabButton->setDefaultAction(m_closeTabAction);
+        closeTabButton->setAutoRaise(true);
+        closeTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        setCornerWidget(closeTabButton, Qt::TopRightCorner);
+#if QT_VERSION >= 0x040500
+    } else {
+        m_tabBar->setTabsClosable(true);
+
+        connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
+                this, SLOT(closeTab(int)));
+    }
 #endif
 
     connect(this, SIGNAL(currentChanged(int)),
             this, SLOT(currentChanged(int)));
 
     m_lineEdits = new QStackedWidget(this);
+
+    connect(BrowserApplication::historyManager(), SIGNAL(historyCleared()),
+        this, SLOT(historyCleared()));
+
+    // Initialize Actions' labels
+    retranslate();
+}
+
+void TabWidget::historyCleared()
+{
+    m_recentlyClosedTabs.clear();
+    m_recentlyClosedTabsAction->setEnabled(false);
 }
 
 void TabWidget::clear()
 {
     // clear the recently closed tabs
     m_recentlyClosedTabs.clear();
+    m_recentlyClosedTabsAction->setEnabled(false);
     // clear the line edit history
     for (int i = 0; i < m_lineEdits->count(); ++i) {
         QLineEdit *qLineEdit = lineEdit(i);
@@ -210,9 +229,9 @@ void TabWidget::reloadTab(int index)
     if (index < 0 || index >= count())
         return;
 
-    QWidget *widget = this->widget(index);
-    if (WebView *tab = qobject_cast<WebView*>(widget))
+    if (WebView *tab = webView(index)) {
         tab->reload();
+    }
 }
 
 void TabWidget::moveTab(int fromIndex, int toIndex)
@@ -281,10 +300,11 @@ void TabWidget::currentChanged(int index)
     m_lineEdits->setCurrentIndex(index);
     emit loadProgress(webView->progress());
     emit showStatusBarMessage(webView->lastStatusBarText());
-    if (webView->url().isEmpty())
+    if (webView->url().isEmpty() && webView->hasFocus()) {
         m_lineEdits->currentWidget()->setFocus();
-    else
+    } else if (!webView->url().isEmpty()) {
         webView->setFocus();
+    }
 }
 
 QAction *TabWidget::newTabAction() const
@@ -329,10 +349,7 @@ WebView *TabWidget::currentWebView() const
 
 QLineEdit *TabWidget::lineEdit(int index) const
 {
-    UrlLineEdit *urlLineEdit = qobject_cast<UrlLineEdit*>(m_lineEdits->widget(index));
-    if (urlLineEdit)
-        return urlLineEdit->lineEdit();
-    return 0;
+    return qobject_cast<LocationBar*>(m_lineEdits->widget(index));
 }
 
 WebView *TabWidget::webView(int index) const
@@ -340,14 +357,26 @@ WebView *TabWidget::webView(int index) const
     QWidget *widget = this->widget(index);
     if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
         return webViewWithSearch->m_webView;
-    } else {
+    } else if (widget) {
         // optimization to delay creating the first webview
         if (count() == 1) {
             TabWidget *that = const_cast<TabWidget*>(this);
             that->setUpdatesEnabled(false);
+            LocationBar *currentLocationBar = qobject_cast<LocationBar*>(m_lineEdits->widget(0));
+            bool giveBackFocus = currentLocationBar->hasFocus();
+            m_lineEdits->removeWidget(currentLocationBar);
+            m_lineEdits->addWidget(new QWidget());
             that->newTab();
             that->closeTab(0);
+            QWidget *newEmptyLineEdit = m_lineEdits->widget(0);
+            m_lineEdits->removeWidget(newEmptyLineEdit);
+            newEmptyLineEdit->deleteLater();
+            m_lineEdits->addWidget(currentLocationBar);
+            currentLocationBar->setWebView(currentWebView());
+            if (giveBackFocus)
+                currentLocationBar->setFocus();
             that->setUpdatesEnabled(true);
+            that->m_swappedDelayedWidget = true;
             return currentWebView();
         }
     }
@@ -383,31 +412,42 @@ void TabWidget::newTab()
     makeNewTab(true);
 }
 
+BrowserMainWindow *TabWidget::mainWindow()
+{
+    QWidget *w = this->parentWidget();
+    while (w) {
+        if (BrowserMainWindow *mw = qobject_cast<BrowserMainWindow*>(w))
+            return mw;
+        w = w->parentWidget();
+    }
+    return 0;
+}
+
 WebView *TabWidget::makeNewTab(bool makeCurrent)
 {
-    if (!makeCurrent) {
-        QSettings settings;
-        settings.beginGroup(QLatin1String("tabs"));
-        makeCurrent = settings.value(QLatin1String("selectNewTabs"), false).toBool();
-    }
-
     // line edit
-    UrlLineEdit *urlLineEdit = new UrlLineEdit;
-    QLineEdit *lineEdit = urlLineEdit->lineEdit();
-    if (!m_lineEditCompleter && count() > 0) {
+    LocationBar *locationBar = new LocationBar;
+    if (!m_lineEditCompleter) {
         HistoryCompletionModel *completionModel = new HistoryCompletionModel(this);
         completionModel->setSourceModel(BrowserApplication::historyManager()->historyFilterModel());
         m_lineEditCompleter = new QCompleter(completionModel, this);
+        connect(m_lineEditCompleter, SIGNAL(activated(const QString &)),
+                this, SLOT(loadString(const QString &)));
         // Should this be in Qt by default?
         QAbstractItemView *popup = m_lineEditCompleter->popup();
         QListView *listView = qobject_cast<QListView*>(popup);
-        if (listView)
+        if (listView) {
+            // Urls are always LeftToRight
+            listView->setLayoutDirection(Qt::LeftToRight);
             listView->setUniformItemSizes(true);
+        }
     }
-    lineEdit->setCompleter(m_lineEditCompleter);
-    connect(lineEdit, SIGNAL(returnPressed()), this, SLOT(lineEditReturnPressed()));
-    m_lineEdits->addWidget(urlLineEdit);
-    m_lineEdits->setSizePolicy(lineEdit->sizePolicy());
+    locationBar->setCompleter(m_lineEditCompleter);
+    connect(locationBar, SIGNAL(returnPressed()), this, SLOT(lineEditReturnPressed()));
+    m_lineEdits->addWidget(locationBar);
+    m_lineEdits->setSizePolicy(locationBar->sizePolicy());
+
+    QWidget::setTabOrder(locationBar, qFindChild<ToolbarSearch*>(mainWindow()));
 
     // optimization to delay creating the more expensive WebView, history, etc
     if (count() == 0) {
@@ -418,7 +458,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
         emptyWidget->setAutoFillBackground(true);
         disconnect(this, SIGNAL(currentChanged(int)),
                    this, SLOT(currentChanged(int)));
-        addTab(emptyWidget, tr("(Untitled)"));
+        addTab(emptyWidget, tr("Untitled"));
         connect(this, SIGNAL(currentChanged(int)),
                 this, SLOT(currentChanged(int)));
         return 0;
@@ -426,7 +466,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
 
     // webview
     WebView *webView = new WebView;
-    urlLineEdit->setWebView(webView);
+    locationBar->setWebView(webView);
     connect(webView, SIGNAL(loadStarted()),
             this, SLOT(webViewLoadStarted()));
     connect(webView, SIGNAL(loadFinished(bool)),
@@ -451,11 +491,9 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
             this, SLOT(toolBarVisibilityChangeRequestedCheck(bool)));
 
     WebViewWithSearch *webViewWithSearch = new WebViewWithSearch(webView, this);
-    addTab(webViewWithSearch, tr("(Untitled)"));
+    addTab(webViewWithSearch, tr("Untitled"));
     if (makeCurrent)
         setCurrentWidget(webViewWithSearch);
-
-    QWidget::setTabOrder(this, urlLineEdit);
 
     // webview actions
     for (int i = 0; i < m_actions.count(); ++i) {
@@ -496,8 +534,7 @@ void TabWidget::toolBarVisibilityChangeRequestedCheck(bool visible)
 void TabWidget::reloadAllTabs()
 {
     for (int i = 0; i < count(); ++i) {
-        QWidget *tabWidget = widget(i);
-        if (WebView *tab = qobject_cast<WebView*>(tabWidget)) {
+        if (WebView *tab = webView(i)) {
             tab->reload();
         }
     }
@@ -506,7 +543,7 @@ void TabWidget::reloadAllTabs()
 void TabWidget::lineEditReturnPressed()
 {
     if (QLineEdit *lineEdit = qobject_cast<QLineEdit*>(sender())) {
-        emit loadPage(lineEdit->text());
+        loadString(lineEdit->text());
         if (m_lineEdits->currentWidget() == lineEdit)
             currentWebView()->setFocus();
     }
@@ -555,7 +592,9 @@ void TabWidget::closeTab(int index)
         return;
 
     bool hasFocus = false;
-    if (WebView *tab = webView(index)) {
+    WebView *tab = webView(index);
+
+    if (tab && !tab->url().isEmpty()) {
         if (tab->isModified()) {
             QMessageBox closeConfirmation(tab);
             closeConfirmation.setWindowFlags(Qt::Sheet);
@@ -586,7 +625,7 @@ void TabWidget::closeTab(int index)
     webViewWithSearch->deleteLater();
 
     emit tabsChanged();
-    if (hasFocus && count() > 0)
+    if (hasFocus && count() > 0 && currentWebView())
         currentWebView()->setFocus();
     if (count() == 0)
         emit lastTabClosed();
@@ -607,7 +646,7 @@ QLabel *TabWidget::animationLabel(int index, bool addMovie)
         loadingAnimation = new QLabel(this);
     }
     if (addMovie && !loadingAnimation->movie()) {
-        QMovie *movie = new QMovie(":loading.gif", QByteArray(), loadingAnimation);
+        QMovie *movie = new QMovie(QLatin1String(":loading.gif"), QByteArray(), loadingAnimation);
         loadingAnimation->setMovie(movie);
         movie->start();
     }
@@ -680,13 +719,13 @@ void TabWidget::webViewTitleChanged(const QString &title)
     if (-1 != index) {
         QString tabTitle = title;
         if (title.isEmpty())
-            tabTitle = webView->url().toString();
+            tabTitle = QString::fromUtf8(webView->url().toEncoded());
         tabTitle.replace(QLatin1Char('&'), QLatin1String("&&"));
         setTabText(index, tabTitle);
     }
     if (currentIndex() == index)
         emit setCurrentTitle(title);
-    BrowserApplication::historyManager()->updateHistoryItem(webView->url(), title);
+    BrowserApplication::historyManager()->updateHistoryEntry(webView->url(), title);
 }
 
 void TabWidget::webViewUrlChanged(const QUrl &url)
@@ -769,21 +808,216 @@ void TabWidget::wheelEvent(QWheelEvent *event)
 }
 #endif
 
-void TabWidget::loadUrl(const QUrl &url, Tab type, const QString &title)
+void TabWidget::retranslate() {
+    m_nextTabAction->setText(tr("Show Next Tab"));
+    QList<QKeySequence> shortcuts;
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceRight));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageDown));
+    shortcuts.append(tr("Ctrl-]"));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Less));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Tab));
+    m_nextTabAction->setShortcuts(shortcuts);
+    m_previousTabAction->setText(tr("Show Previous Tab"));
+    shortcuts.clear();
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_BraceLeft));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_PageUp));
+    shortcuts.append(tr("Ctrl-["));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Greater));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab));
+    m_previousTabAction->setShortcuts(shortcuts);
+    m_recentlyClosedTabsAction->setText(tr("Recently Closed Tabs"));
+    m_newTabAction->setText(tr("New &Tab"));
+    m_closeTabAction->setText(tr("&Close Tab"));
+}
+
+void TabWidget::changeEvent(QEvent *event)
 {
-    WebView *webView;
-    if (NewTab == type) {
-        webView = makeNewTab();
-        if (count() == 1)
-            webView = this->webView(0);
-    } else {
-        webView = currentWebView();
+    if (event->type() == QEvent::LanguageChange)
+        retranslate();
+    QTabWidget::changeEvent(event);
+}
+
+/*
+    Transform string into a QUrl and then load it.
+
+    When you already have a QUrl call loadUrl()
+ */
+void TabWidget::loadString(const QString &string, OpenUrlIn tab)
+{
+    if (string.isEmpty())
+        return;
+
+    QUrl url = guessUrlFromString(string);
+    currentLineEdit()->setText(QString::fromUtf8(url.toEncoded()));
+    loadUrl(url, tab);
+}
+
+QUrl TabWidget::guessUrlFromString(const QString &string)
+{
+    QString urlStr = string.trimmed();
+
+    // check if the string is just a host with a port
+    QRegExp hostWithPort(QLatin1String("^[a-zA-Z\\.]+\\:[0-9]*$"));
+    if (hostWithPort.exactMatch(urlStr))
+        urlStr = QLatin1String("http://") + urlStr;
+
+    // Check if it looks like a qualified URL. Try parsing it and see.
+    QRegExp test(QLatin1String("^[a-zA-Z]+\\:.*"));
+    bool hasSchema = test.exactMatch(urlStr);
+    if (hasSchema) {
+        bool isAscii = true;
+        foreach (const QChar &c, urlStr) {
+            if (c >= 0x80) {
+                isAscii = false;
+                break;
+            }
+        }
+
+        QUrl url;
+        if (isAscii) {
+            url = QUrl::fromEncoded(urlStr.toAscii(), QUrl::TolerantMode);
+        } else {
+            url = QUrl::fromEncoded(urlStr.toUtf8(), QUrl::TolerantMode);
+        }
+        if (url.isValid())
+            return url;
     }
 
-    if (webView) {
-        webView->loadUrl(url, title);
-        webView->setFocus();
+    // Might be a file.
+    if (QDir::isAbsolutePath(urlStr) && QFile::exists(urlStr)) {
+        return QUrl::fromLocalFile(urlStr);
     }
+
+    // Might be a shorturl - try to detect the schema.
+    if (!hasSchema) {
+        int dotIndex = urlStr.indexOf(QLatin1Char('.'));
+        if (dotIndex != -1) {
+            QString prefix = urlStr.left(dotIndex).toLower();
+            QByteArray schema = (prefix == QLatin1String("ftp")) ? "ftp" : "http";
+            QUrl url = QUrl::fromEncoded(schema + "://" + urlStr.toUtf8(), QUrl::TolerantMode);
+            if (url.isValid())
+                return url;
+        }
+    }
+
+    // Fall back to QUrl's own tolerant parser.
+    QUrl url = QUrl::fromEncoded(string.toUtf8(), QUrl::TolerantMode);
+
+    // finally for cases where the user just types in a hostname add http
+    if (url.scheme().isEmpty())
+        url = QUrl::fromEncoded("http://" + string.toUtf8(), QUrl::TolerantMode);
+    return url;
+}
+
+/*
+   Somewhere in the browser interface a users wants to open a url
+
+   By default open this url in the current tab, unless mouse or keyboard
+   modifiers are set.
+ */
+void TabWidget::loadUrlFromUser(const QUrl &url, const QString &title)
+{
+    loadUrl(url, modifyWithUserBehavior(CurrentTab), title);
+}
+
+/*
+    Replace the openIn behavior with the behavior the user wants.
+
+    // ctrl open in new tab
+    // ctrl-shift open in new tab and select
+    // ctrl-alt open in new window
+ */
+TabWidget::OpenUrlIn TabWidget::modifyWithUserBehavior(OpenUrlIn tab) {
+    Qt::KeyboardModifiers modifiers = BrowserApplication::instance()->eventKeyboardModifiers();
+    Qt::MouseButtons buttons = BrowserApplication::instance()->eventMouseButtons();
+#ifdef USERMODIFIEDBEHAVIOR_DEBUG
+    qDebug() << __FUNCTION__ << "start" << modifiers << buttons << tab;
+#endif
+    if (modifiers & Qt::ControlModifier || buttons == Qt::MidButton) {
+        if (modifiers & Qt::AltModifier) {
+            tab = NewWindow;
+        } else {
+            QSettings settings;
+            settings.beginGroup(QLatin1String("tabs"));
+            bool select = settings.value(QLatin1String("selectNewTabs"), false).toBool();
+            if (modifiers & Qt::ShiftModifier)
+                tab = !select ? NewSelectedTab : NewNotSelectedTab;
+            else
+                tab = select ? NewSelectedTab : NewNotSelectedTab;
+        }
+    }
+#ifdef USERMODIFIEDBEHAVIOR_DEBUG
+    qDebug() << __FUNCTION__ << "end" << modifiers << buttons << tab;
+#endif
+    BrowserApplication::instance()->setEventKeyboardModifiers(0);
+    BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
+    return tab;
+}
+
+/*
+   Somewhere in the browser interface a users wants to open a url in a specific tab.
+ */
+void TabWidget::loadUrl(const QUrl &url, OpenUrlIn tab, const QString &title)
+{
+    if (tab == UserOrCurrent) {
+        loadUrlFromUser(url, title);
+        return;
+    }
+    if (!url.isValid())
+        return;
+    WebView *webView = getView(tab, currentWebView());
+    if (webView)
+        webView->loadUrl(url, title);
+}
+
+/*
+    Return the view that matches the openIn behavior creating
+    a new view/window if necessary.
+ */
+WebView *TabWidget::getView(OpenUrlIn tab, WebView *currentView)
+{
+    WebView *webView = 0;
+    switch (tab) {
+        case NewWindow: {
+#ifdef USERMODIFIEDBEHAVIOR_DEBUG
+            qDebug() << __FUNCTION__ << "NewWindow";
+#endif
+            BrowserApplication::instance()->newMainWindow();
+            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->mainWindow();
+            webView = newMainWindow->currentTab();
+            webView->setFocus();
+            break;
+        }
+
+        case NewSelectedTab: {
+#ifdef USERMODIFIEDBEHAVIOR_DEBUG
+            qDebug() << __FUNCTION__ << "NewSelectedTab";
+#endif
+            webView = makeNewTab(true);
+            webView->setFocus();
+            break;
+        }
+
+        case NewNotSelectedTab: {
+#ifdef USERMODIFIEDBEHAVIOR_DEBUG
+            qDebug() << __FUNCTION__ << "NewNotSelectedTab";
+#endif
+            webView = makeNewTab(false);
+            break;
+        }
+
+        case CurrentTab:
+        default:
+#ifdef USERMODIFIEDBEHAVIOR_DEBUG
+            qDebug() << __FUNCTION__ << "CurrentTab";
+#endif
+            webView = currentView;
+            if (!webView)
+                return 0;
+            webView->setFocus();
+            break;
+    }
+    return webView;
 }
 
 void TabWidget::nextTab()
@@ -815,8 +1049,12 @@ QByteArray TabWidget::saveState() const
 
     QStringList tabs;
     for (int i = 0; i < count(); ++i) {
+        if (!m_swappedDelayedWidget) {
+            tabs.append(QString::null);
+            continue;
+        }
         if (WebView *tab = webView(i)) {
-            tabs.append(tab->url().toString());
+            tabs.append(QString::fromUtf8(tab->url().toEncoded()));
         } else {
             tabs.append(QString::null);
         }
@@ -843,8 +1081,10 @@ bool TabWidget::restoreState(const QByteArray &state)
 
     QStringList openTabs;
     stream >> openTabs;
-    for (int i = 0; i < openTabs.count(); ++i)
-        loadUrl(openTabs.at(i), i == 0 ? CurrentTab : NewTab);
+    for (int i = 0; i < openTabs.count(); ++i) {
+        QUrl url = QUrl::fromEncoded(openTabs.at(i).toUtf8());
+        loadUrl(url, i == 0 && currentWebView()->url() == QUrl() ? CurrentTab : NewTab);
+    }
 
     int currentTab;
     stream >> currentTab;

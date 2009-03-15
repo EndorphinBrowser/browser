@@ -35,12 +35,12 @@ public slots:
 private slots:
     void history_data();
     void history();
-    void addHistoryItem_data();
-    void addHistoryItem();
-    void updateHistoryItem_data();
-    void updateHistoryItem();
-    void historyLimit_data();
-    void historyLimit();
+    void addHistoryEntry_data();
+    void addHistoryEntry();
+    void updateHistoryEntry_data();
+    void updateHistoryEntry();
+    void daysToExpire_data();
+    void daysToExpire();
     void clear_data();
     void clear();
     void setHistory_data();
@@ -54,7 +54,7 @@ private slots:
     void historyDialog();
 
 private:
-    QList<HistoryItem> bigHistory;
+    QList<HistoryEntry> bigHistory;
 };
 
 // Subclass that exposes the protected functions.
@@ -65,17 +65,17 @@ public:
     {
         QWidget w;
         setParent(&w);
-        if (QWebHistoryInterface::defaultInterface() == this);
+        if (QWebHistoryInterface::defaultInterface() == this)
             QWebHistoryInterface::setDefaultInterface(0);
         setParent(0);
     }
 
     ~SubHistory() {
-        setHistoryLimit(30);
+        setDaysToExpire(30);
     }
 
-    void addHistoryItem(const HistoryItem &item)
-        { HistoryManager::addHistoryItem(item); }
+    void addHistoryEntry(const HistoryEntry &item)
+        { HistoryManager::addHistoryEntry(item); }
 };
 
 // This will be called before the first test function is executed.
@@ -91,14 +91,14 @@ void tst_History::initTestCase()
     }
     QTextStream stream(&file);
 
-    QList<HistoryItem> list;
+    QList<HistoryEntry> list;
     do {
         QString url = stream.readLine();
         QString title = stream.readLine();
         QString date = stream.readLine();
         QDateTime dateTime = QDateTime::fromString(date);
         QCOMPARE(dateTime.toString(), date);
-        HistoryItem item(url, dateTime, title);
+        HistoryEntry item(url, dateTime, title);
         list.prepend(item);
     } while (!stream.atEnd());
     bigHistory = list;
@@ -128,23 +128,23 @@ void tst_History::history_data()
 void tst_History::history()
 {
     SubHistory history;
-    history.addHistoryItem(HistoryItem());
+    history.addHistoryEntry(HistoryEntry());
     history.clear();
-    QCOMPARE(history.historyLimit(), 30);
-    history.setHistoryLimit(-1);
-    history.updateHistoryItem(QUrl(), QString());
+    QCOMPARE(history.daysToExpire(), 30);
+    history.setDaysToExpire(-1);
+    history.updateHistoryEntry(QUrl(), QString());
 }
 
-typedef QList<HistoryItem> HistoryList;
+typedef QList<HistoryEntry> HistoryList;
 Q_DECLARE_METATYPE(HistoryList)
-Q_DECLARE_METATYPE(HistoryItem)
-void tst_History::addHistoryItem_data()
+Q_DECLARE_METATYPE(HistoryEntry)
+void tst_History::addHistoryEntry_data()
 {
     QTest::addColumn<HistoryList>("initial");
     QTest::addColumn<HistoryList>("items");
     QTest::addColumn<HistoryList>("expected");
     HistoryList empty;
-    HistoryItem item1("http://foo.com", QDateTime::currentDateTime().addDays(-3));
+    HistoryEntry item1("http://foo.com", QDateTime::currentDateTime().addDays(-3));
     HistoryList one;
     one << item1;
     HistoryList one2;
@@ -154,8 +154,8 @@ void tst_History::addHistoryItem_data()
     QTest::newRow("1-0") << one << HistoryList() << one;
     QTest::newRow("1-1") << one << (HistoryList() << item1) << one2;
 
-    HistoryItem item2("http://bar.com", QDateTime::currentDateTime().addDays(-2));
-    HistoryItem item2n("http://bar.com", QDateTime::currentDateTime());
+    HistoryEntry item2("http://bar.com", QDateTime::currentDateTime().addDays(-2));
+    HistoryEntry item2n("http://bar.com", QDateTime::currentDateTime());
 
     HistoryList two = one;
     two.prepend(item2);
@@ -170,8 +170,8 @@ void tst_History::addHistoryItem_data()
     QTest::newRow("2-2,1") << one << (HistoryList() << item2) << swap;
 /*
     // move to test for the historyFilterModel
-    HistoryItem item3("http://baz.com", QDateTime::currentDateTime().addDays(-1));
-    HistoryItem item3n("http://baz.com", QDateTime::currentDateTime());
+    HistoryEntry item3("http://baz.com", QDateTime::currentDateTime().addDays(-1));
+    HistoryEntry item3n("http://baz.com", QDateTime::currentDateTime());
     QTest::newRow("move-1") << (HistoryList() << item3 << item2 << item1)
                              << (HistoryList() << item3)
                              <<  (HistoryList() << item3 << item2 << item1);
@@ -186,8 +186,8 @@ void tst_History::addHistoryItem_data()
     */
 }
 
-// public void addHistoryItem(HistoryItem* item)
-void tst_History::addHistoryItem()
+// public void addHistoryEntry(HistoryEntry* item)
+void tst_History::addHistoryEntry()
 {
     QFETCH(HistoryList, initial);
     QFETCH(HistoryList, items);
@@ -196,24 +196,24 @@ void tst_History::addHistoryItem()
     SubHistory history;
     history.setHistory(initial);
     for (int i = 0; i < items.count(); ++i)
-        history.addHistoryItem(items[i]);
+        history.addHistoryEntry(items[i]);
     QCOMPARE(history.history().count(), expected.count());
     QCOMPARE(history.history(), expected);
 }
 
-void tst_History::updateHistoryItem_data()
+void tst_History::updateHistoryEntry_data()
 {
     QTest::addColumn<HistoryList>("list");
     QTest::addColumn<QUrl>("url");
     QTest::addColumn<QString>("title");
 
     QTest::newRow("null") << HistoryList() << QUrl() << QString();
-    QTest::newRow("one") << (HistoryList() << HistoryItem()) << QUrl() << QString("foo");
-    QTest::newRow("two") << (HistoryList() << HistoryItem() << HistoryItem("http://foo.com")) << QUrl() << QString("foo");
+    QTest::newRow("one") << (HistoryList() << HistoryEntry()) << QUrl() << QString("foo");
+    QTest::newRow("two") << (HistoryList() << HistoryEntry() << HistoryEntry("http://foo.com")) << QUrl() << QString("foo");
 }
 
-// public void updateHistoryItem(QUrl const& url, QString const title)
-void tst_History::updateHistoryItem()
+// public void updateHistoryEntry(QUrl const& url, QString const title)
+void tst_History::updateHistoryEntry()
 {
     QFETCH(HistoryList, list);
     QFETCH(QUrl, url);
@@ -221,17 +221,17 @@ void tst_History::updateHistoryItem()
 
     SubHistory history;
     history.setHistory(list);
-    history.updateHistoryItem(url, title);
+    history.updateHistoryEntry(url, title);
     if (list.isEmpty())
         QVERIFY(history.history().isEmpty());
     else
         QVERIFY(history.history() != list);
 }
 
-void tst_History::historyLimit_data()
+void tst_History::daysToExpire_data()
 {
     QTest::addColumn<HistoryList>("list");
-    QTest::addColumn<int>("historyLimit");
+    QTest::addColumn<int>("daysToExpire");
     QTest::addColumn<int>("wait_seconds");
     QTest::addColumn<HistoryList>("post");
 
@@ -240,21 +240,21 @@ void tst_History::historyLimit_data()
     yesterday.setDate(yesterday.date().addDays(-1));
     yesterday.setTime(yesterday.time().addSecs(2));
 
-    HistoryItem fooNow("http://foo.com", now);
-    HistoryItem barYesterday("http://bar.com", yesterday);
+    HistoryEntry fooNow("http://foo.com", now);
+    HistoryEntry barYesterday("http://bar.com", yesterday);
     QTest::newRow("two") << (HistoryList() << fooNow << barYesterday) << 1 << 3 << (HistoryList() << fooNow);
 
     yesterday.setTime(yesterday.time().addSecs(3));
     barYesterday.dateTime = yesterday;
-    HistoryItem barYesterday2("http://bar2.com", yesterday);
+    HistoryEntry barYesterday2("http://bar2.com", yesterday);
     QTest::newRow("three") << (HistoryList() << fooNow << barYesterday << barYesterday2) << 1 << 3 << (HistoryList() << fooNow);
 }
 
-// public int historyLimit() const
-void tst_History::historyLimit()
+// public int daysToExpire() const
+void tst_History::daysToExpire()
 {
     QFETCH(HistoryList, list);
-    QFETCH(int, historyLimit);
+    QFETCH(int, daysToExpire);
     QFETCH(int, wait_seconds);
     QFETCH(HistoryList, post);
 
@@ -264,17 +264,17 @@ void tst_History::historyLimit()
     qSort(list.begin(), list.end());
     QCOMPARE(history.history(), list);
 
-    history.setHistoryLimit(historyLimit);
-    QCOMPARE(history.historyLimit(), historyLimit);
+    history.setDaysToExpire(daysToExpire);
+    QCOMPARE(history.daysToExpire(), daysToExpire);
 
     QTest::qWait(wait_seconds * 1000);
     QCOMPARE(history.history(), post);
 
     // re-add the items that have probably expired to catch any cache issues
     for (int i = 0; i < list.count(); ++i) {
-        HistoryItem item = list.at(i);
+        HistoryEntry item = list.at(i);
         item.dateTime = QDateTime::currentDateTime();
-        history.addHistoryItem(item);
+        history.addHistoryEntry(item);
     }
 }
 
@@ -283,8 +283,8 @@ void tst_History::clear_data()
     QTest::addColumn<HistoryList>("list");
 
     QTest::newRow("null") << HistoryList();
-    QTest::newRow("one") << (HistoryList() << HistoryItem());
-    QTest::newRow("two") << (HistoryList() << HistoryItem() << HistoryItem("http://foo.com"));
+    QTest::newRow("one") << (HistoryList() << HistoryEntry());
+    QTest::newRow("two") << (HistoryList() << HistoryEntry() << HistoryEntry("http://foo.com"));
 }
 
 // public void clear()
@@ -316,8 +316,8 @@ void tst_History::setHistory_data()
 
     QTest::newRow("empty") << HistoryList() << HistoryList();
 
-    HistoryItem foo("http://foo.com", now);
-    HistoryItem bar("http://bar.com", yesterday);
+    HistoryEntry foo("http://foo.com", now);
+    HistoryEntry bar("http://bar.com", yesterday);
     QTest::newRow("sort") << (HistoryList() << bar << foo) << (HistoryList() << foo << bar);
 
 //    QTest::newRow("dupe-1") << (HistoryList() << bar << bar) << (HistoryList() << bar);
@@ -325,7 +325,7 @@ void tst_History::setHistory_data()
 
     QDateTime longAgo = now;
     longAgo.setDate(longAgo.date().addYears(-1));
-    HistoryItem expired("http://junk.com", longAgo);
+    HistoryEntry expired("http://junk.com", longAgo);
     QTest::newRow("removeExpired-1") << (HistoryList() << expired) << HistoryList();
     QTest::newRow("removeExpired-2") << (HistoryList() << foo << expired) << (HistoryList() << foo);
 }
@@ -352,10 +352,10 @@ void tst_History::saveload_data()
 
     QTest::newRow("empty") << HistoryList() << HistoryList();
 
-    HistoryItem foo("http://foo.com", now);
+    HistoryEntry foo("http://foo.com", now);
     QTest::newRow("one item") << (HistoryList() << foo) << (HistoryList() << foo);
 
-    HistoryItem bar("http://bar.com", yesterday);
+    HistoryEntry bar("http://bar.com", yesterday);
     QTest::newRow("two items") << (HistoryList() << bar << foo) << (HistoryList() << foo << bar);
 
     QTest::newRow("dupe-1") << (HistoryList() << bar << bar) << (HistoryList() << bar);
@@ -363,7 +363,7 @@ void tst_History::saveload_data()
 
     QDateTime longAgo = now;
     longAgo.setDate(longAgo.date().addYears(-1));
-    HistoryItem expired("http://junk.com", longAgo);
+    HistoryEntry expired("http://junk.com", longAgo);
     QTest::newRow("removeExpired-1") << (HistoryList() << expired) << HistoryList();
     QTest::newRow("removeExpired-2") << (HistoryList() << foo << expired) << (HistoryList() << foo);
 }
@@ -381,9 +381,9 @@ void tst_History::saveload()
         SubHistory history;
         QCOMPARE(history.history(), post);
         // add url
-        HistoryItem foo("http://new.com", QDateTime::currentDateTime().addDays(1));
+        HistoryEntry foo("http://new.com", QDateTime::currentDateTime().addDays(1));
         post.prepend(foo);
-        history.addHistoryItem(foo);
+        history.addHistoryEntry(foo);
     }
 
     {
@@ -395,9 +395,8 @@ void tst_History::saveload()
 void tst_History::big()
 {
     SubHistory history;
-    history.setHistoryLimit(-1);
+    history.setDaysToExpire(-1);
     history.setHistory(bigHistory);
-
 
     qDebug() << "removed dups:" << history.history().count();
     QCOMPARE(history.history().count(), bigHistory.count());
@@ -456,15 +455,15 @@ void tst_History::historyDialog_data()
     QTest::newRow("page-2") << 0 << 0  << 2 << 0  << 0 << -1;
     QTest::newRow("page-3") << 0 << 0  << 3 << 0  << 0 << -1;
     QTest::newRow("page-4") << 0 << 0  << 4 << 0  << 0 << -1;
-    QTest::newRow("page-last") << 0 << 0  << -2 << 0  << 0 << -1;
-    QTest::newRow("page-only") << 32 << 0  << 0 << 0  << -1 << -1;
+    QTest::newRow("page-last") << 0  << 0  << -2 << 0  << 0  << -1;
+    QTest::newRow("page-only") << 32 << 0  << 0  << 0  << -1 << -1;
 
-    QTest::newRow("date-c") << -1 << -1  << 0 << 1  << -1 << 0;
-    QTest::newRow("date-0") << -1 << -1  << 0 << 0  << -1 << 0;
-    QTest::newRow("date-1") << -1 << -1  << 1 << 0  << -1 << 0;
-    QTest::newRow("date-2") << -1 << -1  << 2 << 0  << -1 << 0;
-    QTest::newRow("date-3") << -1 << -1  << 3 << 0  << -1 << 0;
-    QTest::newRow("date-last") << -1 << -1  << -2 << 0  << -1 << 0;
+    QTest::newRow("date-c") << -1 << -1 << 0 << 1  << -1 << 0;
+    QTest::newRow("date-0") << -1 << -1 << 0 << 0  << -1 << 0;
+    QTest::newRow("date-1") << -1 << -1 << 1 << 0  << -1 << 0;
+    QTest::newRow("date-2") << -1 << -1 << 2 << 0  << -1 << 0;
+    QTest::newRow("date-3") << -1 << -1 << 3 << 0  << -1 << 0;
+    QTest::newRow("date-last") << -1 << -1 << -2 << 0  << -1 << 0;
 
     QTest::newRow("removeAll") << -1 << -1  << -3 << 0  << -1 << 0;
 }
@@ -473,36 +472,46 @@ void tst_History::historyDialog()
 {
     QFETCH(int, parentRow);
     QFETCH(int, parentColumn);
+
     QFETCH(int, row);
     QFETCH(int, column);
+
     QFETCH(int, datesDiff);
     QFETCH(int, parentRowsDiff);
 
-   qDebug() << "which one";
     SubHistory history;
-    history.setHistoryLimit(-1);
+    history.setDaysToExpire(-1);
     history.setHistory(bigHistory);
     HistoryDialog dialog(0, &history);
     dialog.show();
     //QTest::qWait(300);
 
     QAbstractItemModel *model = dialog.tree->model();
+    ModelTest test(model);
 /*
     for (int i = 0; i < model->rowCount(); ++i)
         if (model->rowCount(model->index(i, 0)) == 1)
             qDebug() << i;
 */
-    ModelTest test(model);
-    if (parentRow == -2) parentRow = model->rowCount() - 1;
+    if (parentRow == -2)
+        parentRow = model->rowCount() - 1;
     QModelIndex parent = model->index(parentRow, parentColumn);
-    if (row < -1) row = model->rowCount(parent) - 1;
+
+    if (row < -1)
+        row = model->rowCount(parent) - 1;
     QModelIndex child = model->index(row, column, parent);
     QVERIFY(child.isValid());
 
     int topRowCount = model->rowCount();
     int parentRowCount = model->rowCount(parent.sibling(parent.row(), 0));
     int childRowCount = model->rowCount(child.sibling(child.row(), 0));
-    dialog.tree->selectionModel()->select(child, QItemSelectionModel::SelectCurrent);
+    /*
+    qDebug() << "topRowCount" << topRowCount;
+    qDebug() << "parentRowCount" << parentRowCount;
+    qDebug() << "childRowCount" << childRowCount;
+    qDebug() << "selecting" << child;
+    */
+    dialog.tree->selectionModel()->select(child, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
     if (row == -3) {
         dialog.tree->removeAll();
         QCOMPARE(model->rowCount(), 0);
@@ -519,3 +528,4 @@ void tst_History::historyDialog()
 
 QTEST_MAIN(tst_History)
 #include "tst_history.moc"
+

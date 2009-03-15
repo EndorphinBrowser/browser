@@ -63,15 +63,11 @@
 #ifndef BROWSERAPPLICATION_H
 #define BROWSERAPPLICATION_H
 
-#include <qapplication.h>
+#include "singleapplication.h"
 
 #include <qicon.h>
 #include <qpointer.h>
 #include <qurl.h>
-
-QT_BEGIN_NAMESPACE
-class QLocalServer;
-QT_END_NAMESPACE
 
 class BookmarksManager;
 class BrowserMainWindow;
@@ -79,7 +75,8 @@ class CookieJar;
 class DownloadManager;
 class HistoryManager;
 class NetworkAccessManager;
-class BrowserApplication : public QApplication
+class LanguageManager;
+class BrowserApplication : public SingleApplication
 {
     Q_OBJECT
 
@@ -89,7 +86,6 @@ public:
     static BrowserApplication *instance();
     void loadSettings();
 
-    bool isTheOnlyBrowser() const;
     BrowserMainWindow *mainWindow();
     QList<BrowserMainWindow*> mainWindows();
     static QIcon icon(const QUrl &url);
@@ -102,8 +98,20 @@ public:
     static DownloadManager *downloadManager();
     static NetworkAccessManager *networkAccessManager();
     static BookmarksManager *bookmarksManager();
+    static LanguageManager *languageManager();
+    static QString dataDirectory();
 
-    QString dataDirectory() const;
+    Qt::MouseButtons eventMouseButtons() const;
+    Qt::KeyboardModifiers eventKeyboardModifiers() const;
+    void setEventMouseButtons(Qt::MouseButtons buttons);
+    void setEventKeyboardModifiers(Qt::KeyboardModifiers modifiers);
+
+#if QT_VERSION >= 0x040500
+    static bool zoomTextOnly();
+#endif
+
+    static bool isPrivate();
+    static void setPrivate(bool isPrivate);
 
 #if defined(Q_WS_MAC)
     bool event(QEvent *event);
@@ -114,26 +122,39 @@ public slots:
     bool restoreLastSession();
 #if defined(Q_WS_MAC)
     void lastWindowClosed();
+#endif
     void quitBrowser();
+
+#if QT_VERSION >= 0x040500
+    static void setZoomTextOnly(bool textOnly);
 #endif
 
 private slots:
+    void messageRecieved(const QString &message);
     void postLaunch();
     void openUrl(const QUrl &url);
-    void newLocalSocketConnection();
+
+signals:
+#if QT_VERSION >= 0x040500
+    void zoomTextOnlyChanged(bool textOnly);
+#endif
+    void privacyChanged(bool isPrivate);
 
 private:
     void clean();
-    void installTranslator(const QString &name);
 
     static HistoryManager *s_historyManager;
     static DownloadManager *s_downloadManager;
     static NetworkAccessManager *s_networkAccessManager;
     static BookmarksManager *s_bookmarksManager;
+    static LanguageManager *s_languageManager;
 
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
-    QLocalServer *m_localServer;
     QByteArray m_lastSession;
+    bool quiting;
+
+    Qt::MouseButtons m_eventMouseButtons;
+    Qt::KeyboardModifiers m_eventKeyboardModifiers;
 };
 
 #endif // BROWSERAPPLICATION_H

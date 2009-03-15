@@ -76,6 +76,7 @@ class QMenu;
 class QStackedWidget;
 QT_END_NAMESPACE
 
+class BrowserMainWindow;
 class TabBar;
 class WebView;
 class WebActionMapper;
@@ -93,7 +94,6 @@ class TabWidget : public QTabWidget
 
 signals:
     // tab widget signals
-    void loadPage(const QString &url);
     void tabsChanged();
     void lastTabClosed();
 
@@ -109,9 +109,13 @@ signals:
     void printRequested(QWebFrame *frame);
 
 public:
-    enum Tab {
+    enum OpenUrlIn {
+        NewWindow,
+        NewSelectedTab,
+        NewNotSelectedTab,
         CurrentTab,
-        NewTab
+        UserOrCurrent,
+        NewTab = NewNotSelectedTab
     };
 
     TabWidget(QWidget *parent = 0);
@@ -137,6 +141,9 @@ public:
     QByteArray saveState() const;
     bool restoreState(const QByteArray &state);
 
+    static OpenUrlIn modifyWithUserBehavior(OpenUrlIn tab);
+    WebView *getView(OpenUrlIn tab, WebView *currentView);
+
 #if QT_VERSION < 0x040500
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
@@ -144,9 +151,13 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
 #endif
+    void changeEvent(QEvent *event);
+    BrowserMainWindow *mainWindow();
 
 public slots:
-    void loadUrl(const QUrl &url, TabWidget::Tab type = CurrentTab, const QString &title = QString());
+    void loadString(const QString &string, OpenUrlIn tab = CurrentTab);
+    void loadUrlFromUser(const QUrl &url, const QString &title = QString());
+    void loadUrl(const QUrl &url, TabWidget::OpenUrlIn tab = CurrentTab, const QString &title = QString());
     void newTab();
     void cloneTab(int index = -1);
     void closeTab(int index = -1);
@@ -173,9 +184,12 @@ private slots:
     void menuBarVisibilityChangeRequestedCheck(bool visible);
     void statusBarVisibilityChangeRequestedCheck(bool visible);
     void toolBarVisibilityChangeRequestedCheck(bool visible);
+    void historyCleared();
 
 private:
+    static QUrl guessUrlFromString(const QString &url);
     QLabel *animationLabel(int index, bool addMovie);
+    void retranslate();
 
     QAction *m_recentlyClosedTabsAction;
     QAction *m_newTabAction;
@@ -187,6 +201,7 @@ private:
     static const int m_recentlyClosedTabsSize = 10;
     QList<QUrl> m_recentlyClosedTabs;
     QList<WebActionMapper*> m_actions;
+    bool m_swappedDelayedWidget;
 
     QCompleter *m_lineEditCompleter;
     QStackedWidget *m_lineEdits;

@@ -74,6 +74,7 @@ class QNetworkReply;
 class QSslError;
 QT_END_NAMESPACE
 
+class TabWidget;
 class BrowserMainWindow;
 class WebPage : public QWebPage
 {
@@ -88,6 +89,7 @@ public:
 
 protected:
     bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type);
+
     QWebPage *createWindow(QWebPage::WebWindowType type);
 #if !defined(QT_NO_UITOOLS)
     QObject *createPlugin(const QString &classId, const QUrl &url, const QStringList &paramNames, const QStringList &paramValues);
@@ -98,11 +100,10 @@ private slots:
 
 private:
     friend class WebView;
+    TabWidget *tabWidget() const;
 
     // set the webview mousepressedevent
-    Qt::KeyboardModifiers m_keyboardModifiers;
-    Qt::MouseButtons m_pressedButtons;
-    bool m_openInNewTab;
+    bool m_forceInNewTab;
     QUrl m_loadingUrl;
 };
 
@@ -115,11 +116,16 @@ public:
     WebPage *webPage() const { return m_page; }
 
     void loadUrl(const QUrl &url, const QString &title = QString());
-    void loadUrl(const QNetworkRequest &request, QNetworkAccessManager::Operation operation = QNetworkAccessManager::GetOperation, const QByteArray &body = QByteArray());
     QUrl url() const;
 
     QString lastStatusBarText() const;
     inline int progress() const { return m_progress; }
+
+public slots:
+    void zoomIn();
+    void zoomOut();
+    void resetZoom();
+    void applyZoom();
 
 protected:
     void mousePressEvent(QMouseEvent *event);
@@ -127,6 +133,12 @@ protected:
     void contextMenuEvent(QContextMenuEvent *event);
     void wheelEvent(QWheelEvent *event);
     void resizeEvent(QResizeEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dragMoveEvent(QDragMoveEvent *event);
+    void dropEvent(QDropEvent *event);
+
+private:
+    int levelForZoom(int zoom);
 
 private slots:
     void setProgress(int progress);
@@ -148,6 +160,8 @@ private:
     QString m_statusBarText;
     QUrl m_initialUrl;
     int m_progress;
+    int m_currentZoom;
+    QList<int> m_zoomLevels;
     WebPage *m_page;
 };
 

@@ -62,6 +62,7 @@
 
 #include "networkaccessmanager.h"
 
+#include "acceptlanguagedialog.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "ui_passworddialog.h"
@@ -79,6 +80,39 @@
 #include <qsslconfiguration.h>
 #include <qsslerror.h>
 
+#if QT_VERSION >= 0x040500
+#include <qnetworkdiskcache.h>
+#include <qdesktopservices.h>
+#endif
+
+#if QT_VERSION >= 0x040500
+NetworkProxyFactory::NetworkProxyFactory()
+    : QNetworkProxyFactory()
+{
+}
+
+void NetworkProxyFactory::setHttpProxy(const QNetworkProxy &proxy)
+{
+    m_httpProxy = proxy;
+}
+
+void NetworkProxyFactory::setGlobalProxy(const QNetworkProxy &proxy)
+{
+    m_globalProxy = proxy;
+}
+
+QList<QNetworkProxy> NetworkProxyFactory::queryProxy(const QNetworkProxyQuery &query)
+{
+    QList<QNetworkProxy> ret;
+
+    if (query.protocolTag() == QLatin1String("http") && m_httpProxy.type() != QNetworkProxy::DefaultProxy)
+	ret << m_httpProxy;
+    ret << m_globalProxy;
+
+    return ret;
+}
+#endif
+
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
     : QNetworkAccessManager(parent)
 {
@@ -91,6 +125,14 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
             SLOT(sslErrors(QNetworkReply*, const QList<QSslError>&)));
 #endif
     loadSettings();
+
+#if QT_VERSION >= 0x040500
+    QNetworkDiskCache *diskCache = new QNetworkDiskCache(this);
+    QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
+                            + QLatin1String("/browser");
+    diskCache->setCacheDirectory(location);
+    setCache(diskCache);
+#endif
 }
 
 void NetworkAccessManager::loadSettings()
@@ -99,16 +141,35 @@ void NetworkAccessManager::loadSettings()
     settings.beginGroup(QLatin1String("proxy"));
     QNetworkProxy proxy;
     if (settings.value(QLatin1String("enabled"), false).toBool()) {
-        if (settings.value(QLatin1String("type"), 0).toInt() == 0)
-            proxy.setType(QNetworkProxy::Socks5Proxy);
-        else
-            proxy.setType(QNetworkProxy::HttpProxy);
+        int proxyType = settings.value(QLatin1String("type"), 0).toInt();
+        if (proxyType == 0)
+            proxy = QNetworkProxy::Socks5Proxy;
+        else if (proxyType == 1)
+            proxy = QNetworkProxy::HttpProxy;
+	else { // 2
+	    proxy.setType(QNetworkProxy::HttpCachingProxy);
+#if QT_VERSION >= 0x040500
+	    proxy.setCapabilities(QNetworkProxy::CachingCapability | QNetworkProxy::HostNameLookupCapability);
+#endif
+	}
         proxy.setHostName(settings.value(QLatin1String("hostName")).toString());
         proxy.setPort(settings.value(QLatin1String("port"), 1080).toInt());
         proxy.setUser(settings.value(QLatin1String("userName")).toString());
         proxy.setPassword(settings.value(QLatin1String("password")).toString());
     }
+#if QT_VERSION >= 0x040500
+    NetworkProxyFactory *proxyFactory = new NetworkProxyFactory;
+    if (proxy.type() == QNetworkProxy::HttpCachingProxy) {
+      proxyFactory->setHttpProxy(proxy);
+      proxyFactory->setGlobalProxy(QNetworkProxy::DefaultProxy);
+    } else {
+      proxyFactory->setHttpProxy(QNetworkProxy::DefaultProxy);
+      proxyFactory->setGlobalProxy(proxy);
+    }
+    setProxyFactory(proxyFactory);
+#else
     setProxy(proxy);
+#endif
     settings.endGroup();
 
 #ifndef QT_NO_OPENSSL
@@ -120,6 +181,12 @@ void NetworkAccessManager::loadSettings()
     sslCfg.setCaCertificates(ca_list);
     QSslConfiguration::setDefaultConfiguration(sslCfg);
 #endif
+
+    settings.beginGroup(QLatin1String("network"));
+    QStringList acceptList = settings.value(QLatin1String("acceptLanguages"),
+            AcceptLanguageDialog::defaultAcceptList()).toStringList();
+    acceptLanguage = AcceptLanguageDialog::httpString(acceptList);
+    settings.endGroup();
 }
 
 void NetworkAccessManager::authenticationRequired(QNetworkReply *reply, QAuthenticator *auth)
@@ -225,3 +292,18 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
     }
 }
 #endif
+
+QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
+{
+    QNetworkReply *reply;
+    if (!acceptLanguage.isEmpty()) {
+        QNetworkRequest req = request;
+        req.setRawHeader("Accept-Language", acceptLanguage);
+        reply = QNetworkAccessManager::createRequest(op, req, outgoingData);
+        emit requestCreated(op, req, reply);
+    } else {
+        reply = QNetworkAccessManager::createRequest(op, request, outgoingData);
+        emit requestCreated(op, request, reply);
+    }
+    return reply;
+}

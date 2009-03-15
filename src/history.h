@@ -74,25 +74,27 @@
 
 #include <qwebhistoryinterface.h>
 
-class HistoryItem
+class HistoryEntry
 {
 public:
-    HistoryItem() {}
-    HistoryItem(const QString &u,
+    HistoryEntry() {}
+    HistoryEntry(const QString &u,
                 const QDateTime &d = QDateTime(), const QString &t = QString())
-            : title(t), url(u), dateTime(d) {}
+            : url(u), title(t), dateTime(d) {}
 
-    inline bool operator==(const HistoryItem &other) const {
+    inline bool operator==(const HistoryEntry &other) const {
         return other.title == title
                && other.url == url && other.dateTime == dateTime;
     }
 
     // history is sorted in reverse
-    inline bool operator <(const HistoryItem &other) const
+    inline bool operator <(const HistoryEntry &other) const
         { return dateTime > other.dateTime; }
 
-    QString title;
+    QString userTitle() const;
+
     QString url;
+    QString title;
     QDateTime dateTime;
 };
 
@@ -103,12 +105,13 @@ class HistoryTreeModel;
 class HistoryManager : public QWebHistoryInterface
 {
     Q_OBJECT
-    Q_PROPERTY(int historyLimit READ historyLimit WRITE setHistoryLimit)
+    Q_PROPERTY(int daysToExpire READ daysToExpire WRITE setDaysToExpire)
 
 signals:
+    void historyCleared();
     void historyReset();
-    void entryAdded(const HistoryItem &item);
-    void entryRemoved(const HistoryItem &item);
+    void entryAdded(const HistoryEntry &item);
+    void entryRemoved(const HistoryEntry &item);
     void entryUpdated(int offset);
 
 public:
@@ -117,14 +120,13 @@ public:
 
     bool historyContains(const QString &url) const;
     void addHistoryEntry(const QString &url);
+    void updateHistoryEntry(const QUrl &url, const QString &title);
 
-    void updateHistoryItem(const QUrl &url, const QString &title);
+    int daysToExpire() const;
+    void setDaysToExpire(int limit);
 
-    int historyLimit() const;
-    void setHistoryLimit(int limit);
-
-    QList<HistoryItem> history() const;
-    void setHistory(const QList<HistoryItem> &history, bool loadedAndSorted = false);
+    QList<HistoryEntry> history() const;
+    void setHistory(const QList<HistoryEntry> &history, bool loadedAndSorted = false);
 
     // History manager keeps around these models for use by the completer and other classes
     HistoryModel *historyModel() const;
@@ -140,15 +142,15 @@ private slots:
     void checkForExpired();
 
 protected:
-    void addHistoryItem(const HistoryItem &item);
+    void addHistoryEntry(const HistoryEntry &item);
 
 private:
     void load();
 
     AutoSaver *m_saveTimer;
-    int m_historyLimit;
+    int m_daysToExpire;
     QTimer m_expiredTimer;
-    QList<HistoryItem> m_history;
+    QList<HistoryEntry> m_history;
     QString m_lastSavedUrl;
 
     HistoryModel *m_historyModel;
@@ -170,7 +172,8 @@ public:
         DateRole = Qt::UserRole + 1,
         DateTimeRole = Qt::UserRole + 2,
         UrlRole = Qt::UserRole + 3,
-        UrlStringRole = Qt::UserRole + 4
+        UrlStringRole = Qt::UserRole + 4,
+        TitleRole = Qt::UserRole + 5
     };
 
     HistoryModel(HistoryManager *history, QObject *parent = 0);
@@ -206,8 +209,8 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex index(int, int, const QModelIndex& = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index = QModelIndex()) const;
+    QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
+    QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
@@ -245,6 +248,7 @@ public:
     QModelIndex mapToSource(const QModelIndex & proxyIndex) const;
     QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
     QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
+    QMimeData *mimeData(const QModelIndexList &indexes) const;
 
     int bumpedRows() const;
 
@@ -258,7 +262,7 @@ class HistoryMenu : public ModelMenu
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url);
+    void openUrl(const QUrl &url, const QString &title);
 
 public:
     HistoryMenu(QWidget *parent = 0);
@@ -271,6 +275,7 @@ protected:
 private slots:
     void activated(const QModelIndex &index);
     void showHistoryDialog();
+    void clearHistoryDialog();
 
 private:
     HistoryManager *m_history;
@@ -291,8 +296,8 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
     QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
-    QModelIndex index(int, int, const QModelIndex& = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index = QModelIndex()) const;
+    QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
+    QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
     void setSourceModel(QAbstractItemModel *sourceModel);
 
 private slots:
@@ -331,6 +336,7 @@ private slots:
 private:
     int sourceDateRow(int row) const;
     mutable QList<int> m_sourceRowCache;
+    bool removingDown;
 
 };
 
@@ -355,7 +361,7 @@ class HistoryDialog : public QDialog, public Ui_HistoryDialog
     Q_OBJECT
 
 signals:
-    void openUrl(const QUrl &url);
+    void openUrl(const QUrl &url, const QString &title);
 
 public:
     HistoryDialog(QWidget *parent = 0, HistoryManager *history = 0);

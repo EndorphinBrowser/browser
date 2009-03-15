@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Check that existing manualtest for files that are being commited still build
+# They can break when the API changes
+#
+QMAKE=qmake
+$QMAKE --version 2>&1 | grep 3.3 > /dev/null
+if [ $? -eq 0 ] ; then
+    QMAKE=qmake-qt4
+fi
+dir=`dirname $0`
+for file in `git-diff-index --name-only HEAD | grep .cpp` ; do
+    file=`echo $file | sed -e s/.cpp//g -e 's/.*\///g'`
+    if [ -d $dir/../manualtests/$file ] ; then
+        echo "--checking manualtest (should still build): $file--"
+        cd "$dir/../../manualtests/$file/";
+        $QMAKE;
+        make --quiet
+        if [ $? != 0 ] ; then
+            echo "--Manualtest build failed, fix failure before commiting--";
+            exit 1
+        fi
+        echo "--checking manualtest: $file done--"
+    fi
+done
+

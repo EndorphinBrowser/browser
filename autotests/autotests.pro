@@ -4,6 +4,8 @@ SUBDIRS  = addbookmarkdialog \
 	downloadmanager \
 	edittreeview \
 	history \
+        languagemanager \
+        lineedit \
 	historyfiltermodel \
 	searchlineedit \
 	tabbar \
