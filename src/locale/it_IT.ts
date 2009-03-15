@@ -88,11 +88,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Name</source>
-        <translation>Modifica Nome</translation>
+        <translation>Modifica nome</translation>
     </message>
     <message>
         <source>Edit Address</source>
-        <translation>Modifica Indirizzo</translation>
+        <translation>Modifica indirizzo</translation>
     </message>
 </context>
 <context>
@@ -133,7 +133,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Export error</source>
-        <translation>Errore in esportazione</translation>
+        <translation>Errore in fase di esportazione</translation>
     </message>
     <message>
         <source>error saving bookmarks</source>
@@ -220,7 +220,7 @@ Sei sicuro di voler uscire?</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
-        <translation>La sessione salvata non sarà ripristinata perchè Arora è andata in crash nel tentativo di ripristinarla.</translation>
+        <translation>La sessione salvata non sarà ripristinata perché Arora si è chiuso in modo inatteso nel tentativo di ripristinarla.</translation>
     </message>
 </context>
 <context>
@@ -481,7 +481,7 @@ Sei sicuro di voler uscire?</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
-        <translation>Sei sicuro di voler chiudere la finestra?  Ci sono %1 schede aperte</translation>
+        <translation>Sei sicuro di voler chiudere la finestra? Ci sono %1 schede aperte</translation>
     </message>
     <message>
         <source>Page Source of %1</source>
@@ -541,7 +541,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     </message>
     <message>
         <source>Find P&amp;revious</source>
-        <translation>Trova P&amp;recedente</translation>
+        <translation>Trova p&amp;recedente</translation>
     </message>
     <message>
         <source>Prefere&amp;nces...</source>
@@ -549,27 +549,27 @@ Vuoi ricaricare tutte le pagine?</translation>
     </message>
     <message>
         <source>Show Menu Bar</source>
-        <translation>Mostra barra del Menù</translation>
+        <translation>Mostra barra dei menu</translation>
     </message>
     <message>
         <source>&amp;Reload Page</source>
-        <translation>&amp;Ricarica Pagina</translation>
+        <translation>&amp;Ricarica pagina</translation>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
-        <translation>&amp;Ingrandisci Testo</translation>
+        <translation>&amp;Ingrandisci testo</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation>Ripristi&amp;na dimensione Testo</translation>
+        <translation>Ripristi&amp;na dimensione testo</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation>Riduci Te&amp;sto</translation>
+        <translation>Riduci te&amp;sto</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>Mostra Mo&amp;nitor di Rete</translation>
+        <translation>Mostra mo&amp;nitor di rete</translation>
     </message>
     <message>
         <source>Switch application language </source>
@@ -627,7 +627,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     </message>
     <message>
         <source>C&amp;ached Web Pages</source>
-        <translation>Pagine Web in C&amp;ache</translation>
+        <translation>Pagine web in c&amp;ache</translation>
     </message>
 </context>
 <context>
@@ -923,7 +923,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     </message>
     <message>
         <source>Clear History...</source>
-        <translation>Cancella Cronologia...</translation>
+        <translation>Cancella la cronologia...</translation>
     </message>
     <message>
         <source>Do you want to clear the history?</source>
@@ -963,15 +963,15 @@ Vuoi ricaricare tutte le pagine?</translation>
     <name>LanguageManager</name>
     <message>
         <source>Default</source>
-        <translation>Default</translation>
+        <translation>Predefinita</translation>
     </message>
     <message>
         <source>Choose language</source>
-        <translation>Seleziona lingua</translation>
+        <translation>Scegli la lingua</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Puoi utilizzare una lingua differente da&lt;br&gt;quella di default del sistema operativo.&lt;/p&gt;&lt;p&gt;Seleziona la lingua da utilizzare&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Puoi utilizzare una lingua differente da&lt;br&gt;quella predefinita del sistema operativo.&lt;/p&gt;&lt;p&gt;Scegli la lingua da utilizzare&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -1020,7 +1020,7 @@ Vuoi ignorare questi errori?</translation>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>Monitor di Rete</translation>
+        <translation>Monitor di rete</translation>
     </message>
     <message>
         <source>Network Requests</source>
@@ -1028,11 +1028,11 @@ Vuoi ignorare questi errori?</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>Testate Richieste</translation>
+        <translation>Intestazioni di richiesta</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>Testate Risposte</translation>
+        <translation>Intestazioni di risposta</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -1040,7 +1040,7 @@ Vuoi ignorare questi errori?</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>Rimuovi &amp;Tutte le Richieste</translation>
+        <translation>Rimuovi &amp;tutte le richieste</translation>
     </message>
 </context>
 <context>
@@ -1131,7 +1131,7 @@ Vuoi ignorare questi errori?</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>Tipo Contenuto</translation>
+        <translation>Tipo contenuto</translation>
     </message>
     <message>
         <source>Info</source>
@@ -1360,7 +1360,7 @@ Vuoi ignorare questi errori?</translation>
     </message>
     <message>
         <source>Select...</source>
-        <translation>Scegli...</translation>
+        <translation>Seleziona...</translation>
     </message>
     <message>
         <source>Courier 13</source>
@@ -1380,7 +1380,7 @@ Vuoi ignorare questi errori?</translation>
     </message>
     <message>
         <source>Restore windows and tabs from last time</source>
-        <translation>Ripristina le finestre ed le schede dell&apos;ultima sessione</translation>
+        <translation>Ripristina le finestre e le schede dell&apos;ultima sessione</translation>
     </message>
     <message>
         <source>On application exit</source>
@@ -1412,11 +1412,11 @@ Vuoi ignorare questi errori?</translation>
     </message>
     <message>
         <source>View Images</source>
-        <translation>Visualizza Immagini</translation>
+        <translation>Visualizza immagini</translation>
     </message>
     <message>
         <source>Keep Cookies Until:</source>
-        <translation>Mantieni i Cookie Fino a che:</translation>
+        <translation>Mantieni i cookie fino a che:</translation>
     </message>
     <message>
         <source>Use proxy server</source>
@@ -1428,7 +1428,7 @@ Vuoi ignorare questi errori?</translation>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
-        <translation>Mostra solo un pulsante di chiusura al posto di uno per ogni tab</translation>
+        <translation>Mostra solo un pulsante di chiusura al posto di uno per ogni scheda</translation>
     </message>
 </context>
 <context>
@@ -1455,7 +1455,7 @@ Vuoi ignorare questi errori?</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Sorgente della Pagina</translation>
+        <translation>Sorgente della pagina</translation>
     </message>
 </context>
 <context>
@@ -1527,7 +1527,7 @@ Vuoi ignorare questi errori?</translation>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
-        <translation>Hai modificato questa pagina e chiudendola perderai le tue modifiche.
+        <translation>Hai modificato questa pagina e chiudendola perderai le modifiche.
 Sei sicuro di volerlo fare?
 </translation>
     </message>
@@ -1606,7 +1606,7 @@ Sei sicuro di volerlo fare?
     </message>
     <message>
         <source>&amp;Bookmark This Link</source>
-        <translation>Salva il collegamento nei Segnali&amp;bri</translation>
+        <translation>Salva il collegamento nei segnali&amp;bri</translation>
     </message>
     <message>
         <source>&amp;Copy Link Location</source>
