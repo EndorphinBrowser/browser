@@ -695,9 +695,10 @@ void TabWidget::webViewLoadProgress(int progress)
 
 void TabWidget::webViewLoadFinished(bool ok)
 {
-#if QT_VERSION >= 0x040500
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
+
+#if QT_VERSION >= 0x040500
     if (-1 != index) {
         QLabel *label = animationLabel(index, true);
         if (label->movie())
