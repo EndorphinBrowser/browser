@@ -5,7 +5,6 @@
 ** Use, modification and distribution is allowed without limitation,
 ** warranty, liability or support of any kind.
 **
-** explorerstyle.h - version 1.0
 ****************************************************************************/
 
 #ifndef EXPLORERSTYLE_H
@@ -44,4 +43,5 @@ private:
     mutable QRect currentTopRect; //current toolbar top area size
     mutable QRect currentBottomRect; //current toolbar top area size
 };
+
 #endif //EXPLORERSTYLE_H

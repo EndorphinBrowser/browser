@@ -323,8 +323,8 @@ public:
 
 private slots:
     void customContextMenuRequested(const QPoint &pos);
-    void open(TabWidget::OpenUrlIn tab);
-    void open();
+    void openBookmark(TabWidget::OpenUrlIn tab);
+    void openBookmark();
     void openInNewTab();
     void openInCurrentTab();
     void editName();

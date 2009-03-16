@@ -62,14 +62,15 @@
 **
 ****************************************************************************/
 
+#include "webview.h"
+
+#include "bookmarks.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "cookiejar.h"
 #include "downloadmanager.h"
 #include "networkaccessmanager.h"
 #include "tabwidget.h"
-#include "webview.h"
-#include "bookmarks.h"
 
 #include <qbuffer.h>
 #include <qclipboard.h>
@@ -419,7 +420,7 @@ int WebView::levelForZoom(int zoom)
     if (i >= 0)
         return i;
 
-    for (i = 0 ; i < m_zoomLevels.count(); i++)
+    for (i = 0 ; i < m_zoomLevels.count(); ++i)
         if (zoom <= m_zoomLevels[i])
             break;
 

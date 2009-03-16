@@ -902,7 +902,7 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     tree->header()->resizeSection(0, header);
     tree->header()->setStretchLastSection(true);
     connect(tree, SIGNAL(activated(const QModelIndex&)),
-            this, SLOT(open()));
+            this, SLOT(openBookmark()));
     tree->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(tree, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(customContextMenuRequested(const QPoint &)));
@@ -974,7 +974,7 @@ void BookmarksDialog::customContextMenuRequested(const QPoint &pos)
     menu.exec(QCursor::pos());
 }
 
-void BookmarksDialog::open(TabWidget::OpenUrlIn tab)
+void BookmarksDialog::openBookmark(TabWidget::OpenUrlIn tab)
 {
     QModelIndex index = tree->currentIndex();
     QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
@@ -987,21 +987,21 @@ void BookmarksDialog::open(TabWidget::OpenUrlIn tab)
           index.sibling(index.row(), 0).data(Qt::DisplayRole).toString());
 }
 
-void BookmarksDialog::open()
+void BookmarksDialog::openBookmark()
 {
     BrowserApplication::instance()->setEventMouseButtons(qApp->mouseButtons());
     BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
-    open(TabWidget::UserOrCurrent);
+    openBookmark(TabWidget::UserOrCurrent);
 }
 
 void BookmarksDialog::openInCurrentTab()
 {
-    open(TabWidget::CurrentTab);
+    openBookmark(TabWidget::CurrentTab);
 }
 
 void BookmarksDialog::openInNewTab()
 {
-    open(TabWidget::NewTab);
+    openBookmark(TabWidget::NewTab);
 }
 
 void BookmarksDialog::editName()

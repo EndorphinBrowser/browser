@@ -5,10 +5,10 @@
 ** Use, modification and distribution is allowed without limitation,
 ** warranty, liability or support of any kind.
 **
-** explorerstyle.cpp - version 1.0
 ****************************************************************************/
 
 #include "explorerstyle.h"
+
 #include <QtGui>
 #include <qt_windows.h>
 #include <uxtheme.h>

@@ -158,8 +158,7 @@ void RequestModel::update()
         return;
 
     // Save reply headers
-    QByteArray header;
-    foreach(header, reply->rawHeaderList() ) {
+    foreach(const QByteArray &header, reply->rawHeaderList() ) {
         QPair<QByteArray, QByteArray> pair(header, reply->rawHeader(header));
         m_requests[offset].replyHeaders.append(pair);
     }

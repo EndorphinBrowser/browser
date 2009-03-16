@@ -163,7 +163,7 @@ void HistoryManager::setHistory(const QList<HistoryEntry> &history, bool loadedA
     if (loadedAndSorted) {
         m_lastSavedUrl = m_history.value(0).url;
     } else {
-        m_lastSavedUrl = QString();
+        m_lastSavedUrl.clear();
         m_saveTimer->changeOccurred();
     }
     emit historyReset();
@@ -205,7 +205,7 @@ void HistoryManager::checkForExpired()
             break;
         HistoryEntry item = m_history.takeLast();
         // remove from saved file also
-        m_lastSavedUrl = QString();
+        m_lastSavedUrl.clear();
         emit entryRemoved(item);
     }
 
@@ -256,7 +256,7 @@ void HistoryManager::setDaysToExpire(int limit)
 void HistoryManager::clear()
 {
     m_history.clear();
-    m_lastSavedUrl = QString();
+    m_lastSavedUrl.clear();
     m_saveTimer->changeOccurred();
     m_saveTimer->saveIfNeccessary();
     emit historyReset();
@@ -329,7 +329,7 @@ void HistoryManager::load()
 
     // If we had to sort re-write the whole history sorted
     if (needToSort) {
-        m_lastSavedUrl = QString();
+        m_lastSavedUrl.clear();
         m_saveTimer->changeOccurred();
     }
 }

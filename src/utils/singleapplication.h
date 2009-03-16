@@ -26,8 +26,8 @@
  * SUCH DAMAGE.
  */
 
-#ifndef SINGALAPPLICATION_H
-#define SINGALAPPLICATION_H
+#ifndef SINGLEAPPLICATION_H
+#define SINGLEAPPLICATION_H
 
 #include <qapplication.h>
 
@@ -59,5 +59,5 @@ private:
 
 };
 
-#endif
+#endif // SINGLEAPPLICATION_H
 

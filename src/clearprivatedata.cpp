@@ -17,9 +17,10 @@
  * Boston, MA  02110-1301  USA
  */
 
+#include "clearprivatedata.h"
+
 #include "browserapplication.h"
 #include "browsermainwindow.h"
-#include "clearprivatedata.h"
 #include "cookiejar.h"
 #include "downloadmanager.h"
 #include "history.h"
@@ -35,6 +36,7 @@
 #if QT_VERSION >= 0x040500
 #include <qabstractnetworkcache.h>
 #endif
+
 ClearPrivateData::ClearPrivateData(QWidget *parent)
     : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint)
 {
