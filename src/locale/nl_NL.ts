@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="nl_NL">
+<!DOCTYPE TS>
+<TS version="2.0" language="nl_NL">
 <defaultcodec></defaultcodec>
-<context encoding="UTF-8">
+<context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
@@ -19,14 +20,6 @@
         <source>Lightweight WebKit-based web browser</source>
         <translation>Lichte browser gebaseerd op WebKit</translation>
     </message>
-    <message encoding="UTF-8">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
     <message>
         <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</translation>
@@ -40,8 +33,35 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright &#xa9; 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>AcceptLanguage</name>
+    <message>
+        <source>Languages</source>
+        <translation>Talen</translation>
+    </message>
+    <message>
+        <source>Languages: in order of preference:</source>
+        <translation>Talen in volgorde van voorkeur:</translation>
+    </message>
+    <message>
+        <source>Move &amp;Up</source>
+        <translation>Om&amp;hoog</translation>
+    </message>
+    <message>
+        <source>Move &amp;Down</source>
+        <translation>Om&amp;laag</translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation>Ve&amp;rwijderen</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation>Toevoegen...</translation>
     </message>
 </context>
 <context>
@@ -53,6 +73,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Voer de naam voor de bladwijzer in, en kies waar op te slaan.</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation>Url</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation>Titel</translation>
     </message>
 </context>
 <context>
@@ -164,6 +192,13 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>BookmarksMenu</name>
+    <message>
+        <source>Open in Tabs</source>
+        <translation>In tabs openen</translation>
+    </message>
+</context>
+<context>
     <name>BookmarksModel</name>
     <message>
         <source>Title</source>
@@ -208,10 +243,6 @@ Wilt u toch afsluiten?</translation>
     <message>
         <source>Restore failed</source>
         <translation>Herstellen mislukt</translation>
-    </message>
-    <message>
-        <source>The saved session will not being restored because last time it was restored Arora crashed.</source>
-        <translation type="obsolete">De opgeslagen sessie zal niet worden hersteld omdat de laatste keer dat deze werd hersteld Arora crashte.</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -297,18 +328,6 @@ Wilt u toch afsluiten?</translation>
         <translation>&amp;Zoeken</translation>
     </message>
     <message>
-        <source>&amp;Find Next</source>
-        <translation type="obsolete">Volgende &amp;zoeken</translation>
-    </message>
-    <message>
-        <source>&amp;Find Previous</source>
-        <translation type="obsolete">Vorige &amp;zoeken</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="obsolete">&amp;Voorkeuren</translation>
-    </message>
-    <message>
         <source>Ctrl+,</source>
         <translation>Ctrl+,</translation>
     </message>
@@ -331,22 +350,6 @@ Wilt u toch afsluiten?</translation>
     <message>
         <source>&amp;Stop</source>
         <translation>&amp;Stoppen</translation>
-    </message>
-    <message>
-        <source>Reload Page</source>
-        <translation type="obsolete">Pagina herladen</translation>
-    </message>
-    <message>
-        <source>&amp;Make Text Bigger</source>
-        <translation type="obsolete">Tekst groter &amp;maken</translation>
-    </message>
-    <message>
-        <source>&amp;Make Text Normal</source>
-        <translation type="obsolete">Tekst normaal &amp;maken</translation>
-    </message>
-    <message>
-        <source>&amp;Make Text Smaller</source>
-        <translation type="obsolete">Tekst kleiner &amp;maken</translation>
     </message>
     <message>
         <source>Page S&amp;ource</source>
@@ -431,10 +434,6 @@ Wilt u toch afsluiten?</translation>
         <translation>Over &amp;Qt</translation>
     </message>
     <message>
-        <source>About &amp;Arora</source>
-        <translation>Over &amp;Arora</translation>
-    </message>
-    <message>
         <source>Navigation</source>
         <translation>Navigatie</translation>
     </message>
@@ -453,18 +452,6 @@ Wilt u toch afsluiten?</translation>
     <message>
         <source>Hide Toolbar</source>
         <translation>Werkbalk verbergen</translation>
-    </message>
-    <message>
-        <source>Show Bookmarks bar</source>
-        <translation type="obsolete">Bladwijzerbalk tonen</translation>
-    </message>
-    <message>
-        <source>Hide Bookmarks bar</source>
-        <translation type="obsolete">Bladwijzerbalk verbergen</translation>
-    </message>
-    <message>
-        <source>Arora</source>
-        <translation>Arora</translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -488,16 +475,8 @@ Wilt u toch afsluiten?</translation>
         <translation>Bent u zeker dat u privésurfen wilt inschakelen?</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Als privésurfen aan staat zullen sommige acties omtrent uw privacy worden uitgeschakeld:&lt;ul&gt;&lt;li&gt; Webpagina&apos;s worden niet toegevoegd aan de geschiedenis.&lt;/li&gt;&lt;li&gt; Items worden automatisch verwijderd uit het Downloads-scherm.&lt;/li&gt;&lt;li&gt; Nieuwe cookies worden niet opgeslagen, huidige cookies kunnen niet worden bereikt.&lt;/li&gt;&lt;li&gt; Sitepictogrammen en sessie&apos;s worden niet opgeslagen.&lt;/li&gt;&lt;li&gt; Zoekopdrachten worden niet toegevoegd aan het pop-upmenu in de zoekbalk.&lt;/li&gt;&lt;/ul&gt;Totdat u het venster sluit, kunt u nog altijd de Terug- en Vooruitknoppen gebruiken om terug te keren naar webpagina&apos;s die u heeft geopend.</translation>
-    </message>
-    <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Bent u zeker dat u het venster wil sluiten? Er zijn %1 tabs geopend</translation>
-    </message>
-    <message>
-        <source>Page Source of %1</source>
-        <translation type="obsolete">Paginabron van %1</translation>
     </message>
     <message>
         <source>Web Inspector</source>
@@ -522,37 +501,12 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <translation>Downloads</translation>
     </message>
     <message>
-        <source>Alt+Ctrl+L</source>
-        <comment>Download Manager</comment>
-        <translation>Alt+Ctrl+L</translation>
-    </message>
-    <message>
-        <source>Find &amp;Next</source>
-        <translation type="obsolete">&amp;Volgende zoeken</translation>
-    </message>
-    <message>
         <source>Find P&amp;revious</source>
         <translation>Vo&amp;rige zoeken</translation>
     </message>
     <message>
-        <source>Prefe&amp;rences</source>
-        <translation type="obsolete">Voo&amp;rkeuren</translation>
-    </message>
-    <message>
         <source>&amp;Reload Page</source>
         <translation>Pagina he&amp;rladen</translation>
-    </message>
-    <message>
-        <source>Make Text &amp;Bigger</source>
-        <translation>Tekst groter &amp;maken</translation>
-    </message>
-    <message>
-        <source>Make Text &amp;Normal</source>
-        <translation>Tekst &amp;normaal maken</translation>
-    </message>
-    <message>
-        <source>Make Text &amp;Smaller</source>
-        <translation>Tek&amp;st kleiner maken</translation>
     </message>
     <message>
         <source>Show Bookmarks Bar</source>
@@ -581,6 +535,40 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <message>
         <source>Switch application language </source>
         <translation>Programmataal wijzigen</translation>
+    </message>
+    <message>
+        <source>Close Window</source>
+        <translation>Venster sluiten</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation>&amp;Inzoomen</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Normal</source>
+        <translation>&amp;Normaal zoomen</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation>Uitz&amp;oomen</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Text Only</source>
+        <translation>Alleen &amp;tekst vergroten</translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation>Over &amp;%1</translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
+        <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Als privésurfen aan staat zullen sommige acties omtrent uw privacy worden uitgeschakeld:&lt;ul&gt;&lt;li&gt; Webpagina&apos;s worden niet toegevoegd aan de geschiedenis.&lt;/li&gt;&lt;li&gt; Items worden automatisch verwijderd uit het Downloads-scherm.&lt;/li&gt;&lt;li&gt; Nieuwe cookies worden niet opgeslagen, huidige cookies kunnen niet worden bereikt.&lt;/li&gt;&lt;li&gt; Sitepictogrammen en sessie&apos;s worden niet opgeslagen.&lt;/li&gt;&lt;li&gt; Zoekopdrachten worden niet toegevoegd aan het pop-upmenu in de zoekbalk.&lt;/li&gt;&lt;/ul&gt;Totdat u het venster sluit, kunt u nog altijd de Terug- en Vooruitknoppen gebruiken om terug te keren naar webpagina&apos;s die u heeft geopend.</translation>
     </message>
 </context>
 <context>
@@ -617,10 +605,6 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <translation>&amp;Cookies</translation>
     </message>
     <message>
-        <source>C&amp;ache</source>
-        <translation type="obsolete">Cac&amp;he</translation>
-    </message>
-    <message>
         <source>Website &amp;Icons</source>
         <translation>Website&amp;pictogrammen</translation>
     </message>
@@ -642,10 +626,6 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <message>
         <source>Website</source>
         <translation>Website</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="obsolete">Status</translation>
     </message>
     <message>
         <source>Allow</source>
@@ -776,11 +756,11 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Ico</source>
-        <translation type="unfinished"></translation>
+        <translation>Ico</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -807,10 +787,6 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <translation>Download geannuleerd: %1</translation>
     </message>
     <message>
-        <source>Error opening save file: %1</source>
-        <translation type="obsolete">Fout bij het opslaan van bestand: %1</translation>
-    </message>
-    <message>
         <source>Error saving: %1</source>
         <translation>Fout bij opslaan: %1</translation>
     </message>
@@ -821,14 +797,6 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <message>
         <source>seconds</source>
         <translation>seconden</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minuten</translation>
-    </message>
-    <message>
-        <source>- %4 %5 remaining</source>
-        <translation type="obsolete">- %4 %5 resterend</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
@@ -875,20 +843,18 @@ Wilt u alle pagina&apos;s herladen?</translation>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
-        <source>1 Download</source>
-        <translation type="obsolete">1 download</translation>
-    </message>
-    <message>
-        <source>%1 Downloads</source>
-        <translation type="obsolete">%1 downloads</translation>
-    </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
         <translation>
             <numerusform>1 download</numerusform>
             <numerusform>%n downloads</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>There are %1 downloads in progress
+Do you want to quit anyway?</source>
+        <translation>Er zijn %1 downloads bezig
+Wilt u toch afsluiten?</translation>
     </message>
 </context>
 <context>
@@ -922,7 +888,7 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <name>HistoryMenu</name>
     <message>
         <source>Show All History</source>
-        <translation>Toon volledige geschiedenis</translation>
+        <translation>Volledige geschiedenis tonen</translation>
     </message>
     <message>
         <source>Clear History</source>
@@ -954,10 +920,6 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <source>Earlier Today</source>
         <translation>Eerder vandaag</translation>
     </message>
-    <message>
-        <source>%1 items</source>
-        <translation type="obsolete">%1 items</translation>
-    </message>
     <message numerus="yes">
         <source>%n item(s)</source>
         <translation>
@@ -969,16 +931,16 @@ Wilt u alle pagina&apos;s herladen?</translation>
 <context>
     <name>LanguageManager</name>
     <message>
-        <source>Default</source>
-        <translation>Standaard</translation>
-    </message>
-    <message>
         <source>Choose language</source>
         <translation>Taal kiezen</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
         <translation>&lt;p&gt;U kan een andere taal gebruiken dan&lt;br&gt;de standaardtaal van het besturingssysteem.&lt;/p&gt;&lt;p&gt;Kies de te gebruiken taal.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>No translation files are installed.</source>
+        <translation>Er zijn geen vertaalbestanden geïnstalleerd.</translation>
     </message>
 </context>
 <context>
@@ -992,24 +954,20 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <translation>&lt;qt&gt;Verbinden met proxy &quot;%1&quot; met:&lt;/qt&gt;</translation>
     </message>
     <message>
-        <source>SSL Errors:
-
-%1
-
-%2
-
-Do you want to ignore these errors?</source>
-        <translation>SSL-foutmeldingen:
-
-%1
-
-%2
-
-Wilt u deze foutmeldingen negeren?</translation>
+        <source> - SSL Errors</source>
+        <translation> - SSL-fouten</translation>
     </message>
     <message>
-        <source>Do you want to accept all these certificates?</source>
-        <translation>Wilt u al deze certificaten accepteren?</translation>
+        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Do you want to ignore these errors?&lt;/qt&gt;</source>
+        <translation>&lt;qt&gt;SSL-fouten:&lt;br/&gt;&lt;br/&gt;voor: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation>&lt;qt&gt;Certificaten:&lt;br/&gt;%1&lt;br/&gt;Wilt u al deze certificaten accepteren?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1058,11 +1016,11 @@ Wilt u deze foutmeldingen negeren?</translation>
     </message>
     <message>
         <source>DUMMY ICON</source>
-        <translation type="unfinished"></translation>
+        <translation>DUMMY ICON</translation>
     </message>
     <message>
         <source>INTRO TEXT DUMMY</source>
-        <translation type="unfinished"></translation>
+        <translation>INTRO TEXT DUMMY</translation>
     </message>
     <message>
         <source>Username:</source>
@@ -1149,11 +1107,11 @@ Wilt u deze foutmeldingen negeren?</translation>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <source>&lt;</source>
@@ -1178,16 +1136,8 @@ Wilt u deze foutmeldingen negeren?</translation>
 <context>
     <name>Settings</name>
     <message>
-        <source>Settings</source>
-        <translation type="obsolete">Instellingen</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Algemeen</translation>
-    </message>
-    <message>
-        <source>Home:</source>
-        <translation type="obsolete">Startpagina:</translation>
     </message>
     <message>
         <source>Set to current page</source>
@@ -1228,10 +1178,6 @@ Wilt u deze foutmeldingen negeren?</translation>
     <message>
         <source>Open links from applications:</source>
         <translation>Links uit programma&apos;s openen:</translation>
-    </message>
-    <message>
-        <source>In a tab in the current window</source>
-        <translation>In een tab in het huidige venster</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1290,10 +1236,6 @@ Wilt u deze foutmeldingen negeren?</translation>
         <translation>Javascript inschakelen</translation>
     </message>
     <message>
-        <source>Enable Images</source>
-        <translation type="obsolete">Afbeeldingen toestaan</translation>
-    </message>
-    <message>
         <source>Cookies</source>
         <translation>Cookies</translation>
     </message>
@@ -1316,10 +1258,6 @@ Wilt u deze foutmeldingen negeren?</translation>
     <message>
         <source>Exceptions...</source>
         <translation>Uitzonderingen...</translation>
-    </message>
-    <message>
-        <source>Keep until:</source>
-        <translation type="obsolete">Houden tot:</translation>
     </message>
     <message>
         <source>They expire</source>
@@ -1354,24 +1292,12 @@ Wilt u deze foutmeldingen negeren?</translation>
         <translation>Proxy</translation>
     </message>
     <message>
-        <source>Enable proxy</source>
-        <translation type="obsolete">Proxy inschakelen</translation>
-    </message>
-    <message>
         <source>Type:</source>
         <translation>Type:</translation>
     </message>
     <message>
         <source>Socks5</source>
         <translation>Socks5</translation>
-    </message>
-    <message>
-        <source>Http</source>
-        <translation>Http</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation type="obsolete">Host:</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1436,6 +1362,42 @@ Wilt u deze foutmeldingen negeren?</translation>
     <message>
         <source>Show only one close button instead of one for each tab</source>
         <translation>Alleen één sluitknop tonen in plaats van één voor elke tab</translation>
+    </message>
+    <message>
+        <source>Block Popup Windows</source>
+        <translation>Popupvensters blokkeren</translation>
+    </message>
+    <message>
+        <source>Opening links</source>
+        <translation>Links openen</translation>
+    </message>
+    <message>
+        <source>Links that want to open in a new window:</source>
+        <translation>Links die in een nieuw venster geopend willen worden:</translation>
+    </message>
+    <message>
+        <source>In a new selected tab in the current window</source>
+        <translation>In een nieuwe geselecteerde tab in het huidige venster</translation>
+    </message>
+    <message>
+        <source>In a new tab in the current window</source>
+        <translation>In een nieuwe tab in het huidige venster</translation>
+    </message>
+    <message>
+        <source>In the current tab</source>
+        <translation>In de huidige tab</translation>
+    </message>
+    <message>
+        <source>Http (Secure)</source>
+        <translation>Http (veilig)</translation>
+    </message>
+    <message>
+        <source>Http (Transparent)</source>
+        <translation>Http (transparant)</translation>
+    </message>
+    <message>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation>Voorkeurstaal om webpagina&apos;s in te zien:</translation>
     </message>
 </context>
 <context>
@@ -1523,10 +1485,6 @@ Wilt u deze foutmeldingen negeren?</translation>
         <translation>Kortgeleden gesloten tabs</translation>
     </message>
     <message>
-        <source>(Untitled)</source>
-        <translation type="obsolete">(Zonder titel)</translation>
-    </message>
-    <message>
         <source>Do you really want to close this page?</source>
         <translation>Bent u zeker dat u deze pagina wilt sluiten?</translation>
     </message>
@@ -1550,13 +1508,25 @@ Bent u zeker dat u deze pagina wilt sluiten?
         <source>Untitled</source>
         <translation>Naamloos</translation>
     </message>
+    <message>
+        <source>Loading...</source>
+        <translation>Laden...</translation>
+    </message>
+    <message>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation>Laden %1% (%2 %3)...</translation>
+    </message>
+    <message>
+        <source>Finished loading</source>
+        <translation>Laden voltooid</translation>
+    </message>
+    <message>
+        <source>Failed to load</source>
+        <translation>Laden mislukt</translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
-    <message>
-        <source>Google</source>
-        <translation type="obsolete">Google</translation>
-    </message>
     <message>
         <source>No Recent Searches</source>
         <translation>Geen recente zoekopdrachten</translation>
@@ -1585,12 +1555,12 @@ Bent u zeker dat u deze pagina wilt sluiten?
         <translation>Het adres controleren op fouten als &lt;b&gt;ww&lt;/b&gt;.arora-browser.org in plaats van &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
     <message>
-        <source>If the address is correct, try to check the network connection.</source>
-        <translation>Indien het adres juist is, de netwerkverbinding proberen te testen.</translation>
-    </message>
-    <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation>Indien uw computer of netwerk beschermd wordt door een firewall of proxy, zorg er dan voor dat de browser toegang krijgt tot het netwerk.</translation>
+    </message>
+    <message>
+        <source>If the address is correct, try checking the network connection.</source>
+        <translation>Indien het adres juist is, de netwerkverbinding proberen te testen.</translation>
     </message>
 </context>
 <context>
