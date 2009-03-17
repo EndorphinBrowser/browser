@@ -285,7 +285,7 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         menu->addAction(tr("Open in New &Tab"), this, SLOT(openLinkInNewTab()));
         menu->addSeparator();
         menu->addAction(tr("Save Lin&k"), this, SLOT(downloadLinkToDisk()));
-        menu->addAction(tr("&Bookmark This Link"), this, SLOT(bookmarkLink()))->setData(r.linkUrl().toString());
+        menu->addAction(tr("&Bookmark This Link"), this, SLOT(bookmarkLink()))->setData(r.linkUrl());
         menu->addSeparator();
         if (!page()->selectedText().isEmpty())
             menu->addAction(pageAction(QWebPage::Copy));
@@ -402,7 +402,8 @@ void WebView::copyImageLocationToClipboard()
 void WebView::bookmarkLink()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
-        AddBookmarkDialog dialog(action->data().toString(), QString());
+        AddBookmarkDialog dialog;
+        dialog.setUrl(QString::fromUtf8(action->data().toUrl().toEncoded()));
         dialog.exec();
     }
 }

@@ -299,7 +299,9 @@ public:
     AddBookmarkDialog(QWidget *parent = 0, BookmarksManager *bookmarkManager = 0);
     void setUrl(const QString &url);
     void setTitle(const QString &title);
+
     void setCurrentIndex(const QModelIndex &index);
+    QModelIndex currentIndex() const;
 
 private slots:
     void accept();

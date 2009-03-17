@@ -739,24 +739,32 @@ AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmark
     resize(sizeHint());
 }
 
-void AddBookmarkDialog::setUrl(const QString &url)
-{
-    address->setText(url);
-    if (!url.isEmpty())
-        address->hide();
-}
-
 void AddBookmarkDialog::setTitle(const QString &title)
 {
     name->setText(title);
+}
+
+void AddBookmarkDialog::setUrl(const QString &url)
+{
+    address->setText(url);
+    address->setVisible(url.isEmpty());
+    resize(sizeHint());
 }
 
 void AddBookmarkDialog::setCurrentIndex(const QModelIndex &index)
 {
     if (!index.isValid())
         return;
-    m_treeView->setCurrentIndex(index);
-    location->setCurrentIndex(index.row());
+    QModelIndex proxyIndex = m_proxyModel->mapFromSource(index);
+    m_treeView->setCurrentIndex(proxyIndex);
+    location->setCurrentIndex(proxyIndex.row());
+}
+
+QModelIndex AddBookmarkDialog::currentIndex() const
+{
+    QModelIndex index = location->view()->currentIndex();
+    index = m_proxyModel->mapToSource(index);
+    return index;
 }
 
 void AddBookmarkDialog::accept()
@@ -766,8 +774,7 @@ void AddBookmarkDialog::accept()
         return;
     }
 
-    QModelIndex index = location->view()->currentIndex();
-    index = m_proxyModel->mapToSource(index);
+    QModelIndex index = currentIndex();
     if (!index.isValid())
         index = m_bookmarksManager->bookmarksModel()->index(0, 0);
     BookmarkNode *parent = m_bookmarksManager->bookmarksModel()->node(index);
