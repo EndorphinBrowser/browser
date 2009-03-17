@@ -35,7 +35,9 @@ int main(int argc, char *argv[])
     dialog->show();
 
     QString url("http://www.reddit.com");
-    AddBookmarkDialog adddialog(QString("Reddit.com: a time drain"), url);
+    AddBookmarkDialog adddialog;
+    adddialog.setTitle(QString("Reddit.com: a time drain"));
+    adddialog.setUrl(url);
     //adddialog.show();
 
     QMenuBar bar;
