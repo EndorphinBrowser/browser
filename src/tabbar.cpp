@@ -62,6 +62,8 @@
 
 #include "tabbar.h"
 
+#include "tabwidget.h"
+
 #include <qaction.h>
 #include <qapplication.h>
 #include <qclipboard.h>
@@ -159,7 +161,11 @@ void TabBar::selectTabAction()
 void TabBar::contextMenuRequested(const QPoint &position)
 {
     QMenu menu;
-    menu.addAction(tr("New &Tab"), this, SIGNAL(newTab()), QKeySequence::AddTab);
+    TabWidget *tabWidget = qobject_cast<TabWidget *>(parentWidget());
+    if (!tabWidget)
+        return;
+
+    menu.addAction(tabWidget->newTabAction());
     int index = tabAt(position);
     if (-1 != index) {
         QAction *action = menu.addAction(tr("Duplicate Tab"),
@@ -185,6 +191,8 @@ void TabBar::contextMenuRequested(const QPoint &position)
         menu.addSeparator();
     }
     menu.addAction(tr("Reload All Tabs"), this, SIGNAL(reloadAllTabs()));
+    menu.addSeparator();
+    menu.addAction(tabWidget->bookmarkTabsAction());
     menu.exec(QCursor::pos());
 }
 

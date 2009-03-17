@@ -630,6 +630,7 @@ void BrowserMainWindow::setupMenu()
     QList<QAction*> bookmarksActions;
     bookmarksActions.append(m_bookmarksShowAllAction);
     bookmarksActions.append(m_bookmarksAddAction);
+    bookmarksActions.append(tabWidget()->bookmarkTabsAction());
     m_bookmarksMenu->setInitialActions(bookmarksActions);
 
     // Window
@@ -739,7 +740,7 @@ void BrowserMainWindow::retranslate()
     m_historyRestoreLastSessionAction->setText(tr("Restore Last Session"));
 
     m_bookmarksMenu->setTitle(tr("&Bookmarks"));
-    m_bookmarksShowAllAction->setText(tr("Manage Bookmarks..."));
+    m_bookmarksShowAllAction->setText(tr("Show All Bookmarks..."));
     m_bookmarksAddAction->setText(tr("Add Bookmark..."));
 
     m_windowMenu->setTitle(tr("&Window"));
