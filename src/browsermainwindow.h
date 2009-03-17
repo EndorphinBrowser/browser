@@ -132,6 +132,7 @@ private slots:
     void slotEditFindPrevious();
     void slotShowBookmarksDialog();
     void slotAddBookmark();
+    void slotAddBookmarkFolder();
     void slotZoomIn();
     void slotZoomNormal();
     void slotZoomOut();
@@ -217,6 +218,7 @@ private:
     BookmarksMenuBarMenu *m_bookmarksMenu;
     QAction *m_bookmarksShowAllAction;
     QAction *m_bookmarksAddAction;
+    QAction *m_bookmarksAddFolderAction;
 
     QMenu *m_windowMenu;
 
