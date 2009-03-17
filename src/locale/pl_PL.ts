@@ -82,6 +82,10 @@ p, li { white-space: pre-wrap; }
         <source>Title</source>
         <translation>Tytuł</translation>
     </message>
+    <message>
+        <source>Add Folder</source>
+        <translation>Dodaj katalog</translation>
+    </message>
 </context>
 <context>
     <name>BookmarksDialog</name>
@@ -230,6 +234,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Bookmark...</source>
         <translation>Dodaj zakładkę...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation>Dodaj katalog...</translation>
     </message>
 </context>
 <context>
@@ -421,7 +429,7 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>Zarządzaj zakładkami...</translation>
+        <translation type="obsolete">Zarządzaj zakładkami...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -654,6 +662,14 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone.&lt;ul&gt;&lt;li&gt;Historia nie jest uzupełniana o odwiedzane strony.&lt;/li&gt;&lt;li&gt;Pobrane pliki są automatycznie usuwane z okna Pobierania.&lt;/li&gt;&lt;li&gt;Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.&lt;/li&gt;&lt;li&gt;Ikony stron nie będą przechowywane&lt;/li&gt;&lt;li&gt;Sesja nie zostanie zapisana.&lt;/li&gt;&lt;li&gt;Wyszukiwania nie są dodawane do historii wyszukiwań.&lt;/li&gt;&lt;/ul&gt;Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
+    </message>
+    <message>
+        <source>Show All Bookmarks...</source>
+        <translation>Pokaż wszystkie zakładki...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation>Dodaj katalog...</translation>
     </message>
 </context>
 <context>
@@ -1620,7 +1636,7 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     <name>TabBar</name>
     <message>
         <source>New &amp;Tab</source>
-        <translation>Nowa &amp;karta</translation>
+        <translation type="obsolete">Nowa &amp;karta</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -1716,6 +1732,14 @@ Czy na pewno chcesz zamknąć tę stronę?
     <message>
         <source>Failed to load</source>
         <translation>Ładowanie nie powiodło się</translation>
+    </message>
+    <message>
+        <source>Saved Tabs</source>
+        <translation>Zapisane karty</translation>
+    </message>
+    <message>
+        <source>Bookmark All Tabs</source>
+        <translation>Dodaj wszystkie karty do zakładek</translation>
     </message>
 </context>
 <context>
