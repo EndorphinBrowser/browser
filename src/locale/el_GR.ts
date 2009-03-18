@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="el_GR">
+<defaultcodec></defaultcodec>
 <context encoding="UTF-8">
     <name>AboutDialog</name>
     <message>
@@ -78,7 +79,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddBookmarkDialog</name>
     <message>
-        <location filename="../addbookmarkdialog.ui" line="14"/>
+        <location filename="../bookmarks.cpp" line="779"/>
         <source>Add Bookmark</source>
         <translation>Προσθήκη σελιδοδείκτη</translation>
     </message>
@@ -87,36 +88,51 @@ p, li { white-space: pre-wrap; }
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Δώστε ένα όνομα και επιλέξτε θέση.</translation>
     </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="738"/>
+        <source>Url</source>
+        <translation>Url</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="739"/>
+        <source>Title</source>
+        <translation>Τίτλος</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="776"/>
+        <source>Add Folder</source>
+        <translation>Προσθήκη Φακέλου</translation>
+    </message>
 </context>
 <context>
     <name>BookmarksDialog</name>
     <message>
-        <location filename="../bookmarks.cpp" line="961"/>
+        <location filename="../bookmarks.cpp" line="996"/>
         <source>Open</source>
         <translation>Άνοιγμα</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="962"/>
+        <location filename="../bookmarks.cpp" line="997"/>
         <source>Open in New Tab</source>
         <translation>Άνοιγμα σε Νέα Καρτέλα</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="966"/>
+        <location filename="../bookmarks.cpp" line="1001"/>
         <source>Edit Name</source>
         <translation>Αλλαγή Ονόματος</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="969"/>
+        <location filename="../bookmarks.cpp" line="1004"/>
         <source>Edit Address</source>
         <translation>Αλλαγή Διεύθυνσης</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="972"/>
+        <location filename="../bookmarks.cpp" line="1007"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1039"/>
+        <location filename="../bookmarks.cpp" line="1074"/>
         <source>New Folder</source>
         <translation>Νέος Φάκελος</translation>
     </message>
@@ -224,7 +240,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksMenu</name>
     <message>
-        <location filename="../bookmarks.cpp" line="819"/>
+        <location filename="../bookmarks.cpp" line="854"/>
         <source>Open in Tabs</source>
         <translation>Άνοιγμα  σε Καρτέλες</translation>
     </message>
@@ -245,29 +261,34 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <location filename="../bookmarks.cpp" line="1069"/>
+        <location filename="../bookmarks.cpp" line="1104"/>
         <source>Bookmark</source>
         <translation>Σελιδοδείκτης</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1105"/>
+        <location filename="../bookmarks.cpp" line="1140"/>
         <source>Open</source>
         <translation>Άνοιγμα</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1108"/>
+        <location filename="../bookmarks.cpp" line="1143"/>
         <source>Open in New &amp;Tab</source>
         <translation>Άνοιγμα σε Νέα &amp;Καρτέλα</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1115"/>
+        <location filename="../bookmarks.cpp" line="1150"/>
         <source>Remove</source>
         <translation>Αφαίρεση</translation>
     </message>
     <message>
-        <location filename="../bookmarks.cpp" line="1122"/>
+        <location filename="../bookmarks.cpp" line="1157"/>
         <source>Add Bookmark...</source>
         <translation>Προσθήκη Σελιδοδείκτη...</translation>
+    </message>
+    <message>
+        <location filename="../bookmarks.cpp" line="1159"/>
+        <source>Add Folder...</source>
+        <translation>Προσθήκη Φακέλου...</translation>
     </message>
 </context>
 <context>
@@ -298,147 +319,147 @@ Do you want to quit anyway?</source>
 <context>
     <name>BrowserMainWindow</name>
     <message>
-        <location filename="../browsermainwindow.cpp" line="695"/>
+        <location filename="../browsermainwindow.cpp" line="701"/>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="696"/>
+        <location filename="../browsermainwindow.cpp" line="702"/>
         <source>&amp;New Window</source>
         <translation>&amp;Νέο Παράθυρο</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="697"/>
+        <location filename="../browsermainwindow.cpp" line="703"/>
         <source>&amp;Open File...</source>
         <translation>Άν&amp;οιγμα Αρχείου...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="698"/>
+        <location filename="../browsermainwindow.cpp" line="704"/>
         <source>Open &amp;Location...</source>
         <translation>Άνοιγμα Τ&amp;οποθεσίας...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="699"/>
+        <location filename="../browsermainwindow.cpp" line="705"/>
         <source>&amp;Save As...</source>
         <translation>Απο&amp;θήκευση Ως...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="700"/>
+        <location filename="../browsermainwindow.cpp" line="706"/>
         <source>&amp;Import Bookmarks...</source>
         <translation>&amp;Εισαγωγή Σελιδοδεικτών...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="701"/>
+        <location filename="../browsermainwindow.cpp" line="707"/>
         <source>&amp;Export Bookmarks...</source>
         <translation>Εξαγωγή &amp;Σελιδοδεικτών...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="702"/>
+        <location filename="../browsermainwindow.cpp" line="708"/>
         <source>P&amp;rint Preview...</source>
         <translation>Π&amp;ροεπισκόπηση Εκτύπωσης...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="703"/>
+        <location filename="../browsermainwindow.cpp" line="709"/>
         <source>&amp;Print...</source>
         <translation>Ε&amp;κτύπωση...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="704"/>
+        <location filename="../browsermainwindow.cpp" line="710"/>
         <source>Private &amp;Browsing...</source>
         <translation>Ασφαλής &amp;Περιήγηση...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="706"/>
+        <location filename="../browsermainwindow.cpp" line="712"/>
         <source>&amp;Quit</source>
         <translation>&amp;Τερματισμός</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="708"/>
+        <location filename="../browsermainwindow.cpp" line="714"/>
         <source>&amp;Edit</source>
         <translation>&amp;Επεξεργασία</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="709"/>
+        <location filename="../browsermainwindow.cpp" line="715"/>
         <source>&amp;Undo</source>
         <translation>&amp;Αναίρεση</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="710"/>
+        <location filename="../browsermainwindow.cpp" line="716"/>
         <source>&amp;Redo</source>
         <translation>Α&amp;κύρωση Αναίρεσης</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="711"/>
+        <location filename="../browsermainwindow.cpp" line="717"/>
         <source>Cu&amp;t</source>
         <translation>Αποκο&amp;πή</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="712"/>
+        <location filename="../browsermainwindow.cpp" line="718"/>
         <source>&amp;Copy</source>
         <translation>Α&amp;ντιγραφή</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="713"/>
+        <location filename="../browsermainwindow.cpp" line="719"/>
         <source>&amp;Paste</source>
         <translation>Επικόλλη&amp;ση</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="714"/>
+        <location filename="../browsermainwindow.cpp" line="720"/>
         <source>&amp;Find</source>
         <translation>Ανα&amp;ζήτηση</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="715"/>
+        <location filename="../browsermainwindow.cpp" line="721"/>
         <source>Find Nex&amp;t</source>
         <translation>Αναζήτηση Επό&amp;μενου</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="716"/>
+        <location filename="../browsermainwindow.cpp" line="722"/>
         <source>Find P&amp;revious</source>
         <translation>Αναζήτηση Προη&amp;γούμενου</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="717"/>
+        <location filename="../browsermainwindow.cpp" line="723"/>
         <source>Prefere&amp;nces...</source>
         <translation>Προ&amp;τιμήσεις...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="718"/>
+        <location filename="../browsermainwindow.cpp" line="724"/>
         <source>Ctrl+,</source>
         <translation>Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="720"/>
+        <location filename="../browsermainwindow.cpp" line="726"/>
         <source>&amp;View</source>
         <translation>&amp;Προβολή</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="724"/>
+        <location filename="../browsermainwindow.cpp" line="730"/>
         <source>Show Menu Bar</source>
         <translation>Εμφάνιση Γραμμής Μενού</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="721"/>
+        <location filename="../browsermainwindow.cpp" line="727"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="722"/>
+        <location filename="../browsermainwindow.cpp" line="728"/>
         <source>Shift+Ctrl+B</source>
         <translation>Shift+Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="723"/>
+        <location filename="../browsermainwindow.cpp" line="729"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="726"/>
+        <location filename="../browsermainwindow.cpp" line="732"/>
         <source>&amp;Stop</source>
         <translation>&amp;Διακοπή</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="725"/>
+        <location filename="../browsermainwindow.cpp" line="731"/>
         <source>&amp;Reload Page</source>
         <translation>&amp;Επαναφόρτωση</translation>
     </message>
@@ -458,114 +479,114 @@ Do you want to quit anyway?</source>
         <translation type="obsolete">&amp;Σμίκρυνση Γραμματοσειράς</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="731"/>
+        <location filename="../browsermainwindow.cpp" line="737"/>
         <source>Page S&amp;ource</source>
         <translation>&amp;Κώδικας Σελίδας</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="732"/>
+        <location filename="../browsermainwindow.cpp" line="738"/>
         <source>Ctrl+Alt+U</source>
         <translation>Ctrl+Alt+U</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="733"/>
+        <location filename="../browsermainwindow.cpp" line="739"/>
         <source>&amp;Full Screen</source>
         <translation>Πλήρης &amp;Οθόνη</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="735"/>
+        <location filename="../browsermainwindow.cpp" line="741"/>
         <source>Hi&amp;story</source>
         <translation>&amp;Ιστορικό</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="736"/>
+        <location filename="../browsermainwindow.cpp" line="742"/>
         <source>Back</source>
         <translation>Πίσω</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="737"/>
+        <location filename="../browsermainwindow.cpp" line="743"/>
         <source>Forward</source>
         <translation>Μπροστά</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="738"/>
+        <location filename="../browsermainwindow.cpp" line="744"/>
         <source>Home</source>
         <translation>Αρχική Σελίδα</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="739"/>
+        <location filename="../browsermainwindow.cpp" line="745"/>
         <source>Restore Last Session</source>
         <translation>Επαναφορά Προηγούμενης Συνεδρίας</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="741"/>
+        <location filename="../browsermainwindow.cpp" line="747"/>
         <source>&amp;Bookmarks</source>
         <translation>&amp;Σελιδοδείκτες</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="742"/>
         <source>Manage Bookmarks...</source>
-        <translation>Οργάνωση Σελιδοδεικτών...</translation>
+        <translation type="obsolete">Οργάνωση Σελιδοδεικτών...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="743"/>
+        <location filename="../browsermainwindow.cpp" line="749"/>
         <source>Add Bookmark...</source>
         <translation>Προσθήκη Σελιδοδείκτη...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="745"/>
+        <location filename="../browsermainwindow.cpp" line="752"/>
         <source>&amp;Window</source>
         <translation>Παρά&amp;θυρο</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="747"/>
+        <location filename="../browsermainwindow.cpp" line="754"/>
         <source>&amp;Tools</source>
         <translation>Ερ&amp;γαλεία</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="748"/>
+        <location filename="../browsermainwindow.cpp" line="755"/>
         <source>Web &amp;Search</source>
         <translation>Αναζήτηση στο &amp;Διαδίκτυο</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="749"/>
+        <location filename="../browsermainwindow.cpp" line="756"/>
         <source>Ctrl+K</source>
         <comment>Web Search</comment>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="750"/>
+        <location filename="../browsermainwindow.cpp" line="757"/>
         <source>&amp;Clear Private Data</source>
         <translation>&amp;Εκκαθάριση Προσωπικών Δεδομένων</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="751"/>
+        <location filename="../browsermainwindow.cpp" line="758"/>
         <source>Ctrl+Shift+Delete</source>
         <comment>Clear Private Data</comment>
         <translation>Ctrl+Shift+Delete</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="752"/>
+        <location filename="../browsermainwindow.cpp" line="759"/>
         <source>Show &amp;Network Monitor</source>
         <translation>Παρακο&amp;λούθηση Δικτύου</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="753"/>
+        <location filename="../browsermainwindow.cpp" line="760"/>
         <source>Enable Web &amp;Inspector</source>
         <translation>Ενε&amp;ργοποίηση του Επόπτη Ιστοσελίδων</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="755"/>
+        <location filename="../browsermainwindow.cpp" line="762"/>
         <source>&amp;Help</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="756"/>
+        <location filename="../browsermainwindow.cpp" line="763"/>
         <source>Switch application language </source>
         <translation>Αλλάγη γλώσσας της εφαρμογής</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="757"/>
+        <location filename="../browsermainwindow.cpp" line="764"/>
         <source>About &amp;Qt</source>
         <translation>Σχετικά με το &amp;Qt</translation>
     </message>
@@ -575,37 +596,37 @@ Do you want to quit anyway?</source>
         <translation type="obsolete">Σχετικά με το &amp;Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="761"/>
+        <location filename="../browsermainwindow.cpp" line="768"/>
         <source>Navigation</source>
         <translation>Πλοήγηση</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="875"/>
+        <location filename="../browsermainwindow.cpp" line="895"/>
         <source>Show Status Bar</source>
         <translation>Εμφάνιση Γραμμής Κατάστασης</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="875"/>
+        <location filename="../browsermainwindow.cpp" line="895"/>
         <source>Hide Status Bar</source>
         <translation>Απόκρυψη Γραμμής Κατάστασης</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="880"/>
+        <location filename="../browsermainwindow.cpp" line="900"/>
         <source>Show Toolbar</source>
         <translation>Εμφάνιση Εργαλειοθήκης</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="880"/>
+        <location filename="../browsermainwindow.cpp" line="900"/>
         <source>Hide Toolbar</source>
         <translation>Απόκρυψη Εργαλειοθήκης</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="885"/>
+        <location filename="../browsermainwindow.cpp" line="905"/>
         <source>Show Bookmarks Bar</source>
         <translation>Εμφάνιση Γραμμής Σελιδοδεικτών</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="885"/>
+        <location filename="../browsermainwindow.cpp" line="905"/>
         <source>Hide Bookmarks Bar</source>
         <translation>Απόκρυψη Γραμμής Σελιδοδεικτών</translation>
     </message>
@@ -615,28 +636,28 @@ Do you want to quit anyway?</source>
         <translation type="obsolete">Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="938"/>
+        <location filename="../browsermainwindow.cpp" line="958"/>
         <source>%1 - Arora</source>
         <comment>Page title and Browser name</comment>
         <translation>%1 - Arora</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="958"/>
+        <location filename="../browsermainwindow.cpp" line="978"/>
         <source>Open Web Resource</source>
         <translation>Άνοιγμα Αρχείου</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="959"/>
+        <location filename="../browsermainwindow.cpp" line="979"/>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
         <translation>Αρχεία Web (*.html *.htm *.svg *.png *.gif *.svgz);;Όλα τα αρχεία (*.*)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="988"/>
+        <location filename="../browsermainwindow.cpp" line="1008"/>
         <source>Print Document</source>
         <translation>Εκτύπωση</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="997"/>
+        <location filename="../browsermainwindow.cpp" line="1017"/>
         <source>Are you sure you want to turn on private browsing?</source>
         <translation>Είσαι βέβαιος ότι θέλεις να ενεργοποιήσεις την ασφαλή περιήγηση;</translation>
     </message>
@@ -646,34 +667,34 @@ Do you want to quit anyway?</source>
         <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Όταν η ασφαλής περιήγηση είναι ενεργή, μερικές λειτουργίες θα απενεργοποιηθούν:&lt;ul&gt;&lt;li&gt; Οι ιστοσελίδες δεν προστίθενται στο ιστορικό.&lt;/li&gt;&lt;li&gt; Τα αντικείμενα που κατεβάζετε, αυτομάτως απομακρύνονται από το παράθυρο λήψης αρχείων.&lt;/li&gt;&lt;li&gt; Δεν αποθηκεύονται νέα cookies και τα ήδη υπάρχοντα είναι αδύνατον να προσπελαστούν.&lt;/li&gt;&lt;li&gt; Το εικονίδια των ιστοσελίδων δεν αποθηκεύονται, η συνεδρία δεν θα αποθηκευτεί.&lt;/li&gt;&lt;li&gt; Το ιστορικό των αναζητήσεων δεν αποθηκεύεται στο πλαίσιο αναζητήσεων.&lt;/li&gt;&lt;/ul&gt;Εώς ότου να κλείσετε το παράθυρο, μπορείτε να κάνετε χρήση των κουμπιών Πίσω και Μπροστά, για να πάτε σε σελίδες που έχει ήδη ανοίξει.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1047"/>
+        <location filename="../browsermainwindow.cpp" line="1067"/>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Είστε σίγουροι ότι θέλετε να κλείσετε το παράθυρο; Υπάρχουν %1 ανοιχτές καρτέλες</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1171"/>
+        <location filename="../browsermainwindow.cpp" line="1191"/>
         <source>Web Inspector</source>
         <translation>Επόπτης Ιστοσελίδων</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1173"/>
+        <location filename="../browsermainwindow.cpp" line="1193"/>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
         <translation>Ο επόπτης ιστοσελίδων θα δουλέψει σωστά μόνο για τις σελίδες μετά την ενεργοποίηση του.
 Θέλετε να επαναφορτώσετε όλες τις σελίδες;</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1217"/>
+        <location filename="../browsermainwindow.cpp" line="1237"/>
         <source>Stop loading the current page</source>
         <translation>Διακοπή φόρτωσης αυτής της σελίδας</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1222"/>
+        <location filename="../browsermainwindow.cpp" line="1242"/>
         <source>Reload the current page</source>
         <translation>Επαναφόρτωση της τρέχουσας σελίδας</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1268"/>
+        <location filename="../browsermainwindow.cpp" line="1288"/>
         <source>Downloads</source>
         <translation>Λήψεις Αρχείων</translation>
     </message>
@@ -684,46 +705,56 @@ Do you want to reload all pages?</source>
         <translation type="obsolete">Alt+Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="705"/>
+        <location filename="../browsermainwindow.cpp" line="711"/>
         <source>Close Window</source>
         <translation>Κλείσιμο Παραθύρου</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="727"/>
+        <location filename="../browsermainwindow.cpp" line="733"/>
         <source>Zoom &amp;In</source>
         <translation>&amp;Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="728"/>
+        <location filename="../browsermainwindow.cpp" line="734"/>
         <source>Zoom &amp;Normal</source>
         <translation>Ε&amp;παναφορά Προβολής</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="729"/>
+        <location filename="../browsermainwindow.cpp" line="735"/>
         <source>Zoom &amp;Out</source>
         <translation>&amp;Σμίκρυνση</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="730"/>
+        <location filename="../browsermainwindow.cpp" line="736"/>
         <source>Zoom &amp;Text Only</source>
         <translation>Μεγένθυνση &amp;Μόνο Κειμένου</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="758"/>
+        <location filename="../browsermainwindow.cpp" line="765"/>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
         <translation>Σχετικά με το &amp;%1</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1006"/>
+        <location filename="../browsermainwindow.cpp" line="1026"/>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Όταν η ασφαλής περιήγηση είναι ενεργή, μερικές λειτουργίες θα απενεργοποιηθούν:&lt;ul&gt;&lt;li&gt; Οι ιστοσελίδες δεν προστίθενται στο ιστορικό.&lt;/li&gt;&lt;li&gt; Τα αντικείμενα που κατεβάζετε, αυτομάτως απομακρύνονται από το παράθυρο λήψης αρχείων.&lt;/li&gt;&lt;li&gt; Δεν αποθηκεύονται νέα cookies και τα ήδη υπάρχοντα είναι αδύνατον να προσπελαστούν.&lt;/li&gt;&lt;li&gt; Το εικονίδια των ιστοσελίδων δεν αποθηκεύονται, η συνεδρία δεν θα αποθηκευτεί.&lt;/li&gt;&lt;li&gt; Το ιστορικό των αναζητήσεων δεν αποθηκεύεται στο πλαίσιο αναζητήσεων.&lt;/li&gt;&lt;/ul&gt;Εώς ότου να κλείσετε το παράθυρο, μπορείτε να κάνετε χρήση των κουμπιών Πίσω και Μπροστά, για να πάτε σε σελίδες που έχει ήδη ανοίξει.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1268"/>
+        <location filename="../browsermainwindow.cpp" line="1288"/>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="748"/>
+        <source>Show All Bookmarks...</source>
+        <translation>Εμφάνιση Όλων των Σελιδοδεικτών...</translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="750"/>
+        <source>Add Folder...</source>
+        <translation>Προσθήκη Φακέλου...</translation>
     </message>
 </context>
 <context>
@@ -737,52 +768,52 @@ Do you want to reload all pages?</source>
 <context>
     <name>ClearPrivateData</name>
     <message>
-        <location filename="../clearprivatedata.cpp" line="41"/>
+        <location filename="../clearprivatedata.cpp" line="43"/>
         <source>Clear Private Data</source>
         <translation>Εκκαθάριση Προσωπικών Δεδομένων</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="44"/>
+        <location filename="../clearprivatedata.cpp" line="46"/>
         <source>Clear the following items:</source>
         <translation>Εκκαθάριση των ακόλουθων αντικειμένων:</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="46"/>
+        <location filename="../clearprivatedata.cpp" line="48"/>
         <source>&amp;Browsing History</source>
         <translation>&amp;Ιστορικό Περιήγησης</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="50"/>
+        <location filename="../clearprivatedata.cpp" line="52"/>
         <source>&amp;Download History</source>
         <translation>Ιστορικό &amp;Λήψης Αρχείων</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="54"/>
+        <location filename="../clearprivatedata.cpp" line="56"/>
         <source>&amp;Search History</source>
         <translation>Ιστορικό &amp;Αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="58"/>
+        <location filename="../clearprivatedata.cpp" line="60"/>
         <source>&amp;Cookies</source>
         <translation>&amp;Cookies</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="62"/>
+        <location filename="../clearprivatedata.cpp" line="64"/>
         <source>C&amp;ached Web Pages</source>
         <translation>&amp;Λανθάνουσα Μνήμη</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="71"/>
+        <location filename="../clearprivatedata.cpp" line="73"/>
         <source>Website &amp;Icons</source>
         <translation>Εικονίδια &amp;Ιστοσελίδων</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="75"/>
+        <location filename="../clearprivatedata.cpp" line="77"/>
         <source>Clear &amp;Private Data</source>
         <translation>Εκκαθάριση &amp;Προσωπικών Δεδομένων</translation>
     </message>
     <message>
-        <location filename="../clearprivatedata.cpp" line="77"/>
+        <location filename="../clearprivatedata.cpp" line="79"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Ακύρωση</translation>
     </message>
@@ -980,37 +1011,37 @@ Do you want to reload all pages?</source>
         <translation>Άνοιγμα</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="170"/>
+        <location filename="../downloadmanager.cpp" line="172"/>
         <source>Save File</source>
         <translation>Αποθήκευση Αρχείου</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="175"/>
+        <location filename="../downloadmanager.cpp" line="177"/>
         <source>Download canceled: %1</source>
         <translation>Η μεταφόρτωση ακυρώθηκε: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="270"/>
+        <location filename="../downloadmanager.cpp" line="275"/>
         <source>Error opening output file: %1</source>
         <translation>Σφάλμα κατά το άνοιγμα του αρχείου εξόδου: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="279"/>
+        <location filename="../downloadmanager.cpp" line="284"/>
         <source>Error saving: %1</source>
         <translation>Σφάλμα αποθήκευσης: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="291"/>
+        <location filename="../downloadmanager.cpp" line="299"/>
         <source>Network Error: %1</source>
         <translation>Σφάλμα Δικτύου: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="333"/>
+        <location filename="../downloadmanager.cpp" line="344"/>
         <source>seconds</source>
         <translation>δευτερόλεπτα</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="348"/>
+        <location filename="../downloadmanager.cpp" line="359"/>
         <source>- %n minutes remaining</source>
         <translation>
             <numerusform>- απομένει %n λεπτό</numerusform>
@@ -1018,7 +1049,7 @@ Do you want to reload all pages?</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="352"/>
+        <location filename="../downloadmanager.cpp" line="363"/>
         <source>- %n seconds remaining</source>
         <translation>
             <numerusform>- απομένει %n δευτερόλεπτο</numerusform>
@@ -1026,32 +1057,32 @@ Do you want to reload all pages?</source>
         </translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="355"/>
+        <location filename="../downloadmanager.cpp" line="366"/>
         <source>%1 of %2 (%3/sec) %4</source>
         <translation>%1 από %2 (%3/δευτ) %4</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="357"/>
+        <location filename="../downloadmanager.cpp" line="368"/>
         <source>?</source>
         <translation>;</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="365"/>
+        <location filename="../downloadmanager.cpp" line="376"/>
         <source>%1 of %2 - Stopped</source>
         <translation>%1 από %2 - Διακόπηκε</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="378"/>
+        <location filename="../downloadmanager.cpp" line="389"/>
         <source>bytes</source>
         <translation>bytes</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="381"/>
+        <location filename="../downloadmanager.cpp" line="392"/>
         <source>kB</source>
         <translation>kB</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="384"/>
+        <location filename="../downloadmanager.cpp" line="395"/>
         <source>MB</source>
         <translation>MB</translation>
     </message>
@@ -1059,7 +1090,7 @@ Do you want to reload all pages?</source>
 <context>
     <name>DownloadManager</name>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="646"/>
+        <location filename="../downloadmanager.cpp" line="660"/>
         <source>%n Download(s)</source>
         <translation>
             <numerusform>%n Λήψη</numerusform>
@@ -1067,7 +1098,7 @@ Do you want to reload all pages?</source>
         </translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="464"/>
+        <location filename="../downloadmanager.cpp" line="475"/>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
         <translation>Είναι %1 λήψεις σε εξέλιξη
@@ -1362,37 +1393,37 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
 <context>
     <name>RequestModel</name>
     <message>
-        <location filename="../networkmonitor/networkmonitor.cpp" line="176"/>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="175"/>
         <source>Redirect: %1</source>
         <translation>Επαναδρομολόγηση: %1</translation>
     </message>
     <message>
-        <location filename="../networkmonitor/networkmonitor.cpp" line="184"/>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="183"/>
         <source>Method</source>
         <translation>Μέθοδος</translation>
     </message>
     <message>
-        <location filename="../networkmonitor/networkmonitor.cpp" line="185"/>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="184"/>
         <source>Address</source>
         <translation>Διεύθυνση</translation>
     </message>
     <message>
-        <location filename="../networkmonitor/networkmonitor.cpp" line="186"/>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="185"/>
         <source>Response</source>
         <translation>Απάντηση</translation>
     </message>
     <message>
-        <location filename="../networkmonitor/networkmonitor.cpp" line="187"/>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="186"/>
         <source>Length</source>
         <translation>Μήκος</translation>
     </message>
     <message>
-        <location filename="../networkmonitor/networkmonitor.cpp" line="188"/>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="187"/>
         <source>Content Type</source>
         <translation>Τύπος Περιεχομένου</translation>
     </message>
     <message>
-        <location filename="../networkmonitor/networkmonitor.cpp" line="189"/>
+        <location filename="../networkmonitor/networkmonitor.cpp" line="188"/>
         <source>Info</source>
         <translation>Πληροφορίες</translation>
     </message>
@@ -1733,7 +1764,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.ui" line="278"/>
         <source>Prefered languages for viewing webpages in:</source>
-        <translation>Προτιμώμενες γλώσσες για την εμφάνιση των ιστοσελίδων:</translation>
+        <translation type="obsolete">Προτιμώμενες γλώσσες για την εμφάνιση των ιστοσελίδων:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="318"/>
@@ -1775,6 +1806,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source>Http (Transparent)</source>
         <translation>Http (Διαφανές)</translation>
     </message>
+    <message>
+        <location filename="../settings.ui" line="278"/>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation>Προτιμώμενες γλώσσες για την εμφάνιση των ιστοσελίδων:</translation>
+    </message>
 </context>
 <context>
     <name>SourceViewer</name>
@@ -1812,42 +1848,42 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
 <context>
     <name>TabBar</name>
     <message>
-        <location filename="../tabbar.cpp" line="144"/>
+        <location filename="../tabbar.cpp" line="146"/>
         <source>Show Tab Bar</source>
         <translation>Εμφάνιση Γραμμής Καρτελών</translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="144"/>
+        <location filename="../tabbar.cpp" line="146"/>
         <source>Hide Tab Bar</source>
         <translation>Απόκρυψη Γραμμής Καρτελών</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="162"/>
         <source>New &amp;Tab</source>
-        <translation>Νέα &amp;Καρτέλα</translation>
+        <translation type="obsolete">Νέα &amp;Καρτέλα</translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="165"/>
+        <location filename="../tabbar.cpp" line="171"/>
         <source>Duplicate Tab</source>
         <translation>Αντίγραφο Καρτέλας</translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="171"/>
+        <location filename="../tabbar.cpp" line="177"/>
         <source>&amp;Close Tab</source>
         <translation>Κ&amp;λείσιμο Καρτέλας</translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="175"/>
+        <location filename="../tabbar.cpp" line="181"/>
         <source>Close &amp;Other Tabs</source>
         <translation>Κλ&amp;είσιμο των άλλων Καρτελών</translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="181"/>
+        <location filename="../tabbar.cpp" line="187"/>
         <source>Reload Tab</source>
         <translation>Επαναφόρτωση Καρτέλας</translation>
     </message>
     <message>
-        <location filename="../tabbar.cpp" line="187"/>
+        <location filename="../tabbar.cpp" line="193"/>
         <source>Reload All Tabs</source>
         <translation>Επαναφόρτωση όλων των Καρτελών</translation>
     </message>
@@ -1855,52 +1891,52 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
 <context>
     <name>TabWidget</name>
     <message>
-        <location filename="../tabwidget.cpp" line="829"/>
+        <location filename="../tabwidget.cpp" line="903"/>
         <source>New &amp;Tab</source>
         <translation>&amp;Νέα Καρτέλα</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="830"/>
+        <location filename="../tabwidget.cpp" line="904"/>
         <source>&amp;Close Tab</source>
         <translation>&amp;Κλείσιμο Καρτέλας</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="812"/>
+        <location filename="../tabwidget.cpp" line="886"/>
         <source>Show Next Tab</source>
         <translation>Προβολή Επόμενης Καρτέλας</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="816"/>
+        <location filename="../tabwidget.cpp" line="890"/>
         <source>Ctrl-]</source>
         <translation>Ctrl-]</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="820"/>
+        <location filename="../tabwidget.cpp" line="894"/>
         <source>Show Previous Tab</source>
         <translation>Προβολή Προηγούμενης Καρτέλας</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="824"/>
+        <location filename="../tabwidget.cpp" line="898"/>
         <source>Ctrl-[</source>
         <translation>Ctrl-[</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="828"/>
+        <location filename="../tabwidget.cpp" line="902"/>
         <source>Recently Closed Tabs</source>
         <translation>Πρόσφατα Κλεισμένες Καρτέλες</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="494"/>
+        <location filename="../tabwidget.cpp" line="507"/>
         <source>Untitled</source>
         <translation>Χωρίς τίτλο</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="601"/>
+        <location filename="../tabwidget.cpp" line="647"/>
         <source>Do you really want to close this page?</source>
         <translation>Θέλετε σίγουρα να κλείσετε αυτή τη σελίδα;</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="603"/>
+        <location filename="../tabwidget.cpp" line="649"/>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
@@ -1908,21 +1944,51 @@ Do you really want to close this page?
 Θέλετε σίγουρα να κλείσετε αυτή τη σελίδα;
 </translation>
     </message>
+    <message>
+        <location filename="../tabwidget.cpp" line="723"/>
+        <source>Loading...</source>
+        <translation>Φορτώνει...</translation>
+    </message>
+    <message>
+        <location filename="../tabwidget.cpp" line="736"/>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation>Φορτώνει %1% (%2 %3)...</translation>
+    </message>
+    <message>
+        <location filename="../tabwidget.cpp" line="763"/>
+        <source>Finished loading</source>
+        <translation>Ολοκλήρωση φόρτωσης</translation>
+    </message>
+    <message>
+        <location filename="../tabwidget.cpp" line="765"/>
+        <source>Failed to load</source>
+        <translation>Αποτυχία φόρτωσης</translation>
+    </message>
+    <message>
+        <location filename="../tabwidget.cpp" line="560"/>
+        <source>Saved Tabs</source>
+        <translation>[Όνομα Φακέλου]</translation>
+    </message>
+    <message>
+        <location filename="../tabwidget.cpp" line="905"/>
+        <source>Bookmark All Tabs</source>
+        <translation>Όλες οι Καρτέλες ως Σελιδοδείκτης</translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
     <message>
-        <location filename="../toolbarsearch.cpp" line="153"/>
+        <location filename="../toolbarsearch.cpp" line="154"/>
         <source>No Recent Searches</source>
         <translation>Δεν Υπάρχουν Πρόσφατες Αναζητήσεις</translation>
     </message>
     <message>
-        <location filename="../toolbarsearch.cpp" line="157"/>
+        <location filename="../toolbarsearch.cpp" line="158"/>
         <source>Recent Searches</source>
         <translation>Πρόσφατες Αναζητήσεις</translation>
     </message>
     <message>
-        <location filename="../toolbarsearch.cpp" line="164"/>
+        <location filename="../toolbarsearch.cpp" line="165"/>
         <source>Clear Recent Searches</source>
         <translation>Απαλοιφή Πρόσφατων Αναζητήσεων</translation>
     </message>
@@ -1930,17 +1996,17 @@ Do you really want to close this page?
 <context>
     <name>WebPage</name>
     <message>
-        <location filename="../webview.cpp" line="209"/>
+        <location filename="../webview.cpp" line="211"/>
         <source>Error loading page: %1</source>
         <translation>Σφάλμα κατά την φόρτωση της σελίδας: %1</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="213"/>
+        <location filename="../webview.cpp" line="215"/>
         <source>When connecting to: %1.</source>
         <translation>Κατά τη σύνδεση στο: %1.</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="214"/>
+        <location filename="../webview.cpp" line="216"/>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
         <translation>Έλεγξε την διεύθυνση για λάθη όπως &lt;b&gt;ww&lt;/b&gt;.arora-browser.org αντί για &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
@@ -1950,12 +2016,12 @@ Do you really want to close this page?
         <translation type="obsolete">Εάν η διεύθυνση είναι σωστή, ελέγξτε την σύνδεση σας.</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="216"/>
+        <location filename="../webview.cpp" line="218"/>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation>Εάν ο υπολογιστής σας ή το δίκτυο σας προστατεύεται από τείχος προστασίας ή διαμεσολαβητή, βεβαιωθείται ότι ο περιηγητής σας έχει τα κατάλληλα δικαιώματα για πρόσβαση στο δίκτυο.</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="215"/>
+        <location filename="../webview.cpp" line="217"/>
         <source>If the address is correct, try checking the network connection.</source>
         <translation>Εάν η διεύθυνση είναι σωστή, ελέγξτε την σύνδεση σας.</translation>
     </message>
@@ -1963,57 +2029,57 @@ Do you really want to close this page?
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../webview.cpp" line="282"/>
+        <location filename="../webview.cpp" line="284"/>
         <source>Open in New &amp;Window</source>
         <translation>Άνοιγμα σε Νέο &amp;Παράθυρο</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="283"/>
+        <location filename="../webview.cpp" line="285"/>
         <source>Open in New &amp;Tab</source>
         <translation>Άνοιγμα σε Νέα  &amp;Καρτέλα</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="285"/>
+        <location filename="../webview.cpp" line="287"/>
         <source>Save Lin&amp;k</source>
         <translation>Αποθήκευση &amp;Δεσμού</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="286"/>
+        <location filename="../webview.cpp" line="288"/>
         <source>&amp;Bookmark This Link</source>
         <translation>Ο Δεσμός ως &amp;Σελιδοδείκτης</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="290"/>
+        <location filename="../webview.cpp" line="292"/>
         <source>&amp;Copy Link Location</source>
         <translation>&amp;Αντιγραφή Τοποθεσίας Δεσμού</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="298"/>
+        <location filename="../webview.cpp" line="300"/>
         <source>Open Image in New &amp;Window</source>
         <translation>Προβολή Εικόνας σε Νέο &amp;Παράθυρο</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="299"/>
+        <location filename="../webview.cpp" line="301"/>
         <source>Open Image in New &amp;Tab</source>
         <translation>Προβολή Εικόνας σε Νέα &amp;Καρτέλα</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="301"/>
+        <location filename="../webview.cpp" line="303"/>
         <source>&amp;Save Image</source>
         <translation>&amp;Αποθήκευση Εικόνας</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="302"/>
+        <location filename="../webview.cpp" line="304"/>
         <source>&amp;Copy Image</source>
         <translation>Αντιγραφή &amp;Εικόνας</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="303"/>
+        <location filename="../webview.cpp" line="305"/>
         <source>C&amp;opy Image Location</source>
         <translation>Αντιγραφή &amp;Τοποθεσίας Εικόνας</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="491"/>
+        <location filename="../webview.cpp" line="494"/>
         <source>Loading...</source>
         <translation>Φορτώνει...</translation>
     </message>
