@@ -9,7 +9,14 @@
 
 #include "explorerstyle.h"
 
-#include <QtGui>
+#include <qlibrary.h>
+#include <qpixmapcache.h>
+#include <qmainwindow.h>
+#include <qtoolbar.h>
+#include <qpainter.h>
+#include <qmenubar.h>
+#include <qstyleoption.h>
+
 #include <qt_windows.h>
 #include <uxtheme.h>
 
