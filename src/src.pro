@@ -47,4 +47,5 @@ unix {
 
     man-compress.path = $$DATADIR/man/man1
     man-compress.extra = "" "gzip -9 -f \$(INSTALL_ROOT)/$$DATADIR/man/man1/arora.1" ""
+    man-compress.depends = install_man
 }
