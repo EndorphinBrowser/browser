@@ -71,6 +71,7 @@
 #include "downloadmanager.h"
 #include "networkaccessmanager.h"
 #include "tabwidget.h"
+#include "webpluginfactory.h"
 
 #include <qbuffer.h>
 #include <qclipboard.h>
@@ -85,13 +86,23 @@
 
 #include <qdebug.h>
 
+WebPluginFactory *WebPage::s_webPluginFactory = 0;
+
 WebPage::WebPage(QObject *parent)
     : QWebPage(parent)
     , m_forceInNewTab(false)
 {
+    setPluginFactory(webPluginFactory());
     setNetworkAccessManager(BrowserApplication::networkAccessManager());
     connect(this, SIGNAL(unsupportedContent(QNetworkReply *)),
             this, SLOT(handleUnsupportedContent(QNetworkReply *)));
+}
+
+WebPluginFactory *WebPage::webPluginFactory()
+{
+    if (!s_webPluginFactory)
+        s_webPluginFactory = new WebPluginFactory(BrowserApplication::instance());
+    return s_webPluginFactory;
 }
 
 BrowserMainWindow *WebPage::mainWindow()

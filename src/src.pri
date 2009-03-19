@@ -106,6 +106,7 @@ SOURCES += \
 include(cookiejar/cookiejar.pri)
 include(history/history.pri)
 include(networkmonitor/networkmonitor.pri)
+include(qwebplugins/qwebplugins.pri)
 include(utils/utils.pri)
 
 RESOURCES += \

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
-    <height>399</height>
+    <width>689</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -311,8 +311,8 @@
          <property name="title">
           <string>Web Content</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0" colspan="2">
            <widget class="QCheckBox" name="blockPopupWindows">
             <property name="text">
              <string>Block Popup Windows</string>
@@ -322,7 +322,7 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="1" column="0" colspan="2">
            <widget class="QCheckBox" name="enablePlugins">
             <property name="text">
              <string>Enable Plugins</string>
@@ -332,7 +332,39 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="2" column="0">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="clickToFlash">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Use ClickToFlash on flash plugins</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
            <widget class="QCheckBox" name="enableJavascript">
             <property name="text">
              <string>Enable Javascript</string>
@@ -342,7 +374,7 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="4" column="0" colspan="2">
            <widget class="QCheckBox" name="enableImages">
             <property name="text">
              <string>View Images</string>
@@ -802,8 +834,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>254</x>
-     <y>311</y>
+     <x>260</x>
+     <y>395</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -818,8 +850,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>322</x>
-     <y>311</y>
+     <x>328</x>
+     <y>395</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -834,12 +866,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>262</x>
+     <x>50</x>
      <y>223</y>
     </hint>
     <hint type="destinationlabel">
      <x>348</x>
      <y>223</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>enablePlugins</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>clickToFlash</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>129</x>
+     <y>98</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>122</y>
     </hint>
    </hints>
   </connection>
