@@ -22,12 +22,12 @@
 #include "browserapplication.h"
 #include "clearbutton.h"
 #include "locationbarsiteicon.h"
+#include "privacyindicator.h"
 #include "searchlineedit.h"
 #include "webview.h"
 
 #include <qdrag.h>
 #include <qevent.h>
-#include <qlabel.h>
 #include <qpainter.h>
 #include <qstyleoption.h>
 
@@ -48,12 +48,8 @@ LocationBar::LocationBar(QWidget *parent)
     addWidget(m_siteIcon, LeftSide);
 
     // privacy indicator at rightmost position
-    m_privacyIndicator = new QLabel(this);
-    m_privacyIndicator->setPixmap(QPixmap(QLatin1String(":private.png")));
+    m_privacyIndicator = new PrivacyIndicator(this);
     addWidget(m_privacyIndicator, RightSide);
-    connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
-            this, SLOT(setPrivate(bool)));
-    setPrivate(BrowserApplication::isPrivate());
 
     // clear button on the right
     ClearButton *m_clearButton = new ClearButton(this);
@@ -84,9 +80,9 @@ void LocationBar::setWebView(WebView *webView)
             this, SLOT(update()));
 }
 
-void LocationBar::setPrivate(bool isPrivate)
+WebView *LocationBar::webView() const
 {
-    m_privacyIndicator->setVisible(isPrivate);
+    return m_webView;
 }
 
 void LocationBar::webViewUrlChanged(const QUrl &url)

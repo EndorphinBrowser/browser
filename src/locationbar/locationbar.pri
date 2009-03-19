@@ -3,10 +3,11 @@ DEPENDPATH += $$PWD
 
 HEADERS += \
   locationbar.h \
-  locationbarsiteicon.h
+  locationbarsiteicon.h \
+  privacyindicator.h
 
 SOURCES += \
   locationbar.cpp \
-  locationbarsiteicon.cpp
-
+  locationbarsiteicon.cpp \
+  privacyindicator.cpp
 

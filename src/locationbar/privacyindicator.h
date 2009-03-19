@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,41 +17,19 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef LOCATIONBAR_H
-#define LOCATIONBAR_H
+#ifndef PRIVACYINDICATOR_H
+#define PRIVACYINDICATOR_H
 
-#include "lineedit.h"
+#include <qlabel.h>
 
-#include <qpointer.h>
-#include <qurl.h>
-
-class WebView;
-class LocationBarSiteIcon;
-class PrivacyIndicator;
-class LocationBar : public LineEdit
+class PrivacyIndicator : public QLabel
 {
     Q_OBJECT
 
 public:
-    LocationBar(QWidget *parent = 0);
-    void setWebView(WebView *webView);
-    WebView *webView() const;
+    PrivacyIndicator(QWidget *parent = 0);
 
-protected:
-    void paintEvent(QPaintEvent *event);
-    void focusOutEvent(QFocusEvent *event);
-    void mouseDoubleClickEvent(QMouseEvent *event);
-
-private slots:
-    void webViewUrlChanged(const QUrl &url);
-
-private:
-    QPointer<WebView> m_webView;
-    QColor m_defaultBaseColor;
-
-    LocationBarSiteIcon *m_siteIcon;
-    PrivacyIndicator *m_privacyIndicator;
 };
 
-#endif // LOCATIONBAR_H
+#endif // PRIVACYINDICATOR_H
 
