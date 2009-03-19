@@ -14,7 +14,7 @@
     </message>
     <message>
         <source>License</source>
-        <translation>License</translation>
+        <translation>Licence</translation>
     </message>
     <message>
         <source>Lightweight WebKit-based web browser</source>
@@ -88,11 +88,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Renommer</translation>
     </message>
     <message>
         <source>Edit Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier l&apos;URL</translation>
     </message>
 </context>
 <context>
@@ -157,11 +157,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre des marque-pages</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu des marque-pages</translation>
     </message>
 </context>
 <context>
@@ -183,19 +183,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Ouvrir</translation>
+        <translation>Ouvrir</translation>
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
-        <translation type="unfinished">Ouvrir dans un nouvel &amp;onglet</translation>
+        <translation>Ouvrir dans un nouvel &amp;onglet</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Retirer</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
-        <translation type="unfinished">Ajouter un marque-page...</translation>
+        <translation>Ajouter un marque-page...</translation>
     </message>
 </context>
 <context>
@@ -259,11 +259,11 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation>Im&amp;pression</translation>
+        <translation>Im&amp;pression...</translation>
     </message>
     <message>
         <source>Private &amp;Browsing...</source>
-        <translation>Navigation en mode privé</translation>
+        <translation>Navigation en mode privé...</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -399,7 +399,7 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>Gérer les marque-pages</translation>
+        <translation>Gérer les marque-pages...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -650,7 +650,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>C&amp;ached Web Pages</source>
-        <translation type="unfinished"></translation>
+        <translation>C&amp;ache Web</translation>
     </message>
 </context>
 <context>
@@ -677,7 +677,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Règle</translation>
     </message>
 </context>
 <context>
@@ -754,7 +754,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Allow</source>
-        <translation>Permettre</translation>
+        <translation type="unfinished">Permettre</translation>
     </message>
     <message>
         <source>Exceptions</source>
@@ -762,11 +762,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>Retirer</translation>
+        <translation type="unfinished">&amp;Retirer</translation>
     </message>
     <message>
         <source>Remove &amp;All</source>
-        <translation>Tout retirer</translation>
+        <translation type="unfinished">&amp;Tout retirer</translation>
     </message>
 </context>
 <context>
@@ -785,7 +785,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -886,7 +886,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur à l&apos;ouverture du fichier:   %1</translation>
     </message>
 </context>
 <context>
@@ -946,11 +946,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Clear History...</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer l&apos;historique...</translation>
     </message>
     <message>
         <source>Do you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez vous effacer l&apos;historique?</translation>
     </message>
 </context>
 <context>
@@ -968,7 +968,7 @@ Do you want to reload all pages?</source>
     <name>HistoryTreeModel</name>
     <message>
         <source>Earlier Today</source>
-        <translation>Plutôt aujourd&apos;hui</translation>
+        <translation>Plus tôt aujourd&apos;hui</translation>
     </message>
     <message>
         <source>%1 items</source>
@@ -986,15 +986,15 @@ Do you want to reload all pages?</source>
     <name>LanguageManager</name>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <source>Choose language</source>
-        <translation type="unfinished"></translation>
+        <translation>Choissisez la langue</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Vous pouvez utiliser une langue différent de&lt;br&gt;celle du système d&apos;exploitation par défaut.&lt;/p&gt;&lt;p&gt;Veuillez choisir la langue à utiliser.&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -1029,38 +1029,38 @@ Voulez-vous ignorer ses erreurs?</translation>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Valeur</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gestionnaire de réseau</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Requêtes réseaux</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">headers de la requête</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">headers de la réponse</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Supp&amp;rimer</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Supprimer &amp;toutes les requêtes</translation>
     </message>
 </context>
 <context>
@@ -1090,7 +1090,7 @@ Voulez-vous ignorer ses erreurs?</translation>
     <name>PlainTextEditSearch</name>
     <message>
         <source>Not Found</source>
-        <translation type="unfinished">Non trouvé</translation>
+        <translation>Aucun résultat</translation>
     </message>
 </context>
 <context>
@@ -1131,11 +1131,11 @@ Voulez-vous ignorer ses erreurs?</translation>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Redirection: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Méthode</translation>
     </message>
     <message>
         <source>Address</source>
@@ -1143,19 +1143,19 @@ Voulez-vous ignorer ses erreurs?</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Réponse</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Longueur</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Content-Type</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Info</translation>
     </message>
 </context>
 <context>
@@ -1208,7 +1208,7 @@ Voulez-vous ignorer ses erreurs?</translation>
     </message>
     <message>
         <source>Remove history items:</source>
-        <translation type="unfinished">Retirer les éléments de l&apos;historique:</translation>
+        <translation>Retirer les éléments de l&apos;historique:</translation>
     </message>
     <message>
         <source>After one day</source>
@@ -1348,7 +1348,7 @@ Voulez-vous ignorer ses erreurs?</translation>
     </message>
     <message>
         <source>Http</source>
-        <translation type="unfinished"></translation>
+        <translation>Http</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -1424,58 +1424,58 @@ Voulez-vous ignorer ses erreurs?</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Préférences</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Page d&apos;accueil:</translation>
     </message>
     <message>
         <source>View Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les images</translation>
     </message>
     <message>
         <source>Keep Cookies Until:</source>
-        <translation type="unfinished"></translation>
+        <translation>Garder les cookies jusqu&apos;à :</translation>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher uniquement un bouton de fermeture à la place d&apos;un sur chaque onglet</translation>
     </message>
     <message>
         <source>Use proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser le serveur proxy</translation>
     </message>
     <message>
         <source>Host name:</source>
-        <translation type="unfinished"></translation>
+        <translation>nom de l&apos;hôte:</translation>
     </message>
 </context>
 <context>
     <name>SourceViewer</name>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">Chargement...</translation>
+        <translation>Chargement...</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Édition</translation>
+        <translation>&amp;Édition</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished">&amp;Rechercher</translation>
+        <translation>&amp;Rechercher</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">&amp;Affichage</translation>
+        <translation>&amp;Affichage</translation>
     </message>
     <message>
         <source>&amp;Wrap lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Retours à la ligne statiques</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation type="unfinished"></translation>
+        <translation>Source de la page</translation>
     </message>
 </context>
 <context>
@@ -1561,7 +1561,7 @@ Voulez-vous vraiment fermer cette page?
     </message>
     <message>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation>Sans titre</translation>
     </message>
 </context>
 <context>
@@ -1591,19 +1591,19 @@ Voulez-vous vraiment fermer cette page?
     </message>
     <message>
         <source>When connecting to: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Durant la connection à: %1.</translation>
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier que vous n&apos;avez pas commis d&apos;erreurs dans l&apos;adresse tel que &lt;b&gt;ww&lt;/b&gt;.arora-browser.org à la place de &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sil l&apos;adresse est correcte, vérifiez votre connection au réseau.</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si votre ordinateur ou votre réseau est protégé par un pare-feu ou un proxy, vérifiez que votre navigateur à le droit d&apos;accéder au réseau.</translation>
     </message>
 </context>
 <context>
