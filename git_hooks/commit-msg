@@ -19,3 +19,14 @@ test "" = "$(grep '^Signed-off-by: ' "$1" |
 	echo >&2 Duplicate Signed-off-by lines.
 	exit 1
 }
+
+# Too bad there isn't a way to use suggest without -a at least I didn't see one in the man page :\
+aspell > /dev/null
+if [ $? -eq 0 ] ; then
+    spellingerrors=`cat $1 | aspell --suggest -a | grep '^&'`;
+    if [ ! -z "${spellingerrors}" ] ; then
+        echo "Fix Spelling errors in the commit message";
+        echo $spellingerrors;
+        exit 1
+    fi
+fi
