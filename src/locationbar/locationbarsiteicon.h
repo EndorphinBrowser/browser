@@ -17,8 +17,8 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef LOCATIONBAR_P_H
-#define LOCATIONBAR_P_H
+#ifndef LOCATIONBARSITEICON_H
+#define LOCATIONBARSITEICON_H
 
 #include <qlabel.h>
 
@@ -44,5 +44,5 @@ private:
 
 };
 
-#endif // LOCATIONBAR_P_H
+#endif // LOCATIONBARSITEICON_H
 

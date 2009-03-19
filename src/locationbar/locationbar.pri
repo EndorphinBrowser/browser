@@ -2,9 +2,11 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 HEADERS += \
-  locationbar_p.h \
-  locationbar.h
+  locationbar.h \
+  locationbarsiteicon.h
 
 SOURCES += \
-  locationbar.cpp
+  locationbar.cpp \
+  locationbarsiteicon.cpp
+
 
