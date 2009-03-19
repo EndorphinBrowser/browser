@@ -53,8 +53,6 @@ HEADERS += \
     downloadmanager.h \
     edittableview.h \
     edittreeview.h \
-    locationbar.h \
-    locationbar_p.h \
     languagemanager.h \
     modelmenu.h \
     networkaccessmanager.h \
@@ -84,7 +82,6 @@ SOURCES += \
     downloadmanager.cpp \
     edittableview.cpp \
     edittreeview.cpp \
-    locationbar.cpp \
     languagemanager.cpp \
     modelmenu.cpp \
     networkaccessmanager.cpp \
@@ -105,6 +102,7 @@ SOURCES += \
 
 include(cookiejar/cookiejar.pri)
 include(history/history.pri)
+include(locationbar/locationbar.pri)
 include(networkmonitor/networkmonitor.pri)
 include(qwebplugins/qwebplugins.pri)
 include(utils/utils.pri)
