@@ -58,7 +58,7 @@ LocationBar::LocationBar(QWidget *parent)
     connect(this, SIGNAL(textChanged(const QString&)),
             m_clearButton, SLOT(textChanged(const QString&)));
     addWidget(m_clearButton, RightSide);
-    m_clearButton->hide();
+
     updateTextMargins();
     setUpdatesEnabled(true);
 

@@ -122,7 +122,6 @@ void LineEdit::addWidget(QWidget *widget, WidgetPosition position)
     bool rtl = isRightToLeft();
     if (rtl)
         position = (position == LeftSide) ? RightSide : LeftSide;
-    widget->show();
     if (position == LeftSide) {
         m_leftLayout->addWidget(widget);
     } else {

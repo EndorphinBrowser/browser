@@ -32,6 +32,7 @@ LocationBarSiteIcon::LocationBarSiteIcon(QWidget *parent)
     resize(QSize(16, 16));
     webViewSiteIconChanged();
     setCursor(Qt::ArrowCursor);
+    show();
 }
 
 void LocationBarSiteIcon::setWebView(WebView *webView)
