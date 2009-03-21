@@ -50,6 +50,7 @@ HEADERS += \
     browserapplication.h \
     browsermainwindow.h \
     clearprivatedata.h \
+    clearbutton.h \
     downloadmanager.h \
     edittableview.h \
     edittreeview.h \
@@ -80,6 +81,7 @@ SOURCES += \
     browserapplication.cpp \
     browsermainwindow.cpp \
     clearprivatedata.cpp \
+    clearbutton.cpp \
     downloadmanager.cpp \
     edittableview.cpp \
     edittreeview.cpp \

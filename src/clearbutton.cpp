@@ -60,39 +60,51 @@
 **
 ****************************************************************************/
 
-#ifndef SEARCHLINEEDIT_H
-#define SEARCHLINEEDIT_H
+#include "clearbutton.h"
+#include <qpainter.h>
+/*
+#include <qevent.h>
+#include <qmenu.h>
+#include <qstyle.h>
+#include <qstyleoption.h>
 
-#include "lineedit.h"
-
-#include <qlineedit.h>
-#include <qabstractbutton.h>
-
-QT_BEGIN_NAMESPACE
-class QMenu;
-QT_END_NAMESPACE
-
-class SearchButton;
-
-class SearchLineEdit : public LineEdit
+#include <qdebug.h>
+*/
+ClearButton::ClearButton(QWidget *parent)
+    : QAbstractButton(parent)
 {
-    Q_OBJECT
-    Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText)
+    setCursor(Qt::ArrowCursor);
+    setToolTip(tr("Clear"));
+    setVisible(false);
+    setFocusPolicy(Qt::NoFocus);
+    setMinimumSize(22, 22);
+}
 
-public:
-    SearchLineEdit(QWidget *parent = 0);
+void ClearButton::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+    QPainter painter(this);
+    int height = this->height();
 
-    QMenu *menu() const;
-    void setMenu(QMenu *menu);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    QColor color = palette().color(QPalette::Mid);
+    painter.setBrush(isDown()
+                     ? palette().color(QPalette::Dark)
+                     : palette().color(QPalette::Mid));
+    painter.setPen(painter.brush().color());
+    int size = width();
+    int offset = size / 5;
+    int radius = size - offset * 2;
+    painter.drawEllipse(offset, offset, radius, radius);
 
-protected:
-    void resizeEvent(QResizeEvent *event);
+    painter.setPen(palette().color(QPalette::Base));
+    int border = offset * 2;
+    painter.drawLine(border, border, width() - border, height - border);
+    painter.drawLine(border, height - border, width() - border, border);
+}
 
-private:
-    void updateGeometries();
-
-    SearchButton *m_searchButton;
-};
-
-#endif // SEARCHLINEEDIT_H
+void ClearButton::textChanged(const QString &text)
+{
+    setVisible(!text.isEmpty());
+}
 

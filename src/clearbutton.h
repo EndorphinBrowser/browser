@@ -60,39 +60,27 @@
 **
 ****************************************************************************/
 
-#ifndef SEARCHLINEEDIT_H
-#define SEARCHLINEEDIT_H
+#ifndef CLEARBUTTON_H
+#define CLEARBUTTON_H
 
-#include "lineedit.h"
-
-#include <qlineedit.h>
 #include <qabstractbutton.h>
 
-QT_BEGIN_NAMESPACE
-class QMenu;
-QT_END_NAMESPACE
-
-class SearchButton;
-
-class SearchLineEdit : public LineEdit
+/*
+    Clear button on the right hand side of the search widget.
+    Hidden by default
+    "A circle with an X in it"
+ */
+class ClearButton : public QAbstractButton
 {
     Q_OBJECT
-    Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText)
 
 public:
-    SearchLineEdit(QWidget *parent = 0);
+    ClearButton(QWidget *parent = 0);
+    void paintEvent(QPaintEvent *event);
 
-    QMenu *menu() const;
-    void setMenu(QMenu *menu);
-
-protected:
-    void resizeEvent(QResizeEvent *event);
-
-private:
-    void updateGeometries();
-
-    SearchButton *m_searchButton;
+public slots:
+    void textChanged(const QString &text);
 };
 
-#endif // SEARCHLINEEDIT_H
+#endif // CLEARBUTTON_H
 

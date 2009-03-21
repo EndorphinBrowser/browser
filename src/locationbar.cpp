@@ -21,6 +21,7 @@
 #include "locationbar_p.h"
 
 #include "browserapplication.h"
+#include "clearbutton.h"
 #include "searchlineedit.h"
 #include "webview.h"
 

@@ -62,6 +62,8 @@
 
 #include "searchlineedit.h"
 
+#include "clearbutton.h"
+
 #include <qevent.h>
 #include <qmenu.h>
 #include <qpainter.h>
@@ -69,44 +71,6 @@
 #include <qstyleoption.h>
 
 #include <qdebug.h>
-
-ClearButton::ClearButton(QWidget *parent)
-    : QAbstractButton(parent)
-{
-    setCursor(Qt::ArrowCursor);
-    setToolTip(tr("Clear"));
-    setVisible(false);
-    setFocusPolicy(Qt::NoFocus);
-    setMinimumSize(22, 22);
-}
-
-void ClearButton::paintEvent(QPaintEvent *event)
-{
-    Q_UNUSED(event);
-    QPainter painter(this);
-    int height = this->height();
-
-    painter.setRenderHint(QPainter::Antialiasing, true);
-    QColor color = palette().color(QPalette::Mid);
-    painter.setBrush(isDown()
-                     ? palette().color(QPalette::Dark)
-                     : palette().color(QPalette::Mid));
-    painter.setPen(painter.brush().color());
-    int size = width();
-    int offset = size / 5;
-    int radius = size - offset * 2;
-    painter.drawEllipse(offset, offset, radius, radius);
-
-    painter.setPen(palette().color(QPalette::Base));
-    int border = offset * 2;
-    painter.drawLine(border, border, width() - border, height - border);
-    painter.drawLine(border, height - border, width() - border, border);
-}
-
-void ClearButton::textChanged(const QString &text)
-{
-    setVisible(!text.isEmpty());
-}
 
 /*
     Search icon on the left hand side of the search widget
