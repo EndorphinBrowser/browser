@@ -62,6 +62,7 @@ HEADERS += \
     networkaccessmanager.h \
     plaintexteditsearch.h \
     searchbar.h \
+    searchbutton.h \
     searchlineedit.h \
     settings.h \
     sourcehighlighter.h \
@@ -92,6 +93,7 @@ SOURCES += \
     networkaccessmanager.cpp \
     plaintexteditsearch.cpp \
     searchbar.cpp \
+    searchbutton.cpp \
     searchlineedit.cpp \
     settings.cpp \
     sourcehighlighter.cpp \

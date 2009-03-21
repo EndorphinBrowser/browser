@@ -60,82 +60,67 @@
 **
 ****************************************************************************/
 
-#include "searchlineedit.h"
-
-#include "clearbutton.h"
 #include "searchbutton.h"
 
-#include <qevent.h>
 #include <qmenu.h>
+#include <qevent.h>
 #include <qpainter.h>
-#include <qstyle.h>
-#include <qstyleoption.h>
 
-#include <qdebug.h>
-
-/*
-    SearchLineEdit is an enhanced QLineEdit
-    - A Search icon on the left with optional menu
-    - When there is no text and doesn't have focus an "inactive text" is displayed
-    - When there is text a clear button is displayed on the right hand side
- */
-SearchLineEdit::SearchLineEdit(QWidget *parent)
-    : LineEdit(parent)
-    , m_searchButton(0)
+SearchButton::SearchButton(QWidget *parent)
+    : QAbstractButton(parent)
+    , m_menu(0)
 {
-    setUpdatesEnabled(false);
-    m_searchButton = new SearchButton(this);
-    updateGeometries();
-    addWidget(m_searchButton, LeftSide);
-    setInactiveText(tr("Search"));
-
-    QSizePolicy policy = sizePolicy();
-    setSizePolicy(QSizePolicy::Preferred, policy.verticalPolicy());
-
-    // clear button on the right
-    ClearButton *m_clearButton = new ClearButton(this);
-    connect(m_clearButton, SIGNAL(clicked()),
-            this, SLOT(clear()));
-    connect(this, SIGNAL(textChanged(const QString&)),
-            m_clearButton, SLOT(textChanged(const QString&)));
-    addWidget(m_clearButton, RightSide);
-    m_clearButton->hide();
-    updateTextMargins();
-    setUpdatesEnabled(true);
+    setObjectName(QLatin1String("SearchButton"));
+    setCursor(Qt::ArrowCursor);
+    setFocusPolicy(Qt::NoFocus);
 }
 
-void SearchLineEdit::resizeEvent(QResizeEvent *event)
+void SearchButton::mousePressEvent(QMouseEvent *event)
 {
-    updateGeometries();
-    LineEdit::resizeEvent(event);
-}
-
-void SearchLineEdit::updateGeometries()
-{
-    int menuHeight = height();
-    int menuWidth = menuHeight + 1;
-    if (!m_searchButton->m_menu)
-        menuWidth = (menuHeight / 5) * 4;
-    m_searchButton->setMinimumSize(QSize(menuWidth, menuHeight));
-    m_searchButton->resize(menuWidth, menuHeight);
-    updateTextMargins();
-}
-
-void SearchLineEdit::setMenu(QMenu *menu)
-{
-    if (m_searchButton->m_menu)
-        m_searchButton->m_menu->deleteLater();
-    m_searchButton->m_menu = menu;
-    updateGeometries();
-}
-
-QMenu *SearchLineEdit::menu() const
-{
-    if (!m_searchButton->m_menu) {
-        m_searchButton->m_menu = new QMenu(m_searchButton);
-        if (isVisible())
-            (const_cast<SearchLineEdit*>(this))->updateGeometries();
+    if (m_menu && event->button() == Qt::LeftButton) {
+        QWidget *p = parentWidget();
+        if (p) {
+            QPoint r = p->mapToGlobal(QPoint(0, p->height()));
+            m_menu->exec(QPoint(r.x() + height() / 2, r.y()));
+        }
+        event->accept();
     }
-    return m_searchButton->m_menu;
+    QAbstractButton::mousePressEvent(event);
+}
+
+void SearchButton::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+    QPainterPath myPath;
+
+    int radius = (height() / 5) * 2;
+    QRect circle(height() / 3 - 1, height() / 4, radius, radius);
+    myPath.addEllipse(circle);
+
+    myPath.arcMoveTo(circle, 300);
+    QPointF c = myPath.currentPosition();
+    int diff = height() / 7;
+    myPath.lineTo(qMin(width() - 2, (int)c.x() + diff), c.y() + diff);
+
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setPen(QPen(Qt::darkGray, 2));
+    painter.drawPath(myPath);
+
+    if (m_menu) {
+        QPainterPath dropPath;
+        dropPath.arcMoveTo(circle, 320);
+        QPointF c = dropPath.currentPosition();
+        c = QPointF(c.x() + 3.5, c.y() + 0.5);
+        dropPath.moveTo(c);
+        dropPath.lineTo(c.x() + 4, c.y());
+        dropPath.lineTo(c.x() + 2, c.y() + 2);
+        dropPath.closeSubpath();
+        painter.setPen(Qt::darkGray);
+        painter.setBrush(Qt::darkGray);
+        painter.setRenderHint(QPainter::Antialiasing, false);
+        painter.drawPath(dropPath);
+    }
+    painter.end();
 }
 
