@@ -77,7 +77,6 @@ class SearchButton;
 class SearchLineEdit : public LineEdit
 {
     Q_OBJECT
-    Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText)
 
 public:
     SearchLineEdit(QWidget *parent = 0);

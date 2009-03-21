@@ -47,6 +47,7 @@ class SideWidget;
 class LineEdit : public QLineEdit
 {
     Q_OBJECT
+    Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText)
 
 public:
     enum WidgetPosition {
