@@ -61,7 +61,12 @@
 ****************************************************************************/
 
 #include "toolbarsearch.h"
+
+#include "browserapplication.h"
 #include "autosaver.h"
+#include "networkaccessmanager.h"
+#include "googlesuggest.h"
+
 
 #include <qcompleter.h>
 #include <qcoreapplication.h>
@@ -93,6 +98,15 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     connect(this, SIGNAL(returnPressed()), SLOT(searchNow()));
     setInactiveText(QLatin1String("Google"));
     load();
+
+    m_googleSuggest = new GoogleSuggest(this);
+    m_googleSuggest->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+    connect(m_googleSuggest, SIGNAL(suggestions(const QStringList &)),
+            this, SLOT(newSuggestions(const QStringList &)));
+    connect(this, SIGNAL(textChanged(const QString &)),
+            m_googleSuggest, SLOT(suggest(const QString &)));
+
+    menu()->installEventFilter(this);
 }
 
 ToolbarSearch::~ToolbarSearch()
@@ -144,11 +158,47 @@ void ToolbarSearch::searchNow()
     emit search(url);
 }
 
+void ToolbarSearch::newSuggestions(const QStringList &suggestions)
+{
+    m_suggestions = suggestions;
+    setupMenu();
+    menu()->move(mapToGlobal(QPoint(0, height())));
+    menu()->setVisible(true);
+}
+
+bool ToolbarSearch::eventFilter(QObject *obj, QEvent *ev) {
+    if (obj != menu())
+        return false;
+
+    if (ev->type() == QEvent::KeyPress) {
+        setFocus();
+        event(ev);
+    }
+
+    return false;
+}
+
 void ToolbarSearch::aboutToShowMenu()
 {
     selectAll();
+    setupMenu();
+}
+
+void ToolbarSearch::setupMenu()
+{
     QMenu *m = menu();
     m->clear();
+
+    if (!m_suggestions.isEmpty()) {
+        QAction *suggestions = m->addAction(tr("Suggestions"));
+        suggestions->setEnabled(false);
+        for (int i = 0; i < m_suggestions.count(); ++i) {
+            const QString &text = m_suggestions.at(i);
+            m->addAction(text)->setData(text);
+        }
+        m->addSeparator();
+    }
+
     QStringList list = m_stringListModel->stringList();
     if (list.isEmpty()) {
         m->addAction(tr("No Recent Searches"));

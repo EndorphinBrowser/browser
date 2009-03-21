@@ -72,7 +72,7 @@ class QStringListModel;
 QT_END_NAMESPACE
 
 class AutoSaver;
-
+class GoogleSuggest;
 class ToolbarSearch : public SearchLineEdit
 {
     Q_OBJECT
@@ -83,6 +83,7 @@ signals:
 public:
     ToolbarSearch(QWidget *parent = 0);
     ~ToolbarSearch();
+    bool eventFilter(QObject *obj, QEvent *ev);
 
 public slots:
     void clear();
@@ -92,13 +93,17 @@ private slots:
     void save();
     void aboutToShowMenu();
     void triggeredMenuAction(QAction *action);
+    void newSuggestions(const QStringList &suggestions);
 
 private:
     void load();
+    void setupMenu();
 
     AutoSaver *m_autosaver;
     int m_maxSavedSearches;
     QStringListModel *m_stringListModel;
+    QStringList m_suggestions;
+    GoogleSuggest *m_googleSuggest;
 };
 
 #endif // TOOLBARSEARCH_H
