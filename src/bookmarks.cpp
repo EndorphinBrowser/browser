@@ -77,6 +77,7 @@
 #include <qmessagebox.h>
 #include <qmimedata.h>
 #include <qtoolbutton.h>
+#include <qprocess.h>
 
 #include <qwebsettings.h>
 
@@ -276,16 +277,34 @@ void BookmarksManager::importBookmarks()
 {
     QString fileName = QFileDialog::getOpenFileName(0, tr("Open File"),
                                                      QString(),
-                                                     tr("XBEL (*.xbel *.xml)"));
+                                                     tr("XBEL (*.xbel *.xml *.html)"));
     if (fileName.isEmpty())
         return;
 
     XbelReader reader;
-    BookmarkNode *importRootNode = reader.read(fileName);
+    BookmarkNode *importRootNode = 0;
+    if (fileName.endsWith(QLatin1String(".html"))) {
+        QString program = QLatin1String("htmlToXBel");
+        QStringList arguments;
+        arguments << fileName;
+        QProcess process;
+        process.start(program, arguments);
+        process.waitForFinished(-1);
+        if (process.error() != QProcess::UnknownError) {
+            QMessageBox::warning(0, QLatin1String("Loading Bookmark"),
+                tr("Error when loading html bookmarks: %1\n").arg(process.errorString()));
+            return;
+        }
+        importRootNode = reader.read(&process);
+    } else {
+        importRootNode = reader.read(fileName);
+    }
     if (reader.error() != QXmlStreamReader::NoError) {
         QMessageBox::warning(0, QLatin1String("Loading Bookmark"),
             tr("Error when loading bookmarks on line %1, column %2:\n"
                "%3").arg(reader.lineNumber()).arg(reader.columnNumber()).arg(reader.errorString()));
+        delete importRootNode;
+        return;
     }
 
     importRootNode->setType(BookmarkNode::Folder);
