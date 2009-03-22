@@ -10,7 +10,7 @@ function walk() {
     for (var i = 0; i < children.length; i++) {
         var object = children.item(i);
         if (object.nodeName == "HR") {
-            result += "<separator>";
+            result += indent + "<separator>\n";
         }
         if (object.nodeName == "H3") {
             folderName = object.innerHTML;
