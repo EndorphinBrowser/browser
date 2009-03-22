@@ -98,8 +98,8 @@ TabBar::TabBar(QWidget *parent)
             this, SLOT(contextMenuRequested(const QPoint &)));
 
     QString alt = QLatin1String("Ctrl+%1");
-    for (int i = 0; i < 10; ++i) {
-        int key = i == 9 ? 0 : i + 1;
+    for (int i = 0; i < 9; ++i) {
+        int key = i + 1;
         TabShortcut *tabShortCut = new TabShortcut(i, alt.arg(key), this);
         connect(tabShortCut, SIGNAL(activated()), this, SLOT(selectTabAction()));
     }
