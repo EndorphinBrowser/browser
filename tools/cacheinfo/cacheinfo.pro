@@ -15,3 +15,5 @@ RCC_DIR     = $$PWD/.rcc
 UI_DIR      = $$PWD/.ui
 MOC_DIR     = $$PWD/.moc
 OBJECTS_DIR = $$PWD/.obj
+
+include(../../install.pri)

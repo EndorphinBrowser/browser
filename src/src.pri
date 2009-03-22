@@ -128,19 +128,13 @@ mac {
     QMAKE_INFO_PLIST = Info_mac.plist
 }
 
-unix {
-    isEmpty(PREFIX) {
-        PREFIX = /usr/local
-    }
+include(../webkittrunk.pri)
 
-    BINDIR = $$PREFIX/bin
+unix {
     DATADIR = $$PREFIX/share
     PKGDATADIR = $$DATADIR/arora
-
     DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
 }
-
-include(../webkittrunk.pri)
 
 win32 {
     include(explorerstyle.pri)

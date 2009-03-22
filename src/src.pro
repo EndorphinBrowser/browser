@@ -16,10 +16,10 @@ DESTDIR = ../
 
 include(locale/locale.pri)
 
-unix {
-    INSTALLS += target translations desktop iconxpm iconsvg icon16 icon32 icon128 man man-compress
+include(../install.pri)
 
-    target.path = $$BINDIR
+unix {
+    INSTALLS += translations desktop iconxpm iconsvg icon16 icon32 icon128 man man-compress
 
     translations.path = $$PKGDATADIR
     translations.files += .qm/locale

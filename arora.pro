@@ -5,7 +5,7 @@ error("Use the qmake include with Qt4.4 or greater, on Debian that is qmake-qt4"
 }
 
 TEMPLATE = subdirs
-SUBDIRS  = src tools
+SUBDIRS  = src tools manualtests
 
 unix {
     # this is an ugly work around to do .PHONY: doc
