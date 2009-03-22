@@ -27,6 +27,6 @@ if [ $? -eq 0 ] ; then
     if [ ! -z "${spellingerrors}" ] ; then
         echo "Fix Spelling errors in the commit message";
         echo $spellingerrors;
-        exit 1
+        exit 0
     fi
 fi
