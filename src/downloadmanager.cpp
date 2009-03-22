@@ -327,7 +327,40 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
         progressBar->setValue(bytesReceived);
         progressBar->setMaximum(bytesTotal);
     }
+    emit progress(bytesReceived, bytesTotal);
     updateInfoLabel();
+}
+
+qint64 DownloadItem::bytesTotal() const
+{
+    return progressBar->maximum();
+}
+
+qint64 DownloadItem::bytesReceived() const
+{
+    return m_bytesReceived;
+}
+
+double DownloadItem::remainingTime() const
+{
+    if (!downloading())
+        return -1.0;
+
+    double timeRemaining = ((double)(bytesTotal() - bytesReceived())) / currentSpeed();
+
+    // When downloading the eta should never be 0
+    if (timeRemaining == 0)
+        timeRemaining = 1;
+
+    return timeRemaining;
+}
+
+double DownloadItem::currentSpeed() const
+{
+    if (!downloading())
+        return -1.0;
+
+    return m_bytesReceived * 1000.0 / m_downloadTime.elapsed();
 }
 
 void DownloadItem::updateInfoLabel()
@@ -339,62 +372,31 @@ void DownloadItem::updateInfoLabel()
     bool running = !downloadedSuccessfully();
 
     // update info label
-    double speed = m_bytesReceived * 1000.0 / m_downloadTime.elapsed();
-    double timeRemaining = ((double)(bytesTotal - m_bytesReceived)) / speed;
-    QString timeRemainingString = tr("seconds");
-
-
-    // When downloading the eta should never be 0
-    if (timeRemaining == 0)
-        timeRemaining = 1;
+    double speed = currentSpeed();
+    double timeRemaining = remainingTime();
 
     QString info;
     if (running) {
         QString remaining;
 
         if (bytesTotal != 0) {
-            if (timeRemaining > 60) {
-                timeRemaining = timeRemaining / 60;
-                timeRemaining = floor(timeRemaining);
-                remaining = tr("- %n minutes remaining", "", int(timeRemaining));
-            }
-            else {
-                timeRemaining = floor(timeRemaining);
-                remaining = tr("- %n seconds remaining", "", int(timeRemaining));
-            }
+            remaining = DownloadManager::timeString(timeRemaining);
         }
-        info = QString(tr("%1 of %2 (%3/sec) %4"))
-            .arg(dataString(m_bytesReceived))
-            .arg(bytesTotal == 0 ? tr("?") : dataString(bytesTotal))
-            .arg(dataString((int)speed))
+
+        info = QString(tr("%1 of %2 (%3/sec) - %4"))
+            .arg(DownloadManager::dataString(m_bytesReceived))
+            .arg(bytesTotal == 0 ? tr("?") : DownloadManager::dataString(bytesTotal))
+            .arg(DownloadManager::dataString((int)speed))
             .arg(remaining);
     } else {
         if (m_bytesReceived == bytesTotal)
-            info = dataString(m_output.size());
+            info = DownloadManager::dataString(m_output.size());
         else
             info = tr("%1 of %2 - Stopped")
-                .arg(dataString(m_bytesReceived))
-                .arg(dataString(bytesTotal));
+                .arg(DownloadManager::dataString(m_bytesReceived))
+                .arg(DownloadManager::dataString(bytesTotal));
     }
     downloadInfoLabel->setText(info);
-}
-
-QString DownloadItem::dataString(int size) const
-{
-    QString unit;
-    double newSize;
-
-    if (size < 1024) {
-        newSize = size;
-        unit = tr("bytes");
-    } else if (size < 1024 * 1024) {
-        newSize = (double)size / (double)1024;
-        unit = tr("kB");
-    } else {
-        newSize = (double)size / (double)(1024 * 1024);
-        unit = tr("MB");
-    }
-    return QString(QLatin1String("%1 %2")).arg(newSize, 0, 'f', 1).arg(unit);
 }
 
 bool DownloadItem::downloading() const
@@ -658,6 +660,41 @@ void DownloadManager::updateItemCount()
 {
     int count = m_downloads.count();
     itemCount->setText(tr("%n Download(s)", "", count));
+}
+
+QString DownloadManager::timeString(double timeRemaining)
+{
+    QString remaining;
+
+    if (timeRemaining > 60) {
+        timeRemaining = timeRemaining / 60;
+        timeRemaining = floor(timeRemaining);
+        remaining = tr("%n minutes remaining", "", int(timeRemaining));
+    }
+    else {
+        timeRemaining = floor(timeRemaining);
+        remaining = tr("%n seconds remaining", "", int(timeRemaining));
+    }
+
+    return remaining;
+}
+
+QString DownloadManager::dataString(int size)
+{
+    QString unit;
+    double newSize;
+
+    if (size < 1024) {
+        newSize = size;
+        unit = tr("bytes");
+    } else if (size < 1024 * 1024) {
+        newSize = (double)size / (double)1024;
+        unit = tr("kB");
+    } else {
+        newSize = (double)size / (double)(1024 * 1024);
+        unit = tr("MB");
+    }
+    return QString(QLatin1String("%1 %2")).arg(newSize, 0, 'f', 1).arg(unit);
 }
 
 DownloadModel::DownloadModel(DownloadManager *downloadManager, QObject *parent)

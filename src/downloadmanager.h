@@ -78,11 +78,17 @@ class DownloadItem : public QWidget, public Ui_DownloadItem
 
 signals:
     void statusChanged();
+    void progress(qint64 bytesReceived = 0, qint64 bytesTotal = 0);
 
 public:
     DownloadItem(QNetworkReply *reply = 0, bool requestFileName = false, QWidget *parent = 0);
     bool downloading() const;
     bool downloadedSuccessfully() const;
+
+    qint64 bytesTotal() const;
+    qint64 bytesReceived() const;
+    double remainingTime() const;
+    double currentSpeed() const;
 
     QUrl m_url;
 
@@ -104,7 +110,6 @@ private:
     void getFileName();
     void init();
     void updateInfoLabel();
-    QString dataString(int size) const;
 
     QString saveFileName(const QString &directory) const;
 
@@ -142,6 +147,9 @@ public:
 
     RemovePolicy removePolicy() const;
     void setRemovePolicy(RemovePolicy policy);
+
+    static QString timeString(double timeRemaining);
+    static QString dataString(int size);
 
 public slots:
     void download(const QNetworkRequest &request, bool requestFileName = false);
