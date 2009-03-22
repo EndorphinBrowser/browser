@@ -36,15 +36,15 @@ QSize SearchButton::sizeHint() const
 {
     if (!m_cache.isNull())
         return m_cache.size();
-    if (hasCompleter())
+    if (completer())
         return QSize(16, 16);
     return QSize(12, 16);
 }
 
 void SearchButton::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton && hasCompleter()) {
-        hasCompleter()->complete();
+    if (event->button() == Qt::LeftButton && completer()) {
+        completer()->complete();
         event->accept();
     }
     QAbstractButton::mousePressEvent(event);
@@ -104,12 +104,12 @@ void SearchButton::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     if (m_cache.isNull())
-        m_cache = generateSearchImage(hasCompleter());
+        m_cache = generateSearchImage(completer());
     QPainter painter(this);
     painter.drawImage(QPoint(0, 0), m_cache);
 }
 
-QCompleter *SearchButton::hasCompleter() const
+QCompleter *SearchButton::completer() const
 {
     if (parentWidget()) {
         if (QLineEdit *lineEdit = qobject_cast<QLineEdit*>(parentWidget()))

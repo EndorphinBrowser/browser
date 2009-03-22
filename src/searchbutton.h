@@ -38,7 +38,7 @@ protected:
 
 private:
     QImage generateSearchImage(bool dropDown);
-    QCompleter *hasCompleter() const;
+    QCompleter *completer() const;
     QImage m_cache;
 };
 
