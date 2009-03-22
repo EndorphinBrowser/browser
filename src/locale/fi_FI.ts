@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>Kevyt WebKit pohjainen verkkoselain</translation>
+        <translation>Kevyt WebKit-pohjainen verkkoselain</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -356,7 +356,7 @@ Haluatko lopettaa siitä huolimatta?</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Katso</translation>
+        <translation>&amp;Näytä</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
@@ -412,7 +412,7 @@ Haluatko lopettaa siitä huolimatta?</translation>
     </message>
     <message>
         <source>Hi&amp;story</source>
-        <translation>Hi&amp;storia</translation>
+        <translation>Sivuhi&amp;storia</translation>
     </message>
     <message>
         <source>Back</source>
@@ -424,7 +424,7 @@ Haluatko lopettaa siitä huolimatta?</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation>Koti</translation>
+        <translation>Aloitussivu</translation>
     </message>
     <message>
         <source>Restore Last Session</source>
@@ -478,7 +478,7 @@ Haluatko lopettaa siitä huolimatta?</translation>
     </message>
     <message>
         <source>Enable Web &amp;Inspector</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä Web &amp;Inspectoria</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -532,11 +532,11 @@ Haluatko lopettaa siitä huolimatta?</translation>
     </message>
     <message>
         <source>Open Web Resource</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaa web-tiedostoja</translation>
     </message>
     <message>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Web-tiedostot (*.html *.htm *.svg *.png *.gif *.svgz);;Kaikki tiedostot (*.*)</translation>
     </message>
     <message>
         <source>Print Document</source>
@@ -556,12 +556,13 @@ Haluatko lopettaa siitä huolimatta?</translation>
     </message>
     <message>
         <source>Web Inspector</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Inspector toimii oikein vain sivuilla jotka on päivitetty sen käyttöön ottamisen jälkeen.
+Haluatko päivittää kaikki sivut?</translation>
     </message>
     <message>
         <source>Stop loading the current page</source>
@@ -596,7 +597,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Clear the following items:</source>
-        <translation>Poista seuraavat asiat:</translation>
+        <translation>Poista seuraavat tiedot:</translation>
     </message>
     <message>
         <source>&amp;Browsing History</source>
@@ -1121,7 +1122,7 @@ Haluatko sivuuttaa nämä virheet?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;</source>
@@ -1247,7 +1248,7 @@ Haluatko sivuuttaa nämä virheet?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation>Suositeltu kieli sivujen näyttämiseen:</translation>
+        <translation>Kieli, jolla sivut näytetään:</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -1311,7 +1312,7 @@ Haluatko sivuuttaa nämä virheet?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>At most 90 days</source>
-        <translation>90 päivää</translation>
+        <translation>Korkeintaan 90 päivää</translation>
     </message>
     <message>
         <source>Cookies...</source>
@@ -1339,7 +1340,7 @@ Haluatko sivuuttaa nämä virheet?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Links that want to open in a new window:</source>
-        <translation>Linkit jotka haluavat avautua uuteen ikkunaan:</translation>
+        <translation>Avaa linkit jotka haluavat avautua uuteen ikkunaan:</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1430,7 +1431,7 @@ Haluatko sivuuttaa nämä virheet?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&amp;Wrap lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rivitys</translation>
     </message>
     <message>
         <source>Source of Page </source>
@@ -1566,11 +1567,11 @@ Haluatko varmasti sulkea tämän sivun?
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation>Tarkista osoite virheiden varalta esim &lt;b&gt;ww&lt;/b&gt;.arora-browser.org kun sen pitäisi olla &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
+        <translation>Tarkista osoite virheiden varalta, esim. &quot;&lt;b&gt;ww&lt;/b&gt;.arora-browser.org&quot; oikean muodon sijaan &quot;&lt;b&gt;www&lt;/b&gt;.arora-browser.org&quot;</translation>
     </message>
     <message>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation>Jos osoite on oikea, koita tarkistaa yhteytesi.</translation>
+        <translation>Jos osoite on oikea, tarkista yhteytesi.</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
