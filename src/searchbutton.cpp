@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,104 +17,73 @@
  * Boston, MA  02110-1301  USA
  */
 
-/****************************************************************************
-**
-** Copyright (C) 2007-2008 Trolltech ASA. All rights reserved.
-**
-** This file is part of the demonstration applications of the Qt Toolkit.
-**
-** This file may be used under the terms of the GNU General Public
-** License versions 2.0 or 3.0 as published by the Free Software
-** Foundation and appearing in the files LICENSE.GPL2 and LICENSE.GPL3
-** included in the packaging of this file.  Alternatively you may (at
-** your option) use any later version of the GNU General Public
-** License if such license has been publicly approved by Trolltech ASA
-** (or its successors, if any) and the KDE Free Qt Foundation. In
-** addition, as a special exception, Trolltech gives you certain
-** additional rights. These rights are described in the Trolltech GPL
-** Exception version 1.2, which can be found at
-** http://www.trolltech.com/products/qt/gplexception/ and in the file
-** GPL_EXCEPTION.txt in this package.
-**
-** Please review the following information to ensure GNU General
-** Public Licensing requirements will be met:
-** http://trolltech.com/products/qt/licenses/licensing/opensource/. If
-** you are unsure which license is appropriate for your use, please
-** review the following information:
-** http://trolltech.com/products/qt/licenses/licensing/licensingoverview
-** or contact the sales department at sales@trolltech.com.
-**
-** In addition, as a special exception, Trolltech, as the sole
-** copyright holder for Qt Designer, grants users of the Qt/Eclipse
-** Integration plug-in the right for the Qt/Eclipse Integration to
-** link to functionality provided by Qt Designer and its related
-** libraries.
-**
-** This file is provided "AS IS" with NO WARRANTY OF ANY KIND,
-** INCLUDING THE WARRANTIES OF DESIGN, MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE. Trolltech reserves all rights not expressly
-** granted herein.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-**
-****************************************************************************/
-
 #include "searchbutton.h"
 
-#include <qmenu.h>
+#include <qcompleter.h>
 #include <qevent.h>
+#include <qlineedit.h>
 #include <qpainter.h>
 
 SearchButton::SearchButton(QWidget *parent)
     : QAbstractButton(parent)
-    , m_menu(0)
 {
-    setObjectName(QLatin1String("SearchButton"));
-    setCursor(Qt::ArrowCursor);
     setFocusPolicy(Qt::NoFocus);
+    setCursor(Qt::ArrowCursor);
+    setMinimumSize(sizeHint());
+}
+
+QSize SearchButton::sizeHint() const
+{
+    if (!m_cache.isNull())
+        return m_cache.size();
+    if (hasCompleter())
+        return QSize(16, 16);
+    return QSize(12, 16);
 }
 
 void SearchButton::mousePressEvent(QMouseEvent *event)
 {
-    if (m_menu && event->button() == Qt::LeftButton) {
-        QWidget *p = parentWidget();
-        if (p) {
-            QPoint r = p->mapToGlobal(QPoint(0, p->height()));
-            m_menu->exec(QPoint(r.x() + height() / 2, r.y()));
-        }
+    if (event->button() == Qt::LeftButton && hasCompleter()) {
+        hasCompleter()->complete();
         event->accept();
     }
     QAbstractButton::mousePressEvent(event);
 }
 
-void SearchButton::paintEvent(QPaintEvent *event)
+QImage SearchButton::generateSearchImage(bool dropDown)
 {
-    Q_UNUSED(event);
-    QPainterPath myPath;
+    QImage image(dropDown ? 16 : 12, 16, QImage::Format_ARGB32);
+    image.fill(qRgba(0, 0, 0, 0));
+    QPainterPath path;
 
-    int radius = (height() / 5) * 2;
-    QRect circle(height() / 3 - 1, height() / 4, radius, radius);
-    myPath.addEllipse(circle);
+    // draw magnify glass circle
+    int radius = image.height() / 2;
+    QRect circle(1, 1, radius, radius);
+    path.addEllipse(circle);
 
-    myPath.arcMoveTo(circle, 300);
-    QPointF c = myPath.currentPosition();
-    int diff = height() / 7;
-    myPath.lineTo(qMin(width() - 2, (int)c.x() + diff), c.y() + diff);
+    // draw handle
+    path.arcMoveTo(circle, 300);
+    QPointF currentPosition = path.currentPosition();
+    path.moveTo(currentPosition.x() + 1, currentPosition.y() + 1);
+    if (dropDown)
+        path.lineTo(image.width()-6, image.height()-4);
+    else
+        path.lineTo(image.width()-2, image.height()-4);
 
-    QPainter painter(this);
+    QPainter painter(&image);
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setPen(QPen(Qt::darkGray, 2));
-    painter.drawPath(myPath);
+    painter.drawPath(path);
 
-    if (m_menu) {
+    if (dropDown) {
+        // draw the dropdown triangle
         QPainterPath dropPath;
         dropPath.arcMoveTo(circle, 320);
-        QPointF c = dropPath.currentPosition();
-        c = QPointF(c.x() + 3.5, c.y() + 0.5);
-        dropPath.moveTo(c);
-        dropPath.lineTo(c.x() + 4, c.y());
-        dropPath.lineTo(c.x() + 2, c.y() + 2);
+        QPointF currentPosition = dropPath.currentPosition();
+        currentPosition = QPointF(currentPosition.x() + 2, currentPosition.y() + 0.5);
+        dropPath.moveTo(currentPosition);
+        dropPath.lineTo(currentPosition.x() + 4, currentPosition.y());
+        dropPath.lineTo(currentPosition.x() + 2, currentPosition.y() + 2);
         dropPath.closeSubpath();
         painter.setPen(Qt::darkGray);
         painter.setBrush(Qt::darkGray);
@@ -122,5 +91,32 @@ void SearchButton::paintEvent(QPaintEvent *event)
         painter.drawPath(dropPath);
     }
     painter.end();
+    return image;
+}
+
+void SearchButton::setImage(const QImage &image)
+{
+    m_cache = image;
+    setMinimumSize(sizeHint());
+}
+
+void SearchButton::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+    if (m_cache.isNull())
+        m_cache = generateSearchImage(hasCompleter());
+    QPainter painter(this);
+    painter.drawImage(QPoint(0, 0), m_cache);
+}
+
+QCompleter *SearchButton::hasCompleter() const
+{
+    if (parentWidget()) {
+        if (QLineEdit *lineEdit = qobject_cast<QLineEdit*>(parentWidget()))
+            return lineEdit->completer();
+        if (QLineEdit *lineEdit = qobject_cast<QLineEdit*>(parentWidget()->parentWidget()))
+            return lineEdit->completer();
+    }
+    return 0;
 }
 

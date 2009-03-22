@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,24 +23,22 @@
 int main(int argc, char **argv)
 {
     QApplication application(argc, argv);
-    QMainWindow w;
 
-    QWidget *window = new QWidget;
+    QDialog window;
     QPushButton *button1 = new QPushButton("One");
-    QPushButton *button2 = new QPushButton("Two");
-    SearchLineEdit *s1 = new SearchLineEdit(window);
-    SearchLineEdit *s2 = new SearchLineEdit(window);
-    s2->menu()->addAction("f");
+    SearchLineEdit *s1 = new SearchLineEdit(&window);
+    SearchLineEdit *s2 = new SearchLineEdit(new QCompleter(&window), &window);
+    QStringList list;
+    list << "a" << "b" << "c";
+    s2->completer()->setModel(new QStringListModel(list));
 
     QVBoxLayout *layout = new QVBoxLayout;
     layout->addWidget(s1);
     layout->addWidget(s2);
     layout->addWidget(button1);
-    layout->addWidget(button2);
 
-    window->setLayout(layout);
-    w.show();
-    w.setCentralWidget(window);
+    window.setLayout(layout);
+    window.show();
     return application.exec();
 }
 
