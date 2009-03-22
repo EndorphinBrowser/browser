@@ -598,6 +598,8 @@ void TabWidget::lineEditReturnPressed()
 void TabWidget::windowCloseRequested()
 {
     WebPage *webPage = qobject_cast<WebPage*>(sender());
+    if (!webPage)
+        return;
     WebView *webView = qobject_cast<WebView*>(webPage->view());
     int index = webViewIndex(webView);
     if (index >= 0) {
@@ -728,7 +730,8 @@ void TabWidget::webViewLoadProgress(int progress)
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
 
-    if (index != currentIndex())
+    if (index != currentIndex()
+        || index < 0)
         return;
 
     double totalBytes = (double) webView->webPage()->totalBytes() / 1024;
@@ -790,13 +793,13 @@ void TabWidget::webViewTitleChanged(const QString &title)
 {
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
-    if (-1 != index) {
-        QString tabTitle = title;
-        if (title.isEmpty())
-            tabTitle = QString::fromUtf8(webView->url().toEncoded());
-        tabTitle.replace(QLatin1Char('&'), QLatin1String("&&"));
-        setTabText(index, tabTitle);
-    }
+    if (-1 == index)
+        return;
+    QString tabTitle = title;
+    if (title.isEmpty())
+        tabTitle = QString::fromUtf8(webView->url().toEncoded());
+    tabTitle.replace(QLatin1Char('&'), QLatin1String("&&"));
+    setTabText(index, tabTitle);
     if (currentIndex() == index)
         emit setCurrentTitle(title);
     BrowserApplication::historyManager()->updateHistoryEntry(webView->url(), title);
@@ -806,9 +809,9 @@ void TabWidget::webViewUrlChanged(const QUrl &url)
 {
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
-    if (-1 != index) {
-        m_tabBar->setTabData(index, url);
-    }
+    if (-1 == index)
+        return;
+    m_tabBar->setTabData(index, url);
     emit tabsChanged();
 }
 
