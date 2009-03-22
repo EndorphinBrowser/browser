@@ -193,7 +193,7 @@ void LineEdit::updateSideWidgetLocations()
     textRect.adjust(-left, 1, right, 0);
 #endif
 
-    int midHeight = textRect.center().y();
+    int midHeight = textRect.center().y() + 1;
 
     if (m_leftLayout->count() > 0) {
         int leftHeight = midHeight - m_leftWidget->height() / 2;
