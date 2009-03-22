@@ -94,14 +94,6 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     connect(this, SIGNAL(returnPressed()), SLOT(searchNow()));
     setInactiveText(QLatin1String("Google"));
 
-    m_googleSuggest = new GoogleSuggest(this);
-    m_googleSuggest->setNetworkAccessManager(BrowserApplication::networkAccessManager());
-    connect(m_googleSuggest, SIGNAL(suggestions(const QStringList &, const QString &)),
-            this, SLOT(newSuggestions(const QStringList &)));
-    connect(this, SIGNAL(textChanged(const QString &)),
-            m_googleSuggest, SLOT(suggest(const QString &)));
-
-    retranslate();
     load();
 }
 
@@ -125,6 +117,15 @@ void ToolbarSearch::load()
     settings.beginGroup(QLatin1String("toolbarsearch"));
     m_recentSearches = settings.value(QLatin1String("recentSearches")).toStringList();
     m_maxSavedSearches = settings.value(QLatin1String("maximumSaved"), m_maxSavedSearches).toInt();
+    bool useGoogleSuggest = settings.value(QLatin1String("useGoogleSuggest"), true).toBool();
+    if (useGoogleSuggest) {
+        m_googleSuggest = new GoogleSuggest(this);
+        m_googleSuggest->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+        connect(m_googleSuggest, SIGNAL(suggestions(const QStringList &, const QString &)),
+                this, SLOT(newSuggestions(const QStringList &)));
+        connect(this, SIGNAL(textChanged(const QString &)),
+                m_googleSuggest, SLOT(suggest(const QString &)));
+    }
     settings.endGroup();
     setupMenu();
 }
@@ -176,7 +177,8 @@ void ToolbarSearch::retranslate()
 void ToolbarSearch::setupMenu()
 {
     if (m_suggestions.isEmpty()
-        || m_model->item(0) != m_suggestionsItem) {
+        || (m_model->rowCount() > 0
+            && m_model->item(0) != m_suggestionsItem)) {
         m_model->clear();
         m_suggestionsItem = 0;
     } else {
