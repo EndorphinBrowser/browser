@@ -62,32 +62,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../acceptlanguagedialog.ui" line="14"/>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprachen</translation>
     </message>
     <message>
         <location filename="../acceptlanguagedialog.ui" line="20"/>
         <source>Languages: in order of preference:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprachen: bevorzugte Reihenfolge:</translation>
     </message>
     <message>
         <location filename="../acceptlanguagedialog.ui" line="33"/>
         <source>Move &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach &amp;Oben</translation>
     </message>
     <message>
         <location filename="../acceptlanguagedialog.ui" line="43"/>
         <source>Move &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach &amp;Unten</translation>
     </message>
     <message>
         <location filename="../acceptlanguagedialog.ui" line="53"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished">&amp;Entfernen</translation>
+        <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <location filename="../acceptlanguagedialog.ui" line="76"/>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinzufügen...</translation>
     </message>
 </context>
 <context>
@@ -106,17 +106,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="757"/>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="758"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="795"/>
         <source>Add Folder</source>
-        <translation type="unfinished">Ordner hinzufügen</translation>
+        <translation>Ordner hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -180,12 +180,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="86"/>
         <source>Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesezeichenleiste</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="87"/>
         <source>Bookmarks Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesezeichenmenü</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="141"/>
@@ -215,13 +215,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="280"/>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="295"/>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Laden der html Lesezeichen: %1</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="317"/>
@@ -269,7 +269,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="873"/>
         <source>Open in Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>In Tabs öffnen</translation>
     </message>
 </context>
 <context>
@@ -315,7 +315,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="1178"/>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner hinzufügen...</translation>
     </message>
 </context>
 <context>
@@ -402,7 +402,7 @@ Arora wirklich beenden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="709"/>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenster schließen</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="710"/>
@@ -448,13 +448,14 @@ Arora wirklich beenden?</translation>
         <location filename="../browsermainwindow.cpp" line="763"/>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
-        <translation type="unfinished"></translation>
+        <translation>Über&amp;%1</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="1290"/>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Not sure if the Key is the same in german</translatorcomment>
+        <translation>Strg+Y</translation>
     </message>
     <message>
         <source>&amp;Find Next</source>
@@ -571,7 +572,7 @@ Arora wirklich beenden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="748"/>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner hinzufügen...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="750"/>
@@ -684,7 +685,7 @@ Arora wirklich beenden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="1016"/>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Wenn Private Browsing aktiviert ist, werden einige Funktionen deaktiviert die Ihre Privatsphäre betreffen:&lt;ul&gt;&lt;li&gt; Aufgerufene Webseiten erscheinen nicht im Verlauf.&lt;/li&gt;&lt;li&gt; Einträge im Downloadfenster werden automatisch entfernt.&lt;/li&gt;&lt;li&gt; Neue Cookies werden nicht gespeichert, auf bestehende Cookies gibt es keinen Zugriff.&lt;/li&gt;&lt;li&gt; Seitensymbole und Sitzungen werden nicht gespeichert.&lt;/li&gt;&lt;li&gt; Suchen erscheinen nicht im Suchverlauf.&lt;/li&gt;&lt;/ul&gt;Die Zurück- und Vorwärtsbuttons funktionieren noch auf offenen Webseiten bis das Fenster geschlossen wird.</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="1064"/>
@@ -804,27 +805,27 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../browsermainwindow.cpp" line="731"/>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver&amp;größern</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="732"/>
         <source>Zoom &amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Normale Größe</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="733"/>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver&amp;kleinern</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="734"/>
         <source>Zoom &amp;Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur &amp;Textgröße ändern</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="746"/>
         <source>Show All Bookmarks...</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Lezeichen anzeigen...</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="761"/>
@@ -1076,7 +1077,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     <message>
         <location filename="../downloadmanager.cpp" line="386"/>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 von %2 (%3/Sek) - %4</translation>
     </message>
     <message>
         <source>Error opening save file: %1</source>
@@ -1186,38 +1187,39 @@ Sollen alle Seiten neu geladen werden?</translation>
         <location filename="../downloadmanager.cpp" line="476"/>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Es sind noch %1 Download(s) aktiv.
+Trotzdem beenden?</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloadmanager.cpp" line="672"/>
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>noch %n Minute verbleibend</numerusform>
+            <numerusform>noch %n Minuten verbleibend</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../downloadmanager.cpp" line="676"/>
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>noch %n sekunde verbleibend</numerusform>
+            <numerusform>noch %n sekunden verbleibend</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="689"/>
         <source>bytes</source>
-        <translation type="unfinished">bytes</translation>
+        <translation>bytes</translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="692"/>
         <source>kB</source>
-        <translation type="unfinished">kB</translation>
+        <translation>kB</translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="695"/>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>MB</translation>
     </message>
     <message>
         <source>1 Download</source>
@@ -1231,8 +1233,8 @@ Do you want to quit anyway?</source>
         <location filename="../downloadmanager.cpp" line="662"/>
         <source>%n Download(s)</source>
         <translation>
-            <numerusform>%n Download(s)</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%n Download</numerusform>
+            <numerusform>%n Downloads</numerusform>
         </translation>
     </message>
 </context>
@@ -1338,7 +1340,7 @@ Do you want to quit anyway?</source>
     <message>
         <location filename="../languagemanager.cpp" line="180"/>
         <source>No translation files are installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Sprachdateien installiert.</translation>
     </message>
     <message>
         <location filename="../languagemanager.cpp" line="207"/>
@@ -1366,19 +1368,21 @@ Do you want to quit anyway?</source>
     <message>
         <location filename="../networkaccessmanager.cpp" line="293"/>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation> - SSL Fehler</translation>
     </message>
     <message>
         <location filename="../networkaccessmanager.cpp" line="294"/>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;SSL-Fehler:&lt;br/&gt;&lt;br/&gt;für:&lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Möchten Sie diese Fehler ignorieren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <location filename="../networkaccessmanager.cpp" line="307"/>
         <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Zertifikate:&lt;br/&gt;%1&lt;br/&gt;Alle Zertifikate akzeptieren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>SSL Errors:
@@ -1687,7 +1691,7 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="278"/>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprachen: bevorzugte Reihenfolge für Webseiten:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="306"/>
@@ -1702,7 +1706,7 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="318"/>
         <source>Block Popup Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Popup Fenster blockieren</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="328"/>
@@ -1945,30 +1949,30 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="489"/>
         <source>Opening links</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffnen von LInks</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="495"/>
         <source>Links that want to open in a new window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Links die in einem neuen Fenster geöffnet werden sollen:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="511"/>
         <location filename="../settings.ui" line="545"/>
         <source>In a new selected tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>In einem neuen aktiven Tab im aktuellen Fenster</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="516"/>
         <location filename="../settings.ui" line="550"/>
         <source>In a new tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>In einem neuen Tab im aktiven Fenster</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="521"/>
         <location filename="../settings.ui" line="555"/>
         <source>In the current tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Im aktuellen Tab</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="586"/>
@@ -1978,12 +1982,12 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../settings.ui" line="611"/>
         <source>Http (Secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (Sicher)</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="616"/>
         <source>Http (Transparent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (Unsicher)</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="624"/>
@@ -2090,32 +2094,33 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../tabwidget.cpp" line="560"/>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Gespeicherte Tabs</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="725"/>
         <source>Loading...</source>
-        <translation type="unfinished">Laden...</translation>
+        <translation>Laden...</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="739"/>
         <source>Loading %1% (%2 %3)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Laden %1% (%2 %3)...</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="766"/>
         <source>Finished loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Laden abgeschlossen</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="768"/>
         <source>Failed to load</source>
-        <translation type="unfinished"></translation>
+        <translation>Laden fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="893"/>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Not sure if the Key is the same in german</translatorcomment>
+        <translation type="unfinished">Strg-]</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="897"/>
@@ -2125,7 +2130,8 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../tabwidget.cpp" line="901"/>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Not sure if the Key is the same in german</translatorcomment>
+        <translation type="unfinished">Strg-[</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="905"/>
@@ -2135,7 +2141,7 @@ Möchten Sie diese Fehler ignorieren?</translation>
     <message>
         <location filename="../tabwidget.cpp" line="908"/>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Tabs als Lezeichen hinzufügen</translation>
     </message>
     <message>
         <source>(Untitled)</source>
@@ -2170,7 +2176,7 @@ Diese Seite wirklich schließen?</translation>
     <message>
         <location filename="../toolbarsearch.cpp" line="182"/>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschläge</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="212"/>
@@ -2211,7 +2217,7 @@ Diese Seite wirklich schließen?</translation>
     <message>
         <location filename="../webview.cpp" line="217"/>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falls die Adresse stimmt, versuchen Sie, die Netzwerkverbindung zu überprüfen.</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="218"/>
