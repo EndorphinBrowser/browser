@@ -196,12 +196,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd w trakcie ładowania zakładek HTML: %1</translation>
     </message>
 </context>
 <context>
@@ -974,7 +974,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 z %2 (%3/sek) - %4</translation>
     </message>
 </context>
 <context>
@@ -1003,31 +1003,31 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n minuta pozostała</numerusform>
+            <numerusform>%n minuty pozostały</numerusform>
+            <numerusform>%n minut pozostało</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n sekunda pozostała</numerusform>
+            <numerusform>%n sekundy pozostały</numerusform>
+            <numerusform>%n sekund pozostało</numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">bajtów</translation>
+        <translation>bajtów</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">kB</translation>
+        <translation>kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>MB</translation>
     </message>
 </context>
 <context>
@@ -1803,7 +1803,7 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Sugestie</translation>
     </message>
 </context>
 <context>
