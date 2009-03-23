@@ -43,8 +43,8 @@ class SubAddBookmarkDialog : public AddBookmarkDialog
 {
 
 public:
-    SubAddBookmarkDialog(const QString &url, const QString &title, QWidget *parent, BookmarksManager *manager)
-        : AddBookmarkDialog(url, title, parent, manager) {}
+    SubAddBookmarkDialog(QWidget *parent, BookmarksManager *manager)
+        : AddBookmarkDialog(parent, manager) {}
 
 };
 
@@ -114,7 +114,9 @@ void tst_AddBookmarkDialog::addbookmarkdialog()
     QCOMPARE(menu->children().count(), 0);
     QCOMPARE(toolbar->children().count(), 0);
 
-    SubAddBookmarkDialog dialog(url, title, 0, manager);
+    SubAddBookmarkDialog dialog(0, manager);
+    dialog.setUrl(url);
+    dialog.setTitle(title);
     QComboBox *combobox = dialog.findChild<QComboBox*>();
     QVERIFY(combobox);
     if (select != -1) {
