@@ -17,7 +17,8 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtGui>
+#include <qtoolbutton.h>
+#include <qdebug.h>
 
 #include <lineedit.h>
 #include "ui_dialog.h"
@@ -137,5 +138,5 @@ int main(int argc,char ** argv)
     }
 }
 
-#include "main.moc"
+#include "main_lineedit.moc"
 

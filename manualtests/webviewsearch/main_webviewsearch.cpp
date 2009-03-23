@@ -78,4 +78,4 @@ int main(int argc, char **argv)
     return application.exec();
 }
 
-#include "main.moc"
+#include "main_webviewsearch.moc"

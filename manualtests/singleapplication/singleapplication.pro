@@ -6,5 +6,7 @@ INCLUDEPATH += .
 include(../manualtests.pri)
 
 # Input
-SOURCES = main.cpp singleapplication.cpp
+RESOURCES =
+FORMS =
+SOURCES = main_singleapplication.cpp singleapplication.cpp
 HEADERS = singleapplication.h

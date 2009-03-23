@@ -6,5 +6,5 @@ INCLUDEPATH += .
 include(../manualtests.pri)
 
 # Input
-SOURCES += main.cpp
+SOURCES += main_modelmenu.cpp
 HEADERS +=

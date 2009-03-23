@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008, Benjamin C. Meyer
+ * Copyright (c) 2009, Benjamin C. Meyer
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -28,22 +28,70 @@
 
 #include <QtGui>
 
-#include <singleapplication.h>
+#include <modelmenu.h>
+
+class Menu : public ModelMenu
+{
+    Q_OBJECT
+
+public:
+    Menu(QWidget *parent);
+
+protected:
+    bool prePopulated();
+    void postPopulated();
+    ModelMenu *createBaseMenu();
+
+private slots:
+    void activated2(const QModelIndex &index);
+
+};
+
+Menu::Menu(QWidget *parent)
+    : ModelMenu(parent)
+{
+    connect(this, SIGNAL(activated(const QModelIndex &)),
+            this, SLOT(activated2(const QModelIndex &)));
+}
+
+bool Menu::prePopulated()
+{
+    qDebug() << __FUNCTION__;
+    return ModelMenu::prePopulated();
+}
+
+void Menu::postPopulated()
+{
+    qDebug() << __FUNCTION__;
+    return ModelMenu::postPopulated();
+}
+
+ModelMenu *Menu::createBaseMenu()
+{
+    qDebug() << __FUNCTION__;
+    return new Menu(this);
+    return ModelMenu::createBaseMenu();
+}
+
+void Menu::activated2(const QModelIndex &index)
+{
+    qDebug() << __FUNCTION__ << index.data() << this;
+}
 
 int main(int argc, char **argv)
 {
-    SingleApplication app(argc, argv);
-    app.setApplicationName("testapp");
-    if (app.arguments().count() > 1
-        && app.sendMessage(app.arguments().last()))
-        return 0;
+    QApplication app(argc, argv);
 
-    QPlainTextEdit plainTextEdit;
-    plainTextEdit.show();
-    if (!app.startSingleServer())
-        qWarning() << "Error starting server";
-    app.connect(&app, SIGNAL(messageReceived(const QString &)),
-                &plainTextEdit, SLOT(appendPlainText(const QString &)));
+    QMainWindow mainWindow;
+    Menu *menu = new Menu(&mainWindow);
+    menu->setTitle("Test");
+    QDirModel *model = new QDirModel(menu);
+    menu->setModel(model);
+    menu->setRootIndex(model->index(QDir::homePath()));
+    mainWindow.menuBar()->addMenu(menu);
+    mainWindow.show();
     return app.exec();
 }
+
+#include "main_modelmenu.moc"
 

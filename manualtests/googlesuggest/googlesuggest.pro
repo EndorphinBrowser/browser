@@ -9,6 +9,7 @@ include(../../install.pri)
 QT = core network
 
 # Input
+RESOURCES =
 FORMS =
-SOURCES = main.cpp googlesuggest.cpp
+SOURCES = main_googlesuggest.cpp googlesuggest.cpp
 HEADERS = googlesuggest.h

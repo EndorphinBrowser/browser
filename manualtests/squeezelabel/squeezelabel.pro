@@ -6,5 +6,7 @@ INCLUDEPATH += .
 include(../manualtests.pri)
 
 # Input
-SOURCES = main.cpp squeezelabel.cpp
+RESOURCES =
+FORMS =
+SOURCES = main_squeezelabel.cpp squeezelabel.cpp
 HEADERS = squeezelabel.h

@@ -6,6 +6,6 @@ INCLUDEPATH += .
 include(../manualtests.pri)
 
 # Input
-SOURCES += main.cpp
+SOURCES += main_locationbar.cpp
 HEADERS +=
 

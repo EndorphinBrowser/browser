@@ -6,6 +6,7 @@ INCLUDEPATH += .
 include(../manualtests.pri)
 
 # Input
+RESOURCES =
 FORMS   = dialog.ui
-SOURCES = main.cpp lineedit.cpp
+SOURCES = main_lineedit.cpp lineedit.cpp
 HEADERS = lineedit.h lineedit_p.h proxystyle.h

@@ -7,10 +7,10 @@ win32 : Debug : CONFIG += console
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-RCC_DIR = .rcc
-UI_DIR = .ui
-MOC_DIR = .moc
-OBJECTS_DIR = .obj
+RCC_DIR     = $$PWD/.rcc
+UI_DIR      = $$PWD/.ui
+MOC_DIR     = $$PWD/.moc
+OBJECTS_DIR = $$PWD/.obj
 
 QT += webkit network
 

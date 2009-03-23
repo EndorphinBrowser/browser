@@ -17,7 +17,8 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtGui/QtGui>
+#include <qapplication.h>
+
 #include "squeezelabel.h"
 
 int main(int argc, char **argv)

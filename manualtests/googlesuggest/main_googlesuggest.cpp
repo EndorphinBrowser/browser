@@ -17,7 +17,11 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtCore/QtCore>
+#include <qtimer.h>
+#include <qtextstream.h>
+#include <qcoreapplication.h>
+#include <qstringlist.h>
+#include <qdebug.h>
 #include <qnetworkaccessmanager.h>
 
 #include "googlesuggest.h"
@@ -76,5 +80,5 @@ int main(int argc, char **argv)
     return application.exec();
 }
 
-#include "main.moc"
+#include "main_googlesuggest.moc"
 
