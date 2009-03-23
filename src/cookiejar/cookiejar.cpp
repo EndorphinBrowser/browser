@@ -256,9 +256,9 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
         return false;
 
     QString host = url.host();
-    bool eBlock = qBinaryFind(m_exceptions_block.begin(), m_exceptions_block.end(), host) != m_exceptions_block.end();
-    bool eAllow = qBinaryFind(m_exceptions_allow.begin(), m_exceptions_allow.end(), host) != m_exceptions_allow.end();
-    bool eAllowSession = qBinaryFind(m_exceptions_allowForSession.begin(), m_exceptions_allowForSession.end(), host) != m_exceptions_allowForSession.end();
+    bool eBlock = isOnDomainList(m_exceptions_block, host);
+    bool eAllow = !eBlock && isOnDomainList(m_exceptions_allow, host);
+    bool eAllowSession = !eBlock && !eAllow && isOnDomainList(m_exceptions_allowForSession, host);
 
     bool addedCookies = false;
     // pass exceptions
@@ -312,6 +312,36 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
         emit cookiesChanged();
     }
     return addedCookies;
+}
+
+bool CookieJar::isOnDomainList(const QStringList &list, const QString &domain) const
+{
+    for (int i=0;i<list.size();i++) {
+        QString item = list.at(i);
+        // proper subdomain match, first check for exact match
+        if (domain==item) {
+            return true;
+        } else {
+            // domain : abc.def.com, item is def.com -> should match
+            // domain : abcdef.com,  item is def.com -> shouldn't match
+            if (item.startsWith(QLatin1String("."))) {
+                if (domain.endsWith(item)) {
+                    return true;
+                }
+                // domain def.com, item is .def.com -> should match, so we skip the dot.
+                QStringRef withoutDot = item.rightRef(item.size()-1);
+                if (domain==withoutDot) {
+                    return true;
+                }
+            } else {
+                QStringRef domainEnding = domain.rightRef(item.size()+1);
+                if (domainEnding.at(0)==QLatin1Char('.') && domain.endsWith(item)) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 
 CookieJar::AcceptPolicy CookieJar::acceptPolicy() const
@@ -395,3 +425,4 @@ void CookieJar::setAllowForSessionCookies(const QStringList &list)
     qSort(m_exceptions_allowForSession.begin(), m_exceptions_allowForSession.end());
     m_saveTimer->changeOccurred();
 }
+

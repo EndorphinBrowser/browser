@@ -126,6 +126,7 @@ private slots:
 private:
     void purgeOldCookies();
     void load();
+    bool isOnDomainList(const QStringList &list, const QString &domain) const;
     bool m_loaded;
     AutoSaver *m_saveTimer;
 
