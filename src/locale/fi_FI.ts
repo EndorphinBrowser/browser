@@ -195,12 +195,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Virhe ladattaessa html kirjanmerkkejä: %1
+</translation>
     </message>
 </context>
 <context>
@@ -862,7 +863,7 @@ Haluatko päivittää kaikki sivut?</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1/%2 (%3/sek) %4</translation>
     </message>
 </context>
 <context>
@@ -882,29 +883,29 @@ Haluatko lopettaa siitä huolimatta?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n minuutti jäljellä</numerusform>
+            <numerusform>%n minuuttia jäljellä</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n sekunti jäljellä</numerusform>
+            <numerusform>%n sekuntia jäljellä</numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">tavua</translation>
+        <translation>tavua</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">kt</translation>
+        <translation>kt</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">Mt</translation>
+        <translation>Mt</translation>
     </message>
 </context>
 <context>
@@ -1595,7 +1596,7 @@ Haluatko varmasti sulkea tämän sivun?
     </message>
     <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Ehdotukset</translation>
     </message>
 </context>
 <context>
