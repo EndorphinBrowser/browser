@@ -223,7 +223,7 @@ void ToolbarSearch::setupMenu()
     }
 
     QAbstractItemView *view = completer()->popup();
-    view->setMinimumHeight(view->sizeHintForRow(0) * m_model->rowCount() + view->frameWidth() * 2);
+    view->setFixedHeight(view->sizeHintForRow(0) * m_model->rowCount() + view->frameWidth() * 2);
 }
 
 void ToolbarSearch::clear()
