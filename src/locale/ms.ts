@@ -41,27 +41,27 @@ p, li { white-space: pre-wrap; }
     <name>AcceptLanguage</name>
     <message>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Bahasa</translation>
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bahasa di dalam turutan minat:</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Naik A&amp;tas</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Turun Ba&amp;wah</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">&amp;Buang</translation>
+        <translation>&amp;Keluarkan</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tambah...</translation>
     </message>
 </context>
 <context>
@@ -76,15 +76,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Url</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Tajuk</translation>
+        <translation>Tajuk</translation>
     </message>
     <message>
         <source>Add Folder</source>
-        <translation type="unfinished">Tambah Folder</translation>
+        <translation>Tambah Folder</translation>
     </message>
 </context>
 <context>
@@ -188,27 +188,28 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Bar Tandabuku</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu Tandabuku</translation>
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Ralat semasa memuatkan tandabuku html: %1
+</translation>
     </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
     <message>
         <source>Open in Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Buka di Tab</translation>
     </message>
 </context>
 <context>
@@ -246,7 +247,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tambah Folder...</translation>
     </message>
 </context>
 <context>
@@ -584,49 +585,51 @@ Anda mahu memuatsemula kesemua laman?</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
-        <translation type="unfinished"></translation>
+        <translation>Anda pasti ingin menutup tetingkap ini? Masih ada %1 tab yang terbuka</translation>
     </message>
     <message>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutup Tetingkap</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom Ke Da&amp;lam</translation>
     </message>
     <message>
         <source>Zoom &amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom &amp;Normal</translation>
     </message>
     <message>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom &amp;Keluar</translation>
     </message>
     <message>
         <source>Zoom &amp;Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom &amp;Teks Sahaja</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation type="unfinished"></translation>
+        <translation>Papar Kesemua Tandabuku...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tambah Folder...</translation>
     </message>
     <message>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Perihal Pelayar</translatorcomment>
+        <translation>Perihal &amp;%1</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Apabila lungsuran privasi dipasang, sebahagian tindakan melibatkan privasi akan di lumpuhkan:&lt;ul&gt;&lt;li&gt; Laman web tidak disimpan di dalam sejarah.&lt;/li&gt;&lt;li&gt; Senarai muaturun akan dikeluarkan dari tetingkap Muaturun.&lt;/li&gt;&lt;li&gt; Cookies baru tidak akan disimpan dan cookies semasa tidak dapat digunakan.&lt;/li&gt;&lt;li&gt; Ikon laman web tidak disimpan, sessi tidak disimpan.&lt;/li&gt;&lt;li&gt; Carian tidak ditambah pada menu popup di kekotak carian.&lt;/li&gt;&lt;/ul&gt;Sebelum anda menutup tetingkap, anda masih boleh menggunakan butang Undur dan Maju untuk kembali ke laman web yang pernah di buka.</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Pengurus Muaturun</translatorcomment>
+        <translation>Ctrl+Y</translation>
     </message>
 </context>
 <context>
@@ -864,14 +867,14 @@ Anda mahu memuatsemula kesemua laman?</translation>
         <source>- %n minutes remaining</source>
         <translation type="obsolete">
             <numerusform>lagi %n minit</numerusform>
-            <numerusform>lagi %n minit</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
         <translation type="obsolete">
             <numerusform>lagi %n saat</numerusform>
-            <numerusform>lagi %n saat</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -900,7 +903,7 @@ Anda mahu memuatsemula kesemua laman?</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 dari %2 (%3/saat) - %4</translation>
     </message>
 </context>
 <context>
@@ -909,39 +912,40 @@ Anda mahu memuatsemula kesemua laman?</translation>
         <source>%n Download(s)</source>
         <translation>
             <numerusform>%n Muaturun</numerusform>
-            <numerusform>%n Muaturun</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Masih ada %1 proses muaturun berjalan
+Anda masih ingin keluar?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>lagi %n minit</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>lagi %n saat</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">byte</translation>
+        <translation>byte</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">kB</translation>
+        <translation>kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>MB</translation>
     </message>
 </context>
 <context>
@@ -1011,7 +1015,7 @@ Do you want to quit anyway?</source>
         <source>%n item(s)</source>
         <translation>
             <numerusform>%n perkara</numerusform>
-            <numerusform>%n perkara</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
 </context>
@@ -1035,7 +1039,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>No translation files are installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fail terjemahan tidak dipasang.</translation>
     </message>
 </context>
 <context>
@@ -1070,17 +1074,19 @@ Anda mahu abaikan ralat ini?</translation>
     </message>
     <message>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation> - Ralat SSL</translation>
     </message>
     <message>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Ralat SSL:&lt;br/&gt;&lt;br/&gt;untuk: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Anda ingin abaikan ralat ini?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Sijil:&lt;br/&gt;%1&lt;br/&gt;Anda mahu menerima kesemua sijil ini?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1486,39 +1492,39 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bahasa digemari untuk melihat laman web:</translation>
     </message>
     <message>
         <source>Block Popup Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Halang Tetingkap Popup</translation>
     </message>
     <message>
         <source>Opening links</source>
-        <translation type="unfinished"></translation>
+        <translation>Membuka capaian</translation>
     </message>
     <message>
         <source>Links that want to open in a new window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Capaian yang hendak dibuka di tetingkap baru:</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>Di dalam tab terpilih baru di tetingkap semasa</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>Di dalam tab baru di tetingkap semasa</translation>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Di dalam tab semasa</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (Selamat)</translation>
     </message>
     <message>
         <source>Http (Transparent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (Telus)</translation>
     </message>
 </context>
 <context>
@@ -1623,35 +1629,35 @@ Anda benar-benar mahu teruskan dengan menutup laman ini?
     </message>
     <message>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-]</translation>
     </message>
     <message>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-[</translation>
     </message>
     <message>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Simpan Tab</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">Memuat...</translation>
+        <translation>Memuat...</translation>
     </message>
     <message>
         <source>Loading %1% (%2 %3)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Memuat %1% (%2 %3)...</translation>
     </message>
     <message>
         <source>Finished loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Selesai dimuatkan</translation>
     </message>
     <message>
         <source>Failed to load</source>
-        <translation type="unfinished"></translation>
+        <translation>Gagal dimuatkan</translation>
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Tandabukukan Ke Semua Tab</translation>
     </message>
 </context>
 <context>
@@ -1670,7 +1676,7 @@ Anda benar-benar mahu teruskan dengan menutup laman ini?
     </message>
     <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Cadangan</translation>
     </message>
 </context>
 <context>
@@ -1697,7 +1703,7 @@ Anda benar-benar mahu teruskan dengan menutup laman ini?
     </message>
     <message>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jika alamat betul, cuba periksa sambungan rangkaian.</translation>
     </message>
 </context>
 <context>
