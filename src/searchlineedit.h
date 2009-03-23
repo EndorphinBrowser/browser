@@ -37,7 +37,7 @@ class SearchLineEdit : public LineEdit
 
 public:
     SearchLineEdit(QWidget *parent = 0);
-    SearchLineEdit(QCompleter *completer = 0, QWidget *parent = 0);
+    SearchLineEdit(QCompleter *completer, QWidget *parent = 0);
 
 private:
     void init();
