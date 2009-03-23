@@ -43,6 +43,7 @@ signals:
 public:
     GoogleSuggest(QObject *parent = 0);
     void setNetworkAccessManager(QNetworkAccessManager *manager);
+    QNetworkAccessManager *networkAccessManager() const;
 
 public slots:
     void suggest(const QString &searchText);

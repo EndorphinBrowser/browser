@@ -120,14 +120,22 @@ void ToolbarSearch::load()
     bool useGoogleSuggest = settings.value(QLatin1String("useGoogleSuggest"), true).toBool();
     if (useGoogleSuggest) {
         m_googleSuggest = new GoogleSuggest(this);
-        m_googleSuggest->setNetworkAccessManager(BrowserApplication::networkAccessManager());
         connect(m_googleSuggest, SIGNAL(suggestions(const QStringList &, const QString &)),
                 this, SLOT(newSuggestions(const QStringList &)));
         connect(this, SIGNAL(textChanged(const QString &)),
-                m_googleSuggest, SLOT(suggest(const QString &)));
+                this, SLOT(textChanged(const QString &)));
     }
     settings.endGroup();
     setupMenu();
+}
+
+void ToolbarSearch::textChanged(const QString &text)
+{
+    // delay settings this to prevent BrowserApplication from creating
+    // the object when it isn't needed on startup
+    if (!m_googleSuggest->networkAccessManager())
+        m_googleSuggest->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+    m_googleSuggest->suggest(text);
 }
 
 void ToolbarSearch::searchNow()

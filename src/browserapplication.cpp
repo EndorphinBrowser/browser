@@ -136,6 +136,10 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
             this, SLOT(lastWindowClosed()));
 #endif
 
+    // setting this in the postLaunch actually takes a lot more time
+    // because the event has to be propagated to everyone.
+    setWindowIcon(QIcon(QLatin1String(":128x128/arora.png")));
+
 #ifndef AUTOTESTS
     QTimer::singleShot(0, this, SLOT(postLaunch()));
 #endif
@@ -166,6 +170,12 @@ BrowserApplication *BrowserApplication::instance()
     return (static_cast<BrowserApplication *>(QCoreApplication::instance()));
 }
 
+void BrowserApplication::retranslate()
+{
+    bookmarksManager()->retranslate();
+    networkAccessManager()->loadSettings();
+}
+
 void BrowserApplication::messageReceived(const QString &message)
 {
     if (!message.isEmpty()) {
@@ -187,7 +197,7 @@ void BrowserApplication::quitBrowser()
         tabCount += m_mainWindows.at(i)->tabWidget()->count();
     }
 
-    if (!downloadManager()->allowQuit())
+    if (s_downloadManager && !downloadManager()->allowQuit())
         return;
 
     if (tabCount > 1) {
@@ -219,8 +229,6 @@ void BrowserApplication::postLaunch()
     if (directory.isEmpty())
         directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
     QWebSettings::setIconDatabasePath(directory);
-
-    setWindowIcon(QIcon(QLatin1String(":128x128/arora.png")));
 
     loadSettings();
 
@@ -486,8 +494,11 @@ BookmarksManager *BrowserApplication::bookmarksManager()
 
 LanguageManager *BrowserApplication::languageManager()
 {
-    if (!s_languageManager)
+    if (!s_languageManager) {
         s_languageManager = new LanguageManager;
+        connect(s_languageManager, SIGNAL(languageChanged(const QString &)),
+                qApp, SLOT(retranslate()));
+    }
     return s_languageManager;
 }
 

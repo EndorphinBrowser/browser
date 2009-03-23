@@ -29,11 +29,11 @@
 
 #include "languagemanager.h"
 
-#include "bookmarks.h"
 #include "browserapplication.h"
 
 #include <qapplication.h>
 #include <qdir.h>
+#include <qdiriterator.h>
 #include <qfileinfo.h>
 #include <qinputdialog.h>
 #include <qlibraryinfo.h>
@@ -92,10 +92,18 @@ QString LanguageManager::currentLanguage() const
 bool LanguageManager::isLanguageAvailable(const QString &language) const
 {
 #ifdef LANGUAGEMANAGER_DEBUG
-    qDebug() << "LanguageManager::" << __FUNCTION__;
+    qDebug() << "LanguageManager::" << __FUNCTION__ << language;
 #endif
+    if (language.isEmpty())
+        return true;
+
+    if (!m_loaded) {
+        QString file = translationLocation() + QLatin1Char('/') + language + QLatin1String(".qm");
+        return QFile::exists(file);
+    }
+
     loadAvailableLanguages();
-    return language.isEmpty() || m_languages.contains(language);
+    return m_languages.contains(language);
 }
 
 bool LanguageManager::setCurrentLanguage(const QString &language)
@@ -148,7 +156,6 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
     qApp->installTranslator(newSysTranslator);
     m_appTranslator = newAppTranslator;
     m_sysTranslator = newSysTranslator;
-    BrowserApplication::bookmarksManager()->retranslate();
     emit languageChanged(currentLanguage());
     return true;
 }
@@ -211,7 +218,7 @@ void LanguageManager::chooseNewLanguage()
 
 QString LanguageManager::translationLocation() const
 {
-    QString directory = BrowserApplication::dataDirectory() + QLatin1Char('/') + QLatin1String("locale");
+    QString directory = BrowserApplication::dataDirectory() + QLatin1String("/locale");
     // work without installing
     if (!QFile::exists(directory))
         directory = QLatin1String(".qm/locale");
@@ -232,19 +239,14 @@ void LanguageManager::loadAvailableLanguages() const
     if (m_loaded)
         return;
     m_loaded = true;
-    QDir appLangsDir(translationLocation());
-    QStringList nameFilters(QLatin1String("*.qm"));
-    QFileInfoList list = appLangsDir.entryInfoList(nameFilters);
 
-    QString sysLangsDirName = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-    sysLangsDirName += QLatin1Char('/') + QLatin1String("qt_");
-    for (int i = 0; i < list.size(); ++i) {
-        QFileInfo appFileInfo = list.at(i);
-        QString language = appFileInfo.completeBaseName();
-        QFileInfo sysFileInfo(sysLangsDirName + language + QLatin1String(".qm") );
-        if (!sysFileInfo.exists()) {
-            //continue;
-        }
+    QDirIterator it(translationLocation());
+    while (it.hasNext()) {
+        QString fileName = it.next();
+        if (!fileName.endsWith(QLatin1String(".qm")))
+            continue;
+        const QFileInfo info = it.fileInfo();
+        QString language = info.completeBaseName();
         m_languages.append(language);
     }
 }

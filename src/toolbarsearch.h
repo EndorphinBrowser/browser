@@ -87,6 +87,7 @@ public slots:
 
 private slots:
     void save();
+    void textChanged(const QString &);
     void newSuggestions(const QStringList &suggestions);
 
 protected:

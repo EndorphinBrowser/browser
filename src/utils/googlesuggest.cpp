@@ -46,6 +46,11 @@ void GoogleSuggest::setNetworkAccessManager(QNetworkAccessManager *manager)
     m_networkAccessManager = manager;
 }
 
+QNetworkAccessManager *GoogleSuggest::networkAccessManager() const
+{
+    return m_networkAccessManager;
+}
+
 void GoogleSuggest::suggest(const QString &searchText)
 {
     Q_ASSERT(m_networkAccessManager);
