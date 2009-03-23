@@ -116,6 +116,8 @@ public:
     void setAllowedCookies(const QStringList &list);
     void setAllowForSessionCookies(const QStringList &list);
 
+    void reapplyRules();
+
 public slots:
     void clear();
     void loadSettings();

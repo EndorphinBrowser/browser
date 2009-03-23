@@ -422,3 +422,22 @@ void CookieJar::setAllowForSessionCookies(const QStringList &list)
     m_saveTimer->changeOccurred();
 }
 
+void CookieJar::reapplyRules()
+{
+    QList<QNetworkCookie> cookies = allCookies();
+    bool changed = false;
+    for (int i = cookies.count() - 1; i >= 0; --i) {
+        if (isOnDomainList(m_exceptions_block, cookies.at(i).domain())) {
+            // qDebug() << "removing cookie "<<cookies.at(i) << " host is "<<cookies.at(i).domain() << " MATCHED!";
+            cookies.removeAt(i);
+            changed = true;
+        }
+    }
+    if (changed) {
+        setAllCookies(cookies);
+        m_saveTimer->changeOccurred();
+        emit cookiesChanged();
+    }
+}
+
+

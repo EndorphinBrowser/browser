@@ -130,6 +130,10 @@ void CookieExceptionsDialog::textChanged(const QString &text)
     allowForSessionButton->setEnabled(enabled);
 }
 
+void CookieExceptionsDialog::setDomainName(QString &text) {
+    domainLineEdit->setText(text);
+}
+
 void CookieExceptionsDialog::block()
 {
     if (domainLineEdit->text().isEmpty())
@@ -159,6 +163,7 @@ void CookieExceptionsDialog::accept()
     m_cookieJar->setBlockedCookies(m_exceptionsModel->m_blockedCookies);
     m_cookieJar->setAllowedCookies(m_exceptionsModel->m_allowedCookies);
     m_cookieJar->setAllowForSessionCookies(m_exceptionsModel->m_sessionCookies);
+    m_cookieJar->reapplyRules();
     QDialog::accept();
 }
 
