@@ -2,10 +2,13 @@
 Name=Arora
 Name[en_US]=Arora
 Comment=Browse the World Wide Web
+Comment[nl]=Surfen op het wereldwijde web
+Comment[nl_NL]=Surfen op het wereldwijde web
 GenericName=Web Browser
 GenericName[en_US]=Web Browser
 GenericName[cs_CZ]=Webový prohlížeč
 GenericName[nl]=Webbrowser
+GenericName[nl_NL]=Webbrowser
 Exec=arora %u
 Terminal=false
 Type=Application

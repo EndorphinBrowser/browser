@@ -84,7 +84,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add Folder</source>
-        <translation type="unfinished">Map toevoegen</translation>
+        <translation>Map toevoegen</translation>
     </message>
 </context>
 <context>
@@ -196,12 +196,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Fout bij het laden van html-bladwijzers: %1
+</translation>
     </message>
 </context>
 <context>
@@ -246,7 +247,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Map toevoegen...</translation>
     </message>
 </context>
 <context>
@@ -589,11 +590,11 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle bladwijzers tonen...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Map toevoegen...</translation>
     </message>
 </context>
 <context>
@@ -867,7 +868,7 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 van %2 (%3/sec) - %4</translation>
     </message>
 </context>
 <context>
@@ -887,29 +888,29 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n minuut resterend</numerusform>
+            <numerusform>%n minuten resterend</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n seconde resterend</numerusform>
+            <numerusform>%n seconden resterend</numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">bytes</translation>
+        <translation>bytes</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">kB</translation>
+        <translation>kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>MB</translation>
     </message>
 </context>
 <context>
@@ -1581,11 +1582,11 @@ Bent u zeker dat u deze pagina wilt sluiten?
     </message>
     <message>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Opgeslagen tabs</translation>
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Van alle tabs bladwijzers maken</translation>
     </message>
 </context>
 <context>
@@ -1604,7 +1605,7 @@ Bent u zeker dat u deze pagina wilt sluiten?
     </message>
     <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Suggesties</translation>
     </message>
 </context>
 <context>
