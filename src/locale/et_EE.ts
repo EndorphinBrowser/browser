@@ -49,6 +49,33 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AcceptLanguage</name>
+    <message>
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Languages: in order of preference:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">&amp;Eemalda</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
@@ -57,6 +84,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Sisestage järjehoidjale nimi ja valige, kus seda hoida.</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Pealkiri</translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
+        <translation type="unfinished">Lisa kaust</translation>
     </message>
 </context>
 <context>
@@ -165,6 +204,22 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BookmarksMenu</name>
+    <message>
+        <source>Open in Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -198,6 +253,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Bookmark...</source>
         <translation type="unfinished">&amp;Lisa järjehoidja...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -388,7 +447,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>&amp;Halda järjehoidjaid...</translation>
+        <translation type="obsolete">&amp;Halda järjehoidjaid...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -425,7 +484,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>About &amp;Arora</source>
-        <translation>Lähemalt &amp;Arora kohta</translation>
+        <translation type="obsolete">Lähemalt &amp;Arora kohta</translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -449,7 +508,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Arora</source>
-        <translation>Arora</translation>
+        <translation type="obsolete">Arora</translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -503,11 +562,6 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
         <translation>&amp;Allalaadimised</translation>
     </message>
     <message>
-        <source>Alt+Ctrl+L</source>
-        <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Clear Private Data</source>
         <translation>Kustuta &amp;privaatseid andmeid</translation>
     </message>
@@ -526,7 +580,7 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kui privaatne lehitsemine on sisse lülitatud, ei viida läbi teatud Teie privaatsust puudutavaid toiminguid:&lt;ul&gt;&lt;li&gt; Veebilehti ei sisestata ajalukku.&lt;/li&gt;&lt;li&gt; Allalaadimisakent puhastatakse automaatselt.&lt;/li&gt;&lt;li&gt; Uusi küpsiseid ei salvestata, olemasolevatele küpsistele keelatakse veebilehtedel ligipääs.&lt;/li&gt;&lt;li&gt; Veebilehtede ikoone ei salvestata.&lt;/li&gt;&lt;li&gt; Sessioone ei salvestata.&lt;/li&gt;&lt;li&gt; Tehtud otsinguid ei lisata otsingukasti rippmenüüsse.&lt;/li&gt;&lt;/ul&gt;Akna sulgemiseni võite siiski kasutada Edasi- ja Tagasi-nuppe avatud veebilehtedele tagasi pöördumiseks.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kui privaatne lehitsemine on sisse lülitatud, ei viida läbi teatud Teie privaatsust puudutavaid toiminguid:&lt;ul&gt;&lt;li&gt; Veebilehti ei sisestata ajalukku.&lt;/li&gt;&lt;li&gt; Allalaadimisakent puhastatakse automaatselt.&lt;/li&gt;&lt;li&gt; Uusi küpsiseid ei salvestata, olemasolevatele küpsistele keelatakse veebilehtedel ligipääs.&lt;/li&gt;&lt;li&gt; Veebilehtede ikoone ei salvestata.&lt;/li&gt;&lt;li&gt; Sessioone ei salvestata.&lt;/li&gt;&lt;li&gt; Tehtud otsinguid ei lisata otsingukasti rippmenüüsse.&lt;/li&gt;&lt;/ul&gt;Akna sulgemiseni võite siiski kasutada Edasi- ja Tagasi-nuppe avatud veebilehtedele tagasi pöördumiseks.</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
@@ -546,15 +600,15 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
-        <translation>Tee tekst &amp;suuremaks</translation>
+        <translation type="obsolete">Tee tekst &amp;suuremaks</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation>T&amp;aasta teksti suurus</translation>
+        <translation type="obsolete">T&amp;aasta teksti suurus</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation>Tee tekst &amp;väiksemaks</translation>
+        <translation type="obsolete">Tee tekst &amp;väiksemaks</translation>
     </message>
     <message>
         <source>Find Nex&amp;t</source>
@@ -574,6 +628,48 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
     </message>
     <message>
         <source>Switch application language </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Text Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show All Bookmarks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -790,11 +886,11 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>sekundit</translation>
+        <translation type="obsolete">sekundit</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 / %2 (%3/s) %4</translation>
+        <translation type="obsolete">%1 / %2 (%3/s) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -806,15 +902,15 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation>baiti</translation>
+        <translation type="obsolete">baiti</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>kiB</translation>
+        <translation type="obsolete">kiB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>MiB</translation>
+        <translation type="obsolete">MiB</translation>
     </message>
     <message>
         <source>Form</source>
@@ -842,20 +938,24 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n minut jäänud</numerusform>
             <numerusform>- %n minutit jäänud</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n sekund jäänud</numerusform>
             <numerusform>- %n sekundit jäänud</numerusform>
         </translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -867,6 +967,37 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
             <numerusform>%n Download</numerusform>
             <numerusform>%n Downloads</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>There are %1 downloads in progress
+Do you want to quit anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">baiti</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">kiB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MiB</translation>
     </message>
 </context>
 <context>
@@ -943,15 +1074,15 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
 <context>
     <name>LanguageManager</name>
     <message>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Choose language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No translation files are installed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -973,7 +1104,7 @@ Kas Te soovite kõik leheküljed uuesti laadida?</translation>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>SSL vead:
+        <translation type="obsolete">SSL vead:
 
 %1
 
@@ -983,7 +1114,21 @@ Kas Te soovite neid vigu ignoreerida?</translation>
     </message>
     <message>
         <source>Do you want to accept all these certificates?</source>
-        <translation>Kas Te soovite kõik need sertifikaadid aksepteerida?</translation>
+        <translation type="obsolete">Kas Te soovite kõik need sertifikaadid aksepteerida?</translation>
+    </message>
+    <message>
+        <source> - SSL Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Do you want to ignore these errors?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1201,7 +1346,7 @@ Kas Te soovite neid vigu ignoreerida?</translation>
     </message>
     <message>
         <source>In a tab in the current window</source>
-        <translation>Aktiivse akna uues sakis</translation>
+        <translation type="obsolete">Aktiivse akna uues sakis</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1293,7 +1438,7 @@ Kas Te soovite neid vigu ignoreerida?</translation>
     </message>
     <message>
         <source>Http</source>
-        <translation>HTTP</translation>
+        <translation type="obsolete">HTTP</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -1411,6 +1556,42 @@ Kas Te soovite neid vigu ignoreerida?</translation>
         <source>Host name:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Block Popup Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Links that want to open in a new window:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new selected tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In the current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Secure)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Transparent)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SourceViewer</name>
@@ -1443,7 +1624,7 @@ Kas Te soovite neid vigu ignoreerida?</translation>
     <name>TabBar</name>
     <message>
         <source>New &amp;Tab</source>
-        <translation>Uus &amp;sakk</translation>
+        <translation type="obsolete">Uus &amp;sakk</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -1522,6 +1703,30 @@ Do you really want to close this page?
         <source>Untitled</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saved Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished">Laadimine...</translation>
+    </message>
+    <message>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark All Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1535,7 +1740,11 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Unusta hiljuti tehtud otsingud</translation>
+        <translation type="obsolete">Unusta hiljuti tehtud otsingud</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1553,11 +1762,11 @@ Do you really want to close this page?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If the address is correct, try to check the network connection.</source>
+        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
+        <source>If the address is correct, try checking the network connection.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

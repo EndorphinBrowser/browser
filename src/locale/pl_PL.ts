@@ -194,6 +194,15 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation>Menu zakładek</translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
@@ -909,7 +918,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>sekund</translation>
+        <translation type="obsolete">sekund</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -921,7 +930,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 z %2 (%3/sek) %4</translation>
+        <translation type="obsolete">%1 z %2 (%3/sek) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -933,19 +942,19 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation>bajtów</translation>
+        <translation type="obsolete">bajtów</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>kB</translation>
+        <translation type="obsolete">kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>MB</translation>
+        <translation type="obsolete">MB</translation>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n minuta pozostała</numerusform>
             <numerusform>- %n minuty pozostały</numerusform>
             <numerusform>- %n minut pozostało</numerusform>
@@ -953,7 +962,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n sekunda pozostała</numerusform>
             <numerusform>- %n sekundy pozostały</numerusform>
             <numerusform>- %n sekund pozostało</numerusform>
@@ -962,6 +971,10 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <message>
         <source>Error opening output file: %1</source>
         <translation>Błąd w trakcie otwierania pliku docelowego: %1</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -987,6 +1000,34 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
 Do you want to quit anyway?</source>
         <translation>Trwa pobieranie %1 plików.
 Czy mimo to chcesz zakończyć?</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">bajtów</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MB</translation>
     </message>
 </context>
 <context>
@@ -1758,7 +1799,11 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Wyczyść listę ostatnio wyszukiwanych fraz</translation>
+        <translation type="obsolete">Wyczyść listę ostatnio wyszukiwanych fraz</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

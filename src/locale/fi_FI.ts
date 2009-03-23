@@ -193,6 +193,15 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <translation>Osoitteen muutos</translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
@@ -811,25 +820,25 @@ Haluatko päivittää kaikki sivut?</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>sekunnit</translation>
+        <translation type="obsolete">sekunnit</translation>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n minuutti jäljellä</numerusform>
             <numerusform>- %n minuuttia jäljellä</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n sekunti jäljellä</numerusform>
             <numerusform>- %n sekuntia jäljellä</numerusform>
         </translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1/%2 (%3/sek) %4</translation>
+        <translation type="obsolete">%1/%2 (%3/sek) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -841,15 +850,19 @@ Haluatko päivittää kaikki sivut?</translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation>tavua</translation>
+        <translation type="obsolete">tavua</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>kt</translation>
+        <translation type="obsolete">kt</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>Mt</translation>
+        <translation type="obsolete">Mt</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -866,6 +879,32 @@ Haluatko lopettaa siitä huolimatta?</translation>
             <numerusform>%n Lataus</numerusform>
             <numerusform>%n Latausta</numerusform>
         </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">tavua</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">kt</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">Mt</translation>
     </message>
 </context>
 <context>
@@ -1552,7 +1591,11 @@ Haluatko varmasti sulkea tämän sivun?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Tyhjennä äskeiset haut</translation>
+        <translation type="obsolete">Tyhjennä äskeiset haut</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

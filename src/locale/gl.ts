@@ -1,5 +1,7 @@
-<!DOCTYPE TS><TS>
-<context encoding="UTF-8">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
+<context>
     <name>AboutDialog</name>
     <message>
         <source>Lightweight WebKit-based web browser</source>
@@ -25,7 +27,7 @@
         <source>About</source>
         <translation>Acerca de</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -39,6 +41,33 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AcceptLanguage</name>
+    <message>
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Languages: in order of preference:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">&amp;Eliminar</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
@@ -47,6 +76,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Introduza un nome para o marcador e elixa onde gardalo.</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Título</translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
+        <translation type="unfinished">Engadir cartafol</translation>
     </message>
 </context>
 <context>
@@ -156,6 +197,22 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation>Menú de marcadores</translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BookmarksMenu</name>
+    <message>
+        <source>Open in Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -189,6 +246,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Bookmark...</source>
         <translation>Engadir marcador...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -380,7 +441,7 @@ Desexa saír de todos os xeitos?</translation>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>Administrar marcadores...</translation>
+        <translation type="obsolete">Administrar marcadores...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -483,7 +544,7 @@ Desexa saír de todos os xeitos?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Cando a navegación privada está activada, desactivanse algunas opciós relacionadas coa sua privacidade:&lt;ul&gt;&lt;li&gt; As páxinas web non se engaden ao historial&lt;/li&gt;&lt;li&gt; As descargas eliminanse automáticamente da ventá de descargas&lt;/li&gt;&lt;li&gt; Non se gardan as «cookies» novas e non se pode aceder as «cookies» actuais..&lt;/li&gt;&lt;li&gt; Non se gardan as iconas dos sitios web nin tampoco a sesión.&lt;/li&gt;&lt;li&gt;As buscas non se engaden ao menú emerxente do cadro de buscas.&lt;/li&gt;&lt;/ul&gt;Até que non peche a ventá pode premer nos botóns «Atras» e «Adiante» para volver as páxinas visitadas.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Cando a navegación privada está activada, desactivanse algunas opciós relacionadas coa sua privacidade:&lt;ul&gt;&lt;li&gt; As páxinas web non se engaden ao historial&lt;/li&gt;&lt;li&gt; As descargas eliminanse automáticamente da ventá de descargas&lt;/li&gt;&lt;li&gt; Non se gardan as «cookies» novas e non se pode aceder as «cookies» actuais..&lt;/li&gt;&lt;li&gt; Non se gardan as iconas dos sitios web nin tampoco a sesión.&lt;/li&gt;&lt;li&gt;As buscas non se engaden ao menú emerxente do cadro de buscas.&lt;/li&gt;&lt;/ul&gt;Até que non peche a ventá pode premer nos botóns «Atras» e «Adiante» para volver as páxinas visitadas.</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
@@ -558,6 +619,18 @@ Desexa recargar tódalas páxinas?</translation>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>
     </message>
+    <message>
+        <source>Show All Bookmarks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -613,112 +686,112 @@ Desexa recargar tódalas páxinas?</translation>
     <name>CookieExceptionsModel</name>
     <message>
         <source>Website</source>
-        <translation type="obsolete">Sitio web</translation>
+        <translation type="unfinished">Sitio web</translation>
     </message>
     <message>
         <source>Rule</source>
-        <translation type="obsolete">Regra</translation>
+        <translation type="unfinished">Regra</translation>
     </message>
     <message>
         <source>Allow</source>
-        <translation type="obsolete">Permitir</translation>
+        <translation type="unfinished">Permitir</translation>
     </message>
     <message>
         <source>Block</source>
-        <translation type="obsolete">Bloquear</translation>
+        <translation type="unfinished">Bloquear</translation>
     </message>
     <message>
         <source>Allow For Session</source>
-        <translation type="obsolete">Permitir só durante esta sesión</translation>
+        <translation type="unfinished">Permitir só durante esta sesión</translation>
     </message>
 </context>
 <context>
     <name>CookieModel</name>
     <message>
         <source>Website</source>
-        <translation type="obsolete">Sitio web</translation>
+        <translation type="unfinished">Sitio web</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="obsolete">Nome</translation>
+        <translation type="unfinished">Nome</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="obsolete">Ruta</translation>
+        <translation type="unfinished">Ruta</translation>
     </message>
     <message>
         <source>Secure</source>
-        <translation type="obsolete">Seguro</translation>
+        <translation type="unfinished">Seguro</translation>
     </message>
     <message>
         <source>Expires</source>
-        <translation type="obsolete">Caducidade</translation>
+        <translation type="unfinished">Caducidade</translation>
     </message>
     <message>
         <source>Contents</source>
-        <translation type="obsolete">Contido</translation>
+        <translation type="unfinished">Contido</translation>
     </message>
     <message>
         <source>true</source>
-        <translation type="obsolete">verdadeiro</translation>
+        <translation type="unfinished">verdadeiro</translation>
     </message>
     <message>
         <source>false</source>
-        <translation type="obsolete">falso</translation>
+        <translation type="unfinished">falso</translation>
     </message>
 </context>
 <context>
     <name>CookiesDialog</name>
     <message>
         <source>Cookies</source>
-        <translation type="obsolete">Cookies</translation>
+        <translation type="unfinished">Cookies</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="obsolete">&amp;Eliminar</translation>
+        <translation type="unfinished">&amp;Eliminar</translation>
     </message>
     <message>
         <source>Remove &amp;All Cookies</source>
-        <translation type="obsolete">Eliminar &amp;tódalas cookies</translation>
+        <translation type="unfinished">Eliminar &amp;tódalas cookies</translation>
     </message>
 </context>
 <context>
     <name>CookiesExceptionsDialog</name>
     <message>
         <source>Cookie Exceptions</source>
-        <translation type="obsolete">Cookies exentas</translation>
+        <translation type="unfinished">Cookies exentas</translation>
     </message>
     <message>
         <source>New Exception</source>
-        <translation type="obsolete">Nova excepción</translation>
+        <translation type="unfinished">Nova excepción</translation>
     </message>
     <message>
         <source>Domain:</source>
-        <translation type="obsolete">Dominio:</translation>
+        <translation type="unfinished">Dominio:</translation>
     </message>
     <message>
         <source>Block</source>
-        <translation type="obsolete">Bloquear</translation>
+        <translation type="unfinished">Bloquear</translation>
     </message>
     <message>
         <source>Allow For Session</source>
-        <translation type="obsolete">Permitir só durante esta sesión</translation>
+        <translation type="unfinished">Permitir só durante esta sesión</translation>
     </message>
     <message>
         <source>Allow</source>
-        <translation type="obsolete">Permitir</translation>
+        <translation type="unfinished">Permitir</translation>
     </message>
     <message>
         <source>Exceptions</source>
-        <translation type="obsolete">Excepcións</translation>
+        <translation type="unfinished">Excepcións</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="obsolete">&amp;Eliminar</translation>
+        <translation type="unfinished">&amp;Eliminar</translation>
     </message>
     <message>
         <source>Remove &amp;All</source>
-        <translation type="obsolete">Eliminar &amp;todas</translation>
+        <translation type="unfinished">Eliminar &amp;todas</translation>
     </message>
 </context>
 <context>
@@ -788,11 +861,11 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>segundoa</translation>
+        <translation type="obsolete">segundoa</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 de %2 (%3/seg.) %4</translation>
+        <translation type="obsolete">%1 de %2 (%3/seg.) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -804,15 +877,15 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation>bytes</translation>
+        <translation type="obsolete">bytes</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>kB</translation>
+        <translation type="obsolete">kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>MB</translation>
+        <translation type="obsolete">MB</translation>
     </message>
     <message>
         <source>- %n minutes remaining</source>
@@ -824,13 +897,48 @@ Desexa recargar tódalas páxinas?</translation>
         <translation type="obsolete">-%s segundos restantes
         </translation>
     </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
+    <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="obsolete">%n Descarga(s)
+        <translation type="unfinished">
+            <numerusform>%n Descarga(s)
+        </numerusform>
         </translation>
+    </message>
+    <message>
+        <source>There are %1 downloads in progress
+Do you want to quit anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">bytes</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MB</translation>
     </message>
 </context>
 <context>
@@ -896,16 +1004,18 @@ Desexa recargar tódalas páxinas?</translation>
         <source>Earlier Today</source>
         <translation>Antes de hoxe</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n item(s)</source>
-        <translation type="obsolete">%n elemento(s)</translation>
+        <translation type="unfinished">
+            <numerusform>%n elemento(s)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
     <name>LanguageManager</name>
     <message>
         <source>Default</source>
-        <translation>Predeterminado</translation>
+        <translation type="obsolete">Predeterminado</translation>
     </message>
     <message>
         <source>Choose language</source>
@@ -914,6 +1024,10 @@ Desexa recargar tódalas páxinas?</translation>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
         <translation>&lt;p&gt;Pode executarse cun idioma distinto&lt;br&gt;ao predeterminado do sistema operativo.&lt;/p&gt;&lt;p&gt;Por favor, elixa o idioma que desexe empregar&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>No translation files are installed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -934,7 +1048,7 @@ Desexa recargar tódalas páxinas?</translation>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>Erros en SSL:
+        <translation type="obsolete">Erros en SSL:
 
 %1
 
@@ -944,45 +1058,59 @@ Está seguro de que quere omitir estos erros?</translation>
     </message>
     <message>
         <source>Do you want to accept all these certificates?</source>
-        <translation>Desexa aceptar todos estos certificados?</translation>
+        <translation type="obsolete">Desexa aceptar todos estos certificados?</translation>
+    </message>
+    <message>
+        <source> - SSL Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Do you want to ignore these errors?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation type="obsolete">Nome</translation>
+        <translation type="unfinished">Nome</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="obsolete">Valor</translation>
+        <translation type="unfinished">Valor</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation type="obsolete">Monitor de rede</translation>
+        <translation type="unfinished">Monitor de rede</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation type="obsolete">Solicitudes de rede</translation>
+        <translation type="unfinished">Solicitudes de rede</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation type="obsolete">Cabeceiras das solicitudes</translation>
+        <translation type="unfinished">Cabeceiras das solicitudes</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation type="obsolete">Cabeceiras de resposta</translation>
+        <translation type="unfinished">Cabeceiras de resposta</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="obsolete">&amp;Eliminar</translation>
+        <translation type="unfinished">&amp;Eliminar</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation type="obsolete">Eliminar &amp;tódalas solicitudes</translation>
+        <translation type="unfinished">Eliminar &amp;tódalas solicitudes</translation>
     </message>
 </context>
 <context>
@@ -1053,31 +1181,31 @@ Está seguro de que quere omitir estos erros?</translation>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation type="obsolete">Redirixe a: %1</translation>
+        <translation type="unfinished">Redirixe a: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="obsolete">Método</translation>
+        <translation type="unfinished">Método</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="obsolete">Enderezo</translation>
+        <translation type="unfinished">Enderezo</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation type="obsolete">Resposta</translation>
+        <translation type="unfinished">Resposta</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation type="obsolete">Lonxitude</translation>
+        <translation type="unfinished">Lonxitude</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation type="obsolete">Tipo de contido</translation>
+        <translation type="unfinished">Tipo de contido</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="obsolete">Información</translation>
+        <translation type="unfinished">Información</translation>
     </message>
 </context>
 <context>
@@ -1380,6 +1508,10 @@ Está seguro de que quere omitir estos erros?</translation>
         <source>Http (Transparent)</source>
         <translation>Http (Transparente)</translation>
     </message>
+    <message>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SourceViewer</name>
@@ -1420,7 +1552,7 @@ Está seguro de que quere omitir estos erros?</translation>
     </message>
     <message>
         <source>New &amp;Tab</source>
-        <translation>Nova lingüe&amp;ta</translation>
+        <translation type="obsolete">Nova lingüe&amp;ta</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -1489,6 +1621,30 @@ Está seguro de que quere pechar esta páxina?
         <source>Ctrl-[</source>
         <translation>Ctrl-[</translation>
     </message>
+    <message>
+        <source>Saved Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished">Cargando...</translation>
+    </message>
+    <message>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark All Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1502,7 +1658,11 @@ Está seguro de que quere pechar esta páxina?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Limpar buscas recentes</translation>
+        <translation type="obsolete">Limpar buscas recentes</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1521,11 +1681,15 @@ Está seguro de que quere pechar esta páxina?
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
-        <translation>Se o enderezo é correcto, comprobe a conexión de rede.</translation>
+        <translation type="obsolete">Se o enderezo é correcto, comprobe a conexión de rede.</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation>Se a súa computadora ou rede están protexidas por unha devasa ou un proxy, asegúrese de que ao navegador se lle permite o acceso á rede.</translation>
+    </message>
+    <message>
+        <source>If the address is correct, try checking the network connection.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

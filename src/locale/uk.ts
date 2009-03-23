@@ -42,6 +42,33 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AcceptLanguage</name>
+    <message>
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Languages: in order of preference:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">&amp;Вилучити</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
@@ -50,6 +77,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Введіть назву закладинки та виберіть куди її додати.</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Заголовок</translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
+        <translation type="unfinished">Додати теку</translation>
     </message>
 </context>
 <context>
@@ -159,6 +198,22 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BookmarksMenu</name>
+    <message>
+        <source>Open in Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -192,6 +247,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Bookmark...</source>
         <translation type="unfinished">Додати закладинки...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -335,15 +394,15 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
-        <translation>З&amp;більшити шрифт</translation>
+        <translation type="obsolete">З&amp;більшити шрифт</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation>&amp;Звичайний шрифт</translation>
+        <translation type="obsolete">&amp;Звичайний шрифт</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation>З&amp;меншити шрифт</translation>
+        <translation type="obsolete">З&amp;меншити шрифт</translation>
     </message>
     <message>
         <source>Page S&amp;ource</source>
@@ -383,7 +442,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>Впорядкувати закладинки...</translation>
+        <translation type="obsolete">Впорядкувати закладинки...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -433,7 +492,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>About &amp;Arora</source>
-        <translation>Про &amp;Arora</translation>
+        <translation type="obsolete">Про &amp;Arora</translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -465,7 +524,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Arora</source>
-        <translation>Arora</translation>
+        <translation type="obsolete">Arora</translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -490,7 +549,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Коли приватне переглядання ввімкнене, деякі дії, що стосуються вашої приватності, будуть вимкнені:&lt;ul&gt;&lt;li&gt; Сторінки тенет не додаються до журналу.&lt;/li&gt;&lt;li&gt; Елементи автоматично видаляються з вікна звантажень.&lt;/li&gt;&lt;li&gt; Нові коржики не зберігаються, поточні недоступні.&lt;/li&gt;&lt;li&gt; Піктограми сайтів не зберігаються, сесії не можуть бути збережені.&lt;/li&gt;&lt;li&gt; Пошуки не додаються до виринаючого меню в панелі пошуку.&lt;/li&gt;&lt;/ul&gt;Поки ви не закриєте вікно, можете все ще напискати кнопки &quot;Вперід&quot; та &quot;Назад&quot;, щоб повернутися до відкритих сторінок.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Коли приватне переглядання ввімкнене, деякі дії, що стосуються вашої приватності, будуть вимкнені:&lt;ul&gt;&lt;li&gt; Сторінки тенет не додаються до журналу.&lt;/li&gt;&lt;li&gt; Елементи автоматично видаляються з вікна звантажень.&lt;/li&gt;&lt;li&gt; Нові коржики не зберігаються, поточні недоступні.&lt;/li&gt;&lt;li&gt; Піктограми сайтів не зберігаються, сесії не можуть бути збережені.&lt;/li&gt;&lt;li&gt; Пошуки не додаються до виринаючого меню в панелі пошуку.&lt;/li&gt;&lt;/ul&gt;Поки ви не закриєте вікно, можете все ще напискати кнопки &quot;Вперід&quot; та &quot;Назад&quot;, щоб повернутися до відкритих сторінок.</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
@@ -521,10 +580,52 @@ Do you want to reload all pages?</source>
     <message>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
-        <translation>Alt+Ctrl+L</translation>
+        <translation type="obsolete">Alt+Ctrl+L</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Text Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show All Bookmarks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -828,11 +929,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>seconds</source>
-        <translation>с</translation>
+        <translation type="obsolete">с</translation>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- залишилась %n хвилина</numerusform>
             <numerusform>- залишилось %n хвилини</numerusform>
             <numerusform>- залишилось %n хвилин</numerusform>
@@ -840,7 +941,7 @@ Do you want to reload all pages?</source>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- залишилась %n секунда</numerusform>
             <numerusform>- залишилось %n секунди</numerusform>
             <numerusform>- залишилось %n секунд</numerusform>
@@ -848,7 +949,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 з %2 (%3/с) %4</translation>
+        <translation type="obsolete">%1 з %2 (%3/с) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -860,15 +961,19 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>bytes</source>
-        <translation>байт</translation>
+        <translation type="obsolete">байт</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>кбайт</translation>
+        <translation type="obsolete">кбайт</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>Мбайт</translation>
+        <translation type="obsolete">Мбайт</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -880,6 +985,39 @@ Do you want to reload all pages?</source>
             <numerusform>%n звантаження</numerusform>
             <numerusform>%n звантажень</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>There are %1 downloads in progress
+Do you want to quit anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">байт</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">кбайт</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">Мбайт</translation>
     </message>
 </context>
 <context>
@@ -969,7 +1107,7 @@ Do you want to reload all pages?</source>
         <translation>&lt;p&gt;Ви можете працювати з іншою мовою,&lt;br&gt;що не є системною за замовчуванням.&lt;/p&gt;&lt;p&gt;Будь ласка, виберіть мову, яку слід використовувати&lt;/p&gt;</translation>
     </message>
     <message>
-        <source>Default</source>
+        <source>No translation files are installed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -991,7 +1129,7 @@ Do you want to reload all pages?</source>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>Помилки SSL:
+        <translation type="obsolete">Помилки SSL:
 
 %1
 
@@ -1001,7 +1139,21 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Do you want to accept all these certificates?</source>
-        <translation>Ви хочете прийняти всі ці сертифікати?</translation>
+        <translation type="obsolete">Ви хочете прийняти всі ці сертифікати?</translation>
+    </message>
+    <message>
+        <source> - SSL Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Do you want to ignore these errors?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1239,7 +1391,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>In a tab in the current window</source>
-        <translation>У вкладці в поточному вікні</translation>
+        <translation type="obsolete">У вкладці в поточному вікні</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1375,7 +1527,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Http</source>
-        <translation>Http</translation>
+        <translation type="obsolete">Http</translation>
     </message>
     <message>
         <source>Host name:</source>
@@ -1403,6 +1555,42 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Block Popup Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Links that want to open in a new window:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new selected tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In the current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Secure)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Transparent)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1445,7 +1633,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>New &amp;Tab</source>
-        <translation>Нова &amp;вкладка</translation>
+        <translation type="obsolete">Нова &amp;вкладка</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -1514,6 +1702,30 @@ Do you really want to close this page?
         <source>Ctrl-[</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saved Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished">Завантажується...</translation>
+    </message>
+    <message>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark All Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1527,7 +1739,11 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Очистити нещодавні пошуки</translation>
+        <translation type="obsolete">Очистити нещодавні пошуки</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1545,11 +1761,11 @@ Do you really want to close this page?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If the address is correct, try to check the network connection.</source>
+        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
+        <source>If the address is correct, try checking the network connection.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

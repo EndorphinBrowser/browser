@@ -38,6 +38,33 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AcceptLanguage</name>
+    <message>
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Languages: in order of preference:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">&amp;Vymazať</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
@@ -46,6 +73,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Napíšte názov záložky a vyberte, kam ju chcete uložiť.</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
+        <translation type="unfinished">Pridať zložku</translation>
     </message>
 </context>
 <context>
@@ -154,6 +193,22 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BookmarksMenu</name>
+    <message>
+        <source>Open in Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -187,6 +242,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Bookmark...</source>
         <translation type="unfinished">Pridať záložku ...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -346,7 +405,7 @@ Chcete ich všetky uzavrieť?</translation>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>Spravovať záložky ...</translation>
+        <translation type="obsolete">Spravovať záložky ...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -383,7 +442,7 @@ Chcete ich všetky uzavrieť?</translation>
     </message>
     <message>
         <source>About &amp;Arora</source>
-        <translation>O &amp;Arore</translation>
+        <translation type="obsolete">O &amp;Arore</translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -407,7 +466,7 @@ Chcete ich všetky uzavrieť?</translation>
     </message>
     <message>
         <source>Arora</source>
-        <translation>Arora</translation>
+        <translation type="obsolete">Arora</translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -459,7 +518,7 @@ Chcete znovu načítať všetky stránky?</translation>
     <message>
         <source>Alt+Ctrl+L</source>
         <comment>Download Manager</comment>
-        <translation>Alt+Ctrl+L</translation>
+        <translation type="obsolete">Alt+Ctrl+L</translation>
     </message>
     <message>
         <source>&amp;Clear Private Data</source>
@@ -472,7 +531,7 @@ Chcete znovu načítať všetky stránky?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ak je zapnuté súkromné prehliadanie, niektoré akcie narušujúce tvoje súkromie budú zakázané:&lt;ul&gt;&lt;li&gt; Stránky nie sú pridávané do histórie.&lt;/li&gt;&lt;li&gt; Položky sú automaticky vymazané z okna preberania.&lt;/li&gt;&lt;li&gt; Nové cookies nie sú uložené, aktuálne nebudú prístupné.&lt;/li&gt;&lt;li&gt; Ikony stránek nie sú ukládané, podobne ako relácie.&lt;/li&gt;&lt;li&gt; Hľadané výrazy nie sú pridávané do menu v políčku hľadania.&lt;/li&gt;&lt;/ul&gt;Pokiaľ nie je okno zavrené, je možné klikať Späť a Vpred pre vrátenie na skôr otvorené stránky.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ak je zapnuté súkromné prehliadanie, niektoré akcie narušujúce tvoje súkromie budú zakázané:&lt;ul&gt;&lt;li&gt; Stránky nie sú pridávané do histórie.&lt;/li&gt;&lt;li&gt; Položky sú automaticky vymazané z okna preberania.&lt;/li&gt;&lt;li&gt; Nové cookies nie sú uložené, aktuálne nebudú prístupné.&lt;/li&gt;&lt;li&gt; Ikony stránek nie sú ukládané, podobne ako relácie.&lt;/li&gt;&lt;li&gt; Hľadané výrazy nie sú pridávané do menu v políčku hľadania.&lt;/li&gt;&lt;/ul&gt;Pokiaľ nie je okno zavrené, je možné klikať Späť a Vpred pre vrátenie na skôr otvorené stránky.</translation>
     </message>
     <message>
         <source>Show Bookmarks Bar</source>
@@ -492,15 +551,15 @@ Chcete znovu načítať všetky stránky?</translation>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
-        <translation>Z&amp;väčšiť text</translation>
+        <translation type="obsolete">Z&amp;väčšiť text</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation>&amp;Normálna veľkosť textu</translation>
+        <translation type="obsolete">&amp;Normálna veľkosť textu</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation>Z&amp;menšiť text</translation>
+        <translation type="obsolete">Z&amp;menšiť text</translation>
     </message>
     <message>
         <source>Find Nex&amp;t</source>
@@ -520,6 +579,48 @@ Chcete znovu načítať všetky stránky?</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Text Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show All Bookmarks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -748,11 +849,11 @@ Chcete znovu načítať všetky stránky?</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>sekúnd</translation>
+        <translation type="obsolete">sekúnd</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 z %2 (%3/s) %4</translation>
+        <translation type="obsolete">%1 z %2 (%3/s) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -764,19 +865,19 @@ Chcete znovu načítať všetky stránky?</translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation>bajtov</translation>
+        <translation type="obsolete">bajtov</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>KiB</translation>
+        <translation type="obsolete">KiB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>MiB</translation>
+        <translation type="obsolete">MiB</translation>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n minúta ostáva</numerusform>
             <numerusform>- %n minúty ostávajú</numerusform>
             <numerusform>- %n minút ostáva</numerusform>
@@ -784,7 +885,7 @@ Chcete znovu načítať všetky stránky?</translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n sekunda ostáva</numerusform>
             <numerusform>- %n sekundy ostávajú</numerusform>
             <numerusform>- %n sekúnd ostáva</numerusform>
@@ -793,6 +894,10 @@ Chcete znovu načítať všetky stránky?</translation>
     <message>
         <source>Error opening output file: %1</source>
         <translation>Chyba pri otváraní výstupného súboru: %1</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -804,6 +909,39 @@ Chcete znovu načítať všetky stránky?</translation>
             <numerusform>%n preberania</numerusform>
             <numerusform>%n preberaní</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>There are %1 downloads in progress
+Do you want to quit anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">bajtov</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">KiB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MiB</translation>
     </message>
 </context>
 <context>
@@ -882,7 +1020,7 @@ Chcete znovu načítať všetky stránky?</translation>
     <name>LanguageManager</name>
     <message>
         <source>Default</source>
-        <translation>Prednastavený</translation>
+        <translation type="obsolete">Prednastavený</translation>
     </message>
     <message>
         <source>Choose language</source>
@@ -891,6 +1029,10 @@ Chcete znovu načítať všetky stránky?</translation>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
         <translation>&lt;p&gt;Aroru je možné používať v inom jazyku ako v tom,&lt;br&gt;ktorý je prednastavený v operačnom systéme.&lt;/p&gt;&lt;p&gt;Vybete si jazyk, ktorý má byť použitý&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>No translation files are installed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -911,7 +1053,7 @@ Chcete znovu načítať všetky stránky?</translation>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>Chyby SSL:
+        <translation type="obsolete">Chyby SSL:
 
 %1
 
@@ -921,7 +1063,21 @@ Chcete ignorovať tieto chyby?</translation>
     </message>
     <message>
         <source>Do you want to accept all these certificates?</source>
-        <translation>Chcete prijať všetky tieto certifikáty?</translation>
+        <translation type="obsolete">Chcete prijať všetky tieto certifikáty?</translation>
+    </message>
+    <message>
+        <source> - SSL Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Do you want to ignore these errors?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1131,7 +1287,7 @@ Chcete ignorovať tieto chyby?</translation>
     </message>
     <message>
         <source>In a tab in the current window</source>
-        <translation>V paneli v aktuálnom okne</translation>
+        <translation type="obsolete">V paneli v aktuálnom okne</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1231,7 +1387,7 @@ Chcete ignorovať tieto chyby?</translation>
     </message>
     <message>
         <source>Http</source>
-        <translation>Http</translation>
+        <translation type="obsolete">Http</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1325,6 +1481,42 @@ Chcete ignorovať tieto chyby?</translation>
         <source>Show only one close button instead of one for each tab</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Block Popup Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Links that want to open in a new window:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new selected tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In the current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Secure)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Transparent)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SourceViewer</name>
@@ -1357,7 +1549,7 @@ Chcete ignorovať tieto chyby?</translation>
     <name>TabBar</name>
     <message>
         <source>New &amp;Tab</source>
-        <translation>&amp;Nový panel</translation>
+        <translation type="obsolete">&amp;Nový panel</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -1434,6 +1626,30 @@ Ste si istý, že chcete zavrieť túto stránku?
         <source>Ctrl-[</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saved Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished">Nahrávam ...</translation>
+    </message>
+    <message>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark All Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1447,7 +1663,11 @@ Ste si istý, že chcete zavrieť túto stránku?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Vymazať posledné hľadania</translation>
+        <translation type="obsolete">Vymazať posledné hľadania</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1465,11 +1685,11 @@ Ste si istý, že chcete zavrieť túto stránku?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If the address is correct, try to check the network connection.</source>
+        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
+        <source>If the address is correct, try checking the network connection.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

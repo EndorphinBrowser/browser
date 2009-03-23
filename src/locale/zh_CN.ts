@@ -38,6 +38,33 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AcceptLanguage</name>
+    <message>
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Languages: in order of preference:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">移除(&amp;R)</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
@@ -46,6 +73,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>请输入书签名，并选择保存位置</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">标题</translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
+        <translation type="unfinished">添加文件夹</translation>
     </message>
 </context>
 <context>
@@ -155,6 +194,22 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BookmarksMenu</name>
+    <message>
+        <source>Open in Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -188,6 +243,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Bookmark...</source>
         <translation type="unfinished">添加标签...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -331,15 +390,15 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
-        <translation>字体放大(&amp;B)</translation>
+        <translation type="obsolete">字体放大(&amp;B)</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation>普通字体(&amp;N)</translation>
+        <translation type="obsolete">普通字体(&amp;N)</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation>字体缩小(&amp;S)</translation>
+        <translation type="obsolete">字体缩小(&amp;S)</translation>
     </message>
     <message>
         <source>Page S&amp;ource</source>
@@ -379,7 +438,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>管理标签...</translation>
+        <translation type="obsolete">管理标签...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -429,7 +488,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>About &amp;Arora</source>
-        <translation>关于&amp;Arora</translation>
+        <translation type="obsolete">关于&amp;Arora</translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -460,10 +519,6 @@ Do you want to quit anyway?</source>
         <translation>隐藏标签栏</translation>
     </message>
     <message>
-        <source>Arora</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>%1 - Arora</source>
         <comment>Page title and Browser name</comment>
         <translation>%1 - Arora</translation>
@@ -486,7 +541,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;当开启隐私浏览时，关于你的某些隐私动作不会被记录：&lt;ul&gt;&lt;li&gt; 页面不会被添加到历史中。&lt;/li&gt;&lt;li&gt;下载项会自动从下载窗口移除。 &lt;/li&gt;&lt;li&gt; 新的cookies不会被存储，当前的cookies也不会被访问。&lt;/li&gt;&lt;li&gt;站点图标不会被存储，会话也不会被保存。 &lt;/li&gt;&lt;li&gt;搜索动作不会被添加到搜索框的弹出菜单中。&lt;/li&gt;&lt;/ul&gt;在关闭窗口之前，你可以一直通过点击后退和前进按钮来浏览已打开过的页面。</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;当开启隐私浏览时，关于你的某些隐私动作不会被记录：&lt;ul&gt;&lt;li&gt; 页面不会被添加到历史中。&lt;/li&gt;&lt;li&gt;下载项会自动从下载窗口移除。 &lt;/li&gt;&lt;li&gt; 新的cookies不会被存储，当前的cookies也不会被访问。&lt;/li&gt;&lt;li&gt;站点图标不会被存储，会话也不会被保存。 &lt;/li&gt;&lt;li&gt;搜索动作不会被添加到搜索框的弹出菜单中。&lt;/li&gt;&lt;/ul&gt;在关闭窗口之前，你可以一直通过点击后退和前进按钮来浏览已打开过的页面。</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
@@ -515,12 +570,49 @@ Do you want to reload all pages?</source>
         <translation>下载</translation>
     </message>
     <message>
-        <source>Alt+Ctrl+L</source>
-        <comment>Download Manager</comment>
-        <translation></translation>
+        <source>Show &amp;Network Monitor</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show &amp;Network Monitor</source>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Text Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show All Bookmarks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -753,23 +845,23 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>seconds</source>
-        <translation>秒</translation>
+        <translation type="obsolete">秒</translation>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- 还有 %n 分钟</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- 还有 %n 秒</numerusform>
         </translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 of %2 (%3/秒) %4</translation>
+        <translation type="obsolete">%1 of %2 (%3/秒) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -781,15 +873,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>bytes</source>
-        <translation>字节</translation>
+        <translation type="obsolete">字节</translation>
     </message>
     <message>
-        <source>kB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation></translation>
+        <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -799,6 +887,35 @@ Do you want to reload all pages?</source>
         <translation>
             <numerusform>%n 下载</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>There are %1 downloads in progress
+Do you want to quit anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">字节</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -875,7 +992,7 @@ Do you want to reload all pages?</source>
     <name>LanguageManager</name>
     <message>
         <source>Default</source>
-        <translation>缺省</translation>
+        <translation type="obsolete">缺省</translation>
     </message>
     <message>
         <source>Choose language</source>
@@ -884,6 +1001,10 @@ Do you want to reload all pages?</source>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
         <translation>&lt;p&gt;你可以运行在其它语言环境下&lt;br&gt;而不采用操作系统所缺省的语言环境&lt;/p&gt;&lt;p&gt;请选择应该使用的语言环境&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>No translation files are installed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -904,11 +1025,25 @@ Do you want to reload all pages?</source>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>SSL 错误：%1%2希望忽略该错误吗？</translation>
+        <translation type="obsolete">SSL 错误：%1%2希望忽略该错误吗？</translation>
     </message>
     <message>
         <source>Do you want to accept all these certificates?</source>
-        <translation>确认接受所有证书吗？</translation>
+        <translation type="obsolete">确认接受所有证书吗？</translation>
+    </message>
+    <message>
+        <source> - SSL Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Do you want to ignore these errors?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1146,7 +1281,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>In a tab in the current window</source>
-        <translation>在当前窗口的标签中</translation>
+        <translation type="obsolete">在当前窗口的标签中</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1281,10 +1416,6 @@ Do you want to ignore these errors?</source>
         <translation></translation>
     </message>
     <message>
-        <source>Http</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Host name:</source>
         <translation>主机名：</translation>
     </message>
@@ -1311,6 +1442,42 @@ Do you want to ignore these errors?</source>
     <message>
         <source>Show only one close button instead of one for each tab</source>
         <translation>只显示一个关闭按钮，而不是在每个标签上都显示一个关闭按钮</translation>
+    </message>
+    <message>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Block Popup Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Links that want to open in a new window:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new selected tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In the current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Secure)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Transparent)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1352,7 +1519,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source>New &amp;Tab</source>
-        <translation>新标签页(&amp;T)</translation>
+        <translation type="obsolete">新标签页(&amp;T)</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -1419,6 +1586,30 @@ Do you really want to close this page?
         <source>Ctrl-[</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saved Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished">加载...</translation>
+    </message>
+    <message>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark All Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1432,7 +1623,11 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>清除最近搜索</translation>
+        <translation type="obsolete">清除最近搜索</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1451,7 +1646,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>If the address is correct, try to check the network connection.</source>
-        <translation>如果地址正确，那么请检查网络是否连接。</translation>
+        <translation type="obsolete">如果地址正确，那么请检查网络是否连接。</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
@@ -1459,6 +1654,10 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the address is correct, try checking the network connection.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

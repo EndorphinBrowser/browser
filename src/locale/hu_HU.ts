@@ -38,6 +38,33 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AcceptLanguage</name>
+    <message>
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Languages: in order of preference:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
@@ -46,6 +73,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Írja be a könyvjelző nevét, és válassza ki, hova kerüljön.</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Név</translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
+        <translation type="unfinished">Mappa hozzáadása</translation>
     </message>
 </context>
 <context>
@@ -155,6 +194,22 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BookmarksMenu</name>
+    <message>
+        <source>Open in Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -188,6 +243,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Bookmark...</source>
         <translation type="unfinished">Új könyvjelző...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -327,15 +386,15 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>Make Text &amp;Bigger</source>
-        <translation>Szöveg nagyítása</translation>
+        <translation type="obsolete">Szöveg nagyítása</translation>
     </message>
     <message>
         <source>Make Text &amp;Normal</source>
-        <translation>Szöveg normál mérete</translation>
+        <translation type="obsolete">Szöveg normál mérete</translation>
     </message>
     <message>
         <source>Make Text &amp;Smaller</source>
-        <translation>Szöveg kicsinyítése</translation>
+        <translation type="obsolete">Szöveg kicsinyítése</translation>
     </message>
     <message>
         <source>Page S&amp;ource</source>
@@ -375,7 +434,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>Könyvjelzők kezelése...</translation>
+        <translation type="obsolete">Könyvjelzők kezelése...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -421,7 +480,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>About &amp;Arora</source>
-        <translation>Az Aroraról</translation>
+        <translation type="obsolete">Az Aroraról</translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -453,7 +512,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>Arora</source>
-        <translation>Arora</translation>
+        <translation type="obsolete">Arora</translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -478,7 +537,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;A bizalmas böngészés bekapcsolásával bizonyos, a magánszféráját érintő, szolgáltatások ki lesznek kapcsolva:&lt;ul&gt;&lt;li&gt; A weblapok története nem követődik.&lt;/li&gt;&lt;li&gt; A &quot;Letöltések&quot; ablakból automatikusan törlődnek a bejegyzések.&lt;/li&gt;&lt;li&gt; Új sütik nem tárolódnak, a meglévőek elérhetetlenné válnak.&lt;/li&gt;&lt;li&gt; Az oldalak ikonjai nem tárolódnak, és a munkafázisok sem kerülnek mentésre.&lt;/li&gt;&lt;li&gt; A keresések nem kerülnek be a keresődoboz felugró menüjébe.&lt;/li&gt;&lt;/ul&gt;Az ablak bezárásáig a &quot;Vissza&quot; és &quot;Előre&quot; gombok használhatóak maradnak.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;A bizalmas böngészés bekapcsolásával bizonyos, a magánszféráját érintő, szolgáltatások ki lesznek kapcsolva:&lt;ul&gt;&lt;li&gt; A weblapok története nem követődik.&lt;/li&gt;&lt;li&gt; A &quot;Letöltések&quot; ablakból automatikusan törlődnek a bejegyzések.&lt;/li&gt;&lt;li&gt; Új sütik nem tárolódnak, a meglévőek elérhetetlenné válnak.&lt;/li&gt;&lt;li&gt; Az oldalak ikonjai nem tárolódnak, és a munkafázisok sem kerülnek mentésre.&lt;/li&gt;&lt;li&gt; A keresések nem kerülnek be a keresődoboz felugró menüjébe.&lt;/li&gt;&lt;/ul&gt;Az ablak bezárásáig a &quot;Vissza&quot; és &quot;Előre&quot; gombok használhatóak maradnak.</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
@@ -511,11 +570,6 @@ Do you want to reload all pages?</source>
         <translation>Letöltések</translation>
     </message>
     <message>
-        <source>Alt+Ctrl+L</source>
-        <comment>Download Manager</comment>
-        <translation></translation>
-    </message>
-    <message>
         <source>Show Menu Bar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -525,6 +579,48 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Switch application language </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Text Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show All Bookmarks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -757,23 +853,23 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>seconds</source>
-        <translation>másodperc</translation>
+        <translation type="obsolete">másodperc</translation>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n perc van hátra</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n másodperc van hátra</numerusform>
         </translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 %2-ból (%3/mp) %4</translation>
+        <translation type="obsolete">%1 %2-ból (%3/mp) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -785,15 +881,19 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>bytes</source>
-        <translation>bájt</translation>
+        <translation type="obsolete">bájt</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>kB</translation>
+        <translation type="obsolete">kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>MB</translation>
+        <translation type="obsolete">MB</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -803,6 +903,35 @@ Do you want to reload all pages?</source>
         <translation>
             <numerusform>%n Letöltés</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>There are %1 downloads in progress
+Do you want to quit anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">bájt</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MB</translation>
     </message>
 </context>
 <context>
@@ -878,15 +1007,15 @@ Do you want to reload all pages?</source>
 <context>
     <name>LanguageManager</name>
     <message>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Choose language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No translation files are installed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -908,7 +1037,7 @@ Do you want to reload all pages?</source>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>SSL hibák:
+        <translation type="obsolete">SSL hibák:
 
 %1
 
@@ -918,7 +1047,21 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?</translation>
     </message>
     <message>
         <source>Do you want to accept all these certificates?</source>
-        <translation>Elfogadja ezeket a tanusítványokat?</translation>
+        <translation type="obsolete">Elfogadja ezeket a tanusítványokat?</translation>
+    </message>
+    <message>
+        <source> - SSL Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Do you want to ignore these errors?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1156,7 +1299,7 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?</translation>
     </message>
     <message>
         <source>In a tab in the current window</source>
-        <translation>Aktuális ablakban új fülön</translation>
+        <translation type="obsolete">Aktuális ablakban új fülön</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1296,7 +1439,7 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?</translation>
     </message>
     <message>
         <source>Http</source>
-        <translation>Http</translation>
+        <translation type="obsolete">Http</translation>
     </message>
     <message>
         <source>Host name:</source>
@@ -1324,6 +1467,42 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?</translation>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Block Popup Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Links that want to open in a new window:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new selected tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In the current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Secure)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Transparent)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1366,7 +1545,7 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?</translation>
     </message>
     <message>
         <source>New &amp;Tab</source>
-        <translation>Új Fül</translation>
+        <translation type="obsolete">Új Fül</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -1439,6 +1618,30 @@ Biztosan be akarja zárni ezt az oldalt?
         <source>Untitled</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saved Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished">Töltés...</translation>
+    </message>
+    <message>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark All Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1452,7 +1655,11 @@ Biztosan be akarja zárni ezt az oldalt?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Friss keresések törlése</translation>
+        <translation type="obsolete">Friss keresések törlése</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1470,11 +1677,11 @@ Biztosan be akarja zárni ezt az oldalt?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If the address is correct, try to check the network connection.</source>
+        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
+        <source>If the address is correct, try checking the network connection.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

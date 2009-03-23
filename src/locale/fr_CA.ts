@@ -37,6 +37,33 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AcceptLanguage</name>
+    <message>
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Languages: in order of preference:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move &amp;Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
@@ -45,6 +72,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
         <translation>Entrer un nom pour le marque-page et choisissez où le conserver.</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titre</translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
+        <translation type="unfinished">Ajouter un dossier</translation>
     </message>
 </context>
 <context>
@@ -154,6 +193,22 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BookmarksMenu</name>
+    <message>
+        <source>Open in Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksModel</name>
@@ -187,6 +242,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Bookmark...</source>
         <translation type="unfinished">Ajouter un marque-page...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -386,7 +445,7 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>Gérer les marque-pages</translation>
+        <translation type="obsolete">Gérer les marque-pages</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -423,7 +482,7 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>About &amp;Arora</source>
-        <translation>À propos d&apos;&amp;Arora</translation>
+        <translation type="obsolete">À propos d&apos;&amp;Arora</translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -452,10 +511,6 @@ Voulez-vous tout de même quitter?</translation>
     <message>
         <source>Hide Bookmarks bar</source>
         <translation type="obsolete">Masquer la barre de marque-pages</translation>
-    </message>
-    <message>
-        <source>Arora</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -512,11 +567,6 @@ Do you want to reload all pages?</source>
         <translation>Téléchargements</translation>
     </message>
     <message>
-        <source>Alt+Ctrl+L</source>
-        <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Clear Private Data</source>
         <translation>&amp;Effacer l&apos;information privée</translation>
     </message>
@@ -534,27 +584,11 @@ Do you want to reload all pages?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Make Text &amp;Bigger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Make Text &amp;Normal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Make Text &amp;Smaller</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show Bookmarks Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -575,6 +609,48 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Switch application language </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Text Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show All Bookmarks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -815,7 +891,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>seconds</source>
-        <translation>secondes</translation>
+        <translation type="obsolete">secondes</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -827,7 +903,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 de %2 (%3/sec) %4</translation>
+        <translation type="obsolete">%1 de %2 (%3/sec) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -839,32 +915,22 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>bytes</source>
-        <translation>octets</translation>
+        <translation type="obsolete">octets</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>kO</translation>
+        <translation type="obsolete">kO</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>MO</translation>
-    </message>
-    <message numerus="yes">
-        <source>- %n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>- %n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="obsolete">MO</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -884,6 +950,37 @@ Do you want to reload all pages?</source>
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
+    </message>
+    <message>
+        <source>There are %1 downloads in progress
+Do you want to quit anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">octets</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">kO</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MO</translation>
     </message>
 </context>
 <context>
@@ -964,15 +1061,15 @@ Do you want to reload all pages?</source>
 <context>
     <name>LanguageManager</name>
     <message>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Choose language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No translation files are installed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -994,14 +1091,28 @@ Do you want to reload all pages?</source>
 %2
 
 Do you want to ignore these errors?</source>
-        <translation>Erreurs SSL:
+        <translation type="obsolete">Erreurs SSL:
 %1
 %2
 Voulez-vous ignorer ses erreurs?</translation>
     </message>
     <message>
         <source>Do you want to accept all these certificates?</source>
-        <translation>Voulez-vous accepter tous ces certificats?</translation>
+        <translation type="obsolete">Voulez-vous accepter tous ces certificats?</translation>
+    </message>
+    <message>
+        <source> - SSL Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Do you want to ignore these errors?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1219,7 +1330,7 @@ Voulez-vous ignorer ses erreurs?</translation>
     </message>
     <message>
         <source>In a tab in the current window</source>
-        <translation>Dans un onglet dans la fenêtre en cours</translation>
+        <translation type="obsolete">Dans un onglet dans la fenêtre en cours</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1326,10 +1437,6 @@ Voulez-vous ignorer ses erreurs?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Http</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Host:</source>
         <translation type="obsolete">Hôte:</translation>
     </message>
@@ -1425,6 +1532,42 @@ Voulez-vous ignorer ses erreurs?</translation>
         <source>Host name:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Preferred languages for viewing webpages in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Block Popup Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Links that want to open in a new window:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new selected tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a new tab in the current window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In the current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Secure)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Http (Transparent)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SourceViewer</name>
@@ -1457,7 +1600,7 @@ Voulez-vous ignorer ses erreurs?</translation>
     <name>TabBar</name>
     <message>
         <source>New &amp;Tab</source>
-        <translation>Nouvel onglet</translation>
+        <translation type="obsolete">Nouvel onglet</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -1538,6 +1681,30 @@ Voulez-vous vraiment fermer cette page?
         <source>Untitled</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saved Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading %1% (%2 %3)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark All Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1551,7 +1718,11 @@ Voulez-vous vraiment fermer cette page?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Effacer les recherches récentes</translation>
+        <translation type="obsolete">Effacer les recherches récentes</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1569,11 +1740,11 @@ Voulez-vous vraiment fermer cette page?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If the address is correct, try to check the network connection.</source>
+        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
+        <source>If the address is correct, try checking the network connection.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

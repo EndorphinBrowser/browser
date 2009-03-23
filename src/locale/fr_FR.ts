@@ -202,6 +202,15 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation>Menu des marque-pages</translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
@@ -928,7 +937,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>seconds</source>
-        <translation>secondes</translation>
+        <translation type="obsolete">secondes</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -940,7 +949,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 de %2 (%3/sec) %4</translation>
+        <translation type="obsolete">%1 de %2 (%3/sec) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -952,26 +961,26 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>bytes</source>
-        <translation>octets</translation>
+        <translation type="obsolete">octets</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>kO</translation>
+        <translation type="obsolete">kO</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>MO</translation>
+        <translation type="obsolete">MO</translation>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n minutes restantes</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- %n secondes restantes</numerusform>
             <numerusform></numerusform>
         </translation>
@@ -979,6 +988,10 @@ Do you want to reload all pages?</source>
     <message>
         <source>Error opening output file: %1</source>
         <translation>Erreur à l&apos;ouverture du fichier:   %1</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1003,6 +1016,32 @@ Do you want to reload all pages?</source>
 Do you want to quit anyway?</source>
         <translation>Il y a %1 téléchargements en cours
 Voulez-vous tout de même quitter?</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">octets</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">kO</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MO</translation>
     </message>
 </context>
 <context>
@@ -1758,7 +1797,11 @@ Voulez-vous vraiment fermer cette page?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Effacer les recherches récentes</translation>
+        <translation type="obsolete">Effacer les recherches récentes</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

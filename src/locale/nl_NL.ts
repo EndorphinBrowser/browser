@@ -82,6 +82,10 @@ p, li { white-space: pre-wrap; }
         <source>Title</source>
         <translation>Titel</translation>
     </message>
+    <message>
+        <source>Add Folder</source>
+        <translation type="unfinished">Map toevoegen</translation>
+    </message>
 </context>
 <context>
     <name>BookmarksDialog</name>
@@ -190,6 +194,15 @@ p, li { white-space: pre-wrap; }
         <source>Bookmarks Menu</source>
         <translation>Bladwijzersmenu</translation>
     </message>
+    <message>
+        <source>XBEL (*.xbel *.xml *.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading html bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
@@ -230,6 +243,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Bookmark...</source>
         <translation>Bladwijzer toevoegen...</translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -389,7 +406,7 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <source>Manage Bookmarks...</source>
-        <translation>Bladwijzers beheren...</translation>
+        <translation type="obsolete">Bladwijzers beheren...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -569,6 +586,14 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Als privésurfen aan staat zullen sommige acties omtrent uw privacy worden uitgeschakeld:&lt;ul&gt;&lt;li&gt; Webpagina&apos;s worden niet toegevoegd aan de geschiedenis.&lt;/li&gt;&lt;li&gt; Items worden automatisch verwijderd uit het Downloads-scherm.&lt;/li&gt;&lt;li&gt; Nieuwe cookies worden niet opgeslagen, huidige cookies kunnen niet worden bereikt.&lt;/li&gt;&lt;li&gt; Sitepictogrammen en sessie&apos;s worden niet opgeslagen.&lt;/li&gt;&lt;li&gt; Zoekopdrachten worden niet toegevoegd aan het pop-upmenu in de zoekbalk.&lt;/li&gt;&lt;/ul&gt;Totdat u het venster sluit, kunt u nog altijd de Terug- en Vooruitknoppen gebruiken om terug te keren naar webpagina&apos;s die u heeft geopend.</translation>
+    </message>
+    <message>
+        <source>Show All Bookmarks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -796,11 +821,11 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>seconden</translation>
+        <translation type="obsolete">seconden</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) %4</source>
-        <translation>%1 van %2 (%3/sec) %4</translation>
+        <translation type="obsolete">%1 van %2 (%3/sec) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -812,26 +837,26 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation>bytes</translation>
+        <translation type="obsolete">bytes</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation>kB</translation>
+        <translation type="obsolete">kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation>MB</translation>
+        <translation type="obsolete">MB</translation>
     </message>
     <message numerus="yes">
         <source>- %n minutes remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- 1 minuut resterend</numerusform>
             <numerusform>- %n minuten resterend</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>- 1 seconde resterend</numerusform>
             <numerusform>- %n seconden resterend</numerusform>
         </translation>
@@ -839,6 +864,10 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <message>
         <source>Error opening output file: %1</source>
         <translation>Fout bij het openen van het outputbestand: %1</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -855,6 +884,32 @@ Wilt u alle pagina&apos;s herladen?</translation>
 Do you want to quit anyway?</source>
         <translation>Er zijn %1 downloads bezig
 Wilt u toch afsluiten?</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minutes remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n seconds remaining</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">bytes</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MB</translation>
     </message>
 </context>
 <context>
@@ -1439,7 +1494,7 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>New &amp;Tab</source>
-        <translation>Nieuwe &amp;tab</translation>
+        <translation type="obsolete">Nieuwe &amp;tab</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -1524,6 +1579,14 @@ Bent u zeker dat u deze pagina wilt sluiten?
         <source>Failed to load</source>
         <translation>Laden mislukt</translation>
     </message>
+    <message>
+        <source>Saved Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark All Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarSearch</name>
@@ -1537,7 +1600,11 @@ Bent u zeker dat u deze pagina wilt sluiten?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Recente zoekopdrachten wissen</translation>
+        <translation type="obsolete">Recente zoekopdrachten wissen</translation>
+    </message>
+    <message>
+        <source>Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
