@@ -1141,11 +1141,15 @@ void BrowserMainWindow::slotViewFullScreen(bool makeFullScreen)
 
         menuBar()->hide();
         statusBar()->hide();
+
+        updateStatusbarActionText(false);
     } else {
         setWindowState(windowState() & ~Qt::WindowFullScreen);
 
         menuBar()->setVisible(m_menuBarVisible);
         statusBar()->setVisible(m_statusBarVisible);
+
+        updateStatusbarActionText(m_statusBarVisible);
     }
 }
 
