@@ -230,6 +230,7 @@ void ToolbarSearch::clear()
 {
     m_recentSearches.clear();
     m_autosaver->changeOccurred();
+    setupMenu();
     QLineEdit::clear();
     clearFocus();
 }
