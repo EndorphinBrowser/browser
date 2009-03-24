@@ -17,8 +17,11 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtGui/QtGui>
-#include <QtWebKit/QtWebKit>
+#include <qmainwindow.h>
+#include <qwebframe.h>
+#include <qshortcut.h>
+#include <qevent.h>
+#include <qmenubar.h>
 
 #include "webviewsearch.h"
 

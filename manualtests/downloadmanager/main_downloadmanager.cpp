@@ -17,8 +17,6 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtGui/QtGui>
-#include <QtNetwork/QtNetwork>
 #include "downloadmanager.h"
 
 int main(int argc, char **argv)

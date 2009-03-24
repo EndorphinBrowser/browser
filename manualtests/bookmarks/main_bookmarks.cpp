@@ -17,7 +17,7 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtGui/QtGui>
+#include <qmenubar.h>
 
 #include <browserapplication.h>
 #include <bookmarks.h>

@@ -26,7 +26,12 @@
  * SUCH DAMAGE.
  */
 
-#include <QtGui>
+#include <qapplication.h>
+#include <qmenubar.h>
+#include <qdirmodel.h>
+#include <qmainwindow.h>
+
+#include <qdebug.h>
 
 #include <modelmenu.h>
 

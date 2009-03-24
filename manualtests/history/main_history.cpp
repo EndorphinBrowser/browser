@@ -17,7 +17,9 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtGui/QtGui>
+#include <qmainwindow.h>
+#include <qtableview.h>
+
 #include <modeltest.h>
 #include "history.h"
 

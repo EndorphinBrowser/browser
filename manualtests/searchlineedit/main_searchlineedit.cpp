@@ -17,7 +17,13 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtGui/QtGui>
+#include <qapplication.h>
+#include <qpushbutton.h>
+#include <qlayout.h>
+#include <qcompleter.h>
+#include <qstringlistmodel.h>
+#include <qdialog.h>
+
 #include "searchlineedit.h"
 
 int main(int argc, char **argv)

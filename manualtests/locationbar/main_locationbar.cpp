@@ -17,7 +17,12 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtGui/QtGui>
+#include <qmainwindow.h>
+#include <qsplitter.h>
+#include <qcombobox.h>
+#include <qlayout.h>
+#include <qtoolbar.h>
+
 #include "browserapplication.h"
 #include "locationbar.h"
 #include "webview.h"
