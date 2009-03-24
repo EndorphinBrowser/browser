@@ -695,6 +695,7 @@ QLabel *TabWidget::animationLabel(int index, bool addMovie)
     }
     if (addMovie && !loadingAnimation->movie()) {
         QMovie *movie = new QMovie(QLatin1String(":loading.gif"), QByteArray(), loadingAnimation);
+        movie->setSpeed(50);
         loadingAnimation->setMovie(movie);
         movie->start();
     }
