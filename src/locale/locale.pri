@@ -36,7 +36,5 @@ isEmpty(QMAKE_LRELEASE) {
 updateqm.input = TRANSLATIONS
 updateqm.output = .qm/locale/${QMAKE_FILE_BASE}.qm
 updateqm.commands = $$QMAKE_LRELEASE ${QMAKE_FILE_IN} -qm .qm/locale/${QMAKE_FILE_BASE}.qm
-updateqm.CONFIG += no_link
+updateqm.CONFIG += no_link target_predeps
 QMAKE_EXTRA_COMPILERS += updateqm
-
-PRE_TARGETDEPS += compiler_updateqm_make_all
