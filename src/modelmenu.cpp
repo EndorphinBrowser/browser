@@ -268,7 +268,7 @@ void ModelMenu::mouseReleaseEvent(QMouseEvent *event)
 void ModelMenu::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()) {
-        QAction *action = actionAt(event->pos());
+        QAction *action = actionAt(m_dragStartPos);
         QModelIndex idx = index(action);
         if (event->buttons() == Qt::LeftButton
             && idx.isValid()
