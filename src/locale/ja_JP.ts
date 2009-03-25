@@ -45,27 +45,27 @@ p, li { white-space: pre-wrap; }
     <name>AcceptLanguage</name>
     <message>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
+        <translation>言語</translation>
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation type="unfinished"></translation>
+        <translation>言語の優先順位:</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>上へ(&amp;U)</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>下へ(&amp;D)</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">削除(&amp;R)</translation>
+        <translation>削除(&amp;R)</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>追加...</translation>
     </message>
 </context>
 <context>
@@ -80,15 +80,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>名前</translation>
     </message>
     <message>
         <source>Add Folder</source>
-        <translation type="unfinished">フォルダの追加</translation>
+        <translation>フォルダの追加</translation>
     </message>
 </context>
 <context>
@@ -200,19 +200,20 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>HTML形式ブックマークの読み込み中にエラー: %1
+</translation>
     </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
     <message>
         <source>Open in Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>タブで開く</translation>
     </message>
 </context>
 <context>
@@ -250,7 +251,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>フォルダの追加...</translation>
     </message>
 </context>
 <context>
@@ -588,45 +589,45 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>ウィンドウを閉じる</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation>拡大(&amp;I)</translation>
     </message>
     <message>
         <source>Zoom &amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>通常サイズに戻す(&amp;N)</translation>
     </message>
     <message>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation>縮小(&amp;O)</translation>
     </message>
     <message>
         <source>Zoom &amp;Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>文字さイズだけ変更(&amp;T)</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation type="unfinished"></translation>
+        <translation>ブックマークの管理...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>フォルダの追加...</translation>
     </message>
     <message>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;%1 について</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;プライベート モードに移行した場合、あなたのプライバシーを守る為、いくつかの機能は制限されます:&lt;ul&gt;&lt;li&gt; 表示したページは履歴に追加されません。&lt;/li&gt;&lt;li&gt; ダウンロード履歴は残りません。&lt;/li&gt;&lt;li&gt; 新しく受け取った Cookie は保存されません。既に保存済みの Cookie を参照する事もできません。&lt;/li&gt;&lt;li&gt; Web サイトのアイコンやセッションは保存されません。&lt;/li&gt;&lt;li&gt; 検索ボックスの検索履歴に追加されません。&lt;/li&gt;&lt;/ul&gt;ウィンドウを閉じるまでに閲覧した Web ページには戻る/進むボタンで移動する事ができます。</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
 </context>
 <context>
@@ -898,7 +899,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 / %2 (%3/秒) - %4</translation>
     </message>
 </context>
 <context>
@@ -912,31 +913,32 @@ Do you want to reload all pages?</source>
     <message>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 件の項目がダウンロード中です
+本当に終了しますか?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>残り %n 分</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>残り %n 秒</numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">bytes</translation>
+        <translation>bytes</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">kB</translation>
+        <translation>kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>MB</translation>
     </message>
 </context>
 <context>
@@ -1025,7 +1027,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>No translation files are installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>翻訳ファイルがインストールされていません。</translation>
     </message>
 </context>
 <context>
@@ -1060,17 +1062,19 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation> - SSL エラー</translation>
     </message>
     <message>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;SSL エラー:&lt;br/&gt;&lt;br/&gt;URL: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+エラーを無視しますか?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;証明書:&lt;br/&gt;%1&lt;br/&gt;全ての証明書を受け入れますか?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1476,39 +1480,39 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Web ページを表示する際に使用する言語の設定:</translation>
     </message>
     <message>
         <source>Block Popup Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>ポップアップウィンドウをブロックする</translation>
     </message>
     <message>
         <source>Opening links</source>
-        <translation type="unfinished"></translation>
+        <translation>リンクを開く</translation>
     </message>
     <message>
         <source>Links that want to open in a new window:</source>
-        <translation type="unfinished"></translation>
+        <translation>リンクを新しいウィンドウで開こうとした時の動作:</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>現在のウィンドウの新しい選択済みのタブで開く</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>現在のウィンドウの新しいタブで開く</translation>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation type="unfinished"></translation>
+        <translation>現在のタブで開く</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (安全な)</translation>
     </message>
     <message>
         <source>Http (Transparent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (透過)</translation>
     </message>
 </context>
 <context>
@@ -1620,27 +1624,27 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>タブを保存</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>読み込み中...</translation>
     </message>
     <message>
         <source>Loading %1% (%2 %3)...</source>
-        <translation type="unfinished"></translation>
+        <translation>読み込み中 %1% (%2 %3)...</translation>
     </message>
     <message>
         <source>Finished loading</source>
-        <translation type="unfinished"></translation>
+        <translation>読み込み完了</translation>
     </message>
     <message>
         <source>Failed to load</source>
-        <translation type="unfinished"></translation>
+        <translation>読み込み失敗</translation>
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>全てのタブをブックマーク</translation>
     </message>
 </context>
 <context>
@@ -1659,7 +1663,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>候補</translation>
     </message>
 </context>
 <context>
@@ -1686,7 +1690,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>URLが正しい場合は、ネットワークの接続状況を確認してみてください。</translation>
     </message>
 </context>
 <context>
