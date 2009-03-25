@@ -558,7 +558,7 @@ Czy mimo to chcesz zakończyć?</translation>
     <message>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation>Inspektor stron porawnie działa tylko dla stron, które zostały załadowane po włączeniu inspektora.
+        <translation>Inspektor stron działa poprawnie tylko dla stron, które zostały wczytane po jego aktywowaniu.
 Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
