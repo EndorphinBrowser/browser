@@ -40,7 +40,7 @@ p, li { white-space: pre-wrap; }
     <name>AcceptLanguage</name>
     <message>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Языки</translation>
     </message>
     <message>
         <source>Languages: in order of preference:</source>
@@ -48,11 +48,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Вверх</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Вниз</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -60,7 +60,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Добавить...</translation>
     </message>
 </context>
 <context>
@@ -75,7 +75,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Url</translation>
     </message>
     <message>
         <source>Title</source>
@@ -118,11 +118,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Изменить имя</translation>
     </message>
     <message>
         <source>Edit Address</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Изменить адрес</translation>
     </message>
 </context>
 <context>
@@ -195,19 +195,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ошибка при загрузке HTML закладки: %1</translation>
     </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
     <message>
         <source>Open in Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Открыть в Вкладки</translation>
     </message>
 </context>
 <context>
@@ -237,7 +237,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удалить</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -245,7 +245,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Добавить папку...</translation>
     </message>
 </context>
 <context>
@@ -266,7 +266,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"> (Change: %1 %2)</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -579,11 +579,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Find Nex&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Найти дале&amp;е</translation>
     </message>
     <message>
         <source>Prefere&amp;nces...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Настр&amp;ойки...</translation>
     </message>
     <message>
         <source>Show Menu Bar</source>
@@ -591,7 +591,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показать &amp;Сетевой монитор</translation>
     </message>
     <message>
         <source>Switch application language </source>
@@ -599,11 +599,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Закрыть окно</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Увеличить</translation>
     </message>
     <message>
         <source>Zoom &amp;Normal</source>
@@ -611,7 +611,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Уменьшить</translation>
     </message>
     <message>
         <source>Zoom &amp;Text Only</source>
@@ -619,11 +619,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показать все закладки...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Добавить папку...</translation>
     </message>
     <message>
         <source>About &amp;%1</source>
@@ -637,7 +637,7 @@ Do you want to reload all pages?</source>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+Y</translation>
     </message>
 </context>
 <context>
@@ -691,7 +691,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>C&amp;ached Web Pages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Сохранено в кэше веб-страницы</translation>
     </message>
 </context>
 <context>
@@ -718,7 +718,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Rule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Правило</translation>
     </message>
 </context>
 <context>
@@ -749,11 +749,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>true</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">истина</translation>
     </message>
     <message>
         <source>false</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">лож</translation>
     </message>
 </context>
 <context>
@@ -826,7 +826,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -921,7 +921,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 из %2 (%3/сек) - %4</translation>
     </message>
 </context>
 <context>
@@ -1001,11 +1001,11 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Clear History...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Очистить...</translation>
     </message>
     <message>
         <source>Do you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вы хотите очистить историю?</translation>
     </message>
 </context>
 <context>
@@ -1036,7 +1036,7 @@ Do you want to quit anyway?</source>
     <name>LanguageManager</name>
     <message>
         <source>Choose language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выбрать язык</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
@@ -1079,7 +1079,7 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"> - Ошибки SSL</translation>
     </message>
     <message>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
@@ -1100,14 +1100,14 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Значение</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сетевой монитор</translation>
     </message>
     <message>
         <source>Network Requests</source>
@@ -1127,7 +1127,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удалите &amp;все запросы</translation>
     </message>
 </context>
 <context>
@@ -1198,11 +1198,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перенаправить: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Метод</translation>
     </message>
     <message>
         <source>Address</source>
@@ -1210,11 +1210,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Response</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ответ</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Длина</translation>
     </message>
     <message>
         <source>Content Type</source>
@@ -1222,7 +1222,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Информация</translation>
     </message>
 </context>
 <context>
@@ -1495,15 +1495,15 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Домашняя страница:</translation>
     </message>
     <message>
         <source>View Images</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Посмотреть рисунок</translation>
     </message>
     <message>
         <source>Keep Cookies Until:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Хранить Cookies До</translation>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
@@ -1511,39 +1511,39 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Use proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Использовать прокси-сервер</translation>
     </message>
     <message>
         <source>Host name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Имя хоста:</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Предпочитаемый язык для просмотра веб-страниц в:</translation>
     </message>
     <message>
         <source>Block Popup Windows</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Блокировать всплывающие окна</translation>
     </message>
     <message>
         <source>Opening links</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Открытие ссылки</translation>
     </message>
     <message>
         <source>Links that want to open in a new window:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ссылки, которые хотят открыть в новом окне:</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">В новой выбранной вкладке текущего окна</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">В новой вкладке текущего окна</translation>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">В текущей вкладке</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
@@ -1656,11 +1656,11 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl-]</translation>
     </message>
     <message>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl-[</translation>
     </message>
     <message>
         <source>Untitled</source>
@@ -1676,19 +1676,19 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Loading %1% (%2 %3)...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Загрузка %1% (%2 %3)...</translation>
     </message>
     <message>
         <source>Finished loading</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Загрузка окончена</translation>
     </message>
     <message>
         <source>Failed to load</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ошибка при загрузке</translation>
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Закладки для всех вкладок</translation>
     </message>
 </context>
 <context>
