@@ -260,14 +260,15 @@ static const qint32 BrowserMainWindowMagic = 0xba;
 
 QByteArray BrowserMainWindow::saveState(bool withTabs) const
 {
-    int version = 2;
+    int version = 3;
     QByteArray data;
     QDataStream stream(&data, QIODevice::WriteOnly);
 
     stream << qint32(BrowserMainWindowMagic);
     stream << qint32(version);
 
-    stream << size();
+    // save the normal size so exiting fullscreen/maximize will work reasonably
+    stream << normalGeometry().size();
     stream << !m_navigationBar->isHidden();
     stream << !m_bookmarksToolbar->isHidden();
     stream << !statusBar()->isHidden();
@@ -280,22 +281,29 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
 
     stream << qint32(toolBarArea(m_navigationBar));
     stream << qint32(toolBarArea(m_bookmarksToolbar));
+
+    // version 3
+    stream << isMaximized();
+    stream << isFullScreen();
+    stream << !menuBar()->isHidden();
+    stream << m_menuBarVisible;
+    stream << m_statusBarVisible;
+
     return data;
 }
 
 bool BrowserMainWindow::restoreState(const QByteArray &state)
 {
-    int version = 2;
     QByteArray sd = state;
     QDataStream stream(&sd, QIODevice::ReadOnly);
     if (stream.atEnd())
         return false;
 
     qint32 marker;
-    qint32 v;
+    qint32 version;
     stream >> marker;
-    stream >> v;
-    if (marker != BrowserMainWindowMagic || v != version)
+    stream >> version;
+    if (marker != BrowserMainWindowMagic || !(version == 2 || version == 3))
         return false;
 
     QSize size;
@@ -307,6 +315,9 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     bool showTabBarWhenOneTab;
     qint32 navigationBarLocation;
     qint32 bookmarkBarLocation;
+    bool maximized;
+    bool fullScreen;
+    bool showMenuBar;
 
     stream >> size;
     stream >> showToolbar;
@@ -317,6 +328,20 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     stream >> showTabBarWhenOneTab;
     stream >> navigationBarLocation;
     stream >> bookmarkBarLocation;
+
+    if (version >= 3) {
+        stream >> maximized;
+        stream >> fullScreen;
+        stream >> showMenuBar;
+        stream >> m_menuBarVisible;
+        stream >> m_statusBarVisible;
+    } else {
+        maximized = false;
+        fullScreen = false;
+        showMenuBar = true;
+        m_menuBarVisible = true;
+        m_statusBarVisible = showStatusbar;
+    }
 
     resize(size);
 
@@ -329,10 +354,17 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
 #endif
     updateBookmarksToolbarActionText(showBookmarksBar);
 
+    if (maximized)
+        setWindowState(windowState() | Qt::WindowMaximized);
+    if (fullScreen) {
+        setWindowState(windowState() | Qt::WindowFullScreen);
+        m_viewFullScreenAction->setChecked(true);
+    }
+
+    menuBar()->setVisible(showMenuBar);
+
     statusBar()->setVisible(showStatusbar);
     updateStatusbarActionText(showStatusbar);
-
-    m_statusBarVisible = showStatusbar;
 
     m_navigationSplitter->restoreState(splitterState);
 
