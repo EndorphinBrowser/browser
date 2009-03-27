@@ -107,7 +107,7 @@ QList<QNetworkProxy> NetworkProxyFactory::queryProxy(const QNetworkProxyQuery &q
     QList<QNetworkProxy> ret;
 
     if (query.protocolTag() == QLatin1String("http") && m_httpProxy.type() != QNetworkProxy::DefaultProxy)
-	ret << m_httpProxy;
+        ret << m_httpProxy;
     ret << m_globalProxy;
 
     return ret;
@@ -147,12 +147,12 @@ void NetworkAccessManager::loadSettings()
             proxy = QNetworkProxy::Socks5Proxy;
         else if (proxyType == 1)
             proxy = QNetworkProxy::HttpProxy;
-	else { // 2
-	    proxy.setType(QNetworkProxy::HttpCachingProxy);
+        else { // 2
+            proxy.setType(QNetworkProxy::HttpCachingProxy);
 #if QT_VERSION >= 0x040500
-	    proxy.setCapabilities(QNetworkProxy::CachingCapability | QNetworkProxy::HostNameLookupCapability);
+            proxy.setCapabilities(QNetworkProxy::CachingCapability | QNetworkProxy::HostNameLookupCapability);
 #endif
-	}
+        }
         proxy.setHostName(settings.value(QLatin1String("hostName")).toString());
         proxy.setPort(settings.value(QLatin1String("port"), 1080).toInt());
         proxy.setUser(settings.value(QLatin1String("userName")).toString());
