@@ -565,7 +565,10 @@ void BrowserMainWindow::setupMenu()
     m_viewMenu->addAction(m_viewReloadAction);
 
     m_viewZoomInAction = new QAction(m_viewMenu);
-    m_viewZoomInAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Plus));
+    shortcuts.clear();
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Plus));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Equal));
+    m_viewZoomInAction->setShortcuts(shortcuts);
     connect(m_viewZoomInAction, SIGNAL(triggered()),
             this, SLOT(slotZoomIn()));
     m_viewMenu->addAction(m_viewZoomInAction);
@@ -577,7 +580,10 @@ void BrowserMainWindow::setupMenu()
     m_viewMenu->addAction(m_viewZoomNormalAction);
 
     m_viewZoomOutAction = new QAction(m_viewMenu);
-    m_viewZoomOutAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Minus));
+    shortcuts.clear();
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Minus));
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Underscore));
+    m_viewZoomOutAction->setShortcuts(shortcuts);
     connect(m_viewZoomOutAction, SIGNAL(triggered()),
             this, SLOT(slotZoomOut()));
     m_viewMenu->addAction(m_viewZoomOutAction);
