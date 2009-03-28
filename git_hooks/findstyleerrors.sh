@@ -5,15 +5,18 @@
 # Coding style: http://code.google.com/p/arora/wiki/CodingStyle
 #
 
-grep 'if(' * | grep -v Makefile | grep -v Binary
-grep 'for(' * | grep -v Makefile | grep -v Binary
-grep 'while(' * | grep -v Makefile | grep -v Binary
-grep ' $' * | grep -v Makefile | grep -v Binary
-grep '^{ }*{' * | grep -v Makefile | grep -v Binary
-grep '){' * | grep -v Makefile | grep -v Binary
-grep '	' * | grep -v Makefile | grep -v Binary
-egrep '\(.*\* .*\)' * | grep -v Makefile | grep -v Binary | grep '::'
+options="-n --include=*.cpp --include=*.h -r"
+
+grep $options 'if(' *
+grep $options 'for(' *
+grep $options 'while(' *
+grep $options 'switch(' *
+grep $options ' $' *
+grep $options '^{ }*{' *
+grep $options '){' *
+grep $options '	' *
+egrep $options '\(.*\* .*\)' * | grep '::'
 
 # var *name;
-grep '[^\* \/]\* ' * | grep -v Binary
-grep '[^& ]& ' * | grep -v Binary
+grep $options '[^\* \/]\* ' *
+grep $options '[^& ]& ' *
