@@ -110,8 +110,9 @@ include(networkmonitor/networkmonitor.pri)
 include(cookiejar/cookiejar.pri)
 include(utils/utils.pri)
 
-RESOURCES += data/data.qrc \
-    htmls/htmls.qrc
+RESOURCES += \
+    $$PWD/data/data.qrc \
+    $$PWD/htmls/htmls.qrc
 
 DISTFILES += ../AUTHORS \
     ../ChangeLog \
@@ -120,7 +121,7 @@ DISTFILES += ../AUTHORS \
     ../README
 
 win32 {
-    RC_FILE = browser.rc
+    RC_FILE = $$PWD/browser.rc
 }
 
 mac {
