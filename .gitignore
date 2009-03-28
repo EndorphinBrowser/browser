@@ -1,6 +1,7 @@
 arora
 Arora.app
-Makefile
+arora.exe
+Makefile*
 .DS_Store
 .ui
 .moc
@@ -10,3 +11,4 @@ Makefile
 .gdb_history
 *.swp
 *~
+*.pdb
