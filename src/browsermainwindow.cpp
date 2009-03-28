@@ -1117,7 +1117,7 @@ void BrowserMainWindow::closeEvent(QCloseEvent *event)
 
 void BrowserMainWindow::mousePressEvent(QMouseEvent *event)
 {
-    switch(event->button()) {
+    switch (event->button()) {
     case Qt::XButton1:
         m_historyBackAction->activate(QAction::Trigger);
         break;
