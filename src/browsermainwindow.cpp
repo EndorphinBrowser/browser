@@ -343,7 +343,8 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
         m_statusBarVisible = showStatusbar;
     }
 
-    resize(size);
+    if (size.isValid())
+        resize(size);
 
     m_navigationBar->setVisible(showToolbar);
     updateToolbarActionText(showToolbar);
