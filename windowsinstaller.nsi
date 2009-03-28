@@ -37,6 +37,7 @@ Section "Main Components"
 
   SetOutPath "$INSTDIR"
   File "arora.exe"
+  File "tools\htmlToXBel\release\htmlToXBel.exe"
   File "C:\qt-snapshot\bin\QtCore4.dll"
   File "C:\qt-snapshot\bin\QtGui4.dll"
   File "C:\qt-snapshot\bin\QtNetwork4.dll"
