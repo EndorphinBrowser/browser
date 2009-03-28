@@ -93,10 +93,12 @@ bool SingleApplication::startSingleServer()
     }
 
     if (success) {
+#ifdef Q_OS_UNIX
         QFile file(m_localServer->fullServerName());
         if (!file.setPermissions(QFile::ReadUser | QFile::WriteUser))
             qWarning() << "SingleApplication: Unable to set permissions on:"
                        << file.fileName() << file.errorString();
+#endif
     }
 
     if (!success) {
