@@ -8,6 +8,8 @@ mac {
 
 DEFINES += QT_NO_CAST_FROM_ASCII QT_STRICT_ITERATORS
 
+include(../install.pri)
+
 include(src.pri)
 
 SOURCES += main.cpp
@@ -15,8 +17,6 @@ SOURCES += main.cpp
 DESTDIR = ../
 
 include(locale/locale.pri)
-
-include(../install.pri)
 
 unix {
     INSTALLS += translations desktop iconxpm iconsvg icon16 icon32 icon128 man man-compress
