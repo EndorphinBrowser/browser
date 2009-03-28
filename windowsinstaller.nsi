@@ -3,10 +3,12 @@
 SetCompressor /SOLID /FINAL lzma
 
 !define PRODUCT_NAME "Arora"
-!define /date PRODUCT_VERSION "Snapshot (%#m-%#d-%#Y)"
+!define /date PRODUCT_VERSION "0.6"
+;!define /date PRODUCT_VERSION "Snapshot (%#m-%#d-%#Y)"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\arora.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
+!define QTDIR "C:\Qt\qt-all-opensource-src-4.5.0"
 
 !include "MUI.nsh"
 !define MUI_ABORTWARNING
@@ -37,37 +39,39 @@ Section "Main Components"
 
   SetOutPath "$INSTDIR"
   File "arora.exe"
-  File "tools\htmlToXBel\release\htmlToXBel.exe"
-  File "C:\qt-snapshot\bin\QtCore4.dll"
-  File "C:\qt-snapshot\bin\QtGui4.dll"
-  File "C:\qt-snapshot\bin\QtNetwork4.dll"
-  File "C:\qt-snapshot\bin\QtWebKit4.dll"
-  File "C:\qt-snapshot\bin\phonon4.dll"
-  File "C:\openssl-0.9.8h\out32dll\ssleay32.dll"
-  File "C:\openssl-0.9.8h\out32dll\libeay32.dll"
+  File "tools\htmlToXbel\release\htmlToXBel.exe"
+  File "tools\cacheinfo\release\arora-cacheinfo.exe"
+  File "tools\placesimport\release\arora-placesimport.exe"
+  File "${QTDIR}\lib\QtCore4.dll"
+  File "${QTDIR}\lib\QtGui4.dll"
+  File "${QTDIR}\lib\QtNetwork4.dll"
+  File "${QTDIR}\lib\QtWebKit4.dll"
+  File "${QTDIR}\lib\phonon4.dll"
+  File "C:\Qt\openssl-0.9.8j\out32dll\ssleay32.dll"
+  File "C:\Qt\openssl-0.9.8j\out32dll\libeay32.dll"
 
   SetOutPath "$INSTDIR\locale"
   File "src\.qm\locale\*.qm"
 
   SetOutPath "$INSTDIR\imageformats"
-  File "C:\qt-snapshot\plugins\imageformats\qtiff4.dll"
-  File "C:\qt-snapshot\plugins\imageformats\qsvg4.dll"
-  File "C:\qt-snapshot\plugins\imageformats\qmng4.dll"
-  File "C:\qt-snapshot\plugins\imageformats\qjpeg4.dll"
-  File "C:\qt-snapshot\plugins\imageformats\qico4.dll"
-  File "C:\qt-snapshot\plugins\imageformats\qgif4.dll"
+  File "${QTDIR}\plugins\imageformats\qtiff4.dll"
+  File "${QTDIR}\plugins\imageformats\qsvg4.dll"
+  File "${QTDIR}\plugins\imageformats\qmng4.dll"
+  File "${QTDIR}\plugins\imageformats\qjpeg4.dll"
+  File "${QTDIR}\plugins\imageformats\qico4.dll"
+  File "${QTDIR}\plugins\imageformats\qgif4.dll"
 
   SetOutPath "$INSTDIR\iconengines"
-  File "C:\qt-snapshot\plugins\iconengines\qsvgicon4.dll"
+  File "${QTDIR}\plugins\iconengines\qsvgicon4.dll"
 
   SetOutPath "$INSTDIR\codecs"
-  File "C:\qt-snapshot\plugins\codecs\qtwcodecs4.dll"
-  File "C:\qt-snapshot\plugins\codecs\qkrcodecs4.dll"
-  File "C:\qt-snapshot\plugins\codecs\qjpcodecs4.dll"
-  File "C:\qt-snapshot\plugins\codecs\qcncodecs4.dll"
+  File "${QTDIR}\plugins\codecs\qtwcodecs4.dll"
+  File "${QTDIR}\plugins\codecs\qkrcodecs4.dll"
+  File "${QTDIR}\plugins\codecs\qjpcodecs4.dll"
+  File "${QTDIR}\plugins\codecs\qcncodecs4.dll"
 
   SetOutPath "$INSTDIR\phonon_backend"
-  File "C:\qt-snapshot\plugins\phonon_backend\phonon_ds94.dll"
+;  File "${QTDIR}\plugins\phonon_backend\phonon_ds94.dll"
 SectionEnd
 
 Section Icons
