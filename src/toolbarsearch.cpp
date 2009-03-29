@@ -85,16 +85,44 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     , m_maxSavedSearches(10)
     , m_model(new QStandardItemModel(this))
     , m_suggestionsItem(0)
+    , m_recentSearchesItem(0)
 {
     completer()->setModel(m_model);
     completer()->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
-    connect(completer(), SIGNAL(activated(const QString &)),
-            this, SLOT(searchNow()));
-
+    connect(completer(), SIGNAL(activated(const QModelIndex &)),
+            this, SLOT(activated(const QModelIndex &)));
+    connect(completer(), SIGNAL(highlighted(const QModelIndex &)),
+            this, SLOT(highlighted(const QModelIndex &)));
     connect(this, SIGNAL(returnPressed()), SLOT(searchNow()));
     setInactiveText(QLatin1String("Google"));
 
     load();
+}
+
+void ToolbarSearch::activated(const QModelIndex &index)
+{
+    if (highlighted(index))
+        searchNow();
+}
+
+bool ToolbarSearch::highlighted(const QModelIndex &index)
+{
+    if (m_suggestionsItem && m_suggestionsItem->index().row() == index.row())
+        return false;
+    if (m_recentSearchesItem && m_recentSearchesItem->index().row() == index.row())
+        return false;
+    setText(index.data().toString());
+    return true;
+}
+
+void ToolbarSearch::focusInEvent(QFocusEvent *event)
+{
+    SearchLineEdit::focusInEvent(event);
+    // Every time we get a focus in event QLineEdit re-connects...
+    disconnect(completer(), SIGNAL(activated(QString)),
+               this, SLOT(setText(QString)));
+    disconnect(completer(), SIGNAL(highlighted(QString)),
+               this, SLOT(_q_completionHighlighted(QString)));
 }
 
 ToolbarSearch::~ToolbarSearch()
@@ -122,14 +150,14 @@ void ToolbarSearch::load()
         m_googleSuggest = new GoogleSuggest(this);
         connect(m_googleSuggest, SIGNAL(suggestions(const QStringList &, const QString &)),
                 this, SLOT(newSuggestions(const QStringList &)));
-        connect(this, SIGNAL(textChanged(const QString &)),
-                this, SLOT(textChanged(const QString &)));
+        connect(this, SIGNAL(textEdited(const QString &)),
+                this, SLOT(textEdited(const QString &)));
     }
     settings.endGroup();
     setupMenu();
 }
 
-void ToolbarSearch::textChanged(const QString &text)
+void ToolbarSearch::textEdited(const QString &text)
 {
     // delay settings this to prevent BrowserApplication from creating
     // the object when it isn't needed on startup
@@ -193,11 +221,13 @@ void ToolbarSearch::setupMenu()
         m_model->removeRows(1, m_model->rowCount() -1 );
     }
 
+    QFont boldFont;
+    boldFont.setBold(true);
     if (!m_suggestions.isEmpty()) {
         if (m_model->rowCount() == 0) {
             if (!m_suggestionsItem) {
                 m_suggestionsItem = new QStandardItem();
-                m_suggestionsItem->setEnabled(false);
+                m_suggestionsItem->setFont(boldFont);
                 retranslate();
             }
             m_model->appendRow(m_suggestionsItem);
@@ -209,13 +239,13 @@ void ToolbarSearch::setupMenu()
     }
 
     if (m_recentSearches.isEmpty()) {
-        QStandardItem *item = new QStandardItem(tr("No Recent Searches"));
-        item->setEnabled(false);
-        m_model->appendRow(item);
+        m_recentSearchesItem = new QStandardItem(tr("No Recent Searches"));
+        m_recentSearchesItem->setFont(boldFont);
+        m_model->appendRow(m_recentSearchesItem);
     } else {
-        QStandardItem *recentSearchesItem = new QStandardItem(tr("Recent Searches"));
-        recentSearchesItem->setEnabled(false);
-        m_model->appendRow(recentSearchesItem);
+        m_recentSearchesItem = new QStandardItem(tr("Recent Searches"));
+        m_recentSearchesItem->setFont(boldFont);
+        m_model->appendRow(m_recentSearchesItem);
         for (int i = 0; i < m_recentSearches.count(); ++i) {
             QString text = m_recentSearches.at(i);
             m_model->appendRow(new QStandardItem(text));

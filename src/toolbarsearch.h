@@ -67,6 +67,7 @@
 
 class AutoSaver;
 class GoogleSuggest;
+class QModelIndex;
 class QStandardItem;
 class QStandardItemModel;
 class QUrl;
@@ -87,11 +88,14 @@ public slots:
 
 private slots:
     void save();
-    void textChanged(const QString &);
+    void textEdited(const QString &);
     void newSuggestions(const QStringList &suggestions);
+    void activated(const QModelIndex &index);
+    bool highlighted(const QModelIndex &index);
 
 protected:
     void changeEvent(QEvent *event);
+    void focusInEvent(QFocusEvent *event);
 
 private:
     void load();
@@ -104,7 +108,9 @@ private:
     QStringList m_suggestions;
     GoogleSuggest *m_googleSuggest;
     QStandardItemModel *m_model;
+
     QStandardItem *m_suggestionsItem;
+    QStandardItem *m_recentSearchesItem;
 };
 
 #endif // TOOLBARSEARCH_H
