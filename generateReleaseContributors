@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ./generateAuthors 0.5..HEAD | while read line
 do
         name=`echo $line | sed -e 's/ [^ ]*@[^ ]*//g'`
