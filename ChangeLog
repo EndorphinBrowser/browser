@@ -1,3 +1,83 @@
+0.6
+Interface
+- Save more of the main window state, window's fullscreen status, maximized status, menu bar visibility, normal size, and ensure that the menu bar and status bar are returned to their proper states if saving while the window is fullscreen.
+- Open a downloaded file instead of the containing directory
+- Add check for the Oxygen style and switch to Plastique unless the user specifies oxygen on the command line
+- The action to show the status bar isn't updated when entering/exiting fullscreen.
+- slow down the loading animation to use less X11 resources
+- Add Google suggestions to the search widget
+- Ctrl-0 is now zoom-reset, only support jumping to the first 9 tabs rather then 10
+- Add action to add a bookmark folder to the bookmark menu
+- Display more loading information in the status bar.
+- Make 'Url' and 'Title' string translatable in Add Bookmark dialog.
+- Making SSL warnings more verbose Especially show the Certs a bit
+- If there is any active download on quit, warn user and ask for confirmation.
+- Add "Open in Tabs" action to all bookmark menu's.
+- Add "Save all Tabs" action to the bookmark menu and the tabbar context menu.
+- Support preferred web content language
+- Add common location bar shortcuts such as Alt-D
+- Allow to close the browser with more than one window opened, which was previously impossible (it might be useful when you restore session on startup).
+- Revert to the default tab selection behavior after closing a tab to match other browsers
+- Middle button role should be inverted when "Select tabs and windows as they created" is selected
+- Add support for MidClick/Ctrl-Click/Shift-Ctrl-Click to all urls in Arora.  Be it in menus, toolbars, links and javascript links.
+- Add support for XButton1 and XButton2 to be back/forward on the webview
+- Add the ability to turn pop-up blocking off
+- More control to the users! Added a possibility to control where target="_blank" links will be opened and default to a new tab.
+- When opening a url from history include the old title which can populate the tab title.
+- Clearing the cache should only be enabled by default when compiled with Qt 4.5
+- Set bookmarks bar as default folder when executing Add Bookmark Dialog from bookmarks toolbar.
+- Fixed typo that had clear cookies set checked twice instead of checking cookies once and cache once.
+- Force selected window to be on top of the windows stack (previous solution was only activating the window on the taskbar, at least on some desktop environments).
+- One tab close button option should not affect tab open button appearance.
+- Set Open action disabled in the download manager until the download is finished.
+- Add the ability to import html bookmarks using the existing htmlToXBel tool
+- Fix issue where shortcuts where not working
+- Fix issue where actions in the menus were not being translated when you change the language.
+- Add support for caching HTTP proxies when using Qt 4.5
+- Add full page zooming
+- Added a new tool 'placesimport' to import Firefox 3+ history.
+- Fix the download manager SqueezeLabel class so that doesn't use 100% cpu, also now under the BSD
+- Tweak html error message to make more sense
+- Several spelling errors in the interface and code.
+
+
+Behind the scenes
+-Upgrade the SearchLineEdit class
+ - Rather then using a QMenu use QCompleter now that LineEdit can let you set the text margin and the completer popup takes up the whole width.
+ - Re-code searchlineedit to just be a LineEdit subclass that has a search button and a clear button and nothing more.
+ - Re-code the SearchButton to use the QCompleter, take up less width when there isn't one and use a QImage.
+ - Update the toolbar search widget to use the completer rather then the old QMenu
+- Significantly improve the startup time of Arora.
+- Add new access functions to the DownloadItem data.
+- Move the ClearButton and SearchButton class into its own file
+- Fix searchbar for special chars such as '+'. This seems a bug in Qt's addQueryItem.  Workaround is to use addEncodedQueryItem.
+- delete the root bookmark node on exit to not generate errors in valgrind
+- fix memory leaks in the autotest to confirm that Arora's xbel doesn't have any leaks
+- Only clear the cookies if we have loaded them
+- In ModelMenu rather then all submenu's being QMenu let them be specified by the implementation and as the default use ModelMenu.
+- Add new menumodel manualtest
+- Set the default max rows of the model menu to -1 and put the special case of 7 in the history menu code
+- In 4.5 and beyond store the icon database in the cache directory
+- Add a few more mimetypes and match the Firefox desktop file
+- Only guess a url string is for a file if it is an absolute path.
+- Improve the overall design and implimentation of url loading especially when dealing with a startin
+- Several improvements to SingleApplication to make it more robust.
+- Improve the git hooks and add a hook to spell check commits
+- Don't hard code the location of tmp as it could easily not be /tmp as it is on OS X
+- Remove executable bit from html not found file
+- Be more vigilant about always using encoded urls when storing them in QString
+
+Build system
+- Ignore generated files on Windows
+- Add a common way to install binaries and install the tools
+- Add commit hook commit-msg with support for aspell to check the spelling of the commit message
+- In a source tarball and there is no .git hard code the version and change number so a message doesn't goto the console complaining about no git
+- Windows needs to link to advapi32 for GetUserName call, so add it to LIBS.
+- Don't force the binary to be re-build every time make is called because of the locale.pri
+- Install tools
+- Improve the build times of the manualtests by sharing object files and simplifying the includes
+
+
 0.5
 Interface
 - Add new Network Access Monitor tool that shows each network request as it passes.
