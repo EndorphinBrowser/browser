@@ -304,7 +304,7 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
             for (int i = 0; i < ca_new.count(); ++i)
                 certinfos += certToFormattedString(ca_new.at(i));
             ret = QMessageBox::question(mainWindow, QCoreApplication::applicationName(),
-                tr("<qt>Certifactes:<br/>"
+                tr("<qt>Certificates:<br/>"
                    "%1<br/>"
                    "Do you want to accept all these certificates?</qt>")
                     .arg(certinfos.join(QString())),
