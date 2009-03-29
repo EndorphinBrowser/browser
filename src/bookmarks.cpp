@@ -374,10 +374,10 @@ ChangeBookmarkCommand::ChangeBookmarkCommand(BookmarksManager *m_bookmarkManagae
 {
     if (m_title) {
         m_oldValue = m_node->title;
-        setText(BookmarksManager::tr("Name Change"));
+        setText(BookmarksManager::tr("Name Change", "Undo bookmark title change"));
     } else {
         m_oldValue = m_node->url;
-        setText(BookmarksManager::tr("Address Change"));
+        setText(BookmarksManager::tr("Address Change", "Undo bookmark url change"));
     }
 }
 
