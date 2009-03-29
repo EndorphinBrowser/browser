@@ -314,31 +314,27 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
     return addedCookies;
 }
 
-bool CookieJar::isOnDomainList(const QStringList &list, const QString &domain) const
+bool CookieJar::isOnDomainList(const QStringList &rules, const QString &domain)
 {
-    for (int i=0;i<list.size();i++) {
-        QString item = list.at(i);
-        // proper subdomain match, first check for exact match
-        if (domain==item) {
-            return true;
+    // Either the rule matches the domain exactly
+    // or the domain ends with ".rule"
+    foreach (const QString &rule, rules) {
+        if (rule.startsWith(QLatin1String("."))) {
+            if (domain.endsWith(rule))
+                return true;
+
+            QStringRef withoutDot = rule.rightRef(rule.size() - 1);
+            if (domain == withoutDot)
+                return true;
         } else {
-            // domain : abc.def.com, item is def.com -> should match
-            // domain : abcdef.com,  item is def.com -> shouldn't match
-            if (item.startsWith(QLatin1String("."))) {
-                if (domain.endsWith(item)) {
-                    return true;
-                }
-                // domain def.com, item is .def.com -> should match, so we skip the dot.
-                QStringRef withoutDot = item.rightRef(item.size()-1);
-                if (domain==withoutDot) {
-                    return true;
-                }
-            } else {
-                QStringRef domainEnding = domain.rightRef(item.size()+1);
-                if (domainEnding.at(0)==QLatin1Char('.') && domain.endsWith(item)) {
-                    return true;
-                }
+            QStringRef domainEnding = domain.rightRef(rule.size() + 1);
+            if (domainEnding.at(0) == QLatin1Char('.')
+                && domain.endsWith(rule)) {
+                return true;
             }
+
+            if (rule == domain)
+                return true;
         }
     }
     return false;

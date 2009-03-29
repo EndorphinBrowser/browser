@@ -123,10 +123,12 @@ public slots:
 private slots:
     void save();
 
+protected:
+    static bool isOnDomainList(const QStringList &rules, const QString &domain);
+
 private:
     void purgeOldCookies();
     void load();
-    bool isOnDomainList(const QStringList &list, const QString &domain) const;
     bool m_loaded;
     AutoSaver *m_saveTimer;
 
