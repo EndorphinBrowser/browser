@@ -116,8 +116,6 @@ public:
     void setAllowedCookies(const QStringList &list);
     void setAllowForSessionCookies(const QStringList &list);
 
-    void reapplyRules();
-
 public slots:
     void clear();
     void loadSettings();
@@ -129,6 +127,7 @@ protected:
     static bool isOnDomainList(const QStringList &rules, const QString &domain);
 
 private:
+    void applyRules();
     void purgeOldCookies();
     void load();
     bool m_loaded;

@@ -401,6 +401,7 @@ void CookieJar::setBlockedCookies(const QStringList &list)
         load();
     m_exceptions_block = list;
     qSort(m_exceptions_block.begin(), m_exceptions_block.end());
+    applyRules();
     m_saveTimer->changeOccurred();
 }
 
@@ -410,6 +411,7 @@ void CookieJar::setAllowedCookies(const QStringList &list)
         load();
     m_exceptions_allow = list;
     qSort(m_exceptions_allow.begin(), m_exceptions_allow.end());
+    applyRules();
     m_saveTimer->changeOccurred();
 }
 
@@ -419,16 +421,16 @@ void CookieJar::setAllowForSessionCookies(const QStringList &list)
         load();
     m_exceptions_allowForSession = list;
     qSort(m_exceptions_allowForSession.begin(), m_exceptions_allowForSession.end());
+    applyRules();
     m_saveTimer->changeOccurred();
 }
 
-void CookieJar::reapplyRules()
+void CookieJar::applyRules()
 {
     QList<QNetworkCookie> cookies = allCookies();
     bool changed = false;
     for (int i = cookies.count() - 1; i >= 0; --i) {
         if (isOnDomainList(m_exceptions_block, cookies.at(i).domain())) {
-            // qDebug() << "removing cookie "<<cookies.at(i) << " host is "<<cookies.at(i).domain() << " MATCHED!";
             cookies.removeAt(i);
             changed = true;
         }

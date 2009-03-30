@@ -69,7 +69,9 @@
 #include "cookiemodel.h"
 #include "cookieexceptionsdialog.h"
 
-CookieDialog::CookieDialog(CookieJar *cookieJar, QWidget *parent) : QDialog(parent),cookieJar(cookieJar)
+CookieDialog::CookieDialog(CookieJar *cookieJar, QWidget *parent)
+    : QDialog(parent)
+    , m_cookieJar(cookieJar)
 {
     setupUi(this);
     setWindowFlags(Qt::Sheet);
@@ -79,7 +81,7 @@ CookieDialog::CookieDialog(CookieJar *cookieJar, QWidget *parent) : QDialog(pare
             m_proxyModel, SLOT(setFilterFixedString(QString)));
     connect(removeButton, SIGNAL(clicked()), cookiesTable, SLOT(removeSelected()));
     connect(removeAllButton, SIGNAL(clicked()), cookiesTable, SLOT(removeAll()));
-    connect(addRuleButton, SIGNAL(clicked()), this, SLOT(slotAddRule()));
+    connect(addRuleButton, SIGNAL(clicked()), this, SLOT(addRule()));
     m_proxyModel->setSourceModel(model);
     cookiesTable->verticalHeader()->hide();
     cookiesTable->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -114,18 +116,16 @@ CookieDialog::CookieDialog(CookieJar *cookieJar, QWidget *parent) : QDialog(pare
     cookiesTable->horizontalHeader()->setStretchLastSection(true);
 }
 
-void CookieDialog::slotAddRule()
+void CookieDialog::addRule()
 {
-    CookieExceptionsDialog *dialog = new CookieExceptionsDialog(cookieJar, this);
-
     const QModelIndexList selection = cookiesTable->selectionModel()->selectedRows();
-    if (selection.size()>0) {
-        QModelIndex firstSelected = selection.at(0);
-        QModelIndex domainSelection = firstSelected.sibling(firstSelected.row(), 0);
-        QVariant variant = m_proxyModel->data(domainSelection,Qt::DisplayRole);
-        QString domain = variant.toString();
-        dialog->setDomainName(domain);
-    }
+    if (selection.isEmpty())
+        return;
+    QModelIndex firstSelected = selection.at(0);
+    QModelIndex domainSelection = firstSelected.sibling(firstSelected.row(), 0);
+    QString domain = m_proxyModel->data(domainSelection, Qt::DisplayRole).toString();
+    CookieExceptionsDialog *dialog = new CookieExceptionsDialog(m_cookieJar, this);
+    dialog->setDomainName(domain);
     dialog->exec();
 }
 
