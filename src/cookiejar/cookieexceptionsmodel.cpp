@@ -176,9 +176,7 @@ bool CookieExceptionsModel::removeRows(int row, int count, const QModelIndex &pa
             continue;
         }
     }
-    m_cookieJar->setAllowedCookies(m_allowedCookies);
-    m_cookieJar->setBlockedCookies(m_blockedCookies);
-    m_cookieJar->setAllowForSessionCookies(m_sessionCookies);
     endRemoveRows();
     return true;
 }
+

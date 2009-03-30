@@ -76,6 +76,7 @@ class CookieExceptionsDialog : public QDialog, public Ui_CookiesExceptionsDialog
 
 public:
     CookieExceptionsDialog(CookieJar *cookieJar, QWidget *parent = 0);
+    void accept();
 
 private slots:
     void block();

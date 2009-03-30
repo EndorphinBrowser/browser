@@ -135,7 +135,6 @@ void CookieExceptionsDialog::block()
     if (domainLineEdit->text().isEmpty())
         return;
     m_exceptionsModel->m_blockedCookies.append(domainLineEdit->text());
-    m_cookieJar->setBlockedCookies(m_exceptionsModel->m_blockedCookies);
     m_exceptionsModel->reset();
 }
 
@@ -144,7 +143,6 @@ void CookieExceptionsDialog::allow()
     if (domainLineEdit->text().isEmpty())
         return;
     m_exceptionsModel->m_allowedCookies.append(domainLineEdit->text());
-    m_cookieJar->setAllowedCookies(m_exceptionsModel->m_allowedCookies);
     m_exceptionsModel->reset();
 }
 
@@ -153,7 +151,14 @@ void CookieExceptionsDialog::allowForSession()
     if (domainLineEdit->text().isEmpty())
         return;
     m_exceptionsModel->m_sessionCookies.append(domainLineEdit->text());
-    m_cookieJar->setAllowForSessionCookies(m_exceptionsModel->m_sessionCookies);
     m_exceptionsModel->reset();
+}
+
+void CookieExceptionsDialog::accept()
+{
+    m_cookieJar->setBlockedCookies(m_exceptionsModel->m_blockedCookies);
+    m_cookieJar->setAllowedCookies(m_exceptionsModel->m_allowedCookies);
+    m_cookieJar->setAllowForSessionCookies(m_exceptionsModel->m_sessionCookies);
+    QDialog::accept();
 }
 
