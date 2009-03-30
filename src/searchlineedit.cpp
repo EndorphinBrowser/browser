@@ -33,6 +33,8 @@
 
 SearchLineEdit::SearchLineEdit(QCompleter *completer, QWidget *parent)
     : LineEdit(parent)
+    , m_clearButton(0)
+    , m_searchButton(0)
 {
     setCompleter(completer);
     init();
@@ -47,19 +49,29 @@ SearchLineEdit::SearchLineEdit(QWidget *parent)
 void SearchLineEdit::init()
 {
     // search button on the left
-    SearchButton *searchButton = new SearchButton(this);
-    addWidget(searchButton, LeftSide);
+    m_searchButton = new SearchButton(this);
+    addWidget(m_searchButton, LeftSide);
 
     // clear button on the right
-    ClearButton *clearButton = new ClearButton(this);
-    connect(clearButton, SIGNAL(clicked()),
+    m_clearButton = new ClearButton(this);
+    connect(m_clearButton, SIGNAL(clicked()),
             this, SLOT(clear()));
     connect(this, SIGNAL(textChanged(const QString&)),
-            clearButton, SLOT(textChanged(const QString&)));
-    addWidget(clearButton, RightSide);
-    clearButton->hide();
+            m_clearButton, SLOT(textChanged(const QString&)));
+    addWidget(m_clearButton, RightSide);
+    m_clearButton->hide();
 
     updateTextMargins();
     setInactiveText(tr("Search"));
+}
+
+ClearButton *SearchLineEdit::clearButton() const
+{
+    return m_clearButton;
+}
+
+SearchButton *SearchLineEdit::searchButton() const
+{
+    return m_searchButton;
 }
 
