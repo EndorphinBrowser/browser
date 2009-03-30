@@ -66,6 +66,7 @@
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "history.h"
+#include "historymanager.h"
 #include "tabbar.h"
 #include "locationbar.h"
 #include "toolbarsearch.h"

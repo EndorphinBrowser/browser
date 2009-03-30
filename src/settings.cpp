@@ -68,7 +68,7 @@
 #include "cookiedialog.h"
 #include "cookieexceptionsdialog.h"
 #include "cookiejar.h"
-#include "history.h"
+#include "historymanager.h"
 #include "networkaccessmanager.h"
 #include "tabwidget.h"
 #include "webview.h"

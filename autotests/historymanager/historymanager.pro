@@ -6,5 +6,5 @@ INCLUDEPATH += .
 include(../autotests.pri)
 
 # Input
-SOURCES += tst_history.cpp
+SOURCES += tst_historymanager.cpp
 HEADERS +=

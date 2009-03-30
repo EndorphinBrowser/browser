@@ -23,11 +23,12 @@
 #include "browsermainwindow.h"
 #include "cookiejar.h"
 #include "downloadmanager.h"
-#include "history.h"
+#include "historymanager.h"
 #include "networkaccessmanager.h"
 #include "toolbarsearch.h"
 
 #include <qcheckbox.h>
+#include <qdialogbuttonbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qlist.h>

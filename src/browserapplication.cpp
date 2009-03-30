@@ -66,7 +66,7 @@
 #include "browsermainwindow.h"
 #include "cookiejar.h"
 #include "downloadmanager.h"
-#include "history.h"
+#include "historymanager.h"
 #include "languagemanager.h"
 #include "networkaccessmanager.h"
 #include "tabwidget.h"

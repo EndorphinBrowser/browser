@@ -20,8 +20,9 @@
 #include <qmainwindow.h>
 #include <qtableview.h>
 
+#include <history.h>
+#include <historymanager.h>
 #include <modeltest.h>
-#include "history.h"
 
 int main(int argc, char **argv)
 {

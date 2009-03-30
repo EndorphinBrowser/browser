@@ -19,10 +19,12 @@
 
 #include <QtTest/QtTest>
 #include "qtest_arora.h"
+
+#include <historymanager.h>
 #include <history.h>
 #include <modeltest.h>
 
-class tst_History : public QObject
+class tst_HistoryManager : public QObject
 {
     Q_OBJECT
 
@@ -48,6 +50,7 @@ private slots:
     void saveload_data();
     void saveload();
 
+    // TODO move to their own tests
     void big();
 
     void historyDialog_data();
@@ -80,7 +83,7 @@ public:
 
 // This will be called before the first test function is executed.
 // It is only called once.
-void tst_History::initTestCase()
+void tst_HistoryManager::initTestCase()
 {
     QCoreApplication::setApplicationName("historytest");
 
@@ -107,25 +110,25 @@ void tst_History::initTestCase()
 
 // This will be called after the last test function is executed.
 // It is only called once.
-void tst_History::cleanupTestCase()
+void tst_HistoryManager::cleanupTestCase()
 {
 }
 
 // This will be called before each test function is executed.
-void tst_History::init()
+void tst_HistoryManager::init()
 {
 }
 
 // This will be called after every test function.
-void tst_History::cleanup()
+void tst_HistoryManager::cleanup()
 {
 }
 
-void tst_History::history_data()
+void tst_HistoryManager::history_data()
 {
 }
 
-void tst_History::history()
+void tst_HistoryManager::history()
 {
     SubHistory history;
     history.addHistoryEntry(HistoryEntry());
@@ -138,7 +141,7 @@ void tst_History::history()
 typedef QList<HistoryEntry> HistoryList;
 Q_DECLARE_METATYPE(HistoryList)
 Q_DECLARE_METATYPE(HistoryEntry)
-void tst_History::addHistoryEntry_data()
+void tst_HistoryManager::addHistoryEntry_data()
 {
     QTest::addColumn<HistoryList>("initial");
     QTest::addColumn<HistoryList>("items");
@@ -187,7 +190,7 @@ void tst_History::addHistoryEntry_data()
 }
 
 // public void addHistoryEntry(HistoryEntry* item)
-void tst_History::addHistoryEntry()
+void tst_HistoryManager::addHistoryEntry()
 {
     QFETCH(HistoryList, initial);
     QFETCH(HistoryList, items);
@@ -201,7 +204,7 @@ void tst_History::addHistoryEntry()
     QCOMPARE(history.history(), expected);
 }
 
-void tst_History::updateHistoryEntry_data()
+void tst_HistoryManager::updateHistoryEntry_data()
 {
     QTest::addColumn<HistoryList>("list");
     QTest::addColumn<QUrl>("url");
@@ -213,7 +216,7 @@ void tst_History::updateHistoryEntry_data()
 }
 
 // public void updateHistoryEntry(QUrl const& url, QString const title)
-void tst_History::updateHistoryEntry()
+void tst_HistoryManager::updateHistoryEntry()
 {
     QFETCH(HistoryList, list);
     QFETCH(QUrl, url);
@@ -228,7 +231,7 @@ void tst_History::updateHistoryEntry()
         QVERIFY(history.history() != list);
 }
 
-void tst_History::daysToExpire_data()
+void tst_HistoryManager::daysToExpire_data()
 {
     QTest::addColumn<HistoryList>("list");
     QTest::addColumn<int>("daysToExpire");
@@ -251,7 +254,7 @@ void tst_History::daysToExpire_data()
 }
 
 // public int daysToExpire() const
-void tst_History::daysToExpire()
+void tst_HistoryManager::daysToExpire()
 {
     QFETCH(HistoryList, list);
     QFETCH(int, daysToExpire);
@@ -278,7 +281,7 @@ void tst_History::daysToExpire()
     }
 }
 
-void tst_History::clear_data()
+void tst_HistoryManager::clear_data()
 {
     QTest::addColumn<HistoryList>("list");
 
@@ -288,7 +291,7 @@ void tst_History::clear_data()
 }
 
 // public void clear()
-void tst_History::clear()
+void tst_HistoryManager::clear()
 {
     QFETCH(HistoryList, list);
     {
@@ -305,7 +308,7 @@ void tst_History::clear()
     }
 }
 
-void tst_History::setHistory_data()
+void tst_HistoryManager::setHistory_data()
 {
     QTest::addColumn<HistoryList>("list");
     QTest::addColumn<HistoryList>("post");
@@ -330,7 +333,7 @@ void tst_History::setHistory_data()
     QTest::newRow("removeExpired-2") << (HistoryList() << foo << expired) << (HistoryList() << foo);
 }
 
-void tst_History::setHistory()
+void tst_HistoryManager::setHistory()
 {
     QFETCH(HistoryList, list);
     QFETCH(HistoryList, post);
@@ -341,7 +344,7 @@ void tst_History::setHistory()
     QCOMPARE(history.history(), post);
 }
 
-void tst_History::saveload_data()
+void tst_HistoryManager::saveload_data()
 {
     QTest::addColumn<HistoryList>("list");
     QTest::addColumn<HistoryList>("post");
@@ -368,7 +371,7 @@ void tst_History::saveload_data()
     QTest::newRow("removeExpired-2") << (HistoryList() << foo << expired) << (HistoryList() << foo);
 }
 
-void tst_History::saveload()
+void tst_HistoryManager::saveload()
 {
     QFETCH(HistoryList, list);
     QFETCH(HistoryList, post);
@@ -392,7 +395,7 @@ void tst_History::saveload()
     }
 }
 
-void tst_History::big()
+void tst_HistoryManager::big()
 {
     SubHistory history;
     history.setDaysToExpire(-1);
@@ -438,7 +441,7 @@ void tst_History::big()
     QTest::qWait(100);
 }
 
-void tst_History::historyDialog_data()
+void tst_HistoryManager::historyDialog_data()
 {
     QTest::addColumn<int>("parentRow");
     QTest::addColumn<int>("parentColumn");
@@ -468,7 +471,7 @@ void tst_History::historyDialog_data()
     QTest::newRow("removeAll") << -1 << -1  << -3 << 0  << -1 << 0;
 }
 
-void tst_History::historyDialog()
+void tst_HistoryManager::historyDialog()
 {
     QFETCH(int, parentRow);
     QFETCH(int, parentColumn);
@@ -526,6 +529,6 @@ void tst_History::historyDialog()
     }
 }
 
-QTEST_MAIN(tst_History)
-#include "tst_history.moc"
+QTEST_MAIN(tst_HistoryManager)
+#include "tst_historymanager.moc"
 

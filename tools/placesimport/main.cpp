@@ -26,9 +26,10 @@
 #include <qsqldatabase.h>
 #include <qsqlerror.h>
 #include <qsqlquery.h>
+#include <qvariant.h>
 
 #include <singleapplication.h>
-#include <history.h>
+#include <historymanager.h>
 
 #include <qdebug.h>
 
