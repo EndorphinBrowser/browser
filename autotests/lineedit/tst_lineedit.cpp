@@ -42,6 +42,8 @@ private slots:
     void setWidgetSpacing();
     void textMargin_data();
     void textMargin();
+    void inactiveText_data();
+    void inactiveText();
 };
 
 // Subclass that exposes the protected functions.
@@ -174,6 +176,22 @@ void tst_LineEdit::textMargin()
     SubLineEdit edit;
 
     QCOMPARE(edit.textMargin(position), textMargin);
+}
+
+void tst_LineEdit::inactiveText_data()
+{
+    QTest::addColumn<QString>("inactiveText");
+    QTest::newRow("foo") << QString("foo");
+}
+
+// public QString inactiveText() const
+void tst_LineEdit::inactiveText()
+{
+    QFETCH(QString, inactiveText);
+
+    SubLineEdit edit;
+    edit.setInactiveText(inactiveText);
+    QCOMPARE(edit.inactiveText(), inactiveText);
 }
 
 QTEST_MAIN(tst_LineEdit)
