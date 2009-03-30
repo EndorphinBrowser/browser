@@ -4,7 +4,7 @@
 #
 
 APP="Arora"
-VERSION="0.4"
+VERSION="0.6"
 #BACKGROUND="src/data/512x512/arora.png"
 
 DIR="bundle"
