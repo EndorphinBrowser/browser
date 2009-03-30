@@ -45,27 +45,27 @@ p, li { white-space: pre-wrap; }
     <name>AcceptLanguage</name>
     <message>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Мови</translation>
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation type="unfinished"></translation>
+        <translation>Мови: в порядку застосування:</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Перемістити &amp;вище</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Перемістити &amp;нижче</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">&amp;Вилучити</translation>
+        <translation>&amp;Вилучити</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати...</translation>
     </message>
 </context>
 <context>
@@ -80,15 +80,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Url</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Заголовок</translation>
+        <translation>Заголовок</translation>
     </message>
     <message>
         <source>Add Folder</source>
-        <translation type="unfinished">Додати теку</translation>
+        <translation>Додати теку</translation>
     </message>
 </context>
 <context>
@@ -123,11 +123,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Редагувати назву</translation>
     </message>
     <message>
         <source>Edit Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Редагувати адресу</translation>
     </message>
 </context>
 <context>
@@ -192,27 +192,27 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Панель закладинок</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Меню закладинок</translation>
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка під час завантаження закладинки html: %1</translation>
     </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
     <message>
         <source>Open in Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкрити у вкладках</translation>
     </message>
 </context>
 <context>
@@ -234,23 +234,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Відкрити</translation>
+        <translation>Відкрити</translation>
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
-        <translation type="unfinished">Відкрити в новій &amp;вкладці</translation>
+        <translation>Відкрити в новій &amp;вкладці</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Вилучити</translation>
+        <translation>Вилучити</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
-        <translation type="unfinished">Додати закладинки...</translation>
+        <translation>Додати закладинку...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати теку...</translation>
     </message>
 </context>
 <context>
@@ -584,49 +584,49 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати &amp;монітор мережі</translation>
     </message>
     <message>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрити вікно</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation>З&amp;більшити масштаб</translation>
     </message>
     <message>
         <source>Zoom &amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Нормальний масштаб</translation>
     </message>
     <message>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation>З&amp;меншити масштаб</translation>
     </message>
     <message>
         <source>Zoom &amp;Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Масштабувати тільки &amp;текст</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати всі закладинки...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати теку...</translation>
     </message>
     <message>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
-        <translation type="unfinished"></translation>
+        <translation>Про &amp;%1</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Якщо приватний перегляд увімкнено, деякі дії, що стосуються вашої приватності, будуть вимкнені:&lt;ul&gt;&lt;li&gt; Сторінки тенет не додаються до історії.&lt;/li&gt;&lt;li&gt; Елементи автоматично вилучаються з вікна звантажень&lt;/li&gt;&lt;li&gt; Нові куки не зберігаються, до поточних немає доступу.&lt;/li&gt;&lt;li&gt; Піктограми сайтів не зберігатимуться, сесії не будуть збережені.&lt;/li&gt;&lt;li&gt; Пошуки не додані до виринаючого меню в панелі пошуку.&lt;/li&gt;&lt;/ul&gt;Поки не закриєте вікно, ви все ще можете натискати кнопки &quot;Назад&quot; та &quot;Вперед&quot;, щоб повернутись до сторінок, які ви відкривали.</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
 </context>
 <context>
@@ -973,7 +973,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 з %2 (%3/с) - %4</translation>
     </message>
 </context>
 <context>
@@ -989,35 +989,36 @@ Do you want to reload all pages?</source>
     <message>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Активних звантажень: %1
+Ви хочете вийти у будь-якому разі?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Залишилась %n хвилина</numerusform>
+            <numerusform>Залишилось %n хвилини</numerusform>
+            <numerusform>Залишилась %n хвилин</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Залишилась %n секунда</numerusform>
+            <numerusform>Залишилось %n секунди</numerusform>
+            <numerusform>Залишилось %n секунд</numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">байт</translation>
+        <translation>байт</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">кбайт</translation>
+        <translation>кб</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">Мбайт</translation>
+        <translation>Мб</translation>
     </message>
 </context>
 <context>
@@ -1108,7 +1109,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>No translation files are installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не встановлені файли перекладів.</translation>
     </message>
 </context>
 <context>
@@ -1143,55 +1144,57 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation> - помилки SSL</translation>
     </message>
     <message>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Помилки SSL:&lt;br/&gt;&lt;br/&gt;для: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Ви хочете не зважати на ці помилки?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Сертифікати:&lt;br/&gt;%1&lt;br/&gt;Ви хочете прийняти всі ці сертифікати?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Назва</translation>
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Значення</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Монітор мережі</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Запити мережі</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовки запитів</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовки відповідей</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">&amp;Вилучити</translation>
+        <translation>&amp;Вилучити</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Вилучити &amp;всі запити</translation>
     </message>
 </context>
 <context>
@@ -1262,31 +1265,31 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Перенаправлення: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>Метод</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="unfinished">Адреса</translation>
+        <translation>Адреса</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation type="unfinished"></translation>
+        <translation>Відповідь</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation type="unfinished"></translation>
+        <translation>Довжина</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип вмісту</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Інформація</translation>
     </message>
 </context>
 <context>
@@ -1555,43 +1558,43 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Показувати тільки одну кнопку для закривання замість по одній на кожній вкладці</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Бажана мова для перегляду сторінок тенет у:</translation>
     </message>
     <message>
         <source>Block Popup Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Блокувати виринаючі вікна</translation>
     </message>
     <message>
         <source>Opening links</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкриваються посилання</translation>
     </message>
     <message>
         <source>Links that want to open in a new window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Посилання, які хочете відкрити у новому вікні:</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>В новій вибраній вкладці поточного вікна</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>В новій вкладці поточного вікна</translation>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation type="unfinished"></translation>
+        <translation>В поточній вкладці</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (безпечне)</translation>
     </message>
     <message>
         <source>Http (Transparent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (прозоре)</translation>
     </message>
 </context>
 <context>
@@ -1614,11 +1617,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">&amp;Переглянути</translation>
+        <translation>&amp;Переглянути</translation>
     </message>
     <message>
         <source>&amp;Wrap lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Переносити рядки</translation>
     </message>
 </context>
 <context>
@@ -1696,35 +1699,35 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-]</translation>
     </message>
     <message>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-[</translation>
     </message>
     <message>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Збережені вкладки</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">Завантажується...</translation>
+        <translation>Завантажується...</translation>
     </message>
     <message>
         <source>Loading %1% (%2 %3)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантажується %1% (%2 %3)...</translation>
     </message>
     <message>
         <source>Finished loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантаження закінчилось</translation>
     </message>
     <message>
         <source>Failed to load</source>
-        <translation type="unfinished"></translation>
+        <translation>Неможливо завантажити</translation>
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати всі вкладки до закладинок</translation>
     </message>
 </context>
 <context>
@@ -1743,7 +1746,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Припущення</translation>
     </message>
 </context>
 <context>
@@ -1754,19 +1757,19 @@ Do you really want to close this page?
     </message>
     <message>
         <source>When connecting to: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Коли з&apos;єднуємся з: %1.</translation>
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation type="unfinished"></translation>
+        <translation>Перевірте адресу на помилки такі як &lt;b&gt;ww&lt;/b&gt;.arora-browser.org замість &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Якщо ваш комп&apos;ютер або мережа захищена мережевим екраном або проксі, впевніться, що переглядачеві дозволений доступ в мережу.</translation>
     </message>
     <message>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ящо адреса вірна, спробуйте перевірити з&apos;єднання з мережею.</translation>
     </message>
 </context>
 <context>
