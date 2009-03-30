@@ -37,7 +37,6 @@ FORMS += \
     bookmarks.ui \
     downloaditem.ui \
     downloads.ui \
-    history.ui \
     passworddialog.ui \
     proxy.ui \
     searchbanner.ui \
@@ -54,7 +53,6 @@ HEADERS += \
     downloadmanager.h \
     edittableview.h \
     edittreeview.h \
-    history.h \
     locationbar.h \
     locationbar_p.h \
     languagemanager.h \
@@ -86,7 +84,6 @@ SOURCES += \
     downloadmanager.cpp \
     edittableview.cpp \
     edittreeview.cpp \
-    history.cpp \
     locationbar.cpp \
     languagemanager.cpp \
     modelmenu.cpp \
@@ -106,8 +103,9 @@ SOURCES += \
     webviewsearch.cpp \
     xbel.cpp
 
-include(networkmonitor/networkmonitor.pri)
 include(cookiejar/cookiejar.pri)
+include(history/history.pri)
+include(networkmonitor/networkmonitor.pri)
 include(utils/utils.pri)
 
 RESOURCES += \
