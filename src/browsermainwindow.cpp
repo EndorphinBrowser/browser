@@ -561,7 +561,10 @@ void BrowserMainWindow::setupMenu()
     m_viewMenu->addAction(m_viewStopAction);
 
     m_viewReloadAction = new QAction(m_viewMenu);
-    m_viewReloadAction->setShortcuts(QKeySequence::Refresh);
+    shortcuts.clear();
+    shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_R));
+    shortcuts.append(QKeySequence(Qt::Key_F5));
+    m_viewReloadAction->setShortcuts(shortcuts);
     m_tabWidget->addWebAction(m_viewReloadAction, QWebPage::Reload);
     m_viewMenu->addAction(m_viewReloadAction);
 
