@@ -103,9 +103,9 @@ public:
     QAction *showMenuBarAction() const;
 
 public slots:
-    void slotHome();
-    void slotPrivacyChanged(bool isPrivate);
-    void slotZoomTextOnlyChanged(bool textOnly);
+    void goHome();
+    void privacyChanged(bool isPrivate);
+    void zoomTextOnlyChanged(bool textOnly);
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -115,47 +115,47 @@ protected:
 private slots:
     void save();
 
-    void slotLoadProgress(int);
-    void slotUpdateStatusbar(const QString &string);
-    void slotUpdateWindowTitle(const QString &title = QString());
+    void loadProgress(int);
+    void updateStatusbar(const QString &string);
+    void updateWindowTitle(const QString &title = QString());
 
-    void slotPreferences();
+    void preferences();
 
-    void slotFileNew();
-    void slotFileOpen();
-    void slotFilePrintPreview();
-    void slotFilePrint();
-    void slotPrivateBrowsing();
-    void slotFileSaveAs();
-    void slotEditFind();
-    void slotEditFindNext();
-    void slotEditFindPrevious();
-    void slotShowBookmarksDialog();
-    void slotAddBookmark();
-    void slotAddBookmarkFolder();
-    void slotZoomIn();
-    void slotZoomNormal();
-    void slotZoomOut();
-    void slotViewMenuBar();
-    void slotViewToolbar();
-    void slotViewBookmarksBar();
-    void slotViewStatusbar();
-    void slotViewPageSource();
-    void slotViewFullScreen(bool enable);
+    void fileNew();
+    void fileOpen();
+    void filePrintPreview();
+    void filePrint();
+    void privateBrowsing();
+    void fileSaveAs();
+    void editFind();
+    void editFindNext();
+    void editFindPrevious();
+    void showBookmarksDialog();
+    void addBookmark();
+    void addBookmarkFolder();
+    void zoomIn();
+    void zoomNormal();
+    void zoomOut();
+    void viewMenuBar();
+    void viewToolbar();
+    void viewBookmarksBar();
+    void viewStatusbar();
+    void viewPageSource();
+    void viewFullScreen(bool enable);
 
-    void slotWebSearch();
-    void slotClearPrivateData();
-    void slotToggleInspector(bool enable);
-    void slotAboutApplication();
-    void slotDownloadManager();
-    void slotSelectLineEdit();
+    void webSearch();
+    void clearPrivateData();
+    void toggleInspector(bool enable);
+    void aboutApplication();
+    void downloadManager();
+    void selectLineEdit();
 
-    void slotAboutToShowBackMenu();
-    void slotAboutToShowForwardMenu();
-    void slotAboutToShowWindowMenu();
-    void slotOpenActionUrl(QAction *action);
-    void slotShowWindow();
-    void slotSwapFocus();
+    void aboutToShowBackMenu();
+    void aboutToShowForwardMenu();
+    void aboutToShowWindowMenu();
+    void openActionUrl(QAction *action);
+    void showWindow();
+    void swapFocus();
 
     void printRequested(QWebFrame *frame);
     void geometryChangeRequested(const QRect &geometry);
