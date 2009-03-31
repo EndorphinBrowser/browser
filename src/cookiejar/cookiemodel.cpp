@@ -132,7 +132,7 @@ QVariant CookieModel::data(const QModelIndex &index, int role) const
         case 3:
             return cookie.isSecure() ? tr("true") : tr("false");
         case 4:
-            return cookie.expirationDate();
+            return cookie.isSessionCookie() ? tr("Session cookie") : cookie.expirationDate().toString();
         case 5:
             return cookie.value();
         }
