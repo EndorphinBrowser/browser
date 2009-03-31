@@ -270,6 +270,9 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
         soon = soon.addDays(90);
         foreach (QNetworkCookie cookie, cookieList) {
             QList<QNetworkCookie> lst;
+            if (eAllowSession) {
+                cookie.setExpirationDate(QDateTime());
+            }
             if (m_keepCookies == KeepUntilTimeLimit
                 && !cookie.isSessionCookie()
                 && cookie.expirationDate() > soon) {
