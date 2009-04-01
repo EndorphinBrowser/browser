@@ -64,7 +64,7 @@ QList<QWebPluginFactory::Plugin> WebPluginFactory::plugins() const
     if (!m_loaded)
         init();
     QList<QWebPluginFactory::Plugin> plugins;
-    foreach(AroraWebPlugin *plugin, m_plugins)
+    foreach (AroraWebPlugin *plugin, m_plugins)
         plugins.append(plugin->metaPlugin());
     return plugins;
 }
@@ -85,7 +85,7 @@ void WebPluginFactory::init() const
     qDeleteAll(m_plugins);
     m_plugins.clear();
     m_plugins.append(new ClickToFlashPlugin);
-    foreach(AroraWebPlugin *plugin, m_plugins) {
+    foreach (AroraWebPlugin *plugin, m_plugins) {
         foreach (const QWebPluginFactory::MimeType &pluginMimeType, plugin->metaPlugin().mimeTypes)
             m_pluginsCache.insert(pluginMimeType.name, plugin);
     }

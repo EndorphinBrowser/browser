@@ -95,7 +95,7 @@ void NetworkMonitor::currentChanged(const QModelIndex &current, const QModelInde
 
     QNetworkRequest req = m_model->m_requests[row].request;
 
-    foreach(const QByteArray &header, req.rawHeaderList()) {
+    foreach (const QByteArray &header, req.rawHeaderList()) {
         m_requestHeaders->insertRows(0, 1, QModelIndex());
         m_requestHeaders->setData(m_requestHeaders->index(0, 0),
                 QString::fromLatin1(header));
@@ -158,7 +158,7 @@ void RequestModel::update()
         return;
 
     // Save reply headers
-    foreach(const QByteArray &header, reply->rawHeaderList() ) {
+    foreach (const QByteArray &header, reply->rawHeaderList() ) {
         QPair<QByteArray, QByteArray> pair(header, reply->rawHeader(header));
         m_requests[offset].replyHeaders.append(pair);
     }

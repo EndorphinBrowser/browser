@@ -118,7 +118,7 @@ QByteArray AcceptLanguageDialog::httpString(const QStringList &list)
 {
     QStringList processed;
     qreal qvalue = 1.0;
-    foreach(const QString &string, list) {
+    foreach (const QString &string, list) {
         int leftBracket = string.indexOf(QLatin1Char('['));
         int rightBracket = string.indexOf(QLatin1Char(']'));
         QString tag = string.mid(leftBracket + 1, rightBracket - leftBracket - 1);

@@ -101,7 +101,7 @@ void ExplorerStyle::drawPrimitive(PrimitiveElement element, const QStyleOption *
 
                 //We need the bounding rect for all toolbars
                 QList<QToolBar*> toolbars = qFindChildren<QToolBar*>(window);
-                foreach(const QToolBar *tb, toolbars) {
+                foreach (const QToolBar *tb, toolbars) {
                     if (!tb->isFloating()) {
                         QRect rect(tb->mapToParent(tb->rect().topLeft()), tb->rect().size());
                         if (window->toolBarArea(const_cast<QToolBar*>(tb)) == Qt::TopToolBarArea)

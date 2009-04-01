@@ -11,6 +11,7 @@ grep $options 'if(' *
 grep $options 'for(' *
 grep $options 'while(' *
 grep $options 'switch(' *
+grep $options 'foreach(' *
 grep $options ' $' *
 grep $options '^{ }*{' *
 grep $options '){' *
