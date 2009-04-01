@@ -33,8 +33,12 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -180,11 +184,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Name Change</source>
-        <translation>Zmiana nazwy</translation>
+        <translation type="obsolete">Zmiana nazwy</translation>
     </message>
     <message>
         <source>Address Change</source>
-        <translation>Zmiana adresu</translation>
+        <translation type="obsolete">Zmiana adresu</translation>
     </message>
     <message>
         <source>Bookmarks Bar</source>
@@ -202,6 +206,16 @@ p, li { white-space: pre-wrap; }
         <source>Error when loading html bookmarks: %1
 </source>
         <translation>Błąd w trakcie ładowania zakładek HTML: %1</translation>
+    </message>
+    <message>
+        <source>Name Change</source>
+        <comment>Undo bookmark title change</comment>
+        <translation>Zmiana nazwy</translation>
+    </message>
+    <message>
+        <source>Address Change</source>
+        <comment>Undo bookmark url change</comment>
+        <translation>Zmiana adresu</translation>
     </message>
 </context>
 <context>
@@ -736,6 +750,40 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
 </context>
 <context>
+    <name>ClickToFlash</name>
+    <message>
+        <source>Load</source>
+        <translation>Wczytaj</translation>
+    </message>
+    <message>
+        <source>Load All</source>
+        <translation>Wczytaj wszystkie</translation>
+    </message>
+    <message>
+        <source>Add %1 to Whitelist</source>
+        <translation>Dodaj %1 do białej listy</translation>
+    </message>
+    <message>
+        <source>Remove from Whitelist</source>
+        <translation>Usuń z białej listy</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Ustawienia</translation>
+    </message>
+    <message>
+        <source>Load Flash</source>
+        <translation>Wczytaj Flash</translation>
+    </message>
+</context>
+<context>
+    <name>ClickToFlashSettings</name>
+    <message>
+        <source>Whitelist sites</source>
+        <translation>Strony na białej liście</translation>
+    </message>
+</context>
+<context>
     <name>CookieExceptionsModel</name>
     <message>
         <source>Website</source>
@@ -810,6 +858,10 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <message>
         <source>Remove &amp;All Cookies</source>
         <translation>Usuń &amp;wszystkie ciasteczka</translation>
+    </message>
+    <message>
+        <source>Add &amp;Rule</source>
+        <translation>Dodaj &amp;regułę</translation>
     </message>
 </context>
 <context>
@@ -1169,6 +1221,10 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation type="obsolete">&lt;qt&gt;Certyfikaty:&lt;br/&gt;%1&lt;br/&gt;Czy chcesz zaakceptować wszystkie certyfikaty?&lt;/qt&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Certyfikaty:&lt;br/&gt;%1&lt;br/&gt;Czy chcesz zaakceptować wszystkie certyfikaty?&lt;/qt&gt;</translation>
     </message>
 </context>
@@ -1313,15 +1369,15 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation>Etykietka tekstowa</translation>
+        <translation type="obsolete">Etykietka tekstowa</translation>
     </message>
     <message>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="obsolete">&lt;</translation>
     </message>
     <message>
         <source>&gt;</source>
-        <translation>&gt;</translation>
+        <translation type="obsolete">&gt;</translation>
     </message>
     <message>
         <source>Done</source>
@@ -1644,6 +1700,11 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
         <translation>Preferowane języki do przeglądania stron:</translation>
+    </message>
+    <message>
+        <source>Use ClickToFlash on flash plugins</source>
+        <translatorcomment>not sure if ClickToFlash needs to be translated at all...</translatorcomment>
+        <translation>Użyj ClickToFlash dla pluginów flash</translation>
     </message>
 </context>
 <context>
