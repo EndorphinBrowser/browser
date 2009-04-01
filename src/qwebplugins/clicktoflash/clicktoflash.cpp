@@ -110,6 +110,7 @@ void ClickToFlash::load(bool loadAll)
     QString javaScript = QLatin1String(jsFile.readAll());
     QString processedJavaScript = QString(javaScript).arg(loadAll ? QString() : url.toString());
     m_swapping = true;
+    hide();
     view->page()->mainFrame()->evaluateJavaScript(processedJavaScript);
     m_swapping = false;
 }

@@ -342,7 +342,6 @@ void SettingsDialog::saveToSettings()
     BrowserApplication::cookieJar()->loadSettings();
     BrowserApplication::historyManager()->loadSettings();
 
-
     if (BrowserMainWindow *mw = static_cast<BrowserMainWindow*>(parent())) {
         WebView *webView = mw->currentTab();
         if (webView) {

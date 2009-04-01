@@ -83,6 +83,7 @@ void WebPluginFactory::init() const
     m_loaded = true;
     m_pluginsCache.clear();
     qDeleteAll(m_plugins);
+    m_plugins.clear();
     m_plugins.append(new ClickToFlashPlugin);
     foreach(AroraWebPlugin *plugin, m_plugins) {
         foreach (const QWebPluginFactory::MimeType &pluginMimeType, plugin->metaPlugin().mimeTypes)
