@@ -5,7 +5,7 @@
 # Coding style: http://code.google.com/p/arora/wiki/CodingStyle
 #
 
-options="-n --include=*.cpp --include=*.h -r"
+options="-n --exclude=moc_* --exclude=qrc_* --include=*.cpp --include=*.h -r"
 
 grep $options 'if(' *
 grep $options 'for(' *
