@@ -42,11 +42,6 @@ ClickToFlashPlugin::ClickToFlashPlugin()
 {
 }
 
-ClickToFlashPlugin::~ClickToFlashPlugin()
-{
-    save();
-}
-
 void ClickToFlashPlugin::load()
 {
     if (m_loaded)
@@ -104,6 +99,7 @@ void ClickToFlashPlugin::configure()
     ui.whitelist->setModel(model);
     if (dialog.exec() == QDialog::Accepted) {
         m_whitelist = model->stringList();
+        save();
     }
 }
 
@@ -115,10 +111,12 @@ bool ClickToFlashPlugin::onWhitelist(const QString &host) const
 void ClickToFlashPlugin::addToWhitelist(const QString &host)
 {
     m_whitelist.append(host);
+    save();
 }
 
 void ClickToFlashPlugin::removeFromWhitelist(const QString &host)
 {
     m_whitelist.removeOne(host);
+    save();
 }
 

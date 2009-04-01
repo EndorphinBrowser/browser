@@ -36,7 +36,6 @@ class ClickToFlashPlugin : public AroraWebPlugin
 
 public:
     ClickToFlashPlugin();
-    ~ClickToFlashPlugin();
 
     QWebPluginFactory::Plugin metaPlugin();
     QWidget *create(const QString &mimeType, const QUrl &url,
