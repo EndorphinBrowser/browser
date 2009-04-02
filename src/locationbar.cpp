@@ -39,6 +39,7 @@ LocationBarSiteIcon::LocationBarSiteIcon(QWidget *parent)
 {
     resize(QSize(16, 16));
     webViewSiteIconChanged();
+    setCursor(Qt::ArrowCursor);
 }
 
 void LocationBarSiteIcon::setWebView(WebView *webView)
@@ -72,10 +73,16 @@ void LocationBarSiteIcon::mouseMoveEvent(QMouseEvent *event)
         && m_webView) {
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
-        mimeData->setText(QString::fromUtf8(m_webView->url().toEncoded()));
+        QString title = m_webView->title();
+        if (title.isEmpty())
+            title = QString::fromUtf8(m_webView->url().toEncoded());
+        mimeData->setText(title);
         QList<QUrl> urls;
         urls.append(m_webView->url());
         mimeData->setUrls(urls);
+        const QPixmap *p = pixmap();
+        if (p)
+            drag->setPixmap(*p);
         drag->setMimeData(mimeData);
         drag->exec();
     }
