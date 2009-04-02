@@ -27,7 +27,7 @@
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -228,7 +228,7 @@
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="text">
-          <string>Times 16</string>
+          <string notr="true">Times 16</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -258,7 +258,7 @@
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="text">
-          <string>Courier 13</string>
+          <string notr="true">Courier 13</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

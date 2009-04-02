@@ -277,7 +277,7 @@ void BookmarksManager::importBookmarks()
 {
     QString fileName = QFileDialog::getOpenFileName(0, tr("Open File"),
                                                      QString(),
-                                                     tr("XBEL (*.xbel *.xml *.html)"));
+                                                     tr("XBEL") + QLatin1String("(*.xbel *.xml *.html)"));
     if (fileName.isEmpty())
         return;
 
