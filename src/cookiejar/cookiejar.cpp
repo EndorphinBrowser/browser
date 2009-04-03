@@ -433,12 +433,12 @@ void CookieJar::applyRules()
     QList<QNetworkCookie> cookies = allCookies();
     bool changed = false;
     for (int i = cookies.count() - 1; i >= 0; --i) {
-        const QNetworkCookie &q = cookies.at(i);
-        if (isOnDomainList(m_exceptions_block, q.domain())) {
+        const QNetworkCookie &cookie = cookies.at(i);
+        if (isOnDomainList(m_exceptions_block, cookie.domain())) {
             cookies.removeAt(i);
             changed = true;
-        } else if (isOnDomainList(m_exceptions_allowForSession, q.domain())) {
-            const_cast<QNetworkCookie&>(q).setExpirationDate(QDateTime());
+        } else if (isOnDomainList(m_exceptions_allowForSession, cookie.domain())) {
+            const_cast<QNetworkCookie&>(cookie).setExpirationDate(QDateTime());
             changed = true;
         }
     }
