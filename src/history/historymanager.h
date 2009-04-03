@@ -115,6 +115,7 @@ public:
     bool historyContains(const QString &url) const;
     void addHistoryEntry(const QString &url);
     void updateHistoryEntry(const QUrl &url, const QString &title);
+    void removeHistoryEntry(const QUrl &url, const QString &title = QString());
 
     int daysToExpire() const;
     void setDaysToExpire(int limit);
@@ -137,6 +138,7 @@ private slots:
 
 protected:
     void addHistoryEntry(const HistoryEntry &item);
+    void removeHistoryEntry(const HistoryEntry &item);
 
 private:
     void load();

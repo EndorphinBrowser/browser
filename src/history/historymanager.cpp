@@ -231,6 +231,24 @@ void HistoryManager::updateHistoryEntry(const QUrl &url, const QString &title)
     }
 }
 
+void HistoryManager::removeHistoryEntry(const HistoryEntry &item)
+{
+    m_lastSavedUrl.clear();
+    m_history.removeOne(item);
+    emit entryRemoved(item);
+}
+
+void HistoryManager::removeHistoryEntry(const QUrl &url, const QString &title)
+{
+    for (int i = 0; i < m_history.count(); ++i) {
+        if (url == m_history.at(i).url
+            && (title.isEmpty() || title == m_history.at(i).title)) {
+            removeHistoryEntry(m_history.at(i));
+            break;
+        }
+    }
+}
+
 int HistoryManager::daysToExpire() const
 {
     return m_daysToExpire;
