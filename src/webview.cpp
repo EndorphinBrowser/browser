@@ -69,6 +69,7 @@
 #include "browsermainwindow.h"
 #include "cookiejar.h"
 #include "downloadmanager.h"
+#include "historymanager.h"
 #include "networkaccessmanager.h"
 #include "tabwidget.h"
 #include "webpluginfactory.h"
@@ -239,18 +240,24 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
 
     QList<QWebFrame*> frames;
     frames.append(mainFrame());
+
     while (!frames.isEmpty()) {
         QWebFrame *frame = frames.takeFirst();
         if (frame->url() == reply->url()) {
             frame->setHtml(html, reply->url());
+            // Don't put error pages to the history.
+            BrowserApplication::instance()->historyManager()->removeHistoryEntry(reply->url(), frame->title());
             return;
         }
         QList<QWebFrame *> children = frame->childFrames();
         foreach (QWebFrame *frame, children)
             frames.append(frame);
     }
+
     if (m_loadingUrl == reply->url()) {
         mainFrame()->setHtml(html, reply->url());
+        // Don't put error pages to the history.
+        BrowserApplication::instance()->historyManager()->removeHistoryEntry(reply->url(), mainFrame()->title());
     }
 }
 
