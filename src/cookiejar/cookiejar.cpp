@@ -331,7 +331,8 @@ bool CookieJar::isOnDomainList(const QStringList &rules, const QString &domain)
                 return true;
         } else {
             QStringRef domainEnding = domain.rightRef(rule.size() + 1);
-            if (domainEnding.at(0) == QLatin1Char('.')
+            if (!domainEnding.isEmpty()
+                && domainEnding.at(0) == QLatin1Char('.')
                 && domain.endsWith(rule)) {
                 return true;
             }
