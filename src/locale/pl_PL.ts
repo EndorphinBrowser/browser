@@ -200,7 +200,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation>XBEL (*.xbel *.xml *.html)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
@@ -216,6 +216,10 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
         <translation>Zmiana adresu</translation>
+    </message>
+    <message>
+        <source>XBEL</source>
+        <translation>XBEL</translation>
     </message>
 </context>
 <context>
@@ -844,6 +848,10 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
         <source>false</source>
         <translation>fałsz</translation>
     </message>
+    <message>
+        <source>Session cookie</source>
+        <translation>Ciasteczko sesji</translation>
+    </message>
 </context>
 <context>
     <name>CookiesDialog</name>
@@ -1304,7 +1312,7 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>ICON</source>
-        <translation>IKONA</translation>
+        <translation type="obsolete">IKONA</translation>
     </message>
     <message>
         <source>Connect to proxy</source>
@@ -1471,7 +1479,7 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Times 16</source>
-        <translation>Times 16</translation>
+        <translation type="obsolete">Times 16</translation>
     </message>
     <message>
         <source>Select...</source>
@@ -1483,7 +1491,7 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Courier 13</source>
-        <translation>Courier 13</translation>
+        <translation type="obsolete">Courier 13</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -1899,7 +1907,7 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation>Jeśli adres jest prawiedłowy, sprawdź poprawność połączenia internetowego.</translation>
+        <translation>Jeśli adres jest prawidłowy, sprawdź poprawność połączenia internetowego.</translation>
     </message>
 </context>
 <context>
