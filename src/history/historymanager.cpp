@@ -240,7 +240,7 @@ void HistoryManager::removeHistoryEntry(const HistoryEntry &item)
 
 void HistoryManager::removeHistoryEntry(const QUrl &url, const QString &title)
 {
-    for (int i = m_history.count() - 1; i >= 0; --i) {
+    for (int i = 0; i < m_history.count(); ++i) {
         if (url == m_history.at(i).url
             && (title.isEmpty() || title == m_history.at(i).title)) {
             removeHistoryEntry(m_history.at(i));
