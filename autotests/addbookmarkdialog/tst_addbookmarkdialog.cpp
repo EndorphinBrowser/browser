@@ -92,7 +92,7 @@ void tst_AddBookmarkDialog::addbookmarkdialog_data()
 
     // select invalid, menu, toolbar, submenu
     QTest::newRow("cancel")     << "url" << "title" << QDialogButtonBox::Cancel << 0 << 0 << -1;
-    QTest::newRow("ok default") << "url" << "title" << QDialogButtonBox::Ok     << 1 << 0 << -1;
+    QTest::newRow("ok default") << "url" << "title" << QDialogButtonBox::Ok     << 0 << 1 << -1;
     QTest::newRow("ok toolbar") << "url" << "title" << QDialogButtonBox::Ok     << 0 << 1 << 0;
     QTest::newRow("ok menu")    << "url" << "title" << QDialogButtonBox::Ok     << 1 << 0 << 1;
 }
