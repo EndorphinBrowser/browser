@@ -19,6 +19,7 @@
 
 #include <QtTest/QtTest>
 #include <history.h>
+#include <historymanager.h>
 
 class tst_HistoryFilterModel : public QObject
 {
