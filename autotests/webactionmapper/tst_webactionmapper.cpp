@@ -25,6 +25,8 @@
 #include <webactionmapper.h>
 #include <webview.h>
 
+#include "qtest_arora.h"
+
 class tst_WebActionMapper : public QObject
 {
     Q_OBJECT
