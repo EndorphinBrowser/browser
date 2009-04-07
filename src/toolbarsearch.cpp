@@ -89,23 +89,18 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
 {
     completer()->setModel(m_model);
     completer()->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
-    connect(completer(), SIGNAL(activated(const QModelIndex &)),
-            this, SLOT(activated(const QModelIndex &)));
-    connect(completer(), SIGNAL(highlighted(const QModelIndex &)),
-            this, SLOT(highlighted(const QModelIndex &)));
     connect(this, SIGNAL(returnPressed()), SLOT(searchNow()));
     setInactiveText(QLatin1String("Google"));
-
     load();
 }
 
-void ToolbarSearch::activated(const QModelIndex &index)
+void ToolbarSearch::completerActivated(const QModelIndex &index)
 {
-    if (highlighted(index))
+    if (completerHighlighted(index))
         searchNow();
 }
 
-bool ToolbarSearch::highlighted(const QModelIndex &index)
+bool ToolbarSearch::completerHighlighted(const QModelIndex &index)
 {
     if (m_suggestionsItem && m_suggestionsItem->index().row() == index.row())
         return false;
@@ -118,11 +113,19 @@ bool ToolbarSearch::highlighted(const QModelIndex &index)
 void ToolbarSearch::focusInEvent(QFocusEvent *event)
 {
     SearchLineEdit::focusInEvent(event);
+
     // Every time we get a focus in event QLineEdit re-connects...
     disconnect(completer(), SIGNAL(activated(QString)),
                this, SLOT(setText(QString)));
     disconnect(completer(), SIGNAL(highlighted(QString)),
                this, SLOT(_q_completionHighlighted(QString)));
+
+    // And every time it gets a focus out it disconnects everything from the completer to this :(
+    // So we have to re-connect
+    connect(completer(), SIGNAL(activated(const QModelIndex &)),
+            this, SLOT(completerActivated(const QModelIndex &)));
+    connect(completer(), SIGNAL(highlighted(const QModelIndex &)),
+            this, SLOT(completerHighlighted(const QModelIndex &)));
 }
 
 ToolbarSearch::~ToolbarSearch()

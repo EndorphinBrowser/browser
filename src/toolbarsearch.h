@@ -90,8 +90,8 @@ private slots:
     void save();
     void textEdited(const QString &);
     void newSuggestions(const QStringList &suggestions);
-    void activated(const QModelIndex &index);
-    bool highlighted(const QModelIndex &index);
+    void completerActivated(const QModelIndex &index);
+    bool completerHighlighted(const QModelIndex &index);
 
 protected:
     void changeEvent(QEvent *event);
