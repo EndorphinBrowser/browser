@@ -72,6 +72,7 @@
 #include <qcoreapplication.h>
 #include <qsettings.h>
 #include <qstandarditemmodel.h>
+#include <qtimer.h>
 #include <qurl.h>
 #include <qwebsettings.h>
 
@@ -86,6 +87,7 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     , m_model(new QStandardItemModel(this))
     , m_suggestionsItem(0)
     , m_recentSearchesItem(0)
+    , m_suggestTimer(0)
 {
     completer()->setModel(m_model);
     completer()->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
@@ -166,7 +168,19 @@ void ToolbarSearch::textEdited(const QString &text)
     // the object when it isn't needed on startup
     if (!m_googleSuggest->networkAccessManager())
         m_googleSuggest->setNetworkAccessManager(BrowserApplication::networkAccessManager());
-    m_googleSuggest->suggest(text);
+    if (!m_suggestTimer) {
+        m_suggestTimer = new QTimer(this);
+        m_suggestTimer->setSingleShot(true);
+        m_suggestTimer->setInterval(200);
+        connect(m_suggestTimer, SIGNAL(timeout()),
+                this, SLOT(getSuggestions()));
+    }
+    m_suggestTimer->start();
+}
+
+void ToolbarSearch::getSuggestions()
+{
+    m_googleSuggest->suggest(text());
 }
 
 void ToolbarSearch::searchNow()
