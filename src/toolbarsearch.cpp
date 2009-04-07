@@ -164,6 +164,7 @@ void ToolbarSearch::load()
 
 void ToolbarSearch::textEdited(const QString &text)
 {
+    Q_UNUSED(text);
     // delay settings this to prevent BrowserApplication from creating
     // the object when it isn't needed on startup
     if (!m_googleSuggest->networkAccessManager())
