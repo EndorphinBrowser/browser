@@ -49,12 +49,12 @@ public:
     QString currentLanguage() const;
     bool setCurrentLanguage(const QString &language);
     QStringList languages() const;
+    bool isLanguageAvailable(const QString &language) const;
 
 public slots:
     void chooseNewLanguage();
 
 private:
-    bool isLanguageAvailable(const QString &language) const;
     QString translationLocation() const;
     void loadAvailableLanguages() const;
 

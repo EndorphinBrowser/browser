@@ -102,7 +102,12 @@ void tst_LanguageManager::languagemanager()
     manager.languages();
     // spawns an event loop...
     // manager.chooseNewLanguage();
-    QCOMPARE(manager.currentLanguage(), QString());
+
+    QString fallbackLanguage;
+    if (manager.isLanguageAvailable(QLocale::system().name()))
+        fallbackLanguage = QLocale::system().name();
+
+    QCOMPARE(manager.currentLanguage(), fallbackLanguage);
     manager.setCurrentLanguage(QString());
 }
 
@@ -128,16 +133,21 @@ void tst_LanguageManager::chooseNewLanguage()
 
 void tst_LanguageManager::setCurrentLanguage_data()
 {
+    SubLanguageManager manager;
+
+    QString fallbackLanguage;
+    if (manager.isLanguageAvailable(QLocale::system().name()))
+        fallbackLanguage = QLocale::system().name();
+
     QTest::addColumn<QString>("language");
     QTest::addColumn<bool>("success");
     QTest::addColumn<QString>("result");
-    QTest::newRow("null-foo") << QString("foo") << false << QString();
-    QTest::newRow("null-null") << QString() << false << QString();
+    QTest::newRow("null-foo") << QString("foo") << false << fallbackLanguage;
+    QTest::newRow("null-null") << QString() << false << fallbackLanguage;
 
-    SubLanguageManager manager;
     QString validLanguage = manager.languages().value(0);
     if (validLanguage.isEmpty())
-        qWarning() << "no languages to test with";
+        QSKIP("no languages to test with", SkipAll);
     QTest::newRow(validLanguage.toLatin1()) << validLanguage << true << validLanguage;
 }
 
@@ -157,7 +167,7 @@ void tst_LanguageManager::setCurrentLanguage()
     QCOMPARE(manager.setCurrentLanguage(language), success);
     QCOMPARE(manager.currentLanguage(), result);
     qApp->processEvents();
-    QCOMPARE(widget.retranslate, !result.isEmpty());
+    QCOMPARE(widget.retranslate, success);
     QCOMPARE(spy.count(), success ? 1 : 0);
     if (success) {
         QVERIFY(manager.setCurrentLanguage(QString()));
