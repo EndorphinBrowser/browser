@@ -963,7 +963,7 @@ void TabWidget::loadSettings()
     for (int i = 0; i < count(); ++i) {
         WebView *v = webView(i);
         if (v && v->page())
-            v->webPage()->loadSettings();
+            v->loadSettings();
     }
 }
 
