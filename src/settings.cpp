@@ -72,6 +72,7 @@
 #include "networkaccessmanager.h"
 #include "tabwidget.h"
 #include "webpluginfactory.h"
+#include "webpage.h"
 #include "webview.h"
 
 #include <qdesktopservices.h>
@@ -347,6 +348,10 @@ void SettingsDialog::saveToSettings()
         if (webView) {
             webView->webPage()->webPluginFactory()->refreshPlugins();
         }
+    }
+    QList<BrowserMainWindow*> list = BrowserApplication::instance()->mainWindows();
+    foreach (BrowserMainWindow *mainWindow, list) {
+        mainWindow->tabWidget()->loadSettings();
     }
 }
 

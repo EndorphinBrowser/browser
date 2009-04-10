@@ -11,4 +11,5 @@ SUBDIRS  = addbookmarkdialog \
 	tabbar \
 	tabwidget \
 	webactionmapper \
+        webpage \
 	xbel

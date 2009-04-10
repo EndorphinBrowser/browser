@@ -119,7 +119,10 @@ public:
     };
 
     TabWidget(QWidget *parent = 0);
+
+    void loadSettings();
     TabBar *tabBar() { return m_tabBar; }
+    BrowserMainWindow *mainWindow() const;
     void clear();
     void addWebAction(QAction *action, QWebPage::WebAction webAction);
 
@@ -153,7 +156,6 @@ protected:
     void wheelEvent(QWheelEvent *event);
 #endif
     void changeEvent(QEvent *event);
-    BrowserMainWindow *mainWindow();
 
 public slots:
     void loadString(const QString &string, OpenUrlIn tab = CurrentTab);

@@ -66,50 +66,9 @@
 
 #include <qwebview.h>
 
-QT_BEGIN_NAMESPACE
-class QAuthenticator;
-class QMouseEvent;
-class QNetworkProxy;
-class QNetworkReply;
-class QSslError;
-QT_END_NAMESPACE
-
-class TabWidget;
 class BrowserMainWindow;
-class WebPluginFactory;
-class WebPage : public QWebPage
-{
-    Q_OBJECT
-
-signals:
-    void loadingUrl(const QUrl &url);
-
-public:
-    WebPage(QObject *parent = 0);
-    BrowserMainWindow *mainWindow();
-    WebPluginFactory *webPluginFactory();
-
-protected:
-    bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type);
-
-    QWebPage *createWindow(QWebPage::WebWindowType type);
-#if !defined(QT_NO_UITOOLS)
-    QObject *createPlugin(const QString &classId, const QUrl &url, const QStringList &paramNames, const QStringList &paramValues);
-#endif
-
-private slots:
-    void handleUnsupportedContent(QNetworkReply *reply);
-
-private:
-    friend class WebView;
-    TabWidget *tabWidget() const;
-
-    // set the webview mousepressedevent
-    bool m_forceInNewTab;
-    QUrl m_loadingUrl;
-    static WebPluginFactory *s_webPluginFactory;
-};
-
+class TabWidget;
+class WebPage;
 class WebView : public QWebView
 {
     Q_OBJECT
@@ -123,6 +82,7 @@ public:
 
     QString lastStatusBarText() const;
     inline int progress() const { return m_progress; }
+    TabWidget *tabWidget() const;
 
 public slots:
     void zoomIn();
@@ -148,11 +108,10 @@ private slots:
     void loadFinished();
     void setStatusBarText(const QString &string);
     void downloadRequested(const QNetworkRequest &request);
-    void openLinkInNewTab();
+    void openActionUrlInNewTab();
     void openLinkInNewWindow();
     void downloadLinkToDisk();
     void copyLinkToClipboard();
-    void openImageInNewTab();
     void openImageInNewWindow();
     void downloadImageToDisk();
     void copyImageToClipboard();
@@ -169,3 +128,4 @@ private:
 };
 
 #endif
+

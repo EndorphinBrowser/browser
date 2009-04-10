@@ -67,6 +67,7 @@ HEADERS += \
     tabwidget.h \
     toolbarsearch.h \
     webactionmapper.h \
+    webpage.h \
     webview.h \
     webviewsearch.h \
     xbel.h
@@ -96,6 +97,7 @@ SOURCES += \
     tabwidget.cpp \
     toolbarsearch.cpp \
     webactionmapper.cpp \
+    webpage.cpp \
     webview.cpp \
     webviewsearch.cpp \
     xbel.cpp
