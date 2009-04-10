@@ -141,8 +141,7 @@ void tst_Xbel::readProperly()
     QCOMPARE(children[1]->expanded, true);
     QCOMPARE(children[1]->type(), BookmarkNode::Folder);
 
-    // folder with two bookmarks
-    QCOMPARE(children[2]->children().count(), 2);
+    QCOMPARE(children[2]->children().count(), 3);
     QCOMPARE(children[2]->title, QString("Folder Title"));
     QCOMPARE(children[2]->url, QString());
     QCOMPARE(children[2]->expanded, false);
@@ -160,6 +159,8 @@ void tst_Xbel::readProperly()
         QCOMPARE(children[1]->url, QString("http://www.bar.com/"));
         QCOMPARE(children[1]->expanded, false);
         QCOMPARE(children[1]->type(), BookmarkNode::Bookmark);
+
+        QCOMPARE(children[2]->title, QString("Title 3"));
     }
 
     children = root->children();

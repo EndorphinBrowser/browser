@@ -136,8 +136,24 @@ void BookmarkNode::remove(BookmarkNode *child)
 }
 
 
-XbelReader::XbelReader()
+QString XmlEntityResolver::resolveUndeclaredEntity(const QString &entity)
 {
+    if (entity == QLatin1String("nbsp"))
+        return QLatin1String(" ");
+
+    return QString();
+}
+
+XbelReader::XbelReader()
+    : m_entityResolver(0)
+{
+    m_entityResolver = new XmlEntityResolver();
+    setEntityResolver(m_entityResolver);
+}
+
+XbelReader::~XbelReader()
+{
+    delete m_entityResolver;
 }
 
 BookmarkNode *XbelReader::read(const QString &fileName)

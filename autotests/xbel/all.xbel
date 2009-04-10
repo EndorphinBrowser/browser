@@ -15,6 +15,9 @@
         <bookmark href="http://www.bar.com/">
             <title>Title 2</title>
         </bookmark>
+        <bookmark href="http://www.foo.com/">
+            <title>Title&nbsp;3</title>
+        </bookmark>
     </folder>
 
     <folder folded="no">
