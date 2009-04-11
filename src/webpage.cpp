@@ -176,7 +176,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
         frames.append(frame->childFrames());
     }
     if (!notFoundFrame)
-        notFoundFrame = mainFrame();
+        return;
 
     // Generate translated not found error page with an image
     QFile notFoundErrorFile(QLatin1String(":/notfound.html"));
