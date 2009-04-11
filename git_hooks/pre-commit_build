@@ -3,7 +3,7 @@
 # Wherever you are make sure something builds.
 #
 # Feel free to bypass this if the current commit doesn't match the current state.
-
+unset GIT_DIR
 echo "--Attempting to build--"
 if [ -f Makefile ] ; then
     make --quiet
