@@ -12,3 +12,6 @@ Makefile*
 *.swp
 *~
 *.pdb
+massif.out.*
+ms_print.*
+
