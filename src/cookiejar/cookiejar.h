@@ -116,6 +116,9 @@ public:
     void setAllowedCookies(const QStringList &list);
     void setAllowForSessionCookies(const QStringList &list);
 
+    bool filterTrackingCookies() const;
+    void setFilterTrackingCookies(bool filterTrackingCookies);
+
 public slots:
     void clear();
     void loadSettings();
@@ -132,6 +135,7 @@ private:
     void load();
     bool m_loaded;
     AutoSaver *m_saveTimer;
+    bool m_filterTrackingCookies;
 
     AcceptPolicy m_acceptCookies;
     KeepPolicy m_keepCookies;

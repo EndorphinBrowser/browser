@@ -119,6 +119,7 @@ void SettingsDialog::loadDefaults()
     enablePlugins->setChecked(defaultSettings->testAttribute(QWebSettings::PluginsEnabled));
     enableImages->setChecked(defaultSettings->testAttribute(QWebSettings::AutoLoadImages));
     clickToFlash->setChecked(true);
+    filterTrackingCookiesCheckbox->setChecked(true);
 }
 
 void SettingsDialog::loadFromSettings()
@@ -208,6 +209,7 @@ void SettingsDialog::loadFromSettings()
         keepUntilCombo->setCurrentIndex(2);
         break;
     }
+    filterTrackingCookiesCheckbox->setChecked(settings.value(QLatin1String("filterTrackingCookies"), true).toBool());
     settings.endGroup();
 
 
@@ -314,7 +316,7 @@ void SettingsDialog::saveToSettings()
 
     QMetaEnum keepPolicyEnum = jar->staticMetaObject.enumerator(jar->staticMetaObject.indexOfEnumerator("KeepPolicy"));
     settings.setValue(QLatin1String("keepCookiesUntil"), QLatin1String(keepPolicyEnum.valueToKey(keepPolicy)));
-
+    settings.setValue(QLatin1String("filterTrackingCookies"), filterTrackingCookiesCheckbox->isChecked());
     settings.endGroup();
 
     // proxy
