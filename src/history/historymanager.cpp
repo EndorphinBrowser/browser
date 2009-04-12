@@ -138,7 +138,7 @@ void HistoryManager::addHistoryEntry(const QString &url)
     QUrl cleanUrl(url);
     cleanUrl.setPassword(QString());
     cleanUrl.setHost(cleanUrl.host().toLower());
-    HistoryEntry item(cleanUrl.toString(), QDateTime::currentDateTime());
+    HistoryEntry item(atomicString(cleanUrl.toString()), QDateTime::currentDateTime());
     addHistoryEntry(item);
 }
 
@@ -221,7 +221,7 @@ void HistoryManager::updateHistoryEntry(const QUrl &url, const QString &title)
 {
     for (int i = 0; i < m_history.count(); ++i) {
         if (url == m_history.at(i).url) {
-            m_history[i].title = title;
+            m_history[i].title = atomicString(title);
             m_saveTimer->changeOccurred();
             if (m_lastSavedUrl.isEmpty())
                 m_lastSavedUrl = m_history.at(i).url;
@@ -266,6 +266,7 @@ void HistoryManager::setDaysToExpire(int limit)
 void HistoryManager::clear()
 {
     m_history.clear();
+    m_atomicStringHash.clear();
     m_lastSavedUrl.clear();
     m_saveTimer->changeOccurred();
     m_saveTimer->saveIfNeccessary();
@@ -302,6 +303,7 @@ void HistoryManager::load()
     QByteArray data;
     QDataStream stream;
     QBuffer buffer;
+    QString string;
     stream.setDevice(&buffer);
     while (!historyFile.atEnd()) {
         in >> data;
@@ -313,9 +315,11 @@ void HistoryManager::load()
         if (ver != HISTORY_VERSION)
             continue;
         HistoryEntry item;
-        stream >> item.url;
+        stream >> string;
+        item.url = atomicString(string);
         stream >> item.dateTime;
-        stream >> item.title;
+        stream >> string;
+        item.title = atomicString(string);
 
         if (!item.dateTime.isValid())
             continue;
