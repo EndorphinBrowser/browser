@@ -104,6 +104,7 @@ private slots:
     void showEnginesMenu();
     void changeCurrentEngine();
     void showDialog();
+    void addEngineFromUrl();
 
 protected:
     void changeEvent(QEvent *event);

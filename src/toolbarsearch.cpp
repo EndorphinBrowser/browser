@@ -72,16 +72,20 @@
 #include "opensearchmanager.h"
 #include "searchbutton.h"
 #include "tabwidget.h"
+#include "webpage.h"
+#include "webview.h"
 
 #include <qabstractitemview.h>
 #include <qaction.h>
 #include <qcompleter.h>
 #include <qcoreapplication.h>
+#include <qfile.h>
 #include <qmenu.h>
 #include <qsettings.h>
 #include <qstandarditemmodel.h>
 #include <qtimer.h>
 #include <qurl.h>
+#include <qwebframe.h>
 #include <qwebsettings.h>
 
 /*
@@ -298,6 +302,35 @@ void ToolbarSearch::showEnginesMenu()
         }
     }
 
+    WebView *webView = BrowserMainWindow::parentWindow(this)->currentTab();
+    QList<WebPageLinkedResource> engines = webView->webPage()->linkedResources(QLatin1String("search"));
+
+    if (!engines.empty())
+        menu.addSeparator();
+
+    for (int i = 0; i < engines.count(); i++) {
+        WebPageLinkedResource engine = engines.at(i);
+
+        QUrl url = QUrl(engine.href);
+        QString title = engine.title;
+        QString mimetype = engine.type;
+
+        if (mimetype != QLatin1String("application/opensearchdescription+xml"))
+            continue;
+        if (url.isEmpty())
+            continue;
+
+        if (url.isRelative())
+            url = webView->url().resolved(url);
+
+        if (title.isEmpty())
+            title = webView->title().isEmpty() ? url.host() : webView->title();
+
+        QAction *action = menu.addAction(tr("Add '%1'").arg(title), this, SLOT(addEngineFromUrl()));
+        action->setData(url);
+        action->setIcon(webView->icon());
+    }
+
     menu.addSeparator();
     QAction *showManager = menu.addAction(tr("Manage Search Engines..."));
     connect(showManager, SIGNAL(triggered()),
@@ -315,6 +348,19 @@ void ToolbarSearch::changeCurrentEngine()
         QString name = action->data().toString();
         m_openSearchManager->setCurrentName(name);
     }
+}
+
+void ToolbarSearch::addEngineFromUrl()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action)
+        return;
+    QVariant variant = action->data();
+    if (!variant.canConvert<QUrl>())
+        return;
+    QUrl url = variant.toUrl();
+
+    BrowserApplication::openSearchManager()->addEngine(url);
 }
 
 void ToolbarSearch::showDialog()
