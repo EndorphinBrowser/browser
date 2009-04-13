@@ -481,6 +481,8 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
             this, SLOT(webViewTitleChanged(const QString &)));
     connect(webView, SIGNAL(urlChanged(const QUrl &)),
             this, SLOT(webViewUrlChanged(const QUrl &)));
+    connect(webView, SIGNAL(search(const QUrl&, TabWidget::OpenUrlIn)),
+            this, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
     connect(webView->page(), SIGNAL(windowCloseRequested()),
             this, SLOT(windowCloseRequested()));
     connect(webView->page(), SIGNAL(printRequested(QWebFrame *)),

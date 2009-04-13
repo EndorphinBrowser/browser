@@ -69,6 +69,7 @@
 #include "opensearchengine.h"
 #include "opensearchmanager.h"
 #include "searchbutton.h"
+#include "tabwidget.h"
 
 #include <qabstractitemview.h>
 #include <qcompleter.h>
@@ -240,7 +241,7 @@ void ToolbarSearch::searchNow()
     }
 
     QUrl searchUrl = m_openSearchManager->current()->searchUrl(searchText);
-    emit search(searchUrl);
+    emit search(searchUrl, TabWidget::CurrentTab);
 }
 
 void ToolbarSearch::newSuggestions(const QStringList &suggestions)

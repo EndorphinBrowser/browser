@@ -65,6 +65,8 @@
 
 #include "searchlineedit.h"
 
+#include "tabwidget.h"
+
 class AutoSaver;
 class GoogleSuggest;
 class OpenSearchEngine;
@@ -79,7 +81,7 @@ class ToolbarSearch : public SearchLineEdit
     Q_OBJECT
 
 signals:
-    void search(const QUrl &url);
+    void search(const QUrl &url, TabWidget::OpenUrlIn openIn);
 
 public:
     ToolbarSearch(QWidget *parent = 0);

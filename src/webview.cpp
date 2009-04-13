@@ -68,6 +68,8 @@
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "downloadmanager.h"
+#include "opensearchengine.h"
+#include "opensearchmanager.h"
 #include "webpage.h"
 
 #include <qclipboard.h>
@@ -151,6 +153,25 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         menu->addAction(tr("&Save Image"), this, SLOT(downloadImageToDisk()));
         menu->addAction(tr("&Copy Image"), this, SLOT(copyImageToClipboard()));
         menu->addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(r.imageUrl().toString());
+    }
+
+    if (!page()->selectedText().isEmpty()) {
+        if (menu->isEmpty()) {
+            menu->addAction(pageAction(QWebPage::Copy));
+        } else {
+            menu->addSeparator();
+        }
+        QMenu *searchMenu = menu->addMenu(tr("Search with..."));
+
+        QList<QString> list = BrowserApplication::openSearchManager()->nameList();
+        for (int i = 0; i < list.count(); ++i) {
+            QString name = list.at(i);
+            QAction *action = searchMenu->addAction(name);
+            action->setData(name);
+            action->setIcon(BrowserApplication::openSearchManager()->engine(name)->icon());
+        }
+
+        connect(searchMenu, SIGNAL(triggered(QAction *)), this, SLOT(searchRequested(QAction *)));
     }
 
 #if QT_VERSION >= 0x040500
@@ -256,6 +277,21 @@ void WebView::bookmarkLink()
         AddBookmarkDialog dialog;
         dialog.setUrl(QString::fromUtf8(action->data().toUrl().toEncoded()));
         dialog.exec();
+    }
+}
+
+void WebView::searchRequested(QAction *action)
+{
+    QString searchText = page()->selectedText();
+
+    if (searchText.isEmpty())
+        return;
+
+    QVariant index = action->data();
+
+    if (index.canConvert<QString>()) {
+        OpenSearchEngine *engine = BrowserApplication::openSearchManager()->engine(index.toString());
+        emit search(engine->searchUrl(searchText), TabWidget::NewSelectedTab);
     }
 }
 
