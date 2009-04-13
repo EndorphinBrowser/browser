@@ -102,6 +102,7 @@ include(cookiejar/cookiejar.pri)
 include(history/history.pri)
 include(locationbar/locationbar.pri)
 include(networkmonitor/networkmonitor.pri)
+include(opensearch/opensearch.pri)
 include(qwebplugins/qwebplugins.pri)
 include(utils/utils.pri)
 

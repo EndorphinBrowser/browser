@@ -76,6 +76,7 @@ class DownloadManager;
 class HistoryManager;
 class NetworkAccessManager;
 class LanguageManager;
+class OpenSearchManager;
 class BrowserApplication : public SingleApplication
 {
     Q_OBJECT
@@ -99,6 +100,8 @@ public:
     static NetworkAccessManager *networkAccessManager();
     static BookmarksManager *bookmarksManager();
     static LanguageManager *languageManager();
+    static OpenSearchManager *openSearchManager();
+
     static QString dataDirectory();
 
     Qt::MouseButtons eventMouseButtons() const;
@@ -149,6 +152,7 @@ private:
     static NetworkAccessManager *s_networkAccessManager;
     static BookmarksManager *s_bookmarksManager;
     static LanguageManager *s_languageManager;
+    static OpenSearchManager *s_openSearchManager;
 
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
     QByteArray m_lastSession;

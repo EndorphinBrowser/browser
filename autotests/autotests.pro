@@ -8,9 +8,13 @@ SUBDIRS  = \
     historymanager \
     languagemanager \
     lineedit \
+    opensearchengine \
+    opensearchreader \
+    opensearchwriter \
     searchlineedit \
     tabbar \
     tabwidget \
     webactionmapper \
     webpage \
+    xbel
     xbel
