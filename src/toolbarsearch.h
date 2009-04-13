@@ -67,6 +67,8 @@
 
 class AutoSaver;
 class GoogleSuggest;
+class OpenSearchEngine;
+class OpenSearchManager;
 class QModelIndex;
 class QStandardItem;
 class QStandardItemModel;
@@ -88,6 +90,8 @@ public slots:
     void searchNow();
 
 private slots:
+    void currentEngineChanged();
+    void engineIconChanged();
     void save();
     void textEdited(const QString &);
     void newSuggestions(const QStringList &suggestions);
@@ -104,11 +108,14 @@ private:
     void setupMenu();
     void retranslate();
 
+    OpenSearchManager *m_openSearchManager;
+    QString m_currentEngine;
+    bool m_suggestionsEnabled;
+
     AutoSaver *m_autosaver;
     int m_maxSavedSearches;
     QStringList m_recentSearches;
     QStringList m_suggestions;
-    GoogleSuggest *m_googleSuggest;
     QStandardItemModel *m_model;
 
     QStandardItem *m_suggestionsItem;

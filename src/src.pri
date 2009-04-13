@@ -108,6 +108,7 @@ include(utils/utils.pri)
 
 RESOURCES += \
     $$PWD/data/data.qrc \
+    $$PWD/data/searchengines/searchengines.qrc \
     $$PWD/htmls/htmls.qrc
 
 DISTFILES += ../AUTHORS \

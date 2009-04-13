@@ -6,7 +6,6 @@ HEADERS += \
     editlistview.h \
     edittableview.h \
     edittreeview.h \
-    googlesuggest.h \
     lineedit.h \
     lineedit_p.h \
     proxystyle.h \
@@ -18,7 +17,6 @@ SOURCES += \
     editlistview.cpp \
     edittableview.cpp \
     edittreeview.cpp \
-    googlesuggest.cpp \
     lineedit.cpp \
     singleapplication.cpp \
     squeezelabel.cpp

@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,8 +65,9 @@
 
 #include "autosaver.h"
 #include "browserapplication.h"
-#include "googlesuggest.h"
 #include "networkaccessmanager.h"
+#include "opensearchengine.h"
+#include "opensearchmanager.h"
 #include "searchbutton.h"
 
 #include <qabstractitemview.h>
@@ -83,6 +85,8 @@
  */
 ToolbarSearch::ToolbarSearch(QWidget *parent)
     : SearchLineEdit(parent)
+    , m_openSearchManager(0)
+    , m_suggestionsEnabled(true)
     , m_autosaver(new AutoSaver(this))
     , m_maxSavedSearches(10)
     , m_model(new QStandardItemModel(this))
@@ -94,11 +98,44 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     searchButton()->setShowMenuTriangle(true);
     connect(searchButton(), SIGNAL(clicked()),
             completer(), SLOT(complete()));
+    m_openSearchManager = BrowserApplication::instance()->openSearchManager();
+
     completer()->setModel(m_model);
     completer()->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+
     connect(this, SIGNAL(returnPressed()), SLOT(searchNow()));
-    setInactiveText(QLatin1String("Google"));
+
     load();
+
+    currentEngineChanged();
+}
+
+void ToolbarSearch::currentEngineChanged()
+{
+    if (m_suggestionsEnabled) {
+        if (m_openSearchManager->engineExists(m_currentEngine)) {
+            OpenSearchEngine *oldEngine = m_openSearchManager->engine(m_currentEngine);
+            disconnect(oldEngine, SIGNAL(suggestions(const QStringList &)),
+                       this, SLOT(newSuggestions(const QStringList &)));
+            disconnect(oldEngine, SIGNAL(iconChanged()),
+                       this, SLOT(engineIconChanged()));
+        }
+
+        OpenSearchEngine *newEngine = m_openSearchManager->current();
+        connect(newEngine, SIGNAL(suggestions(const QStringList &)),
+                this, SLOT(newSuggestions(const QStringList &)));
+        connect(newEngine, SIGNAL(iconChanged()),
+                this, SLOT(engineIconChanged()));
+    }
+
+    setInactiveText(m_openSearchManager->currentName());
+    searchButton()->setImage(m_openSearchManager->current()->icon().toImage());
+    m_currentEngine = m_openSearchManager->currentName();
+}
+
+void ToolbarSearch::engineIconChanged()
+{
+    searchButton()->setImage(m_openSearchManager->current()->icon().toImage());
 }
 
 void ToolbarSearch::completerActivated(const QModelIndex &index)
@@ -155,14 +192,13 @@ void ToolbarSearch::load()
     settings.beginGroup(QLatin1String("toolbarsearch"));
     m_recentSearches = settings.value(QLatin1String("recentSearches")).toStringList();
     m_maxSavedSearches = settings.value(QLatin1String("maximumSaved"), m_maxSavedSearches).toInt();
-    bool useGoogleSuggest = settings.value(QLatin1String("useGoogleSuggest"), true).toBool();
-    if (useGoogleSuggest) {
-        m_googleSuggest = new GoogleSuggest(this);
-        connect(m_googleSuggest, SIGNAL(suggestions(const QStringList &, const QString &)),
-                this, SLOT(newSuggestions(const QStringList &)));
+
+    m_suggestionsEnabled = settings.value(QLatin1String("useSuggestions"), true).toBool();
+    if (m_suggestionsEnabled) {
         connect(this, SIGNAL(textEdited(const QString &)),
                 this, SLOT(textEdited(const QString &)));
     }
+
     settings.endGroup();
     setupMenu();
 }
@@ -172,8 +208,6 @@ void ToolbarSearch::textEdited(const QString &text)
     Q_UNUSED(text);
     // delay settings this to prevent BrowserApplication from creating
     // the object when it isn't needed on startup
-    if (!m_googleSuggest->networkAccessManager())
-        m_googleSuggest->setNetworkAccessManager(BrowserApplication::networkAccessManager());
     if (!m_suggestTimer) {
         m_suggestTimer = new QTimer(this);
         m_suggestTimer->setSingleShot(true);
@@ -186,7 +220,7 @@ void ToolbarSearch::textEdited(const QString &text)
 
 void ToolbarSearch::getSuggestions()
 {
-    m_googleSuggest->suggest(text());
+    m_openSearchManager->current()->requestSuggestions(text());
 }
 
 void ToolbarSearch::searchNow()
@@ -205,13 +239,8 @@ void ToolbarSearch::searchNow()
         m_autosaver->changeOccurred();
     }
 
-    QUrl url(QLatin1String("http://www.google.com/search"));
-    url.addEncodedQueryItem(QUrl::toPercentEncoding(QLatin1String("q")),
-            QUrl::toPercentEncoding(searchText));
-    url.addQueryItem(QLatin1String("ie"), QLatin1String("UTF-8"));
-    url.addQueryItem(QLatin1String("oe"), QLatin1String("UTF-8"));
-    url.addQueryItem(QLatin1String("client"), QCoreApplication::applicationName());
-    emit search(url);
+    QUrl searchUrl = m_openSearchManager->current()->searchUrl(searchText);
+    emit search(searchUrl);
 }
 
 void ToolbarSearch::newSuggestions(const QStringList &suggestions)
