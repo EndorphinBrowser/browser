@@ -69,7 +69,7 @@ void OpenSearchManager::setCurrentName(const QString &name)
     emit currentChanged();
 }
 
-OpenSearchEngine *OpenSearchManager::current()
+OpenSearchEngine *OpenSearchManager::current() const
 {
     if (currentName().isEmpty() || !m_engines.contains(currentName()))
         return 0;
@@ -98,12 +98,12 @@ bool OpenSearchManager::engineExists(const QString &name)
     return m_engines.contains(name);
 }
 
-QList<QString> OpenSearchManager::nameList()
+QList<QString> OpenSearchManager::nameList() const
 {
     return m_engines.keys();
 }
 
-OpenSearchEngineModel *OpenSearchManager::model()
+OpenSearchEngineModel *OpenSearchManager::model() const
 {
     return m_model;
 }
@@ -170,6 +170,8 @@ bool OpenSearchManager::addEngine(OpenSearchEngine *description)
 
 void OpenSearchManager::removeEngine(const QString &name)
 {
+    Q_ASSERT(m_engines.count() == 0);
+
     if (!m_engines.contains(name))
         return;
 
@@ -177,9 +179,37 @@ void OpenSearchManager::removeEngine(const QString &name)
     m_engines[name] = 0;
     m_engines.remove(name);
 
+    QString file = QDir(enginesDirectory()).filePath(fileName(name));
+    QFile::remove(file);
+
+    if (name == currentName()) {
+        setCurrentName(m_engines.keys().at(0));
+        emit currentChanged();
+    }
+
     m_autoSaver->changeOccurred();
     m_model->reset();
     emit changed();
+}
+
+QString OpenSearchManager::fileName(const QString &name)
+{
+    QString fileName;
+
+    // Strip special characters from the name.
+    for (int i = 0; i < name.count(); i++) {
+        if (name.at(i).isSpace()) {
+            fileName.append(QLatin1Char('_'));
+            continue;
+        }
+
+        if (name.at(i).isLetterOrNumber())
+            fileName.append(name.at(i));
+    }
+
+    fileName.append(QLatin1String(".xml"));
+
+    return fileName;
 }
 
 void OpenSearchManager::saveDirectory(const QString &dirName)
@@ -191,8 +221,8 @@ void OpenSearchManager::saveDirectory(const QString &dirName)
     OpenSearchWriter writer;
 
     foreach (OpenSearchEngine *engine, m_engines.values()) {
-        QString fileName = QLatin1String(QFile::encodeName(engine->name())) + QLatin1String(".xml");
-        fileName = dir.absoluteFilePath(fileName);
+        QString name = fileName(engine->name());
+        QString fileName = dir.filePath(name);
 
         QFile file(fileName);
         file.open(QIODevice::WriteOnly);
@@ -205,10 +235,7 @@ void OpenSearchManager::saveDirectory(const QString &dirName)
 
 void OpenSearchManager::save()
 {
-    QString dir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    dir += QLatin1String("/searchengines");
-
-    saveDirectory(dir);
+    saveDirectory(enginesDirectory());
 
     QSettings settings;
     settings.beginGroup(QLatin1String("openSearch"));
@@ -237,10 +264,7 @@ bool OpenSearchManager::loadDirectory(const QString &dirName)
 
 void OpenSearchManager::load()
 {
-    QString dir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    dir += QLatin1String("/searchengines");
-
-    if (!loadDirectory(dir))
+    if (!loadDirectory(enginesDirectory()))
         loadDirectory(QLatin1String(":/searchengines"));
 
     // get current engine
@@ -259,6 +283,12 @@ void OpenSearchManager::load()
 void OpenSearchManager::restoreDefaults()
 {
     loadDirectory(QLatin1String(":/searchengines"));
+}
+
+QString OpenSearchManager::enginesDirectory()
+{
+    QDir directory(QDesktopServices::storageLocation(QDesktopServices::DataLocation));
+    return directory.filePath(QLatin1String("searchengines"));
 }
 
 bool OpenSearchManager::confirmAddition(OpenSearchEngine *engine)

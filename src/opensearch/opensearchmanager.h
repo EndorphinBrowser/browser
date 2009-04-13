@@ -41,19 +41,19 @@ public:
     OpenSearchManager(QObject *parent = 0);
     ~OpenSearchManager();
 
-    QList<QString> nameList();
+    QList<QString> nameList() const;
 
     QString currentName() const;
     void setCurrentName(const QString &currentName);
 
-    OpenSearchEngine *current();
+    OpenSearchEngine *current() const;
     void setCurrent(OpenSearchEngine *current);
 
     OpenSearchEngine *engine(const QString &name);
 
     bool engineExists(const QString &name);
 
-    OpenSearchEngineModel *model();
+    OpenSearchEngineModel *model() const;
 
     void addEngine(const QUrl &url);
     bool addEngine(const QString &fileName);
@@ -68,8 +68,11 @@ protected:
     void load();
     bool loadDirectory(const QString &dirName);
     void saveDirectory(const QString &dirName);
+    QString enginesDirectory();
 
+private:
     bool confirmAddition(OpenSearchEngine *engine);
+    QString fileName(const QString &engineName);
 
 protected slots:
     void engineFromUrlAvailable();
