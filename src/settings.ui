@@ -536,6 +536,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="quitAsLastTabClosed">
+         <property name="text">
+          <string>Quit the application when last tab is closed</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QGroupBox" name="openLinksGroupBox">
          <property name="title">
           <string>Opening links</string>

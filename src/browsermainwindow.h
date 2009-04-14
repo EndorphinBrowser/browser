@@ -115,6 +115,8 @@ protected:
 private slots:
     void save();
 
+    void lastTabClosed();
+
     void loadProgress(int);
     void updateStatusbar(const QString &string);
     void updateWindowTitle(const QString &title = QString());

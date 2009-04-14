@@ -230,6 +230,7 @@ void SettingsDialog::loadFromSettings()
 #if QT_VERSION >= 0x040500
     oneCloseButton->setChecked(settings.value(QLatin1String("oneCloseButton"),false).toBool());
 #endif
+    quitAsLastTabClosed->setChecked(settings.value(QLatin1String("quitAsLastTabClosed"), true).toBool());
     openTargetBlankLinksIn->setCurrentIndex(settings.value(QLatin1String("openTargetBlankLinksIn"), TabWidget::NewSelectedTab).toInt());
     openLinksFromAppsIn->setCurrentIndex(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
     settings.endGroup();
@@ -336,6 +337,7 @@ void SettingsDialog::saveToSettings()
 #if QT_VERSION >= 0x040500
     settings.setValue(QLatin1String("oneCloseButton"), oneCloseButton->isChecked());
 #endif
+    settings.setValue(QLatin1String("quitAsLastTabClosed"), quitAsLastTabClosed->isChecked());
     settings.setValue(QLatin1String("openTargetBlankLinksIn"), openTargetBlankLinksIn->currentIndex());
     settings.setValue(QLatin1String("openLinksFromAppsIn"), openLinksFromAppsIn->currentIndex());
     settings.endGroup();
