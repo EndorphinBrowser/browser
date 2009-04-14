@@ -223,8 +223,10 @@ void TabBar::closeOtherTabs()
 void TabBar::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if (!childAt(event->pos())
-        // Remove the line below when QTabWidget does not have a one pixel frame
-        && event->pos().y() < (y() + height())) {
+#if QT_VERSION < 0x040500
+        && event->pos().y() < (y() + height())
+#endif
+        && event->button() == Qt::LeftButton) {
         emit newTab();
         return;
     }
