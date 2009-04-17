@@ -160,19 +160,21 @@ bool CookieExceptionsModel::removeRows(int row, int count, const QModelIndex &pa
 
     int lastRow = row + count - 1;
     beginRemoveRows(parent, row, lastRow);
+
     for (int i = lastRow; i >= row; --i) {
-        if (i < m_allowedCookies.count()) {
-            m_allowedCookies.removeAt(row);
+        int rowToRemove = i;
+        if (rowToRemove < m_allowedCookies.count()) {
+            m_allowedCookies.removeAt(rowToRemove);
             continue;
         }
-        i = i - m_allowedCookies.count();
-        if (i < m_blockedCookies.count()) {
-            m_blockedCookies.removeAt(row);
+        rowToRemove = rowToRemove - m_allowedCookies.count();
+        if (rowToRemove < m_blockedCookies.count()) {
+            m_blockedCookies.removeAt(rowToRemove);
             continue;
         }
-        i = i - m_blockedCookies.count();
-        if (i < m_sessionCookies.count()) {
-            m_sessionCookies.removeAt(row);
+        rowToRemove = rowToRemove - m_blockedCookies.count();
+        if (rowToRemove < m_sessionCookies.count()) {
+            m_sessionCookies.removeAt(rowToRemove);
             continue;
         }
     }
