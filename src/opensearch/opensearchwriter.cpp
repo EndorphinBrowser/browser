@@ -110,7 +110,7 @@ void OpenSearchWriter::write(OpenSearchEngine *engine)
     }
 
     if (!engine->imageUrl().isEmpty())
-        writeTextElement(QLatin1String("Image"), engine->imageUrl().toString());
+        writeTextElement(QLatin1String("Image"), QLatin1String(engine->imageUrl().toEncoded()));
 
     writeEndElement();
     writeEndDocument();

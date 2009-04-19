@@ -77,7 +77,7 @@ protected:
 
 private:
     bool confirmAddition(OpenSearchEngine *engine);
-    QString fileName(const QString &engineName);
+    QString generateEngineFileName(const QString &engineName) const;
 
 protected slots:
     void engineFromUrlAvailable();

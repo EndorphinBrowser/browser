@@ -29,11 +29,11 @@ class OpenSearchWriter : public QXmlStreamWriter
 public:
     OpenSearchWriter();
 
-    bool write(QIODevice *device, OpenSearchEngine *description);
-    bool write(QByteArray *array, OpenSearchEngine *description);
+    bool write(QIODevice *device, OpenSearchEngine *engine);
+    bool write(QByteArray *array, OpenSearchEngine *engine);
 
 private:
-    void write(OpenSearchEngine *description);
+    void write(OpenSearchEngine *engine);
 
 };
 

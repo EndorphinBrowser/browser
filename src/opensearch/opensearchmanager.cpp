@@ -66,6 +66,7 @@ void OpenSearchManager::setCurrentName(const QString &name)
 {
     m_current = name;
     emit currentChanged();
+    emit changed();
 }
 
 OpenSearchEngine *OpenSearchManager::currentEngine() const
@@ -153,7 +154,6 @@ bool OpenSearchManager::addEngine(OpenSearchEngine *description)
     description->setNetworkAccessManager(BrowserApplication::networkAccessManager());
     m_engines[description->name()] = description;
 
-    m_autoSaver->changeOccurred();
     model()->reset();
     emit changed();
 
@@ -162,7 +162,8 @@ bool OpenSearchManager::addEngine(OpenSearchEngine *description)
 
 void OpenSearchManager::removeEngine(const QString &name)
 {
-    Q_ASSERT(m_engines.count() == 0);
+    if (m_engines.count() <= 1)
+        return;
 
     if (!m_engines.contains(name))
         return;
@@ -171,7 +172,7 @@ void OpenSearchManager::removeEngine(const QString &name)
     m_engines[name] = 0;
     m_engines.remove(name);
 
-    QString file = QDir(enginesDirectory()).filePath(fileName(name));
+    QString file = QDir(enginesDirectory()).filePath(generateEngineFileName(name));
     QFile::remove(file);
 
     if (name == currentName()) {
@@ -179,12 +180,11 @@ void OpenSearchManager::removeEngine(const QString &name)
         emit currentChanged();
     }
 
-    m_autoSaver->changeOccurred();
     model()->reset();
     emit changed();
 }
 
-QString OpenSearchManager::fileName(const QString &engineName)
+QString OpenSearchManager::generateEngineFileName(const QString &engineName) const
 {
     QString fileName;
 
@@ -207,17 +207,19 @@ QString OpenSearchManager::fileName(const QString &engineName)
 void OpenSearchManager::saveDirectory(const QString &dirName)
 {
     QDir dir;
-    dir.mkpath(dirName);
+    if (!dir.mkpath(dirName))
+        return;
     dir.setPath(dirName);
 
     OpenSearchWriter writer;
 
     foreach (OpenSearchEngine *engine, m_engines.values()) {
-        QString name = fileName(engine->name());
+        QString name = generateEngineFileName(engine->name());
         QString fileName = dir.filePath(name);
 
         QFile file(fileName);
-        file.open(QIODevice::WriteOnly);
+        if (!file.open(QIODevice::WriteOnly))
+            continue;
 
         writer.write(&file, engine);
 
@@ -248,9 +250,6 @@ bool OpenSearchManager::loadDirectory(const QString &dirName)
     while (iterator.hasNext())
         addEngine(iterator.next());
 
-    m_autoSaver->changeOccurred();
-    emit changed();
-
     return true;
 }
 
@@ -267,7 +266,6 @@ void OpenSearchManager::load()
     if (!m_engines.contains(m_current) && m_engines.count() > 0)
         m_current = m_engines.keys().at(0);
 
-    m_autoSaver->changeOccurred();
     emit currentChanged();
     emit changed();
 }
