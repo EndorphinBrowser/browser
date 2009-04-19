@@ -43,10 +43,7 @@ OpenSearchManager::OpenSearchManager(QObject *parent)
     : QObject(parent)
     , m_autoSaver(new AutoSaver(this))
     , m_model(0)
-    , m_engineFromUrlRequest(0)
 {
-    m_model = new OpenSearchEngineModel(&m_engines, this);
-
     load();
 }
 
@@ -55,7 +52,9 @@ OpenSearchManager::~OpenSearchManager()
     m_autoSaver->saveIfNeccessary();
     qDeleteAll(m_engines.values());
     m_engines.clear();
-    delete m_model;
+
+    if (m_model)
+        delete m_model;
 }
 
 QString OpenSearchManager::currentName() const
@@ -69,7 +68,7 @@ void OpenSearchManager::setCurrentName(const QString &name)
     emit currentChanged();
 }
 
-OpenSearchEngine *OpenSearchManager::current() const
+OpenSearchEngine *OpenSearchManager::currentEngine() const
 {
     if (currentName().isEmpty() || !m_engines.contains(currentName()))
         return 0;
@@ -77,7 +76,7 @@ OpenSearchEngine *OpenSearchManager::current() const
     return m_engines[currentName()];
 }
 
-void OpenSearchManager::setCurrent(OpenSearchEngine *description)
+void OpenSearchManager::setCurrentEngine(OpenSearchEngine *description)
 {
     if (!description)
         return;
@@ -98,13 +97,16 @@ bool OpenSearchManager::engineExists(const QString &name)
     return m_engines.contains(name);
 }
 
-QList<QString> OpenSearchManager::nameList() const
+QStringList OpenSearchManager::allEnginesNames() const
 {
     return m_engines.keys();
 }
 
-OpenSearchEngineModel *OpenSearchManager::model() const
+OpenSearchEngineModel *OpenSearchManager::model()
 {
+    if (!m_model)
+        m_model = new OpenSearchEngineModel(&m_engines, this);
+
     return m_model;
 }
 
@@ -113,31 +115,21 @@ void OpenSearchManager::addEngine(const QUrl &url)
     if (!url.isValid())
         return;
 
-    if (m_engineFromUrlRequest != 0) {
-        m_engineFromUrlReply->abort();
-        delete m_engineFromUrlRequest;
-    }
-
-    m_engineFromUrlRequest = new QNetworkRequest(url);
-    m_engineFromUrlReply = BrowserApplication::networkAccessManager()->get(*m_engineFromUrlRequest);
-    connect(m_engineFromUrlReply, SIGNAL(finished()), this, SLOT(engineFromUrlAvailable()));
-    m_engineFromUrlReply->setParent(this);
+    QNetworkReply *reply = BrowserApplication::networkAccessManager()->get(QNetworkRequest(url));
+    connect(reply, SIGNAL(finished()), this, SLOT(engineFromUrlAvailable()));
+    reply->setParent(this);
 }
 
 bool OpenSearchManager::addEngine(const QString &fileName)
 {
     QFile file(fileName);
-    file.open(QIODevice::ReadOnly);
+    if (!file.open(QIODevice::ReadOnly))
+        return false;
 
     OpenSearchReader reader;
     OpenSearchEngine *description = reader.read(&file);
 
     file.close();
-
-    if (!description->isValid()) {
-        delete description;
-        return false;
-    }
 
     if (!addEngine(description)) {
         delete description;
@@ -162,7 +154,7 @@ bool OpenSearchManager::addEngine(OpenSearchEngine *description)
     m_engines[description->name()] = description;
 
     m_autoSaver->changeOccurred();
-    m_model->reset();
+    model()->reset();
     emit changed();
 
     return true;
@@ -188,23 +180,23 @@ void OpenSearchManager::removeEngine(const QString &name)
     }
 
     m_autoSaver->changeOccurred();
-    m_model->reset();
+    model()->reset();
     emit changed();
 }
 
-QString OpenSearchManager::fileName(const QString &name)
+QString OpenSearchManager::fileName(const QString &engineName)
 {
     QString fileName;
 
     // Strip special characters from the name.
-    for (int i = 0; i < name.count(); i++) {
-        if (name.at(i).isSpace()) {
+    for (int i = 0; i < engineName.count(); i++) {
+        if (engineName.at(i).isSpace()) {
             fileName.append(QLatin1Char('_'));
             continue;
         }
 
-        if (name.at(i).isLetterOrNumber())
-            fileName.append(name.at(i));
+        if (engineName.at(i).isLetterOrNumber())
+            fileName.append(engineName.at(i));
     }
 
     fileName.append(QLatin1String(".xml"));
@@ -270,7 +262,7 @@ void OpenSearchManager::load()
     // get current engine
     QSettings settings;
     settings.beginGroup(QLatin1String("openSearch"));
-    m_current = settings.value(QLatin1String("engine"), 0).toString();
+    m_current = settings.value(QLatin1String("engine"), QLatin1String("Google")).toString();
     settings.endGroup();
     if (!m_engines.contains(m_current) && m_engines.count() > 0)
         m_current = m_engines.keys().at(0);
@@ -285,7 +277,7 @@ void OpenSearchManager::restoreDefaults()
     loadDirectory(QLatin1String(":/searchengines"));
 }
 
-QString OpenSearchManager::enginesDirectory()
+QString OpenSearchManager::enginesDirectory() const
 {
     QDir directory(QDesktopServices::storageLocation(QDesktopServices::DataLocation));
     return directory.filePath(QLatin1String("searchengines"));
@@ -304,19 +296,22 @@ bool OpenSearchManager::confirmAddition(OpenSearchEngine *engine)
 
 void OpenSearchManager::engineFromUrlAvailable()
 {
-    if (m_engineFromUrlReply->error() != QNetworkReply::NoError) {
-        m_engineFromUrlReply->close();
-        delete m_engineFromUrlRequest;
-        m_engineFromUrlRequest = 0;
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+
+    if (!reply)
+        return;
+
+    if (reply->error() != QNetworkReply::NoError) {
+        reply->close();
+        reply->deleteLater();
         return;
     }
 
     OpenSearchReader reader;
-    OpenSearchEngine *engine = reader.read(m_engineFromUrlReply);
+    OpenSearchEngine *engine = reader.read(reply);
 
-    m_engineFromUrlReply->close();
-    delete m_engineFromUrlRequest;
-    m_engineFromUrlRequest = 0;
+    reply->close();
+    reply->deleteLater();
 
     if (!engine->isValid()) {
         delete engine;

@@ -22,7 +22,7 @@
 #include "opensearchengine.h"
 
 #include <qdebug.h>
-#include <qfile.h>
+#include <qiodevice.h>
 
 OpenSearchReader::OpenSearchReader()
     : QXmlStreamReader()
@@ -58,14 +58,14 @@ OpenSearchEngine *OpenSearchReader::read(const QString &data)
 
 OpenSearchEngine *OpenSearchReader::read()
 {
-    OpenSearchEngine *description = new OpenSearchEngine();
+    OpenSearchEngine *engine = new OpenSearchEngine();
 
     while (!isStartElement() && !atEnd())
         readNext();
 
     if (name() != QLatin1String("OpenSearchDescription")
         || namespaceUri() != QLatin1String("http://a9.com/-/spec/opensearch/1.1/"))
-        return description;
+        return engine;
 
     while (!(isEndElement() && name() == QLatin1String("OpenSearchDescription")) && !atEnd()) {
         readNext();
@@ -74,9 +74,9 @@ OpenSearchEngine *OpenSearchReader::read()
             continue;
 
         if (name() == QLatin1String("ShortName")) {
-            description->setName(readElementText());
+            engine->setName(readElementText());
         } else if (name() == QLatin1String("Description")) {
-            description->setDescription(readElementText());
+            engine->setDescription(readElementText());
         } else if (name() == QLatin1String("Url")) {
 
             QString type = attributes().value(QLatin1String("type")).toString();
@@ -107,27 +107,27 @@ OpenSearchEngine *OpenSearchReader::read()
             }
 
             if (type == QLatin1String("application/x-suggestions+json")) {
-                description->setSuggestionsUrl(url);
-                description->setSuggestionsParameters(parameters);
+                engine->setSuggestionsUrl(url);
+                engine->setSuggestionsParameters(parameters);
             } else {
-                description->setSearchUrl(url);
-                description->setSearchParameters(parameters);
+                engine->setSearchUrl(url);
+                engine->setSearchParameters(parameters);
             }
 
         } else if (name() == QLatin1String("Image")) {
-             description->setIconUrl(readElementText());
+             engine->setImageUrl(readElementText());
         }
 
-        if (!description->name().isEmpty()
-            && !description->description().isEmpty()
-            && !description->suggestionsUrl().isEmpty()
-            && !description->searchUrl().isEmpty()
-            && !description->iconUrl().isEmpty())
+        if (!engine->name().isEmpty()
+            && !engine->description().isEmpty()
+            && !engine->suggestionsUrl().isEmpty()
+            && !engine->searchUrl().isEmpty()
+            && !engine->imageUrl().isEmpty())
             break;
     }
 
     if (hasError())
         qWarning() << "Error:" << errorString() << lineNumber();
 
-    return description;
+    return engine;
 }

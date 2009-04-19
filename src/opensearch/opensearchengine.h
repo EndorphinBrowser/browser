@@ -22,7 +22,7 @@
 #define OPENSEARCHDESCRIPTION_H
 
 #include <qhash.h>
-#include <qpixmap.h>
+#include <qimage.h>
 #include <qstring.h>
 #include <qurl.h>
 
@@ -35,7 +35,7 @@ class OpenSearchEngine : public QObject
     Q_OBJECT
 
 signals:
-    void iconChanged();
+    void imageChanged();
     void suggestions(const QStringList &suggestions);
 
 public:
@@ -63,11 +63,11 @@ public:
     QHash<QString, QString> suggestionsParameters() const;
     void setSuggestionsParameters(const QHash<QString, QString> &suggestionsParameters);
 
-    QUrl iconUrl() const;
-    void setIconUrl(const QUrl &url);
+    QUrl imageUrl() const;
+    void setImageUrl(const QUrl &url);
 
-    QPixmap icon() const;
-    void setIcon(const QPixmap &icon);
+    QImage image() const;
+    void setImage(const QImage &image);
 
     bool isValid() const;
 
@@ -82,18 +82,18 @@ public slots:
 
 protected:
     QString parseTemplate(const QString &searchTerm, QString templ) const;
-    void loadIcon();
+    void loadImage();
 
 private slots:
-    void iconObtained();
+    void imageObtained();
     void suggestionsObtained();
 
 private:
     QString m_name;
     QString m_description;
 
-    QUrl m_iconUrl;
-    QPixmap m_icon;
+    QUrl m_imageUrl;
+    QImage m_image;
 
     QString m_searchUrl;
     QString m_suggestionsUrl;
@@ -102,11 +102,7 @@ private:
 
     QNetworkAccessManager *m_networkAccessManager;
 
-    QNetworkRequest *m_suggestionsRequest;
     QNetworkReply *m_suggestionsReply;
-
-    QNetworkRequest *m_iconRequest;
-    QNetworkReply *m_iconReply;
 };
 
 #endif //OPENSEARCHDESCRIPTION_H

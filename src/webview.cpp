@@ -163,12 +163,12 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         }
         QMenu *searchMenu = menu->addMenu(tr("Search with..."));
 
-        QList<QString> list = BrowserApplication::openSearchManager()->nameList();
+        QList<QString> list = BrowserApplication::openSearchManager()->allEnginesNames();
         for (int i = 0; i < list.count(); ++i) {
             QString name = list.at(i);
             QAction *action = searchMenu->addAction(name);
             action->setData(name);
-            action->setIcon(BrowserApplication::openSearchManager()->engine(name)->icon());
+            action->setIcon(QIcon(QPixmap::fromImage(BrowserApplication::openSearchManager()->engine(name)->image())));
         }
 
         connect(searchMenu, SIGNAL(triggered(QAction *)), this, SLOT(searchRequested(QAction *)));

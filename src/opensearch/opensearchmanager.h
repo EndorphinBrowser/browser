@@ -22,6 +22,7 @@
 #define OPENSEARCHMANAGER_H
 
 #include <qobject.h>
+
 #include <qhash.h>
 #include <qpixmap.h>
 #include <qurl.h>
@@ -37,23 +38,27 @@ class OpenSearchManager : public QObject
 {
     Q_OBJECT
 
+signals:
+    void changed();
+    void currentChanged();
+
 public:
     OpenSearchManager(QObject *parent = 0);
     ~OpenSearchManager();
 
-    QList<QString> nameList() const;
+    QStringList allEnginesNames() const;
 
     QString currentName() const;
     void setCurrentName(const QString &currentName);
 
-    OpenSearchEngine *current() const;
-    void setCurrent(OpenSearchEngine *current);
+    OpenSearchEngine *currentEngine() const;
+    void setCurrentEngine(OpenSearchEngine *current);
 
     OpenSearchEngine *engine(const QString &name);
 
     bool engineExists(const QString &name);
 
-    OpenSearchEngineModel *model() const;
+    OpenSearchEngineModel *model();
 
     void addEngine(const QUrl &url);
     bool addEngine(const QString &fileName);
@@ -68,7 +73,7 @@ protected:
     void load();
     bool loadDirectory(const QString &dirName);
     void saveDirectory(const QString &dirName);
-    QString enginesDirectory();
+    QString enginesDirectory() const;
 
 private:
     bool confirmAddition(OpenSearchEngine *engine);
@@ -77,19 +82,12 @@ private:
 protected slots:
     void engineFromUrlAvailable();
 
-signals:
-    void changed();
-    void currentChanged();
-
 private:
     AutoSaver *m_autoSaver;
 
     OpenSearchEngineModel *m_model;
     QHash<QString, OpenSearchEngine *> m_engines;
     QString m_current;
-
-    QNetworkRequest *m_engineFromUrlRequest;
-    QNetworkReply *m_engineFromUrlReply;
 };
 
 #endif //OPENSEARCHMANAGER_H

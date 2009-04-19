@@ -55,7 +55,7 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
         return engine->name();
     break;
     case Qt::DecorationRole:
-        return engine->icon();
+        return engine->image();
     break;
     case Qt::ToolTipRole:
         QString description = tr("<strong>Description:</strong> %1").arg(engine->description());

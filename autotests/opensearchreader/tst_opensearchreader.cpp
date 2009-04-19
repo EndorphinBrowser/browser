@@ -68,16 +68,16 @@ void tst_OpenSearchReader::validFile()
 {
     QFile file(QLatin1String("valid.xml"));
     OpenSearchReader reader;
-    OpenSearchEngine *description = reader.read(&file);
+    OpenSearchEngine *engine = reader.read(&file);
 
-    QVERIFY(description->isValid());
-    QCOMPARE(description->name(), QLatin1String("Wikipedia (en)"));
-    QCOMPARE(description->description(), QLatin1String("Full text search in the English Wikipedia"));
-    QCOMPARE(description->searchUrl(), QLatin1String("http://en.wikipedia.org/bar"));
-    QCOMPARE(description->suggestionsUrl(), QLatin1String("http://en.wikipedia.org/foo"));
-    QCOMPARE(description->iconUrl().toString(), QLatin1String("http://en.wikipedia.org/favicon.ico"));
+    QVERIFY(engine->isValid());
+    QCOMPARE(engine->name(), QLatin1String("Wikipedia (en)"));
+    QCOMPARE(engine->description(), QLatin1String("Full text search in the English Wikipedia"));
+    QCOMPARE(engine->searchUrl(), QLatin1String("http://en.wikipedia.org/bar"));
+    QCOMPARE(engine->suggestionsUrl(), QLatin1String("http://en.wikipedia.org/foo"));
+    QCOMPARE(engine->imageUrl().toString(), QLatin1String("http://en.wikipedia.org/favicon.ico"));
 
-    delete description;
+    delete engine;
 }
 
 void tst_OpenSearchReader::validByteArray()
@@ -94,29 +94,29 @@ void tst_OpenSearchReader::validByteArray()
     data.append("</OpenSearchDescription>");
 
     OpenSearchReader reader;
-    OpenSearchEngine *description = reader.read(data);
+    OpenSearchEngine *engine = reader.read(data);
 
-    QVERIFY(description->isValid());
-    QCOMPARE(description->name(), QLatin1String("Google"));
-    QCOMPARE(description->description(), QLatin1String("Google Web Search"));
-    QCOMPARE(description->searchUrl(), QLatin1String("http://www.google.com/search?bar"));
-    QCOMPARE(description->suggestionsUrl(), QLatin1String("http://suggestqueries.google.com/complete/foo"));
-    QCOMPARE(description->iconUrl().toString(), QLatin1String("http://www.google.com/favicon.ico"));
+    QVERIFY(engine->isValid());
+    QCOMPARE(engine->name(), QLatin1String("Google"));
+    QCOMPARE(engine->description(), QLatin1String("Google Web Search"));
+    QCOMPARE(engine->searchUrl(), QLatin1String("http://www.google.com/search?bar"));
+    QCOMPARE(engine->suggestionsUrl(), QLatin1String("http://suggestqueries.google.com/complete/foo"));
+    QCOMPARE(engine->imageUrl().toString(), QLatin1String("http://www.google.com/favicon.ico"));
 
-    delete description;
+    delete engine;
 }
 
 void tst_OpenSearchReader::invalidFile()
 {
     QFile file(QLatin1String("invalid.xml"));
     OpenSearchReader reader;
-    OpenSearchEngine *description = reader.read(&file);
+    OpenSearchEngine *engine = reader.read(&file);
 
-    QVERIFY(!description->isValid());
-    QCOMPARE(description->name(), QLatin1String("Wikipedia (en)"));
-    QCOMPARE(description->description(), QString());
+    QVERIFY(!engine->isValid());
+    QCOMPARE(engine->name(), QLatin1String("Wikipedia (en)"));
+    QCOMPARE(engine->description(), QString());
 
-    delete description;
+    delete engine;
 }
 
 void tst_OpenSearchReader::invalidByteArray()
@@ -130,44 +130,44 @@ void tst_OpenSearchReader::invalidByteArray()
     data.append("</OpenSearchDescription>");
 
     OpenSearchReader reader;
-    OpenSearchEngine *description = reader.read(data);
+    OpenSearchEngine *engine = reader.read(data);
 
-    QVERIFY(!description->isValid()); // lacking in namespace URI
-    QCOMPARE(description->name(), QString());
-    QCOMPARE(description->description(), QString());
-    QCOMPARE(description->searchUrl(), QString());
+    QVERIFY(!engine->isValid()); // lacking in namespace URI
+    QCOMPARE(engine->name(), QString());
+    QCOMPARE(engine->description(), QString());
+    QCOMPARE(engine->searchUrl(), QString());
 
-    delete description;
+    delete engine;
 }
 
 void tst_OpenSearchReader::urlParameters()
 {
     QFile file(QLatin1String("urlparams.xml"));
     OpenSearchReader reader;
-    OpenSearchEngine *description = reader.read(&file);
+    OpenSearchEngine *engine = reader.read(&file);
 
-    QVERIFY(description->isValid());
-    QCOMPARE(description->name(), QLatin1String("GitHub"));
-    QCOMPARE(description->description(), QLatin1String("Search GitHub"));
-    QCOMPARE(description->searchUrl(), QLatin1String("http://github.com/search"));
-    QCOMPARE(description->suggestionsUrl(), QString());
+    QVERIFY(engine->isValid());
+    QCOMPARE(engine->name(), QLatin1String("GitHub"));
+    QCOMPARE(engine->description(), QLatin1String("Search GitHub"));
+    QCOMPARE(engine->searchUrl(), QLatin1String("http://github.com/search"));
+    QCOMPARE(engine->suggestionsUrl(), QString());
 
-    QCOMPARE(description->searchParameters().count(), 2);
-    QVERIFY(description->searchParameters().contains(QLatin1String("q")));
-    QCOMPARE(description->searchParameters().value(QLatin1String("q")), QLatin1String("{searchTerms}"));
-    QCOMPARE(description->searchParameters().value(QLatin1String("b")), QLatin1String("foo"));
+    QCOMPARE(engine->searchParameters().count(), 2);
+    QVERIFY(engine->searchParameters().contains(QLatin1String("q")));
+    QCOMPARE(engine->searchParameters().value(QLatin1String("q")), QLatin1String("{searchTerms}"));
+    QCOMPARE(engine->searchParameters().value(QLatin1String("b")), QLatin1String("foo"));
 
-    delete description;
+    delete engine;
 }
 
 void tst_OpenSearchReader::emptyByteArray()
 {
     OpenSearchReader reader;
-    OpenSearchEngine *description = reader.read(QByteArray());
+    OpenSearchEngine *engine = reader.read(QByteArray());
 
-    QVERIFY(!description->isValid());
+    QVERIFY(!engine->isValid());
 
-    delete description;
+    delete engine;
 }
 
 void tst_OpenSearchReader::infinitiveLoops()
@@ -175,8 +175,8 @@ void tst_OpenSearchReader::infinitiveLoops()
     QString xml("<foo><bar></bar></foo>");
     OpenSearchReader reader;
 
-    OpenSearchEngine *description = reader.read(xml);
-    QVERIFY(!description->isValid());
+    OpenSearchEngine *engine = reader.read(xml);
+    QVERIFY(!engine->isValid());
 }
 
 QTEST_MAIN(tst_OpenSearchReader)

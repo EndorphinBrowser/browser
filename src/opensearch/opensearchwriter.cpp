@@ -23,7 +23,7 @@
 
 #include <qbuffer.h>
 #include <qdebug.h>
-#include <qfile.h>
+#include <qiodevice.h>
 
 OpenSearchWriter::OpenSearchWriter()
     : QXmlStreamWriter()
@@ -31,51 +31,51 @@ OpenSearchWriter::OpenSearchWriter()
     setAutoFormatting(true);
 }
 
-bool OpenSearchWriter::write(QIODevice *device, OpenSearchEngine *description)
+bool OpenSearchWriter::write(QIODevice *device, OpenSearchEngine *engine)
 {
-    if (!description)
+    if (!engine)
         return false;
 
     if (!device->isOpen())
         device->open(QIODevice::WriteOnly);
 
     setDevice(device);
-    write(description);
+    write(engine);
     return true;
 }
 
-bool OpenSearchWriter::write(QByteArray *array, OpenSearchEngine *description)
+bool OpenSearchWriter::write(QByteArray *array, OpenSearchEngine *engine)
 {
-    if (!description)
+    if (!engine)
         return false;
 
     QBuffer buffer(array);
-    write(&buffer, description);
+    write(&buffer, engine);
     return true;
 }
 
-void OpenSearchWriter::write(OpenSearchEngine *description)
+void OpenSearchWriter::write(OpenSearchEngine *engine)
 {
     writeStartDocument();
     writeStartElement(QLatin1String("OpenSearchDescription"));
     writeDefaultNamespace(QLatin1String("http://a9.com/-/spec/opensearch/1.1/"));
 
-    if (!description->name().isEmpty())
-        writeTextElement(QLatin1String("ShortName"), description->name());
+    if (!engine->name().isEmpty())
+        writeTextElement(QLatin1String("ShortName"), engine->name());
 
-    if (!description->description().isEmpty())
-        writeTextElement(QLatin1String("Description"), description->description());
+    if (!engine->description().isEmpty())
+        writeTextElement(QLatin1String("Description"), engine->description());
 
-    if (!description->searchUrl().isEmpty()) {
+    if (!engine->searchUrl().isEmpty()) {
         writeStartElement(QLatin1String("Url"));
         writeAttribute(QLatin1String("method"), QLatin1String("get"));
-        writeAttribute(QLatin1String("template"), description->searchUrl());
+        writeAttribute(QLatin1String("template"), engine->searchUrl());
 
-        if (!description->searchParameters().empty()) {
+        if (!engine->searchParameters().empty()) {
             writeNamespace(QLatin1String("http://a9.com/-/spec/opensearch/extensions/parameters/1.0/"), QLatin1String("p"));
 
-            QHash<QString, QString>::const_iterator end = description->searchParameters().constEnd();
-            QHash<QString, QString>::const_iterator i = description->searchParameters().constBegin();
+            QHash<QString, QString>::const_iterator end = engine->searchParameters().constEnd();
+            QHash<QString, QString>::const_iterator i = engine->searchParameters().constBegin();
             for (; i != end; ++i) {
                 writeStartElement(QLatin1String("p:Parameter"));
                 writeAttribute(QLatin1String("name"), i.key());
@@ -87,17 +87,17 @@ void OpenSearchWriter::write(OpenSearchEngine *description)
         writeEndElement();
     }
 
-    if (!description->suggestionsUrl().isEmpty()) {
+    if (!engine->suggestionsUrl().isEmpty()) {
         writeStartElement(QLatin1String("Url"));
         writeAttribute(QLatin1String("method"), QLatin1String("get"));
         writeAttribute(QLatin1String("type"), QLatin1String("application/x-suggestions+json"));
-        writeAttribute(QLatin1String("template"), description->suggestionsUrl());
+        writeAttribute(QLatin1String("template"), engine->suggestionsUrl());
 
-        if (!description->suggestionsParameters().empty()) {
+        if (!engine->suggestionsParameters().empty()) {
             writeNamespace(QLatin1String("http://a9.com/-/spec/opensearch/extensions/parameters/1.0/"), QLatin1String("p"));
 
-            QHash<QString, QString>::const_iterator end = description->suggestionsParameters().constEnd();
-            QHash<QString, QString>::const_iterator i = description->suggestionsParameters().constBegin();
+            QHash<QString, QString>::const_iterator end = engine->suggestionsParameters().constEnd();
+            QHash<QString, QString>::const_iterator i = engine->suggestionsParameters().constBegin();
             for (; i != end; ++i) {
                 writeStartElement(QLatin1String("p:Parameter"));
                 writeAttribute(QLatin1String("name"), i.key());
@@ -109,8 +109,8 @@ void OpenSearchWriter::write(OpenSearchEngine *description)
         writeEndElement();
     }
 
-    if (!description->iconUrl().isEmpty())
-        writeTextElement(QLatin1String("Image"), description->iconUrl().toString());
+    if (!engine->imageUrl().isEmpty())
+        writeTextElement(QLatin1String("Image"), engine->imageUrl().toString());
 
     writeEndElement();
     writeEndDocument();

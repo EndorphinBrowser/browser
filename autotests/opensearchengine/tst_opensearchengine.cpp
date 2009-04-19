@@ -34,7 +34,7 @@ public slots:
     void cleanup();
 
 private slots:
-    void iconLoading();
+    void imageLoading();
 };
 
 // This will be called before the first test function is executed.
@@ -59,27 +59,27 @@ void tst_OpenSearchEngine::cleanup()
 {
 }
 
-void tst_OpenSearchEngine::iconLoading()
+void tst_OpenSearchEngine::imageLoading()
 {
-    OpenSearchEngine *description = new OpenSearchEngine();
+    OpenSearchEngine *engine = new OpenSearchEngine();
 
-    description->setNetworkAccessManager(new QNetworkAccessManager());
+    engine->setNetworkAccessManager(new QNetworkAccessManager());
 
-    QPixmap icon(1, 1);
-    icon.fill();
+    QPixmap image(1, 1);
+    image.fill();
 
     QBuffer imageBuffer;
     imageBuffer.open(QBuffer::ReadWrite);
-    icon.save(&imageBuffer, "PNG");
+    image.save(&imageBuffer, "PNG");
 
-    QSignalSpy signalSpy(description, SIGNAL(iconChanged()));
-    description->setIconUrl(QUrl(QString("data:image/png;base64,").append(imageBuffer.buffer().toBase64())));
+    QSignalSpy signalSpy(engine, SIGNAL(imageChanged()));
+    engine->setImageUrl(QUrl(QString("data:image/png;base64,").append(imageBuffer.buffer().toBase64())));
 
     QTest::qWait(500);
 
     QCOMPARE(signalSpy.count(), 1);
 
-    delete description;
+    delete engine;
 }
 
 QTEST_MAIN(tst_OpenSearchEngine)

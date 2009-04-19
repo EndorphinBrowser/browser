@@ -47,7 +47,10 @@ OpenSearchDialog::OpenSearchDialog(QWidget *parent)
 
 void OpenSearchDialog::slotAddClicked()
 {
-    QStringList fileNames = QFileDialog::getOpenFileNames(this);
+    QStringList fileNames = QFileDialog::getOpenFileNames(this,
+                                                          tr("Open File"),
+                                                          QString(),
+                                                          tr("Open Search") + QLatin1String(" (*.xml)"));
 
     foreach (const QString &fileName, fileNames) {
         if (!BrowserApplication::openSearchManager()->addEngine(fileName)) {

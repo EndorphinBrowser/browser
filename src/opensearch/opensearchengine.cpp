@@ -30,10 +30,7 @@
 OpenSearchEngine::OpenSearchEngine(QObject *parent)
     : QObject(parent)
     , m_networkAccessManager(0)
-    , m_suggestionsRequest(0)
     , m_suggestionsReply(0)
-    , m_iconRequest(0)
-    , m_iconReply(0)
 {
 }
 
@@ -155,73 +152,68 @@ void OpenSearchEngine::setSuggestionsParameters(const QHash<QString, QString> &s
     m_suggestionsParameters = suggestionsParameters;
 }
 
-QUrl OpenSearchEngine::iconUrl() const
+QUrl OpenSearchEngine::imageUrl() const
 {
-    return m_iconUrl;
+    return m_imageUrl;
 }
 
-void OpenSearchEngine::setIconUrl(const QUrl &iconUrl)
+void OpenSearchEngine::setImageUrl(const QUrl &imageUrl)
 {
-    m_iconUrl = iconUrl;
+    m_imageUrl = imageUrl;
 
-    loadIcon();
+    loadImage();
 }
 
-void OpenSearchEngine::loadIcon()
+void OpenSearchEngine::loadImage()
 {
-    if (!m_networkAccessManager || !m_iconUrl.isValid())
+    if (!m_networkAccessManager || !m_imageUrl.isValid())
         return;
 
-    if (m_iconRequest) {
-        m_iconReply->abort();
-        delete m_iconRequest;
-    }
-
-    m_iconRequest = new QNetworkRequest(m_iconUrl);
-    m_iconReply = m_networkAccessManager->get(*m_iconRequest);
-    connect(m_iconReply, SIGNAL(finished()), this, SLOT(iconObtained()));
+    QNetworkReply *reply = m_networkAccessManager->get(QNetworkRequest(m_imageUrl));
+    connect(reply, SIGNAL(finished()), this, SLOT(imageObtained()));
 }
 
-void OpenSearchEngine::iconObtained()
+void OpenSearchEngine::imageObtained()
 {
-    QByteArray response = m_iconReply->readAll();
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
 
-    m_iconReply->close();
-    delete m_iconRequest;
-    m_iconRequest = 0;
+    if (!reply)
+        return;
+
+    QByteArray response = reply->readAll();
+
+    reply->close();
+    reply->deleteLater();
 
     if (response.isEmpty())
         return;
 
-    m_icon.loadFromData(response);
+    m_image.loadFromData(response);
 
-    emit iconChanged();
+    emit imageChanged();
 }
 
-QPixmap OpenSearchEngine::icon() const
+QImage OpenSearchEngine::image() const
 {
-    if (m_icon.isNull())
-        return QPixmap(QLatin1String(":defaulticon.png")).scaled(16, 16);
+    if (m_image.isNull())
+        return QImage(QLatin1String(":defaulticon.png"));
 
-    return m_icon;
+    return m_image;
 }
 
-void OpenSearchEngine::setIcon(const QPixmap &icon)
+void OpenSearchEngine::setImage(const QImage &image)
 {
-    m_icon = icon;
+    m_image = image;
 }
 
 bool OpenSearchEngine::isValid() const
 {
-    return (!m_name.isEmpty()
-            && !m_description.isEmpty()
-            && !m_searchUrl.isEmpty());
+    return (!m_name.isEmpty() && !m_searchUrl.isEmpty());
 }
 
 bool OpenSearchEngine::operator==(const OpenSearchEngine &other) const
 {
-    return (m_name == other.name()
-            && m_searchUrl == other.searchUrl());
+    return (m_name == other.name() && m_searchUrl == other.searchUrl());
 }
 
 bool OpenSearchEngine::operator<(const OpenSearchEngine &other) const
@@ -239,14 +231,11 @@ void OpenSearchEngine::setNetworkAccessManager(QNetworkAccessManager *manager)
     if (!manager)
         return;
 
-    if (m_networkAccessManager)
-        delete m_networkAccessManager;
-
     m_networkAccessManager = manager;
 
-    // Once we have set new network access manager, we can acually load the icon.
-    if (!m_iconUrl.isEmpty() && m_icon.isNull())
-        loadIcon();
+    // Once we have set new network access manager, we can actually load the image.
+    if (!m_imageUrl.isEmpty() && m_image.isNull())
+        loadImage();
 }
 
 void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
@@ -259,13 +248,13 @@ void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
     if (!m_networkAccessManager)
         return;
 
-    if (m_suggestionsRequest) {
+    if (m_suggestionsReply) {
         m_suggestionsReply->abort();
-        delete m_suggestionsRequest;
+        delete m_suggestionsReply;
+        m_suggestionsReply = 0;
     }
 
-    m_suggestionsRequest = new QNetworkRequest(suggestionsUrl(searchTerm));
-    m_suggestionsReply = m_networkAccessManager->get(*m_suggestionsRequest);
+    m_suggestionsReply = m_networkAccessManager->get(QNetworkRequest(suggestionsUrl(searchTerm)));
     connect(m_suggestionsReply, SIGNAL(finished()), this, SLOT(suggestionsObtained()));
 }
 
@@ -275,8 +264,8 @@ void OpenSearchEngine::suggestionsObtained()
     response = response.trimmed();
 
     m_suggestionsReply->close();
-    delete m_suggestionsRequest;
-    m_suggestionsRequest = 0;
+    delete m_suggestionsReply;
+    m_suggestionsReply = 0;
 
     if (response.isEmpty())
         return;

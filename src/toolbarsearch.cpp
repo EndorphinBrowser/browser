@@ -133,25 +133,25 @@ void ToolbarSearch::currentEngineChanged()
             OpenSearchEngine *oldEngine = m_openSearchManager->engine(m_currentEngine);
             disconnect(oldEngine, SIGNAL(suggestions(const QStringList &)),
                        this, SLOT(newSuggestions(const QStringList &)));
-            disconnect(oldEngine, SIGNAL(iconChanged()),
-                       this, SLOT(engineIconChanged()));
+            disconnect(oldEngine, SIGNAL(imageChanged()),
+                       this, SLOT(engineImageChanged()));
         }
 
-        OpenSearchEngine *newEngine = m_openSearchManager->current();
+        OpenSearchEngine *newEngine = m_openSearchManager->currentEngine();
         connect(newEngine, SIGNAL(suggestions(const QStringList &)),
                 this, SLOT(newSuggestions(const QStringList &)));
-        connect(newEngine, SIGNAL(iconChanged()),
-                this, SLOT(engineIconChanged()));
+        connect(newEngine, SIGNAL(imageChanged()),
+                this, SLOT(engineImageChanged()));
     }
 
     setInactiveText(m_openSearchManager->currentName());
-    searchButton()->setImage(m_openSearchManager->current()->icon().toImage());
+    searchButton()->setImage(m_openSearchManager->currentEngine()->image());
     m_currentEngine = m_openSearchManager->currentName();
 }
 
-void ToolbarSearch::engineIconChanged()
+void ToolbarSearch::engineImageChanged()
 {
-    searchButton()->setImage(m_openSearchManager->current()->icon().toImage());
+    searchButton()->setImage(m_openSearchManager->currentEngine()->image());
 }
 
 void ToolbarSearch::completerActivated(const QModelIndex &index)
@@ -237,7 +237,7 @@ void ToolbarSearch::textEdited(const QString &text)
 
 void ToolbarSearch::getSuggestions()
 {
-    m_openSearchManager->current()->requestSuggestions(text());
+    m_openSearchManager->currentEngine()->requestSuggestions(text());
 }
 
 void ToolbarSearch::searchNow()
@@ -256,7 +256,7 @@ void ToolbarSearch::searchNow()
         m_autosaver->changeOccurred();
     }
 
-    QUrl searchUrl = m_openSearchManager->current()->searchUrl(searchText);
+    QUrl searchUrl = m_openSearchManager->currentEngine()->searchUrl(searchText);
     emit search(searchUrl, TabWidget::CurrentTab);
 }
 
@@ -289,12 +289,12 @@ void ToolbarSearch::showEnginesMenu()
 
     QPoint pos = parent->mapToGlobal(QPoint(0, parent->height()));
 
-    QList<QString> list = m_openSearchManager->nameList();
+    QList<QString> list = m_openSearchManager->allEnginesNames();
     for (int i = 0; i < list.count(); ++i) {
         QString name = list.at(i);
         QAction *action = menu.addAction(name, this, SLOT(changeCurrentEngine()));
         action->setData(name);
-        action->setIcon(QIcon(m_openSearchManager->engine(name)->icon()));
+        action->setIcon(QIcon(QPixmap::fromImage(m_openSearchManager->engine(name)->image())));
 
         if (m_openSearchManager->currentName() == name) {
             action->setCheckable(true);
@@ -332,7 +332,7 @@ void ToolbarSearch::showEnginesMenu()
     }
 
     menu.addSeparator();
-    QAction *showManager = menu.addAction(tr("Manage Search Engines..."));
+    QAction *showManager = menu.addAction(tr("Configure Search Engines..."));
     connect(showManager, SIGNAL(triggered()),
             this, SLOT(showDialog()));
 

@@ -94,7 +94,7 @@ public slots:
 
 private slots:
     void currentEngineChanged();
-    void engineIconChanged();
+    void engineImageChanged();
     void save();
     void textEdited(const QString &);
     void newSuggestions(const QStringList &suggestions);

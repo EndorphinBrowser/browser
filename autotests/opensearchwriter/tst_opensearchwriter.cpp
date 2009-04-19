@@ -33,9 +33,9 @@ public slots:
     void cleanup();
 
 private slots:
-    void descriptionToByteArray();
-    void descriptionToFile();
-    void descriptionWithUrlParameters();
+    void engineToByteArray();
+    void engineToFile();
+    void engineWithUrlParameters();
 };
 
 // This will be called before the first test function is executed.
@@ -60,17 +60,17 @@ void tst_OpenSearchWriter::cleanup()
 {
 }
 
-void tst_OpenSearchWriter::descriptionToByteArray()
+void tst_OpenSearchWriter::engineToByteArray()
 {
-    OpenSearchEngine description;
+    OpenSearchEngine engine;
     QByteArray array;
     OpenSearchWriter writer;
 
-    description.setName(QLatin1String("Foo Bar"));
-    description.setDescription(QLatin1String("Bar Foo"));
-    description.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
+    engine.setName(QLatin1String("Foo Bar"));
+    engine.setDescription(QLatin1String("Bar Foo"));
+    engine.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
 
-    writer.write(&array, &description);
+    writer.write(&array, &engine);
 
     QFile expected(QLatin1String("expected1.xml"));
     expected.open(QIODevice::ReadOnly);
@@ -78,18 +78,18 @@ void tst_OpenSearchWriter::descriptionToByteArray()
     QCOMPARE(array, expected.readAll());
 }
 
-void tst_OpenSearchWriter::descriptionToFile()
+void tst_OpenSearchWriter::engineToFile()
 {
-    OpenSearchEngine description;
+    OpenSearchEngine engine;
     QFile file(QLatin1String("result2.xml"));
     OpenSearchWriter writer;
 
-    description.setName(QLatin1String("Arora!"));
-    description.setDescription(QLatin1String("a cross platform web browser built using Qt and WebKit"));
-    description.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
-    description.setSuggestionsUrl(QLatin1String("http://foobar.barfoo/suggest"));
+    engine.setName(QLatin1String("Arora!"));
+    engine.setDescription(QLatin1String("a cross platform web browser built using Qt and WebKit"));
+    engine.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
+    engine.setSuggestionsUrl(QLatin1String("http://foobar.barfoo/suggest"));
 
-    writer.write(&file, &description);
+    writer.write(&file, &engine);
 
     file.close();
     file.open(QIODevice::ReadOnly);
@@ -100,16 +100,16 @@ void tst_OpenSearchWriter::descriptionToFile()
     QCOMPARE(file.readAll(), expected.readAll());
 }
 
-void tst_OpenSearchWriter::descriptionWithUrlParameters()
+void tst_OpenSearchWriter::engineWithUrlParameters()
 {
-    OpenSearchEngine description;
+    OpenSearchEngine engine;
     QByteArray array;
     OpenSearchWriter writer;
 
-    description.setName(QLatin1String("Foo Bar"));
-    description.setDescription(QLatin1String("Bar Foo"));
-    description.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
-    description.setSuggestionsUrl(QLatin1String("http://foobar.barfoo/suggest"));
+    engine.setName(QLatin1String("Foo Bar"));
+    engine.setDescription(QLatin1String("Bar Foo"));
+    engine.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
+    engine.setSuggestionsUrl(QLatin1String("http://foobar.barfoo/suggest"));
 
     QHash<QString, QString> searchParameters;
     QHash<QString, QString> suggestionsParameters;
@@ -119,10 +119,10 @@ void tst_OpenSearchWriter::descriptionWithUrlParameters()
 
     suggestionsParameters[QLatin1String("q")] = QLatin1String("{searchTerms}");
 
-    description.setSearchParameters(searchParameters);
-    description.setSuggestionsParameters(suggestionsParameters);
+    engine.setSearchParameters(searchParameters);
+    engine.setSuggestionsParameters(suggestionsParameters);
 
-    writer.write(&array, &description);
+    writer.write(&array, &engine);
 
     QFile expected(QLatin1String("expected3.xml"));
     expected.open(QIODevice::ReadOnly);
