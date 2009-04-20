@@ -47,6 +47,7 @@ public:
     ~OpenSearchManager();
 
     QStringList allEnginesNames() const;
+    int enginesCount() const;
 
     QString currentName() const;
     void setCurrentName(const QString &currentName);
@@ -62,7 +63,7 @@ public:
 
     void addEngine(const QUrl &url);
     bool addEngine(const QString &fileName);
-    bool addEngine(OpenSearchEngine *description);
+    bool addEngine(OpenSearchEngine *engine);
     void removeEngine(const QString &name);
     void restoreDefaults();
 
@@ -74,10 +75,10 @@ protected:
     bool loadDirectory(const QString &dirName);
     void saveDirectory(const QString &dirName);
     QString enginesDirectory() const;
+    QString generateEngineFileName(const QString &engineName) const;
 
 private:
     bool confirmAddition(OpenSearchEngine *engine);
-    QString generateEngineFileName(const QString &engineName) const;
 
 protected slots:
     void engineFromUrlAvailable();

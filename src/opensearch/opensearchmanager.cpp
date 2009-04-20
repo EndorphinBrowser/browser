@@ -44,6 +44,9 @@ OpenSearchManager::OpenSearchManager(QObject *parent)
     , m_autoSaver(new AutoSaver(this))
     , m_model(0)
 {
+    connect(this, SIGNAL(changed()),
+            m_autoSaver, SLOT(changeOccurred()));
+
     load();
 }
 
@@ -64,6 +67,9 @@ QString OpenSearchManager::currentName() const
 
 void OpenSearchManager::setCurrentName(const QString &name)
 {
+    if (!m_engines.contains(name))
+        return;
+
     m_current = name;
     emit currentChanged();
     emit changed();
@@ -101,6 +107,11 @@ bool OpenSearchManager::engineExists(const QString &name)
 QStringList OpenSearchManager::allEnginesNames() const
 {
     return m_engines.keys();
+}
+
+int OpenSearchManager::enginesCount() const
+{
+    return m_engines.count();
 }
 
 OpenSearchEngineModel *OpenSearchManager::model()
@@ -177,7 +188,6 @@ void OpenSearchManager::removeEngine(const QString &name)
 
     if (name == currentName()) {
         setCurrentName(m_engines.keys().at(0));
-        emit currentChanged();
     }
 
     model()->reset();
@@ -267,7 +277,7 @@ void OpenSearchManager::load()
         m_current = m_engines.keys().at(0);
 
     emit currentChanged();
-    emit changed();
+    model()->reset();
 }
 
 void OpenSearchManager::restoreDefaults()
@@ -326,6 +336,5 @@ void OpenSearchManager::engineFromUrlAvailable()
         return;
     }
 
-    m_autoSaver->changeOccurred();
     emit changed();
 }
