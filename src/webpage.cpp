@@ -103,7 +103,7 @@ void WebPage::loadSettings()
     QSettings settings;
     settings.beginGroup(QLatin1String("tabs"));
     m_openTargetBlankLinksIn = (TabWidget::OpenUrlIn)settings.value(QLatin1String("openTargetBlankLinksIn"),
-                                                                    TabWidget::NewWindow).toInt();
+                                                                    TabWidget::NewSelectedTab).toInt();
 }
 
 QWebPage *WebPage::createWindow(QWebPage::WebWindowType type)
