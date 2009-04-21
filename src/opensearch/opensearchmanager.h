@@ -59,8 +59,6 @@ public:
 
     bool engineExists(const QString &name);
 
-    OpenSearchEngineModel *model();
-
     void addEngine(const QUrl &url);
     bool addEngine(const QString &fileName);
     bool addEngine(OpenSearchEngine *engine);
@@ -86,7 +84,6 @@ protected slots:
 private:
     AutoSaver *m_autoSaver;
 
-    OpenSearchEngineModel *m_model;
     QHash<QString, OpenSearchEngine *> m_engines;
     QString m_current;
 };

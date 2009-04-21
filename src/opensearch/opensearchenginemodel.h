@@ -23,22 +23,24 @@
 
 #include <qabstractitemmodel.h>
 
-#include <qhash.h>
-
 class OpenSearchEngine;
+class OpenSearchManager;
 
 class OpenSearchEngineModel : public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    OpenSearchEngineModel(QHash<QString, OpenSearchEngine *> *engines, QObject *parent = 0);
+    OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent = 0);
+    bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    void reset();
+
+protected slots:
+    void enginesChanged();
 
 private:
-    QHash<QString, OpenSearchEngine *> *m_engines;
+    OpenSearchManager *m_manager;
 };
 
 #endif //OPENSEARCHENGINEMODEL_H

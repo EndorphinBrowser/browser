@@ -21,27 +21,50 @@
 #include "opensearchenginemodel.h"
 
 #include "opensearchengine.h"
+#include "opensearchmanager.h"
 
-#include <qdebug.h>
 #include <qpixmap.h>
 
-OpenSearchEngineModel::OpenSearchEngineModel(QHash<QString, OpenSearchEngine *> *engines, QObject *parent)
+OpenSearchEngineModel::OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent)
     : QAbstractListModel(parent)
-    , m_engines(engines)
+    , m_manager(manager)
 {
+    connect(manager, SIGNAL(changed()),
+            this, SLOT(enginesChanged()));
+}
+
+bool OpenSearchEngineModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    if (parent.isValid())
+        return false;
+
+    if (count < 1)
+        return false;
+
+    int lastRow = row + count - 1;
+
+    beginRemoveRows(parent, row, lastRow);
+
+    QStringList nameList = m_manager->allEnginesNames();
+    for (int i = row; i <= lastRow; ++i)
+        m_manager->removeEngine(nameList.at(i));
+
+    endRemoveRows();
+
+    return true;
 }
 
 int OpenSearchEngineModel::rowCount(const QModelIndex &parent) const
 {
-    return (parent.isValid()) ? 0 : m_engines->count();
+    return (parent.isValid()) ? 0 : m_manager->enginesCount();
 }
 
 QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
 {
-    if (index.row() >= m_engines->count() || index.row() < 0)
+    if (index.row() >= m_manager->enginesCount() || index.row() < 0)
         return QVariant();
 
-    OpenSearchEngine *engine = m_engines->values().at(index.row());
+    OpenSearchEngine *engine = m_manager->engine(m_manager->allEnginesNames().at(index.row()));
 
     if (!engine)
         return QVariant();
@@ -68,7 +91,7 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void OpenSearchEngineModel::reset()
+void OpenSearchEngineModel::enginesChanged()
 {
     QAbstractListModel::reset();
 }

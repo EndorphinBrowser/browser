@@ -24,14 +24,22 @@
 #include <qnetworkrequest.h>
 #include <qnetworkreply.h>
 #include <qregexp.h>
-#include <qwebframe.h>
-#include <qwebpage.h>
+#include <qscriptengine.h>
+#include <qscriptvalue.h>
+#include <qstringlist.h>
 
 OpenSearchEngine::OpenSearchEngine(QObject *parent)
     : QObject(parent)
     , m_networkAccessManager(0)
     , m_suggestionsReply(0)
+    , m_scriptEngine(0)
 {
+}
+
+OpenSearchEngine::~OpenSearchEngine()
+{
+    if (m_scriptEngine)
+        delete m_scriptEngine;
 }
 
 QString OpenSearchEngine::parseTemplate(const QString &searchTerm, const QString &searchTemplate) const
@@ -273,13 +281,21 @@ void OpenSearchEngine::suggestionsObtained()
     if (!response.startsWith(QLatin1Char('[')) || !response.endsWith(QLatin1Char(']')))
         return;
 
-    // Evaluate the JSON response using QtWebKit's JavaScript engine.
-    QVariantList responseParts = QWebPage().mainFrame()->evaluateJavaScript(response).toList();
+    if (!m_scriptEngine)
+        m_scriptEngine = new QScriptEngine();
 
-    if (responseParts.count() < 2 || !responseParts.at(1).canConvert<QStringList>())
+    // Evaluate the JSON response using QtScript.
+    if (!m_scriptEngine->canEvaluate(response))
         return;
 
-    QStringList suggestionsList = responseParts.at(1).toStringList();
+    QScriptValue responseParts = m_scriptEngine->evaluate(response);
+
+    if (!responseParts.property(1).isArray())
+        return;
+
+    QStringList suggestionsList;
+    qScriptValueToSequence(responseParts.property(1), suggestionsList);
+
     emit suggestions(suggestionsList);
 }
 

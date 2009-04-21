@@ -152,6 +152,8 @@ void tst_OpenSearchManager::setCurrentEngine()
 
     SubOpenSearchManager manager;
 
+    QCOMPARE(manager.enginesCount(), 1);
+
     QString oldCurrentName = manager.currentName();
     OpenSearchEngine *oldCurrentEngine = manager.currentEngine();
 

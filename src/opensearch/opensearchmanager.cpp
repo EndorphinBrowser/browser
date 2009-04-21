@@ -24,7 +24,6 @@
 #include "browserapplication.h"
 #include "networkaccessmanager.h"
 #include "opensearchengine.h"
-#include "opensearchenginemodel.h"
 #include "opensearchreader.h"
 #include "opensearchwriter.h"
 
@@ -42,7 +41,6 @@
 OpenSearchManager::OpenSearchManager(QObject *parent)
     : QObject(parent)
     , m_autoSaver(new AutoSaver(this))
-    , m_model(0)
 {
     connect(this, SIGNAL(changed()),
             m_autoSaver, SLOT(changeOccurred()));
@@ -55,9 +53,6 @@ OpenSearchManager::~OpenSearchManager()
     m_autoSaver->saveIfNeccessary();
     qDeleteAll(m_engines.values());
     m_engines.clear();
-
-    if (m_model)
-        delete m_model;
 }
 
 QString OpenSearchManager::currentName() const
@@ -114,14 +109,6 @@ int OpenSearchManager::enginesCount() const
     return m_engines.count();
 }
 
-OpenSearchEngineModel *OpenSearchManager::model()
-{
-    if (!m_model)
-        m_model = new OpenSearchEngineModel(&m_engines, this);
-
-    return m_model;
-}
-
 void OpenSearchManager::addEngine(const QUrl &url)
 {
     if (!url.isValid())
@@ -165,7 +152,6 @@ bool OpenSearchManager::addEngine(OpenSearchEngine *description)
     description->setNetworkAccessManager(BrowserApplication::networkAccessManager());
     m_engines[description->name()] = description;
 
-    model()->reset();
     emit changed();
 
     return true;
@@ -190,7 +176,6 @@ void OpenSearchManager::removeEngine(const QString &name)
         setCurrentName(m_engines.keys().at(0));
     }
 
-    model()->reset();
     emit changed();
 }
 
@@ -277,7 +262,6 @@ void OpenSearchManager::load()
         m_current = m_engines.keys().at(0);
 
     emit currentChanged();
-    model()->reset();
 }
 
 void OpenSearchManager::restoreDefaults()
@@ -322,6 +306,11 @@ void OpenSearchManager::engineFromUrlAvailable()
     reply->deleteLater();
 
     if (!engine->isValid()) {
+        delete engine;
+        return;
+    }
+
+    if (engineExists(engine->name())) {
         delete engine;
         return;
     }

@@ -182,6 +182,8 @@ void tst_OpenSearchReader::infinitiveLoops()
 
     OpenSearchEngine *engine = reader.read(&buffer);
     QVERIFY(!engine->isValid());
+
+    delete engine;
 }
 
 QTEST_MAIN(tst_OpenSearchReader)

@@ -25,17 +25,23 @@
 
 #include "ui_opensearchdialog.h"
 
+class OpenSearchEngineModel;
+
 class OpenSearchDialog : public QDialog, public Ui_OpenSearchDialog
 {
     Q_OBJECT
 
 public:
     OpenSearchDialog(QWidget *parent = 0);
+    ~OpenSearchDialog();
 
 protected slots:
     void addButtonClicked();
     void deleteButtonClicked();
     void restoreButtonClicked();
+
+private:
+    OpenSearchEngineModel *m_model;
 };
 
 #endif //OPENSEARCHDIALOG_H

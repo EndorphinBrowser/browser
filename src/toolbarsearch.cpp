@@ -147,6 +147,8 @@ void ToolbarSearch::currentEngineChanged()
     setInactiveText(m_openSearchManager->currentName());
     searchButton()->setImage(m_openSearchManager->currentEngine()->image());
     m_currentEngine = m_openSearchManager->currentName();
+    m_suggestions.clear();
+    setupList();
 }
 
 void ToolbarSearch::engineImageChanged()

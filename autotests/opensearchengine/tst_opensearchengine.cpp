@@ -35,7 +35,7 @@ public slots:
     void cleanup();
 
 private slots:
-    void opensearchengine();
+    void openSearchEngine();
     void imageLoading();
     void requestSuggestions();
 };
@@ -79,7 +79,7 @@ public:
         { return SubOpenSearchEngine::suggestions(suggestions); }
 };
 
-void tst_OpenSearchEngine::opensearchengine()
+void tst_OpenSearchEngine::openSearchEngine()
 {
     SubOpenSearchEngine engine;
     QCOMPARE(engine.description(), QString());
@@ -115,9 +115,10 @@ void tst_OpenSearchEngine::opensearchengine()
 
 void tst_OpenSearchEngine::imageLoading()
 {
-    OpenSearchEngine *engine = new OpenSearchEngine();
+    QNetworkAccessManager networkAccessManager;
 
-    engine->setNetworkAccessManager(new QNetworkAccessManager());
+    OpenSearchEngine engine;
+    engine.setNetworkAccessManager(&networkAccessManager);
 
     QPixmap image(1, 1);
     image.fill();
@@ -126,23 +127,20 @@ void tst_OpenSearchEngine::imageLoading()
     imageBuffer.open(QBuffer::ReadWrite);
     image.save(&imageBuffer, "PNG");
 
-    QSignalSpy signalSpy(engine, SIGNAL(imageChanged()));
-    engine->setImageUrl(QString("data:image/png;base64,").append(imageBuffer.buffer().toBase64()));
+    QSignalSpy signalSpy(&engine, SIGNAL(imageChanged()));
+    engine.setImageUrl(QString("data:image/png;base64,").append(imageBuffer.buffer().toBase64()));
 
     QTRY_COMPARE(signalSpy.count(), 1);
-
-    delete engine;
 }
 
 void tst_OpenSearchEngine::requestSuggestions()
 {
-    OpenSearchEngine *engine = new OpenSearchEngine();
+    QNetworkAccessManager networkAccessManager;
 
-    engine->setNetworkAccessManager(new QNetworkAccessManager());
-    engine->setSuggestionsUrl("x");
-
-    engine->requestSuggestions("foo");
-    delete engine;
+    OpenSearchEngine engine;
+    engine.setNetworkAccessManager(&networkAccessManager);
+    engine.setSuggestionsUrl("x");
+    engine.requestSuggestions("foo");
 }
 
 QTEST_MAIN(tst_OpenSearchEngine)

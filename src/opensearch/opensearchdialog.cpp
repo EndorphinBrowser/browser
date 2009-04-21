@@ -29,11 +29,13 @@
 
 OpenSearchDialog::OpenSearchDialog(QWidget *parent)
     : QDialog(parent)
+    , m_model(0)
 {
     setModal(true);
     setupUi(this);
 
-    m_listView->setModel(BrowserApplication::openSearchManager()->model());
+    m_model = new OpenSearchEngineModel(BrowserApplication::openSearchManager());
+    m_listView->setModel(m_model);
 
     connect(m_closeButton, SIGNAL(clicked()),
             this, SLOT(close()));
@@ -43,6 +45,11 @@ OpenSearchDialog::OpenSearchDialog(QWidget *parent)
             this, SLOT(deleteButtonClicked()));
     connect(m_restoreButton, SIGNAL(clicked()),
             this, SLOT(restoreButtonClicked()));
+}
+
+OpenSearchDialog::~OpenSearchDialog()
+{
+    delete m_model;
 }
 
 void OpenSearchDialog::addButtonClicked()

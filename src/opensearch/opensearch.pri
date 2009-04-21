@@ -18,3 +18,5 @@ SOURCES += \
     opensearchwriter.cpp
 
 FORMS += opensearchdialog.ui
+
+QT += script
