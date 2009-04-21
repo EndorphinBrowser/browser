@@ -173,7 +173,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
             notFoundFrame = frame;
             break;
         }
-        frames.append(frame->childFrames());
+        frames += frame->childFrames();
     }
     if (!notFoundFrame)
         return;
