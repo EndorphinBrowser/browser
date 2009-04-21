@@ -3,8 +3,8 @@ SUBDIRS  = addbookmarkdialog \
 	autosaver \
 	downloadmanager \
 	edittreeview \
-	history \
 	historyfiltermodel \
+	historymanager \
         languagemanager \
         lineedit \
 	searchlineedit \
