@@ -28,20 +28,16 @@
 OpenSearchEngineModel::OpenSearchEngineModel(QHash<QString, OpenSearchEngine *> *engines, QObject *parent)
     : QAbstractListModel(parent)
     , m_engines(engines)
-{ }
+{
+}
 
 int OpenSearchEngineModel::rowCount(const QModelIndex &parent) const
 {
-    Q_UNUSED(parent);
-
-    return m_engines->count();
+    return (parent.isValid()) ? 0 : m_engines->count();
 }
 
 QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid())
-        return QVariant();
-
     if (index.row() >= m_engines->count() || index.row() < 0)
         return QVariant();
 
@@ -76,3 +72,4 @@ void OpenSearchEngineModel::reset()
 {
     QAbstractListModel::reset();
 }
+

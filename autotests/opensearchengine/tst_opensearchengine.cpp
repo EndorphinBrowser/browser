@@ -20,6 +20,7 @@
 #include <QtTest/QtTest>
 
 #include "opensearchengine.h"
+#include "qtry.h"
 
 #include <qnetworkaccessmanager.h>
 
@@ -34,7 +35,9 @@ public slots:
     void cleanup();
 
 private slots:
+    void opensearchengine();
     void imageLoading();
+    void requestSuggestions();
 };
 
 // This will be called before the first test function is executed.
@@ -59,6 +62,57 @@ void tst_OpenSearchEngine::cleanup()
 {
 }
 
+// Subclass that exposes the protected functions.
+class SubOpenSearchEngine : public OpenSearchEngine
+{
+public:
+    void call_imageChanged()
+        { return SubOpenSearchEngine::imageChanged(); }
+
+    void call_loadImage()
+        { return SubOpenSearchEngine::loadImage(); }
+
+    QString call_parseTemplate(QString const& searchTerm, QString templ) const
+        { return SubOpenSearchEngine::parseTemplate(searchTerm, templ); }
+
+    void call_suggestions(QStringList const& suggestions)
+        { return SubOpenSearchEngine::suggestions(suggestions); }
+};
+
+void tst_OpenSearchEngine::opensearchengine()
+{
+    SubOpenSearchEngine engine;
+    QCOMPARE(engine.description(), QString());
+    QCOMPARE(engine.image(), QImage());
+    QCOMPARE(engine.imageUrl(), QString());
+    QCOMPARE(engine.isValid(), false);
+    QCOMPARE(engine.name(), QString());
+    QCOMPARE(engine.networkAccessManager(), (QNetworkAccessManager*)0);
+    QCOMPARE(engine.operator<(OpenSearchEngine()), false);
+    QCOMPARE(engine.operator==(OpenSearchEngine()), true);
+    QCOMPARE(engine.providesSuggestions(), false);
+    engine.requestSuggestions(QString());
+    QCOMPARE(engine.searchParameters(), QList<OpenSearchEngine::Parameter>());
+    QCOMPARE(engine.searchUrl(), QString());
+    QCOMPARE(engine.searchUrl(QString()), QUrl());
+    engine.setDescription(QString());
+    engine.setImage(QImage());
+    engine.setImageUrl(QString());
+    engine.setName(QString());
+    engine.setNetworkAccessManager((QNetworkAccessManager*)0);
+    engine.setSearchParameters(QList<OpenSearchEngine::Parameter>());
+    engine.setSearchUrl(QString());
+    engine.setSuggestionsParameters(QList<OpenSearchEngine::Parameter>());
+    engine.setSuggestionsUrl(QString());
+    QCOMPARE(engine.suggestionsParameters(), QList<OpenSearchEngine::Parameter>());
+    QCOMPARE(engine.suggestionsUrl(QString()), QUrl());
+    QCOMPARE(engine.suggestionsUrl(), QString());
+    engine.call_imageChanged();
+    engine.call_loadImage();
+    QCOMPARE(engine.call_parseTemplate(QString(), QString()), QString());
+    engine.call_suggestions(QStringList());
+}
+
 void tst_OpenSearchEngine::imageLoading()
 {
     OpenSearchEngine *engine = new OpenSearchEngine();
@@ -73,15 +127,25 @@ void tst_OpenSearchEngine::imageLoading()
     image.save(&imageBuffer, "PNG");
 
     QSignalSpy signalSpy(engine, SIGNAL(imageChanged()));
-    engine->setImageUrl(QUrl(QString("data:image/png;base64,").append(imageBuffer.buffer().toBase64())));
+    engine->setImageUrl(QString("data:image/png;base64,").append(imageBuffer.buffer().toBase64()));
 
-    QTest::qWait(500);
+    QTRY_COMPARE(signalSpy.count(), 1);
 
-    QCOMPARE(signalSpy.count(), 1);
+    delete engine;
+}
 
+void tst_OpenSearchEngine::requestSuggestions()
+{
+    OpenSearchEngine *engine = new OpenSearchEngine();
+
+    engine->setNetworkAccessManager(new QNetworkAccessManager());
+    engine->setSuggestionsUrl("x");
+
+    engine->requestSuggestions("foo");
     delete engine;
 }
 
 QTEST_MAIN(tst_OpenSearchEngine)
 
 #include "tst_opensearchengine.moc"
+

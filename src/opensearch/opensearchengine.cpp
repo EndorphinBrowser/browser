@@ -34,27 +34,28 @@ OpenSearchEngine::OpenSearchEngine(QObject *parent)
 {
 }
 
-QString OpenSearchEngine::parseTemplate(const QString &searchTerm, QString templ) const
+QString OpenSearchEngine::parseTemplate(const QString &searchTerm, const QString &searchTemplate) const
 {
-    templ.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)searchTerms\\??\\}")),
+    QString result = searchTemplate;
+    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)searchTerms\\??\\}")),
             searchTerm);
-    templ.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)count\\??\\}")),
+    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)count\\??\\}")),
             QLatin1String("20"));
-    templ.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)startIndex\\??\\}")),
+    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)startIndex\\??\\}")),
             QLatin1String("0")); //Use Index Offset
-    templ.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)startPage\\??\\}")),
+    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)startPage\\??\\}")),
             QLatin1String("0")); // Use Page Offset
-    templ.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)language\\??\\}")),
+    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)language\\??\\}")),
             QLatin1String("en")); // Be Better here
-    templ.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)inputEncoding\\??\\}")),
+    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)inputEncoding\\??\\}")),
             QLatin1String("UTF-8")); // Be better here
-    templ.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)outputEncoding\\??\\}")),
+    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)outputEncoding\\??\\}")),
             QLatin1String("UTF-8")); // Be better here
 
-    // Strip unknown paramters
-    templ.replace(QRegExp(QLatin1String("\\{[^\\}]*\\?\\}")), QLatin1String(""));
+    // Strip unknown parameters
+    result.replace(QRegExp(QLatin1String("\\{[^\\}]*\\?\\}")), QLatin1String(""));
 
-    return templ;
+    return result;
 }
 
 QString OpenSearchEngine::name() const
@@ -87,12 +88,12 @@ QUrl OpenSearchEngine::searchUrl(const QString &searchTerm) const
     if (m_searchUrl.isEmpty())
         return QUrl();
 
-    QUrl retVal = parseTemplate(searchTerm, m_searchUrl);
+    QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_searchUrl).toUtf8());
 
-    QHash<QString, QString>::const_iterator end = m_searchParameters.constEnd();
-    QHash<QString, QString>::const_iterator i = m_searchParameters.constBegin();
+    QList<Parameter>::const_iterator end = m_searchParameters.constEnd();
+    QList<Parameter>::const_iterator i = m_searchParameters.constBegin();
     for (; i != end; ++i)
-        retVal.addQueryItem(i.key(), parseTemplate(searchTerm, i.value()));
+        retVal.addQueryItem(i->first, parseTemplate(searchTerm, i->second));
 
     return retVal;
 }
@@ -117,12 +118,12 @@ QUrl OpenSearchEngine::suggestionsUrl(const QString &searchTerm) const
     if (m_suggestionsUrl.isEmpty())
         return QUrl();
 
-    QUrl retVal = parseTemplate(searchTerm, m_suggestionsUrl);
+    QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_suggestionsUrl).toUtf8());
 
-    QHash<QString, QString>::const_iterator end = m_suggestionsParameters.constEnd();
-    QHash<QString, QString>::const_iterator i = m_suggestionsParameters.constBegin();
+    QList<Parameter>::const_iterator end = m_suggestionsParameters.constEnd();
+    QList<Parameter>::const_iterator i = m_suggestionsParameters.constBegin();
     for (; i != end; ++i)
-        retVal.addQueryItem(i.key(), parseTemplate(searchTerm, i.value()));
+        retVal.addQueryItem(i->first, parseTemplate(searchTerm, i->second));
 
     return retVal;
 }
@@ -132,44 +133,43 @@ void OpenSearchEngine::setSuggestionsUrl(const QString &suggestionsUrl)
     m_suggestionsUrl = suggestionsUrl;
 }
 
-QHash<QString, QString> OpenSearchEngine::searchParameters() const
+QList<OpenSearchEngine::Parameter> OpenSearchEngine::searchParameters() const
 {
     return m_searchParameters;
 }
 
-void OpenSearchEngine::setSearchParameters(const QHash<QString, QString> &searchParameters)
+void OpenSearchEngine::setSearchParameters(const QList<Parameter> &searchParameters)
 {
     m_searchParameters = searchParameters;
 }
 
-QHash<QString, QString> OpenSearchEngine::suggestionsParameters() const
+QList<OpenSearchEngine::Parameter> OpenSearchEngine::suggestionsParameters() const
 {
     return m_suggestionsParameters;
 }
 
-void OpenSearchEngine::setSuggestionsParameters(const QHash<QString, QString> &suggestionsParameters)
+void OpenSearchEngine::setSuggestionsParameters(const QList<Parameter> &suggestionsParameters)
 {
     m_suggestionsParameters = suggestionsParameters;
 }
 
-QUrl OpenSearchEngine::imageUrl() const
+QString OpenSearchEngine::imageUrl() const
 {
     return m_imageUrl;
 }
 
-void OpenSearchEngine::setImageUrl(const QUrl &imageUrl)
+void OpenSearchEngine::setImageUrl(const QString &imageUrl)
 {
     m_imageUrl = imageUrl;
-
     loadImage();
 }
 
 void OpenSearchEngine::loadImage()
 {
-    if (!m_networkAccessManager || !m_imageUrl.isValid())
+    if (!m_networkAccessManager || m_imageUrl.isEmpty())
         return;
 
-    QNetworkReply *reply = m_networkAccessManager->get(QNetworkRequest(m_imageUrl));
+    QNetworkReply *reply = m_networkAccessManager->get(QNetworkRequest(QUrl::fromEncoded(m_imageUrl.toUtf8())));
     connect(reply, SIGNAL(finished()), this, SLOT(imageObtained()));
 }
 
@@ -213,12 +213,12 @@ bool OpenSearchEngine::isValid() const
 
 bool OpenSearchEngine::operator==(const OpenSearchEngine &other) const
 {
-    return (m_name == other.name() && m_searchUrl == other.searchUrl());
+    return (m_name == other.m_name && m_searchUrl == other.m_searchUrl);
 }
 
 bool OpenSearchEngine::operator<(const OpenSearchEngine &other) const
 {
-    return (m_name < other.name());
+    return (m_name < other.m_name);
 }
 
 QNetworkAccessManager *OpenSearchEngine::networkAccessManager() const
@@ -282,3 +282,4 @@ void OpenSearchEngine::suggestionsObtained()
     QStringList suggestionsList = responseParts.at(1).toStringList();
     emit suggestions(suggestionsList);
 }
+

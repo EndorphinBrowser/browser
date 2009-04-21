@@ -231,3 +231,4 @@ void tst_OpenSearchManager::restoreDefaults()
 QTEST_MAIN(tst_OpenSearchManager)
 
 #include "tst_opensearchmanager.moc"
+

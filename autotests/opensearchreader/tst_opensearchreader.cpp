@@ -75,7 +75,7 @@ void tst_OpenSearchReader::validFile()
     QCOMPARE(engine->description(), QLatin1String("Full text search in the English Wikipedia"));
     QCOMPARE(engine->searchUrl(), QLatin1String("http://en.wikipedia.org/bar"));
     QCOMPARE(engine->suggestionsUrl(), QLatin1String("http://en.wikipedia.org/foo"));
-    QCOMPARE(engine->imageUrl().toString(), QLatin1String("http://en.wikipedia.org/favicon.ico"));
+    QCOMPARE(engine->imageUrl(), QLatin1String("http://en.wikipedia.org/favicon.ico"));
 
     delete engine;
 }
@@ -94,14 +94,15 @@ void tst_OpenSearchReader::validByteArray()
     data.append("</OpenSearchDescription>");
 
     OpenSearchReader reader;
-    OpenSearchEngine *engine = reader.read(data);
+    QBuffer buffer(&data);
+    OpenSearchEngine *engine = reader.read(&buffer);
 
     QVERIFY(engine->isValid());
     QCOMPARE(engine->name(), QLatin1String("Google"));
     QCOMPARE(engine->description(), QLatin1String("Google Web Search"));
     QCOMPARE(engine->searchUrl(), QLatin1String("http://www.google.com/search?bar"));
     QCOMPARE(engine->suggestionsUrl(), QLatin1String("http://suggestqueries.google.com/complete/foo"));
-    QCOMPARE(engine->imageUrl().toString(), QLatin1String("http://www.google.com/favicon.ico"));
+    QCOMPARE(engine->imageUrl(), QLatin1String("http://www.google.com/favicon.ico"));
 
     delete engine;
 }
@@ -130,7 +131,8 @@ void tst_OpenSearchReader::invalidByteArray()
     data.append("</OpenSearchDescription>");
 
     OpenSearchReader reader;
-    OpenSearchEngine *engine = reader.read(data);
+    QBuffer buffer(&data);
+    OpenSearchEngine *engine = reader.read(&buffer);
 
     QVERIFY(!engine->isValid()); // lacking in namespace URI
     QCOMPARE(engine->name(), QString());
@@ -153,9 +155,9 @@ void tst_OpenSearchReader::urlParameters()
     QCOMPARE(engine->suggestionsUrl(), QString());
 
     QCOMPARE(engine->searchParameters().count(), 2);
-    QVERIFY(engine->searchParameters().contains(QLatin1String("q")));
-    QCOMPARE(engine->searchParameters().value(QLatin1String("q")), QLatin1String("{searchTerms}"));
-    QCOMPARE(engine->searchParameters().value(QLatin1String("b")), QLatin1String("foo"));
+    QList<OpenSearchEngine::Parameter> parameters = engine->searchParameters();
+    QVERIFY(parameters.contains(OpenSearchEngine::Parameter(QLatin1String("q"), QLatin1String("{searchTerms}"))));
+    QVERIFY(parameters.contains(OpenSearchEngine::Parameter(QLatin1String("b"), QLatin1String("foo"))));
 
     delete engine;
 }
@@ -163,7 +165,9 @@ void tst_OpenSearchReader::urlParameters()
 void tst_OpenSearchReader::emptyByteArray()
 {
     OpenSearchReader reader;
-    OpenSearchEngine *engine = reader.read(QByteArray());
+    QByteArray data;
+    QBuffer buffer(&data);
+    OpenSearchEngine *engine = reader.read(&buffer);
 
     QVERIFY(!engine->isValid());
 
@@ -172,13 +176,15 @@ void tst_OpenSearchReader::emptyByteArray()
 
 void tst_OpenSearchReader::infinitiveLoops()
 {
-    QString xml("<foo><bar></bar></foo>");
+    QByteArray xml("<foo><bar></bar></foo>");
+    QBuffer buffer(&xml);
     OpenSearchReader reader;
 
-    OpenSearchEngine *engine = reader.read(xml);
+    OpenSearchEngine *engine = reader.read(&buffer);
     QVERIFY(!engine->isValid());
 }
 
 QTEST_MAIN(tst_OpenSearchReader)
 
 #include "tst_opensearchreader.moc"
+

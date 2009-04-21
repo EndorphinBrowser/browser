@@ -38,14 +38,14 @@ OpenSearchDialog::OpenSearchDialog(QWidget *parent)
     connect(m_closeButton, SIGNAL(clicked()),
             this, SLOT(close()));
     connect(m_addButton, SIGNAL(clicked()),
-            this, SLOT(slotAddClicked()));
+            this, SLOT(addButtonClicked()));
     connect(m_deleteButton, SIGNAL(clicked()),
-            this, SLOT(slotDeleteClicked()));
+            this, SLOT(deleteButtonClicked()));
     connect(m_restoreButton, SIGNAL(clicked()),
-            this, SLOT(slotRestoreClicked()));
+            this, SLOT(restoreButtonClicked()));
 }
 
-void OpenSearchDialog::slotAddClicked()
+void OpenSearchDialog::addButtonClicked()
 {
     QStringList fileNames = QFileDialog::getOpenFileNames(this,
                                                           tr("Open File"),
@@ -60,7 +60,7 @@ void OpenSearchDialog::slotAddClicked()
     }
 }
 
-void OpenSearchDialog::slotDeleteClicked()
+void OpenSearchDialog::deleteButtonClicked()
 {
     if (m_listView->model()->rowCount() == 1) {
         QMessageBox::critical(this, tr("Error"),
@@ -71,7 +71,8 @@ void OpenSearchDialog::slotDeleteClicked()
     BrowserApplication::openSearchManager()->removeEngine(m_listView->currentIndex().data().toString());
 }
 
-void OpenSearchDialog::slotRestoreClicked()
+void OpenSearchDialog::restoreButtonClicked()
 {
     BrowserApplication::openSearchManager()->restoreDefaults();
 }
+

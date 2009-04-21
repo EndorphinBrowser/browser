@@ -329,7 +329,7 @@ void OpenSearchManager::engineFromUrlAvailable()
     if (!confirmAddition(engine)) {
         delete engine;
         return;
-   }
+    }
 
     if (!addEngine(engine)) {
         delete engine;
@@ -338,3 +338,4 @@ void OpenSearchManager::engineFromUrlAvailable()
 
     emit changed();
 }
+

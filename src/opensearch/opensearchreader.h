@@ -30,8 +30,6 @@ public:
     OpenSearchReader();
 
     OpenSearchEngine *read(QIODevice *device);
-    OpenSearchEngine *read(const QString &data);
-    OpenSearchEngine *read(const QByteArray &data);
 
 private:
     OpenSearchEngine *read();
@@ -39,3 +37,4 @@ private:
 };
 
 #endif //OPENSEARCHREADER_H
+

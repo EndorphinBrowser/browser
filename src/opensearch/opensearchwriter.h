@@ -30,7 +30,6 @@ public:
     OpenSearchWriter();
 
     bool write(QIODevice *device, OpenSearchEngine *engine);
-    bool write(QByteArray *array, OpenSearchEngine *engine);
 
 private:
     void write(OpenSearchEngine *engine);
@@ -38,3 +37,4 @@ private:
 };
 
 #endif //OPENSEARCHWRITER_H
+

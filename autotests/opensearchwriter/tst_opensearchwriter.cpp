@@ -70,7 +70,8 @@ void tst_OpenSearchWriter::engineToByteArray()
     engine.setDescription(QLatin1String("Bar Foo"));
     engine.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
 
-    writer.write(&array, &engine);
+    QBuffer buffer(&array);
+    writer.write(&buffer, &engine);
 
     QFile expected(QLatin1String("expected1.xml"));
     expected.open(QIODevice::ReadOnly);
@@ -98,6 +99,7 @@ void tst_OpenSearchWriter::engineToFile()
     expected.open(QIODevice::ReadOnly);
 
     QCOMPARE(file.readAll(), expected.readAll());
+    file.remove();
 }
 
 void tst_OpenSearchWriter::engineWithUrlParameters()
@@ -111,18 +113,19 @@ void tst_OpenSearchWriter::engineWithUrlParameters()
     engine.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
     engine.setSuggestionsUrl(QLatin1String("http://foobar.barfoo/suggest"));
 
-    QHash<QString, QString> searchParameters;
-    QHash<QString, QString> suggestionsParameters;
+    QList<OpenSearchEngine::Parameter> searchParameters;
+    QList<OpenSearchEngine::Parameter> suggestionsParameters;
 
-    searchParameters[QLatin1String("q")] = QLatin1String("{searchTerms}");
-    searchParameters[QLatin1String("a")] = QLatin1String("foo");
+    searchParameters.append(OpenSearchEngine::Parameter(QLatin1String("q"), QLatin1String("{searchTerms}")));
+    searchParameters.append(OpenSearchEngine::Parameter(QLatin1String("a"), QLatin1String("foo")));
 
-    suggestionsParameters[QLatin1String("q")] = QLatin1String("{searchTerms}");
+    suggestionsParameters.append(OpenSearchEngine::Parameter(QLatin1String("q"), QLatin1String("{searchTerms}")));
 
     engine.setSearchParameters(searchParameters);
     engine.setSuggestionsParameters(suggestionsParameters);
 
-    writer.write(&array, &engine);
+    QBuffer buffer(&array);
+    writer.write(&buffer, &engine);
 
     QFile expected(QLatin1String("expected3.xml"));
     expected.open(QIODevice::ReadOnly);
@@ -133,3 +136,4 @@ void tst_OpenSearchWriter::engineWithUrlParameters()
 QTEST_MAIN(tst_OpenSearchWriter)
 
 #include "tst_opensearchwriter.moc"
+

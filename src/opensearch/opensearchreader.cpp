@@ -40,22 +40,6 @@ OpenSearchEngine *OpenSearchReader::read(QIODevice *device)
     return read();
 }
 
-OpenSearchEngine *OpenSearchReader::read(const QByteArray &data)
-{
-    clear();
-
-    addData(data);
-    return read();
-}
-
-OpenSearchEngine *OpenSearchReader::read(const QString &data)
-{
-    clear();
-
-    addData(data);
-    return read();
-}
-
 OpenSearchEngine *OpenSearchReader::read()
 {
     OpenSearchEngine *engine = new OpenSearchEngine();
@@ -85,7 +69,7 @@ OpenSearchEngine *OpenSearchReader::read()
             if (url.isEmpty())
                 continue;
 
-            QHash<QString, QString> parameters;
+            QList<OpenSearchEngine::Parameter> parameters;
 
             readNext();
 
@@ -100,7 +84,7 @@ OpenSearchEngine *OpenSearchReader::read()
                 QString value = attributes().value(QLatin1String("value")).toString();
 
                 if (!key.isEmpty() && !value.isEmpty())
-                    parameters[key] = value;
+                    parameters.append(OpenSearchEngine::Parameter(key, value));
 
                 while (!isEndElement())
                     readNext();
@@ -131,3 +115,4 @@ OpenSearchEngine *OpenSearchReader::read()
 
     return engine;
 }
+

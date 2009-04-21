@@ -33,9 +33,10 @@ public:
     OpenSearchDialog(QWidget *parent = 0);
 
 protected slots:
-    void slotAddClicked();
-    void slotDeleteClicked();
-    void slotRestoreClicked();
+    void addButtonClicked();
+    void deleteButtonClicked();
+    void restoreButtonClicked();
 };
 
 #endif //OPENSEARCHDIALOG_H
+

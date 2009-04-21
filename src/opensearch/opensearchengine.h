@@ -21,7 +21,7 @@
 #ifndef OPENSEARCHDESCRIPTION_H
 #define OPENSEARCHDESCRIPTION_H
 
-#include <qhash.h>
+#include <qpair.h>
 #include <qimage.h>
 #include <qstring.h>
 #include <qurl.h>
@@ -39,6 +39,8 @@ signals:
     void suggestions(const QStringList &suggestions);
 
 public:
+    typedef QPair<QString, QString> Parameter;
+
     OpenSearchEngine(QObject *parent = 0);
 
     QString name() const;
@@ -57,14 +59,14 @@ public:
     QUrl suggestionsUrl(const QString &searchTerm) const;
     void setSuggestionsUrl(const QString &suggestionsUrl);
 
-    QHash<QString, QString> searchParameters() const;
-    void setSearchParameters(const QHash<QString, QString> &searchParameters);
+    QList<Parameter> searchParameters() const;
+    void setSearchParameters(const QList<Parameter> &searchParameters);
 
-    QHash<QString, QString> suggestionsParameters() const;
-    void setSuggestionsParameters(const QHash<QString, QString> &suggestionsParameters);
+    QList<Parameter> suggestionsParameters() const;
+    void setSuggestionsParameters(const QList<Parameter> &suggestionsParameters);
 
-    QUrl imageUrl() const;
-    void setImageUrl(const QUrl &url);
+    QString imageUrl() const;
+    void setImageUrl(const QString &url);
 
     QImage image() const;
     void setImage(const QImage &image);
@@ -81,7 +83,7 @@ public slots:
     void requestSuggestions(const QString &searchTerm);
 
 protected:
-    QString parseTemplate(const QString &searchTerm, QString templ) const;
+    QString parseTemplate(const QString &searchTerm, const QString &searchTemplate) const;
     void loadImage();
 
 private slots:
@@ -92,13 +94,13 @@ private:
     QString m_name;
     QString m_description;
 
-    QUrl m_imageUrl;
+    QString m_imageUrl;
     QImage m_image;
 
     QString m_searchUrl;
     QString m_suggestionsUrl;
-    QHash<QString, QString> m_searchParameters;
-    QHash<QString, QString> m_suggestionsParameters;
+    QList<Parameter> m_searchParameters;
+    QList<Parameter> m_suggestionsParameters;
 
     QNetworkAccessManager *m_networkAccessManager;
 
@@ -106,3 +108,4 @@ private:
 };
 
 #endif //OPENSEARCHDESCRIPTION_H
+

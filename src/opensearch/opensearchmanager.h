@@ -92,3 +92,4 @@ private:
 };
 
 #endif //OPENSEARCHMANAGER_H
+
