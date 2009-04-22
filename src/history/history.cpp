@@ -490,11 +490,16 @@ int HistoryFilterModel::historyLocation(const QString &url) const
     load();
     if (!m_historyHash.contains(url))
         return 0;
+
     return sourceModel()->rowCount() - m_historyHash.value(url);
 }
 
 QVariant HistoryFilterModel::data(const QModelIndex &index, int role) const
 {
+    if (role == FrecencyRole && index.isValid()) {
+        return m_filteredRows[index.row()].frecency;
+    }
+
     return QAbstractProxyModel::data(index, role);
 }
 
@@ -570,7 +575,7 @@ QModelIndex HistoryFilterModel::mapFromSource(const QModelIndex &sourceIndex) co
     int sourceOffset = sourceModel()->rowCount() - sourceIndex.row();
 
     QList<HistoryData>::iterator pos = qBinaryFind(m_filteredRows.begin(),
-        m_filteredRows.end(), HistoryData(sourceOffset));
+        m_filteredRows.end(), HistoryData(sourceOffset, -1));
 
     if (pos == m_filteredRows.end())
         return QModelIndex();
@@ -600,13 +605,20 @@ void HistoryFilterModel::load() const
     m_filteredRows.clear();
     m_historyHash.clear();
     m_historyHash.reserve(sourceModel()->rowCount());
+    m_scaleTime = QDateTime::currentDateTime();
     for (int i = 0; i < sourceModel()->rowCount(); ++i) {
         QModelIndex idx = sourceModel()->index(i, 0);
         QString url = idx.data(HistoryModel::UrlStringRole).toString();
         if (!m_historyHash.contains(url)) {
             int sourceOffset = sourceModel()->rowCount() - i;
-            m_filteredRows.append(HistoryData(sourceOffset));
+            m_filteredRows.append(HistoryData(sourceOffset, frecencyScore(idx)));
             m_historyHash.insert(url, sourceOffset);
+        } else {
+            // we already know about this url: just increment its frecency score
+            QList<HistoryData>::iterator pos = qBinaryFind(m_filteredRows.begin(),
+                m_filteredRows.end(), HistoryData(m_historyHash[url], -1));
+            Q_ASSERT(pos != m_filteredRows.end());
+            pos->frecency += frecencyScore(idx);
         }
     }
     m_loaded = true;
@@ -620,18 +632,20 @@ void HistoryFilterModel::sourceRowsInserted(const QModelIndex &parent, int start
         return;
     QModelIndex idx = sourceModel()->index(start, 0, parent);
     QString url = idx.data(HistoryModel::UrlStringRole).toString();
+    int currentFrecency = 0;
     if (m_historyHash.contains(url)) {
         QList<HistoryData>::iterator pos = qBinaryFind(m_filteredRows.begin(),
-            m_filteredRows.end(), HistoryData(m_historyHash[url]));
+            m_filteredRows.end(), HistoryData(m_historyHash[url], -1));
         Q_ASSERT(pos != m_filteredRows.end());
         int realRow = pos - m_filteredRows.begin();
+        currentFrecency = pos->frecency;
         beginRemoveRows(QModelIndex(), realRow, realRow);
         m_filteredRows.erase(pos);
         m_historyHash.remove(url);
         endRemoveRows();
     }
     beginInsertRows(QModelIndex(), 0, 0);
-    m_filteredRows.insert(0, HistoryData(sourceModel()->rowCount()));
+    m_filteredRows.insert(0, HistoryData(sourceModel()->rowCount(), frecencyScore(idx) + currentFrecency));
     m_historyHash.insert(url, sourceModel()->rowCount());
     endInsertRows();
 }
@@ -666,6 +680,26 @@ bool HistoryFilterModel::removeRows(int row, int count, const QModelIndex &paren
     if (oldCount - count != rowCount())
         reset();
     return true;
+}
+
+int HistoryFilterModel::frecencyScore(const QModelIndex &sourceIndex) const
+{
+    QDateTime loadTime = sourceModel()->data(sourceIndex, HistoryModel::DateTimeRole).toDateTime();
+    int days = loadTime.daysTo(m_scaleTime);
+
+    if (days <= 1) {
+        return 100;
+    } else if (days < 5) { // within the last 4 days
+        return 90;
+    } else if (days < 15) { // within the last two weeks
+        return 70;
+    } else if (days < 31) { // within the last month
+        return 50;
+    } else if (days < 91) { // within the last 3 months
+        return 30;
+    }
+
+    return 10;
 }
 
 HistoryCompletionModel::HistoryCompletionModel(QObject *parent)

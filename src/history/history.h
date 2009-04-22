@@ -90,7 +90,8 @@ public:
         DateTimeRole = Qt::UserRole + 2,
         UrlRole = Qt::UserRole + 3,
         UrlStringRole = Qt::UserRole + 4,
-        TitleRole = Qt::UserRole + 5
+        TitleRole = Qt::UserRole + 5,
+        MaxRole = TitleRole
     };
 
     HistoryModel(HistoryManager *history, QObject *parent = 0);
@@ -120,6 +121,11 @@ public:
         { load(); return m_historyHash.contains(url); }
     int historyLocation(const QString &url) const;
 
+    enum Roles {
+        FrecencyRole = HistoryModel::MaxRole + 1,
+        MaxRole = FrecencyRole
+    };
+
     QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
     QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
     void setSourceModel(QAbstractItemModel *sourceModel);
@@ -142,11 +148,13 @@ private:
 
     struct HistoryData {
         int tailOffset;
+        int frecency;
 
-        HistoryData(int off) : tailOffset(off) { }
+        HistoryData(int off, int f = 0) : tailOffset(off), frecency(f) { }
 
         bool operator==(const HistoryData& other) const {
-            return (tailOffset == other.tailOffset);
+            return (tailOffset == other.tailOffset)
+                && (frecency == -1 || other.frecency == -1 || frecency == other.frecency);
         }
         bool operator!=(const HistoryData& other) const {
             return !(*this == other);
@@ -156,10 +164,12 @@ private:
             return (tailOffset > other.tailOffset);
         }
     };
+    int frecencyScore(const QModelIndex &sourceIndex) const;
 
     mutable QList<HistoryData> m_filteredRows;
     mutable QHash<QString, int> m_historyHash;
     mutable bool m_loaded;
+    mutable QDateTime m_scaleTime;
 };
 
 /*
