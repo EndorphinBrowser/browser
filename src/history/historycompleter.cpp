@@ -21,20 +21,22 @@
 
 HistoryCompletionModel::HistoryCompletionModel(QObject *parent)
     : QSortFilterProxyModel(parent)
+    , m_searchMatcher(QString(), Qt::CaseInsensitive, QRegExp::FixedString)
+    , m_isValid(false)
 {
     setDynamicSortFilter(true);
-
-    // do a case-insensitive, full-text substring match -- but don't
-    // allow the user to accidentally use regexp metacharacters
-    m_searchMatcher.setCaseSensitivity(Qt::CaseInsensitive);
-    m_searchMatcher.setPatternSyntax(QRegExp::FixedString);
 }
 
 QVariant HistoryCompletionModel::data(const QModelIndex &index, int role) const
 {
-    // tell QCompleter that everything we have matches what the user typed
-    if (role == HistoryCompletionRole && index.isValid())
-        return QLatin1String("a");
+    // if we are valid, tell QCompleter that everything we have filtered matches
+    // what the user typed; if not, nothing matches
+    if (role == HistoryCompletionRole && index.isValid()) {
+        if (isValid())
+            return QLatin1String("a");
+        else
+            return QLatin1String("b");
+    }
 
     // show urls, not titles
     if (role == Qt::DisplayRole)
@@ -58,9 +60,27 @@ void HistoryCompletionModel::setSearchString(const QString& str)
     invalidateFilter();
 }
 
+bool HistoryCompletionModel::isValid() const
+{
+    return m_isValid;
+}
+
+void HistoryCompletionModel::setValid(bool b)
+{
+    if (b == m_isValid)
+        return;
+
+    m_isValid = b;
+
+    // tell the HistoryCompleter that we've changed
+    emit dataChanged(index(0, 0), index(0, rowCount() - 1));
+}
+
 bool HistoryCompletionModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
-    // do a substring match against both the url and title
+    // do a case-insensitive substring match against both the url and title;
+    // we have also made sure that the user doesn't accidentally use regexp
+    // metacharacters
     QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
     QString url = sourceModel()->data(idx, HistoryModel::UrlStringRole).toString();
 
@@ -87,19 +107,27 @@ bool HistoryCompletionModel::lessThan(const QModelIndex &left, const QModelIndex
 HistoryCompleter::HistoryCompleter(QObject *parent)
     : QCompleter(parent)
 {
-    setCompletionRole(HistoryCompletionModel::HistoryCompletionRole);
+    init();
 }
 
 HistoryCompleter::HistoryCompleter(QAbstractItemModel *m, QObject *parent)
     : QCompleter(m, parent)
 {
+    init();
+}
+
+void HistoryCompleter::init()
+{
     // we want to complete against our own faked role
     setCompletionRole(HistoryCompletionModel::HistoryCompletionRole);
 
-    // and we are effectively case-sensitively sorted, since we
-    // want QCompleter to do case-sensitive matching against our
-    // faked completion role
+    // and since we fake our completion role, we can take
+    // advantage of the sorted-model optimizations in QCompleter
+    setCaseSensitivity(Qt::CaseSensitive);
     setModelSorting(QCompleter::CaseSensitivelySortedModel);
+
+    m_filterTimer.setSingleShot(true);
+    connect(&m_filterTimer, SIGNAL(timeout()), this, SLOT(updateFilter()));
 }
 
 QString HistoryCompleter::pathFromIndex(const QModelIndex &index) const
@@ -111,16 +139,47 @@ QString HistoryCompleter::pathFromIndex(const QModelIndex &index) const
 
 QStringList HistoryCompleter::splitPath(const QString &path) const
 {
-    HistoryCompletionModel *hcm = qobject_cast<HistoryCompletionModel *>(model());
-    Q_ASSERT(hcm);
+    if (path == m_searchString)
+        return QStringList() << QLatin1String("a");
 
-    // tell the HistoryCompletionModel about the new prefix
-    hcm->setSearchString(path);
+    QString oldSearchString = m_searchString;
+    m_searchString = path;
 
-    // and re-sort it
-    hcm->sort(0);
+    // queue an update to our search string
+    // We will wait a bit so that if the user is quickly typing,
+    // we don't try to complete until they pause.
+    if (m_filterTimer.isActive())
+        m_filterTimer.stop();
+    m_filterTimer.start(150);
+
+    // if the previous search results are not a superset of
+    // the current search results, tell the model that it is not valid yet
+    if (!m_searchString.startsWith(oldSearchString)) {
+        HistoryCompletionModel *hcm = qobject_cast<HistoryCompletionModel *>(model());
+        Q_ASSERT(hcm);
+        hcm->setValid(false);
+    }
 
     // the actual filtering is done by the HistoryCompletionModel; we just
     // return a short dummy here so that QCompleter thinks we match everything
     return QStringList() << QLatin1String("a");
+}
+
+void HistoryCompleter::updateFilter()
+{
+    HistoryCompletionModel *hcm = qobject_cast<HistoryCompletionModel *>(model());
+    Q_ASSERT(hcm);
+
+    // tell the HistoryCompletionModel about the new search string
+    hcm->setSearchString(m_searchString);
+
+    // sort the model
+    hcm->sort(0);
+
+    // mark it valid
+    hcm->setValid(true);
+
+    // and now update the QCompleter widget
+    complete();
+
 }

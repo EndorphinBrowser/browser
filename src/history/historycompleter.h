@@ -26,6 +26,7 @@
 #include <qcompleter.h>
 #include <qregexp.h>
 #include <qsortfilterproxymodel.h>
+#include <qtimer.h>
 
 // These two classes constitute a dirty hack around QCompleter's inflexibility:
 // QCompleter does not allow changing the matching algorithm; it is fixed
@@ -51,6 +52,10 @@ public:
 
     QString searchString() const;
     void setSearchString(const QString& str);
+
+    bool isValid() const;
+    void setValid(bool b);
+
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
 protected:
@@ -60,6 +65,7 @@ protected:
 private:
     QString m_searchString;
     QRegExp m_searchMatcher;
+    bool m_isValid;
 };
 
 class HistoryCompleter : public QCompleter
@@ -72,6 +78,14 @@ public:
 
     virtual QString pathFromIndex(const QModelIndex &index) const;
     virtual QStringList splitPath(const QString &path) const;
+
+private slots:
+    void updateFilter();
+
+private:
+    void init();
+    mutable QString m_searchString;
+    mutable QTimer m_filterTimer;
 };
 
 #endif
