@@ -183,7 +183,7 @@ void BrowserApplication::messageReceived(const QString &message)
     if (!message.isEmpty()) {
         QSettings settings;
         settings.beginGroup(QLatin1String("tabs"));
-        TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewWindow).toInt());
+        TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
         settings.endGroup();
         mainWindow()->tabWidget()->loadString(message, tab);
     }
