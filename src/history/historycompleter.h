@@ -65,6 +65,7 @@ protected:
 private:
     QString m_searchString;
     QRegExp m_searchMatcher;
+    QRegExp m_wordMatcher;
     bool m_isValid;
 };
 

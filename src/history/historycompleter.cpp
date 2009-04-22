@@ -22,6 +22,7 @@
 HistoryCompletionModel::HistoryCompletionModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_searchMatcher(QString(), Qt::CaseInsensitive, QRegExp::FixedString)
+    , m_wordMatcher(QString(), Qt::CaseInsensitive)
     , m_isValid(false)
 {
     setDynamicSortFilter(true);
@@ -57,6 +58,7 @@ void HistoryCompletionModel::setSearchString(const QString& str)
 
     m_searchString = str;
     m_searchMatcher.setPattern(str);
+    m_wordMatcher.setPattern(QLatin1String("\\b") + QRegExp::escape(str));
     invalidateFilter();
 }
 
@@ -97,10 +99,25 @@ bool HistoryCompletionModel::filterAcceptsRow(int source_row, const QModelIndex 
 
 bool HistoryCompletionModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
+    // We give a bonus to hits that match on a word boundary so that e.g. "dot.kde.org"
+    // is a better result for typing "dot" than "slashdot.org". However, we only look
+    // for the string in the host name, not the entire url, since while it makes sense
+    // to e.g. give "www.phoronix.com" a bonus for "ph", it does _not_ make sense to
+    // give "www.yadda.com/foo.php" the bonus.
     int frecency_l = sourceModel()->data(left, HistoryFilterModel::FrecencyRole).toInt();
-    int frecency_r = sourceModel()->data(right, HistoryFilterModel::FrecencyRole).toInt();
+    QString url_l = sourceModel()->data(left, HistoryModel::UrlRole).toUrl().host();
+    QString title_l = sourceModel()->data(left, HistoryModel::TitleRole).toString();
 
-    // sort descending in frecency
+    if (m_wordMatcher.indexIn(url_l) != -1 || m_wordMatcher.indexIn(title_l) != -1)
+        frecency_l *= 2;
+
+    int frecency_r = sourceModel()->data(right, HistoryFilterModel::FrecencyRole).toInt();
+    QString url_r = sourceModel()->data(right, HistoryModel::UrlRole).toUrl().host();
+    QString title_r = sourceModel()->data(right, HistoryModel::TitleRole).toString();
+    if (m_wordMatcher.indexIn(url_r) != -1 || m_wordMatcher.indexIn(title_r) != -1)
+        frecency_r *= 2;
+
+    // sort results in descending frecency-derived score
     return (frecency_r < frecency_l);
 }
 
