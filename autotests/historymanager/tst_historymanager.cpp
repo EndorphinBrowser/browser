@@ -22,6 +22,7 @@
 
 #include <historymanager.h>
 #include <history.h>
+#include <historycompleter.h>
 #include <modeltest.h>
 
 class tst_HistoryManager : public QObject
@@ -418,7 +419,7 @@ void tst_HistoryManager::big()
     HistoryCompletionModel completionModel;
     completionModel.setSourceModel(&model);
     ModelTest test2(&completionModel);
-    QCOMPARE(completionModel.rowCount(), bigHistory.count() * 2);
+    QCOMPARE(completionModel.rowCount(), bigHistory.count());
 
     qDebug() << "making history dialog model";
     HistoryTreeModel dialogModel(&model);
