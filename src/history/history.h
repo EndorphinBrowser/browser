@@ -140,7 +140,24 @@ private slots:
 private:
     void load() const;
 
-    mutable QList<int> m_sourceRow;
+    struct HistoryData {
+        int tailOffset;
+
+        HistoryData(int off) : tailOffset(off) { }
+
+        bool operator==(const HistoryData& other) const {
+            return (tailOffset == other.tailOffset);
+        }
+        bool operator!=(const HistoryData& other) const {
+            return !(*this == other);
+        }
+        // like the actual history entries, our index mapping data is sorted in reverse
+        bool operator<(const HistoryData& other) const {
+            return (tailOffset > other.tailOffset);
+        }
+    };
+
+    mutable QList<HistoryData> m_filteredRows;
     mutable QHash<QString, int> m_historyHash;
     mutable bool m_loaded;
 };
