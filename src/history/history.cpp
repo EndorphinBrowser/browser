@@ -539,6 +539,11 @@ QVariant HistoryFilterModel::headerData(int section, Qt::Orientation orientation
     return sourceModel()->headerData(section, orientation, role);
 }
 
+void HistoryFilterModel::recalculateFrecencies()
+{
+    sourceReset();
+}
+
 void HistoryFilterModel::sourceReset()
 {
     m_loaded = false;

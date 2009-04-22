@@ -137,6 +137,8 @@ public:
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
+    void recalculateFrecencies();
+
 private slots:
     void sourceReset();
     void sourceDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
