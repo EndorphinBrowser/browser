@@ -193,23 +193,25 @@ void BrowserApplication::messageReceived(const QString &message)
 
 void BrowserApplication::quitBrowser()
 {
-    clean();
-    int tabCount = 0;
-    for (int i = 0; i < m_mainWindows.count(); ++i) {
-        tabCount += m_mainWindows.at(i)->tabWidget()->count();
-    }
-
     if (s_downloadManager && !downloadManager()->allowQuit())
         return;
 
-    if (tabCount > 1) {
-        int ret = QMessageBox::warning(mainWindow(), QString(),
-                           tr("There are %1 windows and %2 tabs open\n"
-                              "Do you want to quit anyway?").arg(m_mainWindows.count()).arg(tabCount),
-                           QMessageBox::Yes | QMessageBox::No,
-                           QMessageBox::No);
-        if (ret == QMessageBox::No)
-            return;
+    if (QSettings().value(QLatin1String("tabs/confirmClosingMultipleTabs"), true).toBool()) {
+        clean();
+        int tabCount = 0;
+        for (int i = 0; i < m_mainWindows.count(); ++i) {
+            tabCount += m_mainWindows.at(i)->tabWidget()->count();
+        }
+
+        if (tabCount > 1) {
+            int ret = QMessageBox::warning(mainWindow(), QString(),
+                               tr("There are %1 windows and %2 tabs open\n"
+                                  "Do you want to quit anyway?").arg(m_mainWindows.count()).arg(tabCount),
+                               QMessageBox::Yes | QMessageBox::No,
+                               QMessageBox::No);
+            if (ret == QMessageBox::No)
+                return;
+        }
     }
 
     saveSession();

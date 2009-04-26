@@ -518,7 +518,7 @@
        <item>
         <widget class="QCheckBox" name="confirmClosingMultipleTabs">
          <property name="text">
-          <string>Confirm when closing multiple tabs</string>
+          <string>Confirm when closing multiple tabs or windows</string>
          </property>
          <property name="checked">
           <bool>true</bool>
