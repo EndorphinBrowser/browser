@@ -92,8 +92,10 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
     }
 
     bool accepted = QWebPage::acceptNavigationRequest(frame, request, type);
-    if (accepted && frame == mainFrame())
+    if (accepted && frame == mainFrame()) {
+        m_requestedUrl = request.url();
         emit aboutToLoadUrl(request.url());
+    }
 
     return accepted;
 }
@@ -164,17 +166,10 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
     }
 
     // Find the frame that has the unsupported content
-    QWebFrame *notFoundFrame = 0;
-    QList<QWebFrame*> frames;
-    frames.append(mainFrame());
-    while (!frames.isEmpty()) {
-        QWebFrame *frame = frames.takeFirst();
-        if (replyUrl == frame->url()) {
-            notFoundFrame = frame;
-            break;
-        }
-        frames += frame->childFrames();
-    }
+    if (replyUrl.isEmpty() || replyUrl != m_requestedUrl)
+        return;
+
+    QWebFrame *notFoundFrame = mainFrame();
     if (!notFoundFrame)
         return;
 

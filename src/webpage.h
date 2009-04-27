@@ -51,6 +51,8 @@ protected slots:
 protected:
     static WebPluginFactory *s_webPluginFactory;
     TabWidget::OpenUrlIn m_openTargetBlankLinksIn;
+
+    QUrl m_requestedUrl;
 };
 
 #endif // WEBPAGE_H
