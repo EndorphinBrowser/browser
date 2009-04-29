@@ -126,14 +126,6 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
             SLOT(sslErrors(QNetworkReply*, const QList<QSslError>&)));
 #endif
     loadSettings();
-
-#if QT_VERSION >= 0x040500
-    QNetworkDiskCache *diskCache = new QNetworkDiskCache(this);
-    QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
-                            + QLatin1String("/browser");
-    diskCache->setCacheDirectory(location);
-    setCache(diskCache);
-#endif
 }
 
 void NetworkAccessManager::loadSettings()
@@ -187,6 +179,20 @@ void NetworkAccessManager::loadSettings()
     QStringList acceptList = settings.value(QLatin1String("acceptLanguages"),
             AcceptLanguageDialog::defaultAcceptList()).toStringList();
     m_acceptLanguage = AcceptLanguageDialog::httpString(acceptList);
+
+#if QT_VERSION >= 0x040500
+    bool m_cacheEnabled = settings.value(QLatin1String("cacheEnabled"), true).toBool();
+    if (m_cacheEnabled) {
+        QNetworkDiskCache *diskCache = new QNetworkDiskCache(this);
+        QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
+                                + QLatin1String("/browser");
+        diskCache->setCacheDirectory(location);
+        setCache(diskCache);
+    } else {
+        if (cache())
+            setCache(0);
+    }
+#endif
     settings.endGroup();
 }
 
