@@ -143,19 +143,12 @@ protected:
 
 private:
     void load();
-    QString atomicString(const QString& s) {
-        QHash<QString, QString>::const_iterator it = m_atomicStringHash.constFind(s);
-        if (it == m_atomicStringHash.constEnd()) {
-            m_atomicStringHash.insert(s, s);
-            return s;
-        }
-        return *it;
-    }
+    QString atomicString(const QString &string);
 
     AutoSaver *m_saveTimer;
     int m_daysToExpire;
     QTimer m_expiredTimer;
-    QHash<QString, QString> m_atomicStringHash;
+    QHash<QString, int> m_atomicStringHash;
     QList<HistoryEntry> m_history;
     QString m_lastSavedUrl;
 

@@ -348,6 +348,15 @@ void HistoryManager::load()
     }
 }
 
+QString HistoryManager::atomicString(const QString &string) {
+    QHash<QString, int>::const_iterator it = m_atomicStringHash.constFind(string);
+    if (it == m_atomicStringHash.constEnd()) {
+        QHash<QString, int>::iterator insertedIterator = m_atomicStringHash.insert(string, 0);
+        return insertedIterator.key();
+    }
+    return it.key();
+}
+
 void HistoryManager::save()
 {
     QSettings settings;
