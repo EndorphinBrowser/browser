@@ -425,15 +425,19 @@ void WebView::keyPressEvent(QKeyEvent *event)
     switch (event->key()) {
     case Qt::Key_Back:
         pageAction(WebPage::Back)->trigger();
+        event->accept();
         break;
     case Qt::Key_Forward:
         pageAction(WebPage::Forward)->trigger();
+        event->accept();
         break;
     case Qt::Key_Stop:
         pageAction(WebPage::Stop)->trigger();
+        event->accept();
         break;
     case Qt::Key_Refresh:
         pageAction(WebPage::Reload)->trigger();
+        event->accept();
         break;
     default:
         QWebView::keyPressEvent(event);
