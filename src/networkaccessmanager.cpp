@@ -188,9 +188,6 @@ void NetworkAccessManager::loadSettings()
                                 + QLatin1String("/browser");
         diskCache->setCacheDirectory(location);
         setCache(diskCache);
-    } else {
-        if (cache())
-            setCache(0);
     }
 #endif
     settings.endGroup();
