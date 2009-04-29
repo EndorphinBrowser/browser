@@ -39,7 +39,7 @@ public slots:
 private:
     void find(QTextDocument::FindFlags flags);
     QPlainTextEdit *m_edit;
-    QString lastSearchTerm;
+    QString m_lastSearchTerm;
 };
 
 #endif // PLAINTEXTEDITSEARCH_H

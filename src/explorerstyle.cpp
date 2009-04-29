@@ -115,15 +115,15 @@ void ExplorerStyle::drawPrimitive(PrimitiveElement element, const QStyleOption *
                 //we now require updates that span across the whole toolbar area:
                 QRect topRect = topreg.boundingRect();
                 topRect.setWidth(window->width());
-                if (currentTopRect != topRect) {
-                    currentTopRect = topRect;
+                if (m_currentTopRect != topRect) {
+                    m_currentTopRect = topRect;
                     window->update(topRect);
                 }
 
                 QRect bottomRect = bottomreg.boundingRect();
                 bottomRect.setWidth(window->width());
-                if (currentBottomRect != bottomRect) {
-                    currentBottomRect = bottomRect;
+                if (m_currentBottomRect != bottomRect) {
+                    m_currentBottomRect = bottomRect;
                     window->update(bottomRect);
                 }
 

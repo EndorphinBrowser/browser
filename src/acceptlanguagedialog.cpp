@@ -33,7 +33,7 @@ AcceptLanguageDialog::AcceptLanguageDialog(QWidget *parent, Qt::WindowFlags flag
     connect(removeButton, SIGNAL(clicked()), this, SLOT(removeLanguage()));
     connect(moveUpButton, SIGNAL(clicked()), this, SLOT(moveLanguageUp()));
     connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveLanguageDown()));
-    listView->setModel(&model);
+    listView->setModel(&m_model);
     connect(listView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
             this, SLOT(currentChanged(const QModelIndex &, const QModelIndex &)));
     load();
@@ -41,8 +41,8 @@ AcceptLanguageDialog::AcceptLanguageDialog(QWidget *parent, Qt::WindowFlags flag
     QStringList allLanguages;
     for (int i = 1 + (int)QLocale::C; i <= (int)QLocale::LastLanguage; ++i)
         allLanguages += expand(QLocale::Language(i));
-    allLanguagesModel.setStringList(allLanguages);
-    addComboBox->setModel(&allLanguagesModel);
+    m_allLanguagesModel.setStringList(allLanguages);
+    addComboBox->setModel(&m_allLanguagesModel);
 }
 
 QStringList AcceptLanguageDialog::expand(const QLocale::Language language)
@@ -74,7 +74,7 @@ void AcceptLanguageDialog::currentChanged(const QModelIndex &current, const QMod
     removeButton->setEnabled(current.isValid());
     int row = current.row();
     moveUpButton->setEnabled(row > 0);
-    moveDownButton->setEnabled(row != -1 && row < model.rowCount() - 1);
+    moveDownButton->setEnabled(row != -1 && row < m_model.rowCount() - 1);
 }
 
 QStringList AcceptLanguageDialog::defaultAcceptList()
@@ -95,14 +95,14 @@ void AcceptLanguageDialog::load()
 {
     QSettings settings;
     settings.beginGroup(QLatin1String("network"));
-    model.setStringList(settings.value(QLatin1String("acceptLanguages"), defaultAcceptList()).toStringList());
+    m_model.setStringList(settings.value(QLatin1String("acceptLanguages"), defaultAcceptList()).toStringList());
 }
 
 void AcceptLanguageDialog::save()
 {
     QSettings settings;
     settings.beginGroup(QLatin1String("network"));
-    QStringList result = model.stringList();
+    QStringList result = m_model.stringList();
     if (result == defaultAcceptList() || result.isEmpty())
         settings.remove(QLatin1String("acceptLanguages"));
     else
@@ -137,34 +137,34 @@ void AcceptLanguageDialog::moveLanguageUp()
 {
     int currentRow = listView->currentIndex().row();
     QString item = listView->currentIndex().data().toString();
-    model.removeRow(currentRow);
-    model.insertRows(currentRow - 1, 1);
-    model.setData(model.index(currentRow - 1), item);
-    listView->setCurrentIndex(model.index(currentRow + 1));
+    m_model.removeRow(currentRow);
+    m_model.insertRows(currentRow - 1, 1);
+    m_model.setData(m_model.index(currentRow - 1), item);
+    listView->setCurrentIndex(m_model.index(currentRow + 1));
 }
 
 void AcceptLanguageDialog::moveLanguageDown()
 {
     int currentRow = listView->currentIndex().row();
     QString item = listView->currentIndex().data().toString();
-    model.removeRow(currentRow);
-    model.insertRows(currentRow + 1, 1);
-    model.setData(model.index(currentRow + 1), item);
-    listView->setCurrentIndex(model.index(currentRow + 1));
+    m_model.removeRow(currentRow);
+    m_model.insertRows(currentRow + 1, 1);
+    m_model.setData(m_model.index(currentRow + 1), item);
+    listView->setCurrentIndex(m_model.index(currentRow + 1));
 }
 
 void AcceptLanguageDialog::removeLanguage()
 {
     int currentRow = listView->currentIndex().row();
-    model.removeRow(currentRow);
+    m_model.removeRow(currentRow);
 }
 
 void AcceptLanguageDialog::addLanguage()
 {
     QString text = addComboBox->currentText();
-    if (model.stringList().contains(text))
+    if (m_model.stringList().contains(text))
         return;
-    model.insertRow(model.rowCount());
-    model.setData(model.index(model.rowCount() - 1), text);
+    m_model.insertRow(m_model.rowCount());
+    m_model.setData(m_model.index(m_model.rowCount() - 1), text);
 }
 

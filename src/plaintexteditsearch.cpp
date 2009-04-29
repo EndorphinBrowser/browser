@@ -45,12 +45,12 @@ void PlainTextEditSearch::find(QTextDocument::FindFlags flags)
     QString searchString = ui.searchLineEdit->text();
     if (!m_edit || searchString.isEmpty())
         return;
-    if (searchString != lastSearchTerm) {
+    if (searchString != m_lastSearchTerm) {
         QTextCursor cursor = m_edit->textCursor();
         cursor.setPosition(cursor.selectionStart());
         cursor.clearSelection();
         m_edit->setTextCursor(cursor);
-        lastSearchTerm = searchString;
+        m_lastSearchTerm = searchString;
     }
     QString infoString;
     if (!m_edit->find(searchString, flags)) {

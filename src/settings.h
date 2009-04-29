@@ -88,8 +88,8 @@ private slots:
     void chooseAcceptLanguage();
 
 private:
-    QFont standardFont;
-    QFont fixedFont;
+    QFont m_standardFont;
+    QFont m_fixedFont;
 };
 
 #endif // SETTINGS_H

@@ -47,8 +47,8 @@ private slots:
 
 private:
     static QStringList expand(const QLocale::Language language);
-    QStringListModel allLanguagesModel;
-    QStringListModel model;
+    QStringListModel m_allLanguagesModel;
+    QStringListModel m_model;
 
 };
 

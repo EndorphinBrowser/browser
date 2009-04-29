@@ -44,7 +44,7 @@ private:
     QPlainTextEdit *m_edit;
     SourceHighlighter *m_highlighter;
     PlainTextEditSearch *m_plainTextEditSearch;
-    QVBoxLayout *layout;
+    QVBoxLayout *m_layout;
     QMenuBar *m_menuBar;
     QMenu *m_editMenu;
     QAction *m_findAction;

@@ -40,7 +40,7 @@ SourceViewer::SourceViewer(const QString &source,
     , m_edit(new QPlainTextEdit(tr("Loading..."),this))
     , m_highlighter(new SourceHighlighter(m_edit->document()))
     , m_plainTextEditSearch(new PlainTextEditSearch(m_edit, this))
-    , layout(new QVBoxLayout(this))
+    , m_layout(new QVBoxLayout(this))
     , m_menuBar(new QMenuBar(this))
     , m_editMenu(new QMenu(tr("&Edit"), m_menuBar))
     , m_findAction(new QAction(tr("&Find"), m_editMenu))
@@ -73,12 +73,12 @@ SourceViewer::SourceViewer(const QString &source,
     connect(m_setWrappingAction, SIGNAL(triggered(bool)),
             this, SLOT(setWrapping(bool)));
 
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 0, 0);
-    layout->addWidget(m_menuBar);
-    layout->addWidget(m_plainTextEditSearch);
-    layout->addWidget(m_edit);
-    setLayout(layout);
+    m_layout->setSpacing(0);
+    m_layout->setContentsMargins(0, 0, 0, 0);
+    m_layout->addWidget(m_menuBar);
+    m_layout->addWidget(m_plainTextEditSearch);
+    m_layout->addWidget(m_edit);
+    setLayout(m_layout);
 
     m_request = new QNetworkRequest(url);
     m_request->setAttribute(QNetworkRequest::CacheLoadControlAttribute,
