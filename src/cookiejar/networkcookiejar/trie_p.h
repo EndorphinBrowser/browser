@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2009 Torch Mobile Inc. http://www.torchmobile.com/
+   Copyright (C) 2009, Torch Mobile Inc. and Linden Research, Inc. All rights reserved.
 */
 
 /* ***** BEGIN LICENSE BLOCK *****
