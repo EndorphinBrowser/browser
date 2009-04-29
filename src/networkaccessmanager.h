@@ -107,7 +107,7 @@ private slots:
 #endif
 
 private:
-    QByteArray acceptLanguage;
+    QByteArray m_acceptLanguage;
 };
 
 #endif // NETWORKACCESSMANAGER_H

@@ -186,7 +186,7 @@ void NetworkAccessManager::loadSettings()
     settings.beginGroup(QLatin1String("network"));
     QStringList acceptList = settings.value(QLatin1String("acceptLanguages"),
             AcceptLanguageDialog::defaultAcceptList()).toStringList();
-    acceptLanguage = AcceptLanguageDialog::httpString(acceptList);
+    m_acceptLanguage = AcceptLanguageDialog::httpString(acceptList);
     settings.endGroup();
 }
 
@@ -333,9 +333,9 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
 QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
 {
     QNetworkReply *reply;
-    if (!acceptLanguage.isEmpty()) {
+    if (!m_acceptLanguage.isEmpty()) {
         QNetworkRequest req = request;
-        req.setRawHeader("Accept-Language", acceptLanguage);
+        req.setRawHeader("Accept-Language", m_acceptLanguage);
         reply = QNetworkAccessManager::createRequest(op, req, outgoingData);
         emit requestCreated(op, req, reply);
     } else {
