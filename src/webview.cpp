@@ -210,6 +210,7 @@ void WebView::copyLinkToClipboard()
 {
     pageAction(QWebPage::CopyLinkToClipboard)->trigger();
 }
+
 void WebView::openActionUrlInNewTab()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
