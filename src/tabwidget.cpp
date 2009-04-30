@@ -176,13 +176,15 @@ TabWidget::TabWidget(QWidget *parent)
     addTabButton->setDefaultAction(m_newTabAction);
     addTabButton->setAutoRaise(true);
     addTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+#if QT_VERSION >= 0x040500
+    setCornerWidget(addTabButton, Qt::TopRightCorner);
+#else
+    setCornerWidget(addTabButton, Qt::TopLeftCorner);
+#endif
 #endif
 
 #if QT_VERSION >= 0x040500
-    setCornerWidget(addTabButton, Qt::TopRightCorner);
     if (oneCloseButton) {
-#else
-    setCornerWidget(addTabButton, Qt::TopLeftCorner);
 #endif
         // corner buttons
         // With Qt < 4.5 do this always, with >=4.5 only if enabled.
