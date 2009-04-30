@@ -145,7 +145,7 @@ void RequestModel::addRequest(const Request &request)
 
 void RequestModel::update()
 {
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
     if (!reply)
         return;
 
@@ -208,7 +208,7 @@ QVariant RequestModel::data(const QModelIndex &index, int role) const
                 case QNetworkAccessManager::GetOperation:
                     return QLatin1String("GET");
                     break;
-                case   QNetworkAccessManager::PutOperation:
+                case QNetworkAccessManager::PutOperation:
                     return QLatin1String("PUT");
                     break;
                 case QNetworkAccessManager::PostOperation:

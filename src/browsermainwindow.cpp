@@ -208,7 +208,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
 
     // Add each item in the menu bar to the main window so
     // if the menu bar is hidden the shortcuts still work.
-    QList<QAction *> actions = menuBar()->actions();
+    QList<QAction*> actions = menuBar()->actions();
     foreach (QAction *action, actions) {
         if (action->menu())
             actions += action->menu()->actions();

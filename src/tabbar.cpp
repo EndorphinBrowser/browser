@@ -161,7 +161,7 @@ void TabBar::selectTabAction()
 void TabBar::contextMenuRequested(const QPoint &position)
 {
     QMenu menu;
-    TabWidget *tabWidget = qobject_cast<TabWidget *>(parentWidget());
+    TabWidget *tabWidget = qobject_cast<TabWidget*>(parentWidget());
     if (!tabWidget)
         return;
 

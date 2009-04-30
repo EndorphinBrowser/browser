@@ -63,7 +63,7 @@ public:
     QRect subElementRect(SubElement element, const QStyleOption *option, const QWidget *widget = 0) const {
         QRect r = ProxyStyle::subElementRect(element, option, widget);
         if (element == SE_LineEditContents) {
-            if (const LineEdit *le = qobject_cast<const LineEdit *>(widget)) {
+            if (const LineEdit *le = qobject_cast<const LineEdit*>(widget)) {
                 int left = le->textMargin(LineEdit::LeftSide);
                 int right = le->textMargin(LineEdit::RightSide);
                 r.adjust(left, 0, -right, 0);

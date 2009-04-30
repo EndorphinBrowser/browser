@@ -1138,7 +1138,7 @@ BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
 Q_DECLARE_METATYPE(QModelIndex)
 void BookmarksToolBar::contextMenuRequested(const QPoint &position)
 {
-    QToolButton *button = qobject_cast<QToolButton *>(childAt(position));
+    QToolButton *button = qobject_cast<QToolButton*>(childAt(position));
 
     QMenu menu;
     QAction *action;
@@ -1147,8 +1147,8 @@ void BookmarksToolBar::contextMenuRequested(const QPoint &position)
         QModelIndex index;
         QVariant variant;
 
-        BookmarkToolButton *bookmarkButton = qobject_cast<BookmarkToolButton *>(button);
-        ModelMenu *modelMenu = qobject_cast<ModelMenu *>(button->menu());
+        BookmarkToolButton *bookmarkButton = qobject_cast<BookmarkToolButton*>(button);
+        ModelMenu *modelMenu = qobject_cast<ModelMenu*>(button->menu());
         if (modelMenu) {
             index = modelMenu->rootIndex();
             variant.setValue(index);
@@ -1182,7 +1182,7 @@ void BookmarksToolBar::contextMenuRequested(const QPoint &position)
 
 void BookmarksToolBar::openBookmark()
 {
-    QAction *action = qobject_cast<QAction *>(sender());
+    QAction *action = qobject_cast<QAction*>(sender());
     if (!action)
         return;
     QVariant variant = action->data();
@@ -1198,7 +1198,7 @@ void BookmarksToolBar::openBookmark()
 
 void BookmarksToolBar::openBookmarkInNewTab()
 {
-    QAction *action = qobject_cast<QAction *>(sender());
+    QAction *action = qobject_cast<QAction*>(sender());
     if (!action)
         return;
     QVariant variant = action->data();
@@ -1214,7 +1214,7 @@ void BookmarksToolBar::openBookmarkInNewTab()
 
 void BookmarksToolBar::removeBookmark()
 {
-    QAction *action = qobject_cast<QAction *>(sender());
+    QAction *action = qobject_cast<QAction*>(sender());
     if (!action)
         return;
     QVariant variant = action->data();
@@ -1272,10 +1272,10 @@ void BookmarksToolBar::dropEvent(QDropEvent *event)
 
         int row = -1;
         QModelIndex parentIndex = m_root;
-        QToolButton *target = qobject_cast<QToolButton *>(childAt(event->pos()));
+        QToolButton *target = qobject_cast<QToolButton*>(childAt(event->pos()));
 
         if (target && target->menu()) {
-            ModelMenu *menu = qobject_cast<ModelMenu *>(target->menu());
+            ModelMenu *menu = qobject_cast<ModelMenu*>(target->menu());
             if (menu)
                 parentIndex = menu->rootIndex();
         }

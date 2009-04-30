@@ -21,6 +21,7 @@ grep $options ' $' $args
 grep $options '^{ }*{' $args
 grep $options '){' $args
 grep $options '	' $args
+grep $options ' \*>' $args
 egrep $options '\(.*\* .*\)' $args | grep '::'
 
 # var *name;

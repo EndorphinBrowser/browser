@@ -42,7 +42,7 @@ private:
     void init() const;
     mutable bool m_loaded;
     mutable QList<AroraWebPlugin*> m_plugins;
-    mutable QHash<QString, AroraWebPlugin *> m_pluginsCache;
+    mutable QHash<QString, AroraWebPlugin*> m_pluginsCache;
 };
 
 #endif // WEBPLUGINFACTORY_H
