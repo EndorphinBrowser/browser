@@ -9,6 +9,7 @@ GenericName[en_US]=Web Browser
 GenericName[cs_CZ]=Webový prohlížeč
 GenericName[nl]=Webbrowser
 GenericName[nl_NL]=Webbrowser
+GenericName[pl_PL]=Przeglądarka WWW
 Exec=arora %u
 Terminal=false
 Type=Application

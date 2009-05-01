@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.0" language="pl_PL">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>O programie</translation>
+        <translation type="obsolete">O programie</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -28,7 +27,7 @@
         <source>Close</source>
         <translation>Zamknij</translation>
     </message>
-    <message>
+    <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -39,6 +38,10 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>About %1</source>
+        <translation>O programie %1</translation>
     </message>
 </context>
 <context>
@@ -581,7 +584,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>Stop loading the current page</source>
-        <translation>Zatrzymaj ładowenie strony</translation>
+        <translation>Zatrzymaj ładowanie strony</translation>
     </message>
     <message>
         <source>Reload the current page</source>
@@ -1631,7 +1634,7 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs</source>
-        <translation>Potwierdź zamknięcie wielu kart naraz</translation>
+        <translation type="obsolete">Potwierdź zamknięcie wielu kart naraz</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1713,6 +1716,41 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
         <source>Use ClickToFlash on flash plugins</source>
         <translatorcomment>not sure if ClickToFlash needs to be translated at all...</translatorcomment>
         <translation>Użyj ClickToFlash dla pluginów flash</translation>
+    </message>
+    <message>
+        <source>Filter Tracking Cookies</source>
+        <translation>Odrzucaj śledzące ciastka</translation>
+    </message>
+    <message>
+        <source>Confirm when closing multiple tabs or windows</source>
+        <translation>Potwierdź zamknięcie wielu kart lub okien naraz</translation>
+    </message>
+    <message>
+        <source>Quit the application when last tab is closed</source>
+        <translation>Zamknij aplikację, gdy ostatnia karta zostanie zamknięta</translation>
+    </message>
+    <message>
+        <source>Enable network cache</source>
+        <translation>Włącz sieciową pamięć podręczną</translation>
+    </message>
+    <message>
+        <source>Maximum Size:</source>
+        <translation>Maksymalny rozmiar:</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>Restart required</source>
+        <translation>Ponowne uruchomienie wymagane</translation>
+    </message>
+    <message>
+        <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
+        <translation>Konfiguracja pamięci podręcznej została zmieniona. Aby została wzięta pod uwagę, przeglądarka musi być uruchomiona ponownie.</translation>
     </message>
 </context>
 <context>
@@ -1833,7 +1871,7 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>Loading %1% (%2 %3)...</source>
-        <translation>Ładowanie %1 (%2 %3)...</translation>
+        <translation>Ładowanie %1% (%2 %3)...</translation>
     </message>
     <message>
         <source>Finished loading</source>
