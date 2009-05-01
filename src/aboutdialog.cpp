@@ -31,10 +31,10 @@ AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
 {
     setupUi(this);
-    setWindowTitle(tr("About") + QLatin1String(" ") + qApp->applicationName());
+    setWindowTitle(tr("About %1").arg(qApp->applicationName()));
     logo->setPixmap(qApp->windowIcon().pixmap(128, 128));
     name->setText(qApp->applicationName());
-    version->setText(QApplication::applicationVersion());
+    version->setText(qApp->applicationVersion());
     connect(authorsButton, SIGNAL(clicked()),
             this, SLOT(authorsButtonClicked()));
     connect(licenseButton, SIGNAL(clicked()),
@@ -43,32 +43,33 @@ AboutDialog::AboutDialog(QWidget *parent)
 
 void AboutDialog::displayFile(const QString &fileName, const QString &title)
 {
-    QDialog *dialog = new QDialog(this);
-    QLayout *layout = new QVBoxLayout(dialog);
-    QTextEdit *textEdit = new QTextEdit(dialog);
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, dialog);
+    QDialog dialog(this);
+    QVBoxLayout layout(&dialog);
+    QTextEdit textEdit(&dialog);
+    QDialogButtonBox buttonBox(QDialogButtonBox::Close, Qt::Horizontal, &dialog);
 
-    textEdit->setLayoutDirection(Qt::LeftToRight);
+    textEdit.setLayoutDirection(Qt::LeftToRight);
 
     QFile file(fileName);
-    if (file.open(QIODevice::ReadOnly)) {
-        QString text = QTextStream(&file).readAll();
-        // this is done to force the content of the text editor to be LTR, and monospaced.
-        textEdit->setHtml( QString(QLatin1String("<pre>%1</pre>")).arg(text) );
-    }
+    if (!file.open(QIODevice::ReadOnly))
+        return;
 
-    textEdit->setReadOnly(true);
-    connect(buttonBox, SIGNAL(rejected()), dialog, SLOT(close()));
-    buttonBox->setCenterButtons(true);
-    layout->addWidget(textEdit);
-    layout->addWidget(buttonBox);
-    layout->setMargin(6);
+    QString text = QTextStream(&file).readAll();
+    // this is done to force the content of the text editor to be LTR, and monospaced.
+    textEdit.setHtml(QString(QLatin1String("<pre>%1</pre>")).arg(text));
 
-    dialog->setLayout(layout);
-    dialog->setWindowTitle(title);
-    dialog->setWindowFlags(Qt::Sheet);
-    dialog->resize(600, 350);
-    dialog->exec();
+    textEdit.setReadOnly(true);
+    connect(&buttonBox, SIGNAL(rejected()), &dialog, SLOT(close()));
+    buttonBox.setCenterButtons(true);
+    layout.addWidget(&textEdit);
+    layout.addWidget(&buttonBox);
+    layout.setMargin(6);
+
+    dialog.setLayout(&layout);
+    dialog.setWindowTitle(title);
+    dialog.setWindowFlags(Qt::Sheet);
+    dialog.resize(600, 350);
+    dialog.exec();
 }
 
 void AboutDialog::authorsButtonClicked()
