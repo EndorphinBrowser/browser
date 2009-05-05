@@ -51,8 +51,6 @@ HEADERS += \
     clearprivatedata.h \
     clearbutton.h \
     downloadmanager.h \
-    edittableview.h \
-    edittreeview.h \
     languagemanager.h \
     modelmenu.h \
     networkaccessmanager.h \
@@ -81,8 +79,6 @@ SOURCES += \
     clearprivatedata.cpp \
     clearbutton.cpp \
     downloadmanager.cpp \
-    edittableview.cpp \
-    edittreeview.cpp \
     languagemanager.cpp \
     modelmenu.cpp \
     networkaccessmanager.cpp \
