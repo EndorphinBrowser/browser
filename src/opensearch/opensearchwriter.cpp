@@ -55,10 +55,10 @@ void OpenSearchWriter::write(OpenSearchEngine *engine)
     if (!engine->description().isEmpty())
         writeTextElement(QLatin1String("Description"), engine->description());
 
-    if (!engine->searchUrl().isEmpty()) {
+    if (!engine->searchUrlTemplate().isEmpty()) {
         writeStartElement(QLatin1String("Url"));
         writeAttribute(QLatin1String("method"), QLatin1String("get"));
-        writeAttribute(QLatin1String("template"), engine->searchUrl());
+        writeAttribute(QLatin1String("template"), engine->searchUrlTemplate());
 
         if (!engine->searchParameters().empty()) {
             writeNamespace(QLatin1String("http://a9.com/-/spec/opensearch/extensions/parameters/1.0/"), QLatin1String("p"));
@@ -76,11 +76,11 @@ void OpenSearchWriter::write(OpenSearchEngine *engine)
         writeEndElement();
     }
 
-    if (!engine->suggestionsUrl().isEmpty()) {
+    if (!engine->suggestionsUrlTemplate().isEmpty()) {
         writeStartElement(QLatin1String("Url"));
         writeAttribute(QLatin1String("method"), QLatin1String("get"));
         writeAttribute(QLatin1String("type"), QLatin1String("application/x-suggestions+json"));
-        writeAttribute(QLatin1String("template"), engine->suggestionsUrl());
+        writeAttribute(QLatin1String("template"), engine->suggestionsUrlTemplate());
 
         if (!engine->suggestionsParameters().empty()) {
             writeNamespace(QLatin1String("http://a9.com/-/spec/opensearch/extensions/parameters/1.0/"), QLatin1String("p"));

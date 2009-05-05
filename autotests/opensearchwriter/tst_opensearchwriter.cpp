@@ -68,7 +68,7 @@ void tst_OpenSearchWriter::engineToByteArray()
 
     engine.setName(QLatin1String("Foo Bar"));
     engine.setDescription(QLatin1String("Bar Foo"));
-    engine.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
+    engine.setSearchUrlTemplate(QLatin1String("http://foobar.barfoo/search"));
 
     QBuffer buffer(&array);
     writer.write(&buffer, &engine);
@@ -87,8 +87,8 @@ void tst_OpenSearchWriter::engineToFile()
 
     engine.setName(QLatin1String("Arora!"));
     engine.setDescription(QLatin1String("a cross platform web browser built using Qt and WebKit"));
-    engine.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
-    engine.setSuggestionsUrl(QLatin1String("http://foobar.barfoo/suggest"));
+    engine.setSearchUrlTemplate(QLatin1String("http://foobar.barfoo/search"));
+    engine.setSuggestionsUrlTemplate(QLatin1String("http://foobar.barfoo/suggest"));
 
     writer.write(&file, &engine);
 
@@ -110,8 +110,8 @@ void tst_OpenSearchWriter::engineWithUrlParameters()
 
     engine.setName(QLatin1String("Foo Bar"));
     engine.setDescription(QLatin1String("Bar Foo"));
-    engine.setSearchUrl(QLatin1String("http://foobar.barfoo/search"));
-    engine.setSuggestionsUrl(QLatin1String("http://foobar.barfoo/suggest"));
+    engine.setSearchUrlTemplate(QLatin1String("http://foobar.barfoo/search"));
+    engine.setSuggestionsUrlTemplate(QLatin1String("http://foobar.barfoo/suggest"));
 
     QList<OpenSearchEngine::Parameter> searchParameters;
     QList<OpenSearchEngine::Parameter> suggestionsParameters;

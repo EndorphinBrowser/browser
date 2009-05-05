@@ -50,15 +50,15 @@ public:
     QString description() const;
     void setDescription(const QString &description);
 
-    QString searchUrl() const;
+    QString searchUrlTemplate() const;
+    void setSearchUrlTemplate(const QString &searchUrl);
     QUrl searchUrl(const QString &searchTerm) const;
-    void setSearchUrl(const QString &searchUrl);
 
     bool providesSuggestions() const;
 
-    QString suggestionsUrl() const;
+    QString suggestionsUrlTemplate() const;
+    void setSuggestionsUrlTemplate(const QString &suggestionsUrl);
     QUrl suggestionsUrl(const QString &searchTerm) const;
-    void setSuggestionsUrl(const QString &suggestionsUrl);
 
     QList<Parameter> searchParameters() const;
     void setSearchParameters(const QList<Parameter> &searchParameters);
@@ -98,8 +98,8 @@ private:
     QString m_imageUrl;
     QImage m_image;
 
-    QString m_searchUrl;
-    QString m_suggestionsUrl;
+    QString m_searchUrlTemplate;
+    QString m_suggestionsUrlTemplate;
     QList<Parameter> m_searchParameters;
     QList<Parameter> m_suggestionsParameters;
 

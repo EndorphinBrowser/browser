@@ -92,7 +92,7 @@ void tst_OpenSearchManager::addRemoveEngine_data()
 {
     QTest::addColumn<QString>("name");
     QTest::addColumn<QString>("description");
-    QTest::addColumn<QString>("searchUrl");
+    QTest::addColumn<QString>("searchUrlTemplate");
     QTest::addColumn<bool>("valid");
 
     QTest::newRow("valid") << "Foo" << "Bar" << "http://foobaz.bar" << true;
@@ -103,7 +103,7 @@ void tst_OpenSearchManager::addRemoveEngine()
 {
     QFETCH(QString, name);
     QFETCH(QString, description);
-    QFETCH(QString, searchUrl);
+    QFETCH(QString, searchUrlTemplate);
     QFETCH(bool, valid);
 
     SubOpenSearchManager manager;
@@ -113,7 +113,7 @@ void tst_OpenSearchManager::addRemoveEngine()
     OpenSearchEngine *engine = new OpenSearchEngine();
     engine->setName(name);
     engine->setDescription(description);
-    engine->setSearchUrl(searchUrl);
+    engine->setSearchUrlTemplate(searchUrlTemplate);
 
     QCOMPARE(manager.enginesCount(), 1);
     QVERIFY(!manager.engineExists(name));
@@ -136,7 +136,7 @@ void tst_OpenSearchManager::setCurrentEngine_data()
 {
     QTest::addColumn<QString>("name");
     QTest::addColumn<QString>("description");
-    QTest::addColumn<QString>("searchUrl");
+    QTest::addColumn<QString>("searchUrlTemplate");
     QTest::addColumn<bool>("valid");
 
     QTest::newRow("valid") << "Foo" << "Bar" << "http://foobaz.bar" << true;
@@ -147,7 +147,7 @@ void tst_OpenSearchManager::setCurrentEngine()
 {
     QFETCH(QString, name);
     QFETCH(QString, description);
-    QFETCH(QString, searchUrl);
+    QFETCH(QString, searchUrlTemplate);
     QFETCH(bool, valid);
 
     SubOpenSearchManager manager;
@@ -162,7 +162,7 @@ void tst_OpenSearchManager::setCurrentEngine()
     OpenSearchEngine *engine = new OpenSearchEngine();
     engine->setName(name);
     engine->setDescription(description);
-    engine->setSearchUrl(searchUrl);
+    engine->setSearchUrlTemplate(searchUrlTemplate);
 
     bool result = manager.addEngine(engine);
     QCOMPARE(result, valid);
@@ -214,7 +214,7 @@ void tst_OpenSearchManager::restoreDefaults()
 
     OpenSearchEngine *engine = new OpenSearchEngine();
     engine->setName("Foobarbaz");
-    engine->setSearchUrl("http://foobarbaz.baz");
+    engine->setSearchUrlTemplate("http://foobarbaz.baz");
 
     manager.addEngine(engine);
     manager.restoreDefaults();

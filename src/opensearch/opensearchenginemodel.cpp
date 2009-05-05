@@ -23,7 +23,7 @@
 #include "opensearchengine.h"
 #include "opensearchmanager.h"
 
-#include <qpixmap.h>
+#include <qimage.h>
 
 OpenSearchEngineModel::OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent)
     : QAbstractListModel(parent)
@@ -38,7 +38,10 @@ bool OpenSearchEngineModel::removeRows(int row, int count, const QModelIndex &pa
     if (parent.isValid())
         return false;
 
-    if (count < 1)
+    if (count <= 0)
+        return false;
+
+    if (rowCount() <= 1)
         return false;
 
     int lastRow = row + count - 1;
@@ -73,8 +76,12 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
     case Qt::DisplayRole:
         return engine->name();
     break;
-    case Qt::DecorationRole:
-        return engine->image();
+    case Qt::DecorationRole: {
+        QImage image = engine->image();
+        if (image.isNull())
+            image = QImage(QLatin1String(":defaulticon.png"));
+        return image;
+    }
     break;
     case Qt::ToolTipRole:
         QString description = tr("<strong>Description:</strong> %1").arg(engine->description());

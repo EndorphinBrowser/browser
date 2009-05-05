@@ -73,8 +73,8 @@ void tst_OpenSearchReader::validFile()
     QVERIFY(engine->isValid());
     QCOMPARE(engine->name(), QLatin1String("Wikipedia (en)"));
     QCOMPARE(engine->description(), QLatin1String("Full text search in the English Wikipedia"));
-    QCOMPARE(engine->searchUrl(), QLatin1String("http://en.wikipedia.org/bar"));
-    QCOMPARE(engine->suggestionsUrl(), QLatin1String("http://en.wikipedia.org/foo"));
+    QCOMPARE(engine->searchUrlTemplate(), QLatin1String("http://en.wikipedia.org/bar"));
+    QCOMPARE(engine->suggestionsUrlTemplate(), QLatin1String("http://en.wikipedia.org/foo"));
     QCOMPARE(engine->imageUrl(), QLatin1String("http://en.wikipedia.org/favicon.ico"));
 
     delete engine;
@@ -100,8 +100,8 @@ void tst_OpenSearchReader::validByteArray()
     QVERIFY(engine->isValid());
     QCOMPARE(engine->name(), QLatin1String("Google"));
     QCOMPARE(engine->description(), QLatin1String("Google Web Search"));
-    QCOMPARE(engine->searchUrl(), QLatin1String("http://www.google.com/search?bar"));
-    QCOMPARE(engine->suggestionsUrl(), QLatin1String("http://suggestqueries.google.com/complete/foo"));
+    QCOMPARE(engine->searchUrlTemplate(), QLatin1String("http://www.google.com/search?bar"));
+    QCOMPARE(engine->suggestionsUrlTemplate(), QLatin1String("http://suggestqueries.google.com/complete/foo"));
     QCOMPARE(engine->imageUrl(), QLatin1String("http://www.google.com/favicon.ico"));
 
     delete engine;
@@ -137,7 +137,7 @@ void tst_OpenSearchReader::invalidByteArray()
     QVERIFY(!engine->isValid()); // lacking in namespace URI
     QCOMPARE(engine->name(), QString());
     QCOMPARE(engine->description(), QString());
-    QCOMPARE(engine->searchUrl(), QString());
+    QCOMPARE(engine->searchUrlTemplate(), QString());
 
     delete engine;
 }
@@ -151,8 +151,8 @@ void tst_OpenSearchReader::urlParameters()
     QVERIFY(engine->isValid());
     QCOMPARE(engine->name(), QLatin1String("GitHub"));
     QCOMPARE(engine->description(), QLatin1String("Search GitHub"));
-    QCOMPARE(engine->searchUrl(), QLatin1String("http://github.com/search"));
-    QCOMPARE(engine->suggestionsUrl(), QString());
+    QCOMPARE(engine->searchUrlTemplate(), QLatin1String("http://github.com/search"));
+    QCOMPARE(engine->suggestionsUrlTemplate(), QString());
 
     QCOMPARE(engine->searchParameters().count(), 2);
     QList<OpenSearchEngine::Parameter> parameters = engine->searchParameters();

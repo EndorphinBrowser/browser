@@ -86,17 +86,22 @@ void OpenSearchEngine::setDescription(const QString &description)
     m_description = description;
 }
 
-QString OpenSearchEngine::searchUrl() const
+QString OpenSearchEngine::searchUrlTemplate() const
 {
-    return m_searchUrl;
+    return m_searchUrlTemplate;
+}
+
+void OpenSearchEngine::setSearchUrlTemplate(const QString &searchUrlTemplate)
+{
+    m_searchUrlTemplate = searchUrlTemplate;
 }
 
 QUrl OpenSearchEngine::searchUrl(const QString &searchTerm) const
 {
-    if (m_searchUrl.isEmpty())
+    if (m_searchUrlTemplate.isEmpty())
         return QUrl();
 
-    QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_searchUrl).toUtf8());
+    QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_searchUrlTemplate).toUtf8());
 
     QList<Parameter>::const_iterator end = m_searchParameters.constEnd();
     QList<Parameter>::const_iterator i = m_searchParameters.constBegin();
@@ -106,27 +111,27 @@ QUrl OpenSearchEngine::searchUrl(const QString &searchTerm) const
     return retVal;
 }
 
-void OpenSearchEngine::setSearchUrl(const QString &searchUrl)
-{
-    m_searchUrl = searchUrl;
-}
-
 bool OpenSearchEngine::providesSuggestions() const
 {
-    return !m_suggestionsUrl.isEmpty();
+    return !m_suggestionsUrlTemplate.isEmpty();
 }
 
-QString OpenSearchEngine::suggestionsUrl() const
+QString OpenSearchEngine::suggestionsUrlTemplate() const
 {
-    return m_suggestionsUrl;
+    return m_suggestionsUrlTemplate;
+}
+
+void OpenSearchEngine::setSuggestionsUrlTemplate(const QString &suggestionsUrlTemplate)
+{
+    m_suggestionsUrlTemplate = suggestionsUrlTemplate;
 }
 
 QUrl OpenSearchEngine::suggestionsUrl(const QString &searchTerm) const
 {
-    if (m_suggestionsUrl.isEmpty())
+    if (m_suggestionsUrlTemplate.isEmpty())
         return QUrl();
 
-    QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_suggestionsUrl).toUtf8());
+    QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_suggestionsUrlTemplate).toUtf8());
 
     QList<Parameter>::const_iterator end = m_suggestionsParameters.constEnd();
     QList<Parameter>::const_iterator i = m_suggestionsParameters.constBegin();
@@ -134,11 +139,6 @@ QUrl OpenSearchEngine::suggestionsUrl(const QString &searchTerm) const
         retVal.addQueryItem(i->first, parseTemplate(searchTerm, i->second));
 
     return retVal;
-}
-
-void OpenSearchEngine::setSuggestionsUrl(const QString &suggestionsUrl)
-{
-    m_suggestionsUrl = suggestionsUrl;
 }
 
 QList<OpenSearchEngine::Parameter> OpenSearchEngine::searchParameters() const
@@ -203,9 +203,6 @@ void OpenSearchEngine::imageObtained()
 
 QImage OpenSearchEngine::image() const
 {
-    if (m_image.isNull())
-        return QImage(QLatin1String(":defaulticon.png"));
-
     return m_image;
 }
 
@@ -216,12 +213,12 @@ void OpenSearchEngine::setImage(const QImage &image)
 
 bool OpenSearchEngine::isValid() const
 {
-    return (!m_name.isEmpty() && !m_searchUrl.isEmpty());
+    return (!m_name.isEmpty() && !m_searchUrlTemplate.isEmpty());
 }
 
 bool OpenSearchEngine::operator==(const OpenSearchEngine &other) const
 {
-    return (m_name == other.m_name && m_searchUrl == other.m_searchUrl);
+    return (m_name == other.m_name && m_searchUrlTemplate == other.m_searchUrlTemplate);
 }
 
 bool OpenSearchEngine::operator<(const OpenSearchEngine &other) const

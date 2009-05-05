@@ -277,7 +277,7 @@ QString OpenSearchManager::enginesDirectory() const
 
 bool OpenSearchManager::confirmAddition(OpenSearchEngine *engine)
 {
-    QString host = QUrl(engine->searchUrl()).host();
+    QString host = QUrl(engine->searchUrlTemplate()).host();
 
     QMessageBox::StandardButton button = QMessageBox::question(0, QString(),
             tr("Do you want to add the following engine to your list of search engines?<br /><br />"

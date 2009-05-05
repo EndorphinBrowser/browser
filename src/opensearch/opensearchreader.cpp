@@ -91,10 +91,10 @@ OpenSearchEngine *OpenSearchReader::read()
             }
 
             if (type == QLatin1String("application/x-suggestions+json")) {
-                engine->setSuggestionsUrl(url);
+                engine->setSuggestionsUrlTemplate(url);
                 engine->setSuggestionsParameters(parameters);
             } else {
-                engine->setSearchUrl(url);
+                engine->setSearchUrlTemplate(url);
                 engine->setSearchParameters(parameters);
             }
 
@@ -104,8 +104,8 @@ OpenSearchEngine *OpenSearchReader::read()
 
         if (!engine->name().isEmpty()
             && !engine->description().isEmpty()
-            && !engine->suggestionsUrl().isEmpty()
-            && !engine->searchUrl().isEmpty()
+            && !engine->suggestionsUrlTemplate().isEmpty()
+            && !engine->searchUrlTemplate().isEmpty()
             && !engine->imageUrl().isEmpty())
             break;
     }

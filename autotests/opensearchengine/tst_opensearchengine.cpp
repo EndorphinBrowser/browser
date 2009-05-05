@@ -93,7 +93,7 @@ void tst_OpenSearchEngine::openSearchEngine()
     QCOMPARE(engine.providesSuggestions(), false);
     engine.requestSuggestions(QString());
     QCOMPARE(engine.searchParameters(), QList<OpenSearchEngine::Parameter>());
-    QCOMPARE(engine.searchUrl(), QString());
+    QCOMPARE(engine.searchUrlTemplate(), QString());
     QCOMPARE(engine.searchUrl(QString()), QUrl());
     engine.setDescription(QString());
     engine.setImage(QImage());
@@ -101,12 +101,12 @@ void tst_OpenSearchEngine::openSearchEngine()
     engine.setName(QString());
     engine.setNetworkAccessManager((QNetworkAccessManager*)0);
     engine.setSearchParameters(QList<OpenSearchEngine::Parameter>());
-    engine.setSearchUrl(QString());
+    engine.setSearchUrlTemplate(QString());
     engine.setSuggestionsParameters(QList<OpenSearchEngine::Parameter>());
-    engine.setSuggestionsUrl(QString());
+    engine.setSuggestionsUrlTemplate(QString());
     QCOMPARE(engine.suggestionsParameters(), QList<OpenSearchEngine::Parameter>());
     QCOMPARE(engine.suggestionsUrl(QString()), QUrl());
-    QCOMPARE(engine.suggestionsUrl(), QString());
+    QCOMPARE(engine.suggestionsUrlTemplate(), QString());
     engine.call_imageChanged();
     engine.call_loadImage();
     QCOMPARE(engine.call_parseTemplate(QString(), QString()), QString());
@@ -139,7 +139,7 @@ void tst_OpenSearchEngine::requestSuggestions()
 
     OpenSearchEngine engine;
     engine.setNetworkAccessManager(&networkAccessManager);
-    engine.setSuggestionsUrl("x");
+    engine.setSuggestionsUrlTemplate("x");
     engine.requestSuggestions("foo");
 }
 
