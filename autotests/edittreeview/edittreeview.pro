@@ -6,5 +6,5 @@ INCLUDEPATH += . ../
 include(../autotests.pri)
 
 # Input
-SOURCES += tst_edittreeview.cpp
-HEADERS +=
+SOURCES = tst_edittreeview.cpp edittreeview.cpp
+HEADERS = edittreeview.h
