@@ -182,6 +182,9 @@ void NetworkAccessManager::loadSettings()
 
 #if QT_VERSION >= 0x040500
     bool cacheEnabled = settings.value(QLatin1String("cacheEnabled"), true).toBool();
+    if (QLatin1String(qVersion()) == QLatin1String("4.5.1"))
+        cacheEnabled = false;
+
     if (cacheEnabled) {
         int maximumCacheSize = settings.value(QLatin1String("maximumCacheSize"), 50).toInt() * 1024 * 1024;
 
