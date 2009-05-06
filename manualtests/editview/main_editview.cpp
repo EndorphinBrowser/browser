@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009, Jakub Wieczorek <faw217@gmail.com>
+ * Copyright (c) 2009, Benjamin C. Meyer
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -26,42 +26,52 @@
  * SUCH DAMAGE.
  */
 
-#include "editlistview.h"
+#include <qapplication.h>
+#include <qstringlistmodel.h>
+#include <qstandarditemmodel.h>
 
-#include <qevent.h>
+#include "ui_editview.h"
 
-EditListView::EditListView(QWidget *parent)
-    : QListView(parent)
+class Window : public QDialog, public Ui_Dialog
 {
-}
+    Q_OBJECT
 
-void EditListView::keyPressEvent(QKeyEvent *event)
+public:
+    Window();
+};
+
+Window::Window()
+    : QDialog()
 {
-    if (model() && event->key() == Qt::Key_Delete) {
-        removeSelected();
-        event->setAccepted(true);
-    } else {
-        QAbstractItemView::keyPressEvent(event);
+    setupUi(this);
+    QStringList list;
+    list << "a" << "b" << "c";
+    listView->setModel(new QStringListModel(list));
+    tableView->setModel(new QStringListModel(list));
+    connect(listViewRemoveAllButton, SIGNAL(clicked()), listView, SLOT(removeAll()));
+    connect(tableViewRemoveAllButton, SIGNAL(clicked()), tableView, SLOT(removeAll()));
+    connect(treeViewRemoveAllButton, SIGNAL(clicked()), treeView, SLOT(removeAll()));
+
+    QStandardItemModel *model = new QStandardItemModel(this);
+    QStandardItem *parentItem = model->invisibleRootItem();
+    for (int i = 0; i < 4; ++i) {
+        QStandardItem *item = new QStandardItem(QString("item %0").arg(i));
+        parentItem->appendRow(item);
+        item = new QStandardItem(QString("item %0").arg(i * 2));
+        parentItem->appendRow(item);
+        parentItem = item;
     }
+    treeView->setModel(model);
+    treeView->expandAll();
 }
 
-void EditListView::removeSelected()
+int main(int argc, char **argv)
 {
-    if (!model() || !selectionModel())
-        return;
-
-    QModelIndexList selectedRows = selectionModel()->selectedRows();
-    for (int i = selectedRows.count() - 1; i >= 0; --i) {
-        QModelIndex idx = selectedRows.at(i);
-        model()->removeRow(idx.row(), rootIndex());
-    }
+    QApplication app(argc, argv);
+    Window window;
+    window.show();
+    return app.exec();
 }
 
-void EditListView::removeAll()
-{
-    if (!model())
-        return;
-
-    model()->removeRows(0, model()->rowCount(rootIndex()), rootIndex());
-}
+#include "main_editview.moc"
 

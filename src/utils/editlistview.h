@@ -26,8 +26,8 @@
  * SUCH DAMAGE.
  */
 
-#ifndef EDITTABLEVIEW_H
-#define EDITTABLEVIEW_H
+#ifndef EDITLISTVIEW_H
+#define EDITLISTVIEW_H
 
 #include <qlistview.h>
 
@@ -44,5 +44,5 @@ public slots:
     void removeAll();
 };
 
-#endif // EDITTABLEVIEW_H
+#endif // EDITLISTVIEW_H
 

@@ -38,10 +38,12 @@ EditTreeView::EditTreeView(QWidget *parent)
 
 void EditTreeView::keyPressEvent(QKeyEvent *event)
 {
-    if (model() && event->key() == Qt::Key_Delete)
+    if (model() && event->key() == Qt::Key_Delete) {
         removeSelected();
-    else
+        event->setAccepted(true);
+    } else {
         QAbstractItemView::keyPressEvent(event);
+    }
 }
 
 void EditTreeView::removeSelected()
@@ -50,33 +52,10 @@ void EditTreeView::removeSelected()
         return;
 
     QModelIndexList selectedRows = selectionModel()->selectedRows();
-
-    int firstRow = selectedRows.value(0).row();
-    // get parent before removing first
-    QModelIndex firstParent = selectedRows.value(0).parent();
     for (int i = selectedRows.count() - 1; i >= 0; --i) {
         QModelIndex idx = selectedRows.at(i);
         model()->removeRow(idx.row(), idx.parent());
     }
-
-    // select the item at the same position
-    QModelIndex newSelectedIndex = model()->index(firstRow, 0, firstParent);
-    // if that was the last item
-    if (!newSelectedIndex.isValid()) {
-        int parentRows = model()->rowCount(firstParent);
-        if (parentRows == 0) {
-            // removed the only item, goto parent
-            newSelectedIndex = firstParent;
-        } else {
-            // removed the last item, goto new last item
-            newSelectedIndex = model()->index(parentRows - 1, 0, firstParent);
-        }
-    }
-    if (!newSelectedIndex.isValid())
-        newSelectedIndex = model()->index(0, 0, rootIndex());
-
-    selectionModel()->select(newSelectedIndex, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
-    setCurrentIndex(newSelectedIndex);
 }
 
 void EditTreeView::removeAll()

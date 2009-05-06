@@ -38,10 +38,12 @@ EditTableView::EditTableView(QWidget *parent)
 
 void EditTableView::keyPressEvent(QKeyEvent *event)
 {
-    if (model() && event->key() == Qt::Key_Delete)
+    if (model() && event->key() == Qt::Key_Delete) {
         removeSelected();
-    else
+        event->setAccepted(true);
+    } else {
         QAbstractItemView::keyPressEvent(event);
+    }
 }
 
 void EditTableView::removeSelected()

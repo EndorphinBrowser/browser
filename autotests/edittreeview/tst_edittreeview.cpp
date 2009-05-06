@@ -96,7 +96,6 @@ void tst_EditTreeView::edittreeview()
     SubEditTreeView view;
     QTest::keyClick(&view, Qt::Key_Space);
     QTest::keyClick(&view, Qt::Key_Delete);
-    QTest::keyClick(&view, Qt::Key_Backspace);
     view.removeAll();
     view.removeSelected();
 }
@@ -107,10 +106,9 @@ void tst_EditTreeView::keyPressEvent_data()
     QTest::addColumn<Qt::Key>("key");
     QTest::newRow("space") << Qt::Key_Space;
     QTest::newRow("delete") << Qt::Key_Delete;
-    QTest::newRow("backspace") << Qt::Key_Backspace;
 }
 
-// public void keyPressEvent(QKeyEvent* event)
+// public void keyPressEvent(QKeyEvent *event)
 void tst_EditTreeView::keyPressEvent()
 {
     QFETCH(Qt::Key, key);
@@ -122,7 +120,7 @@ void tst_EditTreeView::keyPressEvent()
     view.selectionModel()->select(idx, QItemSelectionModel::SelectCurrent);
     int oldCount = view.model()->rowCount();
     QTest::keyClick(&view, key);
-    if (key == Qt::Key_Delete || key == Qt::Key_Backspace)
+    if (key == Qt::Key_Delete)
         QCOMPARE(oldCount - 1, view.model()->rowCount());
     else
         QCOMPARE(oldCount, view.model()->rowCount());
@@ -163,10 +161,12 @@ void tst_EditTreeView::removeSelected()
     view.show();
     view.addModel();
     QAbstractItemModel *model = view.model();
+    view.expandAll();
     QModelIndex parent = model->index(selectParent, 0);
     while (!select.isEmpty()) {
         QModelIndex idx = model->index(select.takeLast(), 0, parent);
-        view.selectionModel()->select(idx, QItemSelectionModel::SelectCurrent);
+        view.selectionModel()->select(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+        view.setCurrentIndex(idx);
         view.removeSelected();
     }
 
