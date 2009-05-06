@@ -1,3 +1,11 @@
+0.6.1
+When using Arora with Qt 4.5.1 after a little while pages will stop rendering.
+This is because of a bug in 4.5.1 where renaming a file will cause the file
+descriptor to not be closed.  QNetworkDiskCache is a simple cache and uses
+QTemporaryFile's for each new cached file and eventually the kernel
+wont let QNetworkDiskCache open a cache file because all of the previous files were not
+closed.  When running against Qt 4.5.1 Arora will now disable the disk cache.
+
 0.6
 Interface
 - Save more of the main window state, window's fullscreen status, maximized status, menu bar visibility, normal size, and ensure that the menu bar and status bar are returned to their proper states if saving while the window is fullscreen.

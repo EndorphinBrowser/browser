@@ -1,4 +1,4 @@
-arora (0.6~git##DATE##-1~##DIST##1~upstream1) ##DIST##; urgency=low
+arora (0.6.1~git##DATE##-1~##DIST##1~upstream1) ##DIST##; urgency=low
 
   * Initial release (LP: #231731)
 
