@@ -22,17 +22,7 @@
     </widget>
    </item>
    <item>
-    <widget class="EditTableView" name="whitelist">
-     <property name="alternatingRowColors">
-      <bool>true</bool>
-     </property>
-     <property name="showGrid">
-      <bool>true</bool>
-     </property>
-     <attribute name="horizontalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-    </widget>
+    <widget class="EditListView" name="whitelist"/>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
@@ -48,9 +38,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>EditTableView</class>
-   <extends>QTableView</extends>
-   <header>edittableview.h</header>
+   <class>EditListView</class>
+   <extends>QListView</extends>
+   <header>editlistview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
