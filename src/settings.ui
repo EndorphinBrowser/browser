@@ -804,7 +804,42 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="networkCache">
+         <property name="title">
+          <string>Enable network cache</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Maximum Size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="networkCacheMaximumSizeSpinBox">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="suffix">
+             <string> MB</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="1">
         <spacer name="verticalSpacer_3">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -853,6 +888,7 @@
   <tabstop>proxyUserName</tabstop>
   <tabstop>proxyPassword</tabstop>
   <tabstop>userStyleSheet</tabstop>
+  <tabstop>networkCacheMaximumSizeSpinBox</tabstop>
   <tabstop>buttonBox</tabstop>
  </tabstops>
  <resources/>

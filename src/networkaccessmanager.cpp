@@ -181,13 +181,24 @@ void NetworkAccessManager::loadSettings()
     m_acceptLanguage = AcceptLanguageDialog::httpString(acceptList);
 
 #if QT_VERSION >= 0x040500
-    bool m_cacheEnabled = settings.value(QLatin1String("cacheEnabled"), true).toBool();
-    if (m_cacheEnabled) {
-        QNetworkDiskCache *diskCache = new QNetworkDiskCache(this);
+    bool cacheEnabled = settings.value(QLatin1String("cacheEnabled"), true).toBool();
+    if (cacheEnabled) {
+        int maximumCacheSize = settings.value(QLatin1String("maximumCacheSize"), 50).toInt() * 1024 * 1024;
+
+        QNetworkDiskCache *diskCache;
+        if (cache())
+            diskCache = qobject_cast<QNetworkDiskCache*>(cache());
+        else
+            diskCache = new QNetworkDiskCache(this);
+
         QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
                                 + QLatin1String("/browser");
         diskCache->setCacheDirectory(location);
+        diskCache->setMaximumCacheSize(maximumCacheSize);
         setCache(diskCache);
+    } else {
+        if (QLatin1String(qVersion()) > QLatin1String("4.5.1"))
+            setCache(0);
     }
 #endif
     settings.endGroup();
