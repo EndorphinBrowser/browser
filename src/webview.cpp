@@ -411,14 +411,17 @@ void WebView::dropEvent(QDropEvent *event)
 
 void WebView::mouseReleaseEvent(QMouseEvent *event)
 {
-    QWebView::mouseReleaseEvent(event);
+    const bool isAccepted = event->isAccepted();
+    m_page->event(event);
     if (!event->isAccepted()
         && (BrowserApplication::instance()->eventMouseButtons() & Qt::MidButton)) {
         QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
         if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
+            BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
             loadUrl(url);
         }
     }
+    event->setAccepted(isAccepted);
 }
 
 void WebView::keyPressEvent(QKeyEvent *event)
