@@ -66,6 +66,7 @@
 #include "browserapplication.h"
 #include "googlesuggest.h"
 #include "networkaccessmanager.h"
+#include "searchbutton.h"
 
 #include <qabstractitemview.h>
 #include <qcompleter.h>
@@ -81,7 +82,7 @@
     Searches are turned into urls that use Google to perform search
  */
 ToolbarSearch::ToolbarSearch(QWidget *parent)
-    : SearchLineEdit(new QCompleter(parent), parent)
+    : SearchLineEdit(parent)
     , m_autosaver(new AutoSaver(this))
     , m_maxSavedSearches(10)
     , m_model(new QStandardItemModel(this))
@@ -89,6 +90,10 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     , m_recentSearchesItem(0)
     , m_suggestTimer(0)
 {
+    setCompleter(new QCompleter(this));
+    searchButton()->setShowMenuTriangle(true);
+    connect(searchButton(), SIGNAL(clicked()),
+            completer(), SLOT(complete()));
     completer()->setModel(m_model);
     completer()->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
     connect(this, SIGNAL(returnPressed()), SLOT(searchNow()));
