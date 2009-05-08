@@ -98,6 +98,7 @@ void SearchButton::setImage(const QImage &image)
 {
     m_cache = image;
     setMinimumSize(sizeHint());
+    update();
 }
 
 void SearchButton::paintEvent(QPaintEvent *event)
