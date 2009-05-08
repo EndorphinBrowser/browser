@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,26 +17,33 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef QTEST_ARORA_H
-#define QTEST_ARORA_H
+#ifndef QTRY_H
+#define QTRY_H
 
 #include <qtest.h>
 
-#include <browserapplication.h>
+#ifndef QTRY_COMPARE
 
-#include "qtry.h"
+#define __TRY_TIMEOUT__ 5000
+#define __TRY_STEP__    50
 
-#undef QTEST_MAIN
+#define __QTRY(__expression__, __functionToCall__) \
+    do { \
+        int __i = 0; \
+        while (!(__expression__) &&  __i < __TRY_TIMEOUT__) { \
+            QTest::qWait(__TRY_STEP__); \
+            __i += __TRY_STEP__; \
+        } \
+        __functionToCall__; \
+    } while(0)
 
-#define QTEST_MAIN(TestObject) \
-int main(int argc, char *argv[]) \
-{ \
-    Q_INIT_RESOURCE(htmls); \
-    Q_INIT_RESOURCE(data); \
-    BrowserApplication app(argc, argv); \
-    TestObject tc; \
-    return QTest::qExec(&tc, argc, argv); \
-}
+#define QTRY_COMPARE(__expression__, __expected__) \
+    __QTRY((__expression__ == __expected__), QCOMPARE(__expression__, __expected__));
 
-#endif
+#define QTRY_VERIFY(__expression__) \
+    __QTRY(__expression__, QVERIFY(__expression__));
+
+#endif // QTRY_COMPARE
+
+#endif // QTRY_H
 
