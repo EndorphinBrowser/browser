@@ -456,9 +456,18 @@ BrowserMainWindow *BrowserApplication::newMainWindow()
 BrowserMainWindow *BrowserApplication::mainWindow()
 {
     clean();
-    if (m_mainWindows.isEmpty())
-        newMainWindow();
-    return m_mainWindows[0];
+
+    BrowserMainWindow *activeWindow = 0;
+
+    if (m_mainWindows.isEmpty()) {
+        activeWindow = newMainWindow();
+    } else {
+        activeWindow = qobject_cast<BrowserMainWindow*>(QApplication::activeWindow());
+        if (!activeWindow)
+            activeWindow = m_mainWindows[0];
+    }
+
+    return activeWindow;
 }
 
 CookieJar *BrowserApplication::cookieJar()
