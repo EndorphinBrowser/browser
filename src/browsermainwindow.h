@@ -95,6 +95,8 @@ public:
     QSize sizeHint() const;
 
 public:
+    static BrowserMainWindow *parentWindow(QWidget *widget);
+
     TabWidget *tabWidget() const;
     WebView *currentTab() const;
     ToolbarSearch *toolbarSearch() const;

@@ -229,6 +229,27 @@ BrowserMainWindow::~BrowserMainWindow()
     m_autoSaver->saveIfNeccessary();
 }
 
+BrowserMainWindow *BrowserMainWindow::parentWindow(QWidget *widget)
+{
+    BrowserMainWindow *parentWindow = 0;
+
+    while (widget) {
+        if (BrowserMainWindow *parent = qobject_cast<BrowserMainWindow*>(widget)) {
+            parentWindow = parent;
+            break;
+        }
+
+        widget = widget->parentWidget();
+    }
+
+    if (!parentWindow) {
+        qWarning() << "BrowserMainWindow::" << __FUNCTION__ << " used with a widget none of whose parents is a main window.";
+        parentWindow = BrowserApplication::instance()->mainWindow();
+    }
+
+    return parentWindow;
+}
+
 void BrowserMainWindow::loadDefaultState()
 {
     QSettings settings;
@@ -1025,8 +1046,7 @@ void BrowserMainWindow::aboutApplication()
 
 void BrowserMainWindow::fileNew()
 {
-    BrowserApplication::instance()->newMainWindow();
-    BrowserMainWindow *mw = BrowserApplication::instance()->mainWindow();
+    BrowserMainWindow *mw = BrowserApplication::instance()->newMainWindow();
     mw->goHome();
 }
 

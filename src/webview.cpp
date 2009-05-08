@@ -159,9 +159,9 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
 #endif
 
     if (!menu->isEmpty()) {
-        if (tabWidget()->mainWindow()->menuBar()->isHidden()) {
+        if (BrowserMainWindow::parentWindow(tabWidget())->menuBar()->isHidden()) {
             menu->addSeparator();
-            menu->addAction(tabWidget()->mainWindow()->showMenuBarAction());
+            menu->addAction(BrowserMainWindow::parentWindow(tabWidget())->showMenuBarAction());
         }
 
         menu->exec(mapToGlobal(event->pos()));

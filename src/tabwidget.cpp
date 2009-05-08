@@ -429,17 +429,6 @@ void TabWidget::newTab()
     makeNewTab(true);
 }
 
-BrowserMainWindow *TabWidget::mainWindow() const
-{
-    QObject *widget = this->parent();
-    while (widget) {
-        if (BrowserMainWindow *mainWindow = qobject_cast<BrowserMainWindow*>(widget))
-            return mainWindow;
-        widget = widget->parent();
-    }
-    return 0;
-}
-
 WebView *TabWidget::makeNewTab(bool makeCurrent)
 {
     // line edit
@@ -464,7 +453,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     m_lineEdits->addWidget(locationBar);
     m_lineEdits->setSizePolicy(locationBar->sizePolicy());
 
-    QWidget::setTabOrder(locationBar, qFindChild<ToolbarSearch*>(mainWindow()));
+    QWidget::setTabOrder(locationBar, qFindChild<ToolbarSearch*>(BrowserMainWindow::parentWindow(this)));
 
     // optimization to delay creating the more expensive WebView, history, etc
     if (count() == 0) {
@@ -610,7 +599,7 @@ void TabWidget::windowCloseRequested()
     int index = webViewIndex(webView);
     if (index >= 0) {
         if (count() == 1)
-            mainWindow()->close();
+            BrowserMainWindow::parentWindow(this)->close();
         else
             closeTab(index);
     }
@@ -1076,8 +1065,7 @@ WebView *TabWidget::getView(OpenUrlIn tab, WebView *currentView)
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
             qDebug() << __FUNCTION__ << "NewWindow";
 #endif
-            BrowserApplication::instance()->newMainWindow();
-            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->mainWindow();
+            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->newMainWindow();
             webView = newMainWindow->currentTab();
             webView->setFocus();
             break;

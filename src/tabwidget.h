@@ -122,7 +122,6 @@ public:
 
     void loadSettings();
     TabBar *tabBar() { return m_tabBar; }
-    BrowserMainWindow *mainWindow() const;
     void clear();
     void addWebAction(QAction *action, QWebPage::WebAction webAction);
 
