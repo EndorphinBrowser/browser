@@ -30,7 +30,7 @@ SourceHighlighter::SourceHighlighter(QTextDocument *document)
 
     QTextCharFormat entityFormat;
     QColor entityColor;
-    entityColor.setRed((foreground.red()+background.red()) / 2);
+    entityColor.setRed((foreground.red() + background.red()) / 2);
     entityColor.setGreen(
             (foreground.green() + background.green()) / 2);
     entityColor.setBlue(
