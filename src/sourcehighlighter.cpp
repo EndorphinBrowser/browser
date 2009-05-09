@@ -18,7 +18,8 @@
  */
 
 #include "sourcehighlighter.h"
-#include "qpalette.h"
+
+#include <qpalette.h>
 
 SourceHighlighter::SourceHighlighter(QTextDocument *document)
     : QSyntaxHighlighter(document)
@@ -31,10 +32,10 @@ SourceHighlighter::SourceHighlighter(QTextDocument *document)
     QColor entityColor;
     entityColor.setRed((foreground.red()+background.red()) / 2);
     entityColor.setGreen(
-            (foreground.green()+background.green()) / 2);
+            (foreground.green() + background.green()) / 2);
     entityColor.setBlue(
-            (foreground.blue()+background.blue()) / 2);
-    if (abs(entityColor.red()-background.red()) > 80)
+            (foreground.blue() + background.blue()) / 2);
+    if (abs(entityColor.red() - background.red()) > 80)
         entityColor.setRed(foreground.red());
     else if (abs(entityColor.green()-background.green()) > 80)
         entityColor.setGreen(foreground.green());
@@ -45,36 +46,36 @@ SourceHighlighter::SourceHighlighter(QTextDocument *document)
 
     QTextCharFormat tagFormat;
     QColor tagColor;
-    tagColor.setRed(foreground.red()+(background.red()-foreground.red()) / 4);
+    tagColor.setRed(foreground.red() + (background.red() - foreground.red()) / 4);
     tagColor.setGreen(
-            foreground.green()+(background.green()-foreground.green()) / 4);
+            foreground.green() + (background.green() - foreground.green()) / 4);
     tagColor.setBlue(
-            foreground.blue()+(background.blue()-foreground.blue()) / 4);
+            foreground.blue() + (background.blue() - foreground.blue()) / 4);
     tagFormat.setForeground(tagColor);
     tagFormat.setFontWeight(QFont::Bold);
     setFormatFor(Tag, tagFormat);
 
     QTextCharFormat commentFormat;
     QColor commentColor;
-    commentColor.setRed(background.red()+(foreground.red()-background.red()) / 3);
+    commentColor.setRed(background.red() + (foreground.red() - background.red()) / 3);
     commentColor.setGreen(
-            background.green()+(foreground.green()-background.green()) / 3);
+            background.green() + (foreground.green() - background.green()) / 3);
     commentColor.setBlue(
-            background.blue()+(foreground.blue()-background.blue()) / 3);
+            background.blue() + (foreground.blue() - background.blue()) / 3);
     commentFormat.setForeground(commentColor);
     commentFormat.setFontWeight(QFont::Normal);
     setFormatFor(Comment, commentFormat);
 
     QTextCharFormat attributeFormat;
     QColor attributeColor;
-    attributeColor.setRed((foreground.red()+background.red()) / 2);
+    attributeColor.setRed((foreground.red() + background.red()) / 2);
     attributeColor.setGreen(
-            (foreground.green()+background.green()) / 2);
+            (foreground.green() + background.green()) / 2);
     attributeColor.setBlue(
-            (foreground.blue()+background.blue()) / 2);
-    if (abs(attributeColor.red()-background.red()) > 80)
+            (foreground.blue() + background.blue()) / 2);
+    if (abs(attributeColor.red() - background.red()) > 80)
         attributeColor.setRed(background.red());
-    else if (abs(attributeColor.green()-background.green()) > 80)
+    else if (abs(attributeColor.green() - background.green()) > 80)
         attributeColor.setGreen(background.green());
     else attributeColor.setBlue(background.blue());
     attributeFormat.setForeground(attributeColor);
@@ -131,10 +132,10 @@ void SourceHighlighter::highlightBlock(const QString &text)
             if (pos >= 0) {
                 state = Normal;
                 pos += 3;
-                setFormat(start, pos-start, formats[Comment]);
+                setFormat(start, pos - start, formats[Comment]);
                 pos++;
             } else {
-                setFormat(start, len-start, formats[Comment]);
+                setFormat(start, len - start, formats[Comment]);
             }
             break;
          case InTag:
@@ -144,9 +145,9 @@ void SourceHighlighter::highlightBlock(const QString &text)
                 if (text.at(pos) == QLatin1Char('>')) {
                     state = Normal;
                     pos++;
-                    setFormat(start, pos-start, formats[Tag]);
+                    setFormat(start, pos - start, formats[Tag]);
                 } else if (text.at(pos)== QLatin1Char('"')) {
-                    setFormat(start, pos-start, formats[Tag]);
+                    setFormat(start, pos - start, formats[Tag]);
                     start = pos;
                     state = InAttribute;
                     pos++;
@@ -159,11 +160,11 @@ void SourceHighlighter::highlightBlock(const QString &text)
             regex.setPattern(QLatin1String("\""));
             pos = regex.indexIn(text, pos);
             if (pos >= 0) {
-                setFormat(start, pos-start, formats[Attribute]);
+                setFormat(start, pos - start, formats[Attribute]);
                 state = InTag;
                 start = ++pos;
             } else {
-                setFormat(start, len-start, formats[Attribute]);
+                setFormat(start, len - start, formats[Attribute]);
             }
             break;
         }
