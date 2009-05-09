@@ -110,7 +110,7 @@ private slots:
     void setStatusBarText(const QString &string);
     void downloadRequested(const QNetworkRequest &request);
     void openActionUrlInNewTab();
-    void openLinkInNewWindow();
+    void openActionUrlInNewWindow();
     void downloadLinkToDisk();
     void copyLinkToClipboard();
     void openImageInNewWindow();

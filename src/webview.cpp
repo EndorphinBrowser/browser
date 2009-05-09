@@ -125,7 +125,8 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     QWebHitTestResult r = page()->mainFrame()->hitTestContent(event->pos());
 
     if (!r.linkUrl().isEmpty()) {
-        menu->addAction(tr("Open in New &Window"), this, SLOT(openLinkInNewWindow()));
+        QAction *newWindowAction = menu->addAction(tr("Open in New &Window"), this, SLOT(openActionUrlInNewWindow()));
+        newWindowAction->setData(r.linkUrl());
         QAction *newTabAction = menu->addAction(tr("Open in New &Tab"), this, SLOT(openActionUrlInNewTab()));
         newTabAction->setData(r.linkUrl());
         menu->addSeparator();
@@ -142,7 +143,8 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     if (!r.imageUrl().isEmpty()) {
         if (!menu->isEmpty())
             menu->addSeparator();
-        menu->addAction(tr("Open Image in New &Window"), this, SLOT(openImageInNewWindow()));
+        QAction *newWindowAction = menu->addAction(tr("Open Image in New &Window"), this, SLOT(openActionUrlInNewWindow()));
+        newWindowAction->setData(r.imageUrl());
         QAction *newTabAction = menu->addAction(tr("Open Image in New &Tab"), this, SLOT(openActionUrlInNewTab()));
         newTabAction->setData(r.imageUrl());
         menu->addSeparator();
@@ -196,11 +198,6 @@ void WebView::resizeEvent(QResizeEvent *event)
     QWebView::resizeEvent(event);
 }
 
-void WebView::openLinkInNewWindow()
-{
-    pageAction(QWebPage::OpenLinkInNewWindow)->trigger();
-}
-
 void WebView::downloadLinkToDisk()
 {
     pageAction(QWebPage::DownloadLinkToDisk)->trigger();
@@ -215,6 +212,16 @@ void WebView::openActionUrlInNewTab()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         QWebPage *page = tabWidget()->getView(TabWidget::NewNotSelectedTab, this)->page();
+        QNetworkRequest request(action->data().toUrl());
+        request.setRawHeader("Referer", url().toEncoded());
+        page->mainFrame()->load(request);
+    }
+}
+
+void WebView::openActionUrlInNewWindow()
+{
+    if (QAction *action = qobject_cast<QAction*>(sender())) {
+        QWebPage *page = tabWidget()->getView(TabWidget::NewWindow, this)->page();
         QNetworkRequest request(action->data().toUrl());
         request.setRawHeader("Referer", url().toEncoded());
         page->mainFrame()->load(request);
