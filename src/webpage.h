@@ -20,9 +20,19 @@
 #ifndef WEBPAGE_H
 #define WEBPAGE_H
 
+#include "tabwidget.h"
+
+#include <qlist.h>
 #include <qwebpage.h>
 
-#include <tabwidget.h>
+class WebPageLinkedResource
+{
+public:
+    QString rel;
+    QString type;
+    QString href;
+    QString title;
+};
 
 class QNetworkReply;
 class WebPluginFactory;
@@ -38,6 +48,7 @@ public:
     void loadSettings();
 
     WebPluginFactory *webPluginFactory();
+    QList<WebPageLinkedResource> linkedResources(const QString &relation = QString());
 
 protected:
     bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,

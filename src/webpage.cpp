@@ -54,6 +54,35 @@ WebPluginFactory *WebPage::webPluginFactory()
     return s_webPluginFactory;
 }
 
+QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
+{
+    QList<WebPageLinkedResource> resources;
+
+    QFile file(QLatin1String(":fetchLinks.js"));
+    if (!file.open(QFile::ReadOnly))
+        return resources;
+    QString script = QString::fromUtf8(file.readAll());
+
+    QVariantList list = mainFrame()->evaluateJavaScript(script).toList();
+    foreach (const QVariant &variant, list) {
+        QVariantMap map = variant.toMap();
+        const QString rel = map[QLatin1String("rel")].toString();
+
+        if (!relation.isEmpty() && rel != relation)
+            continue;
+
+        WebPageLinkedResource resource;
+        resource.rel = rel;
+        resource.type = map[QLatin1String("type")].toString();
+        resource.href = map[QLatin1String("href")].toString();
+        resource.title = map[QLatin1String("title")].toString();
+
+        resources.append(resource);
+    }
+
+    return resources;
+}
+
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
                                       NavigationType type)
 {

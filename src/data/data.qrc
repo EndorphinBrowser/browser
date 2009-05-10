@@ -8,6 +8,7 @@
     <file>loading.gif</file>
     <file>defaulticon.png</file>
     <file>private.png</file>
+    <file>fetchLinks.js</file>
     <file>../../AUTHORS</file>
     <file>../../LICENSE.GPL2</file>
 </qresource>

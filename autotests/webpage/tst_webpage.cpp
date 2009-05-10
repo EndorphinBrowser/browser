@@ -50,6 +50,7 @@ private slots:
     void createWindow_data();
     void createWindow();
     void handleUnsupportedContent();
+    void linkedResources();
 };
 
 // Subclass that exposes the protected functions.
@@ -282,6 +283,46 @@ void tst_WebPage::handleUnsupportedContent()
     QSignalSpy spy(&page, SIGNAL(loadFinished(bool)));
     page.mainFrame()->load(QUrl("http://exampletesttesttesttesttesttes.com/test.html"));
     QTRY_COMPARE(spy.count(), 1);
+}
+
+void tst_WebPage::linkedResources()
+{
+    QLatin1String html("<html>"
+                       "    <head>"
+                       "        <link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\"/>"
+                       "        <link rel=\"alternate\" type=\"application/rss+xml\" href=\"rss1.xml\"/>"
+                       "        <link rel=\"alternate\" type=\"application/rss+xml\" href=\"rss2.xml\" title=\"Lorem Ipsum\"/>"
+                       "        <link rel=\"alternate\" type=\"application/atom+xml\" href=\"atom1.xml\"/>"
+                       "    </head>"
+                       "    <body>"
+                       "        <link rel=\"alternate\" type=\"application/atom+xml\" href=\"atom2.xml\"/>"
+                       "    </body>"
+                       "</html>");
+
+    SubWebPage page;
+    page.mainFrame()->setHtml(QString(html));
+
+    QList<WebPageLinkedResource> linkedResources = page.linkedResources();
+    QCOMPARE(linkedResources.count(), 4);
+
+    QCOMPARE(linkedResources.at(0).rel, QLatin1String("stylesheet"));
+    QCOMPARE(linkedResources.at(0).type, QLatin1String("text/css"));
+    QCOMPARE(linkedResources.at(0).href, QLatin1String("styles.css"));
+    QCOMPARE(linkedResources.at(0).title, QString());
+
+    QCOMPARE(linkedResources.at(1).rel, QLatin1String("alternate"));
+    QCOMPARE(linkedResources.at(1).type, QLatin1String("application/rss+xml"));
+    QCOMPARE(linkedResources.at(1).href, QLatin1String("rss1.xml"));
+
+    QCOMPARE(linkedResources.at(2).title, QLatin1String("Lorem Ipsum"));
+
+    QCOMPARE(linkedResources.at(3).type, QLatin1String("application/atom+xml"));
+
+    QList<WebPageLinkedResource> linkedFeeds = page.linkedResources(QLatin1String("alternate"));
+    QCOMPARE(linkedFeeds.count(), 3);
+
+    QCOMPARE(linkedFeeds.at(2).rel, QLatin1String("alternate"));
+    QCOMPARE(linkedFeeds.at(2).href, QLatin1String("atom1.xml"));
 }
 
 QTEST_MAIN(tst_WebPage)
