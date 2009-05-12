@@ -24,6 +24,8 @@ TRANSLATIONS += \
     pl_PL.ts \
     ru_RU.ts \
     sk_SK.ts \
+    sr_RS.ts \
+    sr_RS@latin.ts \
     tr_TR.ts \
     uk.ts \
     zh_CN.ts \
