@@ -33,6 +33,10 @@
 #include <qwebframe.h>
 #include <qwebview.h>
 
+#ifdef WEBKIT_TRUNK
+#include <qwebelement.h>
+#endif
+
 #include <qdebug.h>
 
 ClickToFlash::ClickToFlash(ClickToFlashPlugin *plugin, QWidget *parent)
@@ -100,6 +104,40 @@ void ClickToFlash::load(bool loadAll)
     if (!view)
         return;
 
+#ifdef WEBKIT_TRUNK
+    const QString selector = QLatin1String("%1[type=\"application/x-shockwave-flash\"]");
+    const QString mime = QLatin1String("application/futuresplash");
+
+    hide();
+    m_swapping = true;
+    QList<QWebFrame*> frames;
+    frames.append(view->page()->mainFrame());
+    while (!frames.isEmpty()) {
+        QWebFrame *frame = frames.takeFirst();
+        QWebElement docElement = frame->documentElement();
+
+        QList<QWebElement> elements;
+        elements.append(docElement.findAll(selector.arg(QLatin1String("object"))));
+        elements.append(docElement.findAll(selector.arg(QLatin1String("embed"))));
+
+        QWebElement element;
+        foreach (element, elements) {
+            if (!loadAll) {
+                if (!element.scriptableProperty(QLatin1String("swapping")).toBool())
+                    continue;
+                if (!url.toString().endsWith(element.attribute(QLatin1String("src"))))
+                    continue;
+            }
+
+            QWebElement substitute = element.clone();
+            substitute.setAttribute(QLatin1String("type"), mime);
+            element.replace(substitute);
+        }
+
+        frames += frame->childFrames();
+    }
+    m_swapping = false;
+#else
     QString fileName = QLatin1String(":clicktoflash/swap.js");
     QFile jsFile(fileName);
     if (!jsFile.open(QFile::ReadOnly)) {
@@ -120,6 +158,7 @@ void ClickToFlash::load(bool loadAll)
         frames += frame->childFrames();
     }
     m_swapping = false;
+#endif
 }
 
 
