@@ -78,12 +78,12 @@ OpenSearchEngine *OpenSearchManager::currentEngine() const
     return m_engines[currentName()];
 }
 
-void OpenSearchManager::setCurrentEngine(OpenSearchEngine *description)
+void OpenSearchManager::setCurrentEngine(OpenSearchEngine *engine)
 {
-    if (!description)
+    if (!engine)
         return;
 
-    setCurrentName(m_engines.key(description));
+    setCurrentName(m_engines.key(engine));
 }
 
 OpenSearchEngine *OpenSearchManager::engine(const QString &name)
@@ -126,31 +126,29 @@ bool OpenSearchManager::addEngine(const QString &fileName)
         return false;
 
     OpenSearchReader reader;
-    OpenSearchEngine *description = reader.read(&file);
+    OpenSearchEngine *engine = reader.read(&file);
 
-    file.close();
-
-    if (!addEngine(description)) {
-        delete description;
+    if (!addEngine(engine)) {
+        delete engine;
         return false;
     }
 
     return true;
 }
 
-bool OpenSearchManager::addEngine(OpenSearchEngine *description)
+bool OpenSearchManager::addEngine(OpenSearchEngine *engine)
 {
-    if (!description)
+    if (!engine)
         return false;
 
-    if (!description->isValid())
+    if (!engine->isValid())
         return false;
 
-    if (m_engines.contains(description->name()))
+    if (m_engines.contains(engine->name()))
         return false;
 
-    description->setNetworkAccessManager(BrowserApplication::networkAccessManager());
-    m_engines[description->name()] = description;
+    engine->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+    m_engines[engine->name()] = engine;
 
     emit changed();
 
@@ -217,8 +215,6 @@ void OpenSearchManager::saveDirectory(const QString &dirName)
             continue;
 
         writer.write(&file, engine);
-
-        file.close();
     }
 }
 

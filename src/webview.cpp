@@ -70,6 +70,7 @@
 #include "downloadmanager.h"
 #include "opensearchengine.h"
 #include "opensearchmanager.h"
+#include "toolbarsearch.h"
 #include "webpage.h"
 
 #include <qclipboard.h>
@@ -163,12 +164,12 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         }
         QMenu *searchMenu = menu->addMenu(tr("Search with..."));
 
-        QList<QString> list = BrowserApplication::openSearchManager()->allEnginesNames();
+        QList<QString> list = ToolbarSearch::openSearchManager()->allEnginesNames();
         for (int i = 0; i < list.count(); ++i) {
             QString name = list.at(i);
             QAction *action = searchMenu->addAction(name);
             action->setData(name);
-            action->setIcon(QIcon(QPixmap::fromImage(BrowserApplication::openSearchManager()->engine(name)->image())));
+            action->setIcon(QIcon(QPixmap::fromImage(ToolbarSearch::openSearchManager()->engine(name)->image())));
         }
 
         connect(searchMenu, SIGNAL(triggered(QAction *)), this, SLOT(searchRequested(QAction *)));
@@ -290,7 +291,7 @@ void WebView::searchRequested(QAction *action)
     QVariant index = action->data();
 
     if (index.canConvert<QString>()) {
-        OpenSearchEngine *engine = BrowserApplication::openSearchManager()->engine(index.toString());
+        OpenSearchEngine *engine = ToolbarSearch::openSearchManager()->engine(index.toString());
         emit search(engine->searchUrl(searchText), TabWidget::NewSelectedTab);
     }
 }

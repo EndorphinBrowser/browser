@@ -67,34 +67,32 @@
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "networkaccessmanager.h"
-#include "opensearchengine.h"
 #include "opensearchdialog.h"
+#include "opensearchengine.h"
+#include "opensearchengineaction.h"
 #include "opensearchmanager.h"
 #include "searchbutton.h"
-#include "tabwidget.h"
 #include "webpage.h"
 #include "webview.h"
 
 #include <qabstractitemview.h>
-#include <qaction.h>
 #include <qcompleter.h>
 #include <qcoreapplication.h>
-#include <qfile.h>
 #include <qmenu.h>
 #include <qsettings.h>
 #include <qstandarditemmodel.h>
 #include <qtimer.h>
 #include <qurl.h>
-#include <qwebframe.h>
 #include <qwebsettings.h>
 
+OpenSearchManager *ToolbarSearch::s_openSearchManager = 0;
+
 /*
-    ToolbarSearch is a very basic search widget that also contains a small history.
-    Searches are turned into urls that use Google to perform search
+    ToolbarSearch is a search widget that also contains a small history
+    and uses open-search for searching.
  */
 ToolbarSearch::ToolbarSearch(QWidget *parent)
     : SearchLineEdit(parent)
-    , m_openSearchManager(0)
     , m_suggestionsEnabled(true)
     , m_autosaver(new AutoSaver(this))
     , m_maxSavedSearches(10)
@@ -104,9 +102,7 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     , m_suggestTimer(0)
     , m_completer(0)
 {
-    m_openSearchManager = BrowserApplication::instance()->openSearchManager();
-
-    connect(m_openSearchManager, SIGNAL(currentChanged()),
+    connect(openSearchManager(), SIGNAL(currentChanged()),
             this, SLOT(currentEngineChanged()));
 
     m_completer = new QCompleter(this);
@@ -126,34 +122,41 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     currentEngineChanged();
 }
 
+OpenSearchManager *ToolbarSearch::openSearchManager()
+{
+    if (!s_openSearchManager)
+        s_openSearchManager = new OpenSearchManager;
+    return s_openSearchManager;
+}
+
 void ToolbarSearch::currentEngineChanged()
 {
     if (m_suggestionsEnabled) {
-        if (m_openSearchManager->engineExists(m_currentEngine)) {
-            OpenSearchEngine *oldEngine = m_openSearchManager->engine(m_currentEngine);
+        if (openSearchManager()->engineExists(m_currentEngine)) {
+            OpenSearchEngine *oldEngine = openSearchManager()->engine(m_currentEngine);
             disconnect(oldEngine, SIGNAL(suggestions(const QStringList &)),
                        this, SLOT(newSuggestions(const QStringList &)));
             disconnect(oldEngine, SIGNAL(imageChanged()),
                        this, SLOT(engineImageChanged()));
         }
 
-        OpenSearchEngine *newEngine = m_openSearchManager->currentEngine();
+        OpenSearchEngine *newEngine = openSearchManager()->currentEngine();
         connect(newEngine, SIGNAL(suggestions(const QStringList &)),
                 this, SLOT(newSuggestions(const QStringList &)));
         connect(newEngine, SIGNAL(imageChanged()),
                 this, SLOT(engineImageChanged()));
     }
 
-    setInactiveText(m_openSearchManager->currentName());
-    searchButton()->setImage(m_openSearchManager->currentEngine()->image());
-    m_currentEngine = m_openSearchManager->currentName();
+    setInactiveText(openSearchManager()->currentName());
+    searchButton()->setImage(openSearchManager()->currentEngine()->image());
+    m_currentEngine = openSearchManager()->currentName();
     m_suggestions.clear();
     setupList();
 }
 
 void ToolbarSearch::engineImageChanged()
 {
-    searchButton()->setImage(m_openSearchManager->currentEngine()->image());
+    searchButton()->setImage(openSearchManager()->currentEngine()->image());
 }
 
 void ToolbarSearch::completerActivated(const QModelIndex &index)
@@ -239,7 +242,7 @@ void ToolbarSearch::textEdited(const QString &text)
 
 void ToolbarSearch::getSuggestions()
 {
-    m_openSearchManager->currentEngine()->requestSuggestions(text());
+    openSearchManager()->currentEngine()->requestSuggestions(text());
 }
 
 void ToolbarSearch::searchNow()
@@ -258,8 +261,8 @@ void ToolbarSearch::searchNow()
         m_autosaver->changeOccurred();
     }
 
-    QUrl searchUrl = m_openSearchManager->currentEngine()->searchUrl(searchText);
-    emit search(searchUrl, TabWidget::CurrentTab);
+    QUrl searchUrl = openSearchManager()->currentEngine()->searchUrl(searchText);
+    emit search(searchUrl);
 }
 
 void ToolbarSearch::newSuggestions(const QStringList &suggestions)
@@ -291,14 +294,14 @@ void ToolbarSearch::showEnginesMenu()
 
     QPoint pos = parent->mapToGlobal(QPoint(0, parent->height()));
 
-    QList<QString> list = m_openSearchManager->allEnginesNames();
+    QList<QString> list = openSearchManager()->allEnginesNames();
     for (int i = 0; i < list.count(); ++i) {
         QString name = list.at(i);
         QAction *action = menu.addAction(name, this, SLOT(changeCurrentEngine()));
         action->setData(name);
-        action->setIcon(QIcon(QPixmap::fromImage(m_openSearchManager->engine(name)->image())));
+        action->setIcon(QIcon(QPixmap::fromImage(openSearchManager()->engine(name)->image())));
 
-        if (m_openSearchManager->currentName() == name) {
+        if (openSearchManager()->currentName() == name) {
             action->setCheckable(true);
             action->setChecked(true);
         }
@@ -346,15 +349,15 @@ void ToolbarSearch::showEnginesMenu()
 
 void ToolbarSearch::changeCurrentEngine()
 {
-    if (QAction *action = qobject_cast<QAction *>(sender())) {
+    if (QAction *action = qobject_cast<QAction*>(sender())) {
         QString name = action->data().toString();
-        m_openSearchManager->setCurrentName(name);
+        openSearchManager()->setCurrentName(name);
     }
 }
 
 void ToolbarSearch::addEngineFromUrl()
 {
-    QAction *action = qobject_cast<QAction *>(sender());
+    QAction *action = qobject_cast<QAction*>(sender());
     if (!action)
         return;
     QVariant variant = action->data();
@@ -362,7 +365,7 @@ void ToolbarSearch::addEngineFromUrl()
         return;
     QUrl url = variant.toUrl();
 
-    BrowserApplication::openSearchManager()->addEngine(url);
+    openSearchManager()->addEngine(url);
 }
 
 void ToolbarSearch::showDialog()

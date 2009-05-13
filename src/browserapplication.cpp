@@ -69,7 +69,6 @@
 #include "historymanager.h"
 #include "languagemanager.h"
 #include "networkaccessmanager.h"
-#include "opensearchmanager.h"
 #include "tabwidget.h"
 #include "webview.h"
 
@@ -89,7 +88,6 @@ HistoryManager *BrowserApplication::s_historyManager = 0;
 NetworkAccessManager *BrowserApplication::s_networkAccessManager = 0;
 BookmarksManager *BrowserApplication::s_bookmarksManager = 0;
 LanguageManager *BrowserApplication::s_languageManager = 0;
-OpenSearchManager *BrowserApplication::s_openSearchManager = 0;
 
 BrowserApplication::BrowserApplication(int &argc, char **argv)
     : SingleApplication(argc, argv)
@@ -515,13 +513,6 @@ LanguageManager *BrowserApplication::languageManager()
                 qApp, SLOT(retranslate()));
     }
     return s_languageManager;
-}
-
-OpenSearchManager *BrowserApplication::openSearchManager()
-{
-    if (!s_openSearchManager)
-        s_openSearchManager = new OpenSearchManager;
-    return s_openSearchManager;
 }
 
 QIcon BrowserApplication::icon(const QUrl &url)

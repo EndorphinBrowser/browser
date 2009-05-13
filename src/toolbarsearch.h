@@ -71,6 +71,7 @@ class AutoSaver;
 class GoogleSuggest;
 class OpenSearchEngine;
 class OpenSearchManager;
+class OpenSearchManager;
 class QCompleter;
 class QModelIndex;
 class QStandardItem;
@@ -82,11 +83,12 @@ class ToolbarSearch : public SearchLineEdit
     Q_OBJECT
 
 signals:
-    void search(const QUrl &url, TabWidget::OpenUrlIn openIn);
+    void search(const QUrl &url);
 
 public:
     ToolbarSearch(QWidget *parent = 0);
     ~ToolbarSearch();
+    static OpenSearchManager *openSearchManager();
 
 public slots:
     void clear();
@@ -115,7 +117,7 @@ private:
     void setupList();
     void retranslate();
 
-    OpenSearchManager *m_openSearchManager;
+    static OpenSearchManager *s_openSearchManager;
     QString m_currentEngine;
     bool m_suggestionsEnabled;
 

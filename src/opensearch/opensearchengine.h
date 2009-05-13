@@ -18,8 +18,8 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef OPENSEARCHDESCRIPTION_H
-#define OPENSEARCHDESCRIPTION_H
+#ifndef OPENSEARCHENGINE_H
+#define OPENSEARCHENGINE_H
 
 #include <qpair.h>
 #include <qimage.h>
@@ -110,5 +110,5 @@ private:
     QScriptEngine *m_scriptEngine;
 };
 
-#endif //OPENSEARCHDESCRIPTION_H
+#endif //OPENSEARCHENGINE_H
 

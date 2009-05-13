@@ -25,6 +25,7 @@
 #include "networkaccessmanager.h"
 #include "opensearchmanager.h"
 #include "tabwidget.h"
+#include "toolbarsearch.h"
 #include "webpluginfactory.h"
 #include "webview.h"
 
@@ -39,7 +40,7 @@ WebPluginFactory *WebPage::s_webPluginFactory = 0;
 
 void JavaScriptExternalObject::AddSearchProvider(const QString &url)
 {
-    BrowserApplication::instance()->openSearchManager()->addEngine(QUrl(url));
+    ToolbarSearch::openSearchManager()->addEngine(QUrl(url));
 }
 
 WebPage::WebPage(QObject *parent)

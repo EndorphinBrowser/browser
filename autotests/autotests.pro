@@ -9,6 +9,7 @@ SUBDIRS  = \
     languagemanager \
     lineedit \
     opensearchengine \
+    opensearchmanager \
     opensearchreader \
     opensearchwriter \
     searchlineedit \
@@ -16,5 +17,4 @@ SUBDIRS  = \
     tabwidget \
     webactionmapper \
     webpage \
-    xbel
     xbel

@@ -23,6 +23,7 @@
 #include "browserapplication.h"
 #include "opensearchenginemodel.h"
 #include "opensearchmanager.h"
+#include "toolbarsearch.h"
 
 #include <qfiledialog.h>
 #include <qmessagebox.h>
@@ -34,7 +35,7 @@ OpenSearchDialog::OpenSearchDialog(QWidget *parent)
     setModal(true);
     setupUi(this);
 
-    m_model = new OpenSearchEngineModel(BrowserApplication::openSearchManager());
+    m_model = new OpenSearchEngineModel(ToolbarSearch::openSearchManager());
     m_listView->setModel(m_model);
 
     connect(m_closeButton, SIGNAL(clicked()),
@@ -60,7 +61,7 @@ void OpenSearchDialog::addButtonClicked()
                                                           tr("Open Search") + QLatin1String(" (*.xml)"));
 
     foreach (const QString &fileName, fileNames) {
-        if (!BrowserApplication::openSearchManager()->addEngine(fileName)) {
+        if (!ToolbarSearch::openSearchManager()->addEngine(fileName)) {
             QMessageBox::critical(this, tr("Error"),
                     tr("%1 is not a valid OpenSearchDescription or is already on your list.").arg(fileName));
         }
@@ -75,11 +76,11 @@ void OpenSearchDialog::deleteButtonClicked()
         return;
     }
 
-    BrowserApplication::openSearchManager()->removeEngine(m_listView->currentIndex().data().toString());
+    ToolbarSearch::openSearchManager()->removeEngine(m_listView->currentIndex().data().toString());
 }
 
 void OpenSearchDialog::restoreButtonClicked()
 {
-    BrowserApplication::openSearchManager()->restoreDefaults();
+    ToolbarSearch::openSearchManager()->restoreDefaults();
 }
 
