@@ -48,8 +48,10 @@ OpenSearchEngine *OpenSearchReader::read()
         readNext();
 
     if (name() != QLatin1String("OpenSearchDescription")
-        || namespaceUri() != QLatin1String("http://a9.com/-/spec/opensearch/1.1/"))
+        || namespaceUri() != QLatin1String("http://a9.com/-/spec/opensearch/1.1/")) {
+        raiseError(QObject::tr("The file is not an opensearch 1.1 file."));
         return engine;
+    }
 
     while (!(isEndElement() && name() == QLatin1String("OpenSearchDescription")) && !atEnd()) {
         readNext();
@@ -109,9 +111,6 @@ OpenSearchEngine *OpenSearchReader::read()
             && !engine->imageUrl().isEmpty())
             break;
     }
-
-    if (hasError())
-        qWarning() << "Error:" << errorString() << lineNumber();
 
     return engine;
 }
