@@ -69,6 +69,7 @@
 #include "browsermainwindow.h"
 #include "downloadmanager.h"
 #include "opensearchengine.h"
+#include "opensearchengineaction.h"
 #include "opensearchmanager.h"
 #include "toolbarsearch.h"
 #include "webpage.h"
@@ -167,9 +168,10 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         QList<QString> list = ToolbarSearch::openSearchManager()->allEnginesNames();
         for (int i = 0; i < list.count(); ++i) {
             QString name = list.at(i);
-            QAction *action = searchMenu->addAction(name);
+            OpenSearchEngine *engine = ToolbarSearch::openSearchManager()->engine(name);
+            QAction *action = new OpenSearchEngineAction(engine, searchMenu);
+            searchMenu->addAction(action);
             action->setData(name);
-            action->setIcon(QIcon(QPixmap::fromImage(ToolbarSearch::openSearchManager()->engine(name)->image())));
         }
 
         connect(searchMenu, SIGNAL(triggered(QAction *)), this, SLOT(searchRequested(QAction *)));

@@ -136,27 +136,17 @@ void ToolbarSearch::currentEngineChanged()
             OpenSearchEngine *oldEngine = openSearchManager()->engine(m_currentEngine);
             disconnect(oldEngine, SIGNAL(suggestions(const QStringList &)),
                        this, SLOT(newSuggestions(const QStringList &)));
-            disconnect(oldEngine, SIGNAL(imageChanged()),
-                       this, SLOT(engineImageChanged()));
         }
 
         OpenSearchEngine *newEngine = openSearchManager()->currentEngine();
         connect(newEngine, SIGNAL(suggestions(const QStringList &)),
                 this, SLOT(newSuggestions(const QStringList &)));
-        connect(newEngine, SIGNAL(imageChanged()),
-                this, SLOT(engineImageChanged()));
     }
 
     setInactiveText(openSearchManager()->currentName());
-    searchButton()->setImage(openSearchManager()->currentEngine()->image());
     m_currentEngine = openSearchManager()->currentName();
     m_suggestions.clear();
     setupList();
-}
-
-void ToolbarSearch::engineImageChanged()
-{
-    searchButton()->setImage(openSearchManager()->currentEngine()->image());
 }
 
 void ToolbarSearch::completerActivated(const QModelIndex &index)
@@ -297,9 +287,11 @@ void ToolbarSearch::showEnginesMenu()
     QList<QString> list = openSearchManager()->allEnginesNames();
     for (int i = 0; i < list.count(); ++i) {
         QString name = list.at(i);
-        QAction *action = menu.addAction(name, this, SLOT(changeCurrentEngine()));
+        OpenSearchEngine *engine = openSearchManager()->engine(name);
+        OpenSearchEngineAction *action = new OpenSearchEngineAction(engine, &menu);
         action->setData(name);
-        action->setIcon(QIcon(QPixmap::fromImage(openSearchManager()->engine(name)->image())));
+        connect(action, SIGNAL(triggered()), this, SLOT(changeCurrentEngine()));
+        menu.addAction(action);
 
         if (openSearchManager()->currentName() == name) {
             action->setCheckable(true);

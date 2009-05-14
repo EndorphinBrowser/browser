@@ -147,7 +147,6 @@ bool OpenSearchManager::addEngine(OpenSearchEngine *engine)
     if (m_engines.contains(engine->name()))
         return false;
 
-    engine->setNetworkAccessManager(BrowserApplication::networkAccessManager());
     m_engines[engine->name()] = engine;
 
     emit changed();
@@ -284,7 +283,7 @@ bool OpenSearchManager::confirmAddition(OpenSearchEngine *engine)
 
 void OpenSearchManager::engineFromUrlAvailable()
 {
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
 
     if (!reply)
         return;

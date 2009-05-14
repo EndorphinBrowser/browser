@@ -20,6 +20,9 @@
 
 #include "opensearchengine.h"
 
+#include "browserapplication.h"
+#include "networkaccessmanager.h"
+
 #include <qnetworkaccessmanager.h>
 #include <qnetworkrequest.h>
 #include <qnetworkreply.h>
@@ -30,7 +33,6 @@
 
 OpenSearchEngine::OpenSearchEngine(QObject *parent)
     : QObject(parent)
-    , m_networkAccessManager(0)
     , m_suggestionsReply(0)
     , m_scriptEngine(0)
 {
@@ -169,21 +171,20 @@ QString OpenSearchEngine::imageUrl() const
 void OpenSearchEngine::setImageUrl(const QString &imageUrl)
 {
     m_imageUrl = imageUrl;
-    loadImage();
 }
 
-void OpenSearchEngine::loadImage()
+void OpenSearchEngine::loadImage() const
 {
-    if (!m_networkAccessManager || m_imageUrl.isEmpty())
+    if (!networkAccessManager() || m_imageUrl.isEmpty())
         return;
 
-    QNetworkReply *reply = m_networkAccessManager->get(QNetworkRequest(QUrl::fromEncoded(m_imageUrl.toUtf8())));
+    QNetworkReply *reply = networkAccessManager()->get(QNetworkRequest(QUrl::fromEncoded(m_imageUrl.toUtf8())));
     connect(reply, SIGNAL(finished()), this, SLOT(imageObtained()));
 }
 
 void OpenSearchEngine::imageObtained()
 {
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
 
     if (!reply)
         return;
@@ -203,6 +204,8 @@ void OpenSearchEngine::imageObtained()
 
 QImage OpenSearchEngine::image() const
 {
+    if (m_image.isNull() && networkAccessManager() && !m_imageUrl.isEmpty())
+        loadImage();
     return m_image;
 }
 
@@ -226,31 +229,14 @@ bool OpenSearchEngine::operator<(const OpenSearchEngine &other) const
     return (m_name < other.m_name);
 }
 
-QNetworkAccessManager *OpenSearchEngine::networkAccessManager() const
-{
-    return m_networkAccessManager;
-}
-
-void OpenSearchEngine::setNetworkAccessManager(QNetworkAccessManager *manager)
-{
-    if (!manager)
-        return;
-
-    m_networkAccessManager = manager;
-
-    // Once we have set new network access manager, we can actually load the image.
-    if (!m_imageUrl.isEmpty() && m_image.isNull())
-        loadImage();
-}
-
 void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
 {
     if (searchTerm.isEmpty() || !providesSuggestions())
         return;
 
-    Q_ASSERT(m_networkAccessManager);
+    Q_ASSERT(networkAccessManager());
 
-    if (!m_networkAccessManager)
+    if (!networkAccessManager())
         return;
 
     if (m_suggestionsReply) {
@@ -259,7 +245,7 @@ void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
         m_suggestionsReply = 0;
     }
 
-    m_suggestionsReply = m_networkAccessManager->get(QNetworkRequest(suggestionsUrl(searchTerm)));
+    m_suggestionsReply = networkAccessManager()->get(QNetworkRequest(suggestionsUrl(searchTerm)));
     connect(m_suggestionsReply, SIGNAL(finished()), this, SLOT(suggestionsObtained()));
 }
 
@@ -294,5 +280,10 @@ void OpenSearchEngine::suggestionsObtained()
     qScriptValueToSequence(responseParts.property(1), suggestionsList);
 
     emit suggestions(suggestionsList);
+}
+
+QNetworkAccessManager *OpenSearchEngine::networkAccessManager() const
+{
+    return BrowserApplication::networkAccessManager();
 }
 

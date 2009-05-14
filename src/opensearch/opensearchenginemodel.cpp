@@ -20,6 +20,7 @@
 
 #include "opensearchenginemodel.h"
 
+#include "browserapplication.h"
 #include "opensearchengine.h"
 #include "opensearchmanager.h"
 
@@ -79,7 +80,7 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
     case Qt::DecorationRole: {
         QImage image = engine->image();
         if (image.isNull())
-            image = QImage(QLatin1String(":defaulticon.png"));
+            return BrowserApplication::icon(engine->imageUrl());
         return image;
     }
     break;

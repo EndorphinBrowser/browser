@@ -77,15 +77,13 @@ public:
     bool operator==(const OpenSearchEngine &other) const;
     bool operator<(const OpenSearchEngine &other) const;
 
-    QNetworkAccessManager *networkAccessManager() const;
-    void setNetworkAccessManager(QNetworkAccessManager *manager);
-
 public slots:
     void requestSuggestions(const QString &searchTerm);
 
 protected:
     QString parseTemplate(const QString &searchTerm, const QString &searchTemplate) const;
-    void loadImage();
+    QNetworkAccessManager *networkAccessManager() const;
+    void loadImage() const;
 
 private slots:
     void imageObtained();
@@ -102,8 +100,6 @@ private:
     QString m_suggestionsUrlTemplate;
     QList<Parameter> m_searchParameters;
     QList<Parameter> m_suggestionsParameters;
-
-    QNetworkAccessManager *m_networkAccessManager;
 
     QNetworkReply *m_suggestionsReply;
 
