@@ -154,10 +154,10 @@ void tst_OpenSearchManager::setCurrentEngine()
 
     QCOMPARE(manager.enginesCount(), 1);
 
-    QString oldCurrentName = manager.currentName();
+    QString oldCurrentEngineName = manager.currentEngineName();
     OpenSearchEngine *oldCurrentEngine = manager.currentEngine();
 
-    QSignalSpy signalSpy(&manager, SIGNAL(currentChanged()));
+    QSignalSpy signalSpy(&manager, SIGNAL(currentEngineChanged()));
 
     OpenSearchEngine *engine = new OpenSearchEngine();
     engine->setName(name);
@@ -167,8 +167,8 @@ void tst_OpenSearchManager::setCurrentEngine()
     bool result = manager.addEngine(engine);
     QCOMPARE(result, valid);
 
-    manager.setCurrentName(name);
-    QCOMPARE(manager.currentName(), (valid ? name : oldCurrentName));
+    manager.setCurrentEngineName(name);
+    QCOMPARE(manager.currentEngineName(), (valid ? name : oldCurrentEngineName));
     QCOMPARE(*manager.currentEngine(), (valid ? *engine : *oldCurrentEngine));
     QCOMPARE(signalSpy.count(), (valid ? 1 : 0));
 

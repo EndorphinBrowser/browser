@@ -40,7 +40,7 @@ class OpenSearchManager : public QObject
 
 signals:
     void changed();
-    void currentChanged();
+    void currentEngineChanged();
 
 public:
     OpenSearchManager(QObject *parent = 0);
@@ -49,8 +49,8 @@ public:
     QStringList allEnginesNames() const;
     int enginesCount() const;
 
-    QString currentName() const;
-    void setCurrentName(const QString &currentName);
+    QString currentEngineName() const;
+    void setCurrentEngineName(const QString &currentName);
 
     OpenSearchEngine *currentEngine() const;
     void setCurrentEngine(OpenSearchEngine *current);

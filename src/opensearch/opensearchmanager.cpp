@@ -55,27 +55,27 @@ OpenSearchManager::~OpenSearchManager()
     m_engines.clear();
 }
 
-QString OpenSearchManager::currentName() const
+QString OpenSearchManager::currentEngineName() const
 {
     return m_current;
 }
 
-void OpenSearchManager::setCurrentName(const QString &name)
+void OpenSearchManager::setCurrentEngineName(const QString &name)
 {
     if (!m_engines.contains(name))
         return;
 
     m_current = name;
-    emit currentChanged();
+    emit currentEngineChanged();
     emit changed();
 }
 
 OpenSearchEngine *OpenSearchManager::currentEngine() const
 {
-    if (currentName().isEmpty() || !m_engines.contains(currentName()))
+    if (m_current.isEmpty() || !m_engines.contains(m_current))
         return 0;
 
-    return m_engines[currentName()];
+    return m_engines[m_current];
 }
 
 void OpenSearchManager::setCurrentEngine(OpenSearchEngine *engine)
@@ -83,7 +83,7 @@ void OpenSearchManager::setCurrentEngine(OpenSearchEngine *engine)
     if (!engine)
         return;
 
-    setCurrentName(m_engines.key(engine));
+    setCurrentEngineName(m_engines.key(engine));
 }
 
 OpenSearchEngine *OpenSearchManager::engine(const QString &name)
@@ -169,8 +169,8 @@ void OpenSearchManager::removeEngine(const QString &name)
     QString file = QDir(enginesDirectory()).filePath(generateEngineFileName(name));
     QFile::remove(file);
 
-    if (name == currentName()) {
-        setCurrentName(m_engines.keys().at(0));
+    if (name == m_current) {
+        setCurrentEngineName(m_engines.keys().at(0));
     }
 
     emit changed();
@@ -256,7 +256,7 @@ void OpenSearchManager::load()
     if (!m_engines.contains(m_current) && m_engines.count() > 0)
         m_current = m_engines.keys().at(0);
 
-    emit currentChanged();
+    emit currentEngineChanged();
 }
 
 void OpenSearchManager::restoreDefaults()

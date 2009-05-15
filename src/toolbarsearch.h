@@ -65,12 +65,7 @@
 
 #include "searchlineedit.h"
 
-#include "tabwidget.h"
-
 class AutoSaver;
-class GoogleSuggest;
-class OpenSearchEngine;
-class OpenSearchManager;
 class OpenSearchManager;
 class QCompleter;
 class QModelIndex;

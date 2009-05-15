@@ -102,7 +102,7 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     , m_suggestTimer(0)
     , m_completer(0)
 {
-    connect(openSearchManager(), SIGNAL(currentChanged()),
+    connect(openSearchManager(), SIGNAL(currentEngineChanged()),
             this, SLOT(currentEngineChanged()));
 
     m_completer = new QCompleter(this);
@@ -143,8 +143,8 @@ void ToolbarSearch::currentEngineChanged()
                 this, SLOT(newSuggestions(const QStringList &)));
     }
 
-    setInactiveText(openSearchManager()->currentName());
-    m_currentEngine = openSearchManager()->currentName();
+    setInactiveText(openSearchManager()->currentEngineName());
+    m_currentEngine = openSearchManager()->currentEngineName();
     m_suggestions.clear();
     setupList();
 }
@@ -292,7 +292,7 @@ void ToolbarSearch::showEnginesMenu()
         connect(action, SIGNAL(triggered()), this, SLOT(changeCurrentEngine()));
         menu.addAction(action);
 
-        if (openSearchManager()->currentName() == name) {
+        if (openSearchManager()->currentEngineName() == name) {
             action->setCheckable(true);
             action->setChecked(true);
         }
@@ -342,7 +342,7 @@ void ToolbarSearch::changeCurrentEngine()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         QString name = action->data().toString();
-        openSearchManager()->setCurrentName(name);
+        openSearchManager()->setCurrentEngineName(name);
     }
 }
 
