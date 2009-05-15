@@ -47,23 +47,13 @@ OpenSearchEngine::~OpenSearchEngine()
 QString OpenSearchEngine::parseTemplate(const QString &searchTerm, const QString &searchTemplate)
 {
     QString result = searchTemplate;
-    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)searchTerms\\??\\}")),
-            searchTerm);
-    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)count\\??\\}")),
-            QLatin1String("20"));
-    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)startIndex\\??\\}")),
-            QLatin1String("0")); //Use Index Offset
-    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)startPage\\??\\}")),
-            QLatin1String("0")); // Use Page Offset
-    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)language\\??\\}")),
-            QLatin1String("en")); // Be Better here
-    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)inputEncoding\\??\\}")),
-            QLatin1String("UTF-8")); // Be better here
-    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)outputEncoding\\??\\}")),
-            QLatin1String("UTF-8")); // Be better here
-
-    // Strip unknown parameters
-    result.replace(QRegExp(QLatin1String("\\{[^\\}]*\\?\\}")), QLatin1String(""));
+    result.replace(QLatin1String("{count}"), QLatin1String("20"));
+    result.replace(QLatin1String("{startIndex}"), QLatin1String("0"));
+    result.replace(QLatin1String("{startPage}"), QLatin1String("0"));
+    result.replace(QLatin1String("{language}"), QLatin1String("en"));
+    result.replace(QLatin1String("{inputEncoding}"), QLatin1String("UTF-8"));
+    result.replace(QLatin1String("{outputEncoding}"), QLatin1String("UTF-8"));
+    result.replace(QLatin1String("{searchTerms}"), searchTerm);
 
     return result;
 }

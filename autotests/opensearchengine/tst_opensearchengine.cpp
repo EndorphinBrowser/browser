@@ -418,28 +418,26 @@ void tst_OpenSearchEngine::searchParameters()
 void tst_OpenSearchEngine::searchUrl_data()
 {
     QTest::addColumn<QString>("searchTerm");
+    QTest::addColumn<QString>("searchUrlTemplate");
     QTest::addColumn<QUrl>("searchUrl");
-    QTest::newRow("null") << QString() << QUrl();
+    QTest::newRow("null") << QString() << QString() << QUrl();
+    QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
+                    << QUrl(QString("http://foobar.baz/?q=foo"));
+    QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
+                    << QUrl(QString("http://foobar.baz/?q="));
 }
 
 // public QUrl searchUrl(QString const &searchTerm) const
 void tst_OpenSearchEngine::searchUrl()
 {
-#if 0
     QFETCH(QString, searchTerm);
+    QFETCH(QString, searchUrlTemplate);
     QFETCH(QUrl, searchUrl);
 
     SubOpenSearchEngine engine;
-
-    QSignalSpy spy0(&engine, SIGNAL(imageChanged()));
-    QSignalSpy spy1(&engine, SIGNAL(suggestions(QStringList const&)));
+    engine.setSearchUrlTemplate(searchUrlTemplate);
 
     QCOMPARE(engine.searchUrl(searchTerm), searchUrl);
-
-    QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
-#endif
-    QSKIP("Test is not implemented.", SkipAll);
 }
 
 void tst_OpenSearchEngine::searchUrlTemplate_data()
@@ -493,28 +491,27 @@ void tst_OpenSearchEngine::suggestionsParameters()
 void tst_OpenSearchEngine::suggestionsUrl_data()
 {
     QTest::addColumn<QString>("searchTerm");
+    QTest::addColumn<QString>("suggestionsUrlTemplate");
     QTest::addColumn<QUrl>("suggestionsUrl");
-    QTest::newRow("null") << QString() << QUrl();
+    QTest::newRow("null") << QString() << QString() << QUrl();
+    QTest::newRow("null") << QString() << QString() << QUrl();
+    QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
+    << QUrl(QString("http://foobar.baz/?q=foo"));
+    QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
+    << QUrl(QString("http://foobar.baz/?q="));
 }
 
 // public QUrl suggestionsUrl(QString const &searchTerm) const
 void tst_OpenSearchEngine::suggestionsUrl()
 {
-#if 0
     QFETCH(QString, searchTerm);
+    QFETCH(QString, suggestionsUrlTemplate);
     QFETCH(QUrl, suggestionsUrl);
 
     SubOpenSearchEngine engine;
-
-    QSignalSpy spy0(&engine, SIGNAL(imageChanged()));
-    QSignalSpy spy1(&engine, SIGNAL(suggestions(QStringList const&)));
+    engine.setSuggestionsUrlTemplate(suggestionsUrlTemplate);
 
     QCOMPARE(engine.suggestionsUrl(searchTerm), suggestionsUrl);
-
-    QCOMPARE(spy0.count(), 0);
-    QCOMPARE(spy1.count(), 0);
-#endif
-    QSKIP("Test is not implemented.", SkipAll);
 }
 
 void tst_OpenSearchEngine::suggestionsUrlTemplate_data()
@@ -547,6 +544,16 @@ void tst_OpenSearchEngine::parseTemplate_data()
     QTest::addColumn<QString>("searchTemplate");
     QTest::addColumn<QString>("parseTemplate");
     QTest::newRow("null") << QString() << QString() << QString();
+    QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}") << QString("http://foobar.baz/?q=foo");
+    QTest::newRow("allParameters") << QString("bar")
+                    << QString("http://foobar.baz/?st={searchTerms}&amp;c={count}"
+                               "&amp;si={startIndex}&amp;sp={startPage}&amp;l={language}"
+                               "&amp;ie={inputEncoding}&amp;oe={outputEncoding}")
+                    << QString("http://foobar.baz/?st=bar&amp;c=20&amp;si=0&amp;sp=0&amp;l=en&amp;ie=UTF-8&amp;oe=UTF-8");
+    QTest::newRow("tricky") << QString("{count}") << QString("http://foobar.baz/q={searchTerms}&amp;count={count}")
+                    << QString("http://foobar.baz/q={count}&amp;count=20");
+    QTest::newRow("multiple") << QString("abc") << QString("http://foobar.baz/?q={searchTerms}&amp;x={searchTerms}")
+                    << QString("http://foobar.baz/?q=abc&amp;x=abc");
 }
 
 // protected QString parseTemplate(QString const &searchTerm, QString const &searchTemplate) const
@@ -558,7 +565,6 @@ void tst_OpenSearchEngine::parseTemplate()
 
     SubOpenSearchEngine engine;
     QCOMPARE(engine.call_parseTemplate(searchTerm, searchTemplate), parseTemplate);
-    QSKIP("Test is not implemented.", SkipAll);
 }
 
 QTEST_MAIN(tst_OpenSearchEngine)
