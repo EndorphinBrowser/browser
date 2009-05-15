@@ -319,7 +319,5 @@ void OpenSearchManager::engineFromUrlAvailable()
         delete engine;
         return;
     }
-
-    emit changed();
 }
 

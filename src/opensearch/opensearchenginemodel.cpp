@@ -53,7 +53,8 @@ bool OpenSearchEngineModel::removeRows(int row, int count, const QModelIndex &pa
     for (int i = row; i <= lastRow; ++i)
         m_manager->removeEngine(nameList.at(i));
 
-    endRemoveRows();
+    // removeEngine emits changed
+    //endRemoveRows();
 
     return true;
 }

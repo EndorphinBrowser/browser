@@ -71,7 +71,7 @@ void OpenSearchDialog::deleteButtonClicked()
         return;
     }
 
-    ToolbarSearch::openSearchManager()->removeEngine(m_listView->currentIndex().data().toString());
+    m_listView->removeSelected();
 }
 
 void OpenSearchDialog::restoreButtonClicked()
