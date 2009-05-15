@@ -40,6 +40,9 @@ class JavaScriptExternalObject : public QObject
 {
     Q_OBJECT
 
+public:
+    JavaScriptExternalObject(QObject *parent = 0);
+
 public slots:
     void AddSearchProvider(const QString &url);
 };
@@ -53,7 +56,6 @@ signals:
 
 public:
     WebPage(QObject *parent = 0);
-    ~WebPage();
     void loadSettings();
 
     WebPluginFactory *webPluginFactory();

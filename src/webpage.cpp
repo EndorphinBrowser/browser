@@ -38,6 +38,11 @@
 
 WebPluginFactory *WebPage::s_webPluginFactory = 0;
 
+JavaScriptExternalObject::JavaScriptExternalObject(QObject *parent)
+    : QObject(parent)
+{
+}
+
 void JavaScriptExternalObject::AddSearchProvider(const QString &url)
 {
     ToolbarSearch::openSearchManager()->addEngine(QUrl(url));
@@ -56,12 +61,6 @@ WebPage::WebPage(QObject *parent)
             this, SLOT(addExternalBinding(QWebFrame *)));
     addExternalBinding(mainFrame());
     loadSettings();
-}
-
-WebPage::~WebPage()
-{
-    if (m_javaScriptBinding)
-        delete m_javaScriptBinding;
 }
 
 WebPluginFactory *WebPage::webPluginFactory()
@@ -103,7 +102,7 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
 void WebPage::addExternalBinding(QWebFrame *frame)
 {
     if (!m_javaScriptBinding)
-        m_javaScriptBinding = new JavaScriptExternalObject();
+        m_javaScriptBinding = new JavaScriptExternalObject(this);
 
     if (frame == 0) { // called from QWebFrame::javaScriptWindowObjectCleared
         frame = qobject_cast<QWebFrame*>(sender());
