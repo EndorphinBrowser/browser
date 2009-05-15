@@ -44,7 +44,7 @@ OpenSearchEngine::~OpenSearchEngine()
         delete m_scriptEngine;
 }
 
-QString OpenSearchEngine::parseTemplate(const QString &searchTerm, const QString &searchTemplate) const
+QString OpenSearchEngine::parseTemplate(const QString &searchTerm, const QString &searchTemplate)
 {
     QString result = searchTemplate;
     result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)searchTerms\\??\\}")),
@@ -221,7 +221,13 @@ bool OpenSearchEngine::isValid() const
 
 bool OpenSearchEngine::operator==(const OpenSearchEngine &other) const
 {
-    return (m_name == other.m_name && m_searchUrlTemplate == other.m_searchUrlTemplate);
+    return (m_name == other.m_name
+            && m_description == other.m_description
+            && m_imageUrl == other.m_imageUrl
+            && m_searchUrlTemplate == other.m_searchUrlTemplate
+            && m_suggestionsUrlTemplate == other.m_suggestionsUrlTemplate
+            && m_searchParameters == other.m_searchParameters
+            && m_suggestionsParameters == other.m_suggestionsParameters);
 }
 
 bool OpenSearchEngine::operator<(const OpenSearchEngine &other) const
@@ -282,7 +288,7 @@ void OpenSearchEngine::suggestionsObtained()
     emit suggestions(suggestionsList);
 }
 
-QNetworkAccessManager *OpenSearchEngine::networkAccessManager() const
+QNetworkAccessManager *OpenSearchEngine::networkAccessManager()
 {
     return BrowserApplication::networkAccessManager();
 }

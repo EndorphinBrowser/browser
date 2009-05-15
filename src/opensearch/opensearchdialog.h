@@ -33,7 +33,6 @@ class OpenSearchDialog : public QDialog, public Ui_OpenSearchDialog
 
 public:
     OpenSearchDialog(QWidget *parent = 0);
-    ~OpenSearchDialog();
 
 protected slots:
     void addButtonClicked();

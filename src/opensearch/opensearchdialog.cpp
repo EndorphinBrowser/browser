@@ -35,7 +35,7 @@ OpenSearchDialog::OpenSearchDialog(QWidget *parent)
     setModal(true);
     setupUi(this);
 
-    m_model = new OpenSearchEngineModel(ToolbarSearch::openSearchManager());
+    m_model = new OpenSearchEngineModel(ToolbarSearch::openSearchManager(), this);
     m_listView->setModel(m_model);
 
     connect(m_closeButton, SIGNAL(clicked()),
@@ -46,11 +46,6 @@ OpenSearchDialog::OpenSearchDialog(QWidget *parent)
             this, SLOT(deleteButtonClicked()));
     connect(m_restoreButton, SIGNAL(clicked()),
             this, SLOT(restoreButtonClicked()));
-}
-
-OpenSearchDialog::~OpenSearchDialog()
-{
-    delete m_model;
 }
 
 void OpenSearchDialog::addButtonClicked()

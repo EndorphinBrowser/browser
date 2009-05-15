@@ -81,8 +81,8 @@ public slots:
     void requestSuggestions(const QString &searchTerm);
 
 protected:
-    QString parseTemplate(const QString &searchTerm, const QString &searchTemplate) const;
-    QNetworkAccessManager *networkAccessManager() const;
+    static QString parseTemplate(const QString &searchTerm, const QString &searchTemplate);
+    static QNetworkAccessManager *networkAccessManager();
     void loadImage() const;
 
 private slots:
