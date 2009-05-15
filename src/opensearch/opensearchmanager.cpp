@@ -272,6 +272,9 @@ QString OpenSearchManager::enginesDirectory() const
 
 bool OpenSearchManager::confirmAddition(OpenSearchEngine *engine)
 {
+    if (!engine || !engine->isValid())
+        return false;
+
     QString host = QUrl(engine->searchUrlTemplate()).host();
 
     QMessageBox::StandardButton button = QMessageBox::question(0, QString(),
