@@ -1278,6 +1278,67 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
+    <name>OpenSearchDialog</name>
+    <message>
+        <source>Open File</source>
+        <translation>Otwórz plik</translation>
+    </message>
+    <message>
+        <source>OpenSearch</source>
+        <translation>OpenSearch</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Błąd</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
+        <translation>%1 nie jest prawidłowym plikiem OpenSearch 1.1 lub jest już na Twojej liście.</translation>
+    </message>
+    <message>
+        <source>You must have at least one search engine in here.</source>
+        <translation>Musisz mieć co najmniej jedną wyszukiwarkę.</translation>
+    </message>
+    <message>
+        <source>OpenSearch Manager</source>
+        <translation>Menedżer wyszukiwarek OpenSearch</translation>
+    </message>
+    <message>
+        <source>&amp;Restore Defaults</source>
+        <translation>&amp;Przywróć domyślne</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Usuń</translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation>&amp;Dodaj</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation>&amp;Zamknij</translation>
+    </message>
+</context>
+<context>
+    <name>OpenSearchEngineModel</name>
+    <message>
+        <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
+        <translation>&lt;strong&gt;Opis:&lt;/strong&gt; %1</translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
+        <translation>&lt;strong&gt;Oferuje sugestie kontekstowe&lt;/strong&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>OpenSearchManager</name>
+    <message>
+        <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
+        <translation>Czy chcesz dodać następującą wyszukiwarkę do swojej listy?&lt;br /&gt;&lt;br /&gt;Nazwa: %1&lt;br /&gt;Wyszukuje na: %2</translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
@@ -1339,6 +1400,10 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     <message>
         <source>Unknown title</source>
         <translation>Nieznany tytuł</translation>
+    </message>
+    <message>
+        <source>The file is not an OpenSearch 1.1 file.</source>
+        <translation>Plik nie jest prawidłowym plikiem OpenSearch 1.1.</translation>
     </message>
 </context>
 <context>
@@ -1906,11 +1971,19 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation type="obsolete">Wyczyść listę ostatnio wyszukiwanych fraz</translation>
+        <translation>Wyczyść listę ostatnio wyszukiwanych fraz</translation>
     </message>
     <message>
         <source>Suggestions</source>
         <translation>Sugestie</translation>
+    </message>
+    <message>
+        <source>Add &apos;%1&apos;</source>
+        <translation>Dodaj &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <source>Configure Search Engines...</source>
+        <translation>Konfiguruj wyszukiwarki...</translation>
     </message>
 </context>
 <context>
@@ -1993,6 +2066,10 @@ Czy na pewno chcesz zamknąć tę stronę?
     <message>
         <source>Loading...</source>
         <translation>Ładowanie...</translation>
+    </message>
+    <message>
+        <source>Search with...</source>
+        <translation>Szukaj z...</translation>
     </message>
 </context>
 <context>
