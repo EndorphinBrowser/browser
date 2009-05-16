@@ -839,9 +839,9 @@ void BrowserMainWindow::retranslate()
 
     // Toolbar
     m_navigationBar->setWindowTitle(tr("Navigation"));
-    updateStatusbarActionText(m_viewStatusbarAction->isVisible());
-    updateToolbarActionText(m_viewToolbarAction->isVisible());
-    updateBookmarksToolbarActionText(m_viewBookmarkBarAction->isVisible());
+    updateStatusbarActionText(m_statusBarVisible);
+    updateToolbarActionText(m_navigationBar->isVisible());
+    updateBookmarksToolbarActionText(m_bookmarksToolbar->isVisible());
 }
 
 void BrowserMainWindow::setupToolBar()
