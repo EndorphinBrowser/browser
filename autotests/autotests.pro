@@ -3,6 +3,7 @@ SUBDIRS  = \
     addbookmarkdialog \
     autosaver \
     downloadmanager \
+    editlistview \
     edittreeview \
     historyfiltermodel \
     historymanager \
