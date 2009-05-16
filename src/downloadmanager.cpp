@@ -446,7 +446,7 @@ DownloadManager::DownloadManager(QWidget *parent)
     downloadsView->horizontalHeader()->setStretchLastSection(true);
     downloadsView->setModel(m_model);
     connect(cleanupButton, SIGNAL(clicked()), this, SLOT(cleanup()));
-    connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(close()));
     load();
 }
 
