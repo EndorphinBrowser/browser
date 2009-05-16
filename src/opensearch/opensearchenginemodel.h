@@ -1,5 +1,6 @@
 /*
- * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Christian Franke <cfchris6@ts2server.com>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,29 +18,30 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef SEARCHBUTTON_H
-#define SEARCHBUTTON_H
+#ifndef OPENSEARCHENGINEMODEL_H
+#define OPENSEARCHENGINEMODEL_H
 
-#include <qabstractbutton.h>
+#include <qabstractitemmodel.h>
 
-class QCompleter;
-class SearchButton : public QAbstractButton
+class OpenSearchEngine;
+class OpenSearchManager;
+
+class OpenSearchEngineModel : public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    SearchButton(QWidget *parent = 0);
-    void setImage(const QImage &image);
-    void setShowMenuTriangle(bool show);
-    bool showMenuTriangle() const;
-    void paintEvent(QPaintEvent *event);
-    QSize sizeHint() const;
+    OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent = 0);
+    bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+
+protected slots:
+    void enginesChanged();
 
 private:
-    QImage generateSearchImage(bool dropDown);
-    QImage m_cache;
-    bool m_showMenuTriangle;
+    OpenSearchManager *m_manager;
 };
 
-#endif // SEARCHBUTTON_H
+#endif //OPENSEARCHENGINEMODEL_H
 

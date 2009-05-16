@@ -68,6 +68,10 @@
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "downloadmanager.h"
+#include "opensearchengine.h"
+#include "opensearchengineaction.h"
+#include "opensearchmanager.h"
+#include "toolbarsearch.h"
 #include "webpage.h"
 
 #include <qclipboard.h>
@@ -151,6 +155,26 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         menu->addAction(tr("&Save Image"), this, SLOT(downloadImageToDisk()));
         menu->addAction(tr("&Copy Image"), this, SLOT(copyImageToClipboard()));
         menu->addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(r.imageUrl().toString());
+    }
+
+    if (!page()->selectedText().isEmpty()) {
+        if (menu->isEmpty()) {
+            menu->addAction(pageAction(QWebPage::Copy));
+        } else {
+            menu->addSeparator();
+        }
+        QMenu *searchMenu = menu->addMenu(tr("Search with..."));
+
+        QList<QString> list = ToolbarSearch::openSearchManager()->allEnginesNames();
+        for (int i = 0; i < list.count(); ++i) {
+            QString name = list.at(i);
+            OpenSearchEngine *engine = ToolbarSearch::openSearchManager()->engine(name);
+            QAction *action = new OpenSearchEngineAction(engine, searchMenu);
+            searchMenu->addAction(action);
+            action->setData(name);
+        }
+
+        connect(searchMenu, SIGNAL(triggered(QAction *)), this, SLOT(searchRequested(QAction *)));
     }
 
 #if QT_VERSION >= 0x040500
@@ -256,6 +280,21 @@ void WebView::bookmarkLink()
         AddBookmarkDialog dialog;
         dialog.setUrl(QString::fromUtf8(action->data().toUrl().toEncoded()));
         dialog.exec();
+    }
+}
+
+void WebView::searchRequested(QAction *action)
+{
+    QString searchText = page()->selectedText();
+
+    if (searchText.isEmpty())
+        return;
+
+    QVariant index = action->data();
+
+    if (index.canConvert<QString>()) {
+        OpenSearchEngine *engine = ToolbarSearch::openSearchManager()->engine(index.toString());
+        emit search(engine->searchUrl(searchText), TabWidget::NewSelectedTab);
     }
 }
 

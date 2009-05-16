@@ -8,6 +8,10 @@ SUBDIRS  = \
     historymanager \
     languagemanager \
     lineedit \
+    opensearchengine \
+    opensearchmanager \
+    opensearchreader \
+    opensearchwriter \
     searchlineedit \
     tabbar \
     tabwidget \

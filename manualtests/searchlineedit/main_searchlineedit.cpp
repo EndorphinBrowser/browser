@@ -25,6 +25,7 @@
 #include <qdialog.h>
 
 #include "searchlineedit.h"
+#include "searchbutton.h"
 
 int main(int argc, char **argv)
 {
@@ -33,7 +34,12 @@ int main(int argc, char **argv)
     QDialog window;
     QPushButton *button1 = new QPushButton("One");
     SearchLineEdit *s1 = new SearchLineEdit(&window);
-    SearchLineEdit *s2 = new SearchLineEdit(new QCompleter(&window), &window);
+    SearchLineEdit *s2 = new SearchLineEdit(&window);
+    QCompleter *completer = new QCompleter(&window);
+    s2->setCompleter(completer);
+    s2->searchButton()->setShowMenuTriangle(true);
+    QObject::connect(s2->searchButton(), SIGNAL(clicked()),
+            completer, SLOT(complete()));
     QStringList list;
     list << "a" << "b" << "c";
     s2->completer()->setModel(new QStringListModel(list));

@@ -17,29 +17,25 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef SEARCHBUTTON_H
-#define SEARCHBUTTON_H
+#ifndef OPENSEARCHENGINEACTION_H
+#define OPENSEARCHENGINEACTION_H
 
-#include <qabstractbutton.h>
+#include <qaction.h>
 
-class QCompleter;
-class SearchButton : public QAbstractButton
+class OpenSearchEngine;
+class OpenSearchEngineAction : public QAction
 {
     Q_OBJECT
 
 public:
-    SearchButton(QWidget *parent = 0);
-    void setImage(const QImage &image);
-    void setShowMenuTriangle(bool show);
-    bool showMenuTriangle() const;
-    void paintEvent(QPaintEvent *event);
-    QSize sizeHint() const;
+    OpenSearchEngineAction(OpenSearchEngine *engine, QObject *parent = 0);
+
+private slots:
+    void imageChanged();
 
 private:
-    QImage generateSearchImage(bool dropDown);
-    QImage m_cache;
-    bool m_showMenuTriangle;
+    OpenSearchEngine *m_engine;
 };
 
-#endif // SEARCHBUTTON_H
+#endif // OPENSEARCHENGINEACTION_H
 

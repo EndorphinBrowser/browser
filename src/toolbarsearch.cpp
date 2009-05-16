@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,36 +65,88 @@
 
 #include "autosaver.h"
 #include "browserapplication.h"
-#include "googlesuggest.h"
+#include "browsermainwindow.h"
 #include "networkaccessmanager.h"
+#include "opensearchdialog.h"
+#include "opensearchengine.h"
+#include "opensearchengineaction.h"
+#include "opensearchmanager.h"
+#include "searchbutton.h"
+#include "webpage.h"
+#include "webview.h"
 
 #include <qabstractitemview.h>
 #include <qcompleter.h>
 #include <qcoreapplication.h>
+#include <qmenu.h>
 #include <qsettings.h>
 #include <qstandarditemmodel.h>
 #include <qtimer.h>
 #include <qurl.h>
 #include <qwebsettings.h>
 
+OpenSearchManager *ToolbarSearch::s_openSearchManager = 0;
+
 /*
-    ToolbarSearch is a very basic search widget that also contains a small history.
-    Searches are turned into urls that use Google to perform search
+    ToolbarSearch is a search widget that also contains a small history
+    and uses open-search for searching.
  */
 ToolbarSearch::ToolbarSearch(QWidget *parent)
-    : SearchLineEdit(new QCompleter(parent), parent)
+    : SearchLineEdit(parent)
+    , m_suggestionsEnabled(true)
     , m_autosaver(new AutoSaver(this))
     , m_maxSavedSearches(10)
     , m_model(new QStandardItemModel(this))
     , m_suggestionsItem(0)
     , m_recentSearchesItem(0)
     , m_suggestTimer(0)
+    , m_completer(0)
 {
-    completer()->setModel(m_model);
-    completer()->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
-    connect(this, SIGNAL(returnPressed()), SLOT(searchNow()));
-    setInactiveText(QLatin1String("Google"));
+    connect(openSearchManager(), SIGNAL(currentEngineChanged()),
+            this, SLOT(currentEngineChanged()));
+
+    m_completer = new QCompleter(this);
+    m_completer->setModel(m_model);
+    m_completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+    setCompleter(m_completer);
+
+    searchButton()->setShowMenuTriangle(true);
+
+    connect(searchButton(), SIGNAL(clicked()),
+            this, SLOT(showEnginesMenu()));
+    connect(this, SIGNAL(returnPressed()),
+            this, SLOT(searchNow()));
+
     load();
+
+    currentEngineChanged();
+}
+
+OpenSearchManager *ToolbarSearch::openSearchManager()
+{
+    if (!s_openSearchManager)
+        s_openSearchManager = new OpenSearchManager;
+    return s_openSearchManager;
+}
+
+void ToolbarSearch::currentEngineChanged()
+{
+    if (m_suggestionsEnabled) {
+        if (openSearchManager()->engineExists(m_currentEngine)) {
+            OpenSearchEngine *oldEngine = openSearchManager()->engine(m_currentEngine);
+            disconnect(oldEngine, SIGNAL(suggestions(const QStringList &)),
+                       this, SLOT(newSuggestions(const QStringList &)));
+        }
+
+        OpenSearchEngine *newEngine = openSearchManager()->currentEngine();
+        connect(newEngine, SIGNAL(suggestions(const QStringList &)),
+                this, SLOT(newSuggestions(const QStringList &)));
+    }
+
+    setInactiveText(openSearchManager()->currentEngineName());
+    m_currentEngine = openSearchManager()->currentEngineName();
+    m_suggestions.clear();
+    setupList();
 }
 
 void ToolbarSearch::completerActivated(const QModelIndex &index)
@@ -150,16 +203,15 @@ void ToolbarSearch::load()
     settings.beginGroup(QLatin1String("toolbarsearch"));
     m_recentSearches = settings.value(QLatin1String("recentSearches")).toStringList();
     m_maxSavedSearches = settings.value(QLatin1String("maximumSaved"), m_maxSavedSearches).toInt();
-    bool useGoogleSuggest = settings.value(QLatin1String("useGoogleSuggest"), true).toBool();
-    if (useGoogleSuggest) {
-        m_googleSuggest = new GoogleSuggest(this);
-        connect(m_googleSuggest, SIGNAL(suggestions(const QStringList &, const QString &)),
-                this, SLOT(newSuggestions(const QStringList &)));
+
+    m_suggestionsEnabled = settings.value(QLatin1String("useSuggestions"), true).toBool();
+    if (m_suggestionsEnabled) {
         connect(this, SIGNAL(textEdited(const QString &)),
                 this, SLOT(textEdited(const QString &)));
     }
+
     settings.endGroup();
-    setupMenu();
+    setupList();
 }
 
 void ToolbarSearch::textEdited(const QString &text)
@@ -167,8 +219,6 @@ void ToolbarSearch::textEdited(const QString &text)
     Q_UNUSED(text);
     // delay settings this to prevent BrowserApplication from creating
     // the object when it isn't needed on startup
-    if (!m_googleSuggest->networkAccessManager())
-        m_googleSuggest->setNetworkAccessManager(BrowserApplication::networkAccessManager());
     if (!m_suggestTimer) {
         m_suggestTimer = new QTimer(this);
         m_suggestTimer->setSingleShot(true);
@@ -181,7 +231,7 @@ void ToolbarSearch::textEdited(const QString &text)
 
 void ToolbarSearch::getSuggestions()
 {
-    m_googleSuggest->suggest(text());
+    openSearchManager()->currentEngine()->requestSuggestions(text());
 }
 
 void ToolbarSearch::searchNow()
@@ -200,19 +250,14 @@ void ToolbarSearch::searchNow()
         m_autosaver->changeOccurred();
     }
 
-    QUrl url(QLatin1String("http://www.google.com/search"));
-    url.addEncodedQueryItem(QUrl::toPercentEncoding(QLatin1String("q")),
-            QUrl::toPercentEncoding(searchText));
-    url.addQueryItem(QLatin1String("ie"), QLatin1String("UTF-8"));
-    url.addQueryItem(QLatin1String("oe"), QLatin1String("UTF-8"));
-    url.addQueryItem(QLatin1String("client"), QCoreApplication::applicationName());
-    emit search(url);
+    QUrl searchUrl = openSearchManager()->currentEngine()->searchUrl(searchText);
+    emit search(searchUrl);
 }
 
 void ToolbarSearch::newSuggestions(const QStringList &suggestions)
 {
     m_suggestions = suggestions;
-    setupMenu();
+    setupList();
 }
 
 void ToolbarSearch::changeEvent(QEvent *event)
@@ -228,7 +273,104 @@ void ToolbarSearch::retranslate()
         m_suggestionsItem->setText(tr("Suggestions"));
 }
 
-void ToolbarSearch::setupMenu()
+void ToolbarSearch::showEnginesMenu()
+{
+    QMenu menu;
+
+    QWidget *parent = searchButton()->parentWidget();
+    if (!parent)
+        return;
+
+    QPoint pos = parent->mapToGlobal(QPoint(0, parent->height()));
+
+    QList<QString> list = openSearchManager()->allEnginesNames();
+    for (int i = 0; i < list.count(); ++i) {
+        QString name = list.at(i);
+        OpenSearchEngine *engine = openSearchManager()->engine(name);
+        OpenSearchEngineAction *action = new OpenSearchEngineAction(engine, &menu);
+        action->setData(name);
+        connect(action, SIGNAL(triggered()), this, SLOT(changeCurrentEngine()));
+        menu.addAction(action);
+
+        if (openSearchManager()->currentEngineName() == name) {
+            action->setCheckable(true);
+            action->setChecked(true);
+        }
+    }
+
+    WebView *webView = BrowserMainWindow::parentWindow(this)->currentTab();
+    QList<WebPageLinkedResource> engines = webView->webPage()->linkedResources(QLatin1String("search"));
+
+    if (!engines.empty())
+        menu.addSeparator();
+
+    for (int i = 0; i < engines.count(); i++) {
+        WebPageLinkedResource engine = engines.at(i);
+
+        QUrl url = QUrl(engine.href);
+        QString title = engine.title;
+        QString mimetype = engine.type;
+
+        if (mimetype != QLatin1String("application/opensearchdescription+xml"))
+            continue;
+        if (url.isEmpty())
+            continue;
+
+        if (url.isRelative())
+            url = webView->url().resolved(url);
+
+        if (title.isEmpty())
+            title = webView->title().isEmpty() ? url.host() : webView->title();
+
+        QAction *action = menu.addAction(tr("Add '%1'").arg(title), this, SLOT(addEngineFromUrl()));
+        action->setData(url);
+        action->setIcon(webView->icon());
+    }
+
+    menu.addSeparator();
+    QAction *showManager = menu.addAction(tr("Configure Search Engines..."));
+    connect(showManager, SIGNAL(triggered()),
+            this, SLOT(showDialog()));
+
+    if (!m_recentSearches.empty())
+        menu.addAction(tr("Clear Recent Searches"), this, SLOT(clear()));
+
+    menu.exec(pos);
+}
+
+void ToolbarSearch::changeCurrentEngine()
+{
+    if (QAction *action = qobject_cast<QAction*>(sender())) {
+        QString name = action->data().toString();
+        openSearchManager()->setCurrentEngineName(name);
+    }
+}
+
+void ToolbarSearch::addEngineFromUrl()
+{
+    QAction *action = qobject_cast<QAction*>(sender());
+    if (!action)
+        return;
+    QVariant variant = action->data();
+    if (!variant.canConvert<QUrl>())
+        return;
+    QUrl url = variant.toUrl();
+
+    openSearchManager()->addEngine(url);
+}
+
+void ToolbarSearch::showDialog()
+{
+    BrowserMainWindow *window = BrowserMainWindow::parentWindow(this);
+
+    if (!window)
+        return;
+
+    OpenSearchDialog dialog(window);
+    dialog.exec();
+}
+
+void ToolbarSearch::setupList()
 {
     if (m_suggestions.isEmpty()
         || (m_model->rowCount() > 0
@@ -239,13 +381,13 @@ void ToolbarSearch::setupMenu()
         m_model->removeRows(1, m_model->rowCount() -1 );
     }
 
-    QFont boldFont;
-    boldFont.setBold(true);
+    QFont lightFont;
+    lightFont.setWeight(QFont::Light);
     if (!m_suggestions.isEmpty()) {
         if (m_model->rowCount() == 0) {
             if (!m_suggestionsItem) {
                 m_suggestionsItem = new QStandardItem();
-                m_suggestionsItem->setFont(boldFont);
+                m_suggestionsItem->setFont(lightFont);
                 retranslate();
             }
             m_model->appendRow(m_suggestionsItem);
@@ -258,11 +400,11 @@ void ToolbarSearch::setupMenu()
 
     if (m_recentSearches.isEmpty()) {
         m_recentSearchesItem = new QStandardItem(tr("No Recent Searches"));
-        m_recentSearchesItem->setFont(boldFont);
+        m_recentSearchesItem->setFont(lightFont);
         m_model->appendRow(m_recentSearchesItem);
     } else {
         m_recentSearchesItem = new QStandardItem(tr("Recent Searches"));
-        m_recentSearchesItem->setFont(boldFont);
+        m_recentSearchesItem->setFont(lightFont);
         m_model->appendRow(m_recentSearchesItem);
         for (int i = 0; i < m_recentSearches.count(); ++i) {
             QString text = m_recentSearches.at(i);
@@ -278,7 +420,7 @@ void ToolbarSearch::clear()
 {
     m_recentSearches.clear();
     m_autosaver->changeOccurred();
-    setupMenu();
+    setupList();
     QLineEdit::clear();
     clearFocus();
 }

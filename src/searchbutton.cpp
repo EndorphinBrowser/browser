@@ -26,6 +26,7 @@
 
 SearchButton::SearchButton(QWidget *parent)
     : QAbstractButton(parent)
+    , m_showMenuTriangle(false)
 {
     setFocusPolicy(Qt::NoFocus);
     setCursor(Qt::ArrowCursor);
@@ -36,18 +37,9 @@ QSize SearchButton::sizeHint() const
 {
     if (!m_cache.isNull())
         return m_cache.size();
-    if (completer())
+    if (m_showMenuTriangle)
         return QSize(16, 16);
     return QSize(12, 16);
-}
-
-void SearchButton::mousePressEvent(QMouseEvent *event)
-{
-    if (event->button() == Qt::LeftButton && completer()) {
-        completer()->complete();
-        event->accept();
-    }
-    QAbstractButton::mousePressEvent(event);
 }
 
 QImage SearchButton::generateSearchImage(bool dropDown)
@@ -101,23 +93,23 @@ void SearchButton::setImage(const QImage &image)
     update();
 }
 
+void SearchButton::setShowMenuTriangle(bool show)
+{
+    m_showMenuTriangle = show;
+    setMinimumSize(sizeHint());
+}
+
+bool SearchButton::showMenuTriangle() const
+{
+    return m_showMenuTriangle;
+}
+
 void SearchButton::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     if (m_cache.isNull())
-        m_cache = generateSearchImage(completer());
+        m_cache = generateSearchImage(m_showMenuTriangle);
     QPainter painter(this);
     painter.drawImage(QPoint(0, 0), m_cache);
-}
-
-QCompleter *SearchButton::completer() const
-{
-    if (parentWidget()) {
-        if (QLineEdit *lineEdit = qobject_cast<QLineEdit*>(parentWidget()))
-            return lineEdit->completer();
-        if (QLineEdit *lineEdit = qobject_cast<QLineEdit*>(parentWidget()->parentWidget()))
-            return lineEdit->completer();
-    }
-    return 0;
 }
 

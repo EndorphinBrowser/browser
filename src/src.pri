@@ -102,11 +102,13 @@ include(cookiejar/cookiejar.pri)
 include(history/history.pri)
 include(locationbar/locationbar.pri)
 include(networkmonitor/networkmonitor.pri)
+include(opensearch/opensearch.pri)
 include(qwebplugins/qwebplugins.pri)
 include(utils/utils.pri)
 
 RESOURCES += \
     $$PWD/data/data.qrc \
+    $$PWD/data/searchengines/searchengines.qrc \
     $$PWD/htmls/htmls.qrc
 
 DISTFILES += ../AUTHORS \

@@ -31,15 +31,6 @@
 #include "clearbutton.h"
 #include "searchbutton.h"
 
-SearchLineEdit::SearchLineEdit(QCompleter *completer, QWidget *parent)
-    : LineEdit(parent)
-    , m_clearButton(0)
-    , m_searchButton(0)
-{
-    setCompleter(completer);
-    init();
-}
-
 SearchLineEdit::SearchLineEdit(QWidget *parent)
     : LineEdit(parent)
 {

@@ -66,7 +66,8 @@
 #include "searchlineedit.h"
 
 class AutoSaver;
-class GoogleSuggest;
+class OpenSearchManager;
+class QCompleter;
 class QModelIndex;
 class QStandardItem;
 class QStandardItemModel;
@@ -82,18 +83,24 @@ signals:
 public:
     ToolbarSearch(QWidget *parent = 0);
     ~ToolbarSearch();
+    static OpenSearchManager *openSearchManager();
 
 public slots:
     void clear();
     void searchNow();
 
 private slots:
+    void currentEngineChanged();
     void save();
     void textEdited(const QString &);
     void newSuggestions(const QStringList &suggestions);
     void completerActivated(const QModelIndex &index);
     bool completerHighlighted(const QModelIndex &index);
     void getSuggestions();
+    void showEnginesMenu();
+    void changeCurrentEngine();
+    void showDialog();
+    void addEngineFromUrl();
 
 protected:
     void changeEvent(QEvent *event);
@@ -101,19 +108,24 @@ protected:
 
 private:
     void load();
-    void setupMenu();
+    void setupList();
     void retranslate();
+
+    static OpenSearchManager *s_openSearchManager;
+    QString m_currentEngine;
+    bool m_suggestionsEnabled;
 
     AutoSaver *m_autosaver;
     int m_maxSavedSearches;
     QStringList m_recentSearches;
     QStringList m_suggestions;
-    GoogleSuggest *m_googleSuggest;
     QStandardItemModel *m_model;
 
     QStandardItem *m_suggestionsItem;
     QStandardItem *m_recentSearchesItem;
     QTimer *m_suggestTimer;
+
+    QCompleter *m_completer;
 };
 
 #endif // TOOLBARSEARCH_H

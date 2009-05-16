@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,29 +17,24 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef SEARCHBUTTON_H
-#define SEARCHBUTTON_H
+#ifndef OPENSEARCHREADER_H
+#define OPENSEARCHREADER_H
 
-#include <qabstractbutton.h>
+#include <qxmlstream.h>
 
-class QCompleter;
-class SearchButton : public QAbstractButton
+class OpenSearchEngine;
+
+class OpenSearchReader : public QXmlStreamReader
 {
-    Q_OBJECT
-
 public:
-    SearchButton(QWidget *parent = 0);
-    void setImage(const QImage &image);
-    void setShowMenuTriangle(bool show);
-    bool showMenuTriangle() const;
-    void paintEvent(QPaintEvent *event);
-    QSize sizeHint() const;
+    OpenSearchReader();
+
+    OpenSearchEngine *read(QIODevice *device);
 
 private:
-    QImage generateSearchImage(bool dropDown);
-    QImage m_cache;
-    bool m_showMenuTriangle;
+    OpenSearchEngine *read();
+
 };
 
-#endif // SEARCHBUTTON_H
+#endif //OPENSEARCHREADER_H
 

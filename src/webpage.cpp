@@ -23,7 +23,9 @@
 #include "downloadmanager.h"
 #include "historymanager.h"
 #include "networkaccessmanager.h"
+#include "opensearchmanager.h"
 #include "tabwidget.h"
+#include "toolbarsearch.h"
 #include "webpluginfactory.h"
 #include "webview.h"
 
@@ -36,14 +38,28 @@
 
 WebPluginFactory *WebPage::s_webPluginFactory = 0;
 
+JavaScriptExternalObject::JavaScriptExternalObject(QObject *parent)
+    : QObject(parent)
+{
+}
+
+void JavaScriptExternalObject::AddSearchProvider(const QString &url)
+{
+    ToolbarSearch::openSearchManager()->addEngine(QUrl(url));
+}
+
 WebPage::WebPage(QObject *parent)
     : QWebPage(parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
+    , m_javaScriptBinding(0)
 {
     setPluginFactory(webPluginFactory());
     setNetworkAccessManager(BrowserApplication::networkAccessManager());
     connect(this, SIGNAL(unsupportedContent(QNetworkReply *)),
             this, SLOT(handleUnsupportedContent(QNetworkReply *)));
+    connect(this, SIGNAL(frameCreated(QWebFrame *)),
+            this, SLOT(addExternalBinding(QWebFrame *)));
+    addExternalBinding(mainFrame());
     loadSettings();
 }
 
@@ -81,6 +97,21 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
     }
 
     return resources;
+}
+
+void WebPage::addExternalBinding(QWebFrame *frame)
+{
+    if (!m_javaScriptBinding)
+        m_javaScriptBinding = new JavaScriptExternalObject(this);
+
+    if (frame == 0) { // called from QWebFrame::javaScriptWindowObjectCleared
+        frame = qobject_cast<QWebFrame*>(sender());
+    } else { // called from QWebPage::frameCreated
+        connect(frame, SIGNAL(javaScriptWindowObjectCleared()),
+                this, SLOT(addExternalBinding()));
+    }
+    frame->addToJavaScriptWindowObject(QLatin1String("external"),
+           m_javaScriptBinding);
 }
 
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,

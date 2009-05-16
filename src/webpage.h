@@ -36,6 +36,18 @@ public:
 
 class QNetworkReply;
 class WebPluginFactory;
+// See https://developer.mozilla.org/en/adding_search_engines_from_web_pages
+class JavaScriptExternalObject : public QObject
+{
+    Q_OBJECT
+
+public:
+    JavaScriptExternalObject(QObject *parent = 0);
+
+public slots:
+    void AddSearchProvider(const QString &url);
+};
+
 class WebPage : public QWebPage
 {
     Q_OBJECT
@@ -58,12 +70,13 @@ protected:
 
 protected slots:
     void handleUnsupportedContent(QNetworkReply *reply);
+    void addExternalBinding(QWebFrame *frame = 0);
 
 protected:
     static WebPluginFactory *s_webPluginFactory;
     TabWidget::OpenUrlIn m_openTargetBlankLinksIn;
-
     QUrl m_requestedUrl;
+    JavaScriptExternalObject *m_javaScriptBinding;
 };
 
 #endif // WEBPAGE_H

@@ -39,7 +39,6 @@ class SearchLineEdit : public LineEdit
 
 public:
     SearchLineEdit(QWidget *parent = 0);
-    SearchLineEdit(QCompleter *completer, QWidget *parent = 0);
 
     ClearButton *clearButton() const;
     SearchButton *searchButton() const;

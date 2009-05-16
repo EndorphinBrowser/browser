@@ -1,5 +1,6 @@
 /*
- * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Christian Franke <cfchris6@ts2server.com>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,29 +18,30 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef SEARCHBUTTON_H
-#define SEARCHBUTTON_H
+#ifndef OPENSEARCHDIALOG_H
+#define OPENSEARCHDIALOG_H
 
-#include <qabstractbutton.h>
+#include <qdialog.h>
 
-class QCompleter;
-class SearchButton : public QAbstractButton
+#include "ui_opensearchdialog.h"
+
+class OpenSearchEngineModel;
+
+class OpenSearchDialog : public QDialog, public Ui_OpenSearchDialog
 {
     Q_OBJECT
 
 public:
-    SearchButton(QWidget *parent = 0);
-    void setImage(const QImage &image);
-    void setShowMenuTriangle(bool show);
-    bool showMenuTriangle() const;
-    void paintEvent(QPaintEvent *event);
-    QSize sizeHint() const;
+    OpenSearchDialog(QWidget *parent = 0);
+
+protected slots:
+    void addButtonClicked();
+    void deleteButtonClicked();
+    void restoreButtonClicked();
 
 private:
-    QImage generateSearchImage(bool dropDown);
-    QImage m_cache;
-    bool m_showMenuTriangle;
+    OpenSearchEngineModel *m_model;
 };
 
-#endif // SEARCHBUTTON_H
+#endif //OPENSEARCHDIALOG_H
 
