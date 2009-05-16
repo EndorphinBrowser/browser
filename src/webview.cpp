@@ -111,6 +111,40 @@ WebView::WebView(QWidget *parent)
     m_zoomLevels << 110 << 120 << 133 << 150 << 170 << 200 << 240 << 300;
 }
 
+#if 1 // soon to be #if QT_VERSION <= 0x040600
+#include <qdir.h>
+QUrl WebView::guessUrlFromString(const QString &string)
+{
+    // Check the most common case of a valid url with scheme and host first
+    QUrl url = QUrl::fromEncoded(string.toUtf8(), QUrl::TolerantMode);
+    if (url.isValid() && !url.scheme().isEmpty() && !url.host().isEmpty())
+        return url;
+
+    // Absolute files that exists
+    if (QDir::isAbsolutePath(string) && QFile::exists(string))
+        return QUrl::fromLocalFile(string);
+
+    // If the string is missing the scheme or the scheme is not valid prepend a scheme
+    QString scheme = url.scheme();
+    if (scheme.isEmpty() || scheme.contains(QLatin1Char('.')) || scheme == QLatin1String("localhost")) {
+        QString urlString = string.trimmed();
+        // Do not do anything for strings such as "foo", only "foo.com"
+        int dotIndex = urlString.indexOf(QLatin1Char('.'));
+        if (dotIndex != -1 || urlString.startsWith(QLatin1String("localhost"))) {
+            const QString hostscheme = urlString.left(dotIndex).toLower();
+            QByteArray scheme = (hostscheme == QLatin1String("ftp")) ? "ftp" : "http";
+            urlString = QLatin1String(scheme) + QLatin1String("://") + urlString;
+        }
+        url = QUrl::fromEncoded(urlString.toUtf8(), QUrl::TolerantMode);
+    }
+
+    if (url.isValid())
+        return url;
+
+    return QUrl();
+}
+#endif
+
 TabWidget *WebView::tabWidget() const
 {
     QObject *widget = this->parent();

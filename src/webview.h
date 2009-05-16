@@ -79,6 +79,10 @@ public:
     WebView(QWidget *parent = 0);
     WebPage *webPage() const { return m_page; }
 
+#if 1 // soon to be #if QT_VERSION <= 0x040600
+    static QUrl guessUrlFromString(const QString &url);
+#endif
+
     void loadUrl(const QUrl &url, const QString &title = QString());
     QUrl url() const;
 
