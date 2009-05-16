@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Search Engine Manager</string>
+   <string>OpenSearch Manager</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
