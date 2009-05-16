@@ -5,12 +5,6 @@ INCLUDEPATH += .
 
 include(../autotests.pri)
 
-SOURCES = opensearchreader.cpp \
-          opensearchengine.cpp \
-          tst_opensearchreader.cpp
+SOURCES += \
+    tst_opensearchreader.cpp
 
-HEADERS = opensearchreader.h \
-          opensearchengine.h
-
-FORMS =
-RESOURCES =
