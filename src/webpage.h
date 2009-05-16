@@ -36,6 +36,7 @@ public:
 
 class QNetworkReply;
 class WebPluginFactory;
+// See https://developer.mozilla.org/en/adding_search_engines_from_web_pages
 class JavaScriptExternalObject : public QObject
 {
     Q_OBJECT
