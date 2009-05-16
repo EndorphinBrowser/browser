@@ -53,12 +53,12 @@ void OpenSearchDialog::addButtonClicked()
     QStringList fileNames = QFileDialog::getOpenFileNames(this,
                                                           tr("Open File"),
                                                           QString(),
-                                                          tr("Open Search") + QLatin1String(" (*.xml)"));
+                                                          tr("OpenSearch") + QLatin1String(" (*.xml)"));
 
     foreach (const QString &fileName, fileNames) {
         if (!ToolbarSearch::openSearchManager()->addEngine(fileName)) {
             QMessageBox::critical(this, tr("Error"),
-                    tr("%1 is not a valid OpenSearchDescription or is already on your list.").arg(fileName));
+                    tr("%1 is not a valid OpenSearch 1.1 description or is already on your list.").arg(fileName));
         }
     }
 }

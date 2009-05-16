@@ -49,7 +49,7 @@ OpenSearchEngine *OpenSearchReader::read()
 
     if (name() != QLatin1String("OpenSearchDescription")
         || namespaceUri() != QLatin1String("http://a9.com/-/spec/opensearch/1.1/")) {
-        raiseError(QObject::tr("The file is not an opensearch 1.1 file."));
+        raiseError(QObject::tr("The file is not an OpenSearch 1.1 file."));
         return engine;
     }
 
