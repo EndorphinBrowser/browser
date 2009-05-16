@@ -84,7 +84,7 @@ protected slots:
 private:
     AutoSaver *m_autoSaver;
 
-    QHash<QString, OpenSearchEngine *> m_engines;
+    QHash<QString, OpenSearchEngine*> m_engines;
     QString m_current;
 };
 
