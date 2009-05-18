@@ -5,7 +5,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>О программе</translation>
+        <translation type="obsolete">О программе</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -28,11 +28,15 @@
         <translation>Закрыть</translation>
     </message>
     <message>
+        <source>About %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -179,11 +183,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Name Change</source>
-        <translation>Изменение имени</translation>
+        <translation type="obsolete">Изменение имени</translation>
     </message>
     <message>
         <source>Address Change</source>
-        <translation>Изменение адреса</translation>
+        <translation type="obsolete">Изменение адреса</translation>
     </message>
     <message>
         <source>Bookmarks Bar</source>
@@ -195,12 +199,26 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="unfinished">XBEL (*.xbel *.xml *.html)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
         <translation type="unfinished">Ошибка при загрузке HTML закладки: %1</translation>
+    </message>
+    <message>
+        <source>XBEL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name Change</source>
+        <comment>Undo bookmark title change</comment>
+        <translation type="unfinished">Изменение имени</translation>
+    </message>
+    <message>
+        <source>Address Change</source>
+        <comment>Undo bookmark url change</comment>
+        <translation type="unfinished">Изменение адреса</translation>
     </message>
 </context>
 <context>
@@ -695,6 +713,40 @@ Do you want to reload all pages?</source>
     </message>
 </context>
 <context>
+    <name>ClickToFlash</name>
+    <message>
+        <source>Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add %1 to Whitelist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove from Whitelist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished">Параметры</translation>
+    </message>
+    <message>
+        <source>Load Flash</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ClickToFlashSettings</name>
+    <message>
+        <source>Whitelist sites</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CookieExceptionsModel</name>
     <message>
         <source>Website</source>
@@ -755,6 +807,10 @@ Do you want to reload all pages?</source>
         <source>false</source>
         <translation type="unfinished">лож</translation>
     </message>
+    <message>
+        <source>Session cookie</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CookiesDialog</name>
@@ -769,6 +825,10 @@ Do you want to reload all pages?</source>
     <message>
         <source>Remove &amp;All Cookies</source>
         <translation>Удалить &amp;все cookies</translation>
+    </message>
+    <message>
+        <source>Add &amp;Rule</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -826,7 +886,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -1088,7 +1148,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1131,6 +1191,67 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
 </context>
 <context>
+    <name>OpenSearchDialog</name>
+    <message>
+        <source>Open File</source>
+        <translation type="unfinished">Открыть файл</translation>
+    </message>
+    <message>
+        <source>OpenSearch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You must have at least one search engine in here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OpenSearch Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Restore Defaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OpenSearchEngineModel</name>
+    <message>
+        <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OpenSearchManager</name>
+    <message>
+        <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
@@ -1168,7 +1289,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>ICON</source>
-        <translation>ICON</translation>
+        <translation type="obsolete">ICON</translation>
     </message>
     <message>
         <source>Connect to proxy</source>
@@ -1192,6 +1313,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>Unknown title</source>
         <translation>Неизвестный заголовок</translation>
+    </message>
+    <message>
+        <source>The file is not an OpenSearch 1.1 file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1233,15 +1358,15 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <translation type="obsolete">TextLabel</translation>
     </message>
     <message>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="obsolete">&lt;</translation>
     </message>
     <message>
         <source>&gt;</source>
-        <translation>&gt;</translation>
+        <translation type="obsolete">&gt;</translation>
     </message>
     <message>
         <source>Done</source>
@@ -1323,7 +1448,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Times 16</source>
-        <translation>Times 16</translation>
+        <translation type="obsolete">Times 16</translation>
     </message>
     <message>
         <source>Select...</source>
@@ -1335,7 +1460,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Courier 13</source>
-        <translation>Courier 13</translation>
+        <translation type="obsolete">Courier 13</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -1487,7 +1612,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Confirm when closing multiple tabs</source>
-        <translation>Подтверждать закрытие нескольких вкладок</translation>
+        <translation type="obsolete">Подтверждать закрытие нескольких вкладок</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1551,6 +1676,45 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Http (Transparent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use ClickToFlash on flash plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter Tracking Cookies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm when closing multiple tabs or windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit the application when last tab is closed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable network cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>Restart required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1707,10 +1871,18 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation type="obsolete">Очистить последние слова для поиска</translation>
+        <translation type="unfinished">Очистить последние слова для поиска</translation>
     </message>
     <message>
         <source>Suggestions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configure Search Engines...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1782,6 +1954,10 @@ Do you really want to close this page?
     <message>
         <source>Loading...</source>
         <translation>Загрузка...</translation>
+    </message>
+    <message>
+        <source>Search with...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

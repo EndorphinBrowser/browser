@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -23,19 +25,31 @@
     </message>
     <message>
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation type="obsolete">Acerca de</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright &#xa9; 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>About %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -181,11 +195,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Name Change</source>
-        <translation>Cambiar o nome</translation>
+        <translation type="obsolete">Cambiar o nome</translation>
     </message>
     <message>
         <source>Address Change</source>
-        <translation>Cambiar o enderezo</translation>
+        <translation type="obsolete">Cambiar o enderezo</translation>
     </message>
     <message>
         <source>Bookmarks Bar</source>
@@ -197,13 +211,27 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation>XBEL (*.xbel *.xml *.html)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml *.html)</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
         <translation>Atopouse un erro mentras se cargaban os marcadores html: %1
 </translation>
+    </message>
+    <message>
+        <source>XBEL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name Change</source>
+        <comment>Undo bookmark title change</comment>
+        <translation type="unfinished">Cambiar o nome</translation>
+    </message>
+    <message>
+        <source>Address Change</source>
+        <comment>Undo bookmark url change</comment>
+        <translation type="unfinished">Cambiar o enderezo</translation>
     </message>
 </context>
 <context>
@@ -682,6 +710,40 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
 </context>
 <context>
+    <name>ClickToFlash</name>
+    <message>
+        <source>Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add %1 to Whitelist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove from Whitelist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Flash</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ClickToFlashSettings</name>
+    <message>
+        <source>Whitelist sites</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CookieExceptionsModel</name>
     <message>
         <source>Website</source>
@@ -738,6 +800,10 @@ Desexa recargar tódalas páxinas?</translation>
         <source>false</source>
         <translation>falso</translation>
     </message>
+    <message>
+        <source>Session cookie</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CookiesDialog</name>
@@ -752,6 +818,10 @@ Desexa recargar tódalas páxinas?</translation>
     <message>
         <source>Remove &amp;All Cookies</source>
         <translation>Eliminar &amp;tódalas cookies</translation>
+    </message>
+    <message>
+        <source>Add &amp;Rule</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -809,7 +879,7 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;Conforme</translation>
+        <translation type="obsolete">&amp;Conforme</translation>
     </message>
 </context>
 <context>
@@ -903,10 +973,12 @@ Desexa recargar tódalas páxinas?</translation>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
+    <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation>%n Descarga(s)
+        <translation type="unfinished">
+            <numerusform>%n Descarga(s)
         
+        </numerusform>
         </translation>
     </message>
     <message>
@@ -915,13 +987,17 @@ Do you want to quit anyway?</source>
         <translation>Hai %1 descargas en proceso
 Saír de tódolos xeitos?</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation>Faltan %n minutos</translation>
+        <translation type="unfinished">
+            <numerusform>Faltan %n minutos</numerusform>
+        </translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation>Faltan %n segundos
+        <translation type="unfinished">
+            <numerusform>Faltan %n segundos
+        </numerusform>
         </translation>
     </message>
     <message>
@@ -1000,9 +1076,11 @@ Saír de tódolos xeitos?</translation>
         <source>Earlier Today</source>
         <translation>Antes de hoxe</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n item(s)</source>
-        <translation>%n elemento(s)
+        <translation type="unfinished">
+            <numerusform>%n elemento(s)
+        </numerusform>
         </translation>
     </message>
 </context>
@@ -1069,7 +1147,11 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation>&lt;qt&gt;Certificados:&lt;br/&gt;%1&lt;br/&gt;Aceptar todos estes certificados?&lt;/qt&gt;</translation>
+        <translation type="obsolete">&lt;qt&gt;Certificados:&lt;br/&gt;%1&lt;br/&gt;Aceptar todos estes certificados?&lt;/qt&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1111,6 +1193,67 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
+    <name>OpenSearchDialog</name>
+    <message>
+        <source>Open File</source>
+        <translation type="unfinished">Abrir ficheiro</translation>
+    </message>
+    <message>
+        <source>OpenSearch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You must have at least one search engine in here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OpenSearch Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Restore Defaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OpenSearchEngineModel</name>
+    <message>
+        <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OpenSearchManager</name>
+    <message>
+        <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
@@ -1148,7 +1291,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>ICON</source>
-        <translation>ICONA</translation>
+        <translation type="obsolete">ICONA</translation>
     </message>
     <message>
         <source>Connect to proxy</source>
@@ -1172,6 +1315,10 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     <message>
         <source>Unknown title</source>
         <translation>Título descoñecido</translation>
+    </message>
+    <message>
+        <source>The file is not an OpenSearch 1.1 file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1213,15 +1360,15 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation>Texto da etiqueta</translation>
+        <translation type="obsolete">Texto da etiqueta</translation>
     </message>
     <message>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="obsolete">&lt;</translation>
     </message>
     <message>
         <source>&gt;</source>
-        <translation>&gt;</translation>
+        <translation type="obsolete">&gt;</translation>
     </message>
     <message>
         <source>Done</source>
@@ -1335,7 +1482,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Times 16</source>
-        <translation>Times 16</translation>
+        <translation type="obsolete">Times 16</translation>
     </message>
     <message>
         <source>Select...</source>
@@ -1347,7 +1494,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Courier 13</source>
-        <translation>Courier 13</translation>
+        <translation type="obsolete">Courier 13</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -1423,7 +1570,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs</source>
-        <translation>Pedir confirmación cando se vaian pechar varias lingüetas</translation>
+        <translation type="obsolete">Pedir confirmación cando se vaian pechar varias lingüetas</translation>
     </message>
     <message>
         <source>Proxy</source>
@@ -1508,6 +1655,45 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
         <translation>Idiomas preferidos para ver páxinas web en:</translation>
+    </message>
+    <message>
+        <source>Use ClickToFlash on flash plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter Tracking Cookies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm when closing multiple tabs or windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit the application when last tab is closed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable network cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>Restart required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1655,11 +1841,19 @@ Está seguro de que quere pechar esta páxina?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation type="obsolete">Limpar buscas recentes</translation>
+        <translation type="unfinished">Limpar buscas recentes</translation>
     </message>
     <message>
         <source>Suggestions</source>
         <translation>Suxestions</translation>
+    </message>
+    <message>
+        <source>Add &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configure Search Engines...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1734,6 +1928,10 @@ Está seguro de que quere pechar esta páxina?
     <message>
         <source>Loading...</source>
         <translation>Cargando...</translation>
+    </message>
+    <message>
+        <source>Search with...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

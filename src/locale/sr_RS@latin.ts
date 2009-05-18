@@ -818,7 +818,7 @@ Da li želite da ponovo učitate sve stranice?</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -1083,6 +1083,67 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
+    <name>OpenSearchDialog</name>
+    <message>
+        <source>Open File</source>
+        <translation type="unfinished">Otvori fajl</translation>
+    </message>
+    <message>
+        <source>OpenSearch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You must have at least one search engine in here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OpenSearch Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Restore Defaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OpenSearchEngineModel</name>
+    <message>
+        <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OpenSearchManager</name>
+    <message>
+        <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
@@ -1140,6 +1201,10 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     <message>
         <source>Unknown title</source>
         <translation>Nepoznat naziv</translation>
+    </message>
+    <message>
+        <source>The file is not an OpenSearch 1.1 file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1628,6 +1693,18 @@ Da li zaista želite da zatvorite ovu stranicu?
         <source>Recent Searches</source>
         <translation>Skorašnje pretrage</translation>
     </message>
+    <message>
+        <source>Add &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configure Search Engines...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear Recent Searches</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WebPage</name>
@@ -1697,6 +1774,10 @@ Da li zaista želite da zatvorite ovu stranicu?
     <message>
         <source>Loading...</source>
         <translation>Učitavanje...</translation>
+    </message>
+    <message>
+        <source>Search with...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
