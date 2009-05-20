@@ -29,7 +29,7 @@
     </message>
     <message>
         <source>About %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1ról</translation>
     </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -44,27 +44,27 @@ p, li { white-space: pre-wrap; }
     <name>AcceptLanguage</name>
     <message>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyelvek</translation>
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyelvek : preferencia sorrendben :</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Felfele mozgat</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lefele mozgat</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Tö&amp;röl</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hozzáadás...</translation>
     </message>
 </context>
 <context>
@@ -79,15 +79,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Url</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <source>Add Folder</source>
-        <translation type="unfinished">Mappa hozzáadása</translation>
+        <translation>Mappa hozzáadása</translation>
     </message>
 </context>
 <context>
@@ -122,11 +122,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Név Módosítása</translation>
     </message>
     <message>
         <source>Edit Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Cím Módosítása</translation>
     </message>
 </context>
 <context>
@@ -191,37 +191,38 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Könyvjelzősor</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Könyvjelző Menü</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba a könyvjelzők betöltése közben: %1
+</translation>
     </message>
     <message>
         <source>XBEL</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL</translation>
     </message>
     <message>
         <source>Name Change</source>
         <comment>Undo bookmark title change</comment>
-        <translation type="unfinished">Név változtatás</translation>
+        <translation>Név változtatás</translation>
     </message>
     <message>
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
-        <translation type="unfinished">Cím változtatás</translation>
+        <translation>Cím változtatás</translation>
     </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
     <message>
         <source>Open in Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Megnyitás Fülön</translation>
     </message>
 </context>
 <context>
@@ -243,23 +244,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Megnyit</translation>
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
-        <translation type="unfinished">Megnyitás Új Fülön</translation>
+        <translation>Megnyitás Új &amp;Fülön</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Töröl</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
-        <translation type="unfinished">Új könyvjelző...</translation>
+        <translation>Új könyvjelző...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappa hozzáadása...</translation>
     </message>
 </context>
 <context>
@@ -280,7 +281,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Verzió: %1 %2)</translation>
     </message>
 </context>
 <context>
@@ -315,7 +316,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>P&amp;rint Preview...</source>
-        <translation>Nyomtatási előkép</translation>
+        <translation>&amp;Nyomtatási előkép...</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
@@ -375,7 +376,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>Megnéz</translation>
+        <translation>&amp;Nézet</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
@@ -391,7 +392,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
-        <translation>Állj</translation>
+        <translation>&amp;Leállítás</translation>
     </message>
     <message>
         <source>&amp;Reload Page</source>
@@ -584,48 +585,48 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show Menu Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Menüsor mutatása</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hálózati Forgalom Figyelő Mutatása</translation>
     </message>
     <message>
         <source>Switch application language </source>
-        <translation type="unfinished"></translation>
+        <translation>Alkalmazás nyelvének váltása</translation>
     </message>
     <message>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ablak Bezárása</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nagyítás</translation>
     </message>
     <message>
         <source>Zoom &amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normál &amp;Méret</translation>
     </message>
     <message>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kicsinyítés</translation>
     </message>
     <message>
         <source>Zoom &amp;Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Szöveg Nagyítása</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes Könyvjelző Mutatása</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappa hozzáadása...</translation>
     </message>
     <message>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;%1ról</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
@@ -634,7 +635,7 @@ Do you want to reload all pages?</source>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
 </context>
 <context>
@@ -691,34 +692,34 @@ Do you want to reload all pages?</source>
     <name>ClickToFlash</name>
     <message>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Betöltés</translation>
     </message>
     <message>
         <source>Load All</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes Betöltése</translation>
     </message>
     <message>
         <source>Add %1 to Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 felvétele a mindig engedélyezettek listájára</translation>
     </message>
     <message>
         <source>Remove from Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Törlés az engedélyezttek listájáról</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <source>Load Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Flash Betöltése</translation>
     </message>
 </context>
 <context>
     <name>ClickToFlashSettings</name>
     <message>
         <source>Whitelist sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Engedélyezet lapok listája</translation>
     </message>
 </context>
 <context>
@@ -780,7 +781,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Session cookie</source>
-        <translation type="unfinished"></translation>
+        <translation>Ideiglenes süti</translation>
     </message>
 </context>
 <context>
@@ -791,15 +792,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>Töröl</translation>
+        <translation>&amp;Töröl</translation>
     </message>
     <message>
         <source>Remove &amp;All Cookies</source>
-        <translation>Minden süti törlése</translation>
+        <translation>&amp;Minden süti törlése</translation>
     </message>
     <message>
         <source>Add &amp;Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Szabály felvétele</translation>
     </message>
 </context>
 <context>
@@ -834,11 +835,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>Töröl</translation>
+        <translation>&amp;Töröl</translation>
     </message>
     <message>
         <source>Remove &amp;All</source>
-        <translation>Mindent töröl</translation>
+        <translation>&amp;Mindent töröl</translation>
     </message>
 </context>
 <context>
@@ -864,11 +865,11 @@ Do you want to reload all pages?</source>
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés</translation>
     </message>
     <message>
         <source>Ico</source>
-        <translation type="unfinished"></translation>
+        <translation>Ico</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -948,7 +949,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2-ból (%3/mp) %4</translation>
     </message>
 </context>
 <context>
@@ -962,31 +963,32 @@ Do you want to reload all pages?</source>
     <message>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 letöltés van folyamatban.
+Biztosan ki akar lépni?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n perc van hátra</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n másodperc van hátra</numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">bájt</translation>
+        <translation>bájt</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">kB</translation>
+        <translation>kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>MB</translation>
     </message>
 </context>
 <context>
@@ -1063,15 +1065,15 @@ Do you want to quit anyway?</source>
     <name>LanguageManager</name>
     <message>
         <source>Choose language</source>
-        <translation type="unfinished"></translation>
+        <translation>Válasszon nyelvet</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Más nyelven is használhatja a böngészőt,&lt;br&gt;mint az operációs rendszer alapértelmezett nyelve&lt;/p&gt;&lt;p&gt;Kérem válasszon nyelvet, amit használni kíván&lt;/p&gt;</translation>
     </message>
     <message>
         <source>No translation files are installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fordítások nem lettek telepítve.</translation>
     </message>
 </context>
 <context>
@@ -1106,116 +1108,118 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?</translation>
     </message>
     <message>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation>- SSL Hibák</translation>
     </message>
     <message>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;SSL hibák:&lt;br/&gt;&lt;br/&gt;&lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Tanusítványok:&lt;br/&gt;%1&lt;br/&gt;El kívánja fogadni ezeket?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Érték</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Hálózati Forgalom Figyelő</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Hálózati Kérések</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Kérés Fejlécek</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Válasz Fejlécek</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Töröl</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Minden Kérés Törlése</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchDialog</name>
     <message>
         <source>Open File</source>
-        <translation type="unfinished">Fájl megnyitás</translation>
+        <translation>Fájl megnyitás</translation>
     </message>
     <message>
         <source>OpenSearch</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenSearch</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba</translation>
     </message>
     <message>
         <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 nem egy érvényes 1.1-es OpenSearch szolgáltatás leirása, vagy már szerepel a listán.</translation>
     </message>
     <message>
         <source>You must have at least one search engine in here.</source>
-        <translation type="unfinished"></translation>
+        <translation>Legalább egy kereső rendszer kell, hogy szerepeljen itt.</translation>
     </message>
     <message>
         <source>OpenSearch Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenSearch Beállítások</translation>
     </message>
     <message>
         <source>&amp;Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezés &amp;Visszaállítása</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Törlés</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hozzáadás</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bezárás</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchEngineModel</name>
     <message>
         <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Leírás:&lt;/strong&gt; %1</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Javaslatokat szolgáltat&lt;/strong&gt;</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel akarja venni a következő kereső rendszert a kereső rendszerek listájára?&lt;br/&gt;&lt;br/&gt;Név: %1&lt;br/&gt;Keres a(z) &apos;%2&apos; oldalon</translation>
     </message>
 </context>
 <context>
@@ -1245,7 +1249,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>PlainTextEditSearch</name>
     <message>
         <source>Not Found</source>
-        <translation type="unfinished">Nincs találat</translation>
+        <translation>Nincs találat</translation>
     </message>
 </context>
 <context>
@@ -1279,38 +1283,38 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>A fájl nem egy OpenSearch 1.1 fájl.</translation>
     </message>
 </context>
 <context>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Átirányítás: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>Metódus</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="unfinished">Cím</translation>
+        <translation>Cím</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation type="unfinished"></translation>
+        <translation>Válasz</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation type="unfinished"></translation>
+        <translation>Hossz</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tartalom Tipus</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Infó</translation>
     </message>
 </context>
 <context>
@@ -1439,7 +1443,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Privacy</source>
-        <translation>Titoktartás</translation>
+        <translation>Adatvédelem</translation>
     </message>
     <message>
         <source>Web Content</source>
@@ -1563,109 +1567,109 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Csak egy bezáró gomb legyen az összes fülhöz</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Az oldalak megjelenítésére előnyben részesített nyelvek:</translation>
     </message>
     <message>
         <source>Block Popup Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Felugró Ablakok Letiltása</translation>
     </message>
     <message>
         <source>Opening links</source>
-        <translation type="unfinished"></translation>
+        <translation>Új oldalak megnyitása</translation>
     </message>
     <message>
         <source>Links that want to open in a new window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Linkek melyek új ablakban nyílnának meg:</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy új aktív fülön az aktuális ablakban</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuális ablakban új fülön</translation>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Az aktuális fülön</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (Biztonságos)</translation>
     </message>
     <message>
         <source>Http (Transparent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (Transzparens)</translation>
     </message>
     <message>
         <source>Use ClickToFlash on flash plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>ClickToFlash használata</translation>
     </message>
     <message>
         <source>Filter Tracking Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyomkövető sütik szűrése</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs or windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Figyelmeztetés több lap bezárása elött</translation>
     </message>
     <message>
         <source>Quit the application when last tab is closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Az utolsó fül bezárása után lépjen ki a programból</translation>
     </message>
     <message>
         <source>Enable network cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Hálózati gyors tár bekapcsolása</translation>
     </message>
     <message>
         <source>Maximum Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximum Méret:</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
         <source>Restart required</source>
-        <translation type="unfinished"></translation>
+        <translation>Újraindítás szükséges</translation>
     </message>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>A hálózati gyorstár beállításai megváltoztak. A változások érvénybelépéséhez, a böngészőt újra kell indítani.</translation>
     </message>
 </context>
 <context>
     <name>SourceViewer</name>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">Töltés...</translation>
+        <translation>Töltés...</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">Szerkesztés</translation>
+        <translation>&amp;Szerkesztés</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished">Keresés</translation>
+        <translation>&amp;Keresés</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">Megnéz</translation>
+        <translation>&amp;Megnéz</translation>
     </message>
     <message>
         <source>&amp;Wrap lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sorok törése</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation type="unfinished"></translation>
+        <translation>Oldal forrása</translation>
     </message>
 </context>
 <context>
@@ -1743,39 +1747,39 @@ Biztosan be akarja zárni ezt az oldalt?
     </message>
     <message>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-]</translation>
     </message>
     <message>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-[</translation>
     </message>
     <message>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation>Névtelen</translation>
     </message>
     <message>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Elmentett Fül</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">Töltés...</translation>
+        <translation>Töltés...</translation>
     </message>
     <message>
         <source>Loading %1% (%2 %3)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Töltés %1% (%2 %3)...</translation>
     </message>
     <message>
         <source>Finished loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés befejeződött</translation>
     </message>
     <message>
         <source>Failed to load</source>
-        <translation type="unfinished"></translation>
+        <translation>Betöltés nem sikerült</translation>
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Az Összes Fül Könyvjelzőzése</translation>
     </message>
 </context>
 <context>
@@ -1790,19 +1794,19 @@ Biztosan be akarja zárni ezt az oldalt?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation type="unfinished">Friss keresések törlése</translation>
+        <translation>Friss Keresések Törlése</translation>
     </message>
     <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Javaslatok</translation>
     </message>
     <message>
         <source>Add &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; hozzáadása</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kereső rendszerek beállítása...</translation>
     </message>
 </context>
 <context>
@@ -1813,19 +1817,19 @@ Biztosan be akarja zárni ezt az oldalt?
     </message>
     <message>
         <source>When connecting to: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kapcsolódás közben %1-hoz.</translation>
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation type="unfinished"></translation>
+        <translation>Ellenőrizze a címet hibák után, mint például &lt;b&gt;ww&lt;/b&gt;.arora-browser.org az &lt;b&gt;www&lt;/b&gt;.arora-browser.org helyett</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha a számítógépe, vagy a hálózata tüzfallal védett, ellenőrizze, hogy a böngésző számára engedélyezett, hogy a hálózatot használja.</translation>
     </message>
     <message>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha a cím helyes, próbálja meg ellenőrizni a hálózati kapcsolatot.</translation>
     </message>
 </context>
 <context>
@@ -1876,7 +1880,7 @@ Biztosan be akarja zárni ezt az oldalt?
     </message>
     <message>
         <source>Search with...</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresés mással ...</translation>
     </message>
 </context>
 <context>
