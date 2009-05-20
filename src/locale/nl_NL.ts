@@ -37,7 +37,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>About %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Over %1</translation>
     </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -45,7 +45,11 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -217,17 +221,17 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL</translation>
     </message>
     <message>
         <source>Name Change</source>
         <comment>Undo bookmark title change</comment>
-        <translation type="unfinished">Naam wijzigen</translation>
+        <translation>Naam wijzigen</translation>
     </message>
     <message>
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
-        <translation type="unfinished">Adres wijzigen</translation>
+        <translation>Adres wijzigen</translation>
     </message>
 </context>
 <context>
@@ -676,34 +680,34 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <name>ClickToFlash</name>
     <message>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Laden</translation>
     </message>
     <message>
         <source>Load All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles laden</translation>
     </message>
     <message>
         <source>Add %1 to Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 aan whitelist toevoegen</translation>
     </message>
     <message>
         <source>Remove from Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Van whitelist verwijderen</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <source>Load Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Flash laden</translation>
     </message>
 </context>
 <context>
     <name>ClickToFlashSettings</name>
     <message>
         <source>Whitelist sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Whitelist-sites</translation>
     </message>
 </context>
 <context>
@@ -765,7 +769,7 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>Session cookie</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessie-cookie</translation>
     </message>
 </context>
 <context>
@@ -784,7 +788,7 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>Add &amp;Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Regel toevoegen</translation>
     </message>
 </context>
 <context>
@@ -1094,7 +1098,7 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Certificaten:&lt;br/&gt;%1&lt;br/&gt;Wilt u al deze certificaten accepteren?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1139,61 +1143,61 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     <name>OpenSearchDialog</name>
     <message>
         <source>Open File</source>
-        <translation type="unfinished">Bestand openen</translation>
+        <translation>Bestand openen</translation>
     </message>
     <message>
         <source>OpenSearch</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenSearch</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fout</translation>
     </message>
     <message>
         <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 is geen geldige OpenSearch 1.1-beschrijving of staat al in uw lijst.</translation>
     </message>
     <message>
         <source>You must have at least one search engine in here.</source>
-        <translation type="unfinished"></translation>
+        <translation>U moet hiet tenminste één zoekmachine hebben.</translation>
     </message>
     <message>
         <source>OpenSearch Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenSearch-manager</translation>
     </message>
     <message>
         <source>&amp;Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaa&amp;rdwaarden herstellen</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwij&amp;deren</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Toevoegen</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sluiten</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchEngineModel</name>
     <message>
         <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Beschrijving:&lt;/strong&gt; %1</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Biedt contekstsuggesties&lt;/strong&gt;</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Wilt u de volgende zoekmachine aan uw lijst van zoekmachines toevoegen?&lt;br /&gt;&lt;br /&gt;Naam: %1&lt;br /&gt;Zoekt op: %2</translation>
     </message>
 </context>
 <context>
@@ -1261,7 +1265,7 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Het bestand is geen OpenSearch 1.1-bestand.</translation>
     </message>
 </context>
 <context>
@@ -1593,42 +1597,42 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Use ClickToFlash on flash plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>ClickToFlash gebruiken bij flashplugins</translation>
     </message>
     <message>
         <source>Filter Tracking Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Opspoor-cookies filteren</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs or windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevestiging vragen bij het sluiten van meerdere tabs</translation>
     </message>
     <message>
         <source>Quit the application when last tab is closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Het programma afsluiten indien de laatste tab wordt gesloten</translation>
     </message>
     <message>
         <source>Enable network cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Netwerkcache inschakelen</translation>
     </message>
     <message>
         <source>Maximum Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximumgrootte:</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
         <source>Restart required</source>
-        <translation type="unfinished"></translation>
+        <translation>Herstart vereist</translation>
     </message>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>De configuratie van de netwerkcache is gewijzigd. Om dit effectief toe te passen moet de browser opnieuw worden opgestart.</translation>
     </message>
 </context>
 <context>
@@ -1776,7 +1780,7 @@ Bent u zeker dat u deze pagina wilt sluiten?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation type="unfinished">Recente zoekopdrachten wissen</translation>
+        <translation>Recente zoekopdrachten wissen</translation>
     </message>
     <message>
         <source>Suggestions</source>
@@ -1784,11 +1788,11 @@ Bent u zeker dat u deze pagina wilt sluiten?
     </message>
     <message>
         <source>Add &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; toevoegen</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoekmachines instellen...</translation>
     </message>
 </context>
 <context>
@@ -1862,7 +1866,7 @@ Bent u zeker dat u deze pagina wilt sluiten?
     </message>
     <message>
         <source>Search with...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoeken met...</translation>
     </message>
 </context>
 <context>
