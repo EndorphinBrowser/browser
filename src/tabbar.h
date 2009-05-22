@@ -65,7 +65,7 @@
 
 #include <qtabbar.h>
 
-#include <tabwidget.h>
+#include "tabwidget.h"
 
 /*
     Tab bar with a few more features such as a context menu and shortcuts

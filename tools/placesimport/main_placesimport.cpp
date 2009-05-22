@@ -19,19 +19,17 @@
  */
 
 #include <qdatetime.h>
+#include <qdebug.h>
 #include <qdir.h>
 #include <qfile.h>
-#include <qtextstream.h>
-
 #include <qsqldatabase.h>
 #include <qsqlerror.h>
 #include <qsqlquery.h>
+#include <qtextstream.h>
 #include <qvariant.h>
 
-#include <singleapplication.h>
-#include <historymanager.h>
-
-#include <qdebug.h>
+#include "singleapplication.h"
+#include "historymanager.h"
 
 static HistoryEntry formatEntry(QByteArray url, QByteArray title, qlonglong prdate)
 {

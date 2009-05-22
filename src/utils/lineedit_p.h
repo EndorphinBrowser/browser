@@ -48,7 +48,8 @@ protected:
 
 #if QT_VERSION < 0x040500
 
-#include "qapplication.h"
+#include <qapplication.h>
+
 #include "proxystyle.h"
 #include "lineedit.h"
 

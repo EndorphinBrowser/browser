@@ -63,7 +63,7 @@
 #ifndef COOKIEJAR_H
 #define COOKIEJAR_H
 
-#include <networkcookiejar.h>
+#include "networkcookiejar.h"
 
 #include <qstringlist.h>
 
