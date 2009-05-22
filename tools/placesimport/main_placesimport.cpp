@@ -47,7 +47,7 @@ int main(int argc, char **argv)
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
 
-    if (application.startSingleServer()) {
+    if (application.sendMessage(QString())) {
         qWarning() << "To prevent the loss of any history please exit Arora while this is tool is being run";
         return 1;
     }
