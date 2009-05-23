@@ -10,7 +10,7 @@
     <message>
         <location filename="../aboutdialog.cpp" line="34"/>
         <source>About %1</source>
-        <translation type="unfinished"></translation>
+        <translation>O %1</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="77"/>
@@ -36,7 +36,7 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="123"/>
@@ -255,19 +255,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bookmarks.cpp" line="280"/>
         <source>XBEL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="377"/>
         <source>Name Change</source>
         <comment>Undo bookmark title change</comment>
-        <translation type="unfinished">Změna jména</translation>
+        <translation>Změna jména</translation>
     </message>
     <message>
         <location filename="../bookmarks.cpp" line="380"/>
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
-        <translation type="unfinished">Změna adresy</translation>
+        <translation>Změna adresy</translation>
     </message>
 </context>
 <context>
@@ -915,32 +915,32 @@ Do you want to reload all pages?</source>
     <message>
         <location filename="../qwebplugins/clicktoflash/clicktoflash.cpp" line="59"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Načíst</translation>
     </message>
     <message>
         <location filename="../qwebplugins/clicktoflash/clicktoflash.cpp" line="60"/>
         <source>Load All</source>
-        <translation type="unfinished"></translation>
+        <translation>Načíst vše</translation>
     </message>
     <message>
         <location filename="../qwebplugins/clicktoflash/clicktoflash.cpp" line="63"/>
         <source>Add %1 to Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat %1 do povolených</translation>
     </message>
     <message>
         <location filename="../qwebplugins/clicktoflash/clicktoflash.cpp" line="64"/>
         <source>Remove from Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Odebar z povolených</translation>
     </message>
     <message>
         <location filename="../qwebplugins/clicktoflash/clicktoflash.cpp" line="69"/>
         <source>Settings</source>
-        <translation type="unfinished">Nastavení</translation>
+        <translation>Nastavení</translation>
     </message>
     <message>
         <location filename="../qwebplugins/clicktoflash/clicktoflash.ui" line="43"/>
         <source>Load Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Načíst flash</translation>
     </message>
 </context>
 <context>
@@ -948,7 +948,7 @@ Do you want to reload all pages?</source>
     <message>
         <location filename="../qwebplugins/clicktoflash/clicktoflashsettings.ui" line="17"/>
         <source>Whitelist sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolené weby</translation>
     </message>
 </context>
 <context>
@@ -1028,7 +1028,7 @@ Do you want to reload all pages?</source>
     <message>
         <location filename="../cookiejar/cookiemodel.cpp" line="135"/>
         <source>Session cookie</source>
-        <translation type="unfinished"></translation>
+        <translation>Relační cookie</translation>
     </message>
 </context>
 <context>
@@ -1051,7 +1051,7 @@ Do you want to reload all pages?</source>
     <message>
         <location filename="../cookiejar/cookies.ui" line="55"/>
         <source>Add &amp;Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat &amp;pravidlo</translation>
     </message>
 </context>
 <context>
@@ -1434,7 +1434,7 @@ Chceš ignorovat tyto chyby?&lt;/qt&gt;</translation>
     <message>
         <location filename="../networkaccessmanager.cpp" line="324"/>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Certifikáty:&lt;br/&gt;%1&lt;br/&gt;Chceš přijmout všechny tyto certifikáty?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
@@ -1514,53 +1514,53 @@ Chceš ignorovat tyto chyby?</translation>
     <message>
         <location filename="../opensearch/opensearchdialog.cpp" line="54"/>
         <source>Open File</source>
-        <translation type="unfinished">Otevřít soubor</translation>
+        <translation>Otevřít soubor</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.cpp" line="56"/>
         <source>OpenSearch</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.cpp" line="60"/>
         <location filename="../opensearch/opensearchdialog.cpp" line="69"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.cpp" line="61"/>
         <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 není validní OpenSearch 1.1 popis, nebo už je na seznamu.</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.cpp" line="70"/>
         <source>You must have at least one search engine in here.</source>
-        <translation type="unfinished"></translation>
+        <translation>Musíš mít alespoň jeden vyhledávací engine.</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.ui" line="14"/>
         <source>OpenSearch Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Správce OpenSearch</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.ui" line="38"/>
         <source>&amp;Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Obnovit původní</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.ui" line="45"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Smazat</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.ui" line="52"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Přidat</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.ui" line="59"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřit</translation>
     </message>
 </context>
 <context>
@@ -1568,12 +1568,12 @@ Chceš ignorovat tyto chyby?</translation>
     <message>
         <location filename="../opensearch/opensearchenginemodel.cpp" line="89"/>
         <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Popis:&lt;/strong&gt; %1</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchenginemodel.cpp" line="93"/>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Poskytuje kontextové návrhy</translation>
     </message>
 </context>
 <context>
@@ -1581,7 +1581,7 @@ Chceš ignorovat tyto chyby?</translation>
     <message>
         <location filename="../opensearch/opensearchmanager.cpp" line="281"/>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Chceš přidat následující engine do seznamu tvých vyhledávacích enginů?&lt;br /&gt;&lt;br /&gt;Jméno: %1&lt;br /&gt;Vyhledává na: %2</translation>
     </message>
 </context>
 <context>
@@ -1658,7 +1658,7 @@ Chceš ignorovat tyto chyby?</translation>
     <message>
         <location filename="../opensearch/opensearchreader.cpp" line="52"/>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toto není OpeSearch 1.1 soubor.</translation>
     </message>
 </context>
 <context>
@@ -2031,7 +2031,7 @@ Chceš ignorovat tyto chyby?</translation>
     <message>
         <location filename="../settings.ui" line="360"/>
         <source>Use ClickToFlash on flash plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Používat ClickToFlash na flash pluginech</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="380"/>
@@ -2046,17 +2046,17 @@ Chceš ignorovat tyto chyby?</translation>
     <message>
         <location filename="../settings.ui" line="484"/>
         <source>Filter Tracking Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrovat sledovací cookies</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="521"/>
         <source>Confirm when closing multiple tabs or windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyžadovat potvzrení při zavírání více panelů nebo oken</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="541"/>
         <source>Quit the application when last tab is closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukončit aplikaci, když je zavřen poslední panel</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="551"/>
@@ -2109,17 +2109,17 @@ Chceš ignorovat tyto chyby?</translation>
     <message>
         <location filename="../settings.ui" line="810"/>
         <source>Enable network cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit síťovou cache</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="822"/>
         <source>Maximum Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximální velikost:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="835"/>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settings.ui" line="531"/>
@@ -2132,12 +2132,12 @@ Chceš ignorovat tyto chyby?</translation>
     <message>
         <location filename="../settings.cpp" line="393"/>
         <source>Restart required</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyžadován restart aplikace</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="394"/>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Byla změněna nastavení síťové cache. Aby se změny projevily, prohlížeč musí být restartován.</translation>
     </message>
 </context>
 <context>
@@ -2317,12 +2317,12 @@ Opravdu chceš zavřít tuto stránku?
     <message>
         <location filename="../toolbarsearch.cpp" line="325"/>
         <source>Add &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="331"/>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit vyhledávací enginy...</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="402"/>
@@ -2337,7 +2337,7 @@ Opravdu chceš zavřít tuto stránku?
     <message>
         <location filename="../toolbarsearch.cpp" line="336"/>
         <source>Clear Recent Searches</source>
-        <translation type="unfinished">Vyčístit nedávná hledání</translation>
+        <translation>Vyčistit nedávná hledání</translation>
     </message>
 </context>
 <context>
@@ -2435,7 +2435,7 @@ Opravdu chceš zavřít tuto stránku?
     <message>
         <location filename="../webview.cpp" line="200"/>
         <source>Search with...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledat pomocí...</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="418"/>
