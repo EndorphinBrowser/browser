@@ -153,11 +153,11 @@ void NetworkAccessManager::loadSettings()
 #if QT_VERSION >= 0x040500
     NetworkProxyFactory *proxyFactory = new NetworkProxyFactory;
     if (proxy.type() == QNetworkProxy::HttpCachingProxy) {
-      proxyFactory->setHttpProxy(proxy);
-      proxyFactory->setGlobalProxy(QNetworkProxy::DefaultProxy);
+        proxyFactory->setHttpProxy(proxy);
+        proxyFactory->setGlobalProxy(QNetworkProxy::DefaultProxy);
     } else {
-      proxyFactory->setHttpProxy(QNetworkProxy::DefaultProxy);
-      proxyFactory->setGlobalProxy(proxy);
+        proxyFactory->setHttpProxy(QNetworkProxy::DefaultProxy);
+        proxyFactory->setGlobalProxy(proxy);
     }
     setProxyFactory(proxyFactory);
 #else
