@@ -125,8 +125,6 @@ void ClickToFlash::load(bool loadAll)
             if (!loadAll) {
                 if (!element.scriptableProperty(QLatin1String("swapping")).toBool())
                     continue;
-                if (!url.toString().endsWith(element.attribute(QLatin1String("src"))))
-                    continue;
             }
 
             QWebElement substitute = element.clone();
