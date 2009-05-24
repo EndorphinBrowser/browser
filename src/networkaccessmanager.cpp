@@ -275,7 +275,7 @@ static QString certToFormattedString(QSslCertificate cert)
         tmplist = names.values(QSsl::DnsEntry);
         resultstring += QLatin1String("<br/>Alternate Names:<ul><li>")
             + tmplist.join(QLatin1String("</li><li>"))
-            + QLatin1String("</li><</ul>");
+            + QLatin1String("</li></ul>");
     }
 
     resultstring += QLatin1String("</p>");
