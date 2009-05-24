@@ -20,6 +20,7 @@
 #include <qtest.h>
 
 #include "qtest_arora.h"
+#include "languagemanager.h"
 
 #include <qsignalspy.h>
 #include <opensearchengine.h>
@@ -540,6 +541,8 @@ void tst_OpenSearchEngine::suggestionsUrlTemplate()
 
 void tst_OpenSearchEngine::parseTemplate_data()
 {
+    QString lang = BrowserApplication::languageManager()->currentLanguage().mid(0, 2);
+
     QTest::addColumn<QString>("searchTerm");
     QTest::addColumn<QString>("searchTemplate");
     QTest::addColumn<QString>("parseTemplate");
@@ -549,7 +552,7 @@ void tst_OpenSearchEngine::parseTemplate_data()
                     << QString("http://foobar.baz/?st={searchTerms}&amp;c={count}"
                                "&amp;si={startIndex}&amp;sp={startPage}&amp;l={language}"
                                "&amp;ie={inputEncoding}&amp;oe={outputEncoding}")
-                    << QString("http://foobar.baz/?st=bar&amp;c=20&amp;si=0&amp;sp=0&amp;l=en&amp;ie=UTF-8&amp;oe=UTF-8");
+                    << QString("http://foobar.baz/?st=bar&amp;c=20&amp;si=0&amp;sp=0&amp;l=%1&amp;ie=UTF-8&amp;oe=UTF-8").arg(lang);
     QTest::newRow("tricky") << QString("{count}") << QString("http://foobar.baz/q={searchTerms}&amp;count={count}")
                     << QString("http://foobar.baz/q={count}&amp;count=20");
     QTest::newRow("multiple") << QString("abc") << QString("http://foobar.baz/?q={searchTerms}&amp;x={searchTerms}")

@@ -21,6 +21,7 @@
 #include "opensearchengine.h"
 
 #include "browserapplication.h"
+#include "languagemanager.h"
 #include "networkaccessmanager.h"
 
 #include <qnetworkaccessmanager.h>
@@ -50,7 +51,7 @@ QString OpenSearchEngine::parseTemplate(const QString &searchTerm, const QString
     result.replace(QLatin1String("{count}"), QLatin1String("20"));
     result.replace(QLatin1String("{startIndex}"), QLatin1String("0"));
     result.replace(QLatin1String("{startPage}"), QLatin1String("0"));
-    result.replace(QLatin1String("{language}"), QLatin1String("en"));
+    result.replace(QLatin1String("{language}"), BrowserApplication::languageManager()->currentLanguage().mid(0, 2));
     result.replace(QLatin1String("{inputEncoding}"), QLatin1String("UTF-8"));
     result.replace(QLatin1String("{outputEncoding}"), QLatin1String("UTF-8"));
     result.replace(QLatin1String("{searchTerms}"), searchTerm);
