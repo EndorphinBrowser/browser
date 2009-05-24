@@ -38,7 +38,7 @@
 
 ClickToFlashPlugin::ClickToFlashPlugin()
     : m_loaded(false)
-    , m_enabled(true)
+    , m_enabled(false)
 {
 }
 
@@ -52,7 +52,7 @@ void ClickToFlashPlugin::load()
     m_whitelist = settings.value(QLatin1String("whitelist")).toStringList();
     settings.endGroup();
     settings.beginGroup(QLatin1String("websettings"));
-    m_enabled = settings.value(QLatin1String("enableClickToFlash"), true).toBool();
+    m_enabled = settings.value(QLatin1String("enableClickToFlash"), false).toBool();
 }
 
 void ClickToFlashPlugin::save()

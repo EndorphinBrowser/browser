@@ -127,7 +127,7 @@ void SettingsDialog::loadDefaults()
     enableJavascript->setChecked(defaultSettings->testAttribute(QWebSettings::JavascriptEnabled));
     enablePlugins->setChecked(defaultSettings->testAttribute(QWebSettings::PluginsEnabled));
     enableImages->setChecked(defaultSettings->testAttribute(QWebSettings::AutoLoadImages));
-    clickToFlash->setChecked(true);
+    clickToFlash->setChecked(false);
     filterTrackingCookiesCheckbox->setChecked(true);
 }
 
