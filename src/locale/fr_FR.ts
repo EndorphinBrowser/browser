@@ -4,10 +4,6 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation type="obsolete">À propos d&apos;</translation>
-    </message>
-    <message>
         <source>Authors</source>
         <translation>Auteurs</translation>
     </message>
@@ -17,15 +13,7 @@
     </message>
     <message>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>Navigateur web léger basé sur Webkit</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>Navigateur web léger basé sur WebKit</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
@@ -35,17 +23,21 @@ p, li { white-space: pre-wrap; }
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
-    <message>
-        <source>About %1</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>About %1</source>
+        <translation>À propos d&apos;%1</translation>
     </message>
 </context>
 <context>
@@ -56,7 +48,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation>Langues: dans l&apos;ordre de préférence:</translation>
+        <translation>Langues dans l&apos;ordre de préférence :</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
@@ -87,7 +79,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Url</source>
-        <translation>Url</translation>
+        <translation>URL</translation>
     </message>
     <message>
         <source>Title</source>
@@ -118,7 +110,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Retirer</translation>
+        <translation>Supp&amp;rimer</translation>
     </message>
     <message>
         <source>Add Folder</source>
@@ -147,7 +139,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Toolbar Bookmarks</source>
-        <translation>Barre d&apos;outils Marque-pages</translation>
+        <translation>Barre des marque-pages</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -175,27 +167,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Export error</source>
-        <translation>Erreur d&apos;exportation</translation>
+        <translation>Erreur lors de l&apos;exportation</translation>
     </message>
     <message>
         <source>error saving bookmarks</source>
-        <translation>Erreur de sauvegarde des marque-pages</translation>
+        <translation>Erreur lors de la sauvegarde des marque-pages</translation>
     </message>
     <message>
         <source>Remove Bookmark</source>
-        <translation>Retirer le marque-page</translation>
+        <translation>Supprimer le marque-page</translation>
     </message>
     <message>
         <source>Insert Bookmark</source>
         <translation>Insérer un marque-page</translation>
-    </message>
-    <message>
-        <source>Name Change</source>
-        <translation type="obsolete">Changement de nom</translation>
-    </message>
-    <message>
-        <source>Address Change</source>
-        <translation type="obsolete">Changement d&apos;adresse</translation>
     </message>
     <message>
         <source>Bookmarks Bar</source>
@@ -208,21 +192,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>XBEL</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur pendant le chargement des marque-pages html: %1
+</translation>
     </message>
     <message>
         <source>Name Change</source>
         <comment>Undo bookmark title change</comment>
-        <translation type="unfinished">Changement de nom</translation>
+        <translation>Changement de nom</translation>
     </message>
     <message>
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
-        <translation type="unfinished">Changement d&apos;adresse</translation>
+        <translation>Changement d&apos;adresse</translation>
+    </message>
+    <message>
+        <source>XBEL</source>
+        <translation>XBEL</translation>
     </message>
 </context>
 <context>
@@ -283,12 +268,8 @@ Voulez-vous tout de même quitter?</translation>
         <translation>Echec de la restauration</translation>
     </message>
     <message>
-        <source>The saved session will not being restored because last time it was restored Arora crashed.</source>
-        <translation type="obsolete">La session sauvegardée ne sera pas restaurée car la dernière fois où elle l&apos;a été, Arora a planté.</translation>
-    </message>
-    <message>
         <source> (Change: %1 %2)</source>
-        <translation>(Modification: %1 %2)</translation>
+        <translation> (Modification : %1 %2)</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -370,18 +351,6 @@ Voulez-vous tout de même quitter?</translation>
         <translation>&amp;Rechercher</translation>
     </message>
     <message>
-        <source>&amp;Find Next</source>
-        <translation type="obsolete">Rechercher le &amp;suivant</translation>
-    </message>
-    <message>
-        <source>&amp;Find Previous</source>
-        <translation type="obsolete">Rechercher le p&amp;récédent</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="obsolete">&amp;Préférences</translation>
-    </message>
-    <message>
         <source>Ctrl+,</source>
         <translation>Ctrl+,</translation>
     </message>
@@ -404,34 +373,6 @@ Voulez-vous tout de même quitter?</translation>
     <message>
         <source>&amp;Stop</source>
         <translation>A&amp;rrêter</translation>
-    </message>
-    <message>
-        <source>Reload Page</source>
-        <translation type="obsolete">&amp;Recharger la page</translation>
-    </message>
-    <message>
-        <source>&amp;Make Text Bigger</source>
-        <translation type="obsolete">Agrandir le texte</translation>
-    </message>
-    <message>
-        <source>&amp;Make Text Smaller</source>
-        <translation type="obsolete">Réduire le texte</translation>
-    </message>
-    <message>
-        <source>&amp;Make Content Bigger</source>
-        <translation type="obsolete">Agrandir la page</translation>
-    </message>
-    <message>
-        <source>&amp;Make Content Smaller</source>
-        <translation type="obsolete">Réduire la page</translation>
-    </message>
-    <message>
-        <source>&amp;Make Text Normal</source>
-        <translation type="obsolete">Réinitialiser la taile du texte</translation>
-    </message>
-    <message>
-        <source>&amp;Make Content Normal</source>
-        <translation type="obsolete">Réinitialiser la taile de la page</translation>
     </message>
     <message>
         <source>Page S&amp;ource</source>
@@ -470,10 +411,6 @@ Voulez-vous tout de même quitter?</translation>
         <translation>&amp;Marque-pages</translation>
     </message>
     <message>
-        <source>Manage Bookmarks...</source>
-        <translation type="obsolete">Gérer les marque-pages...</translation>
-    </message>
-    <message>
         <source>Add Bookmark...</source>
         <translation>Ajouter un marque-page...</translation>
     </message>
@@ -507,10 +444,6 @@ Voulez-vous tout de même quitter?</translation>
         <translation>À propos de &amp;Qt</translation>
     </message>
     <message>
-        <source>About &amp;Arora</source>
-        <translation type="obsolete">À propos d&apos;&amp;Arora</translation>
-    </message>
-    <message>
         <source>Navigation</source>
         <translation>Navigation</translation>
     </message>
@@ -529,18 +462,6 @@ Voulez-vous tout de même quitter?</translation>
     <message>
         <source>Hide Toolbar</source>
         <translation>Masquer la barre d&apos;outils</translation>
-    </message>
-    <message>
-        <source>Show Bookmarks bar</source>
-        <translation type="obsolete">Afficher la barre de marque-pages</translation>
-    </message>
-    <message>
-        <source>Hide Bookmarks bar</source>
-        <translation type="obsolete">Masquer la barre de marque-pages</translation>
-    </message>
-    <message>
-        <source>Arora</source>
-        <translation type="obsolete">Arora</translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -564,16 +485,8 @@ Voulez-vous tout de même quitter?</translation>
         <translation>Êtes-vous sûr de vouloir activer la navigation en mode privé?</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttonsto return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Lorsque la navigation en mode privé est activée, certaines actions concernant votre vie privée seront désactivées:&lt;ul&gt;&lt;li&gt; Les pages Web ne sont pas ajoutées à l&apos;historique.&lt;/li&gt;&lt;li&gt; Les téléchargements sont automatiquement retiré de la fenêtre des téléchargements.&lt;/li&gt;&lt;li&gt; Les nouveaux fichiers témoins ne sont pas conservés et les fichiers témoins déjà existant ne sont pas accessibles.&lt;/li&gt;&lt;li&gt; Les icônes de sites Web et la session ne sont pas enregistrés.&lt;/li&gt;&lt;li&gt; Les recherches ne sont pas ajoutées dans la liste des recherches récentes.&lt;/li&gt;&lt;/ul&gt;Jusqu&apos;à la fermeture de l&apos;écran, vous pouvez encore utiliser les boutons Page précédente et Page suivante.</translation>
-    </message>
-    <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Êtes-vous sûr de vouloir fermer cette fenêtre? Il y a %1 onglets ouverts</translation>
-    </message>
-    <message>
-        <source>Page Source of %1</source>
-        <translation type="obsolete">Code source de %1</translation>
     </message>
     <message>
         <source>Web Inspector</source>
@@ -597,11 +510,6 @@ Do you want to reload all pages?</source>
         <translation>Téléchargements</translation>
     </message>
     <message>
-        <source>Alt+Ctrl+L</source>
-        <comment>Download Manager</comment>
-        <translation type="obsolete">Alt+Ctrl+L</translation>
-    </message>
-    <message>
         <source>&amp;Clear Private Data</source>
         <translation>&amp;Effacer l&apos;information privée</translation>
     </message>
@@ -611,32 +519,12 @@ Do you want to reload all pages?</source>
         <translation>Ctrl+Shift+Suppr</translation>
     </message>
     <message>
-        <source>Find &amp;Next</source>
-        <translation type="obsolete">&amp;Suivant</translation>
-    </message>
-    <message>
         <source>Find P&amp;revious</source>
         <translation>P&amp;récédent</translation>
     </message>
     <message>
-        <source>Prefe&amp;rences</source>
-        <translation type="obsolete">&amp;Préférences</translation>
-    </message>
-    <message>
         <source>&amp;Reload Page</source>
         <translation>&amp;Actualiser la Page</translation>
-    </message>
-    <message>
-        <source>Make Text &amp;Bigger</source>
-        <translation type="obsolete">A&amp;ugmenter la taille du Texte</translation>
-    </message>
-    <message>
-        <source>Make Text &amp;Normal</source>
-        <translation type="obsolete">&amp;Taille de texte normale</translation>
-    </message>
-    <message>
-        <source>Make Text &amp;Smaller</source>
-        <translation type="obsolete">&amp;Diminuer la taille du Texte</translation>
     </message>
     <message>
         <source>Show Bookmarks Bar</source>
@@ -647,12 +535,8 @@ Do you want to reload all pages?</source>
         <translation>Cacher la Barre des Marque-pages</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not addded to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quand la navigation privée est activée, certaines actions concernant votre vie privée seront désactivées:&lt;ul&gt;&lt;li&gt;Les pages Web ne sont plus ajoutées à l&apos;historique.&lt;/li&gt;&lt;li&gt;Les objets sont automatiquements retirés de la fenêtre de téléchargements.&lt;/li&gt;&lt;li&gt;Les nouveaux cookies ne sont pas stockés, les cookies existants ne sont pas accessibles.&lt;/li&gt;&lt;li&gt;Les icônes de sites ne sont pas stockés, les sessions ne sont pas enregistrées&lt;/li&gt;&lt;li&gt;Les recherches ne sont pas ajoutées au menu pop-up de la boite de recherches.&lt;/li&gt;&lt;li&gt;Jusqu&apos;à ce que vous fermiez la fenêtre, vous pouvez toujours cliquer sur les bouton Pages Précédentes et Pages Suivantes pour retourner sur les pages Web visitées.</translation>
-    </message>
-    <message>
         <source>Find Nex&amp;t</source>
-        <translation>Poursuivre la recherche</translation>
+        <translation>&amp;Poursuivre la recherche</translation>
     </message>
     <message>
         <source>Prefere&amp;nces...</source>
@@ -664,7 +548,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>Afficher le gestionnaire de surveillance réseau</translation>
+        <translation>Afficher le &amp;gestionnaire réseau</translation>
     </message>
     <message>
         <source>Switch application language </source>
@@ -705,12 +589,12 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quand la navigation  en mode privée est activée, certaines actions concernant votre vie privée seront désactivées:&lt;ul&gt;&lt;li&gt;Les pages Web ne sont pa ajoutées à l&apos;historique.&lt;/li&gt;&lt;li&gt;Les objets sont automatiquements retirés de la fenêtre de téléchargements.&lt;/li&gt;&lt;li&gt;Les nouveaux cookies ne sont pas stockés, les cookies existants ne sont pas accessibles.&lt;/li&gt;&lt;li&gt;Les icônes de sites ne sont pas stockés, les sessions ne sont pas enregistrées&lt;/li&gt;&lt;li&gt;Les recherches ne sont pas ajoutées au menu pop-up de la boite de recherches.&lt;/li&gt;&lt;li&gt;Jusqu&apos;à ce que vous fermiez la fenêtre, vous pouvez toujours cliquer sur les bouton « Page précédente » et « Page suivante » pour retourner sur les pages Web visitées.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quand la navigation en mode privée est activée, certaines actions en rapport avec votre vie privée sont désactivées: &lt;ul&gt;&lt;li&gt; Les pages Web ne sont pas ajoutées à l&apos;historique.&lt;/li&gt;&lt;li&gt; Les fichiers sont automatiquements retirés de la fenêtre de téléchargements.&lt;/li&gt;&lt;li&gt; Les nouveaux cookies ne sont pas stockés, les cookies existants ne sont pas accessibles.&lt;/li&gt;&lt;li&gt; Les icônes de sites ne sont pas stockés, les sessions ne sont pas enregistrées.&lt;/li&gt;&lt;li&gt; Les recherches ne sont pas ajoutées au menu déroulant de la boite de recherches.&lt;/li&gt;&lt;li&gt; Jusqu&apos;à ce que la fenêtre soit fermée, il est toujours possible de cliquer sur les bouton « Page précédente » et « Page suivante » pour retourner sur les pages Web visitées.</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -747,10 +631,6 @@ Do you want to reload all pages?</source>
         <translation>&amp;Cookies</translation>
     </message>
     <message>
-        <source>C&amp;ache</source>
-        <translation type="obsolete">C&amp;ache</translation>
-    </message>
-    <message>
         <source>Website &amp;Icons</source>
         <translation>&amp;Icônes de Sites Web</translation>
     </message>
@@ -771,34 +651,34 @@ Do you want to reload all pages?</source>
     <name>ClickToFlash</name>
     <message>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger</translation>
     </message>
     <message>
         <source>Load All</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout charger</translation>
     </message>
     <message>
         <source>Add %1 to Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter %1 à la liste blanche</translation>
     </message>
     <message>
         <source>Remove from Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer de la liste blanche</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Paramètres</translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <source>Load Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger Flash</translation>
     </message>
 </context>
 <context>
     <name>ClickToFlashSettings</name>
     <message>
         <source>Whitelist sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Sites en liste blanche</translation>
     </message>
 </context>
 <context>
@@ -806,10 +686,6 @@ Do you want to reload all pages?</source>
     <message>
         <source>Website</source>
         <translation>Site Web</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="obsolete">Statut</translation>
     </message>
     <message>
         <source>Allow</source>
@@ -856,15 +732,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>true</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>false</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Session cookie</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookie de session</translation>
     </message>
 </context>
 <context>
@@ -883,7 +759,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Add &amp;Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter une &amp;règle</translation>
     </message>
 </context>
 <context>
@@ -979,32 +855,12 @@ Do you want to reload all pages?</source>
         <translation>Téléchargement annulé: %1</translation>
     </message>
     <message>
-        <source>Error opening save file: %1</source>
-        <translation type="obsolete">Erreur à l&apos;ouverture du fichier destination: %1</translation>
-    </message>
-    <message>
         <source>Error saving: %1</source>
         <translation>Erreur à l&apos;enregistrement: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
         <translation>Erreur réseau: %1</translation>
-    </message>
-    <message>
-        <source>seconds</source>
-        <translation type="obsolete">secondes</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minutes</translation>
-    </message>
-    <message>
-        <source>- %4 %5 remaining</source>
-        <translation type="obsolete">- %4 %5 restant</translation>
-    </message>
-    <message>
-        <source>%1 of %2 (%3/sec) %4</source>
-        <translation type="obsolete">%1 de %2 (%3/sec) %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -1015,50 +871,16 @@ Do you want to reload all pages?</source>
         <translation>%1 de %2 - Interrompu</translation>
     </message>
     <message>
-        <source>bytes</source>
-        <translation type="obsolete">octets</translation>
-    </message>
-    <message>
-        <source>kB</source>
-        <translation type="obsolete">kO</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation type="obsolete">MO</translation>
-    </message>
-    <message numerus="yes">
-        <source>- %n minutes remaining</source>
-        <translation type="obsolete">
-            <numerusform>- %n minutes restantes</numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>- %n seconds remaining</source>
-        <translation type="obsolete">
-            <numerusform>- %n secondes restantes</numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message>
         <source>Error opening output file: %1</source>
         <translation>Erreur à l&apos;ouverture du fichier:   %1</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 de %2 (%3/sec) - %4</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
-        <source>1 Download</source>
-        <translation type="obsolete">1 téléchargement</translation>
-    </message>
-    <message>
-        <source>%1 Downloads</source>
-        <translation type="obsolete">%1 téléchargements</translation>
-    </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
         <translation>
@@ -1074,29 +896,29 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n minute restante</numerusform>
+            <numerusform>%n minutes restantes</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n seconde restante</numerusform>
+            <numerusform>%n secondes restantes</numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">octets</translation>
+        <translation>octets</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">kO</translation>
+        <translation>ko</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">MO</translation>
+        <translation>Mo</translation>
     </message>
 </context>
 <context>
@@ -1119,11 +941,11 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Retirer</translation>
+        <translation>Supp&amp;rimer</translation>
     </message>
     <message>
         <source>Remove &amp;All</source>
-        <translation>Tout retirer</translation>
+        <translation>&amp;Tout supprimer</translation>
     </message>
 </context>
 <context>
@@ -1162,24 +984,16 @@ Voulez-vous tout de même quitter?</translation>
         <source>Earlier Today</source>
         <translation>Plus tôt aujourd&apos;hui</translation>
     </message>
-    <message>
-        <source>%1 items</source>
-        <translation type="obsolete">%1 items</translation>
-    </message>
     <message numerus="yes">
         <source>%n item(s)</source>
         <translation>
-            <numerusform>%n objet(s)</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%n objet</numerusform>
+            <numerusform>%n objets</numerusform>
         </translation>
     </message>
 </context>
 <context>
     <name>LanguageManager</name>
-    <message>
-        <source>Default</source>
-        <translation type="obsolete">Par défaut</translation>
-    </message>
     <message>
         <source>Choose language</source>
         <translation>Choissisez la langue</translation>
@@ -1204,23 +1018,6 @@ Voulez-vous tout de même quitter?</translation>
         <translation>&lt;qt&gt;Se brancher au serveur mandataire &quot;%1&quot; en utilisant:&lt;/qt&gt;</translation>
     </message>
     <message>
-        <source>SSL Errors:
-
-%1
-
-%2
-
-Do you want to ignore these errors?</source>
-        <translation type="obsolete">Erreurs SSL:
-%1
-%2
-Voulez-vous ignorer ses erreurs?</translation>
-    </message>
-    <message>
-        <source>Do you want to accept all these certificates?</source>
-        <translation type="obsolete">Voulez-vous accepter tous ces certificats?</translation>
-    </message>
-    <message>
         <source> - SSL Errors</source>
         <translation> - Erreurs SSL</translation>
     </message>
@@ -1233,12 +1030,8 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
 Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
     <message>
-        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="obsolete">&lt;qt&gt;Certificats:&lt;br/&gt;%1&lt;br/&gt;Voulez-vous accepter ces certificats?&lt;/qt&gt;</translation>
-    </message>
-    <message>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Certificats: &lt;br/&gt;%1&lt;br/&gt;Voulez-vous accepter ces certificats?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1283,61 +1076,61 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     <name>OpenSearchDialog</name>
     <message>
         <source>Open File</source>
-        <translation type="unfinished">Ouvrir un fichier</translation>
+        <translation>Ouvrir un fichier</translation>
     </message>
     <message>
         <source>OpenSearch</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenSearch</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur</translation>
     </message>
     <message>
         <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 n&apos;est pas un descripteur OpenSearch 1.1 valide ou est déjà présent dans votre liste.</translation>
     </message>
     <message>
         <source>You must have at least one search engine in here.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous devez avoir au moins un moteur de recherche ici.</translation>
     </message>
     <message>
         <source>OpenSearch Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestionnaire OpenSearch</translation>
     </message>
     <message>
         <source>&amp;Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Réglages par défaut</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Supp&amp;rimer</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ajouter</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fermer</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchEngineModel</name>
     <message>
         <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Description :&lt;/strong&gt; %1</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Afficher des suggestions contextuels&lt;/strong&gt;</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous ajouter le moteur suivant à votre liste de moteur de recherche ?&lt;br /&gt;&lt;br /&gt;Nom : %1&lt;br /&gt;Recherche sur : %2</translation>
     </message>
 </context>
 <context>
@@ -1401,7 +1194,7 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce fichier n&apos;est pas un fichier OpenSearch 1.1.</translation>
     </message>
 </context>
 <context>
@@ -1428,7 +1221,7 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation type="unfinished">Content-Type</translation>
+        <translation>Content Type</translation>
     </message>
     <message>
         <source>Info</source>
@@ -1456,16 +1249,8 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
 <context>
     <name>Settings</name>
     <message>
-        <source>Settings</source>
-        <translation type="obsolete">Paramètres</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Général</translation>
-    </message>
-    <message>
-        <source>Home:</source>
-        <translation type="obsolete">Page d&apos;accueil:</translation>
     </message>
     <message>
         <source>Set to current page</source>
@@ -1502,10 +1287,6 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     <message>
         <source>Open links from applications:</source>
         <translation>Ouvrir les liens provenant d&apos;applications:</translation>
-    </message>
-    <message>
-        <source>In a tab in the current window</source>
-        <translation type="obsolete">Dans un onglet dans la fenêtre en cours</translation>
     </message>
     <message>
         <source>In a new window</source>
@@ -1568,10 +1349,6 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
         <translation>Exceptions...</translation>
     </message>
     <message>
-        <source>Keep until:</source>
-        <translation type="obsolete">Expiration:</translation>
-    </message>
-    <message>
         <source>They expire</source>
         <translation>Lorsqu&apos;ils expirent</translation>
     </message>
@@ -1592,24 +1369,12 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
         <translation>Proxy</translation>
     </message>
     <message>
-        <source>Enable proxy</source>
-        <translation type="obsolete">Activer le Proxy</translation>
-    </message>
-    <message>
         <source>Type:</source>
         <translation>Type:</translation>
     </message>
     <message>
         <source>Socks5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Http</source>
-        <translation type="obsolete">Http</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation type="obsolete">Hôte:</translation>
+        <translation>Socks5</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1664,20 +1429,12 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
         <translation>A la sortie de l&apos;application</translation>
     </message>
     <message>
-        <source>Enable Images</source>
-        <translation type="obsolete">Activer les images</translation>
-    </message>
-    <message>
         <source>Tabs</source>
         <translation>Onglets</translation>
     </message>
     <message>
         <source>Select tabs and windows as they are created</source>
         <translation>Sélectionner les onglets et les fenêtres comme ils ont été créés</translation>
-    </message>
-    <message>
-        <source>Confirm when closing multiple tabs</source>
-        <translation type="obsolete">Avertir lors de la fermeture de plusieurs onglets</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1745,42 +1502,42 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Use ClickToFlash on flash plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser ClickToFlash pour les plugins flash</translation>
     </message>
     <message>
         <source>Filter Tracking Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrer les cookies traceurs</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs or windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Demander confirmation lors de la fermeture de plusieurs onglets ou fenêtres</translation>
     </message>
     <message>
         <source>Quit the application when last tab is closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Quitter l&apos;application quand le dernier onglet est fermé</translation>
     </message>
     <message>
         <source>Enable network cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le cache réseau</translation>
     </message>
     <message>
         <source>Maximum Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille maximum :</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation> Mo</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
         <source>Restart required</source>
-        <translation type="unfinished"></translation>
+        <translation>Redémarrage requis</translation>
     </message>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>La configuration du cache réseau a changée. Pour que ces changements soient pris en compte, le navigateur doit être redémarrer.</translation>
     </message>
 </context>
 <context>
@@ -1812,10 +1569,6 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
 </context>
 <context>
     <name>TabBar</name>
-    <message>
-        <source>New &amp;Tab</source>
-        <translation type="obsolete">Nouvel onglet</translation>
-    </message>
     <message>
         <source>Duplicate Tab</source>
         <translation>Dupliquer l&apos;onglet</translation>
@@ -1868,10 +1621,6 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
         <translation>Onglet récement fermés</translation>
     </message>
     <message>
-        <source>(Untitled)</source>
-        <translation type="obsolete">(Sans titre)</translation>
-    </message>
-    <message>
         <source>Do you really want to close this page?</source>
         <translation>Voulez-vous vraiment fermer cette page?</translation>
     </message>
@@ -1885,11 +1634,11 @@ Voulez-vous vraiment fermer cette page?
     </message>
     <message>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Untitled</source>
@@ -1897,7 +1646,7 @@ Voulez-vous vraiment fermer cette page?
     </message>
     <message>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Onglets enregistrés</translation>
     </message>
     <message>
         <source>Loading...</source>
@@ -1923,10 +1672,6 @@ Voulez-vous vraiment fermer cette page?
 <context>
     <name>ToolbarSearch</name>
     <message>
-        <source>Google</source>
-        <translation type="obsolete">Google</translation>
-    </message>
-    <message>
         <source>No Recent Searches</source>
         <translation>Aucune recherche récente</translation>
     </message>
@@ -1935,20 +1680,20 @@ Voulez-vous vraiment fermer cette page?
         <translation>Recherches récentes</translation>
     </message>
     <message>
-        <source>Clear Recent Searches</source>
-        <translation type="unfinished">Effacer les recherches récentes</translation>
-    </message>
-    <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Suggestions</translation>
     </message>
     <message>
         <source>Add &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter &apos;%1&apos;</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer les moteurs de recherche...</translation>
+    </message>
+    <message>
+        <source>Clear Recent Searches</source>
+        <translation>Effacer les recherches récentes</translation>
     </message>
 </context>
 <context>
@@ -1964,10 +1709,6 @@ Voulez-vous vraiment fermer cette page?
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
         <translation>Vérifier que vous n&apos;avez pas commis d&apos;erreurs dans l&apos;adresse tel que &lt;b&gt;ww&lt;/b&gt;.arora-browser.org à la place de &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
-    </message>
-    <message>
-        <source>If the address is correct, try to check the network connection.</source>
-        <translation type="obsolete">Sil l&apos;adresse est correcte, vérifiez votre connection au réseau.</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
@@ -1994,31 +1735,31 @@ Voulez-vous vraiment fermer cette page?
     </message>
     <message>
         <source>&amp;Bookmark This Link</source>
-        <translation>Marquer le lien</translation>
+        <translation>&amp;Marque-page sur ce lien</translation>
     </message>
     <message>
         <source>&amp;Copy Link Location</source>
-        <translation>Copier le lien</translation>
+        <translation>&amp;Copier l&apos;adresse du lien</translation>
     </message>
     <message>
         <source>Open Image in New &amp;Window</source>
-        <translation>Ouvrir l&apos;image dans une nouvelle fenêtre</translation>
+        <translation>Ouvrir l&apos;image dans une nouvelle &amp;fenêtre</translation>
     </message>
     <message>
         <source>Open Image in New &amp;Tab</source>
-        <translation>Ouvrir l&apos;image dans un nouvel onglet</translation>
+        <translation>Ouvrir l&apos;image dans un nouvel &amp;onglet</translation>
     </message>
     <message>
         <source>&amp;Save Image</source>
-        <translation>Enregistrer l&apos;image</translation>
+        <translation>Enregi&amp;strer l&apos;image</translation>
     </message>
     <message>
         <source>&amp;Copy Image</source>
-        <translation>Copier l&apos;image</translation>
+        <translation>&amp;Copier l&apos;image</translation>
     </message>
     <message>
         <source>C&amp;opy Image Location</source>
-        <translation>Copier l&apos;adresse de l&apos;image</translation>
+        <translation>C&amp;opier l&apos;adresse de l&apos;image</translation>
     </message>
     <message>
         <source>Loading...</source>
@@ -2026,7 +1767,7 @@ Voulez-vous vraiment fermer cette page?
     </message>
     <message>
         <source>Search with...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher avec...</translation>
     </message>
 </context>
 <context>
