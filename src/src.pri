@@ -7,11 +7,6 @@ win32 : Debug : CONFIG += console
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-RCC_DIR     = $$PWD/.rcc
-UI_DIR      = $$PWD/.ui
-MOC_DIR     = $$PWD/.moc
-OBJECTS_DIR = $$PWD/.obj
-
 QT += webkit network
 
 win32 {
@@ -20,6 +15,12 @@ win32 {
 }
 !win32 {
     exists($$PWD/../.git/HEAD) {
+        # Share object files for faster compiling
+        RCC_DIR     = $$PWD/.rcc
+        UI_DIR      = $$PWD/.ui
+        MOC_DIR     = $$PWD/.moc
+        OBJECTS_DIR = $$PWD/.obj
+
         GITVERSION=$$system(git log -n1 --pretty=format:%h)
         DEFINES += GITVERSION=\"\\\"$$GITVERSION\\\"\"
         GITCHANGENUMBER=$$system(git log --pretty=format:%h | wc -l)
