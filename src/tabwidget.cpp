@@ -794,6 +794,7 @@ void TabWidget::webViewTitleChanged(const QString &title)
         tabTitle = QString::fromUtf8(webView->url().toEncoded());
     tabTitle.replace(QLatin1Char('&'), QLatin1String("&&"));
     setTabText(index, tabTitle);
+    setTabToolTip(index, tabTitle);
     if (currentIndex() == index)
         emit setCurrentTitle(title);
     BrowserApplication::historyManager()->updateHistoryEntry(webView->url(), title);
