@@ -62,7 +62,10 @@
 
 #include "tabwidget.h"
 
-#include "bookmarks.h"
+#include "addbookmarkdialog.h"
+#include "bookmarknode.h"
+#include "bookmarksmanager.h"
+#include "bookmarksmodel.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "history.h"
@@ -74,7 +77,6 @@
 #include "webpage.h"
 #include "webview.h"
 #include "webviewsearch.h"
-#include "xbel.h"
 
 #include <qcompleter.h>
 #include <qdir.h>

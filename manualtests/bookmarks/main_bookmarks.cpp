@@ -19,9 +19,12 @@
 
 #include <qmenubar.h>
 
-#include <browserapplication.h>
-#include <bookmarks.h>
-#include <modeltest.h>
+#include "addbookmarkdialog.h"
+#include "bookmarksdialog.h"
+#include "bookmarksmanager.h"
+#include "bookmarksmodel.h"
+#include "browserapplication.h"
+#include "modeltest.h"
 
 int main(int argc, char *argv[])
 {

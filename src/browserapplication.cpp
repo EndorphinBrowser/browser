@@ -62,7 +62,7 @@
 
 #include "browserapplication.h"
 
-#include "bookmarks.h"
+#include "bookmarksmanager.h"
 #include "browsermainwindow.h"
 #include "cookiejar.h"
 #include "downloadmanager.h"

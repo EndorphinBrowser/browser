@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,84 +60,69 @@
 **
 ****************************************************************************/
 
-#ifndef XBEL_H
-#define XBEL_H
+#include "xbelwriter.h"
 
-#include <qxmlstream.h>
-#include <qdatetime.h>
+#include <qfile.h>
 
-class BookmarkNode
+#include "bookmarknode.h"
+
+XbelWriter::XbelWriter()
 {
-public:
-    enum Type {
-        Root,
-        Folder,
-        Bookmark,
-        Separator
-    };
+    setAutoFormatting(true);
+}
 
-    BookmarkNode(Type type = Root, BookmarkNode *parent = 0);
-    ~BookmarkNode();
-    bool operator==(const BookmarkNode &other);
-
-    Type type() const;
-    void setType(Type type);
-    QList<BookmarkNode*> children() const;
-    BookmarkNode *parent() const;
-
-    void add(BookmarkNode *child, int offset = -1);
-    void remove(BookmarkNode *child);
-
-    QString url;
-    QString title;
-    QString desc;
-    bool expanded;
-
-private:
-    BookmarkNode *m_parent;
-    Type m_type;
-    QList<BookmarkNode*> m_children;
-
-};
-
-class XmlEntityResolver : public QXmlStreamEntityResolver
+bool XbelWriter::write(const QString &fileName, const BookmarkNode *root)
 {
-public:
-    QString resolveUndeclaredEntity(const QString &entity);
-};
+    QFile file(fileName);
+    if (!root || !file.open(QFile::WriteOnly))
+        return false;
+    return write(&file, root);
+}
 
-class XbelReader : public QXmlStreamReader
+bool XbelWriter::write(QIODevice *device, const BookmarkNode *root)
 {
-public:
-    XbelReader();
-    ~XbelReader();
+    setDevice(device);
 
-    BookmarkNode *read(const QString &fileName);
-    BookmarkNode *read(QIODevice *device);
+    writeStartDocument();
+    writeDTD(QLatin1String("<!DOCTYPE xbel>"));
+    writeStartElement(QLatin1String("xbel"));
+    writeAttribute(QLatin1String("version"), QLatin1String("1.0"));
+    if (root->type() == BookmarkNode::Root) {
+        for (int i = 0; i < root->children().count(); ++i)
+            writeItem(root->children().at(i));
+    } else {
+        writeItem(root);
+    }
 
-private:
-    void skipUnknownElement();
-    void readXBEL(BookmarkNode *parent);
-    void readTitle(BookmarkNode *parent);
-    void readDescription(BookmarkNode *parent);
-    void readSeparator(BookmarkNode *parent);
-    void readFolder(BookmarkNode *parent);
-    void readBookmarkNode(BookmarkNode *parent);
+    writeEndDocument();
+    return true;
+}
 
-private:
-    XmlEntityResolver *m_entityResolver;
-};
-
-class XbelWriter : public QXmlStreamWriter
+void XbelWriter::writeItem(const BookmarkNode *parent)
 {
-public:
-    XbelWriter();
-    bool write(const QString &fileName, const BookmarkNode *root);
-    bool write(QIODevice *device, const BookmarkNode *root);
-
-private:
-    void writeItem(const BookmarkNode *parent);
-};
-
-#endif // XBEL_H
+    switch (parent->type()) {
+    case BookmarkNode::Folder:
+        writeStartElement(QLatin1String("folder"));
+        writeAttribute(QLatin1String("folded"), parent->expanded ? QLatin1String("no") : QLatin1String("yes"));
+        writeTextElement(QLatin1String("title"), parent->title);
+        for (int i = 0; i < parent->children().count(); ++i)
+            writeItem(parent->children().at(i));
+        writeEndElement();
+        break;
+    case BookmarkNode::Bookmark:
+        writeStartElement(QLatin1String("bookmark"));
+        if (!parent->url.isEmpty())
+            writeAttribute(QLatin1String("href"), parent->url);
+        writeTextElement(QLatin1String("title"), parent->title);
+        if (!parent->desc.isEmpty())
+            writeAttribute(QLatin1String("desc"), parent->desc);
+        writeEndElement();
+        break;
+    case BookmarkNode::Separator:
+        writeEmptyElement(QLatin1String("separator"));
+        break;
+    default:
+        break;
+    }
+}
 

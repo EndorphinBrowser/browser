@@ -64,7 +64,8 @@
 
 #include "webview.h"
 
-#include "bookmarks.h"
+#include "addbookmarkdialog.h"
+#include "bookmarksmanager.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "downloadmanager.h"

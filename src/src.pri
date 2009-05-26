@@ -33,9 +33,7 @@ win32 {
 
 FORMS += \
     aboutdialog.ui \
-    addbookmarkdialog.ui \
     acceptlanguagedialog.ui \
-    bookmarks.ui \
     downloaditem.ui \
     downloads.ui \
     passworddialog.ui \
@@ -46,7 +44,6 @@ FORMS += \
 HEADERS += \
     aboutdialog.h \
     acceptlanguagedialog.h \
-    bookmarks.h \
     browserapplication.h \
     browsermainwindow.h \
     clearprivatedata.h \
@@ -68,13 +65,11 @@ HEADERS += \
     webactionmapper.h \
     webpage.h \
     webview.h \
-    webviewsearch.h \
-    xbel.h
+    webviewsearch.h
 
 SOURCES += \
     aboutdialog.cpp \
     acceptlanguagedialog.cpp \
-    bookmarks.cpp \
     browserapplication.cpp \
     browsermainwindow.cpp \
     clearprivatedata.cpp \
@@ -96,9 +91,9 @@ SOURCES += \
     webactionmapper.cpp \
     webpage.cpp \
     webview.cpp \
-    webviewsearch.cpp \
-    xbel.cpp
+    webviewsearch.cpp
 
+include(bookmarks/bookmarks.pri)
 include(cookiejar/cookiejar.pri)
 include(history/history.pri)
 include(locationbar/locationbar.pri)

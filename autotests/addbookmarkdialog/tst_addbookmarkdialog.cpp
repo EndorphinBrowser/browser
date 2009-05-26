@@ -19,9 +19,12 @@
 
 #include <QtTest/QtTest>
 
-#include <bookmarks.h>
-#include <xbel.h>
-#include <browserapplication.h>
+#include "addbookmarkdialog.h"
+#include "bookmarksmanager.h"
+#include "bookmarknode.h"
+#include "browserapplication.h"
+
+#include <qpushbutton.h>
 
 class tst_AddBookmarkDialog : public QObject
 {
