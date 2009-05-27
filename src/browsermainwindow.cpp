@@ -922,7 +922,7 @@ void BrowserMainWindow::addBookmark()
 
 void BrowserMainWindow::addBookmarkFolder()
 {
-    AddBookmarkDialog dialog(this);
+    AddBookmarkDialog dialog;
     BookmarksManager *bookmarksManager = BrowserApplication::bookmarksManager();
     BookmarkNode *menu = bookmarksManager->menu();
     QModelIndex index = bookmarksManager->bookmarksModel()->index(menu);

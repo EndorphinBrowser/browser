@@ -1,5 +1,6 @@
 /*
  * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -79,26 +80,30 @@ int AddBookmarkProxyModel::columnCount(const QModelIndex &parent) const
     return qMin(1, QSortFilterProxyModel::columnCount(parent));
 }
 
-bool AddBookmarkProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
+bool AddBookmarkProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
+    QModelIndex idx = sourceModel()->index(sourceRow, 0, sourceParent);
     return sourceModel()->hasChildren(idx);
 }
 
-AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmarkManager)
+AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmarksManager)
     : QDialog(parent)
-    , m_bookmarksManager(bookmarkManager)
+    , m_bookmarksManager(bookmarksManager)
+    , m_addedNode(0)
     , m_proxyModel(0)
     , m_addFolder(false)
 {
     setWindowFlags(Qt::Sheet);
+    setupUi(this);
+
     if (!m_bookmarksManager)
         m_bookmarksManager = BrowserApplication::bookmarksManager();
-    setupUi(this);
-    m_treeView = new QTreeView(this);
+
     m_proxyModel = new AddBookmarkProxyModel(this);
     BookmarksModel *model = m_bookmarksManager->bookmarksModel();
     m_proxyModel->setSourceModel(model);
+
+    m_treeView = new QTreeView(this);
     m_treeView->setModel(m_proxyModel);
     m_treeView->expandAll();
     m_treeView->header()->setStretchLastSection(true);
@@ -106,17 +111,15 @@ AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmark
     m_treeView->setItemsExpandable(false);
     m_treeView->setRootIsDecorated(false);
     m_treeView->setIndentation(10);
-    location->setModel(m_proxyModel);
     m_treeView->show();
+
+    location->setModel(m_proxyModel);
     location->setView(m_treeView);
+
     address->setInactiveText(tr("Url"));
     name->setInactiveText(tr("Title"));
-    resize(sizeHint());
-}
 
-void AddBookmarkDialog::setTitle(const QString &title)
-{
-    name->setText(title);
+    resize(sizeHint());
 }
 
 void AddBookmarkDialog::setUrl(const QString &url)
@@ -126,10 +129,26 @@ void AddBookmarkDialog::setUrl(const QString &url)
     resize(sizeHint());
 }
 
+QString AddBookmarkDialog::url() const
+{
+    return address->text();
+}
+
+void AddBookmarkDialog::setTitle(const QString &title)
+{
+    name->setText(title);
+}
+
+QString AddBookmarkDialog::title() const
+{
+    return name->text();
+}
+
 void AddBookmarkDialog::setCurrentIndex(const QModelIndex &index)
 {
     if (!index.isValid())
         return;
+
     QModelIndex proxyIndex = m_proxyModel->mapFromSource(index);
     m_treeView->setCurrentIndex(proxyIndex);
     location->setCurrentIndex(proxyIndex.row());
@@ -157,6 +176,16 @@ void AddBookmarkDialog::setFolder(bool addFolder)
     resize(sizeHint());
 }
 
+bool AddBookmarkDialog::isFolder() const
+{
+    return m_addFolder;
+}
+
+BookmarkNode *AddBookmarkDialog::addedNode() const
+{
+    return m_addedNode;
+}
+
 void AddBookmarkDialog::accept()
 {
     if ((!m_addFolder && address->text().isEmpty()) || name->text().isEmpty()) {
@@ -172,11 +201,12 @@ void AddBookmarkDialog::accept()
     BookmarkNode::Type type = (m_addFolder) ? BookmarkNode::Folder : BookmarkNode::Bookmark;
     BookmarkNode *bookmark = new BookmarkNode(type);
     bookmark->title = name->text();
-
     if (!m_addFolder)
         bookmark->url = address->text();
 
     m_bookmarksManager->addBookmark(parent, bookmark);
+    m_addedNode = bookmark;
+
     QDialog::accept();
 }
 

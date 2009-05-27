@@ -550,34 +550,26 @@ void TabWidget::reloadAllTabs()
 
 void TabWidget::bookmarkTabs()
 {
-    AddBookmarkDialog dialog(parentWidget());
-    dialog.address->hide();
+    AddBookmarkDialog dialog;
+    dialog.setFolder(true);
     dialog.setTitle(tr("Saved Tabs"));
-    dialog.resize(dialog.sizeHint());
     dialog.exec();
-    if (dialog.result() == QDialog::Accepted) {
-        QModelIndex index = dialog.currentIndex();
-        if (!index.isValid())
-            return;
-        BookmarksManager *m_bookmarksManager = BrowserApplication::bookmarksManager();
-        BookmarkNode *parentFolder = m_bookmarksManager->bookmarksModel()->node(index);
-        if (parentFolder->type() != BookmarkNode::Folder)
-            return;
 
-        BookmarkNode *folder = new BookmarkNode(BookmarkNode::Folder);
-        folder->title = dialog.name->text();
-        m_bookmarksManager->addBookmark(parentFolder, folder, -1);
+    BookmarkNode *folder = dialog.addedNode();
+    if (!folder)
+        return;
 
-        for (int i = 0; i < count(); ++i) {
-            if (WebView *tab = webView(i)) {
-                QString title = tab->title();
-                QString url = QString::fromUtf8(tab->url().toEncoded());
-                BookmarkNode *bookmark = new BookmarkNode(BookmarkNode::Bookmark);
-                bookmark->url = url;
-                bookmark->title = title;
-                m_bookmarksManager->addBookmark(folder, bookmark);
-            }
-        }
+    for (int i = 0; i < count(); ++i) {
+        WebView *tab = webView(i);
+        if (!tab)
+            continue;
+
+        QString title = tab->title();
+        QString url = QString::fromUtf8(tab->url().toEncoded());
+        BookmarkNode *bookmark = new BookmarkNode(BookmarkNode::Bookmark);
+        bookmark->url = url;
+        bookmark->title = title;
+        BrowserApplication::bookmarksManager()->addBookmark(folder, bookmark);
     }
 }
 

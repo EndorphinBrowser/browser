@@ -1,5 +1,6 @@
 /*
  * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,32 +68,41 @@
 
 #include <qsortfilterproxymodel.h>
 
-class BookmarksManager;
 class AddBookmarkProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+
 public:
-    AddBookmarkProxyModel(QObject * parent = 0);
-    int columnCount(const QModelIndex & parent = QModelIndex()) const;
+    AddBookmarkProxyModel(QObject *parent = 0);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
 protected:
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 };
 
+class BookmarkNode;
+class BookmarksManager;
 class QTreeView;
 class AddBookmarkDialog : public QDialog, public Ui_AddBookmarkDialog
 {
     Q_OBJECT
 
 public:
-    AddBookmarkDialog(QWidget *parent = 0, BookmarksManager *bookmarkManager = 0);
+    AddBookmarkDialog(QWidget *parent = 0, BookmarksManager *bookmarksManager = 0);
+
     void setUrl(const QString &url);
+    QString url() const;
+
     void setTitle(const QString &title);
+    QString title() const;
 
     void setCurrentIndex(const QModelIndex &index);
     QModelIndex currentIndex() const;
-    void setFolder(bool addFolder);
 
+    void setFolder(bool addFolder);
+    bool isFolder() const;
+
+    BookmarkNode *addedNode() const;
 
 private slots:
     void accept();
@@ -100,6 +110,7 @@ private slots:
 private:
     QTreeView *m_treeView;
     BookmarksManager *m_bookmarksManager;
+    BookmarkNode *m_addedNode;
     AddBookmarkProxyModel *m_proxyModel;
     bool m_addFolder;
 };

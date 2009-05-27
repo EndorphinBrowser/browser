@@ -193,7 +193,7 @@ void BookmarksToolBar::newFolder()
     BookmarkNode *toolbar = BrowserApplication::bookmarksManager()->toolbar();
     QModelIndex index = m_bookmarksModel->index(toolbar);
 
-    AddBookmarkDialog dialog(this);
+    AddBookmarkDialog dialog;
     dialog.setCurrentIndex(index);
     dialog.setFolder(true);
     dialog.exec();
