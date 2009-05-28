@@ -41,7 +41,7 @@ public:
 
 private:
     mutable QRect m_currentTopRect; //current toolbar top area size
-    mutable QRect currentBottomRect; //current toolbar top area size
+    mutable QRect m_currentBottomRect; //current toolbar top area size
 };
 
 #endif //EXPLORERSTYLE_H
