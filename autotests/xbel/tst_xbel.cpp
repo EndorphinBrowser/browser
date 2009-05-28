@@ -18,7 +18,10 @@
  */
 
 #include <QtTest/QtTest>
-#include <xbel.h>
+
+#include "bookmarknode.h"
+#include "xbelreader.h"
+#include "xbelwriter.h"
 
 class tst_Xbel : public QObject
 {
