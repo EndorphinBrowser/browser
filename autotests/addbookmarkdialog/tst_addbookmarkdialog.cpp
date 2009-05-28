@@ -141,6 +141,8 @@ void tst_AddBookmarkDialog::addbookmarkdialog()
     if (node) {
         QCOMPARE(node->title, title);
         QCOMPARE(node->url, url);
+        QVERIFY(dialog.addedNode());
+        QVERIFY(*node == *dialog.addedNode());
     }
 }
 
