@@ -1,3 +1,8 @@
+0.7.1
+Fix Windows build.
+Fix building in parallel (make -jX).
+
+
 0.7.0
 Interface
 - Add support for OpenSearch to the toolbar search
