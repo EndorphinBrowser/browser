@@ -59,7 +59,7 @@ public:
     WebPage(QObject *parent = 0);
     void loadSettings();
 
-    WebPluginFactory *webPluginFactory();
+    static WebPluginFactory *webPluginFactory();
     QList<WebPageLinkedResource> linkedResources(const QString &relation = QString());
 
 protected:
