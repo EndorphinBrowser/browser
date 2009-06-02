@@ -68,6 +68,7 @@
 #include "bookmarksmodel.h"
 #include "browserapplication.h"
 
+#include <qheaderview.h>
 #include <qtreeview.h>
 
 AddBookmarkProxyModel::AddBookmarkProxyModel(QObject *parent)

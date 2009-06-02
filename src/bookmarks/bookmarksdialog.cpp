@@ -68,6 +68,8 @@
 #include "browserapplication.h"
 #include "history.h"
 
+#include <qheaderview.h>
+
 BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     : QDialog(parent)
     , m_bookmarksManager(0)
