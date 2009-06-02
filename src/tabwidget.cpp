@@ -913,12 +913,10 @@ void TabWidget::changeEvent(QEvent *event)
  */
 void TabWidget::loadString(const QString &string, OpenUrlIn tab)
 {
-    QString urlString = string.trimmed();
-
-    if (urlString.isEmpty())
+    if (string.isEmpty())
         return;
 
-    QUrl url = guessUrlFromString(urlString);
+    QUrl url = guessUrlFromString(string);
     currentLineEdit()->setText(QString::fromUtf8(url.toEncoded()));
     loadUrl(url, tab);
 }
