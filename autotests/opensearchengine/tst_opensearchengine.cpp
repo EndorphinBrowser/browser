@@ -84,13 +84,13 @@ public:
     void call_loadImage() const
         { return SubOpenSearchEngine::loadImage(); }
 
-    QNetworkAccessManager* call_networkAccessManager() const
+    QNetworkAccessManager *call_networkAccessManager() const
         { return SubOpenSearchEngine::networkAccessManager(); }
 
-    QString call_parseTemplate(QString const& searchTerm, QString const& searchTemplate) const
+    QString call_parseTemplate(QString const &searchTerm, QString const &searchTemplate) const
         { return SubOpenSearchEngine::parseTemplate(searchTerm, searchTemplate); }
 
-    void call_suggestions(QStringList const& suggestions)
+    void call_suggestions(QStringList const &suggestions)
         { return SubOpenSearchEngine::suggestions(suggestions); }
 };
 
@@ -128,8 +128,9 @@ void tst_OpenSearchEngine::opensearchengine()
     QCOMPARE(engine.imageUrl(), QString());
     QCOMPARE(engine.isValid(), false);
     QCOMPARE(engine.name(), QString());
-    QCOMPARE(engine.operator<(OpenSearchEngine()), false);
-    QCOMPARE(engine.operator==(OpenSearchEngine()), true);
+    OpenSearchEngine other;
+    QCOMPARE(engine.operator<(other), false);
+    QCOMPARE(engine.operator==(other), true);
     QCOMPARE(engine.providesSuggestions(), false);
     engine.requestSuggestions(QString());
     QCOMPARE(engine.searchParameters(), QList<OpenSearchEngine::Parameter>());

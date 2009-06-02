@@ -9,6 +9,6 @@ include(../manualtests.pri)
 RESOURCES =
 FORMS =
 SOURCES = searchbutton.cpp clearbutton.cpp lineedit.cpp searchlineedit.cpp
-HEADERS = searchbutton.h clearbutton.h lineedit.h lineedit_p.h searchlineedit.h
+HEADERS = searchbutton.h clearbutton.h lineedit.h lineedit_p.h searchlineedit.h proxystyle.h
 
 SOURCES += main_searchlineedit.cpp

@@ -23,6 +23,7 @@
 #include <history.h>
 #include <historymanager.h>
 #include <modeltest.h>
+#include <qheaderview.h>
 
 int main(int argc, char **argv)
 {
