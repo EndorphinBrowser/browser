@@ -508,7 +508,11 @@ void BrowserMainWindow::setupMenu()
     m_fileMenu->addAction(m_fileCloseWindow);
 
     m_fileQuit = new QAction(m_fileMenu);
-    connect(m_fileQuit, SIGNAL(triggered()), BrowserApplication::instance(), SLOT(quitBrowser()));
+    int kdeSessionVersion = QString::fromLocal8Bit(qgetenv("KDE_SESSION_VERSION")).toInt();
+    if (kdeSessionVersion != 0)
+        connect(m_fileQuit, SIGNAL(triggered()), this, SLOT(close()));
+    else
+        connect(m_fileQuit, SIGNAL(triggered()), BrowserApplication::instance(), SLOT(quitBrowser()));
     m_fileQuit->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Q));
     m_fileMenu->addAction(m_fileQuit);
 
