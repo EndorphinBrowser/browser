@@ -146,6 +146,7 @@ private slots:
     void viewStatusbar();
     void viewPageSource();
     void viewFullScreen(bool enable);
+    void viewTextEncoding(QAction *action);
 
     void webSearch();
     void clearPrivateData();
@@ -157,6 +158,7 @@ private slots:
     void aboutToShowBackMenu();
     void aboutToShowForwardMenu();
     void aboutToShowWindowMenu();
+    void aboutToShowTextEncodingMenu();
     void openActionUrl(QAction *action);
     void showWindow();
     void swapFocus();
@@ -212,6 +214,8 @@ private:
     QAction *m_viewZoomTextOnlyAction;
     QAction *m_viewSourceAction;
     QAction *m_viewFullScreenAction;
+    QAction *m_viewTextEncodingAction;
+    QMenu *m_viewTextEncodingMenu;
 
     HistoryMenu *m_historyMenu;
     QAction *m_historyBackAction;
