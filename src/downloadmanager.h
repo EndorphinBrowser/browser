@@ -149,7 +149,7 @@ public:
     void setRemovePolicy(RemovePolicy policy);
 
     static QString timeString(double timeRemaining);
-    static QString dataString(int size);
+    static QString dataString(qint64 size);
 
 public slots:
     void download(const QNetworkRequest &request, bool requestFileName = false);

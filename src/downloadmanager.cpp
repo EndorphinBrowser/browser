@@ -320,20 +320,22 @@ void DownloadItem::metaDataChanged()
 void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
     m_bytesReceived = bytesReceived;
-    if (bytesTotal == -1) {
-        progressBar->setValue(0);
-        progressBar->setMaximum(0);
-    } else {
-        progressBar->setValue(bytesReceived);
-        progressBar->setMaximum(bytesTotal);
+    qint64 currentValue = 0;
+    qint64 totalValue = 0;
+    if (bytesTotal > 0) {
+        currentValue = bytesReceived * 100 / bytesTotal;
+        totalValue = 100;
     }
-    emit progress(bytesReceived, bytesTotal);
+    progressBar->setValue(currentValue);
+    progressBar->setMaximum(totalValue);
+
+    emit progress(currentValue, totalValue);
     updateInfoLabel();
 }
 
 qint64 DownloadItem::bytesTotal() const
 {
-    return progressBar->maximum();
+    return m_reply->header(QNetworkRequest::ContentLengthHeader).toULongLong();
 }
 
 qint64 DownloadItem::bytesReceived() const
@@ -368,7 +370,7 @@ void DownloadItem::updateInfoLabel()
     if (m_reply->error() != QNetworkReply::NoError)
         return;
 
-    qint64 bytesTotal = progressBar->maximum();
+    qint64 bytesTotal = m_reply->header(QNetworkRequest::ContentLengthHeader).toULongLong();
     bool running = !downloadedSuccessfully();
 
     // update info label
@@ -679,7 +681,7 @@ QString DownloadManager::timeString(double timeRemaining)
     return remaining;
 }
 
-QString DownloadManager::dataString(int size)
+QString DownloadManager::dataString(qint64 size)
 {
     QString unit;
     double newSize;
@@ -690,10 +692,14 @@ QString DownloadManager::dataString(int size)
     } else if (size < 1024 * 1024) {
         newSize = (double)size / (double)1024;
         unit = tr("kB");
-    } else {
+    } else if (size < 1024 * 1024 * 1024) {
         newSize = (double)size / (double)(1024 * 1024);
         unit = tr("MB");
+    } else {
+        newSize = (double)size / (double)(1024 * 1024 * 1024);
+        unit = tr("GB");
     }
+
     return QString(QLatin1String("%1 %2")).arg(newSize, 0, 'f', 1).arg(unit);
 }
 
