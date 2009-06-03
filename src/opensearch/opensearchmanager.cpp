@@ -162,7 +162,7 @@ void OpenSearchManager::removeEngine(const QString &name)
     if (!m_engines.contains(name))
         return;
 
-    delete m_engines[name];
+    m_engines[name]->deleteLater();
     m_engines[name] = 0;
     m_engines.remove(name);
 

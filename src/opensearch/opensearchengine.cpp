@@ -42,7 +42,7 @@ OpenSearchEngine::OpenSearchEngine(QObject *parent)
 OpenSearchEngine::~OpenSearchEngine()
 {
     if (m_scriptEngine)
-        delete m_scriptEngine;
+        m_scriptEngine->deleteLater();
 }
 
 QString OpenSearchEngine::parseTemplate(const QString &searchTerm, const QString &searchTemplate)
@@ -238,7 +238,7 @@ void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
 
     if (m_suggestionsReply) {
         m_suggestionsReply->abort();
-        delete m_suggestionsReply;
+        m_suggestionsReply->deleteLater();
         m_suggestionsReply = 0;
     }
 
@@ -252,7 +252,7 @@ void OpenSearchEngine::suggestionsObtained()
     response = response.trimmed();
 
     m_suggestionsReply->close();
-    delete m_suggestionsReply;
+    m_suggestionsReply->deleteLater();
     m_suggestionsReply = 0;
 
     if (response.isEmpty())
