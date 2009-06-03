@@ -47,7 +47,7 @@ SourceViewer::SourceViewer(const QString &source,
     , m_viewMenu(new QMenu(tr("&View"), m_menuBar))
     , m_setWrappingAction(new QAction(tr("&Wrap lines"), m_viewMenu))
 {
-    setWindowTitle(QString(tr("Source of Page ")).append(title));
+    setWindowTitle(tr("Source of Page %1").arg(title));
     resize(640, 480);
 
     m_source = new QString(source);
