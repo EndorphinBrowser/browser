@@ -547,17 +547,24 @@ void tst_OpenSearchEngine::parseTemplate_data()
     QTest::addColumn<QString>("searchTerm");
     QTest::addColumn<QString>("searchTemplate");
     QTest::addColumn<QString>("parseTemplate");
-    QTest::newRow("null") << QString() << QString() << QString();
-    QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}") << QString("http://foobar.baz/?q=foo");
+    QTest::addColumn<bool>("valid");
+    QTest::newRow("null") << QString() << QString() << QString() << false;
+    QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
+                    << QString("http://foobar.baz/?q=foo") << true;
     QTest::newRow("allParameters") << QString("bar")
                     << QString("http://foobar.baz/?st={searchTerms}&amp;c={count}"
                                "&amp;si={startIndex}&amp;sp={startPage}&amp;l={language}"
                                "&amp;ie={inputEncoding}&amp;oe={outputEncoding}")
-                    << QString("http://foobar.baz/?st=bar&amp;c=20&amp;si=0&amp;sp=0&amp;l=%1&amp;ie=UTF-8&amp;oe=UTF-8").arg(lang);
+                    << QString("http://foobar.baz/?st=bar&amp;c=20&amp;si=0&amp;"
+                               "sp=0&amp;l=%1&amp;ie=UTF-8&amp;oe=UTF-8").arg(lang)
+                    << true;
     QTest::newRow("tricky") << QString("{count}") << QString("http://foobar.baz/q={searchTerms}&amp;count={count}")
-                    << QString("http://foobar.baz/q={count}&amp;count=20");
+                    << QString("http://foobar.baz/q={count}&amp;count=20") << true;
     QTest::newRow("multiple") << QString("abc") << QString("http://foobar.baz/?q={searchTerms}&amp;x={searchTerms}")
-                    << QString("http://foobar.baz/?q=abc&amp;x=abc");
+                    << QString("http://foobar.baz/?q=abc&amp;x=abc") << true;
+    QTest::newRow("referrer") << QString("foo")
+                    << QString("http://foobar.baz/?q={searchTerms}&amp;a={source}&amp;b={ref:source}&amp;c={referrer:source?}")
+                    << QString("http://foobar.baz/?q=foo&amp;a=Arora&amp;b=Arora&amp;c=Arora") << true;
 }
 
 // protected QString parseTemplate(QString const &searchTerm, QString const &searchTemplate) const
@@ -566,9 +573,12 @@ void tst_OpenSearchEngine::parseTemplate()
     QFETCH(QString, searchTerm);
     QFETCH(QString, searchTemplate);
     QFETCH(QString, parseTemplate);
+    QFETCH(bool, valid);
 
     SubOpenSearchEngine engine;
-    QCOMPARE(engine.call_parseTemplate(searchTerm, searchTemplate), parseTemplate);
+    QString url = engine.call_parseTemplate(searchTerm, searchTemplate);
+    QCOMPARE(url, parseTemplate);
+    QCOMPARE(QUrl(url).isValid(), valid);
 }
 
 QTEST_MAIN(tst_OpenSearchEngine)
