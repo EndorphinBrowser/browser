@@ -523,7 +523,7 @@ QIcon BrowserApplication::icon(const QUrl &url)
     if (icon.isNull()) {
         QPixmap pixmap = QWebSettings::webGraphic(QWebSettings::DefaultFrameIconGraphic);
         if (pixmap.isNull()) {
-            pixmap = QPixmap(QLatin1String(":defaulticon.png"));
+            pixmap = QPixmap(QLatin1String(":graphics/defaulticon.png"));
             QWebSettings::setWebGraphic(QWebSettings::DefaultFrameIconGraphic, pixmap);
         }
         return pixmap;

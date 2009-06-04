@@ -24,7 +24,7 @@
 PrivacyIndicator::PrivacyIndicator(QWidget *parent)
     : QLabel(parent)
 {
-    setPixmap(QPixmap(QLatin1String(":private.png")));
+    setPixmap(QPixmap(QLatin1String(":graphics/private.png")));
     connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
             this, SLOT(setVisible(bool)));
     setVisible(BrowserApplication::isPrivate());

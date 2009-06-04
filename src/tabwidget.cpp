@@ -142,7 +142,7 @@ TabWidget::TabWidget(QWidget *parent)
     m_bookmarkTabsAction = new QAction(this);
     connect(m_bookmarkTabsAction, SIGNAL(triggered()), this, SLOT(bookmarkTabs()));
 
-    m_newTabAction->setIcon(QIcon(QLatin1String(":addtab.png")));
+    m_newTabAction->setIcon(QIcon(QLatin1String(":graphics/addtab.png")));
     m_newTabAction->setIconVisibleInMenu(false);
 
 #if QT_VERSION >= 0x040500
@@ -152,7 +152,7 @@ TabWidget::TabWidget(QWidget *parent)
     if (oneCloseButton) {
 #endif
         // With Qt < 4.5 do this always, with >=4.5 only if enabled.
-        m_closeTabAction->setIcon(QIcon(QLatin1String(":closetab.png")));
+        m_closeTabAction->setIcon(QIcon(QLatin1String(":graphics/closetab.png")));
         m_closeTabAction->setIconVisibleInMenu(false);
 #if QT_VERSION >= 0x040500
     }
@@ -681,7 +681,7 @@ QLabel *TabWidget::animationLabel(int index, bool addMovie)
         loadingAnimation = new QLabel(this);
     }
     if (addMovie && !loadingAnimation->movie()) {
-        QMovie *movie = new QMovie(QLatin1String(":loading.gif"), QByteArray(), loadingAnimation);
+        QMovie *movie = new QMovie(QLatin1String(":graphics/loading.gif"), QByteArray(), loadingAnimation);
         movie->setSpeed(50);
         loadingAnimation->setMovie(movie);
         movie->start();
@@ -702,7 +702,7 @@ void TabWidget::webViewLoadStarted()
         if (label->movie())
             label->movie()->start();
 #else
-        QIcon icon(QLatin1String(":loading.gif"));
+        QIcon icon(QLatin1String(":graphics/loading.gif"));
         setTabIcon(index, icon);
 #endif
     }
