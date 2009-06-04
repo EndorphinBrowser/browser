@@ -111,7 +111,7 @@ void LocationBar::paintEvent(QPaintEvent *event)
     QPalette p = palette();
     QColor backgroundColor = m_defaultBaseColor;
     if (m_webView && m_webView->url().scheme() == QLatin1String("https")
-        && p.brush(QPalette::Text) == Qt::black) {
+        && p.color(QPalette::Text).value() < 128) {
         QColor lightYellow(248, 248, 210);
         backgroundColor = lightYellow;
     }
@@ -131,13 +131,13 @@ void LocationBar::paintEvent(QPaintEvent *event)
     if (m_webView && !hasFocus()) {
         int progress = m_webView->progress();
         QColor loadingColor = QColor(116, 192, 250);
-        if (p.brush(QPalette::Text) != Qt::black)
-            loadingColor = m_defaultBaseColor.value() < 128 ? m_defaultBaseColor.lighter(200) : m_defaultBaseColor.darker(200);
+        if (p.color(QPalette::Text).value() >= 128)
+            loadingColor = m_defaultBaseColor.darker(200);
 
         painter.setBrush(generateGradient(m_defaultBaseColor, loadingColor, height()));
         painter.setPen(Qt::transparent);
 
-        int mid = backgroundRect.width() / 100 * progress;
+        int mid = backgroundRect.width() * progress / 100;
         QRect progressRect = QRect(backgroundRect.x(), backgroundRect.y(), mid, backgroundRect.height());
         painter.drawRect(progressRect);
     }
