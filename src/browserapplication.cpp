@@ -99,7 +99,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QString gitVersion = QLatin1String(GITCHANGENUMBER);
     if (gitVersion != QLatin1String("0")
         && !gitVersion.isEmpty())
-        version += QString(tr(" (Change: %1 %2)"))
+        version += QString(QLatin1String(" (git: %1 %2)"))
                     .arg(QLatin1String(GITCHANGENUMBER))
                     .arg(QLatin1String(GITVERSION));
 
