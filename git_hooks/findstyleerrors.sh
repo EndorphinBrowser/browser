@@ -22,6 +22,7 @@ grep $options '^{ }*{' $args
 grep $options '){' $args
 grep $options '	' $args
 grep $options ' \*>' $args
+grep $options '#include "q' $args
 egrep $options '\(.*\* .*\)' $args | grep '::'
 grep $options '[a-z]++' $args | grep 'for'
 grep $options '[a-z]--' $args | grep 'for'
