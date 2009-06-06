@@ -128,6 +128,9 @@ private slots:
     void copyImageLocationToClipboard();
     void bookmarkLink();
     void searchRequested(QAction *action);
+#ifdef WEBKIT_TRUNK
+    void addSearchEngine();
+#endif
 
 private:
     QString m_statusBarText;

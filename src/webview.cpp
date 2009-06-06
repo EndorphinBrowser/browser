@@ -76,11 +76,17 @@
 #include "webpage.h"
 
 #include <qclipboard.h>
+#include <qdebug.h>
 #include <qevent.h>
 #include <qmenubar.h>
 #include <qwebframe.h>
 
-#include <qdebug.h>
+#ifdef WEBKIT_TRUNK
+Q_DECLARE_METATYPE(QWebElement)
+#include <qinputdialog.h>
+#include <qmessagebox.h>
+#include <qwebelement.h>
+#endif
 
 WebView::WebView(QWidget *parent)
     : QWebView(parent)
@@ -213,6 +219,23 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         connect(searchMenu, SIGNAL(triggered(QAction *)), this, SLOT(searchRequested(QAction *)));
     }
 
+#ifdef WEBKIT_TRUNK
+    QWebElement element = r.element();
+    if (!element.isNull()
+        && element.tagName().toLower() == QLatin1String("input")
+        && element.attribute(QLatin1String("type"), QLatin1String("text")) == QLatin1String("text")) {
+        if (menu->isEmpty()) {
+            menu->addAction(pageAction(QWebPage::Copy));
+        } else {
+            menu->addSeparator();
+        }
+
+        QVariant variant;
+        variant.setValue(element);
+        menu->addAction(tr("Add to the toolbar search"), this, SLOT(addSearchEngine()))->setData(variant);
+    }
+#endif
+
 #if QT_VERSION >= 0x040500
     if (menu->isEmpty()) {
         delete menu;
@@ -333,6 +356,100 @@ void WebView::searchRequested(QAction *action)
         emit search(engine->searchUrl(searchText), TabWidget::NewSelectedTab);
     }
 }
+
+#ifdef WEBKIT_TRUNK
+void WebView::addSearchEngine()
+{
+    QAction *action = qobject_cast<QAction*>(sender());
+    if (!action)
+        return;
+
+    QVariant variant = action->data();
+    if (!variant.canConvert<QWebElement>())
+        return;
+
+    QWebElement element = qvariant_cast<QWebElement>(variant);
+    QString elementName = element.attribute(QLatin1String("name"));
+    QWebElement formElement = element;
+    while (formElement.tagName().toLower() != QLatin1String("form"))
+        formElement = formElement.parent();
+
+    if (formElement.isNull() || formElement.attribute(QLatin1String("action")).isEmpty())
+        return;
+
+    QString method = formElement.attribute(QLatin1String("method"), QLatin1String("get")).toLower();
+    if (method != QLatin1String("get")) {
+        QMessageBox::warning(this, tr("Method not supported"),
+                             tr("%1 method is not supported.").arg(method.toUpper()));
+        return;
+    }
+
+    QUrl searchUrl(url().resolved(QUrl(formElement.attribute(QLatin1String("action")))));
+    QMap<QString, QString> searchEngines;
+    QList<QWebElement> inputFields = formElement.findAll(QLatin1String("input"));
+    foreach (const QWebElement &inputField, inputFields) {
+        QString type = inputField.attribute(QLatin1String("type"), QLatin1String("text"));
+        QString name = inputField.attribute(QLatin1String("name"));
+        QString value = inputField.scriptableProperty(QLatin1String("value")).toString();
+
+        if (type == QLatin1String("submit")) {
+            searchEngines.insert(value, name);
+        } else if (type == QLatin1String("text")) {
+            if (inputField == element)
+                value = QLatin1String("{searchTerms}");
+
+            searchUrl.addQueryItem(name, value);
+        } else if (type == QLatin1String("checkbox") || type == QLatin1String("radio")) {
+            if (inputField.scriptableProperty(QLatin1String("checked")).toBool()) {
+                searchUrl.addQueryItem(name, value);
+            }
+        } else if (type == QLatin1String("hidden")) {
+            searchUrl.addQueryItem(name, value);
+        }
+    }
+
+    QList<QWebElement> selectFields = formElement.findAll(QLatin1String("select"));
+    foreach (const QWebElement &selectField, selectFields) {
+        QString name = selectField.attribute(QLatin1String("name"));
+        int selectedIndex = selectField.scriptableProperty(QLatin1String("selectedIndex")).toInt();
+        if (selectedIndex == -1)
+            continue;
+
+        QList<QWebElement> options = selectField.findAll(QLatin1String("option"));
+        QString value = options.at(selectedIndex).toPlainText();
+        searchUrl.addQueryItem(name, value);
+    }
+
+    bool ok = true;
+    if (searchEngines.count() > 1) {
+        QString searchEngine = QInputDialog::getItem(this, tr("Search engine"),
+                                                    tr("Choose the desired search engine"), searchEngines.keys(),
+                                                    0, false, &ok);
+        if (!ok)
+            return;
+        if (!searchEngines[searchEngine].isEmpty())
+            searchUrl.addQueryItem(searchEngines[searchEngine], searchEngine);
+    }
+
+    QString engineName;
+    QList<QWebElement> labels = formElement.findAll(QString(QLatin1String("label[for=\"%1\"]")).arg(elementName));
+    if (!labels.isEmpty())
+        engineName = labels.at(0).toPlainText();
+
+    engineName = QInputDialog::getText(this, tr("Engine name"), tr("Type in a name for the engine"),
+                                       QLineEdit::Normal, engineName, &ok);
+    if (!ok)
+        return;
+
+    OpenSearchEngine *engine = new OpenSearchEngine();
+    engine->setName(engineName);
+    engine->setDescription(engineName);
+    engine->setSearchUrlTemplate(searchUrl.toString());
+    engine->setImage(icon().pixmap(16, 16).toImage());
+
+    ToolbarSearch::openSearchManager()->addEngine(engine);
+}
+#endif
 
 void WebView::setProgress(int progress)
 {
