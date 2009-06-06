@@ -24,6 +24,7 @@
 #include "languagemanager.h"
 #include "networkaccessmanager.h"
 
+#include <qbuffer.h>
 #include <qnetworkaccessmanager.h>
 #include <qnetworkrequest.h>
 #include <qnetworkreply.h>
@@ -203,6 +204,15 @@ QImage OpenSearchEngine::image() const
 
 void OpenSearchEngine::setImage(const QImage &image)
 {
+    if (m_imageUrl.isEmpty()) {
+        QBuffer imageBuffer;
+        imageBuffer.open(QBuffer::ReadWrite);
+        if (image.save(&imageBuffer, "PNG")) {
+            m_imageUrl = QString(QLatin1String("data:image/png;base64,%1"))
+                         .arg(QLatin1String(imageBuffer.buffer().toBase64()));
+        }
+    }
+
     m_image = image;
 }
 
