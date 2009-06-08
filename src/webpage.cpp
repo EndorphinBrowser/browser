@@ -36,6 +36,10 @@
 #include <qsettings.h>
 #include <qwebframe.h>
 
+#ifdef WEBKIT_TRUNK
+#include <qwebelement.h>
+#endif
+
 WebPluginFactory *WebPage::s_webPluginFactory = 0;
 
 JavaScriptExternalObject::JavaScriptExternalObject(QObject *parent)
@@ -74,6 +78,29 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
 {
     QList<WebPageLinkedResource> resources;
 
+#ifdef WEBKIT_TRUNK
+    QList<QWebElement> linkElements = mainFrame()->findAllElements(QLatin1String("html > head > link"));
+
+    foreach (const QWebElement &linkElement, linkElements) {
+        QString rel = linkElement.attribute(QLatin1String("rel"));
+        QString href = linkElement.attribute(QLatin1String("href"));
+        QString type = linkElement.attribute(QLatin1String("type"));
+        QString title = linkElement.attribute(QLatin1String("title"));
+
+        if (href.isEmpty() || type.isEmpty())
+            continue;
+        if (!relation.isEmpty() && rel != relation)
+            continue;
+
+        WebPageLinkedResource resource;
+        resource.rel = rel;
+        resource.type = type;
+        resource.href = href;
+        resource.title = title;
+
+        resources.append(resource);
+    }
+#else
     QFile file(QLatin1String(":fetchLinks.js"));
     if (!file.open(QFile::ReadOnly))
         return resources;
@@ -82,19 +109,25 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
     QVariantList list = mainFrame()->evaluateJavaScript(script).toList();
     foreach (const QVariant &variant, list) {
         QVariantMap map = variant.toMap();
-        const QString rel = map[QLatin1String("rel")].toString();
+        QString rel = map[QLatin1String("rel")].toString();
+        QString type = map[QLatin1String("type")].toString();
+        QString href = map[QLatin1String("href")].toString();
+        QString title = map[QLatin1String("title")].toString();
 
+        if (href.isEmpty() || type.isEmpty())
+            continue;
         if (!relation.isEmpty() && rel != relation)
             continue;
 
         WebPageLinkedResource resource;
         resource.rel = rel;
-        resource.type = map[QLatin1String("type")].toString();
-        resource.href = map[QLatin1String("href")].toString();
-        resource.title = map[QLatin1String("title")].toString();
+        resource.type = type;
+        resource.href = href;
+        resource.title = title;
 
         resources.append(resource);
     }
+#endif
 
     return resources;
 }
