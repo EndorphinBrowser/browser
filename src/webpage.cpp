@@ -1,5 +1,6 @@
 /*
  * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +32,7 @@
 
 #include <qbuffer.h>
 #include <qdesktopservices.h>
+#include <qmessagebox.h>
 #include <qnetworkreply.h>
 #include <qnetworkrequest.h>
 #include <qsettings.h>
@@ -155,6 +157,15 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
         || scheme == QLatin1String("ftp")) {
         QDesktopServices::openUrl(request.url());
         return false;
+    }
+
+    if (type == QWebPage::NavigationTypeFormResubmitted) {
+        QMessageBox::StandardButton button = QMessageBox::warning(view(), tr("Resending POST request"),
+                             tr("In order to display the site, the request along with all the data must be sent once again, "
+                                "which may lead to some unexpected behaviour of the site e.g. the same action might be "
+                                "performed once again. Do you want to continue anyway?"), QMessageBox::Yes | QMessageBox::No);
+        if (button != QMessageBox::Yes)
+            return false;
     }
 
     TabWidget::OpenUrlIn openIn = frame ? TabWidget::CurrentTab : TabWidget::NewWindow;
