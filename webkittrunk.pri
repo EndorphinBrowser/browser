@@ -8,19 +8,18 @@ webkit_trunk {
     WEBKITDIR = $$(WEBKITDIR)
     WEBKITBRANCH = $$(WEBKITBRANCH)
     isEmpty(WEBKITBRANCH) {
-        CONFIG(release):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Release/lib
-        CONFIG(debug):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/Debug/lib
+        CONFIG(release):OUTPUT_DIR = $$WEBKITDIR/WebKitBuild/Release
+        CONFIG(debug):OUTPUT_DIR = $$WEBKITDIR/WebKitBuild/Debug
     } else {
-        CONFIG(release):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/$$WEBKITBRANCH/Release/lib
-        CONFIG(debug):WEBKITBUILD = $$WEBKITDIR/WebKitBuild/$$WEBKITBRANCH/Debug/lib
+        CONFIG(release):OUTPUT_DIR = $$WEBKITDIR/WebKitBuild/$$WEBKITBRANCH/Release
+        CONFIG(debug):OUTPUT_DIR = $$WEBKITDIR/WebKitBuild/$$WEBKITBRANCH/Debug
     }
     message(Using WebKit Trunk at $$WEBKITDIR)
-    message(Using WebKit Build at $$WEBKITBUILD)
+    message(Using WebKit Build at $$OUTPUT_DIR)
+
     QT -= webkit
     DEFINES += WEBKIT_TRUNK
-    QMAKE_LIBDIR_FLAGS = -L$$WEBKITBUILD
-    LIBS = -L$$WEBKITBUILD -lQtWebKit
-    INCLUDEPATH = $$WEBKITDIR/WebKit/qt/Api $$INCLUDEPATH
-    QMAKE_RPATHDIR = $$WEBKITBUILD $$QMAKE_RPATHDIR
+    include($$WEBKITDIR/WebKit.pri)
+    QMAKE_RPATHDIR = $$OUTPUT_DIR/lib $$QMAKE_RPATHDIR
 }
 
