@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>Lagani veb pregledač baziran na Webkit-u</translation>
+        <translation>Lagani veb pregledač baziran na Vebkitu</translation>
     </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -159,7 +159,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL</source>
-        <translation>XBEL</translation>
+        <translation>IksBEL</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
@@ -181,7 +181,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation>IksBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Export error</source>
@@ -259,7 +259,7 @@ p, li { white-space: pre-wrap; }
     <name>BrowserApplication</name>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation>(Promena: %1 %2)</translation>
+        <translation>(Revizija: %1 %2)</translation>
     </message>
     <message>
         <source>There are %1 windows and %2 tabs open
@@ -440,7 +440,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation>Domaća</translation>
+        <translation>Moja stranica</translation>
     </message>
     <message>
         <source>Restore Last Session</source>
@@ -511,7 +511,7 @@ Da li svejedno želite da napustite?</translation>
     <message>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
-        <translation>O &amp;%1</translation>
+        <translation>O &amp;Arori </translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -814,7 +814,7 @@ Da li želite da ponovo učitate sve stranice?</translation>
     </message>
     <message>
         <source>0 Items</source>
-        <translation>0 stavki</translation>
+        <translation>Nema stavki</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1009,7 +1009,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Možete koristiti različit jezik od onog&lt;br&gt;koji operativni sistem podrazumeva.&lt;/p&gt;&lt;p&gt;Molim izaberite jezik koji će biti korišćen&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Možete postaviti različit jezik od onog&lt;br&gt;koji operativni sistem podrazumeva.&lt;/p&gt;&lt;p&gt;Molim izaberite jezik koji bi trebalo koristiti&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -1086,61 +1086,61 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     <name>OpenSearchDialog</name>
     <message>
         <source>Open File</source>
-        <translation type="unfinished">Otvori fajl</translation>
+        <translation>Otvori fajl</translation>
     </message>
     <message>
         <source>OpenSearch</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvori pretragu</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Greška</translation>
     </message>
     <message>
         <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1  nije ispravan OpenSearch 1.1 opis ili se već nalazi na vašoj listi.</translation>
     </message>
     <message>
         <source>You must have at least one search engine in here.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mora postojati barem jedan motor pretrage.</translation>
     </message>
     <message>
         <source>OpenSearch Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Ovori upravnik pretrage</translation>
     </message>
     <message>
         <source>&amp;Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Podrazumevano</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Obriši</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dodaj</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zatvori</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchEngineModel</name>
     <message>
         <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Opis:&lt;/strong&gt; %1</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Daje predloge iz sadržaja&lt;/strong&gt;</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Da li želite da dodate sledeći motor na vašu listu motora pretrage? &lt;br /&gt;&lt;br /&gt;Ime: %1&lt;br /&gt;Pretražuje na: %2</translation>
     </message>
 </context>
 <context>
@@ -1196,7 +1196,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     <name>QObject</name>
     <message>
         <source>The file is not an XBEL version 1.0 file.</source>
-        <translation>Fajl nije tipa XBEL verzije 1.0 .</translation>
+        <translation>Fajl nije tipa IksBEL 1.0.</translation>
     </message>
     <message>
         <source>Unknown title</source>
@@ -1204,7 +1204,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fajl nije OpenSearch 1.1 tipa.</translation>
     </message>
 </context>
 <context>
@@ -1272,7 +1272,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Show my home page</source>
-        <translation>Prikaži moju domaću stranicu</translation>
+        <translation>Prikaži moju stranicu</translation>
     </message>
     <message>
         <source>Show a blank page</source>
@@ -1284,11 +1284,11 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation>Domaća stranica:</translation>
+        <translation>Moja stranica:</translation>
     </message>
     <message>
         <source>Set to current page</source>
-        <translation>Podesi na trenutnu stranicu</translation>
+        <translation>Koristi trenutnu stranicu</translation>
     </message>
     <message>
         <source>Remove history items:</source>
@@ -1340,7 +1340,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Standard font:</source>
-        <translation>Podrazumevani font:</translation>
+        <translation>Standardni font:</translation>
     </message>
     <message>
         <source>Select...</source>
@@ -1348,7 +1348,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Fixed-width font:</source>
-        <translation>Stalni font:</translation>
+        <translation>Fiksni font:</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
@@ -1372,7 +1372,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Use ClickToFlash on flash plugins</source>
-        <translation>Koristi KlikniZaFleš za fleš priključke</translation>
+        <translation>Koristi &quot;Klikni za fleš&quot; za fleš priključke</translation>
     </message>
     <message>
         <source>Enable Javascript</source>
@@ -1464,7 +1464,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation>U novom izabranom jezičku trenutnog prozora</translation>
+        <translation>U izabranom novom jezičku trenutnog prozora</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
@@ -1492,15 +1492,15 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Socks5</source>
-        <translation>Socks5</translation>
+        <translation>SOKS5</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
-        <translation> Http  (Bezbedno)</translation>
+        <translation>HTTP (Bezbedno)</translation>
     </message>
     <message>
         <source>Http (Transparent)</source>
-        <translation> Http (Transparentno)</translation>
+        <translation>HTTP (Transparentno)</translation>
     </message>
     <message>
         <source>Host name:</source>
@@ -1524,7 +1524,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Style Sheet:</source>
-        <translation>Šablon stila:</translation>
+        <translation>Opis stila:</translation>
     </message>
     <message>
         <source>Enable network cache</source>
@@ -1589,7 +1589,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
-        <translation>Udvostruči jezičak</translation>
+        <translation>Dupliraj jezičak</translation>
     </message>
     <message>
         <source>&amp;Close Tab</source>
@@ -1695,15 +1695,15 @@ Da li zaista želite da zatvorite ovu stranicu?
     </message>
     <message>
         <source>Add &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj &apos;%1&apos;</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Podesi motore pretrage...</translation>
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukloni skorašnje pretrage</translation>
     </message>
 </context>
 <context>
@@ -1777,7 +1777,7 @@ Da li zaista želite da zatvorite ovu stranicu?
     </message>
     <message>
         <source>Search with...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pretraži pomoću...</translation>
     </message>
 </context>
 <context>

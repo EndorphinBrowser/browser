@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>Лагани веб прегледач базиран на Webkit-у</translation>
+        <translation>Лагани веб прегледач базиран на Вебкиту</translation>
     </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -159,12 +159,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL</source>
-        <translation>XBEL</translation>
+        <translation>ИксБЕЛ</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>Грешка при учитавању html маркера: %1
+        <translation>Грешка при учитавању хтмл маркера: %1
 </translation>
     </message>
     <message>
@@ -181,7 +181,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation>ИксБЕЛ (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Export error</source>
@@ -259,7 +259,7 @@ p, li { white-space: pre-wrap; }
     <name>BrowserApplication</name>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation>(Промена: %1 %2)</translation>
+        <translation>(Ревизија: %1 %2)</translation>
     </message>
     <message>
         <source>There are %1 windows and %2 tabs open
@@ -440,7 +440,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Home</source>
-        <translation>Домаћа</translation>
+        <translation>Моја страница</translation>
     </message>
     <message>
         <source>Restore Last Session</source>
@@ -511,7 +511,7 @@ Do you want to quit anyway?</source>
     <message>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
-        <translation>О &amp;%1</translation>
+        <translation>О &amp;Арори </translation>
     </message>
     <message>
         <source>Navigation</source>
@@ -544,7 +544,7 @@ Do you want to quit anyway?</source>
     <message>
         <source>%1 - Arora</source>
         <comment>Page title and Browser name</comment>
-        <translation>%1 - Arora</translation>
+        <translation>%1 - Aрора</translation>
     </message>
     <message>
         <source>Open Web Resource</source>
@@ -814,7 +814,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>0 Items</source>
-        <translation>0 ставки</translation>
+        <translation>Нема ставки</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1009,7 +1009,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Можете користити различит језик од оног&lt;br&gt;који оперативни систем подразумева.&lt;/p&gt;&lt;p&gt;Молим изаберите језик који ће бити коришћен&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Можете поставити различит језик од оног&lt;br&gt;који оперативни систем подразумева.&lt;/p&gt;&lt;p&gt;Молим изаберите језик који би требало користити&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -1086,61 +1086,61 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>OpenSearchDialog</name>
     <message>
         <source>Open File</source>
-        <translation type="unfinished">Отвори фајл</translation>
+        <translation>Отвори фајл</translation>
     </message>
     <message>
         <source>OpenSearch</source>
-        <translation type="unfinished"></translation>
+        <translation>Отвори претрагу</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка</translation>
     </message>
     <message>
         <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1  није исправан OpenSearch 1.1 опис или се већ налази на вашој листи.</translation>
     </message>
     <message>
         <source>You must have at least one search engine in here.</source>
-        <translation type="unfinished"></translation>
+        <translation>Мора постојати барем један мотор претраге.</translation>
     </message>
     <message>
         <source>OpenSearch Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Овори управник претраге</translation>
     </message>
     <message>
         <source>&amp;Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Подразумевано</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Обриши</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Додај</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Затвори</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchEngineModel</name>
     <message>
         <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Опис:&lt;/strong&gt; %1</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Даје предлоге из садржаја&lt;/strong&gt;</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Да ли желите да додате следећи мотор на вашу листу мотора претраге? &lt;br /&gt;&lt;br /&gt;Име: %1&lt;br /&gt;Претражује на: %2</translation>
     </message>
 </context>
 <context>
@@ -1196,7 +1196,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>QObject</name>
     <message>
         <source>The file is not an XBEL version 1.0 file.</source>
-        <translation>Фајл није типа XBEL верзије 1.0 .</translation>
+        <translation>Фајл није типа ИксБЕЛ 1.0.</translation>
     </message>
     <message>
         <source>Unknown title</source>
@@ -1204,7 +1204,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Фајл није OpenSearch 1.1 типа.</translation>
     </message>
 </context>
 <context>
@@ -1272,7 +1272,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Show my home page</source>
-        <translation>Прикажи моју домаћу страницу</translation>
+        <translation>Прикажи моју страницу</translation>
     </message>
     <message>
         <source>Show a blank page</source>
@@ -1284,11 +1284,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation>Домаћа страница:</translation>
+        <translation>Моја страница:</translation>
     </message>
     <message>
         <source>Set to current page</source>
-        <translation>Подеси на тренутну страницу</translation>
+        <translation>Користи тренутну страницу</translation>
     </message>
     <message>
         <source>Remove history items:</source>
@@ -1340,7 +1340,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Standard font:</source>
-        <translation>Подразумевани фонт:</translation>
+        <translation>Стандардни фонт:</translation>
     </message>
     <message>
         <source>Select...</source>
@@ -1348,7 +1348,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Fixed-width font:</source>
-        <translation>Стални фонт:</translation>
+        <translation>Фиксни фонт:</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
@@ -1372,7 +1372,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Use ClickToFlash on flash plugins</source>
-        <translation>Користи КликниЗаФлеш за флеш прикључке</translation>
+        <translation>Користи &quot;Кликни за флеш&quot; за флеш прикључке</translation>
     </message>
     <message>
         <source>Enable Javascript</source>
@@ -1464,7 +1464,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation>У новом изабраном језичку тренутног прозора</translation>
+        <translation>У изабраном новом језичку тренутног прозора</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
@@ -1492,15 +1492,15 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Socks5</source>
-        <translation>Socks5</translation>
+        <translation>СОКС5</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
-        <translation> Http  (Безбедно)</translation>
+        <translation>ХТТП (Безбедно)</translation>
     </message>
     <message>
         <source>Http (Transparent)</source>
-        <translation> Http (Транспарентно)</translation>
+        <translation>ХТТП (Транспарентно)</translation>
     </message>
     <message>
         <source>Host name:</source>
@@ -1524,7 +1524,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Style Sheet:</source>
-        <translation>Шаблон стила:</translation>
+        <translation>Опис стила:</translation>
     </message>
     <message>
         <source>Enable network cache</source>
@@ -1589,7 +1589,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Duplicate Tab</source>
-        <translation>Удвостручи језичак</translation>
+        <translation>Дуплирај језичак</translation>
     </message>
     <message>
         <source>&amp;Close Tab</source>
@@ -1695,15 +1695,15 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Add &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај &apos;%1&apos;</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подеси моторе претраге...</translation>
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони скорашње претраге</translation>
     </message>
 </context>
 <context>
@@ -1777,7 +1777,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Search with...</source>
-        <translation type="unfinished"></translation>
+        <translation>Претражи помоћу...</translation>
     </message>
 </context>
 <context>
