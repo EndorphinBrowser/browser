@@ -63,10 +63,6 @@ LocationBar::LocationBar(QWidget *parent)
     setUpdatesEnabled(true);
 
     m_defaultBaseColor = palette().color(QPalette::Base);
-
-    QPalette p = palette();
-    p.setColor(QPalette::Base, QColor(255, 255, 255, 100));
-    setPalette(p);
 }
 
 void LocationBar::setWebView(WebView *webView)
@@ -106,8 +102,6 @@ static QLinearGradient generateGradient(const QColor &top, const QColor &middle,
 
 void LocationBar::paintEvent(QPaintEvent *event)
 {
-    QPainter painter(this);
-
     QPalette p = palette();
     QColor backgroundColor = m_defaultBaseColor;
     if (m_webView && m_webView->url().scheme() == QLatin1String("https")
@@ -116,32 +110,27 @@ void LocationBar::paintEvent(QPaintEvent *event)
         backgroundColor = lightYellow;
     }
 
-    // paint the text background
-    QStyleOptionFrameV2 panel;
-    initStyleOption(&panel);
-    QRect backgroundRect = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
-    int left = textMargin(LineEdit::LeftSide);
-    int right = textMargin(LineEdit::RightSide);
-    backgroundRect.adjust(-left, 0, right, 0);
-    painter.setBrush(backgroundColor);
-    painter.setPen(backgroundColor);
-    painter.drawRect(backgroundRect);
-
-    // paint the progressbar
-    if (m_webView && !hasFocus()) {
+    if (m_webView && !hasFocus() && m_webView->progress() > 0) {
+        // prepare a progressbar background
         int progress = m_webView->progress();
         QColor loadingColor = QColor(116, 192, 250);
         if (p.color(QPalette::Text).value() >= 128)
             loadingColor = m_defaultBaseColor.darker(200);
 
+        QPixmap pix(size());
+        pix.fill(backgroundColor);
+        QPainter painter(&pix);
         painter.setBrush(generateGradient(m_defaultBaseColor, loadingColor, height()));
         painter.setPen(Qt::transparent);
 
-        int mid = backgroundRect.width() * progress / 100;
-        QRect progressRect = QRect(backgroundRect.x(), backgroundRect.y(), mid, backgroundRect.height());
-        painter.drawRect(progressRect);
+        int mid = width() * progress / 100;
+        painter.drawRect(0, 0, mid, height());
+        painter.end();
+        p.setBrush(QPalette::Base, pix);
+    } else {
+        p.setColor(QPalette::Base, backgroundColor);
     }
-    painter.end();
+    setPalette(p);
 
     LineEdit::paintEvent(event);
 }
