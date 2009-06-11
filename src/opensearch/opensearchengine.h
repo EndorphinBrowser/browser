@@ -40,6 +40,7 @@ signals:
 
 public:
     typedef QPair<QString, QString> Parameter;
+    typedef QList<Parameter> Parameters;
 
     OpenSearchEngine(QObject *parent = 0);
     ~OpenSearchEngine();
@@ -60,11 +61,11 @@ public:
     void setSuggestionsUrlTemplate(const QString &suggestionsUrl);
     QUrl suggestionsUrl(const QString &searchTerm) const;
 
-    QList<Parameter> searchParameters() const;
-    void setSearchParameters(const QList<Parameter> &searchParameters);
+    Parameters searchParameters() const;
+    void setSearchParameters(const Parameters &searchParameters);
 
-    QList<Parameter> suggestionsParameters() const;
-    void setSuggestionsParameters(const QList<Parameter> &suggestionsParameters);
+    Parameters suggestionsParameters() const;
+    void setSuggestionsParameters(const Parameters &suggestionsParameters);
 
     QString imageUrl() const;
     void setImageUrl(const QString &url);
@@ -98,8 +99,8 @@ private:
 
     QString m_searchUrlTemplate;
     QString m_suggestionsUrlTemplate;
-    QList<Parameter> m_searchParameters;
-    QList<Parameter> m_suggestionsParameters;
+    Parameters m_searchParameters;
+    Parameters m_suggestionsParameters;
 
     QNetworkReply *m_suggestionsReply;
 

@@ -98,8 +98,8 @@ QUrl OpenSearchEngine::searchUrl(const QString &searchTerm) const
 
     QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_searchUrlTemplate).toUtf8());
 
-    QList<Parameter>::const_iterator end = m_searchParameters.constEnd();
-    QList<Parameter>::const_iterator i = m_searchParameters.constBegin();
+    Parameters::const_iterator end = m_searchParameters.constEnd();
+    Parameters::const_iterator i = m_searchParameters.constBegin();
     for (; i != end; ++i)
         retVal.addQueryItem(i->first, parseTemplate(searchTerm, i->second));
 
@@ -128,30 +128,30 @@ QUrl OpenSearchEngine::suggestionsUrl(const QString &searchTerm) const
 
     QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_suggestionsUrlTemplate).toUtf8());
 
-    QList<Parameter>::const_iterator end = m_suggestionsParameters.constEnd();
-    QList<Parameter>::const_iterator i = m_suggestionsParameters.constBegin();
+    Parameters::const_iterator end = m_suggestionsParameters.constEnd();
+    Parameters::const_iterator i = m_suggestionsParameters.constBegin();
     for (; i != end; ++i)
         retVal.addQueryItem(i->first, parseTemplate(searchTerm, i->second));
 
     return retVal;
 }
 
-QList<OpenSearchEngine::Parameter> OpenSearchEngine::searchParameters() const
+OpenSearchEngine::Parameters OpenSearchEngine::searchParameters() const
 {
     return m_searchParameters;
 }
 
-void OpenSearchEngine::setSearchParameters(const QList<Parameter> &searchParameters)
+void OpenSearchEngine::setSearchParameters(const Parameters &searchParameters)
 {
     m_searchParameters = searchParameters;
 }
 
-QList<OpenSearchEngine::Parameter> OpenSearchEngine::suggestionsParameters() const
+OpenSearchEngine::Parameters OpenSearchEngine::suggestionsParameters() const
 {
     return m_suggestionsParameters;
 }
 
-void OpenSearchEngine::setSuggestionsParameters(const QList<Parameter> &suggestionsParameters)
+void OpenSearchEngine::setSuggestionsParameters(const Parameters &suggestionsParameters)
 {
     m_suggestionsParameters = suggestionsParameters;
 }
