@@ -58,6 +58,7 @@ void OpenSearchWriter::write(OpenSearchEngine *engine)
     if (!engine->searchUrlTemplate().isEmpty()) {
         writeStartElement(QLatin1String("Url"));
         writeAttribute(QLatin1String("method"), QLatin1String("get"));
+        writeAttribute(QLatin1String("type"), QLatin1String("text/html"));
         writeAttribute(QLatin1String("template"), engine->searchUrlTemplate());
 
         if (!engine->searchParameters().empty()) {

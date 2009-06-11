@@ -68,6 +68,16 @@ OpenSearchEngine *OpenSearchReader::read()
             QString type = attributes().value(QLatin1String("type")).toString();
             QString url = attributes().value(QLatin1String("template")).toString();
 
+            if (type == QLatin1String("application/x-suggestions+json")
+                && !engine->suggestionsUrlTemplate().isEmpty())
+                continue;
+
+            if ((type.isEmpty()
+                || type == QLatin1String("text/html")
+                || type == QLatin1String("application/xhtml+xml"))
+                && !engine->searchUrlTemplate().isEmpty())
+                continue;
+
             if (url.isEmpty())
                 continue;
 
@@ -75,8 +85,7 @@ OpenSearchEngine *OpenSearchReader::read()
 
             readNext();
 
-            while (!(isEndElement() && name() == QLatin1String("Url")))
-            {
+            while (!(isEndElement() && name() == QLatin1String("Url"))) {
                 if (!isStartElement() || (name() != QLatin1String("Param") && name() != QLatin1String("Parameter"))) {
                     readNext();
                     continue;
@@ -95,7 +104,7 @@ OpenSearchEngine *OpenSearchReader::read()
             if (type == QLatin1String("application/x-suggestions+json")) {
                 engine->setSuggestionsUrlTemplate(url);
                 engine->setSuggestionsParameters(parameters);
-            } else {
+            } else if (type.isEmpty() || type == QLatin1String("text/html") || type == QLatin1String("application/xhtml+xml")) {
                 engine->setSearchUrlTemplate(url);
                 engine->setSearchParameters(parameters);
             }

@@ -2,7 +2,7 @@
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
     <ShortName>Foo Bar</ShortName>
     <Description>Bar Foo</Description>
-    <Url method="get" template="http://foobar.barfoo/search" xmlns:p="http://a9.com/-/spec/opensearch/extensions/parameters/1.0/">
+    <Url method="get" type="text/html" template="http://foobar.barfoo/search" xmlns:p="http://a9.com/-/spec/opensearch/extensions/parameters/1.0/">
         <p:Parameter name="q" value="{searchTerms}"/>
         <p:Parameter name="a" value="foo"/>
     </Url>
