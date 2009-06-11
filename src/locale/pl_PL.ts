@@ -288,7 +288,7 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation> (Zmiana: %1 %2)</translation>
+        <translation type="obsolete"> (Zmiana: %1 %2)</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -701,6 +701,14 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
         <source>Add Folder...</source>
         <translation>Dodaj katalog...</translation>
     </message>
+    <message>
+        <source>Default</source>
+        <translation>Domyślny</translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation>Kodowanie znaków</translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -937,7 +945,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation>Forma</translation>
+        <translation type="obsolete">Forma</translation>
     </message>
     <message>
         <source>Ico</source>
@@ -1091,6 +1099,10 @@ Czy mimo to chcesz zakończyć?</translation>
     <message>
         <source>MB</source>
         <translation>MB</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation>GB</translation>
     </message>
 </context>
 <context>
@@ -1441,7 +1453,7 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation>Forma</translation>
+        <translation type="obsolete">Forma</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -1842,7 +1854,11 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Źródło strony</translation>
+        <translation type="obsolete">Źródło strony</translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation>Źródło strony %1</translation>
     </message>
 </context>
 <context>
@@ -2020,6 +2036,14 @@ Czy na pewno chcesz zamknąć tę stronę?
         <source>If the address is correct, try checking the network connection.</source>
         <translation>Jeśli adres jest prawidłowy, sprawdź poprawność połączenia internetowego.</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation>Ponowne wysyłanie żądania POST</translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation>Aby wyświetlić tę stronę, żądanie razem ze wszystkimi danymi musi być ponownie wysłane, co może prowadzić do nieoczekiwanego zachowania się strony np. ta sama akcja może być wykonana jeszcze raz. Czy na pewno chcesz kontynuować?</translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -2070,6 +2094,34 @@ Czy na pewno chcesz zamknąć tę stronę?
     <message>
         <source>Search with...</source>
         <translation>Szukaj z...</translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation>Dodaj do paska wyszukiwania</translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation>Metoda żądania nie wspierana</translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation>Metoda %1 jest nie wspierana.</translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation>Wyszukiwarka</translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation>Wybierz żądaną wyszukiwarkę</translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation>Nazwa wyszukiwarki</translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
+        <translation>Podaj nazwę dla wyszukiwarki</translation>
     </message>
 </context>
 <context>
