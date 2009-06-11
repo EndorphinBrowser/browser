@@ -289,7 +289,7 @@ void tst_OpenSearchEngine::operatorlessthan()
     QVERIFY(engine1 < engine2);
 }
 
-typedef QList<OpenSearchEngine::Parameter> Parameters;
+typedef OpenSearchEngine::Parameters Parameters;
 Q_DECLARE_METATYPE(Parameters)
 void tst_OpenSearchEngine::operatorequal_data()
 {
@@ -421,12 +421,16 @@ void tst_OpenSearchEngine::searchUrl_data()
 {
     QTest::addColumn<QString>("searchTerm");
     QTest::addColumn<QString>("searchUrlTemplate");
+    QTest::addColumn<Parameters>("parameters");
     QTest::addColumn<QUrl>("searchUrl");
-    QTest::newRow("null") << QString() << QString() << QUrl();
+    QTest::newRow("null") << QString() << QString() << Parameters() << QUrl();
     QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
-                    << QUrl(QString("http://foobar.baz/?q=foo"));
+                    << Parameters() << QUrl(QString("http://foobar.baz/?q=foo"));
     QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
-                    << QUrl(QString("http://foobar.baz/?q="));
+                    << Parameters() << QUrl(QString("http://foobar.baz/?q="));
+    QTest::newRow("parameters") << QString("baz") << QString("http://foobar.baz/?q={searchTerms}")
+                    << (Parameters() << OpenSearchEngine::Parameter("abc", "{searchTerms}") << OpenSearchEngine::Parameter("x", "yz"))
+                    << QUrl(QString("http://foobar.baz/?q=baz&abc=baz&x=yz"));
 }
 
 // public QUrl searchUrl(QString const &searchTerm) const
@@ -434,9 +438,11 @@ void tst_OpenSearchEngine::searchUrl()
 {
     QFETCH(QString, searchTerm);
     QFETCH(QString, searchUrlTemplate);
+    QFETCH(Parameters, parameters);
     QFETCH(QUrl, searchUrl);
 
     SubOpenSearchEngine engine;
+    engine.setSearchParameters(parameters);
     engine.setSearchUrlTemplate(searchUrlTemplate);
 
     QCOMPARE(engine.searchUrl(searchTerm), searchUrl);
@@ -494,13 +500,16 @@ void tst_OpenSearchEngine::suggestionsUrl_data()
 {
     QTest::addColumn<QString>("searchTerm");
     QTest::addColumn<QString>("suggestionsUrlTemplate");
+    QTest::addColumn<Parameters>("parameters");
     QTest::addColumn<QUrl>("suggestionsUrl");
-    QTest::newRow("null") << QString() << QString() << QUrl();
-    QTest::newRow("null") << QString() << QString() << QUrl();
+    QTest::newRow("null") << QString() << QString() << Parameters() << QUrl();
     QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
-    << QUrl(QString("http://foobar.baz/?q=foo"));
+                    << Parameters() << QUrl(QString("http://foobar.baz/?q=foo"));
     QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
-    << QUrl(QString("http://foobar.baz/?q="));
+                    << Parameters() << QUrl(QString("http://foobar.baz/?q="));
+    QTest::newRow("parameters") << QString("baz") << QString("http://foobar.baz/?q={searchTerms}")
+                    << (Parameters() << OpenSearchEngine::Parameter("a", "bc"))
+                    << QUrl(QString("http://foobar.baz/?q=baz&a=bc"));
 }
 
 // public QUrl suggestionsUrl(QString const &searchTerm) const
@@ -508,9 +517,11 @@ void tst_OpenSearchEngine::suggestionsUrl()
 {
     QFETCH(QString, searchTerm);
     QFETCH(QString, suggestionsUrlTemplate);
+    QFETCH(Parameters, parameters);
     QFETCH(QUrl, suggestionsUrl);
 
     SubOpenSearchEngine engine;
+    engine.setSuggestionsParameters(parameters);
     engine.setSuggestionsUrlTemplate(suggestionsUrlTemplate);
 
     QCOMPARE(engine.suggestionsUrl(searchTerm), suggestionsUrl);
