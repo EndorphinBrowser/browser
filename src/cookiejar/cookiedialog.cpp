@@ -124,9 +124,9 @@ void CookieDialog::addRule()
     QModelIndex firstSelected = selection.at(0);
     QModelIndex domainSelection = firstSelected.sibling(firstSelected.row(), 0);
     QString domain = m_proxyModel->data(domainSelection, Qt::DisplayRole).toString();
-    CookieExceptionsDialog *dialog = new CookieExceptionsDialog(m_cookieJar, this);
-    dialog->setDomainName(domain);
-    dialog->exec();
+    CookieExceptionsDialog dialog(m_cookieJar, this);
+    dialog.setDomainName(domain);
+    dialog.show();
 }
 
 

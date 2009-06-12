@@ -396,16 +396,14 @@ void SettingsDialog::accept()
 
 void SettingsDialog::showCookies()
 {
-    CookieDialog *dialog = new CookieDialog(BrowserApplication::cookieJar(), this);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->exec();
+    CookieDialog dialog(BrowserApplication::cookieJar(), this);
+    dialog.exec();
 }
 
 void SettingsDialog::showExceptions()
 {
-    CookieExceptionsDialog *dialog = new CookieExceptionsDialog(BrowserApplication::cookieJar(), this);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->exec();
+    CookieExceptionsDialog dialog(BrowserApplication::cookieJar(), this);
+    dialog.exec();
 }
 
 void SettingsDialog::chooseFont()

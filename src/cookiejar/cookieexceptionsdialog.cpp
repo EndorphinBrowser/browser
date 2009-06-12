@@ -130,7 +130,8 @@ void CookieExceptionsDialog::textChanged(const QString &text)
     allowForSessionButton->setEnabled(enabled);
 }
 
-void CookieExceptionsDialog::setDomainName(const QString &domainName) {
+void CookieExceptionsDialog::setDomainName(const QString &domainName)
+{
     domainLineEdit->setText(domainName);
 }
 

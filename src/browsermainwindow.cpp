@@ -1134,10 +1134,10 @@ void BrowserMainWindow::filePrintPreview()
 {
     if (!currentTab())
         return;
-    QPrintPreviewDialog *dialog = new QPrintPreviewDialog(this);
-    connect(dialog, SIGNAL(paintRequested(QPrinter *)),
+    QPrintPreviewDialog dialog(this);
+    connect(&dialog, SIGNAL(paintRequested(QPrinter *)),
             currentTab(), SLOT(print(QPrinter *)));
-    dialog->exec();
+    dialog.exec();
 }
 
 void BrowserMainWindow::filePrint()
@@ -1150,9 +1150,9 @@ void BrowserMainWindow::filePrint()
 void BrowserMainWindow::printRequested(QWebFrame *frame)
 {
     QPrinter printer;
-    QPrintDialog *dialog = new QPrintDialog(&printer, this);
-    dialog->setWindowTitle(tr("Print Document"));
-    if (dialog->exec() != QDialog::Accepted)
+    QPrintDialog dialog(&printer, this);
+    dialog.setWindowTitle(tr("Print Document"));
+    if (dialog.exec() != QDialog::Accepted)
         return;
     frame->print(&printer);
 }
