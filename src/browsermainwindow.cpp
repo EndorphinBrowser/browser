@@ -962,6 +962,7 @@ void BrowserMainWindow::setupToolBar()
 void BrowserMainWindow::showBookmarksDialog()
 {
     BookmarksDialog *dialog = new BookmarksDialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString &)),
             m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn, const QString &)));
     dialog->show();
@@ -1108,6 +1109,7 @@ void BrowserMainWindow::updateWindowTitle(const QString &title)
 void BrowserMainWindow::aboutApplication()
 {
     AboutDialog *aboutDialog = new AboutDialog(this);
+    aboutDialog->setAttribute(Qt::WA_DeleteOnClose);
     aboutDialog->show();
 }
 

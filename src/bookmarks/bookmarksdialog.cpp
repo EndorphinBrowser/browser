@@ -108,7 +108,6 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     connect(addFolderButton, SIGNAL(clicked()),
             this, SLOT(newFolder()));
     expandNodes(m_bookmarksManager->bookmarks());
-    setAttribute(Qt::WA_DeleteOnClose);
 }
 
 BookmarksDialog::~BookmarksDialog()

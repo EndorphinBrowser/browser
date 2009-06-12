@@ -397,12 +397,14 @@ void SettingsDialog::accept()
 void SettingsDialog::showCookies()
 {
     CookieDialog *dialog = new CookieDialog(BrowserApplication::cookieJar(), this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->exec();
 }
 
 void SettingsDialog::showExceptions()
 {
     CookieExceptionsDialog *dialog = new CookieExceptionsDialog(BrowserApplication::cookieJar(), this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->exec();
 }
 

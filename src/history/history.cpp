@@ -375,6 +375,7 @@ void HistoryMenu::postPopulated()
 void HistoryMenu::showHistoryDialog()
 {
     HistoryDialog *dialog = new HistoryDialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, SIGNAL(openUrl(const QUrl&, const QString &)),
             this, SIGNAL(openUrl(const QUrl&, const QString &)));
     dialog->show();
