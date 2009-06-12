@@ -88,6 +88,8 @@ public:
 
     BrowserMainWindow *mainWindow();
     QList<BrowserMainWindow*> mainWindows();
+    bool allowToCloseWindow(BrowserMainWindow *window);
+
     static QIcon icon(const QUrl &url);
 
     void saveSession();

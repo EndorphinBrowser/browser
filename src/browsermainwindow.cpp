@@ -1198,7 +1198,7 @@ void BrowserMainWindow::privacyChanged(bool isPrivate)
 
 void BrowserMainWindow::closeEvent(QCloseEvent *event)
 {
-    if (!BrowserApplication::instance()->downloadManager()->allowQuit()) {
+    if (!BrowserApplication::instance()->allowToCloseWindow(this)) {
         event->ignore();
         return;
     }

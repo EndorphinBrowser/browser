@@ -314,6 +314,18 @@ QList<BrowserMainWindow*> BrowserApplication::mainWindows()
     return list;
 }
 
+bool BrowserApplication::allowToCloseWindow(BrowserMainWindow *window)
+{
+    Q_UNUSED(window)
+    if (mainWindows().count() > 1)
+        return true;
+
+    if (s_downloadManager)
+        return downloadManager()->allowQuit();
+
+    return true;
+}
+
 void BrowserApplication::clean()
 {
     // cleanup any deleted main windows first

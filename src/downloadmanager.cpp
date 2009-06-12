@@ -472,8 +472,7 @@ int DownloadManager::activeDownloads() const
 
 bool DownloadManager::allowQuit()
 {
-    if (BrowserApplication::instance()->mainWindows().count() <= 1
-        && activeDownloads() >= 1) {
+    if (activeDownloads() >= 1) {
         int choice = QMessageBox::warning(this, QString(),
                                         tr("There are %1 downloads in progress\n"
                                            "Do you want to quit anyway?").arg(activeDownloads()),
