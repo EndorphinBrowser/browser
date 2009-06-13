@@ -278,9 +278,12 @@ BookmarksModel *BookmarksManager::bookmarksModel()
 
 void BookmarksManager::importBookmarks()
 {
+    QStringList supportedFormats;
+    supportedFormats << tr("XBEL bookmarks").append(QLatin1String("(*.xbel *.xml)"));
+    supportedFormats << tr("HTML Netscape bookmarks").append(QLatin1String("(*.html)"));
+
     QString fileName = QFileDialog::getOpenFileName(0, tr("Open File"),
-                                                     QString(),
-                                                     tr("XBEL") + QLatin1String("(*.xbel *.xml *.html)"));
+                                                    QString(), supportedFormats.join(QLatin1String(";;")));
     if (fileName.isEmpty())
         return;
 
@@ -294,8 +297,14 @@ void BookmarksManager::importBookmarks()
         process.start(program, arguments);
         process.waitForFinished(-1);
         if (process.error() != QProcess::UnknownError) {
-            QMessageBox::warning(0, QLatin1String("Loading Bookmark"),
-                tr("Error when loading html bookmarks: %1\n").arg(process.errorString()));
+            if (process.error() == QProcess::FailedToStart) {
+                QMessageBox::warning(0, tr("htmlToXBel tool required"),
+                    tr("htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, "
+                       "is not installed or not available in the search paths."));
+            } else {
+                QMessageBox::warning(0, tr("Loading Bookmark"),
+                    tr("Error when loading HTML bookmarks: %1\n").arg(process.errorString()));
+            }
             return;
         }
         importRootNode = reader.read(&process);
@@ -319,7 +328,7 @@ void BookmarksManager::exportBookmarks()
 {
     QString fileName = QFileDialog::getSaveFileName(0, tr("Save File"),
                                 tr("%1 Bookmarks.xbel").arg(QCoreApplication::applicationName()),
-                                tr("XBEL (*.xbel *.xml)"));
+                                tr("XBEL bookmarks").append(QLatin1String("(*.xbel *.xml)")));
     if (fileName.isEmpty())
         return;
 
