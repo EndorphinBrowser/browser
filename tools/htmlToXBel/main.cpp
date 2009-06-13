@@ -70,14 +70,14 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    QWebView webView;
-    webView.setHtml(inFile.readAll());
+    QWebPage webPage;
+    webPage.mainFrame()->setHtml(inFile.readAll());
     QFile jsFile(":/extract.js");
     if (!jsFile.open(QFile::ReadOnly)) {
         qWarning() << "Unable to load javascript to extract bookmarks.";
         return 1;
     }
-    QString result = webView.page()->mainFrame()->evaluateJavaScript(jsFile.readAll()).toString();
+    QString result = webPage.mainFrame()->evaluateJavaScript(jsFile.readAll()).toString();
     if (result.isEmpty()) {
         qWarning() << "Error while extracting bookmarks.";
         return 1;
