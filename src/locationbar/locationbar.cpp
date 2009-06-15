@@ -159,3 +159,33 @@ void LocationBar::keyPressEvent(QKeyEvent *event)
         QLineEdit::keyPressEvent(event);
     }
 }
+
+void LocationBar::dragEnterEvent(QDragEnterEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    if (mimeData->hasUrls() || mimeData->hasText())
+        event->acceptProposedAction();
+
+    LineEdit::dragEnterEvent(event);
+}
+
+void LocationBar::dropEvent(QDropEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+
+    QUrl url;
+    if (mimeData->hasUrls())
+        url = mimeData->urls().at(0);
+    else if (mimeData->hasText())
+        url = QUrl::fromEncoded(mimeData->text().toUtf8(), QUrl::TolerantMode);
+
+    if (url.isEmpty() || !url.isValid()) {
+        LineEdit::dropEvent(event);
+        return;
+    }
+
+    setText(QString::fromUtf8(url.toEncoded()));
+    selectAll();
+
+    event->acceptProposedAction();
+}
