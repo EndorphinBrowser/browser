@@ -277,7 +277,7 @@ void BookmarksToolBar::build()
             menu->setModel(m_bookmarksModel);
             menu->setRootIndex(idx);
             menu->addAction(new QAction(menu));
-            button->setMenu(menu);
+            action->setMenu(menu);
 
             connect(menu, SIGNAL(openUrl(const QUrl &, const QString &)),
                     this, SIGNAL(openUrl(const QUrl &, const QString &)));
