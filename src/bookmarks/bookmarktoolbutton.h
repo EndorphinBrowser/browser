@@ -35,6 +35,7 @@ public:
     BookmarkToolButton(QWidget *parent = 0);
 
 protected:
+    void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
 };

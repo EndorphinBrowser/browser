@@ -206,7 +206,7 @@ void BookmarksToolBar::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    QAction *action = actionAt(event->pos());
+    QAction *action = actionAt(m_dragStartPosition);
     QModelIndex index = this->index(action);
     if (!index.isValid()) {
         QToolBar::mouseMoveEvent(event);
@@ -228,7 +228,7 @@ void BookmarksToolBar::mouseMoveEvent(QMouseEvent *event)
 void BookmarksToolBar::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
-        m_dragStartPosition = event->pos();
+        m_dragStartPosition = mapFromGlobal(event->globalPos());
 
     QToolBar::mousePressEvent(event);
 }

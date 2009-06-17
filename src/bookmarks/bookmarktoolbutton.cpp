@@ -32,6 +32,12 @@ BookmarkToolButton::BookmarkToolButton(QWidget *parent)
 {
 }
 
+void BookmarkToolButton::mousePressEvent(QMouseEvent *event)
+{
+    QToolButton::mousePressEvent(event);
+    event->ignore();
+}
+
 void BookmarkToolButton::mouseReleaseEvent(QMouseEvent *event)
 {
     BrowserApplication::instance()->setEventMouseButtons(event->button());
