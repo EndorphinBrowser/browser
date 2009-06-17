@@ -65,29 +65,29 @@ QModelIndex BookmarksToolBar::index(QAction *action)
 void BookmarksToolBar::contextMenuRequested(const QPoint &position)
 {
     QAction *action = actionAt(position);
-    if (!action)
-        return;
-    QVariant variant = action->data();
-    if (!variant.canConvert<QModelIndex>())
-        return;
-
     QMenu menu;
-    QAction *menuAction = 0;
 
-    if (!action->menu()) {
-        menuAction = menu.addAction(tr("Open"), this, SLOT(openBookmarkInCurrentTab()));
-        menuAction->setData(variant);
+    if (action) {
+        QVariant variant = action->data();
+        Q_ASSERT(variant.canConvert<QModelIndex>());
 
-        menuAction = menu.addAction(tr("Open in New &Tab"), this, SLOT(openBookmarkInNewTab()));
+        QAction *menuAction = 0;
+
+        if (!action->menu()) {
+            menuAction = menu.addAction(tr("Open"), this, SLOT(openBookmarkInCurrentTab()));
+            menuAction->setData(variant);
+
+            menuAction = menu.addAction(tr("Open in New &Tab"), this, SLOT(openBookmarkInNewTab()));
+            menuAction->setData(variant);
+
+            menu.addSeparator();
+        }
+
+        menuAction = menu.addAction(tr("Remove"), this, SLOT(removeBookmark()));
         menuAction->setData(variant);
 
         menu.addSeparator();
     }
-
-    menuAction = menu.addAction(tr("Remove"), this, SLOT(removeBookmark()));
-    menuAction->setData(variant);
-
-    menu.addSeparator();
 
     menu.addAction(tr("Add Bookmark..."), this, SLOT(newBookmark()));
     menu.addAction(tr("Add Folder..."), this, SLOT(newFolder()));
