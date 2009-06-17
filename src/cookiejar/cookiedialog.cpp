@@ -126,7 +126,7 @@ void CookieDialog::addRule()
     QString domain = m_proxyModel->data(domainSelection, Qt::DisplayRole).toString();
     CookieExceptionsDialog dialog(m_cookieJar, this);
     dialog.setDomainName(domain);
-    dialog.show();
+    dialog.exec();
 }
 
 
