@@ -308,6 +308,27 @@ void TabBar::dropEvent(QDropEvent *event)
     }
     QTabBar::dropEvent(event);
 }
+#else
+void TabBar::dragEnterEvent(QDragEnterEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    if (mimeData->hasUrls())
+        event->acceptProposedAction();
+
+    QTabBar::dragEnterEvent(event);
+}
+
+void TabBar::dropEvent(QDropEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    QUrl url = mimeData->urls().at(0);
+    if (url.isValid()) {
+        event->acceptProposedAction();
+        loadUrl(url, TabWidget::NewSelectedTab);
+    }
+    
+    QTabBar::dropEvent(event);
+}
 #endif
 
 QSize TabBar::tabSizeHint(int index) const
