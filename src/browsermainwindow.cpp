@@ -798,19 +798,29 @@ void BrowserMainWindow::aboutToShowTextEncodingMenu()
 {
 #if WEBKIT_TRUNK
     m_viewTextEncodingMenu->clear();
+    
     int currentCodec = -1;
-    QList<QByteArray> codecs = QTextCodec::availableCodecs();
-    QByteArray defaultTextEncoding = QWebSettings::globalSettings()->defaultTextEncoding().toUtf8();
+    QStringList codecs;
+    QList<int> mibs = QTextCodec::availableMibs();
+    foreach (const int &mib, mibs) {
+        QString codec = QLatin1String(QTextCodec::codecForMib(mib)->name());
+        codecs.append(codec);
+    }
+    codecs.sort();
+    
+    QString defaultTextEncoding = QWebSettings::globalSettings()->defaultTextEncoding();
     currentCodec = codecs.indexOf(defaultTextEncoding);
+
     QAction *defaultEncoding = m_viewTextEncodingMenu->addAction(tr("Default"));
     defaultEncoding->setData(-1);
     defaultEncoding->setCheckable(true);
     if (currentCodec == -1)
         defaultEncoding->setChecked(true);
     m_viewTextEncodingMenu->addSeparator();
+
     for (int i = 0; i < codecs.count(); ++i) {
-        const QByteArray &codec = codecs.at(i);
-        QAction *action = m_viewTextEncodingMenu->addAction(QLatin1String(codec));
+        const QString &codec = codecs.at(i);
+        QAction *action = m_viewTextEncodingMenu->addAction(codec);
         action->setData(i);
         action->setCheckable(true);
         if (currentCodec == i)
