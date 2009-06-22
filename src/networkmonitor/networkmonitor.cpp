@@ -215,7 +215,7 @@ QVariant RequestModel::data(const QModelIndex &index, int role) const
                     return QLatin1String("POST");
                     break;
                 default:
-                    return QLatin1String("Unknown");
+                    return tr("Unknown");
             }
         case 1:
             return m_requests[index.row()].request.url().toEncoded();

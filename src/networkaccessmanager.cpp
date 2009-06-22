@@ -256,31 +256,28 @@ void NetworkAccessManager::proxyAuthenticationRequired(const QNetworkProxy &prox
 }
 
 #ifndef QT_NO_OPENSSL
-static QString certToFormattedString(QSslCertificate cert)
+QString NetworkAccessManager::certToFormattedString(QSslCertificate cert)
 {
-    QString resultstring = QLatin1String("<p>");
-    QStringList tmplist;
-
-    resultstring += cert.subjectInfo(QSslCertificate::CommonName);
-
-    resultstring += QString::fromLatin1("<br/>Issuer: %1")
-        .arg(cert.issuerInfo(QSslCertificate::CommonName));
-
-    resultstring += QString::fromLatin1("<br/>Not valid before: %1<br/>Valid Until: %2")
-        .arg(cert.effectiveDate().toString(Qt::ISODate))
-        .arg(cert.expiryDate().toString(Qt::ISODate));
+    QStringList message;
+    message << cert.subjectInfo(QSslCertificate::CommonName);
+    message << tr("Issuer: %1").arg(cert.issuerInfo(QSslCertificate::CommonName));
+    message << tr("Not valid before: %1").arg(cert.effectiveDate().toString());
+    message << tr("Valid until: %1").arg(cert.expiryDate().toString());
 
     QMultiMap<QSsl::AlternateNameEntryType, QString> names = cert.alternateSubjectNames();
     if (names.count() > 0) {
-        tmplist = names.values(QSsl::DnsEntry);
-        resultstring += QLatin1String("<br/>Alternate Names:<ul><li>")
-            + tmplist.join(QLatin1String("</li><li>"))
-            + QLatin1String("</li></ul>");
+        QString list;
+        list += QLatin1String("<br />");
+        list += tr("Alternate Names:");
+        list += QLatin1String("<ul><li>");
+        list += QStringList(names.values(QSsl::DnsEntry)).join(QLatin1String("</li><li>"));
+        list += QLatin1String("</li></ul>");
+        message << list;
     }
 
-    resultstring += QLatin1String("</p>");
+    QString result = QLatin1String("<p>") + message.join(QLatin1String("<br />")) + QLatin1String("</p>");
 
-    return resultstring;
+    return result;
 }
 
 void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError> &error)

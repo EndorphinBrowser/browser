@@ -65,6 +65,7 @@
 
 #include <qnetworkaccessmanager.h>
 #include <qnetworkproxy.h>
+#include <qsslconfiguration.h>
 
 #if QT_VERSION >= 0x040500
 class NetworkProxyFactory : public QNetworkProxyFactory
@@ -107,6 +108,10 @@ private slots:
 #endif
 
 private:
+#ifndef QT_NO_OPENSSL
+    static QString certToFormattedString(QSslCertificate cert);
+#endif
+
     QByteArray m_acceptLanguage;
 };
 
