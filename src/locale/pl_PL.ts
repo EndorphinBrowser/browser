@@ -155,7 +155,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Imported %1</source>
@@ -208,7 +208,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>Błąd w trakcie ładowania zakładek HTML: %1</translation>
+        <translation type="obsolete">Błąd w trakcie ładowania zakładek HTML: %1</translation>
     </message>
     <message>
         <source>Name Change</source>
@@ -222,7 +222,32 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL</source>
-        <translation>XBEL</translation>
+        <translation type="obsolete">XBEL</translation>
+    </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation>Zakładki XBEL</translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation>Zakładki Netscape HTML</translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation>Narzędzie htmlToXBel</translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation>Narzędzie htmlToXBel, które jest dostarczane z Arorą i wymagane do zaimportowania zakładek HTML, nie jest zainstalowane bądź nie jest dostępne w systemowych ścieżkach przeszukiwania.</translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation>Ładowanie zakładek</translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
+        <translation>Błąd w trakcie ładowania zakładek</translation>
     </message>
 </context>
 <context>
@@ -247,7 +272,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>Zakładka</translation>
+        <translation type="obsolete">Zakładka</translation>
     </message>
     <message>
         <source>Open</source>
@@ -268,6 +293,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Add Folder...</source>
         <translation>Dodaj katalog...</translation>
+    </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation>Zakładki</translation>
     </message>
 </context>
 <context>
@@ -1250,6 +1279,22 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Certyfikaty:&lt;br/&gt;%1&lt;br/&gt;Czy chcesz zaakceptować wszystkie certyfikaty?&lt;/qt&gt;</translation>
     </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation>Wydawca: %1</translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation>Nieważny przed: %1</translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation>Ważny do: %1</translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation>Alternatywne nazwy:</translation>
+    </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
@@ -1447,6 +1492,10 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     <message>
         <source>Info</source>
         <translation>Informacje</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation>Nieznany</translation>
     </message>
 </context>
 <context>
