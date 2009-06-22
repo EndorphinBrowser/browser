@@ -51,6 +51,11 @@ public:
     {
         return OpenSearchManager::generateEngineFileName(engineName);
     }
+
+    static int defaultCount()
+    {
+        return QDir(":/searchengines/").count();
+    }
 };
 
 // This will be called before the first test function is executed.
@@ -203,7 +208,7 @@ void tst_OpenSearchManager::restoreDefaults()
 
     QCOMPARE(manager.enginesCount(), 1);
     manager.restoreDefaults();
-    QCOMPARE(manager.enginesCount(), 5);
+    QCOMPARE(manager.enginesCount(), manager.defaultCount());
 
     foreach (const QString &name, manager.allEnginesNames()) {
         manager.removeEngine(name);
@@ -218,7 +223,7 @@ void tst_OpenSearchManager::restoreDefaults()
 
     manager.addEngine(engine);
     manager.restoreDefaults();
-    QCOMPARE(manager.enginesCount(), 6);
+    QCOMPARE(manager.enginesCount(), manager.defaultCount() + 1);
 
     manager.removeEngine(engine->name());
 
