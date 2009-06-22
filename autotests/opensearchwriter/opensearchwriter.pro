@@ -9,5 +9,5 @@ SOURCES += \
     tst_opensearchwriter.cpp
 
 RESOURCES += \
-    testfiles.qrc
+    opensearchwriter.qrc
 
