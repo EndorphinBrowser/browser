@@ -254,18 +254,23 @@ Qt::ItemFlags BookmarksModel::flags(const QModelIndex &index) const
     if (!index.isValid())
         return Qt::NoItemFlags;
 
+    BookmarkNode *node = this->node(index);
+    BookmarkNode::Type type = node->type();
     Qt::ItemFlags flags = Qt::ItemIsSelectable | Qt::ItemIsEnabled;
 
-    BookmarkNode *bookmarkNode = node(index);
-
-    if (bookmarkNode != m_bookmarksManager->menu()
-        && bookmarkNode != m_bookmarksManager->toolbar()) {
-        flags |= Qt::ItemIsDragEnabled;
-        if (bookmarkNode->type() != BookmarkNode::Separator)
-            flags |= Qt::ItemIsEditable;
-    }
     if (hasChildren(index))
         flags |= Qt::ItemIsDropEnabled;
+
+    if (node == m_bookmarksManager->menu()
+        || node == m_bookmarksManager->toolbar())
+        return flags;
+
+    flags |= Qt::ItemIsDragEnabled;
+
+    if ((index.column() == 0 && type != BookmarkNode::Separator)
+        || (index.column() == 1 && type == BookmarkNode::Bookmark))
+        flags |= Qt::ItemIsEditable;
+
     return flags;
 }
 
