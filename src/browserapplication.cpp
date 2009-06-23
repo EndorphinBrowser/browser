@@ -106,7 +106,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QCoreApplication::setApplicationVersion(version);
 #ifndef AUTOTESTS
     QStringList args = QCoreApplication::arguments();
-    QString message = (args.count() > 1) ? args.last() : QString();
+    QString message = (args.count() > 1) ? parseArgumentUrl(args.last()) : QString();
     if (sendMessage(message))
         return;
     // not sure what else to do...
@@ -178,6 +178,17 @@ void BrowserApplication::retranslate()
     networkAccessManager()->loadSettings();
 }
 
+// The only special property of an argument url is that the file's
+// can be local, they don't have to be absolute.
+QString BrowserApplication::parseArgumentUrl(const QString &string) const
+{
+    if (QFile::exists(string)) {
+        QFileInfo info(string);
+        return info.canonicalFilePath();
+    }
+    return string;
+}
+
 void BrowserApplication::messageReceived(const QString &message)
 {
     if (!message.isEmpty()) {
@@ -244,14 +255,15 @@ void BrowserApplication::postLaunch()
         QStringList args = QCoreApplication::arguments();
 
         if (args.count() > 1) {
+            QString argumentUrl = parseArgumentUrl(args.last());
             switch (startup) {
             case 2: {
                 restoreLastSession();
-                mainWindow()->tabWidget()->loadString(args.last(), TabWidget::NewSelectedTab);
+                mainWindow()->tabWidget()->loadString(argumentUrl, TabWidget::NewSelectedTab);
                 break;
             }
             default:
-                mainWindow()->tabWidget()->loadString(args.last());
+                mainWindow()->tabWidget()->loadString(argumentUrl);
                 break;
             }
         } else {

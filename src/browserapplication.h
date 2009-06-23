@@ -144,6 +144,7 @@ signals:
     void privacyChanged(bool isPrivate);
 
 private:
+    QString parseArgumentUrl(const QString &string) const;
     void clean();
 
     static HistoryManager *s_historyManager;
