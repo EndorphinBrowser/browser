@@ -157,10 +157,14 @@ void SettingsDialog::loadFromSettings()
     expireHistory->setCurrentIndex(idx);
     settings.endGroup();
 
+    settings.beginGroup(QLatin1String("urlloading"));
+    bool search = settings.value(QLatin1String("searchEngineFallback"), false).toBool();
+    searchEngineFallback->setChecked(search);
+    settings.endGroup();
+
     settings.beginGroup(QLatin1String("downloadmanager"));
     bool alwaysPromptForFileName = settings.value(QLatin1String("alwaysPromptForFileName"), false).toBool();
-    if (alwaysPromptForFileName)
-        downloadAsk->setChecked(true);
+    downloadAsk->setChecked(alwaysPromptForFileName);
     QString downloadDirectory = settings.value(QLatin1String("downloadDirectory"), downloadsLocation->text()).toString();
     downloadsLocation->setText(downloadDirectory);
     settings.endGroup();
@@ -279,6 +283,10 @@ void SettingsDialog::saveToSettings()
     case 6: idx = -2; break;
     }
     settings.setValue(QLatin1String("historyLimit"), idx);
+    settings.endGroup();
+
+    settings.beginGroup(QLatin1String("urlloading"));
+    settings.setValue(QLatin1String("searchEngineFallback"), searchEngineFallback->isChecked());
     settings.endGroup();
 
     // Appearance

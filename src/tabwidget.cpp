@@ -70,8 +70,10 @@
 #include "browsermainwindow.h"
 #include "history.h"
 #include "historymanager.h"
-#include "tabbar.h"
 #include "locationbar.h"
+#include "opensearchengine.h"
+#include "opensearchmanager.h"
+#include "tabbar.h"
 #include "toolbarsearch.h"
 #include "webactionmapper.h"
 #include "webpage.h"
@@ -924,13 +926,24 @@ void TabWidget::loadString(const QString &string, OpenUrlIn tab)
 QUrl TabWidget::guessUrlFromString(const QString &string)
 {
     QUrl url = WebView::guessUrlFromString(string);
-    if (url.isValid())
+
+    // QUrl::isValid() is too much tolerant.
+    // We actually want to check if the url conforms to the RFC, which QUrl::isValid() doesn't state.
+    if (!url.scheme().isEmpty() && !url.host().isEmpty())
         return url;
 
-    // In the future we could do more fancy things such as automatically searching
-    // on the current search engine, looking through our history or something else.
-    QString urlString = QLatin1String("http://") + string;
-    return QUrl::fromEncoded(urlString.toUtf8(), QUrl::TolerantMode);
+    QSettings settings;
+    settings.beginGroup(QLatin1String("urlloading"));
+    bool search = settings.value(QLatin1String("searchEngineFallback"), false).toBool();
+
+    if (search) {
+        url = ToolbarSearch::openSearchManager()->currentEngine()->searchUrl(string.trimmed());
+    } else {
+        QString urlString = QLatin1String("http://") + string.trimmed();
+        url = QUrl::fromEncoded(urlString.toUtf8(), QUrl::TolerantMode);
+    }
+
+    return url;
 }
 
 /*
