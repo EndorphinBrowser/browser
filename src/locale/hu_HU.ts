@@ -159,12 +159,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL</source>
-        <translation>XBEL</translation>
+        <translation type="obsolete">XBEL</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>Hiba a html könyvjelzők betöltése közben: %1
+        <translation type="obsolete">Hiba a html könyvjelzők betöltése közben: %1
 </translation>
     </message>
     <message>
@@ -181,7 +181,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>lupdate ../src/src.pro</translation>
+        <translation type="obsolete">lupdate ../src/src.pro</translation>
     </message>
     <message>
         <source>Export error</source>
@@ -209,6 +209,32 @@ p, li { white-space: pre-wrap; }
         <comment>Undo bookmark url change</comment>
         <translation>Hivatkozás megváltoztatása</translation>
     </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation>XBEL könyvjelzők</translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation>HTML Netscape könyvjelzők</translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation>htmlToXBel eszköz szükséges</translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation>A HTML könyvjelzők importálására szolgáló, az Arora részeként szállított htmlToXBel eszköz nincs telepítve, vagy nem érhető el a keresési útvonalon.</translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation>Könyvjelző betöltése</translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
+        <translation>Hiba a HTML könyvjelzők betöltése közben: %1
+</translation>
+    </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
@@ -232,7 +258,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>Könyvjelző</translation>
+        <translation type="obsolete">Könyvjelző</translation>
     </message>
     <message>
         <source>Open</source>
@@ -254,12 +280,16 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Könyvjelzőmappa hozzáadása...</translation>
     </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation>Könyvjelzők</translation>
+    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation> (Verzió: %1 %2)</translation>
+        <translation type="obsolete"> (Verzió: %1 %2)</translation>
     </message>
     <message>
         <source>There are %1 windows and %2 tabs open
@@ -428,7 +458,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>Hi&amp;story</source>
-        <translation>&amp;Előzmények</translation>
+        <translation>Elő&amp;zmények</translation>
     </message>
     <message>
         <source>Back</source>
@@ -596,6 +626,14 @@ Do you want to reload all pages?</source>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Alapértelmezett</translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation>Szövegkódolás</translation>
     </message>
 </context>
 <context>
@@ -821,7 +859,7 @@ Do you want to reload all pages?</source>
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation>Letöltés</translation>
+        <translation type="obsolete">Letöltés</translation>
     </message>
     <message>
         <source>Ico</source>
@@ -913,6 +951,10 @@ Biztosan ki akar lépni?</translation>
     <message>
         <source>MB</source>
         <translation>MB</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation>GB</translation>
     </message>
 </context>
 <context>
@@ -1025,6 +1067,22 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
     <message>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Tanúsítványok:&lt;br/&gt;%1&lt;br/&gt;El akarja fogadni ezeket a tanúsítványokat?&lt;/qt&gt;</translation>
+    </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation>Kibocsátó: %1</translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation>Nem érvényes ezelőtt: %1</translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation>Érvényes eddig: %1</translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation>Alternatív nevek:</translation>
     </message>
 </context>
 <context>
@@ -1220,12 +1278,16 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
         <source>Info</source>
         <translation>Információ</translation>
     </message>
+    <message>
+        <source>Unknown</source>
+        <translation>Ismeretlen</translation>
+    </message>
 </context>
 <context>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation>Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
         <source>Done</source>
@@ -1263,7 +1325,7 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Restore windows and tabs from last time</source>
-        <translation>Legutóbbi ablakok és fülek visszaállítása</translation>
+        <translation>Legutóbbi ablakok és lapok visszaállítása</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -1431,7 +1493,7 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Quit the application when last tab is closed</source>
-        <translation>Kilépés az alkalmazásból az utolsó fül bezárásakor</translation>
+        <translation>Kilépés az alkalmazásból az utolsó lap bezárásakor</translation>
     </message>
     <message>
         <source>Opening links</source>
@@ -1557,7 +1619,11 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Oldal forrása</translation>
+        <translation type="obsolete">Oldal forrása</translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation>%1 oldal forrása</translation>
     </message>
 </context>
 <context>
@@ -1659,7 +1725,7 @@ Biztosan be akarja zárni ezt az oldalt?
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation>Összes fül felvétele a könyvjelzők közé</translation>
+        <translation>Összes lap felvétele a könyvjelzők közé</translation>
     </message>
 </context>
 <context>
@@ -1711,6 +1777,14 @@ Biztosan be akarja zárni ezt az oldalt?
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation>Ha a számítógép vagy a hálózat tűzfal, illetve proxy mögött van, a hálózat eléréséhez megfelelő hozzáférési jogosultság szükséges.</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation>POST kérés újraküldése</translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation>Az oldal megjelenítéséhez az űrlapot minden adattal együtt újra el kell küldeni. A kétszer végrehajtott megegyező művelet az oldalon nem várt komplikációkkal járhat. Biztosan folytatni szeretné?</translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -1761,6 +1835,34 @@ Biztosan be akarja zárni ezt az oldalt?
     <message>
         <source>Loading...</source>
         <translation>Töltés...</translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation>Hozzáadás az eszköztár keresőmezőjéhez</translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation>Az eljárás nem támogatott</translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation>%1 eljárás nem támogatott.</translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation>Keresőmotor</translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation>Válassza ki a kívánt keresőmotort</translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation>Motor neve</translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
+        <translation>Adjon meg egy nevet a motornak</translation>
     </message>
 </context>
 <context>
