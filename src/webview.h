@@ -79,7 +79,7 @@ public:
     WebView(QWidget *parent = 0);
     WebPage *webPage() const { return m_page; }
 
-#if 1 // soon to be #if QT_VERSION <= 0x040600
+#if !(QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK))
     static QUrl guessUrlFromString(const QString &url);
 #endif
 
@@ -128,7 +128,7 @@ private slots:
     void copyImageLocationToClipboard();
     void bookmarkLink();
     void searchRequested(QAction *action);
-#ifdef WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     void addSearchEngine();
 #endif
 

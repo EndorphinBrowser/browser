@@ -81,7 +81,7 @@
 #include <qmenubar.h>
 #include <qwebframe.h>
 
-#ifdef WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
 Q_DECLARE_METATYPE(QWebElement)
 #include <qinputdialog.h>
 #include <qmessagebox.h>
@@ -118,7 +118,7 @@ WebView::WebView(QWidget *parent)
     m_zoomLevels << 110 << 120 << 133 << 150 << 170 << 200 << 240 << 300;
 }
 
-#if 1 // soon to be #if QT_VERSION <= 0x040600
+#if !(QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK))
 #include <qdir.h>
 QUrl WebView::guessUrlFromString(const QString &string)
 {
@@ -219,7 +219,7 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         connect(searchMenu, SIGNAL(triggered(QAction *)), this, SLOT(searchRequested(QAction *)));
     }
 
-#ifdef WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     QWebElement element = r.element();
     if (!element.isNull()
         && element.tagName().toLower() == QLatin1String("input")
@@ -357,7 +357,7 @@ void WebView::searchRequested(QAction *action)
     }
 }
 
-#ifdef WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
 void WebView::addSearchEngine()
 {
     QAction *action = qobject_cast<QAction*>(sender());

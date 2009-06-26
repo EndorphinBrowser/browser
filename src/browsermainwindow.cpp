@@ -660,7 +660,7 @@ void BrowserMainWindow::setupMenu()
             this, SLOT(viewPageSource()));
     m_viewMenu->addAction(m_viewSourceAction);
 
-#if WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     m_viewMenu->addSeparator();
 
     m_viewTextEncodingAction = new QAction(m_viewMenu);
@@ -796,9 +796,9 @@ void BrowserMainWindow::setupMenu()
 
 void BrowserMainWindow::aboutToShowTextEncodingMenu()
 {
-#if WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     m_viewTextEncodingMenu->clear();
-    
+
     int currentCodec = -1;
     QStringList codecs;
     QList<int> mibs = QTextCodec::availableMibs();
@@ -807,7 +807,7 @@ void BrowserMainWindow::aboutToShowTextEncodingMenu()
         codecs.append(codec);
     }
     codecs.sort();
-    
+
     QString defaultTextEncoding = QWebSettings::globalSettings()->defaultTextEncoding();
     currentCodec = codecs.indexOf(defaultTextEncoding);
 
@@ -832,7 +832,7 @@ void BrowserMainWindow::aboutToShowTextEncodingMenu()
 void BrowserMainWindow::viewTextEncoding(QAction *action)
 {
     Q_UNUSED(action);
-#if WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     Q_ASSERT(action);
     QList<QByteArray> codecs = QTextCodec::availableCodecs();
     int offset = action->data().toInt();
@@ -884,7 +884,7 @@ void BrowserMainWindow::retranslate()
     m_viewSourceAction->setText(tr("Page S&ource"));
     m_viewSourceAction->setShortcut(tr("Ctrl+Alt+U"));
     m_viewFullScreenAction->setText(tr("&Full Screen"));
-#if WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     m_viewTextEncodingAction->setText(tr("Text Encoding"));
 #endif
 

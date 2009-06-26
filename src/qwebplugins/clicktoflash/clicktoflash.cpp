@@ -33,7 +33,7 @@
 #include <qwebframe.h>
 #include <qwebview.h>
 
-#ifdef WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
 #include <qwebelement.h>
 #endif
 
@@ -104,7 +104,7 @@ void ClickToFlash::load(bool loadAll)
     if (!view)
         return;
 
-#ifdef WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     const QString selector = QLatin1String("%1[type=\"application/x-shockwave-flash\"]");
     const QString mime = QLatin1String("application/futuresplash");
 

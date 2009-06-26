@@ -38,7 +38,7 @@
 #include <qsettings.h>
 #include <qwebframe.h>
 
-#ifdef WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
 #include <qwebelement.h>
 #endif
 
@@ -80,7 +80,7 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
 {
     QList<WebPageLinkedResource> resources;
 
-#ifdef WEBKIT_TRUNK
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     QList<QWebElement> linkElements = mainFrame()->findAllElements(QLatin1String("html > head > link"));
 
     foreach (const QWebElement &linkElement, linkElements) {

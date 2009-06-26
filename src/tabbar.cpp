@@ -326,7 +326,7 @@ void TabBar::dropEvent(QDropEvent *event)
         event->acceptProposedAction();
         loadUrl(url, TabWidget::NewSelectedTab);
     }
-    
+
     QTabBar::dropEvent(event);
 }
 #endif
