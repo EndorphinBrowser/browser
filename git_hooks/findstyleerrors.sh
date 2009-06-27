@@ -23,6 +23,8 @@ grep $options '){' $args
 grep $options '	' $args
 grep $options ' \*>' $args
 egrep $options '\(.*\* .*\)' $args | grep '::'
+grep $options '[a-z]++' $args | grep 'for'
+grep $options '[a-z]--' $args | grep 'for'
 
 # var *name;
 grep $options '[^\* \/]\* ' $args

@@ -116,13 +116,13 @@ void SourceHighlighter::highlightBlock(const QString &text)
                     } else {
                         state = InTag;
                     }
-                    pos++;
+                    ++pos;
                 } else if (text.at(pos) == QLatin1Char('&')) {
                     regex.setPattern(QLatin1String("&[a-zA-Z0-9]+;"));
                     if (regex.indexIn(text, pos) == pos) {
                         setFormat(pos, regex.matchedLength(), formats[Entity]);
                     }
-                    pos++;
+                    ++pos;
                 }
             }
             break;
@@ -133,7 +133,7 @@ void SourceHighlighter::highlightBlock(const QString &text)
                 state = Normal;
                 pos += 3;
                 setFormat(start, pos - start, formats[Comment]);
-                pos++;
+                ++pos;
             } else {
                 setFormat(start, len - start, formats[Comment]);
             }
@@ -144,13 +144,13 @@ void SourceHighlighter::highlightBlock(const QString &text)
             if (pos >= 0) {
                 if (text.at(pos) == QLatin1Char('>')) {
                     state = Normal;
-                    pos++;
+                    ++pos;
                     setFormat(start, pos - start, formats[Tag]);
-                } else if (text.at(pos)== QLatin1Char('"')) {
+                } else if (text.at(pos) == QLatin1Char('"')) {
                     setFormat(start, pos - start, formats[Tag]);
                     start = pos;
                     state = InAttribute;
-                    pos++;
+                    ++pos;
                 }
             } else {
                 setFormat(start, len-start, formats[Tag]);

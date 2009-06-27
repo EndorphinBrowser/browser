@@ -304,7 +304,7 @@ void ToolbarSearch::showEnginesMenu()
     if (!engines.empty())
         menu.addSeparator();
 
-    for (int i = 0; i < engines.count(); i++) {
+    for (int i = 0; i < engines.count(); ++i) {
         WebPageLinkedResource engine = engines.at(i);
 
         QUrl url = QUrl(engine.href);

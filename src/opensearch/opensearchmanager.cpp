@@ -181,7 +181,7 @@ QString OpenSearchManager::generateEngineFileName(const QString &engineName) con
     QString fileName;
 
     // Strip special characters from the name.
-    for (int i = 0; i < engineName.count(); i++) {
+    for (int i = 0; i < engineName.count(); ++i) {
         if (engineName.at(i).isSpace()) {
             fileName.append(QLatin1Char('_'));
             continue;
