@@ -212,12 +212,16 @@ QString DownloadItem::saveFileName(const QString &directory) const
         qDebug() << "DownloadItem::" << __FUNCTION__ << "downloading unknown file:" << m_url;
 #endif
     }
-    QString name = directory + baseName + QLatin1Char('.') + endName;
+
+    if (!endName.isEmpty())
+        endName = QLatin1Char('.') + endName;
+
+    QString name = directory + baseName + endName;
     if (!m_requestFileName && QFile::exists(name)) {
         // already exists, don't overwrite
         int i = 1;
         do {
-            name = directory + baseName + QLatin1Char('-') + QString::number(i++) + QLatin1Char('.') + endName;
+            name = directory + baseName + QLatin1Char('-') + QString::number(i++) + endName;
         } while (QFile::exists(name));
     }
     return name;
