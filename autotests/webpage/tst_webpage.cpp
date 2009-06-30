@@ -287,42 +287,54 @@ void tst_WebPage::handleUnsupportedContent()
 
 void tst_WebPage::linkedResources()
 {
-    QLatin1String html("<html>"
-                       "    <head>"
-                       "        <link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\"/>"
-                       "        <link rel=\"alternate\" type=\"application/rss+xml\" href=\"rss1.xml\"/>"
-                       "        <link rel=\"alternate\" type=\"application/rss+xml\" href=\"rss2.xml\" title=\"Lorem Ipsum\"/>"
-                       "        <link rel=\"alternate\" type=\"application/atom+xml\" href=\"atom1.xml\"/>"
-                       "    </head>"
-                       "    <body>"
-                       "        <link rel=\"alternate\" type=\"application/atom+xml\" href=\"atom2.xml\"/>"
-                       "    </body>"
-                       "</html>");
-
     SubWebPage page;
-    page.mainFrame()->setHtml(QString(html));
 
-    QList<WebPageLinkedResource> linkedResources = page.linkedResources();
-    QCOMPARE(linkedResources.count(), 4);
+    QString html = "<html>"
+        "<head>"
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/common.css\" />"
+            "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"./rss.xml\" />"
+            "<link rel=\"alternate\" type=\"application/atom+xml\" href=\"../atom.xml\" title=\"Feed\" />"
+            "<link rel=\"search\" type=\"application/opensearchdescription+xml\" href=\"http://external.foo/search.xml\" />"
+        "</head>"
+        "<body>"
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/ie.css\" />"
+        "</body>"
+    "</html>";
 
-    QCOMPARE(linkedResources.at(0).rel, QLatin1String("stylesheet"));
-    QCOMPARE(linkedResources.at(0).type, QLatin1String("text/css"));
-    QCOMPARE(linkedResources.at(0).href, QLatin1String("styles.css"));
-    QCOMPARE(linkedResources.at(0).title, QString());
+    page.mainFrame()->setHtml(html, QUrl("http://foobar.baz/foo/"));
 
-    QCOMPARE(linkedResources.at(1).rel, QLatin1String("alternate"));
-    QCOMPARE(linkedResources.at(1).type, QLatin1String("application/rss+xml"));
-    QCOMPARE(linkedResources.at(1).href, QLatin1String("rss1.xml"));
+    QList<WebPageLinkedResource> resources = page.linkedResources();
+    QCOMPARE(resources.count(), 4);
 
-    QCOMPARE(linkedResources.at(2).title, QLatin1String("Lorem Ipsum"));
+    QCOMPARE(resources.at(0).rel, QString("stylesheet"));
+    QCOMPARE(resources.at(0).type, QString("text/css"));
+    QCOMPARE(resources.at(0).href, QUrl("http://foobar.baz/foo/styles/common.css"));
+    QCOMPARE(resources.at(0).title, QString());
 
-    QCOMPARE(linkedResources.at(3).type, QLatin1String("application/atom+xml"));
+    QCOMPARE(resources.at(1).rel, QString("alternate"));
+    QCOMPARE(resources.at(1).type, QString("application/rss+xml"));
+    QCOMPARE(resources.at(1).href, QUrl("http://foobar.baz/foo/rss.xml"));
 
-    QList<WebPageLinkedResource> linkedFeeds = page.linkedResources(QLatin1String("alternate"));
-    QCOMPARE(linkedFeeds.count(), 3);
+    QCOMPARE(resources.at(2).href, QUrl("http://foobar.baz/atom.xml"));
+    QCOMPARE(resources.at(2).title, QString("Feed"));
 
-    QCOMPARE(linkedFeeds.at(2).rel, QLatin1String("alternate"));
-    QCOMPARE(linkedFeeds.at(2).href, QLatin1String("atom1.xml"));
+    QCOMPARE(resources.at(3).rel, QString("search"));
+    QCOMPARE(resources.at(3).type, QString("application/opensearchdescription+xml"));
+    QCOMPARE(resources.at(3).href, QUrl("http://external.foo/search.xml"));
+
+    QString js = "var base = document.createElement('base');"
+                 "base.setAttribute('href', 'http://barbaz.foo/bar/');"
+                 "document.getElementsByTagName('head')[0].appendChild(base);";
+
+    page.mainFrame()->evaluateJavaScript(js);
+
+    resources = page.linkedResources();
+    QCOMPARE(resources.count(), 4);
+
+    QCOMPARE(resources.at(0).href, QUrl("http://barbaz.foo/bar/styles/common.css"));
+    QCOMPARE(resources.at(1).href, QUrl("http://barbaz.foo/bar/rss.xml"));
+    QCOMPARE(resources.at(2).href, QUrl("http://barbaz.foo/atom.xml"));
+    QCOMPARE(resources.at(3).href, QUrl("http://external.foo/search.xml"));
 }
 
 QTEST_MAIN(tst_WebPage)

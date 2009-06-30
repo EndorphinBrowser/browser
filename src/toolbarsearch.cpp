@@ -307,7 +307,7 @@ void ToolbarSearch::showEnginesMenu()
     for (int i = 0; i < engines.count(); ++i) {
         WebPageLinkedResource engine = engines.at(i);
 
-        QUrl url = QUrl(engine.href);
+        QUrl url = engine.href;
         QString title = engine.title;
         QString mimetype = engine.type;
 
@@ -315,9 +315,6 @@ void ToolbarSearch::showEnginesMenu()
             continue;
         if (url.isEmpty())
             continue;
-
-        if (url.isRelative())
-            url = webView->url().resolved(url);
 
         if (title.isEmpty())
             title = webView->title().isEmpty() ? url.host() : webView->title();

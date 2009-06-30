@@ -81,6 +81,8 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
     QList<WebPageLinkedResource> resources;
 
 #if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
+    QUrl baseUrl = mainFrame()->baseUrl();
+
     QList<QWebElement> linkElements = mainFrame()->findAllElements(QLatin1String("html > head > link"));
 
     foreach (const QWebElement &linkElement, linkElements) {
@@ -97,12 +99,15 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
         WebPageLinkedResource resource;
         resource.rel = rel;
         resource.type = type;
-        resource.href = href;
+        resource.href = baseUrl.resolved(QUrl::fromEncoded(href.toUtf8()));
         resource.title = title;
 
         resources.append(resource);
     }
 #else
+    QString baseUrlString = mainFrame()->evaluateJavaScript(QLatin1String("document.baseURI")).toString();
+    QUrl baseUrl = QUrl::fromEncoded(baseUrlString.toUtf8());
+
     QFile file(QLatin1String(":fetchLinks.js"));
     if (!file.open(QFile::ReadOnly))
         return resources;
@@ -124,7 +129,7 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
         WebPageLinkedResource resource;
         resource.rel = rel;
         resource.type = type;
-        resource.href = href;
+        resource.href = baseUrl.resolved(QUrl::fromEncoded(href.toUtf8()));
         resource.title = title;
 
         resources.append(resource);

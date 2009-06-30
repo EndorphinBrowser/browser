@@ -30,7 +30,7 @@ class WebPageLinkedResource
 public:
     QString rel;
     QString type;
-    QString href;
+    QUrl href;
     QString title;
 };
 
