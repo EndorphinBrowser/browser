@@ -43,9 +43,18 @@
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="searchInfo">
+    <widget class="QLabel" name="searchInfo"/>
+   </item>
+   <item>
+    <widget class="QToolButton" name="highlightAllButton">
      <property name="text">
-      <string notr="true">TextLabel</string>
+      <string>Highlight All</string>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
