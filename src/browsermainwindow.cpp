@@ -1125,8 +1125,14 @@ void BrowserMainWindow::aboutApplication()
 
 void BrowserMainWindow::fileNew()
 {
-    BrowserMainWindow *mw = BrowserApplication::instance()->newMainWindow();
-    mw->goHome();
+    BrowserMainWindow *window = BrowserApplication::instance()->newMainWindow();
+
+    QSettings settings;
+    settings.beginGroup(QLatin1String("MainWindow"));
+    int startup = settings.value(QLatin1String("startupBehavior")).toInt();
+
+    if (startup == 0)
+        window->goHome();
 }
 
 void BrowserMainWindow::fileOpen()
