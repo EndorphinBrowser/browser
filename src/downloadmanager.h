@@ -151,6 +151,9 @@ public:
     static QString timeString(double timeRemaining);
     static QString dataString(qint64 size);
 
+    void setDownloadDirectory(QString dir);
+    QString &downloadDirectory();
+
 public slots:
     void download(const QNetworkRequest &request, bool requestFileName = false);
     inline void download(const QUrl &url, bool requestFileName = false)
@@ -174,6 +177,8 @@ private:
     QFileIconProvider *m_iconProvider;
     QList<DownloadItem*> m_downloads;
     RemovePolicy m_removePolicy;
+    QString m_downloadDirectory;
+
     friend class DownloadModel;
 };
 

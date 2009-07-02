@@ -158,12 +158,7 @@ void DownloadItem::getFileName()
     if (m_gettingFileName)
         return;
 
-    QSettings settings;
-    settings.beginGroup(QLatin1String("downloadmanager"));
-    QString defaultLocation = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
-    QString downloadDirectory = settings.value(QLatin1String("downloadDirectory"), defaultLocation).toString();
-    if (!downloadDirectory.isEmpty())
-        downloadDirectory += QLatin1Char('/');
+    QString downloadDirectory = BrowserApplication::downloadManager()->downloadDirectory();
 
     QString defaultFileName = saveFileName(downloadDirectory);
     QString fileName = defaultFileName;
@@ -191,7 +186,10 @@ void DownloadItem::getFileName()
         }
     }
 
-    fileNameLabel->setText(QFileInfo(m_output.fileName()).fileName());
+    QFileInfo qf = QFileInfo(m_output.fileName());
+    BrowserApplication::downloadManager()->setDownloadDirectory(qf.absoluteDir().absolutePath());
+    fileNameLabel->setText(qf.fileName());
+
     if (m_requestFileName)
         downloadReadyRead();
 }
@@ -457,6 +455,12 @@ DownloadManager::DownloadManager(QWidget *parent)
     , m_removePolicy(Never)
 {
     setupUi(this);
+
+    QSettings settings;
+    settings.beginGroup(QLatin1String("downloadmanager"));
+    QString defaultLocation = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
+    setDownloadDirectory(settings.value(QLatin1String("downloadDirectory"), defaultLocation).toString());
+
     downloadsView->setShowGrid(false);
     downloadsView->verticalHeader()->hide();
     downloadsView->horizontalHeader()->hide();
@@ -677,6 +681,18 @@ void DownloadManager::updateItemCount()
 {
     int count = m_downloads.count();
     itemCount->setText(tr("%n Download(s)", "", count));
+}
+
+void DownloadManager::setDownloadDirectory(QString dir)
+{
+    m_downloadDirectory = dir;
+    if (!m_downloadDirectory.isEmpty())
+        m_downloadDirectory += QLatin1Char('/');
+}
+
+QString &DownloadManager::downloadDirectory()
+{
+    return m_downloadDirectory;
 }
 
 QString DownloadManager::timeString(double timeRemaining)
