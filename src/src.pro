@@ -48,4 +48,13 @@ unix {
     man-compress.path = $$DATADIR/man/man1
     man-compress.extra = "" "gzip -9 -f \$(INSTALL_ROOT)/$$DATADIR/man/man1/arora.1" ""
     man-compress.depends = install_man
+
+    GNOME_DEFAULT_APPS_PATH = $$system(pkg-config --variable=defappsdir gnome-default-applications)
+
+    !isEmpty(GNOME_DEFAULT_APPS_PATH) {
+        INSTALLS += gnome-default-app
+
+        gnome-default-app.path = GNOME_DEFAULT_APPS_PATH
+        gnome-default-app.files = data/arora.xml
+    }
 }
