@@ -48,11 +48,15 @@ OpenSearchEngine::~OpenSearchEngine()
 
 QString OpenSearchEngine::parseTemplate(const QString &searchTerm, const QString &searchTemplate)
 {
+    QString language = BrowserApplication::languageManager()->currentLanguage();
+    // Simple conversion to RFC 3066.
+    language = language.replace(QLatin1Char('_'), QLatin1Char('-'));
+
     QString result = searchTemplate;
     result.replace(QLatin1String("{count}"), QLatin1String("20"));
     result.replace(QLatin1String("{startIndex}"), QLatin1String("0"));
     result.replace(QLatin1String("{startPage}"), QLatin1String("0"));
-    result.replace(QLatin1String("{language}"), BrowserApplication::languageManager()->currentLanguage().mid(0, 2));
+    result.replace(QLatin1String("{language}"), language);
     result.replace(QLatin1String("{inputEncoding}"), QLatin1String("UTF-8"));
     result.replace(QLatin1String("{outputEncoding}"), QLatin1String("UTF-8"));
     result.replace(QLatin1String("{searchTerms}"), searchTerm);

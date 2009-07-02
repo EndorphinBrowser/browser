@@ -72,6 +72,8 @@ private slots:
     void suggestionsUrlTemplate();
     void parseTemplate_data();
     void parseTemplate();
+    void languageCodes_data();
+    void languageCodes();
 };
 
 // Subclass that exposes the protected functions.
@@ -98,6 +100,7 @@ public:
 // It is only called once.
 void tst_OpenSearchEngine::initTestCase()
 {
+    QCoreApplication::setApplicationName("tst_opensearchengine");
 }
 
 // This will be called after the last test function is executed.
@@ -553,7 +556,7 @@ void tst_OpenSearchEngine::suggestionsUrlTemplate()
 
 void tst_OpenSearchEngine::parseTemplate_data()
 {
-    QString lang = BrowserApplication::languageManager()->currentLanguage().mid(0, 2);
+    QString lang = BrowserApplication::languageManager()->currentLanguage().replace(QLatin1Char('_'), QLatin1Char('-'));
 
     QTest::addColumn<QString>("searchTerm");
     QTest::addColumn<QString>("searchTemplate");
@@ -575,7 +578,9 @@ void tst_OpenSearchEngine::parseTemplate_data()
                     << QString("http://foobar.baz/?q=abc&amp;x=abc") << true;
     QTest::newRow("referrer") << QString("foo")
                     << QString("http://foobar.baz/?q={searchTerms}&amp;a={source}&amp;b={ref:source}&amp;c={referrer:source?}")
-                    << QString("http://foobar.baz/?q=foo&amp;a=Arora&amp;b=Arora&amp;c=Arora") << true;
+                    << QString("http://foobar.baz/?q=foo&amp;a=tst_opensearchengine"
+                               "&amp;b=tst_opensearchengine&amp;c=tst_opensearchengine")
+                    << true;
 }
 
 // protected QString parseTemplate(QString const &searchTerm, QString const &searchTemplate) const
@@ -590,6 +595,28 @@ void tst_OpenSearchEngine::parseTemplate()
     QString url = engine.call_parseTemplate(searchTerm, searchTemplate);
     QCOMPARE(url, parseTemplate);
     QCOMPARE(QUrl(url).isValid(), valid);
+}
+
+void tst_OpenSearchEngine::languageCodes_data()
+{
+    QTest::addColumn<QString>("languageCode");
+    QTest::addColumn<QString>("url");
+
+    QTest::newRow("es") << QString("es") << QString("http://foobar.baz/?l=es");
+    QTest::newRow("pt_BR") << QString("pt_BR") << QString("http://foobar.baz/?l=pt-BR");
+}
+
+void tst_OpenSearchEngine::languageCodes()
+{
+    QFETCH(QString, languageCode);
+    QFETCH(QString, url);
+
+    QVERIFY(BrowserApplication::instance()->languageManager()->isLanguageAvailable(languageCode));
+    BrowserApplication::instance()->languageManager()->setCurrentLanguage(languageCode);
+    QCOMPARE(BrowserApplication::instance()->languageManager()->currentLanguage(), languageCode);
+
+    SubOpenSearchEngine engine;
+    QCOMPARE(engine.call_parseTemplate(QString("foo"), QString("http://foobar.baz/?l={language}")), url);
 }
 
 QTEST_MAIN(tst_OpenSearchEngine)
