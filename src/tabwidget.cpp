@@ -929,7 +929,7 @@ QUrl TabWidget::guessUrlFromString(const QString &string)
 
     // QUrl::isValid() is too much tolerant.
     // We actually want to check if the url conforms to the RFC, which QUrl::isValid() doesn't state.
-    if (!url.scheme().isEmpty() && !url.host().isEmpty())
+    if (!url.scheme().isEmpty() && (!url.host().isEmpty() || !url.path().isEmpty()))
         return url;
 
     QSettings settings;

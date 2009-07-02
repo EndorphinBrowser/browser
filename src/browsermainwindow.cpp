@@ -1137,7 +1137,7 @@ void BrowserMainWindow::fileOpen()
     if (file.isEmpty())
         return;
 
-    tabWidget()->loadString(file);
+    tabWidget()->loadUrl(QUrl::fromLocalFile(file));
 }
 
 void BrowserMainWindow::filePrintPreview()
