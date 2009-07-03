@@ -161,7 +161,7 @@ void FileAccessReply::listDirectory()
         dirlist += row.arg(link.arg(QLatin1String("link_parent")).arg(addr).arg(QLatin1String(".."))).arg(size).arg(modified);
     }
 
-    for (int i = 0; i < list.count(); i++) {
+    for (int i = 0; i < list.count(); ++i) {
         // Skip '.' and '..'
         if (list[i].fileName() == QLatin1String(".") || list[i].fileName() == QLatin1String("..")) {
             continue;
