@@ -125,6 +125,8 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
     connect(this, SIGNAL(sslErrors(QNetworkReply*, const QList<QSslError>&)),
             SLOT(sslErrors(QNetworkReply*, const QList<QSslError>&)));
 #endif
+    connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
+            this, SLOT(privacyChanged(bool)));
     loadSettings();
 }
 
@@ -206,6 +208,18 @@ void NetworkAccessManager::loadSettings()
 #endif
     settings.endGroup();
 }
+
+void NetworkAccessManager::privacyChanged(bool isPrivate)
+{
+    if (isPrivate) {
+#if QT_VERSION >= 0x040502
+        setCache(0);
+#endif
+    } else {
+        loadSettings();
+    }
+}
+
 
 void NetworkAccessManager::authenticationRequired(QNetworkReply *reply, QAuthenticator *auth)
 {
