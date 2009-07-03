@@ -167,7 +167,6 @@ private slots:
     void geometryChangeRequested(const QRect &geometry);
     void updateToolbarActionText(bool visible);
     void updateBookmarksToolbarActionText(bool visible);
-    void showNetworkMonitor();
 
 private:
     void retranslate();
@@ -233,7 +232,6 @@ private:
     QMenu *m_toolsMenu;
     QAction *m_toolsWebSearchAction;
     QAction *m_toolsClearPrivateDataAction;
-    QAction *m_toolsShowNetworkMonitor;
     QAction *m_toolsEnableInspector;
 
     QMenu *m_helpMenu;

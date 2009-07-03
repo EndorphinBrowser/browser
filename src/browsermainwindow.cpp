@@ -78,7 +78,6 @@
 #include "history.h"
 #include "languagemanager.h"
 #include "networkaccessmanager.h"
-#include "networkmonitor.h"
 #include "settings.h"
 #include "sourceviewer.h"
 #include "tabbar.h"
@@ -758,11 +757,6 @@ void BrowserMainWindow::setupMenu()
             this, SLOT(clearPrivateData()));
     m_toolsMenu->addAction(m_toolsClearPrivateDataAction);
 
-    m_toolsShowNetworkMonitor = new QAction(m_toolsMenu);
-    connect(m_toolsShowNetworkMonitor, SIGNAL(triggered()),
-            this, SLOT(showNetworkMonitor()));
-    m_toolsMenu->addAction(m_toolsShowNetworkMonitor);
-
     m_toolsEnableInspector = new QAction(m_toolsMenu);
     connect(m_toolsEnableInspector, SIGNAL(triggered(bool)),
             this, SLOT(toggleInspector(bool)));
@@ -906,7 +900,6 @@ void BrowserMainWindow::retranslate()
     m_toolsWebSearchAction->setShortcut(QKeySequence(tr("Ctrl+K", "Web Search")));
     m_toolsClearPrivateDataAction->setText(tr("&Clear Private Data"));
     m_toolsClearPrivateDataAction->setShortcut(QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
-    m_toolsShowNetworkMonitor->setText(tr("Show &Network Monitor"));
     m_toolsEnableInspector->setText(tr("Enable Web &Inspector"));
 
     m_helpMenu->setTitle(tr("&Help"));
@@ -1492,11 +1485,5 @@ void BrowserMainWindow::openActionUrl(QAction *action)
 void BrowserMainWindow::geometryChangeRequested(const QRect &geometry)
 {
     setGeometry(geometry);
-}
-
-void BrowserMainWindow::showNetworkMonitor()
-{
-    NetworkMonitor *monitor = NetworkMonitor::self();
-    monitor->show();
 }
 
