@@ -147,8 +147,8 @@ TabWidget::TabWidget(QWidget *parent)
     m_newTabAction->setIcon(QIcon(QLatin1String(":graphics/addtab.png")));
     m_newTabAction->setIconVisibleInMenu(false);
 
-#if QT_VERSION >= 0x040500
     QSettings settings;
+#if QT_VERSION >= 0x040500
     settings.beginGroup(QLatin1String("tabs"));
     bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
     if (oneCloseButton) {
