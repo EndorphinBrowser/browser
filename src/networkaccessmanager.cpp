@@ -221,8 +221,9 @@ void NetworkAccessManager::loadSettings()
 void NetworkAccessManager::privacyChanged(bool isPrivate)
 {
     if (isPrivate) {
-#if QT_VERSION >= 0x040502
-        setCache(0);
+#if QT_VERSION >= 0x040500
+        if (QLatin1String(qVersion()) > QLatin1String("4.5.1"))
+            setCache(0);
 #endif
     } else {
         loadSettings();
