@@ -2,7 +2,7 @@ TEMPLATE = subdirs
 SUBDIRS  = \
     addbookmarkdialog \
     autosaver \
-    downloadmanager \
+    cookiejar \
     editlistview \
     edittreeview \
     historyfiltermodel \
