@@ -1176,7 +1176,8 @@ void BrowserMainWindow::privateBrowsing()
             "<li> Items are automatically removed from the Downloads window.</li>"
             "<li> New cookies are not stored, current cookies can't be accessed.</li>"
             "<li> Site icons won't be stored, session won't be saved.</li>"
-            "<li> Searches are not added to the pop-up menu in the search box.</li></ul>"
+            "<li> Searches are not added to the pop-up menu in the search box.</li>"
+            "<li> Network cache is disabled.</li></ul>"
             "Until you close the window, you can still click the Back and Forward buttons"
             " to return to the webpages you have opened.").arg(title);
 
