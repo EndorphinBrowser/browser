@@ -117,7 +117,7 @@ private:
 #endif
 
     QByteArray m_acceptLanguage;
-    QHash<QString, SchemeAccessHandler *> m_schemeHandlers;
+    QHash<QString, SchemeAccessHandler*> m_schemeHandlers;
 };
 
 #endif // NETWORKACCESSMANAGER_H

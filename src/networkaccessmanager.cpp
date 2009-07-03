@@ -370,15 +370,13 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
 
 QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
 {
-    QNetworkReply *reply = NULL;
+    QNetworkReply *reply = 0;
 
     // Check if there is a valid handler registered for the requested URL scheme
-    if (m_schemeHandlers.contains(request.url().scheme())) {
+    if (m_schemeHandlers.contains(request.url().scheme()))
         reply = m_schemeHandlers[request.url().scheme()]->createRequest(op, request, outgoingData);
-    }
-    if (reply) {
+    if (reply)
         return reply;
-    }
 
     if (!m_acceptLanguage.isEmpty()) {
         QNetworkRequest req = request;
@@ -389,5 +387,6 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
         reply = QNetworkAccessManager::createRequest(op, request, outgoingData);
         emit requestCreated(op, request, reply);
     }
+
     return reply;
 }
