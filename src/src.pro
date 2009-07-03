@@ -18,6 +18,7 @@ DESTDIR = ../
 
 include(locale/locale.pri)
 
+!mac {
 unix {
     INSTALLS += translations desktop iconxpm iconsvg icon16 icon32 icon128 man man-compress
 
@@ -57,4 +58,5 @@ unix {
         gnome-default-app.path = GNOME_DEFAULT_APPS_PATH
         gnome-default-app.files = data/arora.xml
     }
+}
 }
