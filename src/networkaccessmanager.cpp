@@ -65,6 +65,7 @@
 #include "acceptlanguagedialog.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
+#include "schemeaccesshandler.h"
 #include "ui_passworddialog.h"
 #include "ui_proxy.h"
 
@@ -128,6 +129,14 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
     connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
             this, SLOT(privacyChanged(bool)));
     loadSettings();
+
+    // Register custom scheme handlers
+    setSchemeHandler(QLatin1String("file"), new FileAccessHandler(this));
+}
+
+void NetworkAccessManager::setSchemeHandler(const QString &scheme, SchemeAccessHandler *handler)
+{
+    m_schemeHandlers.insert(scheme, handler);
 }
 
 void NetworkAccessManager::loadSettings()
@@ -360,7 +369,16 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
 
 QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
 {
-    QNetworkReply *reply;
+    QNetworkReply *reply = NULL;
+
+    // Check if there is a valid handler registered for the requested URL scheme
+    if (m_schemeHandlers.contains(request.url().scheme())) {
+        reply = m_schemeHandlers[request.url().scheme()]->createRequest(op, request, outgoingData);
+    }
+    if (reply) {
+        return reply;
+    }
+
     if (!m_acceptLanguage.isEmpty()) {
         QNetworkRequest req = request;
         req.setRawHeader("Accept-Language", m_acceptLanguage);
