@@ -686,7 +686,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>Pokaż &amp;monitor sieci</translation>
+        <translation type="obsolete">Pokaż &amp;monitor sieci</translation>
     </message>
     <message>
         <source>Close Window</source>
@@ -720,7 +720,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone.&lt;ul&gt;&lt;li&gt;Historia nie jest uzupełniana o odwiedzane strony.&lt;/li&gt;&lt;li&gt;Pobrane pliki są automatycznie usuwane z okna Pobierania.&lt;/li&gt;&lt;li&gt;Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.&lt;/li&gt;&lt;li&gt;Ikony stron nie będą przechowywane&lt;/li&gt;&lt;li&gt;Sesja nie zostanie zapisana.&lt;/li&gt;&lt;li&gt;Wyszukiwania nie są dodawane do historii wyszukiwań.&lt;/li&gt;&lt;/ul&gt;Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone.&lt;ul&gt;&lt;li&gt;Historia nie jest uzupełniana o odwiedzane strony.&lt;/li&gt;&lt;li&gt;Pobrane pliki są automatycznie usuwane z okna Pobierania.&lt;/li&gt;&lt;li&gt;Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.&lt;/li&gt;&lt;li&gt;Ikony stron nie będą przechowywane&lt;/li&gt;&lt;li&gt;Sesja nie zostanie zapisana.&lt;/li&gt;&lt;li&gt;Wyszukiwania nie są dodawane do historii wyszukiwań.&lt;/li&gt;&lt;/ul&gt;Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
@@ -737,6 +737,10 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     <message>
         <source>Text Encoding</source>
         <translation>Kodowanie znaków</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone.&lt;ul&gt;&lt;li&gt;Historia nie jest uzupełniana o odwiedzane strony.&lt;/li&gt;&lt;li&gt;Pobrane pliki są automatycznie usuwane z okna Pobierania.&lt;/li&gt;&lt;li&gt;Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.&lt;/li&gt;&lt;li&gt;Ikony stron nie będą przechowywane&lt;/li&gt;&lt;li&gt;Sesja nie zostanie zapisana.&lt;/li&gt;&lt;li&gt;Wyszukiwania nie są dodawane do historii wyszukiwań.&lt;/li&gt;&lt;li&gt;Sieciowa pamięć podręczna jest wyłączona.&lt;/li&gt;&lt;/ul&gt;Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
     </message>
 </context>
 <context>
@@ -1135,6 +1139,29 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
 </context>
 <context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation>Brak błędu</translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation>Błąd w trakcie otwierania %1: Plik lub katalog nie istnieje</translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation>Nie można czytać z %1</translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation>Zawartość %1</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation>%1 KB</translation>
+    </message>
+</context>
+<context>
     <name>HistoryDialog</name>
     <message>
         <source>Open</source>
@@ -1208,6 +1235,29 @@ Czy mimo to chcesz zakończyć?</translation>
             <numerusform>%n elementy</numerusform>
             <numerusform>%n elementów</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation>Witaj w Arorze!</translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation>Arora Start</translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation>Szukaj!</translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation>Wyniki wyszukiwania pochodzą z</translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation>O programie Arora</translation>
     </message>
 </context>
 <context>
@@ -1300,38 +1350,38 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation>Nazwa</translation>
+        <translation type="obsolete">Nazwa</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation>Wartość</translation>
+        <translation type="obsolete">Wartość</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>Monitor sieci</translation>
+        <translation type="obsolete">Monitor sieci</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation>Żądania sieciowe</translation>
+        <translation type="obsolete">Żądania sieciowe</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>Nagłówki żądań</translation>
+        <translation type="obsolete">Nagłówki żądań</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>Nagłówki odpowiedzi</translation>
+        <translation type="obsolete">Nagłówki odpowiedzi</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Usuń</translation>
+        <translation type="obsolete">&amp;Usuń</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>Usuń &amp;wszystkie żądania</translation>
+        <translation type="obsolete">Usuń &amp;wszystkie żądania</translation>
     </message>
 </context>
 <context>
@@ -1467,35 +1517,35 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation>Przekierowanie: %1</translation>
+        <translation type="obsolete">Przekierowanie: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Metoda</translation>
+        <translation type="obsolete">Metoda</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Adres</translation>
+        <translation type="obsolete">Adres</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation>Odpowiedź</translation>
+        <translation type="obsolete">Odpowiedź</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation>Długość</translation>
+        <translation type="obsolete">Długość</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>Rodzaj zawartości</translation>
+        <translation type="obsolete">Rodzaj zawartości</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Informacje</translation>
+        <translation type="obsolete">Informacje</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nieznany</translation>
+        <translation type="obsolete">Nieznany</translation>
     </message>
 </context>
 <context>
@@ -1519,6 +1569,10 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     <message>
         <source>Done</source>
         <translation>Zakończono</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation>Podświetl wszystkie</translation>
     </message>
 </context>
 <context>
@@ -1866,6 +1920,10 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     <message>
         <source> MB</source>
         <translation>MB</translation>
+    </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation>Szukaj w domyślnej wyszukiwarce kiedy tekst niebedący URL-em jest wprowadzony przez użytkownika</translation>
     </message>
 </context>
 <context>
