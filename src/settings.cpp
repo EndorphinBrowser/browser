@@ -135,7 +135,7 @@ void SettingsDialog::loadFromSettings()
 {
     QSettings settings;
     settings.beginGroup(QLatin1String("MainWindow"));
-    QString defaultHome = QLatin1String("http://www.arora-browser.org");
+    QString defaultHome = QLatin1String("about:home");
     homeLineEdit->setText(settings.value(QLatin1String("home"), defaultHome).toString());
     startupBehavior->setCurrentIndex(settings.value(QLatin1String("startupBehavior"), 0).toInt());
     settings.endGroup();

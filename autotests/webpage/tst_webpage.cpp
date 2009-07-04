@@ -51,6 +51,8 @@ private slots:
     void createWindow();
     void handleUnsupportedContent();
     void linkedResources();
+    void javaScriptObjects_data();
+    void javaScriptObjects();
 };
 
 // Subclass that exposes the protected functions.
@@ -335,6 +337,34 @@ void tst_WebPage::linkedResources()
     QCOMPARE(resources.at(1).href, QUrl("http://barbaz.foo/bar/rss.xml"));
     QCOMPARE(resources.at(2).href, QUrl("http://barbaz.foo/atom.xml"));
     QCOMPARE(resources.at(3).href, QUrl("http://external.foo/search.xml"));
+}
+
+void tst_WebPage::javaScriptObjects_data()
+{
+    QTest::addColumn<QUrl>("url");
+    QTest::addColumn<bool>("windowExternal");
+    QTest::addColumn<bool>("windowArora");
+
+    QTest::newRow("qrc:/notfound.html") << QUrl("qrc:/notfound.html") << true << false;
+    QTest::newRow("qrc:/startpage.html") << QUrl("qrc:/startpage.html") << true << true;
+}
+
+void tst_WebPage::javaScriptObjects()
+{
+    QFETCH(QUrl, url);
+    QFETCH(bool, windowExternal);
+    QFETCH(bool, windowArora);
+
+    SubWebPage page;
+    QSignalSpy spy(&page, SIGNAL(loadFinished(bool)));
+    page.mainFrame()->load(url);
+    QTRY_COMPARE(spy.count(), 1);
+
+    QVariant windowExternalVariant = page.mainFrame()->evaluateJavaScript(QLatin1String("window.external"));
+    QVariant windowAroraVariant = page.mainFrame()->evaluateJavaScript(QLatin1String("window.arora"));
+
+    QCOMPARE(windowExternal, !windowExternalVariant.isNull());
+    QCOMPARE(windowArora, !windowAroraVariant.isNull());
 }
 
 QTEST_MAIN(tst_WebPage)

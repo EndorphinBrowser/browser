@@ -34,6 +34,7 @@ public:
     QString title;
 };
 
+class OpenSearchEngine;
 class QNetworkReply;
 class WebPluginFactory;
 // See https://developer.mozilla.org/en/adding_search_engines_from_web_pages
@@ -46,6 +47,21 @@ public:
 
 public slots:
     void AddSearchProvider(const QString &url);
+};
+
+class JavaScriptAroraObject : public QObject
+{
+    Q_OBJECT
+
+    Q_PROPERTY(QObject* currentEngine READ currentEngine)
+
+public:
+    JavaScriptAroraObject(QObject *parent = 0);
+
+public slots:
+    QString translate(const QString &string);
+    QObject *currentEngine() const;
+    QString searchUrl(const QString &string) const;
 };
 
 class WebPage : public QWebPage
@@ -76,7 +92,8 @@ protected:
     static WebPluginFactory *s_webPluginFactory;
     TabWidget::OpenUrlIn m_openTargetBlankLinksIn;
     QUrl m_requestedUrl;
-    JavaScriptExternalObject *m_javaScriptBinding;
+    JavaScriptExternalObject *m_javaScriptExternalObject;
+    JavaScriptAroraObject *m_javaScriptAroraObject;
 };
 
 #endif // WEBPAGE_H

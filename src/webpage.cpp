@@ -24,6 +24,7 @@
 #include "downloadmanager.h"
 #include "historymanager.h"
 #include "networkaccessmanager.h"
+#include "opensearchengine.h"
 #include "opensearchmanager.h"
 #include "tabwidget.h"
 #include "toolbarsearch.h"
@@ -54,10 +55,42 @@ void JavaScriptExternalObject::AddSearchProvider(const QString &url)
     ToolbarSearch::openSearchManager()->addEngine(QUrl(url));
 }
 
+Q_DECLARE_METATYPE(OpenSearchEngine*)
+JavaScriptAroraObject::JavaScriptAroraObject(QObject *parent)
+    : QObject(parent)
+{
+    static const char *translations[] = {
+        QT_TR_NOOP("Welcome to Arora!"),
+        QT_TR_NOOP("Arora Start"),
+        QT_TR_NOOP("Search!"),
+        QT_TR_NOOP("Search results provided by"),
+        QT_TR_NOOP("About Arora")
+    };
+    Q_UNUSED(translations);
+
+    qRegisterMetaType<OpenSearchEngine*>("OpenSearchEngine*");
+}
+
+QString JavaScriptAroraObject::translate(const QString &string)
+{
+    return trUtf8(string.toUtf8().constData());
+}
+
+QObject *JavaScriptAroraObject::currentEngine() const
+{
+    return ToolbarSearch::openSearchManager()->currentEngine();
+}
+
+QString JavaScriptAroraObject::searchUrl(const QString &string) const
+{
+    return QString::fromUtf8(ToolbarSearch::openSearchManager()->currentEngine()->searchUrl(string).toEncoded());
+}
+
 WebPage::WebPage(QObject *parent)
     : QWebPage(parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
-    , m_javaScriptBinding(0)
+    , m_javaScriptExternalObject(0)
+    , m_javaScriptAroraObject(0)
 {
     setPluginFactory(webPluginFactory());
     setNetworkAccessManager(BrowserApplication::networkAccessManager());
@@ -139,17 +172,25 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
 
 void WebPage::addExternalBinding(QWebFrame *frame)
 {
-    if (!m_javaScriptBinding)
-        m_javaScriptBinding = new JavaScriptExternalObject(this);
+    if (!m_javaScriptExternalObject)
+        m_javaScriptExternalObject = new JavaScriptExternalObject(this);
 
     if (frame == 0) { // called from QWebFrame::javaScriptWindowObjectCleared
         frame = qobject_cast<QWebFrame*>(sender());
+
+        if (frame->url().scheme() == QLatin1String("qrc")
+            && frame->url().path() == QLatin1String("/startpage.html")) {
+
+            if (!m_javaScriptAroraObject)
+                m_javaScriptAroraObject = new JavaScriptAroraObject(this);
+
+            frame->addToJavaScriptWindowObject(QLatin1String("arora"), m_javaScriptAroraObject);
+        }
     } else { // called from QWebPage::frameCreated
         connect(frame, SIGNAL(javaScriptWindowObjectCleared()),
                 this, SLOT(addExternalBinding()));
     }
-    frame->addToJavaScriptWindowObject(QLatin1String("external"),
-           m_javaScriptBinding);
+    frame->addToJavaScriptWindowObject(QLatin1String("external"), m_javaScriptExternalObject);
 }
 
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,

@@ -34,6 +34,8 @@ class OpenSearchEngine : public QObject
 {
     Q_OBJECT
 
+    Q_PROPERTY(QString name READ name)
+
 signals:
     void imageChanged();
     void suggestions(const QStringList &suggestions);
