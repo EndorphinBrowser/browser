@@ -26,7 +26,19 @@
 #include <qcompleter.h>
 #include <qregexp.h>
 #include <qsortfilterproxymodel.h>
+#include <qtableview.h>
 #include <qtimer.h>
+
+class QResizeEvent;
+class HistoryCompletionView : public QTableView
+{
+public:
+    HistoryCompletionView(QWidget *parent = 0);
+    int sizeHintForRow(int row) const;
+
+protected:
+    void resizeEvent(QResizeEvent *event);
+};
 
 // These two classes constitute a dirty hack around QCompleter's inflexibility:
 // QCompleter does not allow changing the matching algorithm; it is fixed

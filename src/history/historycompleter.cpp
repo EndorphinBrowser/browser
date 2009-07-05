@@ -19,6 +19,40 @@
 
 #include "historycompleter.h"
 
+#include <qevent.h>
+#include <qfontmetrics.h>
+
+HistoryCompletionView::HistoryCompletionView(QWidget *parent)
+    : QTableView(parent)
+{
+    horizontalHeader()->hide();
+    verticalHeader()->hide();
+
+    setShowGrid(false);
+
+    setSelectionBehavior(QAbstractItemView::SelectRows);
+    setSelectionMode(QAbstractItemView::SingleSelection);
+    setTextElideMode(Qt::ElideRight);
+
+    QFontMetrics metrics = fontMetrics();
+    verticalHeader()->setDefaultSectionSize(metrics.height());
+}
+
+void HistoryCompletionView::resizeEvent(QResizeEvent *event)
+{
+    horizontalHeader()->resizeSection(0, 0.65 * width());
+    horizontalHeader()->setStretchLastSection(true);
+
+    QTableView::resizeEvent(event);
+}
+
+int HistoryCompletionView::sizeHintForRow(int row) const
+{
+    Q_UNUSED(row)
+    QFontMetrics metrics = fontMetrics();
+    return metrics.height();
+}
+
 HistoryCompletionModel::HistoryCompletionModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_searchMatcher(QString(), Qt::CaseInsensitive, QRegExp::FixedString)
@@ -39,9 +73,14 @@ QVariant HistoryCompletionModel::data(const QModelIndex &index, int role) const
             return QLatin1String("b");
     }
 
-    // show urls, not titles
+    if (role == Qt::FontRole && index.column() == 1) {
+        QFont font = qvariant_cast<QFont>(QSortFilterProxyModel::data(index, role));
+        font.setWeight(QFont::Light);
+        return font;
+    }
+
     if (role == Qt::DisplayRole)
-        role = HistoryModel::UrlStringRole;
+        role = (index.column() == 0) ? HistoryModel::UrlStringRole : HistoryModel::TitleRole;
 
     return QSortFilterProxyModel::data(index, role);
 }
@@ -135,6 +174,8 @@ HistoryCompleter::HistoryCompleter(QAbstractItemModel *m, QObject *parent)
 
 void HistoryCompleter::init()
 {
+    setPopup(new HistoryCompletionView());
+
     // we want to complete against our own faked role
     setCompletionRole(HistoryCompletionModel::HistoryCompletionRole);
 
