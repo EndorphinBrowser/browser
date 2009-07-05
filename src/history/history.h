@@ -154,15 +154,15 @@ private:
 
         HistoryData(int off, int f = 0) : tailOffset(off), frecency(f) { }
 
-        bool operator==(const HistoryData& other) const {
+        bool operator==(const HistoryData &other) const {
             return (tailOffset == other.tailOffset)
                 && (frecency == -1 || other.frecency == -1 || frecency == other.frecency);
         }
-        bool operator!=(const HistoryData& other) const {
+        bool operator!=(const HistoryData &other) const {
             return !(*this == other);
         }
         // like the actual history entries, our index mapping data is sorted in reverse
-        bool operator<(const HistoryData& other) const {
+        bool operator<(const HistoryData &other) const {
             return (tailOffset > other.tailOffset);
         }
     };

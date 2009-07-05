@@ -51,7 +51,7 @@ public:
     enum Roles { HistoryCompletionRole = HistoryFilterModel::MaxRole + 1 };
 
     QString searchString() const;
-    void setSearchString(const QString& str);
+    void setSearchString(const QString &str);
 
     bool isValid() const;
     void setValid(bool b);

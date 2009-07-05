@@ -51,7 +51,7 @@ QString HistoryCompletionModel::searchString() const
     return m_searchString;
 }
 
-void HistoryCompletionModel::setSearchString(const QString& str)
+void HistoryCompletionModel::setSearchString(const QString &str)
 {
     if (str == m_searchString)
         return;
@@ -159,9 +159,6 @@ QStringList HistoryCompleter::splitPath(const QString &path) const
     if (path == m_searchString)
         return QStringList() << QLatin1String("a");
 
-    QString oldSearchString = m_searchString;
-    m_searchString = path;
-
     // queue an update to our search string
     // We will wait a bit so that if the user is quickly typing,
     // we don't try to complete until they pause.
@@ -171,11 +168,13 @@ QStringList HistoryCompleter::splitPath(const QString &path) const
 
     // if the previous search results are not a superset of
     // the current search results, tell the model that it is not valid yet
-    if (!m_searchString.startsWith(oldSearchString)) {
-        HistoryCompletionModel *hcm = qobject_cast<HistoryCompletionModel *>(model());
-        Q_ASSERT(hcm);
-        hcm->setValid(false);
+    if (!path.startsWith(m_searchString)) {
+        HistoryCompletionModel *completionModel = qobject_cast<HistoryCompletionModel*>(model());
+        Q_ASSERT(completionModel);
+        completionModel->setValid(false);
     }
+
+    m_searchString = path;
 
     // the actual filtering is done by the HistoryCompletionModel; we just
     // return a short dummy here so that QCompleter thinks we match everything
@@ -184,17 +183,17 @@ QStringList HistoryCompleter::splitPath(const QString &path) const
 
 void HistoryCompleter::updateFilter()
 {
-    HistoryCompletionModel *hcm = qobject_cast<HistoryCompletionModel *>(model());
-    Q_ASSERT(hcm);
+    HistoryCompletionModel *completionModel = qobject_cast<HistoryCompletionModel*>(model());
+    Q_ASSERT(completionModel);
 
     // tell the HistoryCompletionModel about the new search string
-    hcm->setSearchString(m_searchString);
+    completionModel->setSearchString(m_searchString);
 
     // sort the model
-    hcm->sort(0);
+    completionModel->sort(0);
 
     // mark it valid
-    hcm->setValid(true);
+    completionModel->setValid(true);
 
     // and now update the QCompleter widget
     complete();
