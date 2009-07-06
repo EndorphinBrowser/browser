@@ -90,7 +90,8 @@ public:
         DateTimeRole = Qt::UserRole + 2,
         UrlRole = Qt::UserRole + 3,
         UrlStringRole = Qt::UserRole + 4,
-        TitleRole = Qt::UserRole + 5
+        TitleRole = Qt::UserRole + 5,
+        MaxRole = TitleRole
     };
 
     HistoryModel(HistoryManager *history, QObject *parent = 0);
@@ -120,6 +121,11 @@ public:
         { load(); return m_historyHash.contains(url); }
     int historyLocation(const QString &url) const;
 
+    enum Roles {
+        FrecencyRole = HistoryModel::MaxRole + 1,
+        MaxRole = FrecencyRole
+    };
+
     QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
     QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
     void setSourceModel(QAbstractItemModel *sourceModel);
@@ -131,6 +137,8 @@ public:
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
+    void recalculateFrecencies();
+
 private slots:
     void sourceReset();
     void sourceDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
@@ -140,9 +148,30 @@ private slots:
 private:
     void load() const;
 
-    mutable QList<int> m_sourceRow;
+    struct HistoryData {
+        int tailOffset;
+        int frecency;
+
+        HistoryData(int off, int f = 0) : tailOffset(off), frecency(f) { }
+
+        bool operator==(const HistoryData &other) const {
+            return (tailOffset == other.tailOffset)
+                && (frecency == -1 || other.frecency == -1 || frecency == other.frecency);
+        }
+        bool operator!=(const HistoryData &other) const {
+            return !(*this == other);
+        }
+        // like the actual history entries, our index mapping data is sorted in reverse
+        bool operator<(const HistoryData &other) const {
+            return (tailOffset > other.tailOffset);
+        }
+    };
+    int frecencyScore(const QModelIndex &sourceIndex) const;
+
+    mutable QList<HistoryData> m_filteredRows;
     mutable QHash<QString, int> m_historyHash;
     mutable bool m_loaded;
+    mutable QDateTime m_scaleTime;
 };
 
 /*
@@ -199,28 +228,6 @@ private:
     HistoryManager *m_history;
     HistoryMenuModel *m_historyMenuModel;
     QList<QAction*> m_initialActions;
-};
-
-// proxy model for the history model that
-// exposes each url http://www.foo.com and it url starting at the host www.foo.com
-class HistoryCompletionModel : public QAbstractProxyModel
-{
-    Q_OBJECT
-
-public:
-    HistoryCompletionModel(QObject *parent = 0);
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
-    QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
-    QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
-    void setSourceModel(QAbstractItemModel *sourceModel);
-
-private slots:
-    void sourceReset();
-
 };
 
 // proxy model for the history model that converts the list

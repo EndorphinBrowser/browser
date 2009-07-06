@@ -490,11 +490,16 @@ int HistoryFilterModel::historyLocation(const QString &url) const
     load();
     if (!m_historyHash.contains(url))
         return 0;
+
     return sourceModel()->rowCount() - m_historyHash.value(url);
 }
 
 QVariant HistoryFilterModel::data(const QModelIndex &index, int role) const
 {
+    if (role == FrecencyRole && index.isValid()) {
+        return m_filteredRows[index.row()].frecency;
+    }
+
     return QAbstractProxyModel::data(index, role);
 }
 
@@ -534,6 +539,11 @@ QVariant HistoryFilterModel::headerData(int section, Qt::Orientation orientation
     return sourceModel()->headerData(section, orientation, role);
 }
 
+void HistoryFilterModel::recalculateFrecencies()
+{
+    sourceReset();
+}
+
 void HistoryFilterModel::sourceReset()
 {
     m_loaded = false;
@@ -567,23 +577,15 @@ QModelIndex HistoryFilterModel::mapFromSource(const QModelIndex &sourceIndex) co
     if (!m_historyHash.contains(url))
         return QModelIndex();
 
-    // This can be done in a binary search, but we can't use qBinary find
-    // because it can't take: qBinaryFind(m_sourceRow.end(), m_sourceRow.begin(), v);
-    // so if this is a performance bottlneck then convert to binary search, until then
-    // the cleaner/easier to read code wins the day.
-    int realRow = -1;
-    int sourceModelRow = sourceModel()->rowCount() - sourceIndex.row();
+    int sourceOffset = sourceModel()->rowCount() - sourceIndex.row();
 
-    for (int i = 0; i < m_sourceRow.count(); ++i) {
-        if (m_sourceRow.at(i) == sourceModelRow) {
-            realRow = i;
-            break;
-        }
-    }
-    if (realRow == -1)
+    QList<HistoryData>::iterator pos = qBinaryFind(m_filteredRows.begin(),
+        m_filteredRows.end(), HistoryData(sourceOffset, -1));
+
+    if (pos == m_filteredRows.end())
         return QModelIndex();
 
-    return createIndex(realRow, sourceIndex.column(), sourceModel()->rowCount() - sourceIndex.row());
+    return createIndex(pos - m_filteredRows.begin(), sourceIndex.column(), sourceOffset);
 }
 
 QModelIndex HistoryFilterModel::index(int row, int column, const QModelIndex &parent) const
@@ -593,7 +595,7 @@ QModelIndex HistoryFilterModel::index(int row, int column, const QModelIndex &pa
         || column < 0 || column >= columnCount(parent))
         return QModelIndex();
 
-    return createIndex(row, column, m_sourceRow[row]);
+    return createIndex(row, column, m_filteredRows[row].tailOffset);
 }
 
 QModelIndex HistoryFilterModel::parent(const QModelIndex &) const
@@ -605,15 +607,23 @@ void HistoryFilterModel::load() const
 {
     if (m_loaded)
         return;
-    m_sourceRow.clear();
+    m_filteredRows.clear();
     m_historyHash.clear();
     m_historyHash.reserve(sourceModel()->rowCount());
+    m_scaleTime = QDateTime::currentDateTime();
     for (int i = 0; i < sourceModel()->rowCount(); ++i) {
         QModelIndex idx = sourceModel()->index(i, 0);
         QString url = idx.data(HistoryModel::UrlStringRole).toString();
         if (!m_historyHash.contains(url)) {
-            m_sourceRow.append(sourceModel()->rowCount() - i);
-            m_historyHash[url] = sourceModel()->rowCount() - i;
+            int sourceOffset = sourceModel()->rowCount() - i;
+            m_filteredRows.append(HistoryData(sourceOffset, frecencyScore(idx)));
+            m_historyHash.insert(url, sourceOffset);
+        } else {
+            // we already know about this url: just increment its frecency score
+            QList<HistoryData>::iterator pos = qBinaryFind(m_filteredRows.begin(),
+                m_filteredRows.end(), HistoryData(m_historyHash[url], -1));
+            Q_ASSERT(pos != m_filteredRows.end());
+            pos->frecency += frecencyScore(idx);
         }
     }
     m_loaded = true;
@@ -627,17 +637,21 @@ void HistoryFilterModel::sourceRowsInserted(const QModelIndex &parent, int start
         return;
     QModelIndex idx = sourceModel()->index(start, 0, parent);
     QString url = idx.data(HistoryModel::UrlStringRole).toString();
+    int currentFrecency = 0;
     if (m_historyHash.contains(url)) {
-        int sourceRow = sourceModel()->rowCount() - m_historyHash[url];
-        int realRow = mapFromSource(sourceModel()->index(sourceRow, 0)).row();
+        QList<HistoryData>::iterator pos = qBinaryFind(m_filteredRows.begin(),
+            m_filteredRows.end(), HistoryData(m_historyHash[url], -1));
+        Q_ASSERT(pos != m_filteredRows.end());
+        int realRow = pos - m_filteredRows.begin();
+        currentFrecency = pos->frecency;
         beginRemoveRows(QModelIndex(), realRow, realRow);
-        m_sourceRow.removeAt(realRow);
+        m_filteredRows.erase(pos);
         m_historyHash.remove(url);
         endRemoveRows();
     }
     beginInsertRows(QModelIndex(), 0, 0);
-    m_historyHash.insert(url, sourceModel()->rowCount() - start);
-    m_sourceRow.insert(0, sourceModel()->rowCount());
+    m_filteredRows.insert(0, HistoryData(sourceModel()->rowCount(), frecencyScore(idx) + currentFrecency));
+    m_historyHash.insert(url, sourceModel()->rowCount());
     endInsertRows();
 }
 
@@ -661,8 +675,8 @@ bool HistoryFilterModel::removeRows(int row, int count, const QModelIndex &paren
                this, SLOT(sourceRowsRemoved(const QModelIndex &, int, int)));
     beginRemoveRows(parent, row, lastRow);
     int oldCount = rowCount();
-    int start = sourceModel()->rowCount() - m_sourceRow.value(row);
-    int end = sourceModel()->rowCount() - m_sourceRow.value(lastRow);
+    int start = sourceModel()->rowCount() - m_filteredRows[row].tailOffset;
+    int end = sourceModel()->rowCount() - m_filteredRows[lastRow].tailOffset;
     sourceModel()->removeRows(start, end - start + 1);
     endRemoveRows();
     connect(sourceModel(), SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
@@ -673,94 +687,24 @@ bool HistoryFilterModel::removeRows(int row, int count, const QModelIndex &paren
     return true;
 }
 
-HistoryCompletionModel::HistoryCompletionModel(QObject *parent)
-    : QAbstractProxyModel(parent)
+int HistoryFilterModel::frecencyScore(const QModelIndex &sourceIndex) const
 {
-}
+    QDateTime loadTime = sourceModel()->data(sourceIndex, HistoryModel::DateTimeRole).toDateTime();
+    int days = loadTime.daysTo(m_scaleTime);
 
-QVariant HistoryCompletionModel::data(const QModelIndex &index, int role) const
-{
-    if (sourceModel()
-        && (role == Qt::EditRole || role == Qt::DisplayRole)
-        && index.isValid()) {
-        QModelIndex idx = mapToSource(index);
-        idx = idx.sibling(idx.row(), 1);
-        QString urlString = idx.data(HistoryModel::UrlStringRole).toString();
-        if (index.row() % 2) {
-            QUrl url = urlString;
-            QString s = url.toString(QUrl::RemoveScheme
-                                     | QUrl::RemoveUserInfo
-                                     | QUrl::StripTrailingSlash);
-            return s.mid(2);  // strip // from the front
-        }
-        return urlString;
-    }
-    return QAbstractProxyModel::data(index, role);
-}
-
-int HistoryCompletionModel::rowCount(const QModelIndex &parent) const
-{
-    return (parent.isValid() || !sourceModel()) ? 0 : sourceModel()->rowCount(parent) * 2;
-}
-
-int HistoryCompletionModel::columnCount(const QModelIndex &parent) const
-{
-    return (parent.isValid()) ? 0 : 1;
-}
-
-QModelIndex HistoryCompletionModel::mapFromSource(const QModelIndex &sourceIndex) const
-{
-    int row = sourceIndex.row() * 2;
-    return index(row, sourceIndex.column());
-}
-
-QModelIndex HistoryCompletionModel::mapToSource(const QModelIndex &proxyIndex) const
-{
-    if (!sourceModel())
-        return QModelIndex();
-    int row = proxyIndex.row() / 2;
-    return sourceModel()->index(row, proxyIndex.column());
-}
-
-QModelIndex HistoryCompletionModel::index(int row, int column, const QModelIndex &parent) const
-{
-    if (row < 0 || row >= rowCount(parent)
-        || column < 0 || column >= columnCount(parent))
-        return QModelIndex();
-    return createIndex(row, column, 0);
-}
-
-QModelIndex HistoryCompletionModel::parent(const QModelIndex &) const
-{
-    return QModelIndex();
-}
-
-void HistoryCompletionModel::setSourceModel(QAbstractItemModel *newSourceModel)
-{
-    if (sourceModel()) {
-        disconnect(sourceModel(), SIGNAL(modelReset()), this, SLOT(sourceReset()));
-        disconnect(sourceModel(), SIGNAL(rowsInserted(const QModelIndex &, int, int)),
-                   this, SLOT(sourceReset()));
-        disconnect(sourceModel(), SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-                   this, SLOT(sourceReset()));
+    if (days <= 1) {
+        return 100;
+    } else if (days < 5) { // within the last 4 days
+        return 90;
+    } else if (days < 15) { // within the last two weeks
+        return 70;
+    } else if (days < 31) { // within the last month
+        return 50;
+    } else if (days < 91) { // within the last 3 months
+        return 30;
     }
 
-    QAbstractProxyModel::setSourceModel(newSourceModel);
-
-    if (newSourceModel) {
-        connect(newSourceModel, SIGNAL(modelReset()), this, SLOT(sourceReset()));
-        connect(sourceModel(), SIGNAL(rowsInserted(const QModelIndex &, int, int)),
-                this, SLOT(sourceReset()));
-        connect(sourceModel(), SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-                this, SLOT(sourceReset()));
-    }
-
-    reset();
-}
-
-void HistoryCompletionModel::sourceReset()
-{
-    reset();
+    return 10;
 }
 
 HistoryTreeModel::HistoryTreeModel(QAbstractItemModel *sourceModel, QObject *parent)

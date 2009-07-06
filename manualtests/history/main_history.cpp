@@ -21,6 +21,7 @@
 #include <qtableview.h>
 
 #include <history.h>
+#include <historycompleter.h>
 #include <historymanager.h>
 #include <modeltest.h>
 #include <qheaderview.h>
