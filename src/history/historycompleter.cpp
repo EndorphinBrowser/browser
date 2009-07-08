@@ -21,6 +21,7 @@
 
 #include <qevent.h>
 #include <qfontmetrics.h>
+#include <qheaderview.h>
 
 HistoryCompletionView::HistoryCompletionView(QWidget *parent)
     : QTableView(parent)
