@@ -126,12 +126,6 @@ mac {
 
 include(../webkittrunk.pri)
 
-unix {
-    DATADIR = $$PREFIX/share
-    PKGDATADIR = $$DATADIR/arora
-    DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
-}
-
 win32 {
     include(explorerstyle.pri)
     LIBS += -ladvapi32
