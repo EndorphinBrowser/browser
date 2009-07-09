@@ -402,39 +402,34 @@ void tst_HistoryManager::big()
     history.setDaysToExpire(-1);
     history.setHistory(bigHistory);
 
-    qDebug() << "removed dups:" << history.history().count();
     QCOMPARE(history.history().count(), bigHistory.count());
 
-    qDebug() << "loaded, making menu";
     HistoryMenu menu;
     menu.show();
 
-    qDebug() << "menu done, making model";
     HistoryModel model(&history);
     ModelTest test(&model);
-    qDebug() << "model rowCount" << model.rowCount();
     QCOMPARE(model.rowCount(), bigHistory.count());
 
-    qDebug() << "making completion model";
     HistoryCompletionModel completionModel;
     completionModel.setSourceModel(&model);
     ModelTest test2(&completionModel);
     QCOMPARE(completionModel.rowCount(), bigHistory.count());
 
-    qDebug() << "making history dialog model";
     HistoryTreeModel dialogModel(&model);
     ModelTest test3(&dialogModel);
 
-
     int r = 0;
     QDate d;
-    for (int i = 0; i < bigHistory.count(); ++i)
+    for (int i = 0; i < bigHistory.count(); ++i) {
         if (bigHistory[i].dateTime.date() != d) {
             d = bigHistory[i].dateTime.date();
             QDate rowDate = dialogModel.index(r, 0).data(HistoryModel::DateRole).toDate();
             QCOMPARE(d, rowDate);
             r++;
         }
+    }
+
     QCOMPARE(dialogModel.rowCount(), 328);
 
     HistoryDialog dialog(0, &history);
