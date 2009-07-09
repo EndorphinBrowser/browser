@@ -455,7 +455,9 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     m_lineEdits->addWidget(locationBar);
     m_lineEdits->setSizePolicy(locationBar->sizePolicy());
 
+#ifndef AUTOTESTS
     QWidget::setTabOrder(locationBar, qFindChild<ToolbarSearch*>(BrowserMainWindow::parentWindow(this)));
+#endif
 
     // optimization to delay creating the more expensive WebView, history, etc
     if (count() == 0) {
