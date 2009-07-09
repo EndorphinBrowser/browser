@@ -9,7 +9,5 @@ unix {
     target.path = $$BINDIR
 
     DATADIR = $$PREFIX/share
-    PKGDATADIR = $$DATADIR/arora
-    DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
 }
 
