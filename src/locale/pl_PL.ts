@@ -1082,7 +1082,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog docelowy (%1) nie mógł zostać stworzony.</translation>
     </message>
 </context>
 <context>
