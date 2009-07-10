@@ -176,7 +176,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Imported %1</source>
@@ -221,11 +221,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>Feil ved lasting av html bokmerker: %1</translation>
-    </message>
-    <message>
-        <source>XBEL</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Feil ved lasting av html bokmerker: %1</translation>
     </message>
     <message>
         <source>Name Change</source>
@@ -235,6 +231,31 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -260,7 +281,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>Bokmerker</translation>
+        <translation type="obsolete">Bokmerker</translation>
     </message>
     <message>
         <source>Open</source>
@@ -282,6 +303,10 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Legg til mappe...</translation>
     </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished">Bokmerker</translation>
+    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
@@ -301,7 +326,7 @@ Er du sikker på at du vil avslutte Arora?</translation>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation>(Endring: %1 %2)</translation>
+        <translation type="obsolete">(Endring: %1 %2)</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -630,7 +655,7 @@ Vil du laste alle sider på nytt?</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>&amp;Vis nettverksovervåkeren</translation>
+        <translation type="obsolete">&amp;Vis nettverksovervåkeren</translation>
     </message>
     <message>
         <source>Close Window</source>
@@ -667,12 +692,24 @@ Vil du laste alle sider på nytt?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Noen handlinger relatert til dine personlige opplysninger vil bli deaktiverte når privat surfing er skrudd på:&lt;ul&gt;&lt;li&gt; Nettsider blir ikke lagt til i historien.&lt;/li&gt;&lt;li&gt; Elementer blir automatisk fjernet fra Nedlastinger vinduet.&lt;/li&gt;&lt;li&gt; Nye informasjonskapsler blir ikke lagret og gamle kan ikke åpnes.&lt;/li&gt;&lt;li&gt; Ikoner og økter blir ikke lagret.&lt;/li&gt;&lt;li&gt; Søk blir ikke lagt til i sprett-opp menyen i søkeboksen.&lt;/li&gt;&lt;/ul&gt;Du kan fremdeles klikke Tilbake og Fram intill du lukker vinduet.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Noen handlinger relatert til dine personlige opplysninger vil bli deaktiverte når privat surfing er skrudd på:&lt;ul&gt;&lt;li&gt; Nettsider blir ikke lagt til i historien.&lt;/li&gt;&lt;li&gt; Elementer blir automatisk fjernet fra Nedlastinger vinduet.&lt;/li&gt;&lt;li&gt; Nye informasjonskapsler blir ikke lagret og gamle kan ikke åpnes.&lt;/li&gt;&lt;li&gt; Ikoner og økter blir ikke lagret.&lt;/li&gt;&lt;li&gt; Søk blir ikke lagt til i sprett-opp menyen i søkeboksen.&lt;/li&gt;&lt;/ul&gt;Du kan fremdeles klikke Tilbake og Fram intill du lukker vinduet.</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished">Standardspråk</translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -958,7 +995,7 @@ Vil du laste alle sider på nytt?</translation>
     </message>
     <message>
         <source>Form</source>
-        <translation>Skjema</translation>
+        <translation type="obsolete">Skjema</translation>
     </message>
     <message>
         <source>Ico</source>
@@ -1002,6 +1039,10 @@ Vil du laste alle sider på nytt?</translation>
         <source>%1 of %2 (%3/sec) - %4</source>
         <translation>%1 av %2 (%3/sek) - %4</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
@@ -1043,6 +1084,33 @@ Er du sikker på at du vil avslutte?</translation>
     <message>
         <source>MB</source>
         <translation>MB</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1117,6 +1185,29 @@ Er du sikker på at du vil avslutte?</translation>
     </message>
 </context>
 <context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageManager</name>
     <message>
         <source>Default</source>
@@ -1185,43 +1276,59 @@ Vil du ignorere disse feilene?&lt;qt&gt;</translation>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation>Navn</translation>
+        <translation type="obsolete">Navn</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation>Verdi</translation>
+        <translation type="obsolete">Verdi</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>Nettverksovervåker</translation>
+        <translation type="obsolete">Nettverksovervåker</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation>Nettverksforespørselser</translation>
+        <translation type="obsolete">Nettverksforespørselser</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>Forespørselshode</translation>
+        <translation type="obsolete">Forespørselshode</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>Svarhode</translation>
+        <translation type="obsolete">Svarhode</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Fjern</translation>
+        <translation type="obsolete">&amp;Fjern</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>Fjern &amp;alle forespørselser</translation>
+        <translation type="obsolete">Fjern &amp;alle forespørselser</translation>
     </message>
 </context>
 <context>
@@ -1353,31 +1460,31 @@ Vil du ignorere disse feilene?&lt;qt&gt;</translation>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation>Videresend: %1</translation>
+        <translation type="obsolete">Videresend: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Metode</translation>
+        <translation type="obsolete">Metode</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Adresse</translation>
+        <translation type="obsolete">Adresse</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation>Svar</translation>
+        <translation type="obsolete">Svar</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation>Lengde</translation>
+        <translation type="obsolete">Lengde</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>Innholdstype</translation>
+        <translation type="obsolete">Innholdstype</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation type="obsolete">Info</translation>
     </message>
 </context>
 <context>
@@ -1389,7 +1496,11 @@ Vil du ignorere disse feilene?&lt;qt&gt;</translation>
     <message>
         <source>Form</source>
         <translatorcomment>Is there a way for things like these be ommitted from translation since they are never shown in the UI? A comment would probably do, so translators don&apos;t have to figure it out :-)</translatorcomment>
-        <translation type="unfinished">Skjema</translation>
+        <translation type="obsolete">Skjema</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1726,6 +1837,10 @@ Vil du ignorere disse feilene?&lt;qt&gt;</translation>
         <source> MB</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1762,7 +1877,11 @@ Vil du ignorere disse feilene?&lt;qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Sidens kildekode</translation>
+        <translation type="obsolete">Sidens kildekode</translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1936,6 +2055,14 @@ Vil du virkelig lukke denne siden?
         <source>If the address is correct, try checking the network connection.</source>
         <translation>Hvis adressen er riktig undersøk nettilkoblingen.</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -1985,6 +2112,34 @@ Vil du virkelig lukke denne siden?
     </message>
     <message>
         <source>Search with...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

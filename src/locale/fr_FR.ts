@@ -151,7 +151,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Imported %1</source>
@@ -192,7 +192,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>Erreur pendant le chargement des marque-pages html: %1
+        <translation type="obsolete">Erreur pendant le chargement des marque-pages html: %1
 </translation>
     </message>
     <message>
@@ -207,7 +207,32 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL</source>
-        <translation>XBEL</translation>
+        <translation type="obsolete">XBEL</translation>
+    </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -232,7 +257,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>Marque-page</translation>
+        <translation type="obsolete">Marque-page</translation>
     </message>
     <message>
         <source>Open</source>
@@ -254,6 +279,10 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Ajouter un dossier...</translation>
     </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished">Marque-pages</translation>
+    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
@@ -269,7 +298,7 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation> (Modification : %1 %2)</translation>
+        <translation type="obsolete"> (Modification : %1 %2)</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -548,7 +577,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>Afficher le &amp;gestionnaire réseau</translation>
+        <translation type="obsolete">Afficher le &amp;gestionnaire réseau</translation>
     </message>
     <message>
         <source>Switch application language </source>
@@ -589,12 +618,24 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quand la navigation en mode privée est activée, certaines actions en rapport avec votre vie privée sont désactivées: &lt;ul&gt;&lt;li&gt; Les pages Web ne sont pas ajoutées à l&apos;historique.&lt;/li&gt;&lt;li&gt; Les fichiers sont automatiquements retirés de la fenêtre de téléchargements.&lt;/li&gt;&lt;li&gt; Les nouveaux cookies ne sont pas stockés, les cookies existants ne sont pas accessibles.&lt;/li&gt;&lt;li&gt; Les icônes de sites ne sont pas stockés, les sessions ne sont pas enregistrées.&lt;/li&gt;&lt;li&gt; Les recherches ne sont pas ajoutées au menu déroulant de la boite de recherches.&lt;/li&gt;&lt;li&gt; Jusqu&apos;à ce que la fenêtre soit fermée, il est toujours possible de cliquer sur les bouton « Page précédente » et « Page suivante » pour retourner sur les pages Web visitées.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quand la navigation en mode privée est activée, certaines actions en rapport avec votre vie privée sont désactivées: &lt;ul&gt;&lt;li&gt; Les pages Web ne sont pas ajoutées à l&apos;historique.&lt;/li&gt;&lt;li&gt; Les fichiers sont automatiquements retirés de la fenêtre de téléchargements.&lt;/li&gt;&lt;li&gt; Les nouveaux cookies ne sont pas stockés, les cookies existants ne sont pas accessibles.&lt;/li&gt;&lt;li&gt; Les icônes de sites ne sont pas stockés, les sessions ne sont pas enregistrées.&lt;/li&gt;&lt;li&gt; Les recherches ne sont pas ajoutées au menu déroulant de la boite de recherches.&lt;/li&gt;&lt;li&gt; Jusqu&apos;à ce que la fenêtre soit fermée, il est toujours possible de cliquer sur les bouton « Page précédente » et « Page suivante » pour retourner sur les pages Web visitées.</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -824,7 +865,7 @@ Do you want to reload all pages?</source>
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation>Formulaire</translation>
+        <translation type="obsolete">Formulaire</translation>
     </message>
     <message>
         <source>Ico</source>
@@ -878,6 +919,10 @@ Do you want to reload all pages?</source>
         <source>%1 of %2 (%3/sec) - %4</source>
         <translation>%1 de %2 (%3/sec) - %4</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
@@ -919,6 +964,33 @@ Voulez-vous tout de même quitter?</translation>
     <message>
         <source>MB</source>
         <translation>Mo</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -993,6 +1065,29 @@ Voulez-vous tout de même quitter?</translation>
     </message>
 </context>
 <context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageManager</name>
     <message>
         <source>Choose language</source>
@@ -1033,43 +1128,59 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Certificats: &lt;br/&gt;%1&lt;br/&gt;Voulez-vous accepter ces certificats?&lt;/qt&gt;</translation>
     </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="obsolete">Nom</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation>Valeur</translation>
+        <translation type="obsolete">Valeur</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>Gestionnaire de réseau</translation>
+        <translation type="obsolete">Gestionnaire de réseau</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation>Requêtes réseaux</translation>
+        <translation type="obsolete">Requêtes réseaux</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>en-tête de la requête</translation>
+        <translation type="obsolete">en-tête de la requête</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>en-tête de la réponse</translation>
+        <translation type="obsolete">en-tête de la réponse</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>Supp&amp;rimer</translation>
+        <translation type="obsolete">Supp&amp;rimer</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>Supprimer &amp;toutes les requêtes</translation>
+        <translation type="obsolete">Supprimer &amp;toutes les requêtes</translation>
     </message>
 </context>
 <context>
@@ -1201,42 +1312,46 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation>Redirection: %1</translation>
+        <translation type="obsolete">Redirection: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Méthode</translation>
+        <translation type="obsolete">Méthode</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Adresse</translation>
+        <translation type="obsolete">Adresse</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation>Réponse</translation>
+        <translation type="obsolete">Réponse</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation>Longueur</translation>
+        <translation type="obsolete">Longueur</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>Content Type</translation>
+        <translation type="obsolete">Content Type</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation type="obsolete">Info</translation>
     </message>
 </context>
 <context>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation>Formulaire</translation>
+        <translation type="obsolete">Formulaire</translation>
     </message>
     <message>
         <source>Done</source>
         <translation>Fermer</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1528,6 +1643,10 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
         <source> MB</source>
         <translation> Mo</translation>
     </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1564,7 +1683,11 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Source de la page</translation>
+        <translation type="obsolete">Source de la page</translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1718,6 +1841,14 @@ Voulez-vous vraiment fermer cette page?
         <source>If the address is correct, try checking the network connection.</source>
         <translation>Si l&apos;adresse est correcte, vérifiez votre connection au réseau.</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -1768,6 +1899,34 @@ Voulez-vous vraiment fermer cette page?
     <message>
         <source>Search with...</source>
         <translation>Chercher avec...</translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

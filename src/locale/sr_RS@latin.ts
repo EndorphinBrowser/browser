@@ -159,12 +159,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL</source>
-        <translation>IksBEL</translation>
+        <translation type="obsolete">IksBEL</translation>
     </message>
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>Greška pri učitavanju html markera: %1
+        <translation type="obsolete">Greška pri učitavanju html markera: %1
 </translation>
     </message>
     <message>
@@ -181,7 +181,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>IksBEL (*.xbel *.xml)</translation>
+        <translation type="obsolete">IksBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Export error</source>
@@ -209,6 +209,31 @@ p, li { white-space: pre-wrap; }
         <comment>Undo bookmark url change</comment>
         <translation>Promena adrese</translation>
     </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
@@ -232,7 +257,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>Marker</translation>
+        <translation type="obsolete">Marker</translation>
     </message>
     <message>
         <source>Open</source>
@@ -254,12 +279,16 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Dodaj fasciklu...</translation>
     </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished">Markeri</translation>
+    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation>(Revizija: %1 %2)</translation>
+        <translation type="obsolete">(Revizija: %1 %2)</translation>
     </message>
     <message>
         <source>There are %1 windows and %2 tabs open
@@ -490,7 +519,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>Prikaži mon&amp;itor mreže</translation>
+        <translation type="obsolete">Prikaži mon&amp;itor mreže</translation>
     </message>
     <message>
         <source>Enable Web &amp;Inspector</source>
@@ -564,7 +593,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kada je privatno pregledanje uključeno neke radnje koje se tiču vaše privatnosti će biti onemogućene:&lt;ul&gt;&lt;li&gt;Veb stranice se ne dodaju u istorijat.&lt;/li&gt;&lt;li&gt; Stavke se automatski uklanjaju iz prozora preuzimanja.&lt;/li&gt;&lt;li&gt;Novi kolačići se ne snimaju, postojećima se ne može pristupiti&lt;/li&gt;&lt;li&gt;Ikone stranice se ne čuvaju, sesije neće biti sačuvane.&lt;/li&gt;&lt;li&gt;Pretrage se ne dodaju u iskačući meni prozorčića pretrage.&lt;/li&gt;&lt;/ul&gt;Dok ne zatvorite prozor i dalje možete kliknuti na Napred i Nazad da bi se vratili na prethodno otvorene stranice.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kada je privatno pregledanje uključeno neke radnje koje se tiču vaše privatnosti će biti onemogućene:&lt;ul&gt;&lt;li&gt;Veb stranice se ne dodaju u istorijat.&lt;/li&gt;&lt;li&gt; Stavke se automatski uklanjaju iz prozora preuzimanja.&lt;/li&gt;&lt;li&gt;Novi kolačići se ne snimaju, postojećima se ne može pristupiti&lt;/li&gt;&lt;li&gt;Ikone stranice se ne čuvaju, sesije neće biti sačuvane.&lt;/li&gt;&lt;li&gt;Pretrage se ne dodaju u iskačući meni prozorčića pretrage.&lt;/li&gt;&lt;/ul&gt;Dok ne zatvorite prozor i dalje možete kliknuti na Napred i Nazad da bi se vratili na prethodno otvorene stranice.</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
@@ -596,6 +625,18 @@ Da li želite da ponovo učitate sve stranice?</translation>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -825,7 +866,7 @@ Da li želite da ponovo učitate sve stranice?</translation>
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="obsolete">Formular</translation>
     </message>
     <message>
         <source>Ico</source>
@@ -879,6 +920,10 @@ Da li želite da ponovo učitate sve stranice?</translation>
         <source>%1 of %2 - Stopped</source>
         <translation>%1 od %2 - Zaustavljeno</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
@@ -923,6 +968,33 @@ Da li svejedno želite da napustite?</translation>
     <message>
         <source>MB</source>
         <translation>MB</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -998,6 +1070,29 @@ Da li svejedno želite da napustite?</translation>
     </message>
 </context>
 <context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageManager</name>
     <message>
         <source>No translation files are installed.</source>
@@ -1043,43 +1138,59 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;SSL greške:&lt;br/&gt;&lt;br/&gt;za: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation>Ime</translation>
+        <translation type="obsolete">Ime</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation>Vrednost</translation>
+        <translation type="obsolete">Vrednost</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>Monitor mreže</translation>
+        <translation type="obsolete">Monitor mreže</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation>Mrežni zahtevi</translation>
+        <translation type="obsolete">Mrežni zahtevi</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>Zaglavlja zahteva</translation>
+        <translation type="obsolete">Zaglavlja zahteva</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>Zaglavlja odgovora</translation>
+        <translation type="obsolete">Zaglavlja odgovora</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Ukloni</translation>
+        <translation type="obsolete">&amp;Ukloni</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>Ukloni &amp;sve zahteve</translation>
+        <translation type="obsolete">Ukloni &amp;sve zahteve</translation>
     </message>
 </context>
 <context>
@@ -1211,42 +1322,46 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation>Preusmeravanje: %1</translation>
+        <translation type="obsolete">Preusmeravanje: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Metod</translation>
+        <translation type="obsolete">Metod</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Adresa</translation>
+        <translation type="obsolete">Adresa</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation>Odgovor</translation>
+        <translation type="obsolete">Odgovor</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation>Trajanje</translation>
+        <translation type="obsolete">Trajanje</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>Tip sadržaja</translation>
+        <translation type="obsolete">Tip sadržaja</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Informacije</translation>
+        <translation type="obsolete">Informacije</translation>
     </message>
 </context>
 <context>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="obsolete">Formular</translation>
     </message>
     <message>
         <source>Done</source>
         <translation>Završeno</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1538,6 +1653,10 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
         <source> MB</source>
         <translation>MB</translation>
     </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1574,7 +1693,11 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Izvorni kod stranice</translation>
+        <translation type="obsolete">Izvorni kod stranice</translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1728,6 +1851,14 @@ Da li zaista želite da zatvorite ovu stranicu?
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
         <translation>Ukoliko su vaš računar ili mreža zaštićeni fajervolom ili proksijem postarajte se da pregledač ima dozvole za pristup mreži.</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -1778,6 +1909,34 @@ Da li zaista želite da zatvorite ovu stranicu?
     <message>
         <source>Search with...</source>
         <translation>Pretraži pomoću...</translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -882,6 +882,10 @@ Do you want to reload all pages?</source>
         <source>%1 of %2 - Stopped</source>
         <translation>已下載%1，共有 %2 - 已停止</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
@@ -1017,6 +1021,29 @@ Do you want to quit anyway?</source>
         <translation>
             <numerusform>%n 個項目</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

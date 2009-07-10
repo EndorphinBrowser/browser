@@ -171,7 +171,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Imported %1</source>
@@ -224,12 +224,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>Html yerimlerini yüklerken hata: %1
+        <translation type="obsolete">Html yerimlerini yüklerken hata: %1
 </translation>
     </message>
     <message>
         <source>XBEL</source>
-        <translation>XBEL</translation>
+        <translation type="obsolete">XBEL</translation>
     </message>
     <message>
         <source>Name Change</source>
@@ -240,6 +240,31 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
         <translation>Adres Değiştir</translation>
+    </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -264,7 +289,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>Yer İmi</translation>
+        <translation type="obsolete">Yer İmi</translation>
     </message>
     <message>
         <source>Open</source>
@@ -286,6 +311,10 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Dizin Ekle...</translation>
     </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished">Yer İmleri</translation>
+    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
@@ -305,7 +334,7 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation>(Değişim: %1 %2)</translation>
+        <translation type="obsolete">(Değişim: %1 %2)</translation>
     </message>
 </context>
 <context>
@@ -630,7 +659,7 @@ Tüm sayfaları yenilemeyi istiyor musunuz?</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>A&amp;ğ İzleyicisini Göster</translation>
+        <translation type="obsolete">A&amp;ğ İzleyicisini Göster</translation>
     </message>
     <message>
         <source>Close Window</source>
@@ -667,12 +696,24 @@ Tüm sayfaları yenilemeyi istiyor musunuz?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Özel gezinme aktif olduğunda, gizliliğinizle ilgili bazı eylemler etkisizleştirilecek:&lt;ul&gt;&lt;li&gt; Web sayfaları geçmişe eklenmeyecek.&lt;/li&gt;&lt;li&gt; İndirme penceresindeki öğeler otomatik olarak kaldırılacak.&lt;/li&gt;&lt;li&gt; Yeni çerezler saklanmayacak, mevcut çerezlere erişilemeyecek.&lt;/li&gt;&lt;li&gt; Sayfa simgeleri saklanmayacak, oturum kaydedilmeyecek.&lt;/li&gt;&lt;li&gt; Aramalarınız arama kutusundaki açılır menüye eklenmeyecek.&lt;/li&gt;&lt;/ul&gt;Siz pencereyi kapatana kadar, açmış olduğunu web sayfalarına Geri ve İleri düğmelerine tıklayarak geri dönebileceksiniz.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Özel gezinme aktif olduğunda, gizliliğinizle ilgili bazı eylemler etkisizleştirilecek:&lt;ul&gt;&lt;li&gt; Web sayfaları geçmişe eklenmeyecek.&lt;/li&gt;&lt;li&gt; İndirme penceresindeki öğeler otomatik olarak kaldırılacak.&lt;/li&gt;&lt;li&gt; Yeni çerezler saklanmayacak, mevcut çerezlere erişilemeyecek.&lt;/li&gt;&lt;li&gt; Sayfa simgeleri saklanmayacak, oturum kaydedilmeyecek.&lt;/li&gt;&lt;li&gt; Aramalarınız arama kutusundaki açılır menüye eklenmeyecek.&lt;/li&gt;&lt;/ul&gt;Siz pencereyi kapatana kadar, açmış olduğunu web sayfalarına Geri ve İleri düğmelerine tıklayarak geri dönebileceksiniz.</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -902,7 +943,7 @@ Tüm sayfaları yenilemeyi istiyor musunuz?</translation>
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>Ico</source>
@@ -976,18 +1017,20 @@ Tüm sayfaları yenilemeyi istiyor musunuz?</translation>
         <source>- %n minutes remaining</source>
         <translation type="obsolete">
             <numerusform>- %n dakika kaldı</numerusform>
-            <numerusform>- %n dakika kaldı</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>- %n seconds remaining</source>
         <translation type="obsolete">
             <numerusform>- %n saniye kaldı</numerusform>
-            <numerusform>- %n saniye kaldı</numerusform>
         </translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -997,7 +1040,6 @@ Tüm sayfaları yenilemeyi istiyor musunuz?</translation>
         <source>%n Download(s)</source>
         <translation>
             <numerusform>%n İndirilen</numerusform>
-            <numerusform>%n İndirilenler</numerusform>
         </translation>
     </message>
     <message>
@@ -1010,13 +1052,11 @@ Yine de çıkmak istiyor musunuz?</translation>
         <source>%n minutes remaining</source>
         <translation>
             <numerusform>%n dakika kaldı</numerusform>
-            <numerusform>%n dakika kaldı</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
         <translation>
-            <numerusform>%n saniye kaldı</numerusform>
             <numerusform>%n saniye kaldı</numerusform>
         </translation>
     </message>
@@ -1031,6 +1071,33 @@ Yine de çıkmak istiyor musunuz?</translation>
     <message>
         <source>MB</source>
         <translation>MB</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1100,8 +1167,30 @@ Yine de çıkmak istiyor musunuz?</translation>
         <source>%n item(s)</source>
         <translation>
             <numerusform>%n öğe</numerusform>
-            <numerusform>%n öğe</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1173,43 +1262,59 @@ Bu hataları görmezden gelmek istiyor musunuz?&lt;/qt&gt;</translation>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Sertifikalar:&lt;br/&gt;%1&lt;br/&gt;Tüm bu sertifikaları kabul etmek istiyor musunuz?&lt;/qt&gt;</translation>
     </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation>İsim</translation>
+        <translation type="obsolete">İsim</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation>Değer</translation>
+        <translation type="obsolete">Değer</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>Ağ İzleyici</translation>
+        <translation type="obsolete">Ağ İzleyici</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation>Ağ İstekleri</translation>
+        <translation type="obsolete">Ağ İstekleri</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>İstek Başlıkları</translation>
+        <translation type="obsolete">İstek Başlıkları</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>Yanıt Başlıkları</translation>
+        <translation type="obsolete">Yanıt Başlıkları</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Kaldır</translation>
+        <translation type="obsolete">&amp;Kaldır</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>&amp;Tüm İstekleri Kaldır</translation>
+        <translation type="obsolete">&amp;Tüm İstekleri Kaldır</translation>
     </message>
 </context>
 <context>
@@ -1345,38 +1450,38 @@ Bu hataları görmezden gelmek istiyor musunuz?&lt;/qt&gt;</translation>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation>Yönlendir: %1</translation>
+        <translation type="obsolete">Yönlendir: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Metod</translation>
+        <translation type="obsolete">Metod</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Adres</translation>
+        <translation type="obsolete">Adres</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation>Yanıt</translation>
+        <translation type="obsolete">Yanıt</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation>Uzunluk</translation>
+        <translation type="obsolete">Uzunluk</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>İçerik Türü</translation>
+        <translation type="obsolete">İçerik Türü</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Bilgi</translation>
+        <translation type="obsolete">Bilgi</translation>
     </message>
 </context>
 <context>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -1393,6 +1498,10 @@ Bu hataları görmezden gelmek istiyor musunuz?&lt;/qt&gt;</translation>
     <message>
         <source>Done</source>
         <translation>Bitti</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1704,6 +1813,10 @@ Bu hataları görmezden gelmek istiyor musunuz?&lt;/qt&gt;</translation>
         <source> MB</source>
         <translation> MB</translation>
     </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1732,7 +1845,7 @@ Bu hataları görmezden gelmek istiyor musunuz?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Sayfanın Kaynağı</translation>
+        <translation type="obsolete">Sayfanın Kaynağı</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -1741,6 +1854,10 @@ Bu hataları görmezden gelmek istiyor musunuz?&lt;/qt&gt;</translation>
     <message>
         <source>&amp;Wrap lines</source>
         <translation>Satırları &amp;kaydır</translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1902,6 +2019,14 @@ Bu sayfayı gerçekten kapatmayı istiyor musunuz?
         <source>If the address is correct, try checking the network connection.</source>
         <translation>Adres doğruysa, ağ bağlantınızı kontrol etmeyi deneyin.</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -1952,6 +2077,34 @@ Bu sayfayı gerçekten kapatmayı istiyor musunuz?
     <message>
         <source>Search with...</source>
         <translation>Şununla ara...</translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

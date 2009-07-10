@@ -153,7 +153,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Imported %1</source>
@@ -220,12 +220,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>HTML形式ブックマークの読み込み中にエラー: %1
+        <translation type="obsolete">HTML形式ブックマークの読み込み中にエラー: %1
 </translation>
     </message>
     <message>
         <source>XBEL</source>
-        <translation>XBEL</translation>
+        <translation type="obsolete">XBEL</translation>
     </message>
     <message>
         <source>Name Change</source>
@@ -236,6 +236,31 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
         <translation>アドレス変更</translation>
+    </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -260,7 +285,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>ブックマーク</translation>
+        <translation type="obsolete">ブックマーク</translation>
     </message>
     <message>
         <source>Open</source>
@@ -282,6 +307,10 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>フォルダの追加...</translation>
     </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished">ブックマーク</translation>
+    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
@@ -297,7 +326,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation> (Change: %1 %2)</translation>
+        <translation type="obsolete"> (Change: %1 %2)</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -614,7 +643,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>ネットワーク モニタを表示(&amp;N)</translation>
+        <translation type="obsolete">ネットワーク モニタを表示(&amp;N)</translation>
     </message>
     <message>
         <source>Close Window</source>
@@ -651,12 +680,24 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;プライベート モードに移行した場合、あなたのプライバシーを守る為、いくつかの機能は制限されます:&lt;ul&gt;&lt;li&gt; 表示したページは履歴に追加されません。&lt;/li&gt;&lt;li&gt; ダウンロード履歴は残りません。&lt;/li&gt;&lt;li&gt; 新しく受け取った Cookie は保存されません。既に保存済みの Cookie を参照する事もできません。&lt;/li&gt;&lt;li&gt; Web サイトのアイコンやセッションは保存されません。&lt;/li&gt;&lt;li&gt; 検索ボックスの検索履歴に追加されません。&lt;/li&gt;&lt;/ul&gt;ウィンドウを閉じるまでに閲覧した Web ページには戻る/進むボタンで移動する事ができます。</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;プライベート モードに移行した場合、あなたのプライバシーを守る為、いくつかの機能は制限されます:&lt;ul&gt;&lt;li&gt; 表示したページは履歴に追加されません。&lt;/li&gt;&lt;li&gt; ダウンロード履歴は残りません。&lt;/li&gt;&lt;li&gt; 新しく受け取った Cookie は保存されません。既に保存済みの Cookie を参照する事もできません。&lt;/li&gt;&lt;li&gt; Web サイトのアイコンやセッションは保存されません。&lt;/li&gt;&lt;li&gt; 検索ボックスの検索履歴に追加されません。&lt;/li&gt;&lt;/ul&gt;ウィンドウを閉じるまでに閲覧した Web ページには戻る/進むボタンで移動する事ができます。</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished">デフォルト</translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -886,7 +927,7 @@ Do you want to reload all pages?</source>
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>Open</source>
@@ -972,6 +1013,10 @@ Do you want to reload all pages?</source>
         <source>%1 of %2 (%3/sec) - %4</source>
         <translation>%1 / %2 (%3/秒) - %4</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
@@ -1010,6 +1055,33 @@ Do you want to quit anyway?</source>
     <message>
         <source>MB</source>
         <translation>MB</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1083,6 +1155,29 @@ Do you want to quit anyway?</source>
     </message>
 </context>
 <context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageManager</name>
     <message>
         <source>Default</source>
@@ -1151,43 +1246,59 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;証明書:&lt;br/&gt;%1&lt;br/&gt;全ての証明書を受け入れますか?&lt;/qt&gt;</translation>
     </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation type="obsolete">名前</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation>値</translation>
+        <translation type="obsolete">値</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>ネットワーク モニタ</translation>
+        <translation type="obsolete">ネットワーク モニタ</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation>ネットワーク リクエスト</translation>
+        <translation type="obsolete">ネットワーク リクエスト</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>リクエスト ヘッダ</translation>
+        <translation type="obsolete">リクエスト ヘッダ</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>レスポンス ヘッダ</translation>
+        <translation type="obsolete">レスポンス ヘッダ</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>削除(&amp;R)</translation>
+        <translation type="obsolete">削除(&amp;R)</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>全てのリクエストを削除(&amp;A)</translation>
+        <translation type="obsolete">全てのリクエストを削除(&amp;A)</translation>
     </message>
 </context>
 <context>
@@ -1323,38 +1434,38 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation>リダイレクト: %1</translation>
+        <translation type="obsolete">リダイレクト: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>メソッド</translation>
+        <translation type="obsolete">メソッド</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>アドレス</translation>
+        <translation type="obsolete">アドレス</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation>レスポンス</translation>
+        <translation type="obsolete">レスポンス</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation>長さ</translation>
+        <translation type="obsolete">長さ</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>Content Type</translation>
+        <translation type="obsolete">Content Type</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>情報</translation>
+        <translation type="obsolete">情報</translation>
     </message>
 </context>
 <context>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -1371,6 +1482,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>Done</source>
         <translation>閉じる</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1682,6 +1797,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source> MB</source>
         <translation> MB</translation>
     </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1710,7 +1829,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>ソース表示</translation>
+        <translation type="obsolete">ソース表示</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -1719,6 +1838,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>&amp;Wrap lines</source>
         <translation>行を折り返す(&amp;W)</translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1879,6 +2002,14 @@ Do you really want to close this page?
         <source>If the address is correct, try checking the network connection.</source>
         <translation>URLが正しい場合は、ネットワークの接続状況を確認してみてください。</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -1929,6 +2060,34 @@ Do you really want to close this page?
     <message>
         <source>Search with...</source>
         <translation>検索エンジンを指定して検索...</translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -520,7 +520,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>&amp;Hálózatfigyelő megjelenítése</translation>
+        <translation type="obsolete">&amp;Hálózatfigyelő megjelenítése</translation>
     </message>
     <message>
         <source>Enable Web &amp;Inspector</source>
@@ -594,7 +594,7 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ha a privát böngészés be van kapcsolva, akkor néhány személyes adatokat érintő művelet tiltásra kerül:&lt;ul&gt;&lt;li&gt; A meglátogatott oldalak nem kerülnek hozzáadásra az előzményekhez.&lt;/li&gt;&lt;li&gt; Az új elemek automatikusan eltávolításra kerülnek a letöltések listájáról.&lt;/li&gt;&lt;li&gt; Az új sütik nem kerülnek eltárolásra, a korábban tárolt sütik pedig nem érhetőek el.&lt;/li&gt;&lt;li&gt; Az oldalak ikonjai és a munkamenetek nem kerülnek mentésre.&lt;/li&gt;&lt;li&gt; A keresések nem kerülnek hozzáadásra a keresőmező listájához.&lt;/li&gt;&lt;/ul&gt;A böngészőablak bezárásáig a Vissza és Előre gombokkal navigálhatunk a megnyitott oldalak között.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ha a privát böngészés be van kapcsolva, akkor néhány személyes adatokat érintő művelet tiltásra kerül:&lt;ul&gt;&lt;li&gt; A meglátogatott oldalak nem kerülnek hozzáadásra az előzményekhez.&lt;/li&gt;&lt;li&gt; Az új elemek automatikusan eltávolításra kerülnek a letöltések listájáról.&lt;/li&gt;&lt;li&gt; Az új sütik nem kerülnek eltárolásra, a korábban tárolt sütik pedig nem érhetőek el.&lt;/li&gt;&lt;li&gt; Az oldalak ikonjai és a munkamenetek nem kerülnek mentésre.&lt;/li&gt;&lt;li&gt; A keresések nem kerülnek hozzáadásra a keresőmező listájához.&lt;/li&gt;&lt;/ul&gt;A böngészőablak bezárásáig a Vissza és Előre gombokkal navigálhatunk a megnyitott oldalak között.</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
@@ -634,6 +634,10 @@ Do you want to reload all pages?</source>
     <message>
         <source>Text Encoding</source>
         <translation>Szövegkódolás</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -913,6 +917,10 @@ Do you want to reload all pages?</source>
         <source>%1 of %2 - Stopped</source>
         <translation>%1 / %2 - Megállítva</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
@@ -955,6 +963,29 @@ Biztosan ki akar lépni?</translation>
     <message>
         <source>GB</source>
         <translation>GB</translation>
+    </message>
+</context>
+<context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1028,6 +1059,29 @@ Biztosan ki akar lépni?</translation>
     </message>
 </context>
 <context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageManager</name>
     <message>
         <source>No translation files are installed.</source>
@@ -1089,38 +1143,38 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation>Név</translation>
+        <translation type="obsolete">Név</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation>Érték</translation>
+        <translation type="obsolete">Érték</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>Hálózatfigyelő</translation>
+        <translation type="obsolete">Hálózatfigyelő</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation>Hálózati kérések</translation>
+        <translation type="obsolete">Hálózati kérések</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>Kérés fejlécek</translation>
+        <translation type="obsolete">Kérés fejlécek</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>Válasz fejlécek</translation>
+        <translation type="obsolete">Válasz fejlécek</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Eltávolítás</translation>
+        <translation type="obsolete">&amp;Eltávolítás</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>&amp;Összes kérés eltávolítása</translation>
+        <translation type="obsolete">&amp;Összes kérés eltávolítása</translation>
     </message>
 </context>
 <context>
@@ -1252,35 +1306,35 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation>Átirányítás: %1</translation>
+        <translation type="obsolete">Átirányítás: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Típus</translation>
+        <translation type="obsolete">Típus</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Cím</translation>
+        <translation type="obsolete">Cím</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation>Válasz</translation>
+        <translation type="obsolete">Válasz</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation>Hossz</translation>
+        <translation type="obsolete">Hossz</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>Tartalom típusa</translation>
+        <translation type="obsolete">Tartalom típusa</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Információ</translation>
+        <translation type="obsolete">Információ</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Ismeretlen</translation>
+        <translation type="obsolete">Ismeretlen</translation>
     </message>
 </context>
 <context>
@@ -1292,6 +1346,10 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
     <message>
         <source>Done</source>
         <translation>Bezárás</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1582,6 +1640,10 @@ Figyelmen kívül akarja hagyni ezeket a hibákat?&lt;/qt&gt;</translation>
     <message>
         <source> MB</source>
         <translation> MB</translation>
+    </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

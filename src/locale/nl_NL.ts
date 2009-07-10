@@ -163,7 +163,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Imported %1</source>
@@ -216,12 +216,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>Fout bij het laden van html-bladwijzers: %1
+        <translation type="obsolete">Fout bij het laden van html-bladwijzers: %1
 </translation>
     </message>
     <message>
         <source>XBEL</source>
-        <translation>XBEL</translation>
+        <translation type="obsolete">XBEL</translation>
     </message>
     <message>
         <source>Name Change</source>
@@ -232,6 +232,31 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
         <translation>Adres wijzigen</translation>
+    </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -256,7 +281,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>Bladwijzer</translation>
+        <translation type="obsolete">Bladwijzer</translation>
     </message>
     <message>
         <source>Open</source>
@@ -278,6 +303,10 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Map toevoegen...</translation>
     </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished">Bladwijzers</translation>
+    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
@@ -297,7 +326,7 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation>(Verandering: %1 %2)</translation>
+        <translation type="obsolete">(Verandering: %1 %2)</translation>
     </message>
 </context>
 <context>
@@ -577,7 +606,7 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>&amp;Netwerkmonitor tonen</translation>
+        <translation type="obsolete">&amp;Netwerkmonitor tonen</translation>
     </message>
     <message>
         <source>Switch application language </source>
@@ -615,7 +644,7 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Als privésurfen aan staat zullen sommige acties omtrent uw privacy worden uitgeschakeld:&lt;ul&gt;&lt;li&gt; Webpagina&apos;s worden niet toegevoegd aan de geschiedenis.&lt;/li&gt;&lt;li&gt; Items worden automatisch verwijderd uit het Downloads-scherm.&lt;/li&gt;&lt;li&gt; Nieuwe cookies worden niet opgeslagen, huidige cookies kunnen niet worden bereikt.&lt;/li&gt;&lt;li&gt; Sitepictogrammen en sessie&apos;s worden niet opgeslagen.&lt;/li&gt;&lt;li&gt; Zoekopdrachten worden niet toegevoegd aan het pop-upmenu in de zoekbalk.&lt;/li&gt;&lt;/ul&gt;Totdat u het venster sluit, kunt u nog altijd de Terug- en Vooruitknoppen gebruiken om terug te keren naar webpagina&apos;s die u heeft geopend.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Als privésurfen aan staat zullen sommige acties omtrent uw privacy worden uitgeschakeld:&lt;ul&gt;&lt;li&gt; Webpagina&apos;s worden niet toegevoegd aan de geschiedenis.&lt;/li&gt;&lt;li&gt; Items worden automatisch verwijderd uit het Downloads-scherm.&lt;/li&gt;&lt;li&gt; Nieuwe cookies worden niet opgeslagen, huidige cookies kunnen niet worden bereikt.&lt;/li&gt;&lt;li&gt; Sitepictogrammen en sessie&apos;s worden niet opgeslagen.&lt;/li&gt;&lt;li&gt; Zoekopdrachten worden niet toegevoegd aan het pop-upmenu in de zoekbalk.&lt;/li&gt;&lt;/ul&gt;Totdat u het venster sluit, kunt u nog altijd de Terug- en Vooruitknoppen gebruiken om terug te keren naar webpagina&apos;s die u heeft geopend.</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
@@ -624,6 +653,18 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <message>
         <source>Add Folder...</source>
         <translation>Map toevoegen...</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -853,7 +894,7 @@ Wilt u alle pagina&apos;s herladen?</translation>
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>Ico</source>
@@ -941,6 +982,10 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <source>%1 of %2 (%3/sec) - %4</source>
         <translation>%1 van %2 (%3/sec) - %4</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
@@ -982,6 +1027,33 @@ Wilt u toch afsluiten?</translation>
     <message>
         <source>MB</source>
         <translation>MB</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1056,6 +1128,29 @@ Wilt u toch afsluiten?</translation>
     </message>
 </context>
 <context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageManager</name>
     <message>
         <source>Choose language</source>
@@ -1100,43 +1195,59 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Certificaten:&lt;br/&gt;%1&lt;br/&gt;Wilt u al deze certificaten accepteren?&lt;/qt&gt;</translation>
     </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation>Naam</translation>
+        <translation type="obsolete">Naam</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation>Waarde</translation>
+        <translation type="obsolete">Waarde</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>Netwerkmonitor</translation>
+        <translation type="obsolete">Netwerkmonitor</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation>Netwerkaanvragen</translation>
+        <translation type="obsolete">Netwerkaanvragen</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>Kopteksten opvragen</translation>
+        <translation type="obsolete">Kopteksten opvragen</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>Reagerende kopteksten</translation>
+        <translation type="obsolete">Reagerende kopteksten</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>Ver&amp;wijderen</translation>
+        <translation type="obsolete">Ver&amp;wijderen</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>&amp;Alle aanvragen verwijderen</translation>
+        <translation type="obsolete">&amp;Alle aanvragen verwijderen</translation>
     </message>
 </context>
 <context>
@@ -1272,38 +1383,38 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation>Doorverwijzing: %1</translation>
+        <translation type="obsolete">Doorverwijzing: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Methode</translation>
+        <translation type="obsolete">Methode</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Adres</translation>
+        <translation type="obsolete">Adres</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation>Reactie</translation>
+        <translation type="obsolete">Reactie</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation>Lengte</translation>
+        <translation type="obsolete">Lengte</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>Inhoudtype</translation>
+        <translation type="obsolete">Inhoudtype</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation type="obsolete">Info</translation>
     </message>
 </context>
 <context>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -1320,6 +1431,10 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     <message>
         <source>Done</source>
         <translation>Klaar</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1623,6 +1738,10 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
         <source> MB</source>
         <translation>MB</translation>
     </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1659,7 +1778,11 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Paginabron</translation>
+        <translation type="obsolete">Paginabron</translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1817,6 +1940,14 @@ Bent u zeker dat u deze pagina wilt sluiten?
         <source>If the address is correct, try checking the network connection.</source>
         <translation>Indien het adres juist is, de netwerkverbinding proberen te testen.</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -1867,6 +1998,34 @@ Bent u zeker dat u deze pagina wilt sluiten?
     <message>
         <source>Search with...</source>
         <translation>Zoeken met...</translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

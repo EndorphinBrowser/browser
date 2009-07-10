@@ -1080,6 +1080,10 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
         <source>%1 of %2 (%3/sec) - %4</source>
         <translation>%1 z %2 (%3/sek) - %4</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>

@@ -31,7 +31,7 @@
         <source>About %1</source>
         <translation type="unfinished">О %1</translation>
     </message>
-    <message>
+    <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -151,7 +151,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Imported %1</source>
@@ -204,11 +204,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation type="unfinished">Ошибка при загрузке HTML закладки: %1</translation>
+        <translation type="obsolete">Ошибка при загрузке HTML закладки: %1</translation>
     </message>
     <message>
         <source>XBEL</source>
-        <translation type="unfinished">XBEL</translation>
+        <translation type="obsolete">XBEL</translation>
     </message>
     <message>
         <source>Name Change</source>
@@ -219,6 +219,31 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
         <translation type="unfinished">Изменение адреса</translation>
+    </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -243,7 +268,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>Закладка</translation>
+        <translation type="obsolete">Закладка</translation>
     </message>
     <message>
         <source>Open</source>
@@ -265,6 +290,10 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Добавить папку...</translation>
     </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished">Закладки</translation>
+    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
@@ -284,7 +313,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation type="unfinished"> (Change: %1 %2)</translation>
+        <translation type="obsolete"> (Change: %1 %2)</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -609,7 +638,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>Показать &amp;Сетевой монитор</translation>
+        <translation type="obsolete">Показать &amp;Сетевой монитор</translation>
     </message>
     <message>
         <source>Switch application language </source>
@@ -650,12 +679,24 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Когда включен режим приватного браузинга, некоторые действия угрожающие безопасности будут недоступны:&lt;ul&gt;&lt;li&gt; Вебстраницы не добавляются в журнал.&lt;/li&gt;&lt;li&gt; Записи автоматически удаляются из списка закачек.&lt;/li&gt;&lt;li&gt; Новые cookie не сораняются, старые cockie не доступны.&lt;/li&gt;&lt;li&gt; Иконки сайтов не сохраняются, сессии не сохраняются.&lt;/li&gt;&lt;li&gt; Поисковые запросы не добавляются во всплывающее окно при новом запросе.&lt;/li&gt;&lt;/ul&gt;Пока вы не закроете окно вы не сможете воспользоваться кнопками Вперед и Назад для перехода на ранее открытые страницы.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Когда включен режим приватного браузинга, некоторые действия угрожающие безопасности будут недоступны:&lt;ul&gt;&lt;li&gt; Вебстраницы не добавляются в журнал.&lt;/li&gt;&lt;li&gt; Записи автоматически удаляются из списка закачек.&lt;/li&gt;&lt;li&gt; Новые cookie не сораняются, старые cockie не доступны.&lt;/li&gt;&lt;li&gt; Иконки сайтов не сохраняются, сессии не сохраняются.&lt;/li&gt;&lt;li&gt; Поисковые запросы не добавляются во всплывающее окно при новом запросе.&lt;/li&gt;&lt;/ul&gt;Пока вы не закроете окно вы не сможете воспользоваться кнопками Вперед и Назад для перехода на ранее открытые страницы.</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation type="unfinished">Ctrl+Y</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -941,7 +982,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="obsolete">Форма</translation>
     </message>
     <message>
         <source>Ico</source>
@@ -987,6 +1028,10 @@ Do you want to reload all pages?</source>
         <source>%1 of %2 (%3/sec) - %4</source>
         <translation>%1 из %2 (%3/сек) - %4</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
@@ -1031,6 +1076,33 @@ Do you want to quit anyway?</source>
     <message>
         <source>MB</source>
         <translation type="unfinished">МБ</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1106,6 +1178,29 @@ Do you want to quit anyway?</source>
     </message>
 </context>
 <context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageManager</name>
     <message>
         <source>Choose language</source>
@@ -1166,43 +1261,59 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation type="unfinished">&lt;qt&gt;Сертификаты:&lt;br/&gt;%1&lt;br/&gt;Вы хотите принять эти сертификаты?&lt;/qt&gt;</translation>
     </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Имя</translation>
+        <translation type="obsolete">Имя</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished">Значение</translation>
+        <translation type="obsolete">Значение</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation type="unfinished">Сетевой монитор</translation>
+        <translation type="obsolete">Сетевой монитор</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation type="unfinished">Сетевые запросы</translation>
+        <translation type="obsolete">Сетевые запросы</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation type="unfinished">Заголовки запроса</translation>
+        <translation type="obsolete">Заголовки запроса</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation type="unfinished">Заголовки ответа</translation>
+        <translation type="obsolete">Заголовки ответа</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">&amp;Удалить</translation>
+        <translation type="obsolete">&amp;Удалить</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation type="unfinished">Удалите &amp;все запросы</translation>
+        <translation type="obsolete">Удалите &amp;все запросы</translation>
     </message>
 </context>
 <context>
@@ -1338,38 +1449,38 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation type="unfinished">Перенаправить: %1</translation>
+        <translation type="obsolete">Перенаправить: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished">Метод</translation>
+        <translation type="obsolete">Метод</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="unfinished">Адрес</translation>
+        <translation type="obsolete">Адрес</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation type="unfinished">Ответ</translation>
+        <translation type="obsolete">Ответ</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation type="unfinished">Длина</translation>
+        <translation type="obsolete">Длина</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation type="unfinished">Формат содержимого</translation>
+        <translation type="obsolete">Формат содержимого</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished">Информация</translation>
+        <translation type="obsolete">Информация</translation>
     </message>
 </context>
 <context>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -1386,6 +1497,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>Done</source>
         <translation>Готово</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1721,6 +1836,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source> MB</source>
         <translation type="unfinished">МБ</translation>
     </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1757,7 +1876,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Исходный код страницы</translation>
+        <translation type="obsolete">Исходный код страницы</translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1923,6 +2046,14 @@ Do you really want to close this page?
         <source>If the address is correct, try checking the network connection.</source>
         <translation type="unfinished">Если адрес введён правильно, проверьте сетевое соединение.</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -1973,6 +2104,34 @@ Do you really want to close this page?
     <message>
         <source>Search with...</source>
         <translation>Искать в...</translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
