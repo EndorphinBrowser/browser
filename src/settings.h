@@ -91,9 +91,7 @@ private slots:
 private:
     QFont m_standardFont;
     QFont m_fixedFont;
-#if QT_VERSION >= 0x040500
     bool m_cacheEnabled;
-#endif
 };
 
 #endif // SETTINGS_H

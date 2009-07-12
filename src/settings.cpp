@@ -85,9 +85,7 @@
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
-#if QT_VERSION >= 0x040500
     , m_cacheEnabled(false)
-#endif
 {
     setupUi(this);
     connect(exceptionsButton, SIGNAL(clicked()), this, SLOT(showExceptions()));
@@ -98,14 +96,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(languageButton, SIGNAL(clicked()), this, SLOT(chooseAcceptLanguage()));
     connect(downloadDirectoryButton, SIGNAL(clicked()), this, SLOT(chooseDownloadDirectory()));
 
-#if QT_VERSION < 0x040500
-    oneCloseButton->setVisible(false); // no other mode than one close button with qt <4.5
-    networkCache->setVisible(false);
-#else
     // As network cache has too many bugs in 4.5.1, do not allow to enable it.
     if (QLatin1String(qVersion()) == QLatin1String("4.5.1"))
         networkCache->setVisible(false);
-#endif
+
     loadDefaults();
     loadFromSettings();
 }
@@ -227,14 +221,12 @@ void SettingsDialog::loadFromSettings()
     filterTrackingCookiesCheckbox->setChecked(settings.value(QLatin1String("filterTrackingCookies"), true).toBool());
     settings.endGroup();
 
-#if QT_VERSION >= 0x040500
     // Network
     settings.beginGroup(QLatin1String("network"));
     m_cacheEnabled = settings.value(QLatin1String("cacheEnabled"), true).toBool();
     networkCache->setChecked(m_cacheEnabled);
     networkCacheMaximumSizeSpinBox->setValue(settings.value(QLatin1String("maximumCacheSize"), 50).toInt());
     settings.endGroup();
-#endif
 
     // Proxy
     settings.beginGroup(QLatin1String("proxy"));
@@ -250,9 +242,7 @@ void SettingsDialog::loadFromSettings()
     settings.beginGroup(QLatin1String("tabs"));
     selectTabsWhenCreated->setChecked(settings.value(QLatin1String("selectNewTabs"), false).toBool());
     confirmClosingMultipleTabs->setChecked(settings.value(QLatin1String("confirmClosingMultipleTabs"), true).toBool());
-#if QT_VERSION >= 0x040500
     oneCloseButton->setChecked(settings.value(QLatin1String("oneCloseButton"),false).toBool());
-#endif
     quitAsLastTabClosed->setChecked(settings.value(QLatin1String("quitAsLastTabClosed"), true).toBool());
     openTargetBlankLinksIn->setCurrentIndex(settings.value(QLatin1String("openTargetBlankLinksIn"), TabWidget::NewSelectedTab).toInt());
     openLinksFromAppsIn->setCurrentIndex(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
@@ -347,13 +337,11 @@ void SettingsDialog::saveToSettings()
     settings.setValue(QLatin1String("filterTrackingCookies"), filterTrackingCookiesCheckbox->isChecked());
     settings.endGroup();
 
-#if QT_VERSION >= 0x040500
     // Network
     settings.beginGroup(QLatin1String("network"));
     settings.setValue(QLatin1String("cacheEnabled"), networkCache->isChecked());
     settings.setValue(QLatin1String("maximumCacheSize"), networkCacheMaximumSizeSpinBox->value());
     settings.endGroup();
-#endif
 
     // proxy
     settings.beginGroup(QLatin1String("proxy"));
@@ -369,9 +357,7 @@ void SettingsDialog::saveToSettings()
     settings.beginGroup(QLatin1String("tabs"));
     settings.setValue(QLatin1String("selectNewTabs"), selectTabsWhenCreated->isChecked());
     settings.setValue(QLatin1String("confirmClosingMultipleTabs"), confirmClosingMultipleTabs->isChecked());
-#if QT_VERSION >= 0x040500
     settings.setValue(QLatin1String("oneCloseButton"), oneCloseButton->isChecked());
-#endif
     settings.setValue(QLatin1String("quitAsLastTabClosed"), quitAsLastTabClosed->isChecked());
     settings.setValue(QLatin1String("openTargetBlankLinksIn"), openTargetBlankLinksIn->currentIndex());
     settings.setValue(QLatin1String("openLinksFromAppsIn"), openLinksFromAppsIn->currentIndex());
@@ -393,14 +379,12 @@ void SettingsDialog::saveToSettings()
 void SettingsDialog::accept()
 {
     saveToSettings();
-#if QT_VERSION >= 0x040500
     // Due to a bug in Qt <= 4.5.1, enabling/disabling cache requires the browser to be restarted.
     if (QLatin1String(qVersion()) <= QLatin1String("4.5.1") && networkCache->isChecked() != m_cacheEnabled) {
         QMessageBox::information(this, tr("Restart required"),
                                  tr("The network cache configuration has changed. "
                                     "So that it can be taken into account, the browser has to be restarted."));
     }
-#endif
     QDialog::accept();
 }
 

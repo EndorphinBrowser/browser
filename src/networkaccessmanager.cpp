@@ -76,18 +76,14 @@
 #include <qtextdocument.h>
 
 #include <qauthenticator.h>
+#include <qdesktopservices.h>
+#include <qnetworkdiskcache.h>
 #include <qnetworkproxy.h>
 #include <qnetworkreply.h>
 #include <qsslconfiguration.h>
 #include <qsslerror.h>
 #include <qdatetime.h>
 
-#if QT_VERSION >= 0x040500
-#include <qnetworkdiskcache.h>
-#include <qdesktopservices.h>
-#endif
-
-#if QT_VERSION >= 0x040500
 NetworkProxyFactory::NetworkProxyFactory()
     : QNetworkProxyFactory()
 {
@@ -113,7 +109,6 @@ QList<QNetworkProxy> NetworkProxyFactory::queryProxy(const QNetworkProxyQuery &q
 
     return ret;
 }
-#endif
 
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
     : QNetworkAccessManager(parent)
@@ -152,16 +147,13 @@ void NetworkAccessManager::loadSettings()
             proxy = QNetworkProxy::HttpProxy;
         else { // 2
             proxy.setType(QNetworkProxy::HttpCachingProxy);
-#if QT_VERSION >= 0x040500
             proxy.setCapabilities(QNetworkProxy::CachingCapability | QNetworkProxy::HostNameLookupCapability);
-#endif
         }
         proxy.setHostName(settings.value(QLatin1String("hostName")).toString());
         proxy.setPort(settings.value(QLatin1String("port"), 1080).toInt());
         proxy.setUser(settings.value(QLatin1String("userName")).toString());
         proxy.setPassword(settings.value(QLatin1String("password")).toString());
     }
-#if QT_VERSION >= 0x040500
     NetworkProxyFactory *proxyFactory = new NetworkProxyFactory;
     if (proxy.type() == QNetworkProxy::HttpCachingProxy) {
         proxyFactory->setHttpProxy(proxy);
@@ -171,9 +163,6 @@ void NetworkAccessManager::loadSettings()
         proxyFactory->setGlobalProxy(proxy);
     }
     setProxyFactory(proxyFactory);
-#else
-    setProxy(proxy);
-#endif
     settings.endGroup();
 
 #ifndef QT_NO_OPENSSL
@@ -191,7 +180,6 @@ void NetworkAccessManager::loadSettings()
             AcceptLanguageDialog::defaultAcceptList()).toStringList();
     m_acceptLanguage = AcceptLanguageDialog::httpString(acceptList);
 
-#if QT_VERSION >= 0x040500
     bool cacheEnabled = settings.value(QLatin1String("cacheEnabled"), true).toBool();
     if (QLatin1String(qVersion()) == QLatin1String("4.5.1"))
         cacheEnabled = false;
@@ -214,17 +202,14 @@ void NetworkAccessManager::loadSettings()
         if (QLatin1String(qVersion()) > QLatin1String("4.5.1"))
             setCache(0);
     }
-#endif
     settings.endGroup();
 }
 
 void NetworkAccessManager::privacyChanged(bool isPrivate)
 {
     if (isPrivate) {
-#if QT_VERSION >= 0x040500
         if (QLatin1String(qVersion()) > QLatin1String("4.5.1"))
             setCache(0);
-#endif
     } else {
         loadSettings();
     }

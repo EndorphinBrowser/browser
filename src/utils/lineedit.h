@@ -32,7 +32,6 @@
 #include <qlineedit.h>
 
 class QHBoxLayout;
-class SideWidget;
 
 /*
     LineEdit is a subclass of QLineEdit that provides an easy and simple
@@ -44,6 +43,7 @@ class SideWidget;
     As widgets are added to the class they are inserted from the outside
     into the center of the widget.
 */
+class SideWidget;
 class LineEdit : public QLineEdit
 {
     Q_OBJECT

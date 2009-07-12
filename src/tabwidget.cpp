@@ -123,15 +123,10 @@ TabWidget::TabWidget(QWidget *parent)
     connect(m_tabBar, SIGNAL(closeOtherTabs(int)), this, SLOT(closeOtherTabs(int)));
     connect(m_tabBar, SIGNAL(reloadTab(int)), this, SLOT(reloadTab(int)));
     connect(m_tabBar, SIGNAL(reloadAllTabs()), this, SLOT(reloadAllTabs()));
-#if QT_VERSION < 0x040500
-    connect(m_tabBar, SIGNAL(tabMoveRequested(int, int)), this, SLOT(moveTab(int, int)));
-#endif
     setTabBar(m_tabBar);
-#if QT_VERSION >= 0x040500
     setDocumentMode(true);
     connect(m_tabBar, SIGNAL(tabMoved(int, int)),
             this, SLOT(moveTab(int, int)));
-#endif
 
     // Actions
     m_newTabAction = new QAction(this);
@@ -149,17 +144,13 @@ TabWidget::TabWidget(QWidget *parent)
     m_newTabAction->setIconVisibleInMenu(false);
 
     QSettings settings;
-#if QT_VERSION >= 0x040500
     settings.beginGroup(QLatin1String("tabs"));
     bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
     if (oneCloseButton) {
-#endif
         // With Qt < 4.5 do this always, with >=4.5 only if enabled.
         m_closeTabAction->setIcon(QIcon(QLatin1String(":graphics/closetab.png")));
         m_closeTabAction->setIconVisibleInMenu(false);
-#if QT_VERSION >= 0x040500
     }
-#endif
 
     m_nextTabAction = new QAction(this);
     connect(m_nextTabAction, SIGNAL(triggered()), this, SLOT(nextTab()));
@@ -185,9 +176,7 @@ TabWidget::TabWidget(QWidget *parent)
     setCornerWidget(addTabButton, newTabButtonInRightCorner ? Qt::TopRightCorner : Qt::TopLeftCorner);
 #endif
 
-#if QT_VERSION >= 0x040500
     if (oneCloseButton) {
-#endif
         // corner buttons
         // With Qt < 4.5 do this always, with >=4.5 only if enabled.
         QToolButton *closeTabButton = new QToolButton(this);
@@ -195,14 +184,12 @@ TabWidget::TabWidget(QWidget *parent)
         closeTabButton->setAutoRaise(true);
         closeTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
         setCornerWidget(closeTabButton, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
-#if QT_VERSION >= 0x040500
     } else {
         m_tabBar->setTabsClosable(true);
 
         connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
                 this, SLOT(closeTab(int)));
     }
-#endif
 
     connect(this, SIGNAL(currentChanged(int)),
             this, SLOT(currentChanged(int)));
@@ -250,28 +237,9 @@ void TabWidget::reloadTab(int index)
 
 void TabWidget::moveTab(int fromIndex, int toIndex)
 {
-#if QT_VERSION < 0x040500
-    disconnect(this, SIGNAL(currentChanged(int)),
-               this, SLOT(currentChanged(int)));
-
-    QWidget *tabWidget = widget(fromIndex);
-    QWidget *lineEdit = m_lineEdits->widget(fromIndex);
-    QIcon icon = tabIcon(fromIndex);
-    QString text = tabText(fromIndex);
-    QVariant data = m_tabBar->tabData(fromIndex);
-    removeTab(fromIndex);
-    m_lineEdits->removeWidget(lineEdit);
-    insertTab(toIndex, tabWidget, icon, text);
-    m_lineEdits->insertWidget(toIndex, lineEdit);
-    m_tabBar->setTabData(toIndex, data);
-    connect(this, SIGNAL(currentChanged(int)),
-            this, SLOT(currentChanged(int)));
-    setCurrentIndex(toIndex);
-#else
     QWidget *lineEdit = m_lineEdits->widget(fromIndex);
     m_lineEdits->removeWidget(lineEdit);
     m_lineEdits->insertWidget(toIndex, lineEdit);
-#endif
 }
 
 void TabWidget::addWebAction(QAction *action, QWebPage::WebAction webAction)
@@ -675,11 +643,6 @@ void TabWidget::closeTab(int index)
 
 QLabel *TabWidget::animationLabel(int index, bool addMovie)
 {
-#if QT_VERSION < 0x040500
-    Q_UNUSED(index);
-    Q_UNUSED(addMovie);
-    return 0;
-#else
     if (-1 == index)
         return 0;
     QTabBar::ButtonPosition side = m_tabBar->freeSide();
@@ -696,7 +659,6 @@ QLabel *TabWidget::animationLabel(int index, bool addMovie)
     m_tabBar->setTabButton(index, side, 0);
     m_tabBar->setTabButton(index, side, loadingAnimation);
     return loadingAnimation;
-#endif
 }
 
 void TabWidget::webViewLoadStarted()
@@ -704,14 +666,9 @@ void TabWidget::webViewLoadStarted()
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
     if (-1 != index) {
-#if QT_VERSION >= 0x040500
         QLabel *label = animationLabel(index, true);
         if (label->movie())
             label->movie()->start();
-#else
-        QIcon icon(QLatin1String(":graphics/loading.gif"));
-        setTabIcon(index, icon);
-#endif
     }
 
     if (index != currentIndex())
@@ -740,7 +697,6 @@ void TabWidget::webViewLoadFinished(bool ok)
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
 
-#if QT_VERSION >= 0x040500
     if (-1 != index) {
         QLabel *label = animationLabel(index, true);
         if (label->movie())
@@ -751,7 +707,6 @@ void TabWidget::webViewLoadFinished(bool ok)
         delete label;
 #endif
     }
-#endif
     webViewIconChanged();
 
     if (index != currentIndex())
@@ -768,7 +723,6 @@ void TabWidget::webViewIconChanged()
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
     if (-1 != index) {
-#if QT_VERSION >= 0x040500
 #if !defined(Q_WS_MAC)
         QIcon icon = BrowserApplication::instance()->icon(webView->url());
         QLabel *label = animationLabel(index, false);
@@ -776,10 +730,6 @@ void TabWidget::webViewIconChanged()
         delete movie;
         label->setMovie(0);
         label->setPixmap(icon.pixmap(16, 16));
-#endif
-#else
-        QIcon icon = BrowserApplication::instance()->icon(webView->url());
-        setTabIcon(index, icon);
 #endif
     }
 }
@@ -838,48 +788,6 @@ void TabWidget::aboutToShowRecentTriggeredAction(QAction *action)
     QUrl url = action->data().toUrl();
     loadUrl(url, NewTab);
 }
-
-#if QT_VERSION < 0x040500
-void TabWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    if (!childAt(event->pos())) {
-        m_tabBar->contextMenuRequested(event->pos());
-        return;
-    }
-    QTabWidget::contextMenuEvent(event);
-}
-
-void TabWidget::mouseDoubleClickEvent(QMouseEvent *event)
-{
-    m_tabBar->mouseDoubleClickEvent(event);
-    QTabWidget::mouseDoubleClickEvent(event);
-}
-
-void TabWidget::mouseReleaseEvent(QMouseEvent *event)
-{
-    if (event->button() == Qt::MidButton && !childAt(event->pos()))
-        m_tabBar->mouseReleaseEvent(event);
-    QTabWidget::mouseReleaseEvent(event);
-}
-
-void TabWidget::wheelEvent(QWheelEvent *event)
-{
-    if (event->y() > tabBar()->height()) {
-        // Don't change the active tab if the user scrolls the webview
-        return;
-    }
-    if ((event->orientation() == Qt::Vertical && event->delta() < 0)
-        || (event->orientation() == Qt::Horizontal && event->delta() > 0)) {
-        if (currentIndex() < count()) {
-            setCurrentIndex(currentIndex() + 1);
-        }
-    } else {
-        if (currentIndex() > 0) {
-            setCurrentIndex(currentIndex() - 1);
-        }
-    }
-}
-#endif
 
 void TabWidget::retranslate()
 {

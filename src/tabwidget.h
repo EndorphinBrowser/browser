@@ -147,13 +147,7 @@ public:
     static OpenUrlIn modifyWithUserBehavior(OpenUrlIn tab);
     WebView *getView(OpenUrlIn tab, WebView *currentView);
 
-#if QT_VERSION < 0x040500
 protected:
-    void contextMenuEvent(QContextMenuEvent *event);
-    void mouseDoubleClickEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void wheelEvent(QWheelEvent *event);
-#endif
     void changeEvent(QEvent *event);
 
 public slots:

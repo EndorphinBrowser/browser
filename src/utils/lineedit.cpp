@@ -53,9 +53,6 @@ LineEdit::LineEdit(QWidget *parent)
     , m_leftLayout(0)
     , m_rightLayout(0)
 {
-#if QT_VERSION < 0x040500
-    setStyle(new LineEditStyle);
-#endif
     init();
 }
 
@@ -166,15 +163,11 @@ int LineEdit::textMargin(WidgetPosition position) const
 
 void LineEdit::updateTextMargins()
 {
-#if QT_VERSION >= 0x040500
     int left = textMargin(LineEdit::LeftSide);
     int right = textMargin(LineEdit::RightSide);
     int top = 0;
     int bottom = 0;
     setTextMargins(left, top, right, bottom);
-#else
-    update();
-#endif
     updateSideWidgetLocations();
 }
 
@@ -187,10 +180,6 @@ void LineEdit::updateSideWidgetLocations()
     textRect.adjust(spacing, 0, -spacing, 0);
 
     int left = textMargin(LineEdit::LeftSide);
-#if QT_VERSION < 0x040500
-    int right = textMargin(LineEdit::RightSide);
-    textRect.adjust(-left, 1, right, 0);
-#endif
 
     int midHeight = textRect.center().y() + 1;
 
@@ -232,11 +221,9 @@ void LineEdit::paintEvent(QPaintEvent *event)
         QRect textRect = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
         int horizontalMargin = 2;
         textRect.adjust(horizontalMargin, 0, 0, 0);
-#if QT_VERSION >= 0x040500
         int left = textMargin(LineEdit::LeftSide);
         int right = textMargin(LineEdit::RightSide);
         textRect.adjust(left, 0, -right, 0);
-#endif
         QPainter painter(this);
         painter.setPen(palette().brush(QPalette::Disabled, QPalette::Text).color());
         painter.drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, m_inactiveText);

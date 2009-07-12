@@ -108,9 +108,7 @@ public:
     void setEventMouseButtons(Qt::MouseButtons buttons);
     void setEventKeyboardModifiers(Qt::KeyboardModifiers modifiers);
 
-#if QT_VERSION >= 0x040500
     static bool zoomTextOnly();
-#endif
 
     static bool isPrivate();
     static void setPrivate(bool isPrivate);
@@ -127,9 +125,7 @@ public slots:
 #endif
     void quitBrowser();
 
-#if QT_VERSION >= 0x040500
     static void setZoomTextOnly(bool textOnly);
-#endif
 
 private slots:
     void retranslate();
@@ -138,9 +134,7 @@ private slots:
     void openUrl(const QUrl &url);
 
 signals:
-#if QT_VERSION >= 0x040500
     void zoomTextOnlyChanged(bool textOnly);
-#endif
     void privacyChanged(bool isPrivate);
 
 private:

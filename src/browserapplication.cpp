@@ -235,11 +235,7 @@ void BrowserApplication::quitBrowser()
 void BrowserApplication::postLaunch()
 {
     QDesktopServices::StandardLocation location;
-#if QT_VERSION >= 0x040500
     location = QDesktopServices::CacheLocation;
-#else
-    location = QDesktopServices::DataLocation;
-#endif
     QString directory = QDesktopServices::storageLocation(location);
     if (directory.isEmpty())
         directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
@@ -564,7 +560,6 @@ QString BrowserApplication::dataDirectory()
 #endif
 }
 
-#if QT_VERSION >= 0x040500
 bool BrowserApplication::zoomTextOnly()
 {
     return QWebSettings::globalSettings()->testAttribute(QWebSettings::ZoomTextOnly);
@@ -575,7 +570,6 @@ void BrowserApplication::setZoomTextOnly(bool textOnly)
     QWebSettings::globalSettings()->setAttribute(QWebSettings::ZoomTextOnly, textOnly);
     emit instance()->zoomTextOnlyChanged(textOnly);
 }
-#endif
 
 bool BrowserApplication::isPrivate()
 {

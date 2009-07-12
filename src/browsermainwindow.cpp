@@ -636,13 +636,11 @@ void BrowserMainWindow::setupMenu()
 
     m_viewZoomTextOnlyAction = new QAction(m_viewMenu);
     m_viewZoomTextOnlyAction->setCheckable(true);
-#if QT_VERSION >= 0x040500
     connect(m_viewZoomTextOnlyAction, SIGNAL(toggled(bool)),
             BrowserApplication::instance(), SLOT(setZoomTextOnly(bool)));
     connect(BrowserApplication::instance(), SIGNAL(zoomTextOnlyChanged(bool)),
             this, SLOT(zoomTextOnlyChanged(bool)));
     m_viewMenu->addAction(m_viewZoomTextOnlyAction);
-#endif
 
     m_viewFullScreenAction = new QAction(m_viewMenu);
     m_viewFullScreenAction->setShortcut(Qt::Key_F11);

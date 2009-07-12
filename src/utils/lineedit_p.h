@@ -46,36 +46,5 @@ protected:
 
 };
 
-#if QT_VERSION < 0x040500
-
-#include <qapplication.h>
-
-#include "proxystyle.h"
-#include "lineedit.h"
-
-class LineEditStyle : public ProxyStyle
-{
-
-public:
-    explicit LineEditStyle()
-        : ProxyStyle(QApplication::style()->objectName()) {
-    }
-
-    QRect subElementRect(SubElement element, const QStyleOption *option, const QWidget *widget = 0) const {
-        QRect r = ProxyStyle::subElementRect(element, option, widget);
-        if (element == SE_LineEditContents) {
-            if (const LineEdit *le = qobject_cast<const LineEdit*>(widget)) {
-                int left = le->textMargin(LineEdit::LeftSide);
-                int right = le->textMargin(LineEdit::RightSide);
-                r.adjust(left, 0, -right, 0);
-            }
-        }
-        return r;
-    }
-
-};
-
-#endif // QT_VERSION
-
 #endif // LINEEDIT_P_H
 

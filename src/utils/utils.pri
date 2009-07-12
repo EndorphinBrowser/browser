@@ -8,7 +8,6 @@ HEADERS += \
     edittreeview.h \
     lineedit.h \
     lineedit_p.h \
-    proxystyle.h \
     singleapplication.h \
     squeezelabel.h
 

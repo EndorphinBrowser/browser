@@ -114,10 +114,8 @@ WebView::WebView(QWidget *parent)
             this, SIGNAL(urlChanged(const QUrl &)));
     connect(page(), SIGNAL(downloadRequested(const QNetworkRequest &)),
             this, SLOT(downloadRequested(const QNetworkRequest &)));
-#if QT_VERSION >= 0x040500
     connect(BrowserApplication::instance(), SIGNAL(zoomTextOnlyChanged(bool)),
             this, SLOT(applyZoom()));
-#endif
     page()->setForwardUnsupportedContent(true);
     setAcceptDrops(true);
 
@@ -261,12 +259,10 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     }
 #endif
 
-#if QT_VERSION >= 0x040500
     if (menu->isEmpty()) {
         delete menu;
         menu = page()->createStandardContextMenu();
     }
-#endif
 
     if (!menu->isEmpty()) {
         if (BrowserMainWindow::parentWindow(tabWidget())->menuBar()->isHidden()) {
@@ -506,11 +502,7 @@ int WebView::levelForZoom(int zoom)
 
 void WebView::applyZoom()
 {
-#if QT_VERSION >= 0x040500
     setZoomFactor(qreal(m_currentZoom) / 100.0);
-#else
-    setTextSizeMultiplier(qreal(m_currentZoom) / 100.0);
-#endif
 }
 
 void WebView::zoomIn()

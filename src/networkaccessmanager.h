@@ -69,7 +69,6 @@
 
 class SchemeAccessHandler;
 
-#if QT_VERSION >= 0x040500
 class NetworkProxyFactory : public QNetworkProxyFactory
 {
 public:
@@ -84,7 +83,6 @@ private:
     QNetworkProxy m_httpProxy;
     QNetworkProxy m_globalProxy;
 };
-#endif
 
 class NetworkAccessManager : public QNetworkAccessManager
 {

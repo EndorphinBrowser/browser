@@ -108,9 +108,8 @@ TabBar::TabBar(QWidget *parent)
     updateViewToolBarAction();
     connect(m_viewTabBarAction, SIGNAL(triggered()),
             this, SLOT(viewTabBar()));
-#if QT_VERSION >= 0x040500
+
     setMovable(true);
-#endif
 }
 
 bool TabBar::showTabBarWhenOneTab() const
@@ -129,14 +128,12 @@ QAction *TabBar::viewTabBarAction() const
     return m_viewTabBarAction;
 }
 
-#if QT_VERSION >= 0x040500
 QTabBar::ButtonPosition TabBar::freeSide()
 {
     QTabBar::ButtonPosition side = (QTabBar::ButtonPosition)style()->styleHint(QStyle::SH_TabBar_CloseButtonPosition, 0, this);
     side = (side == QTabBar::LeftSide) ? QTabBar::RightSide : QTabBar::LeftSide;
     return side;
 }
-#endif
 
 void TabBar::updateViewToolBarAction()
 {
@@ -223,9 +220,6 @@ void TabBar::closeOtherTabs()
 void TabBar::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if (!childAt(event->pos())
-#if QT_VERSION < 0x040500
-        && event->pos().y() < (y() + height())
-#endif
         && event->button() == Qt::LeftButton) {
         emit newTab();
         return;
@@ -260,15 +254,11 @@ void TabBar::mousePressEvent(QMouseEvent *event)
 void TabBar::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() == Qt::LeftButton) {
-#if QT_VERSION >= 0x040500
         int diffX = event->pos().x() - m_dragStartPos.x();
         int diffY = event->pos().y() - m_dragStartPos.y();
-#endif
         if ((event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()
-#if QT_VERSION >= 0x040500
             && diffX < 3 && diffX > -3
             && diffY < -10
-#endif
             ) {
             QDrag *drag = new QDrag(this);
             QMimeData *mimeData = new QMimeData;
@@ -286,29 +276,6 @@ void TabBar::mouseMoveEvent(QMouseEvent *event)
     QTabBar::mouseMoveEvent(event);
 }
 
-#if QT_VERSION < 0x040500
-void TabBar::dragEnterEvent(QDragEnterEvent *event)
-{
-    const QMimeData *mimeData = event->mimeData();
-    QStringList formats = mimeData->formats();
-    if (formats.contains(QLatin1String("action"))
-        && (mimeData->data(QLatin1String("action")) == "tab-reordering")) {
-        event->acceptProposedAction();
-    }
-    QTabBar::dragEnterEvent(event);
-}
-
-void TabBar::dropEvent(QDropEvent *event)
-{
-    int fromIndex = tabAt(m_dragStartPos);
-    int toIndex = tabAt(event->pos());
-    if (fromIndex != toIndex) {
-        emit tabMoveRequested(fromIndex, toIndex);
-        event->acceptProposedAction();
-    }
-    QTabBar::dropEvent(event);
-}
-#else
 void TabBar::dragEnterEvent(QDragEnterEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
@@ -329,7 +296,6 @@ void TabBar::dropEvent(QDropEvent *event)
 
     QTabBar::dropEvent(event);
 }
-#endif
 
 QSize TabBar::tabSizeHint(int index) const
 {

@@ -27,6 +27,7 @@
 #include "networkaccessmanager.h"
 #include "toolbarsearch.h"
 
+#include <qabstractnetworkcache.h>
 #include <qcheckbox.h>
 #include <qdialogbuttonbox.h>
 #include <qlabel.h>
@@ -35,9 +36,6 @@
 #include <qpushbutton.h>
 #include <qsettings.h>
 #include <qwebsettings.h>
-#if QT_VERSION >= 0x040500
-#include <qabstractnetworkcache.h>
-#endif
 
 ClearPrivateData::ClearPrivateData(QWidget *parent)
     : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint)
@@ -67,16 +65,11 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
     layout->addWidget(m_cookies);
 
     m_cache = new QCheckBox(tr("C&ached Web Pages"));
-#if QT_VERSION < 0x040500
-    m_cache->setEnabled(false);
-#endif
-#if QT_VERSION >= 0x040500
     if (BrowserApplication::networkAccessManager()->cache()) {
         m_cache->setChecked(settings.value(QLatin1String("cache"), true).toBool());
     } else {
         m_cache->setEnabled(false);
     }
-#endif
     layout->addWidget(m_cache);
 
     m_favIcons = new QCheckBox(tr("Website &Icons"));
@@ -108,9 +101,7 @@ void ClearPrivateData::accept()
     settings.setValue(QLatin1String("downloadHistory"), m_downloadHistory->isChecked());
     settings.setValue(QLatin1String("searchHistory"), m_searchHistory->isChecked());
     settings.setValue(QLatin1String("cookies"), m_cookies->isChecked());
-#if QT_VERSION >= 0x040500
     settings.setValue(QLatin1String("cache"), m_cache->isChecked());
-#endif
     settings.setValue(QLatin1String("favIcons"), m_favIcons->isChecked());
 
     settings.endGroup();
@@ -134,11 +125,11 @@ void ClearPrivateData::accept()
     if (m_cookies->isChecked()) {
         BrowserApplication::cookieJar()->clear();
     }
-#if QT_VERSION >= 0x040500
+
     if (m_cache->isChecked() && BrowserApplication::networkAccessManager()->cache()) {
         BrowserApplication::networkAccessManager()->cache()->clear();
     }
-#endif
+
     if (m_favIcons->isChecked()) {
         QWebSettings::clearIconDatabase();
     }
