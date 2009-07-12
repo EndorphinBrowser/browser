@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
-<context>
+<!DOCTYPE TS><TS>
+<context encoding="UTF-8">
     <name>AboutDialog</name>
     <message>
         <source>Lightweight WebKit-based web browser</source>
@@ -27,7 +25,7 @@
         <source>About %1</source>
         <translation>Acerca de %1</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -211,28 +209,29 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
     <message>
         <source>XBEL bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcadores XBEL</translation>
     </message>
     <message>
         <source>HTML Netscape bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcadores HTML de Netscape</translation>
     </message>
     <message>
         <source>htmlToXBel tool required</source>
-        <translation type="unfinished"></translation>
+        <translation>Precisase a ferramenta htmlToXBel </translation>
     </message>
     <message>
         <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>A ferramenta htmlToXBel , que se inclue con Arora e é precisa para importar os marcadores HTML, non está instalada ou non está dispoñible no camiño de buscas.</translation>
     </message>
     <message>
         <source>Loading Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargando marcador</translation>
     </message>
     <message>
         <source>Error when loading HTML bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Atopouse un erro mentras se cargaban os marcadores HTML: %1
+</translation>
     </message>
 </context>
 <context>
@@ -281,7 +280,7 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished">Marcadores</translation>
+        <translation>Marcadores</translation>
     </message>
 </context>
 <context>
@@ -628,15 +627,15 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Predeterminado</translation>
     </message>
     <message>
         <source>Text Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Codificación do texto</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Cando se activa a navegación privada, algunhas accións relativas a súa intimidade han de ser desactivadas:&lt;ul&gt;&lt;li&gt; As páxinas web non serán engadidas ao historial.&lt;/li&gt;&lt;li&gt; Hanse eliminar automaticamente os elementos no xestor de descargas.&lt;/li&gt;&lt;li&gt; Non se almacenarán as novas cookies e as actuais non estarán accesibles.&lt;/li&gt;&lt;li&gt; As iconas dos sitios non han ser gardadas e tampouco as sesións.&lt;/li&gt;&lt;li&gt;Desactivase a caché de rede.&lt;/li&gt;&lt;/ul&gt;Poderá facer clic nos botóns Adiante e Atrás para volver as páxinas visitadas, pero só mentres non peche a ventá.</translation>
     </message>
 </context>
 <context>
@@ -693,7 +692,7 @@ Desexa recargar tódalas páxinas?</translation>
     <name>ClickToFlash</name>
     <message>
         <source>Load</source>
-        <translation>Cargar	</translation>
+        <translation>Cargar<byte value="x9"/></translation>
     </message>
     <message>
         <source>Load All</source>
@@ -918,18 +917,17 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>O directorio de descarga (%1)non se pode crear.</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message numerus="yes">
+    <message>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform>%n Descarga(s)
+        <translation>%n Descarga(s)
         
         
-        </numerusform>
+        
         </translation>
     </message>
     <message>
@@ -938,19 +936,17 @@ Do you want to quit anyway?</source>
         <translation>Hai %1 descargas en proceso
 Saír de tódolos xeitos?</translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform>Faltan %n minutos
-        </numerusform>
+        <translation>Faltan %n minutos
+        
         </translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform>Faltan %n segundos
+        <translation>Faltan %n segundos
         
-        </numerusform>
+        
         </translation>
     </message>
     <message>
@@ -967,30 +963,30 @@ Saír de tódolos xeitos?</translation>
     </message>
     <message>
         <source>GB</source>
-        <translation type="unfinished"></translation>
+        <translation>GB</translation>
     </message>
 </context>
 <context>
     <name>FileAccessReply</name>
     <message>
         <source>No Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Sen erro</translation>
     </message>
     <message>
         <source>Error opening: %1: No such file or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Atopouse un erro ao abrir: %1: Non existe o ficheiro ou directorio</translation>
     </message>
     <message>
         <source>Unable to read %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Non se pode ler %1</translation>
     </message>
     <message>
         <source>Contents of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Contido de %1</translation>
     </message>
     <message>
         <source>%1 KB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KB</translation>
     </message>
 </context>
 <context>
@@ -1056,12 +1052,11 @@ Saír de tódolos xeitos?</translation>
         <source>Earlier Today</source>
         <translation>Antes de hoxe</translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n item(s)</source>
-        <translation type="unfinished">
-            <numerusform>%n elemento(s)
+        <translation>%n elemento(s)
         
-        </numerusform>
+        
         </translation>
     </message>
 </context>
@@ -1069,23 +1064,23 @@ Saír de tódolos xeitos?</translation>
     <name>JavaScriptAroraObject</name>
     <message>
         <source>Welcome to Arora!</source>
-        <translation type="unfinished"></translation>
+        <translation>Benvido a Arora!</translation>
     </message>
     <message>
         <source>Arora Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar Arora</translation>
     </message>
     <message>
         <source>Search!</source>
-        <translation type="unfinished"></translation>
+        <translation>Busca!</translation>
     </message>
     <message>
         <source>Search results provided by</source>
-        <translation type="unfinished"></translation>
+        <translation>Resultados da busca fornecidos por</translation>
     </message>
     <message>
         <source>About Arora</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de Arora</translation>
     </message>
 </context>
 <context>
@@ -1117,7 +1112,7 @@ Saír de tódolos xeitos?</translation>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation>&lt;qt&gt;SSL Erros:&lt;br/&gt;&lt;br/&gt;para: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+        <translation>&lt;qt&gt;Erros SSL:&lt;br/&gt;&lt;br/&gt;para: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
@@ -1127,23 +1122,23 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation> - Erros SSL</translation>
     </message>
     <message>
         <source>Issuer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Emisor: %1</translation>
     </message>
     <message>
         <source>Not valid before: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Non é válido antes de: %1</translation>
     </message>
     <message>
         <source>Valid until: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Válido até o: %1</translation>
     </message>
     <message>
         <source>Alternate Names:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nomes alternativos:</translation>
     </message>
 </context>
 <context>
@@ -1352,7 +1347,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Highlight All</source>
-        <translation type="unfinished"></translation>
+        <translation>Destacar todo</translation>
     </message>
 </context>
 <context>
@@ -1650,7 +1645,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Use o motor de buscas predeterminado como último recurso cando a URL dada polo usuario non é correcta</translation>
     </message>
 </context>
 <context>
@@ -1692,7 +1687,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Código fonte da páxina %1</translation>
     </message>
 </context>
 <context>
@@ -1848,11 +1843,11 @@ Está seguro de que quere pechar esta páxina?
     </message>
     <message>
         <source>Resending POST request</source>
-        <translation type="unfinished"></translation>
+        <translation>Reenviar unha solicitude POST</translation>
     </message>
     <message>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Para amosar o sitio web, a solicitude, xunto con todos os datos deben ser enviados, unha vez máis, o que pode levar a algun comportamento inesperado do sitio por exemplo, a mesma acción pode ser realizada unha vez máis. Quere continuar igualmente?</translation>
     </message>
 </context>
 <context>
@@ -1907,31 +1902,31 @@ Está seguro de que quere pechar esta páxina?
     </message>
     <message>
         <source>Add to the toolbar search</source>
-        <translation type="unfinished"></translation>
+        <translation>Engadir á barra de ferramentas de busca</translation>
     </message>
     <message>
         <source>Method not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Método non compatible</translation>
     </message>
     <message>
         <source>%1 method is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>O método %1 non é compatible.</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Motor de buscas</translation>
     </message>
     <message>
         <source>Choose the desired search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Elixir o motor de busca desexado</translation>
     </message>
     <message>
         <source>Engine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do motor</translation>
     </message>
     <message>
         <source>Type in a name for the engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Escriba un nome para o motor</translation>
     </message>
 </context>
 <context>
