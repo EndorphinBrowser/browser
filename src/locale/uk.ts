@@ -234,28 +234,28 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Закладки XBEL</translation>
     </message>
     <message>
         <source>HTML Netscape bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Закладки HTML Netscape</translation>
     </message>
     <message>
         <source>htmlToXBel tool required</source>
-        <translation type="unfinished"></translation>
+        <translation>Інструмент запиту htmlToXBel</translation>
     </message>
     <message>
         <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>Інструмент htmlToXBel, який поставляється з Arora і потрібний для імпорту закладок у HTML, не встановлено або недоступний в шляхах пошуку.</translation>
     </message>
     <message>
         <source>Loading Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантаження закладки</translation>
     </message>
     <message>
         <source>Error when loading HTML bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка при завантажені закладок HTML: %1</translation>
     </message>
 </context>
 <context>
@@ -304,7 +304,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished">Закладки</translation>
+        <translation>Закладки</translation>
     </message>
 </context>
 <context>
@@ -317,7 +317,7 @@ p, li { white-space: pre-wrap; }
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
         <translation>Відкрито %1 вікон та %2 вкладок
-Ви бажаєте вийти в будь-якому разі?</translation>
+Ви все одно бажаєте вийти?</translation>
     </message>
     <message>
         <source>Restore failed</source>
@@ -325,7 +325,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
-        <translation>Збережена сесія не буде відновлена, тому що Arora аварійно завершується, коли намагається відновити її.</translation>
+        <translation>Збережений сеанс не буде відновлена, оскільки Arora аварійно завершується при спробі відновити її.</translation>
     </message>
 </context>
 <context>
@@ -488,7 +488,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Restore Last Session</source>
-        <translation>Відновити попередню сесію</translation>
+        <translation>Відновити попередній сеанс</translation>
     </message>
     <message>
         <source>&amp;Bookmarks</source>
@@ -611,12 +611,12 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Web Inspector</source>
-        <translation>Web Inspector</translation>
+        <translation>Інспектор тенет</translation>
     </message>
     <message>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation>Web Inspector буде працювати правильно лише для сторінок, які завантажені після його вмикання.
+        <translation>Інспектор тенет буде працювати правильно лише для сторінок, які завантажені після його вмикання.
 Ви бажаєте перезавантажити всі сторінки?</translation>
     </message>
     <message>
@@ -684,15 +684,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Типове</translation>
     </message>
     <message>
         <source>Text Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Кодування тексту</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Коли увімкнуто приватне переглядання, деякі дії стосовно вашої приватності будуть вимкнуті:&lt;ul&gt;&lt;li&gt; Сторінки не реєструються в журналі.&lt;/li&gt;&lt;li&gt; Звантаження автоматично вилучатимуться зі списку.&lt;/li&gt;&lt;li&gt; Нові куки не зберігатимуться, поточні куки будуть недоступні.&lt;/li&gt;&lt;li&gt; Піктограми сайтів не зберігатимуться, сеанси також.&lt;/li&gt;&lt;li&gt; Пошуки не додаватимуться до виринного меню в коробці пошуку.&lt;/li&gt;&lt;li&gt; Мережевий кеш буде вимкнено.&lt;/li&gt;&lt;/ul&gt;Допоки не закриті вікна, ви можете продовжувати натискати кнопки Назад і Вперед, щоб повертатись до сторінок, які ви повідкивали.</translation>
     </message>
 </context>
 <context>
@@ -714,7 +714,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Browsing History</source>
-        <translation>Журнал &amp;перегляду</translation>
+        <translation>Журнал &amp;переглядання</translation>
     </message>
     <message>
         <source>&amp;Download History</source>
@@ -730,7 +730,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>C&amp;ached Web Pages</source>
-        <translation>За&amp;кешовані сторінки тенет</translation>
+        <translation>За&amp;кешовані сторінки</translation>
     </message>
     <message>
         <source>Website &amp;Icons</source>
@@ -783,7 +783,7 @@ Do you want to reload all pages?</source>
     <name>CookieExceptionsModel</name>
     <message>
         <source>Website</source>
-        <translation>Сайт тенет</translation>
+        <translation>Сайт</translation>
     </message>
     <message>
         <source>Rule</source>
@@ -799,14 +799,14 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Allow For Session</source>
-        <translation>Дозволити для сесії</translation>
+        <translation>Дозволити для сеансу</translation>
     </message>
 </context>
 <context>
     <name>CookieModel</name>
     <message>
         <source>Website</source>
-        <translation>Сайт тенет</translation>
+        <translation>Сайт</translation>
     </message>
     <message>
         <source>Name</source>
@@ -857,7 +857,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Add &amp;Rule</source>
-        <translation>Додати &amp;Правило</translation>
+        <translation>Додати &amp;правило</translation>
     </message>
 </context>
 <context>
@@ -880,7 +880,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Allow For Session</source>
-        <translation>Дозволити для сесії</translation>
+        <translation>Дозволити для сеансу</translation>
     </message>
     <message>
         <source>Allow</source>
@@ -896,7 +896,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Remove &amp;All</source>
-        <translation>Вилучити &amp;всі</translation>
+        <translation>Вилучити &amp;все</translation>
     </message>
 </context>
 <context>
@@ -982,7 +982,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>0 Items</source>
-        <translation>0 елементів</translation>
+        <translation>0 пунктів</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1001,7 +1001,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Filename</source>
-        <translation>Назва файлу</translation>
+        <translation>Назва файла</translation>
     </message>
     <message>
         <source>Try Again</source>
@@ -1021,11 +1021,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Download canceled: %1</source>
-        <translation>Звантаження скасоване: %1</translation>
+        <translation>Звантаження скасовано: %1</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Помилка відкриття вихідного файлу: %1</translation>
+        <translation>Помилка відкриття вихідного файла: %1</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
@@ -1065,7 +1065,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 - Stopped</source>
-        <translation>%1 з %2 - Зупинені</translation>
+        <translation>%1 з %2 — Зупинено</translation>
     </message>
     <message>
         <source>bytes</source>
@@ -1081,11 +1081,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%1 з %2 (%3/с) - %4</translation>
+        <translation>%1 з %2 (%3/с) — %4</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неможливо створити теку звантаження (%1).</translation>
     </message>
 </context>
 <context>
@@ -1101,8 +1101,8 @@ Do you want to reload all pages?</source>
     <message>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
-        <translation>Активних звантажень: %1
-Ви бажаєте вийти у будь-якому разі?</translation>
+        <translation>Звантажень в поступі: %1
+Ви все одно бажаєте вийти?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
@@ -1134,30 +1134,30 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>GB</source>
-        <translation type="unfinished"></translation>
+        <translation>ГБ</translation>
     </message>
 </context>
 <context>
     <name>FileAccessReply</name>
     <message>
         <source>No Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Без помилок</translation>
     </message>
     <message>
         <source>Error opening: %1: No such file or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка відкриття: %1: Немає такого файла або теки</translation>
     </message>
     <message>
         <source>Unable to read %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Неможливо прочитати %1</translation>
     </message>
     <message>
         <source>Contents of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Зміст %1</translation>
     </message>
     <message>
         <source>%1 KB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 КБ</translation>
     </message>
 </context>
 <context>
@@ -1184,7 +1184,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Remove &amp;All</source>
-        <translation>Вилучити &amp;всі</translation>
+        <translation>Вилучити &amp;все</translation>
     </message>
 </context>
 <context>
@@ -1236,23 +1236,23 @@ Do you want to quit anyway?</source>
     <name>JavaScriptAroraObject</name>
     <message>
         <source>Welcome to Arora!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ласкаво просимо до Arora!</translation>
     </message>
     <message>
         <source>Arora Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Запуск Arora</translation>
     </message>
     <message>
         <source>Search!</source>
-        <translation type="unfinished"></translation>
+        <translation>Пошук!</translation>
     </message>
     <message>
         <source>Search results provided by</source>
-        <translation type="unfinished"></translation>
+        <translation>Результати пошуку надаються</translation>
     </message>
     <message>
         <source>About Arora</source>
-        <translation type="unfinished"></translation>
+        <translation>Про Arora</translation>
     </message>
 </context>
 <context>
@@ -1267,11 +1267,11 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Ви можете працювати з іншою мовою,&lt;br&gt;що не є типово системною.&lt;/p&gt;&lt;p&gt;Будь ласка, виберіть мову, яку слід використовувати&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Ви можете працювати з іншою мовою,&lt;br&gt;що типово не є системною.&lt;/p&gt;&lt;p&gt;Будь ласка, виберіть мову, яку слід використовувати&lt;/p&gt;</translation>
     </message>
     <message>
         <source>No translation files are installed.</source>
-        <translation>Не встановлені файли перекладів.</translation>
+        <translation>Не встановлено файли перекладів.</translation>
     </message>
 </context>
 <context>
@@ -1282,7 +1282,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</source>
-        <translation>&lt;qt&gt;З&apos;єднатись з проксі &quot;%1&quot; використовуючи:&lt;/qt&gt;</translation>
+        <translation>&lt;qt&gt;З&apos;єднатись зі проксі &quot;%1&quot;, використовуючи:&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>SSL Errors:
@@ -1326,19 +1326,19 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Issuer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Видавець: %1</translation>
     </message>
     <message>
         <source>Not valid before: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильно перед: %1</translation>
     </message>
     <message>
         <source>Valid until: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Правильно допоки: %1</translation>
     </message>
     <message>
         <source>Alternate Names:</source>
-        <translation type="unfinished"></translation>
+        <translation>Альтернативні назви:</translation>
     </message>
 </context>
 <context>
@@ -1399,7 +1399,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>You must have at least one search engine in here.</source>
-        <translation>Ви змушені мати щонайменше один з рушіїв пошуку тут.</translation>
+        <translation>Ви змушені мати тут щонайменше один рушій пошуку.</translation>
     </message>
     <message>
         <source>OpenSearch Manager</source>
@@ -1444,7 +1444,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
-        <translation>Необхідна авторизація</translation>
+        <translation>Необхідне засвідчення</translation>
     </message>
     <message>
         <source>DUMMY ICON</source>
@@ -1474,7 +1474,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>ProxyDialog</name>
     <message>
         <source>Proxy Authentication</source>
-        <translation>Аутентифікація на проксі</translation>
+        <translation>Засвідчення на проксі</translation>
     </message>
     <message>
         <source>ICON</source>
@@ -1497,15 +1497,15 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>QObject</name>
     <message>
         <source>The file is not an XBEL version 1.0 file.</source>
-        <translation>Це не файл XBELверсії 1.0.</translation>
+        <translation>Це не файл XBEL версії 1.0.</translation>
     </message>
     <message>
         <source>Unknown title</source>
-        <translation>Невідома назва</translation>
+        <translation>Невідомий заголовок</translation>
     </message>
     <message>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation>Файл — не є файлом OpenSearch 1.1.</translation>
+        <translation>Це не файл OpenSearch 1.1.</translation>
     </message>
 </context>
 <context>
@@ -1563,7 +1563,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Highlight All</source>
-        <translation type="unfinished"></translation>
+        <translation>Виділити все</translation>
     </message>
 </context>
 <context>
@@ -1585,19 +1585,19 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>On startup:</source>
-        <translation>Під час запуску:</translation>
+        <translation>При запуску:</translation>
     </message>
     <message>
         <source>Show my home page</source>
-        <translation>Показати мою домашню сторінку</translation>
+        <translation>Показувати мою домашню сторінку</translation>
     </message>
     <message>
         <source>Show a blank page</source>
-        <translation>Показати порожню сторінку</translation>
+        <translation>Показувати порожню сторінку</translation>
     </message>
     <message>
         <source>Restore windows and tabs from last time</source>
-        <translation>Відновити попередні вікна і вкладки</translation>
+        <translation>Відновлювати попередні вікна і вкладки</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -1609,7 +1609,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Remove history items:</source>
-        <translation>Вилучати елементи журнала:</translation>
+        <translation>Вилучати з журналу:</translation>
     </message>
     <message>
         <source>After one day</source>
@@ -1637,11 +1637,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>On application exit</source>
-        <translation>Під час виходу з програми</translation>
+        <translation>При виході з програми</translation>
     </message>
     <message>
         <source>Open links from applications:</source>
-        <translation>Відкривати посилання з програми:</translation>
+        <translation>Відкривати посилання з програм:</translation>
     </message>
     <message>
         <source>In a tab in the current window</source>
@@ -1745,7 +1745,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>At most 90 days</source>
-        <translation>не більше 90 діб</translation>
+        <translation>Не більше 90 діб</translation>
     </message>
     <message>
         <source>Cookies...</source>
@@ -1817,7 +1817,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Block Popup Windows</source>
-        <translation>Блокувати виринаючі вікна</translation>
+        <translation>Заборонити виринні вікна</translation>
     </message>
     <message>
         <source>Opening links</source>
@@ -1837,7 +1837,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation>В поточній вкладці</translation>
+        <translation>У поточній вкладці</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
@@ -1877,7 +1877,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати типовий рушій пошуку для помилкових посилань, котрі вводить користувач</translation>
     </message>
 </context>
 <context>
@@ -1915,11 +1915,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>&amp;Wrap lines</source>
-        <translation>&amp;Переносити рядки</translation>
+        <translation>&amp;Перенести рядки</translation>
     </message>
     <message>
         <source>Source of Page %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Код сторінки %1</translation>
     </message>
 </context>
 <context>
@@ -1938,7 +1938,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Duplicate Tab</source>
-        <translation>Подвоїти вкладку</translation>
+        <translation>Дублювати вкладку</translation>
     </message>
     <message>
         <source>&amp;Close Tab</source>
@@ -1985,7 +1985,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Do you really want to close this page?</source>
-        <translation>Ви справді хочете закрити цю сторінку?</translation>
+        <translation>Ви справді бажаєте закрити цю сторінку?</translation>
     </message>
     <message>
         <source>You have modified this page and when closing it you would lose the modification.
@@ -2079,11 +2079,11 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Resending POST request</source>
-        <translation type="unfinished"></translation>
+        <translation>Повторне передавання запиту POST</translation>
     </message>
     <message>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Для того, щоб показати сайт, запит всіх даних потрібно відправити ще раз, що може призвести до несподіваної поведінки сайта, наприклад, ті самі дії виконаються ще раз. Ви все одно бажаєте продовжити?</translation>
     </message>
 </context>
 <context>
@@ -2138,31 +2138,31 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Add to the toolbar search</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати до панелі інструментів пошуку</translation>
     </message>
     <message>
         <source>Method not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Спосіб не підтримується</translation>
     </message>
     <message>
         <source>%1 method is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Спосіб %1 не підтримується.</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Рушій пошуку</translation>
     </message>
     <message>
         <source>Choose the desired search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати потрібний рушій пошуку</translation>
     </message>
     <message>
         <source>Engine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва рушія</translation>
     </message>
     <message>
         <source>Type in a name for the engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Введіть назву для рушія</translation>
     </message>
 </context>
 <context>
