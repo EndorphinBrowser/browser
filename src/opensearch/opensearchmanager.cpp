@@ -169,9 +169,8 @@ void OpenSearchManager::removeEngine(const QString &name)
     QString file = QDir(enginesDirectory()).filePath(generateEngineFileName(name));
     QFile::remove(file);
 
-    if (name == m_current) {
+    if (name == m_current)
         setCurrentEngineName(m_engines.keys().at(0));
-    }
 
     emit changed();
 }
@@ -237,10 +236,14 @@ bool OpenSearchManager::loadDirectory(const QString &dirName)
     if (!iterator.hasNext())
         return false;
 
-    while (iterator.hasNext())
-        addEngine(iterator.next());
+    bool success = false;
 
-    return true;
+    while (iterator.hasNext()) {
+        if (addEngine(iterator.next()))
+            success = true;
+    }
+
+    return success;
 }
 
 void OpenSearchManager::load()
