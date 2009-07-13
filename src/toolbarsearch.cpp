@@ -131,6 +131,11 @@ OpenSearchManager *ToolbarSearch::openSearchManager()
 
 void ToolbarSearch::currentEngineChanged()
 {
+    OpenSearchEngine *newEngine = openSearchManager()->currentEngine();
+    Q_ASSERT(newEngine);
+    if (!newEngine)
+        return;
+
     if (m_suggestionsEnabled) {
         if (openSearchManager()->engineExists(m_currentEngine)) {
             OpenSearchEngine *oldEngine = openSearchManager()->engine(m_currentEngine);
@@ -138,13 +143,12 @@ void ToolbarSearch::currentEngineChanged()
                        this, SLOT(newSuggestions(const QStringList &)));
         }
 
-        OpenSearchEngine *newEngine = openSearchManager()->currentEngine();
         connect(newEngine, SIGNAL(suggestions(const QStringList &)),
                 this, SLOT(newSuggestions(const QStringList &)));
     }
 
-    setInactiveText(openSearchManager()->currentEngineName());
-    m_currentEngine = openSearchManager()->currentEngineName();
+    setInactiveText(newEngine->name());
+    m_currentEngine = newEngine->name();
     m_suggestions.clear();
     setupList();
 }
@@ -231,26 +235,37 @@ void ToolbarSearch::textEdited(const QString &text)
 
 void ToolbarSearch::getSuggestions()
 {
-    openSearchManager()->currentEngine()->requestSuggestions(text());
+    OpenSearchEngine *engine = openSearchManager()->currentEngine();
+    Q_ASSERT(engine);
+    if (!engine)
+        return;
+
+    engine->requestSuggestions(text());
 }
 
 void ToolbarSearch::searchNow()
 {
+    OpenSearchEngine *engine = openSearchManager()->currentEngine();
+    Q_ASSERT(engine);
+    if (!engine)
+        return;
+
     QString searchText = text();
-    QStringList newList = m_recentSearches;
-    if (newList.contains(searchText))
-        newList.removeAt(newList.indexOf(searchText));
-    newList.prepend(searchText);
-    if (newList.size() >= m_maxSavedSearches)
-        newList.removeLast();
 
     QWebSettings *globalSettings = QWebSettings::globalSettings();
     if (!globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled)) {
+        QStringList newList = m_recentSearches;
+        if (newList.contains(searchText))
+            newList.removeAt(newList.indexOf(searchText));
+        newList.prepend(searchText);
+        if (newList.size() >= m_maxSavedSearches)
+            newList.removeLast();
+
         m_recentSearches = newList;
         m_autosaver->changeOccurred();
     }
 
-    QUrl searchUrl = openSearchManager()->currentEngine()->searchUrl(searchText);
+    QUrl searchUrl = engine->searchUrl(searchText);
     emit search(searchUrl);
 }
 
