@@ -239,28 +239,29 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL ブックマーク</translation>
     </message>
     <message>
         <source>HTML Netscape bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML Netscape ブックマーク</translation>
     </message>
     <message>
         <source>htmlToXBel tool required</source>
-        <translation type="unfinished"></translation>
+        <translation>htmlToXBel ツールが必要です</translation>
     </message>
     <message>
         <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML ブックマークをインポートするのに必要な Arora に搭載されている htmlToXBel ツールがインストールされていないかパスが通っていません。</translation>
     </message>
     <message>
         <source>Loading Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>ブックマークを読み込んでいます</translation>
     </message>
     <message>
         <source>Error when loading HTML bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>HTML ブックマーク読込時にエラー: %1
+</translation>
     </message>
 </context>
 <context>
@@ -309,7 +310,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished">ブックマーク</translation>
+        <translation>ブックマーク</translation>
     </message>
 </context>
 <context>
@@ -663,7 +664,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Zoom &amp;Text Only</source>
-        <translation>文字さイズだけ変更(&amp;T)</translation>
+        <translation>文字サイズだけ変更(&amp;T)</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
@@ -689,15 +690,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished">デフォルト</translation>
+        <translation>デフォルト</translation>
     </message>
     <message>
         <source>Text Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>文字コード</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;プライベート モードに移行した場合、あなたのプライバシーを守る為、いくつかの機能は制限されます:&lt;ul&gt;&lt;li&gt; 表示したページは履歴に追加されません。&lt;/li&gt;&lt;li&gt; ダウンロード履歴は残りません。&lt;/li&gt;&lt;li&gt; 新しく受け取った Cookie は保存されません。既に保存済みの Cookie を参照する事もできません。&lt;/li&gt;&lt;li&gt; Web サイトのアイコンやセッションは保存されません。&lt;/li&gt;&lt;li&gt; 検索ボックスの検索履歴に追加されません。&lt;/li&gt;&lt;li&gt;ネットワークキャッシュは無効です。&lt;/li&gt;&lt;/ul&gt;ウィンドウを閉じるまで閲覧した Web ページに戻る/進むボタンで戻る事ができます。</translation>
     </message>
 </context>
 <context>
@@ -1015,7 +1016,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロード先ディレクトリ (%1) を作成できませんでした。</translation>
     </message>
 </context>
 <context>
@@ -1058,30 +1059,30 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>GB</source>
-        <translation type="unfinished"></translation>
+        <translation>GB</translation>
     </message>
 </context>
 <context>
     <name>FileAccessReply</name>
     <message>
         <source>No Error</source>
-        <translation type="unfinished"></translation>
+        <translation>エラーはありません</translation>
     </message>
     <message>
         <source>Error opening: %1: No such file or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>ディレクトリ( %1 )読込中にエラー:ディレクトリがありません</translation>
     </message>
     <message>
         <source>Unable to read %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ディレクトリ( %1 )の内容を読み込めません</translation>
     </message>
     <message>
         <source>Contents of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 の中身</translation>
     </message>
     <message>
         <source>%1 KB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KB</translation>
     </message>
 </context>
 <context>
@@ -1158,23 +1159,23 @@ Do you want to quit anyway?</source>
     <name>JavaScriptAroraObject</name>
     <message>
         <source>Welcome to Arora!</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora にようこそ!</translation>
     </message>
     <message>
         <source>Arora Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora スタート</translation>
     </message>
     <message>
         <source>Search!</source>
-        <translation type="unfinished"></translation>
+        <translation>検索!</translation>
     </message>
     <message>
         <source>Search results provided by</source>
-        <translation type="unfinished"></translation>
+        <translation>検索結果の提供 </translation>
     </message>
     <message>
         <source>About Arora</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora について</translation>
     </message>
 </context>
 <context>
@@ -1248,19 +1249,19 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Issuer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>発行者: %1</translation>
     </message>
     <message>
         <source>Not valid before: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>発行日: %1</translation>
     </message>
     <message>
         <source>Valid until: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>有効期限: %1</translation>
     </message>
     <message>
         <source>Alternate Names:</source>
-        <translation type="unfinished"></translation>
+        <translation>代理名:</translation>
     </message>
 </context>
 <context>
@@ -1485,7 +1486,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Highlight All</source>
-        <translation type="unfinished"></translation>
+        <translation>全て強調表示</translation>
     </message>
 </context>
 <context>
@@ -1751,7 +1752,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation>現在のウィンドウの新しい選択済みのタブで開く</translation>
+        <translation>現在のウィンドウの新しいタブで開いて、そのタブに移動する</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
@@ -1799,7 +1800,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>不正なURLが入力された場合、デフォルトの検索エンジンを使用する</translation>
     </message>
 </context>
 <context>
@@ -1841,7 +1842,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Source of Page %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ページ(%1)のソース</translation>
     </message>
 </context>
 <context>
@@ -2004,11 +2005,11 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Resending POST request</source>
-        <translation type="unfinished"></translation>
+        <translation>POST リクエストを再送します</translation>
     </message>
     <message>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>サイトを表示する為に、全てのデータを再送する必要がありますが、予期しない動作を引き起こす(例えば、注文やコメント投稿等の操作が再度行われる)可能性があります。それでも続行しますか?</translation>
     </message>
 </context>
 <context>
@@ -2063,31 +2064,31 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Add to the toolbar search</source>
-        <translation type="unfinished"></translation>
+        <translation>ツールバーの検索エンジンに追加する</translation>
     </message>
     <message>
         <source>Method not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>サポートされていないメソッド</translation>
     </message>
     <message>
         <source>%1 method is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>メソッド( %1 )はサポートされていません。</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>検索エンジン</translation>
     </message>
     <message>
         <source>Choose the desired search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>使用したい検索エンジンを選んでください</translation>
     </message>
     <message>
         <source>Engine name</source>
-        <translation type="unfinished"></translation>
+        <translation>検索エンジン名の入力</translation>
     </message>
     <message>
         <source>Type in a name for the engine</source>
-        <translation type="unfinished"></translation>
+        <translation>検索エンジンの名前を入力してください</translation>
     </message>
 </context>
 <context>
