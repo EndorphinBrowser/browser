@@ -55,7 +55,7 @@ unix {
     !isEmpty(GNOME_DEFAULT_APPS_PATH) {
         INSTALLS += gnome-default-app
 
-        gnome-default-app.path = GNOME_DEFAULT_APPS_PATH
+        gnome-default-app.path = $$GNOME_DEFAULT_APPS_PATH
         gnome-default-app.files = data/arora.xml
     }
 }
