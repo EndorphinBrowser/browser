@@ -79,6 +79,7 @@ public:
     QList<WebPageLinkedResource> linkedResources(const QString &relation = QString());
 
 protected:
+    QString userAgentForUrl(const QUrl &url) const;
     bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
                                  NavigationType type);
     QObject *createPlugin(const QString &classId, const QUrl &url, const QStringList &paramNames, const QStringList &paramValues);
@@ -89,6 +90,7 @@ protected slots:
     void addExternalBinding(QWebFrame *frame = 0);
 
 protected:
+    static QString s_userAgent;
     static WebPluginFactory *s_webPluginFactory;
     TabWidget::OpenUrlIn m_openTargetBlankLinksIn;
     QUrl m_requestedUrl;

@@ -53,12 +53,16 @@ private slots:
     void linkedResources();
     void javaScriptObjects_data();
     void javaScriptObjects();
+    void userAgent();
 };
 
 // Subclass that exposes the protected functions.
 class SubWebPage : public WebPage
 {
 public:
+    QString call_userAgentForUrl(const QUrl &url) const
+        { return SubWebPage::userAgentForUrl(url); }
+
     void call_aboutToLoadUrl(QUrl const& url)
         { return SubWebPage::aboutToLoadUrl(url); }
 
@@ -84,6 +88,9 @@ void tst_WebPage::initTestCase()
 // It is only called once.
 void tst_WebPage::cleanupTestCase()
 {
+    QSettings settings;
+    settings.beginGroup("general");
+    settings.setValue("userAgent", QString());
 }
 
 // This will be called before each test function is executed.
@@ -366,6 +373,23 @@ void tst_WebPage::javaScriptObjects()
     QCOMPARE(windowExternal, !windowExternalVariant.isNull());
     QCOMPARE(windowArora, !windowAroraVariant.isNull());
 }
+
+void tst_WebPage::userAgent()
+{
+    QSettings settings;
+    settings.beginGroup("general");
+    settings.setValue("userAgent", QString());
+    SubWebPage page;
+    QString defaultUserAgent = page.call_userAgentForUrl(QUrl());
+    QVERIFY(!defaultUserAgent.isEmpty());
+    QVERIFY(defaultUserAgent.contains("Arora"));
+    settings.setValue("userAgent", "ben");
+    page.loadSettings();
+    QString customUserAgent = page.call_userAgentForUrl(QUrl());
+    QVERIFY(!customUserAgent.isEmpty());
+    QVERIFY(customUserAgent.contains("ben"));
+}
+
 
 QTEST_MAIN(tst_WebPage)
 #include "tst_webpage.moc"

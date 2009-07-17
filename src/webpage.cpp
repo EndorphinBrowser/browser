@@ -44,6 +44,7 @@
 #endif
 
 WebPluginFactory *WebPage::s_webPluginFactory = 0;
+QString WebPage::s_userAgent;
 
 JavaScriptExternalObject::JavaScriptExternalObject(QObject *parent)
     : QObject(parent)
@@ -193,6 +194,13 @@ void WebPage::addExternalBinding(QWebFrame *frame)
     frame->addToJavaScriptWindowObject(QLatin1String("external"), m_javaScriptExternalObject);
 }
 
+QString WebPage::userAgentForUrl(const QUrl &url) const
+{
+    if (s_userAgent.isEmpty())
+        s_userAgent = QWebPage::userAgentForUrl(url);
+    return s_userAgent;
+}
+
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
                                       NavigationType type)
 {
@@ -254,6 +262,9 @@ void WebPage::loadSettings()
     settings.beginGroup(QLatin1String("tabs"));
     m_openTargetBlankLinksIn = (TabWidget::OpenUrlIn)settings.value(QLatin1String("openTargetBlankLinksIn"),
                                                                     TabWidget::NewSelectedTab).toInt();
+    settings.endGroup();
+    settings.beginGroup(QLatin1String("general"));
+    s_userAgent = settings.value(QLatin1String("userAgent")).toString();
 }
 
 QWebPage *WebPage::createWindow(QWebPage::WebWindowType type)
