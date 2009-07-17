@@ -79,6 +79,7 @@ class CookieJar : public NetworkCookieJar
     Q_PROPERTY(QStringList allowForSessionCookies READ allowForSessionCookies WRITE setAllowForSessionCookies)
     Q_ENUMS(KeepPolicy)
     Q_ENUMS(AcceptPolicy)
+    Q_ENUMS(CookieRule)
 
 signals:
     void cookiesChanged();
@@ -95,6 +96,13 @@ public:
         KeepUntilExit,
         KeepUntilTimeLimit
     };
+
+    enum CookieRule {
+        Allow,
+        AllowForSession,
+        Block
+    };
+
 
     CookieJar(QObject *parent = 0);
     ~CookieJar();

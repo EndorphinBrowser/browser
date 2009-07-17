@@ -137,26 +137,17 @@ void CookieExceptionsDialog::setDomainName(const QString &domainName)
 
 void CookieExceptionsDialog::block()
 {
-    if (domainLineEdit->text().isEmpty())
-        return;
-    m_exceptionsModel->m_blockedCookies.append(domainLineEdit->text());
-    m_exceptionsModel->reset();
+    m_exceptionsModel->addRule(domainLineEdit->text(), CookieJar::Block);
 }
 
 void CookieExceptionsDialog::allow()
 {
-    if (domainLineEdit->text().isEmpty())
-        return;
-    m_exceptionsModel->m_allowedCookies.append(domainLineEdit->text());
-    m_exceptionsModel->reset();
+    m_exceptionsModel->addRule(domainLineEdit->text(), CookieJar::Allow);
 }
 
 void CookieExceptionsDialog::allowForSession()
 {
-    if (domainLineEdit->text().isEmpty())
-        return;
-    m_exceptionsModel->m_sessionCookies.append(domainLineEdit->text());
-    m_exceptionsModel->reset();
+    m_exceptionsModel->addRule(domainLineEdit->text(), CookieJar::AllowForSession);
 }
 
 void CookieExceptionsDialog::accept()

@@ -63,11 +63,12 @@
 #ifndef COOKIEEXCEPTIONSMODEL_H
 #define COOKIEEXCEPTIONSMODEL_H
 
-#include <qabstractitemmodel.h>
+#include "cookiejar.h"
 
+#include <qabstractitemmodel.h>
 #include <qstringlist.h>
 
-class CookieJar;
+
 class CookieExceptionsModel : public QAbstractTableModel
 {
     Q_OBJECT
@@ -81,6 +82,9 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
 
+
+    void addRule(QString host, CookieJar::CookieRule rule);
+
 private:
     CookieJar *m_cookieJar;
 
@@ -88,6 +92,9 @@ private:
     QStringList m_allowedCookies;
     QStringList m_blockedCookies;
     QStringList m_sessionCookies;
+
+    void addHost(QString host, QStringList &add, QStringList &remove1, QStringList &remove2);
+
 };
 
 #endif // COOKIEEXCEPTIONSMODEL_H

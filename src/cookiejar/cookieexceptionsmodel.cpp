@@ -182,3 +182,41 @@ bool CookieExceptionsModel::removeRows(int row, int count, const QModelIndex &pa
     return true;
 }
 
+void CookieExceptionsModel::addRule(QString host, CookieJar::CookieRule rule)
+{
+    if (host.isEmpty())
+        return;
+    switch (rule) {
+        case CookieJar::Allow :
+            addHost(host, m_allowedCookies, m_blockedCookies, m_sessionCookies);
+            return;
+        case CookieJar::Block :
+            addHost(host, m_blockedCookies, m_allowedCookies, m_sessionCookies);
+            return;
+        case CookieJar::AllowForSession :
+            addHost(host, m_sessionCookies, m_allowedCookies, m_blockedCookies);
+            return;
+    }
+}
+
+void CookieExceptionsModel::addHost(QString host, QStringList &add, QStringList &remove1, QStringList &remove2)
+{
+    if (!add.contains(host)) {
+        add.append(host);
+        remove1.removeOne(host);
+        remove2.removeOne(host);
+    }
+    // avoid to have similar rules, with or without starting dot, eg "arora-browser.org" and ".arora-browser.org"
+    // means the same domain.
+    QString otherRule;
+    if (host.startsWith(QLatin1Char('.'))) {
+        otherRule = host.mid(1);
+    } else {
+        otherRule = QLatin1String(".") + host;
+    }
+    add.removeOne(otherRule);
+    remove1.removeOne(otherRule);
+    remove2.removeOne(otherRule);
+    reset();
+}
+
