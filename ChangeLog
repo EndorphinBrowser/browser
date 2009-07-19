@@ -1,3 +1,53 @@
+0.8.0
+Interface
+FEATURES:
+- When the ctrl key is pressed show keyboard accelerators on the screen. [Qt 4.6 only].
+- Location bar: implement full text search and more accurate sorting.
+- Add a simple start page with a search box pointing at the active search engine.
+- Allow to create new open search engines from any input forms displayed in websites [Qt 4.6 only].
+- Add a menu to set the default text encoding for all rendering [Qt 4.6 only].
+- Implement directory listing when accessing file:/// URLs that point to directories.
+- When a POST request is about to be resent, warn user about that fact to make sure that the operation is intended.
+- Add a checkable push button to the search bar that allows to highlight a specific string in a website [Qt 4.6 only].
+- Add a setting that specifies if the url supplied by the user should be forwarded to the default search engine if it isn't valid.
+
+IMPROVEMENTS:
+- Show a more verbose message when the htmlToXBel tool is not installed.
+- Show the complete tab title as tool tip to improve GUI usability for long website titles.
+- Download manager: Create the download directory as needed.
+- Location bar: If escape is pressed on location bar revert to the original URL, this emulates the firefox behaviour.
+- Add Google "I'm Feeling Lucky" search engine to the default set.
+- Drag & Drop: Add the ability to drop an url on the tab bar which will open it in a new tab.
+- Drag & Drop: Allow dropping URLs on the location bar.
+- When creating new windows, use the startup setting to decide if the homepage should be loaded.
+- Remove the network monitor tool as the current Inspector now lets you see request headers and response headers.
+
+BUGFIXES:
+- Fix several memory leaks: set the Qt::WA_DeleteOnClose flag on dialogs that are executed asynchronously.
+- Download manager: Fix displaying file size when downloading huge files.
+- Download manager: Give correct name to downloaded files with no suffix.
+- Location bar: Fix background color when using Oxygen style.
+- Bookmarks manager: Don't allow to edit the url in any nodes but normal bookmarks.
+- Private browsing now disables the disk cache.
+
+Behind the scenes
+- Added custom network scheme handlers, i.e. a single one for listing local directories.
+- Add a setting so the user can swap the location of the new and close tab buttons.
+- Add the ability for a user to specify the userAgent through QSettings.
+- Split up the bookmarks classes into separate files.
+- Remake the bookmarks toolbar.
+- Clean up the AddBookmarkDialog class.
+- OpenSearch: Implement the Referrer extension.
+- Implement the WebPage::linkedResources() method using the DOM API.
+- Tweak the certToFormattedString() function.
+- OpenSearch: localization improvements.
+
+Build system
+- Include an additional XML file in the installation, which will make Arora appear in Gnome Control Center on the list of available web browsers that can be set as default.
+- Add man pages for the tools.
+- webkit.pri now supports building QtWebKit as a framework on mac.
+
+
 0.7.1
 Fix Windows build.
 Fix building in parallel (make -jX).
