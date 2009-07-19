@@ -3,6 +3,7 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 TRANSLATIONS += \
+    ast.ts \
     ca.ts \
     cs_CZ.ts \
     da_DK.ts \
