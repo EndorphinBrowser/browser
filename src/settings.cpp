@@ -81,6 +81,8 @@
 #include <qmetaobject.h>
 #include <qmessagebox.h>
 #include <qsettings.h>
+#include <qfiledialog.h>
+#include <QFlags>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -95,6 +97,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(standardFontButton, SIGNAL(clicked()), this, SLOT(chooseFont()));
     connect(fixedFontButton, SIGNAL(clicked()), this, SLOT(chooseFixedFont()));
     connect(languageButton, SIGNAL(clicked()), this, SLOT(chooseAcceptLanguage()));
+    connect(downloadDirectoryButton, SIGNAL(clicked()), this, SLOT(chooseDownloadDirectory()));
 
 #if QT_VERSION < 0x040500
     oneCloseButton->setVisible(false); // no other mode than one close button with qt <4.5
@@ -412,6 +415,12 @@ void SettingsDialog::showExceptions()
 {
     CookieExceptionsDialog dialog(BrowserApplication::cookieJar(), this);
     dialog.exec();
+}
+
+void SettingsDialog::chooseDownloadDirectory()
+{
+    QString fileName = QFileDialog::getExistingDirectory(this, tr("Choose Directory"), downloadsLocation->text());
+    downloadsLocation->setText(fileName);
 }
 
 void SettingsDialog::chooseFont()

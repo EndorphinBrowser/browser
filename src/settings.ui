@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>689</width>
-    <height>400</height>
+    <height>412</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -185,13 +185,33 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="downloadsLocation">
-              <property name="layoutDirection">
-               <enum>Qt::LeftToRight</enum>
+             <widget class="QPushButton" name="downloadDirectoryButton">
+              <property name="text">
+               <string>Choose Directory...</string>
               </property>
              </widget>
             </item>
+            <item>
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="downloadsLocation">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -835,14 +855,14 @@
           </item>
           <item row="0" column="1">
            <widget class="QSpinBox" name="networkCacheMaximumSizeSpinBox">
+            <property name="suffix">
+             <string> MB</string>
+            </property>
             <property name="minimum">
              <number>0</number>
             </property>
             <property name="maximum">
              <number>100</number>
-            </property>
-            <property name="suffix">
-             <string> MB</string>
             </property>
            </widget>
           </item>
@@ -875,8 +895,6 @@
   <tabstop>setHomeToCurrentPageButton</tabstop>
   <tabstop>expireHistory</tabstop>
   <tabstop>downloadAsk</tabstop>
-  <tabstop>downloadDestination</tabstop>
-  <tabstop>downloadsLocation</tabstop>
   <tabstop>standardFontButton</tabstop>
   <tabstop>fixedFontButton</tabstop>
   <tabstop>enablePlugins</tabstop>
@@ -943,11 +961,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>50</x>
-     <y>223</y>
+     <y>248</y>
     </hint>
     <hint type="destinationlabel">
-     <x>348</x>
-     <y>223</y>
+     <x>58</x>
+     <y>286</y>
     </hint>
    </hints>
   </connection>
@@ -958,12 +976,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>129</x>
-     <y>98</y>
+     <x>48</x>
+     <y>85</y>
     </hint>
     <hint type="destinationlabel">
-     <x>149</x>
-     <y>122</y>
+     <x>78</x>
+     <y>110</y>
     </hint>
    </hints>
   </connection>

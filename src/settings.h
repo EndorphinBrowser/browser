@@ -83,6 +83,7 @@ private slots:
     void showCookies();
     void showExceptions();
 
+    void chooseDownloadDirectory();
     void chooseFont();
     void chooseFixedFont();
     void chooseAcceptLanguage();
