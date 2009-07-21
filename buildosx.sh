@@ -15,7 +15,7 @@ fi
 
 # build app with Qt libraries
 make distclean --quiet
-qmake -config release
+qmake -r -config release
 make --quiet
 $QTDIR/bin/macdeployqt $APP.app/
 
