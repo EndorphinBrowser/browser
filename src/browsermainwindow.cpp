@@ -866,7 +866,7 @@ void BrowserMainWindow::retranslate()
 
     m_viewMenu->setTitle(tr("&View"));
     m_viewToolbarAction->setShortcut(tr("Ctrl+|"));
-    m_viewBookmarkBarAction->setShortcut(tr("Shift+Ctrl+B"));
+    m_viewBookmarkBarAction->setShortcut(tr("Alt+Ctrl+B"));
     m_viewStatusbarAction->setShortcut(tr("Ctrl+/"));
     m_viewShowMenuBarAction->setText(tr("Show Menu Bar"));
     m_viewReloadAction->setText(tr("&Reload Page"));
