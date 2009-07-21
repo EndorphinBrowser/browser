@@ -3,12 +3,12 @@
 SetCompressor /SOLID /FINAL lzma
 
 !define PRODUCT_NAME "Arora"
-!define /date PRODUCT_VERSION "0.6"
+!define /date PRODUCT_VERSION "0.8.0"
 ;!define /date PRODUCT_VERSION "Snapshot (%#m-%#d-%#Y)"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\arora.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
-!define QTDIR "C:\Qt\qt-all-opensource-src-4.5.0"
+!define QTDIR "C:\Qt\qt-all-opensource-src-4.5.2"
 
 !include "MUI.nsh"
 !define MUI_ABORTWARNING
