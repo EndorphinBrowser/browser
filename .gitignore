@@ -9,6 +9,8 @@ Makefile*
 .rcc
 .qm
 .gdb_history
+ui_
+*.exe
 *.swp
 *~
 *.pdb
