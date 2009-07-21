@@ -172,6 +172,9 @@ void DownloadItem::getFileName()
             fileNameLabel->setText(tr("Download canceled: %1").arg(QFileInfo(defaultFileName).fileName()));
             return;
         }
+        QFileInfo fileInfo = QFileInfo(fileName);
+        BrowserApplication::downloadManager()->setDownloadDirectory(fileInfo.absoluteDir().absolutePath());
+        fileNameLabel->setText(fileInfo.fileName());
     }
     m_output.setFileName(fileName);
 
@@ -186,10 +189,7 @@ void DownloadItem::getFileName()
         }
     }
 
-    QFileInfo qf = QFileInfo(m_output.fileName());
-    BrowserApplication::downloadManager()->setDownloadDirectory(qf.absoluteDir().absolutePath());
-    fileNameLabel->setText(qf.fileName());
-
+    fileNameLabel->setText(QFileInfo(m_output.fileName()).fileName());
     if (m_requestFileName)
         downloadReadyRead();
 }
@@ -683,14 +683,14 @@ void DownloadManager::updateItemCount()
     itemCount->setText(tr("%n Download(s)", "", count));
 }
 
-void DownloadManager::setDownloadDirectory(QString dir)
+void DownloadManager::setDownloadDirectory(const QString &directory)
 {
-    m_downloadDirectory = dir;
+    m_downloadDirectory = directory;
     if (!m_downloadDirectory.isEmpty())
         m_downloadDirectory += QLatin1Char('/');
 }
 
-QString &DownloadManager::downloadDirectory()
+QString DownloadManager::downloadDirectory()
 {
     return m_downloadDirectory;
 }

@@ -151,8 +151,8 @@ public:
     static QString timeString(double timeRemaining);
     static QString dataString(qint64 size);
 
-    void setDownloadDirectory(QString dir);
-    QString &downloadDirectory();
+    void setDownloadDirectory(const QString &directory);
+    QString downloadDirectory();
 
 public slots:
     void download(const QNetworkRequest &request, bool requestFileName = false);
