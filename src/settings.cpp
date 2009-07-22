@@ -82,7 +82,6 @@
 #include <qmessagebox.h>
 #include <qsettings.h>
 #include <qfiledialog.h>
-#include <QFlags>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
