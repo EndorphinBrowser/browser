@@ -5,9 +5,17 @@ INCLUDEPATH += .
 
 include(../autotests.pri)
 
-SOURCES += \
+SOURCES = \
+    opensearchengine.cpp \
+    opensearchwriter.cpp \
     tst_opensearchwriter.cpp
 
-RESOURCES += \
+HEADERS = \
+    opensearchengine.h \
+    opensearchwriter.h
+
+FORMS =
+
+RESOURCES = \
     opensearchwriter.qrc
 
