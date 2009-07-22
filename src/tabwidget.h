@@ -154,6 +154,7 @@ public slots:
     void loadString(const QString &string, OpenUrlIn tab = CurrentTab);
     void loadUrlFromUser(const QUrl &url, const QString &title = QString());
     void loadUrl(const QUrl &url, TabWidget::OpenUrlIn tab = CurrentTab, const QString &title = QString());
+    void createTab(const QByteArray &historyState, TabWidget::OpenUrlIn tab = CurrentTab);
     void newTab();
     void cloneTab(int index = -1);
     void closeTab(int index = -1);
@@ -199,6 +200,7 @@ private:
     QMenu *m_recentlyClosedTabsMenu;
     static const int m_recentlyClosedTabsSize = 10;
     QList<QUrl> m_recentlyClosedTabs;
+    QList<QByteArray> m_recentlyClosedTabsHistory;
     QList<WebActionMapper*> m_actions;
     bool m_swappedDelayedWidget;
 
