@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>689</width>
-    <height>412</height>
+    <height>424</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -185,33 +185,20 @@
              </widget>
             </item>
             <item>
+             <widget class="QLineEdit" name="downloadsLocation">
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="downloadDirectoryButton">
               <property name="text">
                <string>Choose Directory...</string>
               </property>
              </widget>
             </item>
-            <item>
-             <spacer name="horizontalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
            </layout>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="downloadsLocation">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -894,19 +881,27 @@
   <tabstop>homeLineEdit</tabstop>
   <tabstop>setHomeToCurrentPageButton</tabstop>
   <tabstop>expireHistory</tabstop>
+  <tabstop>searchEngineFallback</tabstop>
   <tabstop>downloadAsk</tabstop>
+  <tabstop>downloadDestination</tabstop>
+  <tabstop>downloadDirectoryButton</tabstop>
   <tabstop>standardFontButton</tabstop>
   <tabstop>fixedFontButton</tabstop>
+  <tabstop>languageButton</tabstop>
+  <tabstop>blockPopupWindows</tabstop>
   <tabstop>enablePlugins</tabstop>
+  <tabstop>clickToFlash</tabstop>
   <tabstop>enableJavascript</tabstop>
   <tabstop>enableImages</tabstop>
   <tabstop>acceptCombo</tabstop>
   <tabstop>exceptionsButton</tabstop>
   <tabstop>keepUntilCombo</tabstop>
   <tabstop>cookiesButton</tabstop>
+  <tabstop>filterTrackingCookiesCheckbox</tabstop>
   <tabstop>selectTabsWhenCreated</tabstop>
   <tabstop>confirmClosingMultipleTabs</tabstop>
   <tabstop>oneCloseButton</tabstop>
+  <tabstop>quitAsLastTabClosed</tabstop>
   <tabstop>openLinksFromAppsIn</tabstop>
   <tabstop>openTargetBlankLinksIn</tabstop>
   <tabstop>proxySupport</tabstop>
@@ -916,6 +911,7 @@
   <tabstop>proxyUserName</tabstop>
   <tabstop>proxyPassword</tabstop>
   <tabstop>userStyleSheet</tabstop>
+  <tabstop>networkCache</tabstop>
   <tabstop>networkCacheMaximumSizeSpinBox</tabstop>
   <tabstop>buttonBox</tabstop>
  </tabstops>
@@ -960,12 +956,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>50</x>
-     <y>248</y>
+     <x>79</x>
+     <y>289</y>
     </hint>
     <hint type="destinationlabel">
-     <x>58</x>
-     <y>286</y>
+     <x>86</x>
+     <y>325</y>
     </hint>
    </hints>
   </connection>
@@ -976,12 +972,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>48</x>
-     <y>85</y>
+     <x>76</x>
+     <y>125</y>
     </hint>
     <hint type="destinationlabel">
-     <x>78</x>
-     <y>110</y>
+     <x>132</x>
+     <y>154</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>downloadDestination</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>downloadDirectoryButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>182</x>
+     <y>282</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>211</x>
+     <y>283</y>
     </hint>
    </hints>
   </connection>
