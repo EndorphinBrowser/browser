@@ -148,6 +148,8 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
         return false;
     }
 
+    QLocale::setDefault(QLocale(m_currentLanguage));
+
     // A new language event is sent to all widgets in the application
     // They need to catch it and re-translate
     delete m_appTranslator;
