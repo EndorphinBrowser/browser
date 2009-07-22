@@ -1,5 +1,6 @@
 /*
  * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,15 +19,16 @@
  */
 
 #include <qtest.h>
+#include "qtry.h"
+#include "opensearchengine.h"
 
-#include "qtest_arora.h"
-#include "languagemanager.h"
-
-#include <qsignalspy.h>
-#include <opensearchengine.h>
 #include <qbuffer.h>
-
-#include <qdebug.h>
+#include <qfile.h>
+#include <qlocale.h>
+#include <qnetworkaccessmanager.h>
+#include <qnetworkreply.h>
+#include <qsignalspy.h>
+#include <qtimer.h>
 
 class tst_OpenSearchEngine : public QObject
 {
@@ -58,6 +60,7 @@ private slots:
     void providesSuggestions();
     void requestSuggestions_data();
     void requestSuggestions();
+    void requestSuggestionsCrash();
     void searchParameters_data();
     void searchParameters();
     void searchUrl_data();
@@ -86,14 +89,91 @@ public:
     void call_loadImage() const
         { return SubOpenSearchEngine::loadImage(); }
 
-    QNetworkAccessManager *call_networkAccessManager() const
-        { return SubOpenSearchEngine::networkAccessManager(); }
-
     QString call_parseTemplate(QString const &searchTerm, QString const &searchTemplate) const
         { return SubOpenSearchEngine::parseTemplate(searchTerm, searchTemplate); }
 
     void call_suggestions(QStringList const &suggestions)
         { return SubOpenSearchEngine::suggestions(suggestions); }
+};
+
+class SuggestionsTestNetworkReply : public QNetworkReply
+{
+    Q_OBJECT
+
+public:
+    SuggestionsTestNetworkReply(const QNetworkRequest &request, QObject *parent = 0)
+        : QNetworkReply(parent)
+    {
+        setOperation(QNetworkAccessManager::GetOperation);
+        setRequest(request);
+        setUrl(request.url());
+        setOpenMode(QIODevice::ReadOnly);
+
+        expectedResult.setFileName(":/suggestions.txt");
+        expectedResult.open(QIODevice::ReadOnly);
+        setError(QNetworkReply::NoError, tr("No Error"));
+
+        QTimer::singleShot(50, this, SLOT(sendSuggestions()));
+    }
+
+    ~SuggestionsTestNetworkReply()
+    {
+        close();
+    }
+
+    qint64 bytesAvailable() const
+    {
+        return expectedResult.bytesAvailable() + QNetworkReply::bytesAvailable();
+    }
+
+    void close()
+    {
+        expectedResult.close();
+    }
+
+    qint64 readData(char *data, qint64 maxSize)
+    {
+        return expectedResult.read(data, maxSize);
+    }
+
+    void abort()
+    {
+    }
+
+private slots:
+    void sendSuggestions()
+    {
+        // Publish result
+        setHeader(QNetworkRequest::ContentTypeHeader, QByteArray("text/html"));
+        setHeader(QNetworkRequest::ContentLengthHeader, expectedResult.bytesAvailable());
+        setAttribute(QNetworkRequest::HttpStatusCodeAttribute, 200);
+        setAttribute(QNetworkRequest::HttpReasonPhraseAttribute, QByteArray("Ok"));
+
+        emit metaDataChanged();
+        emit readyRead();
+        emit downloadProgress(expectedResult.size(), expectedResult.size());
+        emit finished();
+    }
+
+private:
+    QFile expectedResult;
+};
+
+class SuggestionsTestNetworkAccessManager : public QNetworkAccessManager
+{
+public:
+    SuggestionsTestNetworkAccessManager(QObject *parent = 0)
+        : QNetworkAccessManager(parent)
+    {
+    }
+
+protected:
+    QNetworkReply *createRequest(QNetworkAccessManager::Operation operation, const QNetworkRequest &request, QIODevice *outgoingData = 0)
+    {
+        Q_UNUSED(operation);
+        Q_UNUSED(outgoingData);
+        return new SuggestionsTestNetworkReply(request, 0);
+    }
 };
 
 // This will be called before the first test function is executed.
@@ -152,7 +232,10 @@ void tst_OpenSearchEngine::opensearchengine()
     QCOMPARE(engine.suggestionsUrlTemplate(), QString());
     engine.call_imageChanged();
     engine.call_loadImage();
-    QVERIFY(engine.call_networkAccessManager());
+    QVERIFY(!engine.networkAccessManager());
+    QNetworkAccessManager manager;
+    engine.setNetworkAccessManager(&manager);
+    QCOMPARE(engine.networkAccessManager(), &manager);
     QCOMPARE(engine.call_parseTemplate(QString(), QString()), QString());
     engine.call_suggestions(QStringList());
 }
@@ -176,6 +259,9 @@ void tst_OpenSearchEngine::description()
 
     engine.setDescription(description);
     QCOMPARE(engine.description(), description);
+    QCOMPARE(engine.property("description").toString(), description);
+    engine.setProperty("description", QString());
+    QCOMPARE(engine.property("description").toString(), QString());
 
     QCOMPARE(spy0.count(), 0);
     QCOMPARE(spy1.count(), 0);
@@ -186,6 +272,9 @@ void tst_OpenSearchEngine::image()
 {
     SubOpenSearchEngine engine;
 
+    QNetworkAccessManager manager;
+    engine.setNetworkAccessManager(&manager);
+
     QSignalSpy spy0(&engine, SIGNAL(imageChanged()));
     QSignalSpy spy1(&engine, SIGNAL(suggestions(QStringList const&)));
 
@@ -194,12 +283,22 @@ void tst_OpenSearchEngine::image()
     QPixmap image(1, 1);
     image.fill();
     image.save(&imageBuffer, "PNG");
-    engine.setImageUrl(QString("data:image/png;base64,").append(imageBuffer.buffer().toBase64()));
+    QString imageUrl = QString("data:image/png;base64,").append(imageBuffer.buffer().toBase64());
+    engine.setImageUrl(imageUrl);
     QCOMPARE(engine.image(), QImage());
 
     QTRY_COMPARE(spy0.count(), 1);
     QCOMPARE(spy1.count(), 0);
     QVERIFY(engine.image() != QImage());
+
+    SubOpenSearchEngine engine2;
+    QSignalSpy spy2(&engine2, SIGNAL(imageChanged()));
+
+    QVERIFY(engine2.imageUrl().isEmpty());
+    engine2.setImage(engine.image());
+    QCOMPARE(engine2.imageUrl(), imageUrl);
+
+    QCOMPARE(spy2.count(), 1);
 }
 
 void tst_OpenSearchEngine::imageUrl_data()
@@ -221,6 +320,9 @@ void tst_OpenSearchEngine::imageUrl()
 
     engine.setImageUrl(imageUrl);
     QCOMPARE(engine.imageUrl(), imageUrl);
+    QCOMPARE(engine.property("imageUrl").toString(), imageUrl);
+    engine.setProperty("imageUrl", QString());
+    QCOMPARE(engine.property("imageUrl").toString(), QString());
 
     QCOMPARE(spy0.count(), 0);
     QCOMPARE(spy1.count(), 0);
@@ -276,6 +378,9 @@ void tst_OpenSearchEngine::name()
 
     engine.setName(name);
     QCOMPARE(engine.name(), name);
+    QCOMPARE(engine.property("name").toString(), name);
+    engine.setProperty("name", QString());
+    QCOMPARE(engine.property("name").toString(), QString());
 
     QCOMPARE(spy0.count(), 0);
     QCOMPARE(spy1.count(), 0);
@@ -372,28 +477,59 @@ void tst_OpenSearchEngine::providesSuggestions()
 void tst_OpenSearchEngine::requestSuggestions_data()
 {
     QTest::addColumn<QString>("searchTerm");
-    QTest::addColumn<QStringList>("suggestions");
-    QTest::newRow("null") << QString() << QStringList();
-    QTest::newRow("foo") << QString("foo") << (QStringList());
-    // TODO load a real engine and make sure it returns a suggestion
+    QTest::newRow("null") << QString();
+    QTest::newRow("foo") << QString("foo");
 }
 
 // public void requestSuggestions(QString const &searchTerm)
 void tst_OpenSearchEngine::requestSuggestions()
 {
     QFETCH(QString, searchTerm);
-    QFETCH(QStringList, suggestions);
 
+    SuggestionsTestNetworkAccessManager manager;
     SubOpenSearchEngine engine;
+    engine.setNetworkAccessManager(&manager);
+    engine.setSuggestionsUrlTemplate("http://foobar.baz");
 
-    QSignalSpy spy0(&engine, SIGNAL(imageChanged()));
-    QSignalSpy spy1(&engine, SIGNAL(suggestions(QStringList const&)));
+    QVERIFY(engine.providesSuggestions());
+
+    QSignalSpy spy(&engine, SIGNAL(suggestions(QStringList const&)));
 
     engine.requestSuggestions(searchTerm);
 
-    QCOMPARE(spy0.count(), 0);
-    QTRY_COMPARE(spy1.count(), suggestions.count());
-    //QCOMPARE(spy1.value(0), suggestions);
+    if (searchTerm.isEmpty()) {
+        QTest::qWait(200);
+        QCOMPARE(spy.count(), 0);
+    } else {
+        QTRY_COMPARE(spy.count(), 1);
+
+        QStringList suggestions;
+        suggestions << "sears" << "search engines" << "search engine" << "search" << "sears.com" << "seattle times";
+        QCOMPARE(spy.at(0).at(0).toStringList(), suggestions);
+    }
+}
+
+void tst_OpenSearchEngine::requestSuggestionsCrash()
+{
+    SuggestionsTestNetworkAccessManager manager;
+    SubOpenSearchEngine engine;
+    engine.setNetworkAccessManager(&manager);
+    engine.setSuggestionsUrlTemplate("http://foobar.baz");
+
+    QVERIFY(engine.providesSuggestions());
+
+    QSignalSpy spy(&engine, SIGNAL(suggestions(QStringList const&)));
+
+    QStringList colors = QColor::colorNames();
+
+    for (int i = 0; i < colors.count(); ++i)
+        engine.requestSuggestions(colors.at(i));
+
+    QTRY_COMPARE(spy.count(), 1);
+
+    QStringList suggestions;
+    suggestions << "sears" << "search engines" << "search engine" << "search" << "sears.com" << "seattle times";
+    QCOMPARE(spy.at(0).at(0).toStringList(), suggestions);
 }
 
 void tst_OpenSearchEngine::searchParameters_data()
@@ -415,6 +551,7 @@ void tst_OpenSearchEngine::searchParameters()
 
     engine.setSearchParameters(searchParameters);
     QCOMPARE(engine.searchParameters(), searchParameters);
+    QCOMPARE(qvariant_cast<OpenSearchEngine::Parameters>(engine.property("searchParameters")), searchParameters);
 
     QCOMPARE(spy0.count(), 0);
     QCOMPARE(spy1.count(), 0);
@@ -469,6 +606,10 @@ void tst_OpenSearchEngine::searchUrlTemplate()
     QSignalSpy spy1(&engine, SIGNAL(suggestions(QStringList const&)));
 
     engine.setSearchUrlTemplate(searchUrlTemplate);
+    QCOMPARE(engine.property("searchUrlTemplate").toString(), searchUrlTemplate);
+    engine.setProperty("searchUrlTemplate", QString());
+    QCOMPARE(engine.property("searchUrlTemplate").toString(), QString());
+    engine.setProperty("searchUrlTemplate", searchUrlTemplate);
     QCOMPARE(engine.searchUrlTemplate(), searchUrlTemplate);
 
     QCOMPARE(spy0.count(), 0);
@@ -556,7 +697,7 @@ void tst_OpenSearchEngine::suggestionsUrlTemplate()
 
 void tst_OpenSearchEngine::parseTemplate_data()
 {
-    QString lang = BrowserApplication::languageManager()->currentLanguage().replace(QLatin1Char('_'), QLatin1Char('-'));
+    QString lang = QLocale().name().replace(QLatin1Char('_'), QLatin1Char('-'));
 
     QTest::addColumn<QString>("searchTerm");
     QTest::addColumn<QString>("searchTemplate");
@@ -602,7 +743,7 @@ void tst_OpenSearchEngine::languageCodes_data()
     QTest::addColumn<QString>("languageCode");
     QTest::addColumn<QString>("url");
 
-    QTest::newRow("es") << QString("es") << QString("http://foobar.baz/?l=es");
+    QTest::newRow("es") << QString("es") << QString("http://foobar.baz/?l=es-ES");
     QTest::newRow("pt_BR") << QString("pt_BR") << QString("http://foobar.baz/?l=pt-BR");
 }
 
@@ -611,9 +752,7 @@ void tst_OpenSearchEngine::languageCodes()
     QFETCH(QString, languageCode);
     QFETCH(QString, url);
 
-    QVERIFY(BrowserApplication::instance()->languageManager()->isLanguageAvailable(languageCode));
-    BrowserApplication::instance()->languageManager()->setCurrentLanguage(languageCode);
-    QCOMPARE(BrowserApplication::instance()->languageManager()->currentLanguage(), languageCode);
+    QLocale::setDefault(QLocale(languageCode));
 
     SubOpenSearchEngine engine;
     QCOMPARE(engine.call_parseTemplate(QString("foo"), QString("http://foobar.baz/?l={language}")), url);

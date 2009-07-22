@@ -240,6 +240,9 @@ void ToolbarSearch::getSuggestions()
     if (!engine)
         return;
 
+    if (!engine->networkAccessManager())
+        engine->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+
     engine->requestSuggestions(text());
 }
 

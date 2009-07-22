@@ -4,9 +4,15 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 include(../autotests.pri)
-include(../../src/locale/locale.pri)
 
-SOURCES += \
+SOURCES = \
+    opensearchengine.cpp \
     tst_opensearchengine.cpp
 
-HEADERS +=
+HEADERS = \
+    opensearchengine.h
+
+FORMS =
+
+RESOURCES = \
+    opensearchengine.qrc

@@ -20,12 +20,16 @@
 #include "opensearchengineaction.h"
 
 #include "browserapplication.h"
+#include "networkaccessmanager.h"
 #include "opensearchengine.h"
 
 OpenSearchEngineAction::OpenSearchEngineAction(OpenSearchEngine *engine, QObject *parent)
     : QAction(parent)
     , m_engine(engine)
 {
+    if (!engine->networkAccessManager())
+        engine->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+
     setText(engine->name());
     imageChanged();
     connect(engine, SIGNAL(imageChanged()), this, SLOT(imageChanged()));

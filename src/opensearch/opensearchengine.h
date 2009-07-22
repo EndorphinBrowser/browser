@@ -1,6 +1,5 @@
 /*
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
- * Copyright 2009 Christian Franke <cfchris6@ts2server.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,8 +33,6 @@ class OpenSearchEngine : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString name READ name)
-
 signals:
     void imageChanged();
     void suggestions(const QStringList &suggestions);
@@ -43,6 +40,17 @@ signals:
 public:
     typedef QPair<QString, QString> Parameter;
     typedef QList<Parameter> Parameters;
+
+    Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(QString description READ description WRITE setDescription)
+    Q_PROPERTY(QString searchUrlTemplate READ searchUrlTemplate WRITE setSearchUrlTemplate)
+    Q_PROPERTY(Parameters searchParameters READ searchParameters WRITE setSearchParameters)
+    Q_PROPERTY(QString suggestionsUrlTemplate READ suggestionsUrlTemplate WRITE setSuggestionsUrlTemplate)
+    Q_PROPERTY(Parameters suggestionsParameters READ suggestionsParameters WRITE setSuggestionsParameters)
+    Q_PROPERTY(bool providesSuggestions READ providesSuggestions)
+    Q_PROPERTY(QString imageUrl READ imageUrl WRITE setImageUrl)
+    Q_PROPERTY(bool valid READ isValid)
+    Q_PROPERTY(QNetworkAccessManager* networkAccessManager READ networkAccessManager WRITE setNetworkAccessManager)
 
     OpenSearchEngine(QObject *parent = 0);
     ~OpenSearchEngine();
@@ -77,6 +85,9 @@ public:
 
     bool isValid() const;
 
+    QNetworkAccessManager *networkAccessManager() const;
+    void setNetworkAccessManager(QNetworkAccessManager *networkAccessManager);
+
     bool operator==(const OpenSearchEngine &other) const;
     bool operator<(const OpenSearchEngine &other) const;
 
@@ -85,7 +96,6 @@ public slots:
 
 protected:
     static QString parseTemplate(const QString &searchTerm, const QString &searchTemplate);
-    static QNetworkAccessManager *networkAccessManager();
     void loadImage() const;
 
 private slots:
@@ -104,10 +114,11 @@ private:
     Parameters m_searchParameters;
     Parameters m_suggestionsParameters;
 
+    QNetworkAccessManager *m_networkAccessManager;
     QNetworkReply *m_suggestionsReply;
 
     QScriptEngine *m_scriptEngine;
 };
 
-#endif //OPENSEARCHENGINE_H
+#endif // OPENSEARCHENGINE_H
 

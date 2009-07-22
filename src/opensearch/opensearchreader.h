@@ -36,5 +36,5 @@ private:
 
 };
 
-#endif //OPENSEARCHREADER_H
+#endif // OPENSEARCHREADER_H
 

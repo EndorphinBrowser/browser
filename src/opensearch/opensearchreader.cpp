@@ -21,14 +21,51 @@
 
 #include "opensearchengine.h"
 
-#include <qdebug.h>
 #include <qiodevice.h>
 
+/*!
+    \class OpenSearchReader
+    \brief A class reading a search engine description from an external source
+
+    OpenSearchReader is a class that can be used to read search engine descriptions
+    formed using the OpenSearch format.
+
+    It inherits QXmlStreamReader and thus provides additional functions, such as
+    QXmlStreamReader::error(), QXmlStreamReader::hasError() that can be used to make sure
+    the reading procedure succeeded.
+
+    For more information see:
+    http://www.opensearch.org/Specifications/OpenSearch/1.1/Draft_4#OpenSearch_description_document
+
+    \sa OpenSearchEngine, OpenSearchWriter
+*/
+
+/*!
+    Constructs a new reader.
+
+    \note One instance can be used to read multiple files, one by one.
+*/
 OpenSearchReader::OpenSearchReader()
     : QXmlStreamReader()
 {
 }
 
+/*!
+    Reads an OpenSearch engine from the \a device and returns an OpenSearchEngine object,
+    filled in with all the data that has been retrieved from the document.
+
+    If the \a device is closed, it will be opened.
+
+    To make sure if the procedure succeeded, check QXmlStreamReader::error().
+
+    \return a new constructed OpenSearchEngine object
+
+    \note The function returns an object of the OpenSearchEngine class even if the document
+          is bad formed or doesn't conform to the specification. It needs to be manually
+          deleted afterwards, if intended.
+    \note The lifetime of the returned OpenSearchEngine object is up to the user.
+          The object should be deleted once it is not used anymore to avoid memory leaks.
+*/
 OpenSearchEngine *OpenSearchReader::read(QIODevice *device)
 {
     clear();
@@ -53,7 +90,7 @@ OpenSearchEngine *OpenSearchReader::read()
         return engine;
     }
 
-    while (!(isEndElement() && name() == QLatin1String("OpenSearchDescription")) && !atEnd()) {
+    while (!atEnd()) {
         readNext();
 
         if (!isStartElement())
