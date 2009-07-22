@@ -714,7 +714,7 @@ void tst_OpenSearchEngine::parseTemplate_data()
                                "sp=0&amp;l=%1&amp;ie=UTF-8&amp;oe=UTF-8").arg(lang)
                     << true;
     QTest::newRow("tricky") << QString("{count}") << QString("http://foobar.baz/q={searchTerms}&amp;count={count}")
-                    << QString("http://foobar.baz/q={count}&amp;count=20") << true;
+                    << QString("http://foobar.baz/q=%7Bcount%7D&amp;count=20") << true;
     QTest::newRow("multiple") << QString("abc") << QString("http://foobar.baz/?q={searchTerms}&amp;x={searchTerms}")
                     << QString("http://foobar.baz/?q=abc&amp;x=abc") << true;
     QTest::newRow("referrer") << QString("foo")
@@ -722,6 +722,8 @@ void tst_OpenSearchEngine::parseTemplate_data()
                     << QString("http://foobar.baz/?q=foo&amp;a=tst_opensearchengine"
                                "&amp;b=tst_opensearchengine&amp;c=tst_opensearchengine")
                     << true;
+    QTest::newRow("inputEncoding") << QString("c++") << QString("http://foobar.baz/?q={searchTerms}")
+                    << QString("http://foobar.baz/?q=c%2B%2B") << true;
 }
 
 // protected QString parseTemplate(QString const &searchTerm, QString const &searchTemplate) const
