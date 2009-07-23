@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="EditListView" name="m_listView"/>
+    <widget class="EditTableView" name="m_tableView"/>
    </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -65,9 +65,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>EditListView</class>
-   <extends>QListView</extends>
-   <header>editlistview.h</header>
+   <class>EditTableView</class>
+   <extends>QTableView</extends>
+   <header>edittableview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

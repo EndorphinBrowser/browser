@@ -923,6 +923,16 @@ void TabWidget::loadString(const QString &string, OpenUrlIn tab)
     if (string.isEmpty())
         return;
 
+    int i = string.indexOf(QLatin1Char(' '));
+    if (i != -1) {
+        OpenSearchManager *manager = ToolbarSearch::openSearchManager();
+        QString keyword = string.left(i);
+        if (OpenSearchEngine *engine = manager->engineForKeyword(keyword)) {
+            QString terms = string.mid(i + 1);
+            loadUrl(engine->searchUrl(terms), tab);
+        }
+    }
+
     QUrl url = guessUrlFromString(string);
     currentLineEdit()->setText(QString::fromUtf8(url.toEncoded()));
     loadUrl(url, tab);

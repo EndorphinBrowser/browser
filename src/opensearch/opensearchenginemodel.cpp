@@ -1,6 +1,7 @@
 /*
  * Copyright 2009 Christian Franke <cfchris6@ts2server.com>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
+ * Copyright 2009 Christopher Eby <kreed@kreed.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +28,7 @@
 #include <qimage.h>
 
 OpenSearchEngineModel::OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent)
-    : QAbstractListModel(parent)
+    : QAbstractTableModel(parent)
     , m_manager(manager)
 {
     connect(manager, SIGNAL(changed()),
@@ -64,6 +65,22 @@ int OpenSearchEngineModel::rowCount(const QModelIndex &parent) const
     return (parent.isValid()) ? 0 : m_manager->enginesCount();
 }
 
+int OpenSearchEngineModel::columnCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return 2;
+}
+
+Qt::ItemFlags OpenSearchEngineModel::flags(const QModelIndex &index) const
+{
+    switch (index.column()) {
+    case 1:
+        return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+    default:
+        return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    }
+}
+
 QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
 {
     if (index.row() >= m_manager->enginesCount() || index.row() < 0)
@@ -74,27 +91,78 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
     if (!engine)
         return QVariant();
 
-    switch (role) {
-    case Qt::DisplayRole:
-        return engine->name();
-    break;
-    case Qt::DecorationRole: {
-        QImage image = engine->image();
-        if (image.isNull())
-            return BrowserApplication::icon(engine->imageUrl());
-        return image;
-    }
-    break;
-    case Qt::ToolTipRole:
-        QString description = tr("<strong>Description:</strong> %1").arg(engine->description());
-
-        if (engine->providesSuggestions()) {
-            description += QLatin1String("<br />");
-            description += tr("<strong>Provides contextual suggestions</strong>");
+    switch (index.column()) {
+    case 0:
+        switch (role) {
+        case Qt::DisplayRole:
+            return engine->name();
+        case Qt::DecorationRole: {
+            QImage image = engine->image();
+            if (image.isNull())
+                return BrowserApplication::icon(engine->imageUrl());
+            return image;
         }
+        case Qt::ToolTipRole:
+            QString description = tr("<strong>Description:</strong> %1").arg(engine->description());
 
-        return description;
-    break;
+            if (engine->providesSuggestions()) {
+                description += QLatin1String("<br />");
+                description += tr("<strong>Provides contextual suggestions</strong>");
+            }
+
+            return description;
+        }
+        break;
+
+    case 1:
+        switch (role) {
+        case Qt::EditRole:
+        case Qt::DisplayRole:
+            return QStringList(m_manager->keywordsForEngine(engine)).join(QLatin1String(","));
+        case Qt::ToolTipRole:
+            return tr("Comma-separated list of keywords that may be entered in the location bar followed by search terms to search with this engine");
+        }
+        break;
+    }
+
+    return QVariant();
+}
+
+bool OpenSearchEngineModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (index.column() != 1)
+        return false;
+
+    if (index.row() >= m_manager->enginesCount() || index.row() < 0)
+        return false;
+
+    if (role != Qt::EditRole)
+        return false;
+
+    QString engineName = m_manager->allEnginesNames().at(index.row());
+    QStringList keywords = value.toString().split(QRegExp(QLatin1String("[ ,]+")), QString::SkipEmptyParts);
+
+    m_manager->removeKeywordsForEngine(m_manager->engine(engineName));
+
+    foreach (QString keyword, keywords)
+        m_manager->setEngineForKeyword(engineName, keyword);
+
+    return true;
+}
+
+QVariant OpenSearchEngineModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (orientation == Qt::Vertical)
+        return QVariant();
+
+    if (role != Qt::DisplayRole)
+        return QVariant();
+
+    switch (section) {
+    case 0:
+        return tr("Name");
+    case 1:
+        return tr("Keywords");
     }
 
     return QVariant();
@@ -102,6 +170,6 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
 
 void OpenSearchEngineModel::enginesChanged()
 {
-    QAbstractListModel::reset();
+    QAbstractTableModel::reset();
 }
 

@@ -1,6 +1,7 @@
 /*
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  * Copyright 2009 Christian Franke <cfchris6@ts2server.com>
+ * Copyright 2009 Christopher Eby <kreed@kreed.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,6 +60,11 @@ public:
 
     bool engineExists(const QString &name);
 
+    OpenSearchEngine *engineForKeyword(const QString &keyword) const;
+    void setEngineForKeyword(const QString &engineName, const QString &keyword);
+    QList<QString> keywordsForEngine(OpenSearchEngine *engine) const;
+    void removeKeywordsForEngine(OpenSearchEngine *engine);
+
     void addEngine(const QUrl &url);
     bool addEngine(const QString &fileName);
     bool addEngine(OpenSearchEngine *engine);
@@ -85,6 +91,7 @@ private:
     AutoSaver *m_autoSaver;
 
     QHash<QString, OpenSearchEngine*> m_engines;
+    QHash<QString, OpenSearchEngine*> m_keywords;
     QString m_current;
 };
 

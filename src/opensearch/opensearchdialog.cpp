@@ -36,7 +36,12 @@ OpenSearchDialog::OpenSearchDialog(QWidget *parent)
     setupUi(this);
 
     m_model = new OpenSearchEngineModel(ToolbarSearch::openSearchManager(), this);
-    m_listView->setModel(m_model);
+    m_tableView->setModel(m_model);
+    m_tableView->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
+    m_tableView->horizontalHeader()->setResizeMode(1, QHeaderView::ResizeToContents);
+    m_tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    m_tableView->setShowGrid(false);
+    m_tableView->setAlternatingRowColors(true);
 
     connect(m_closeButton, SIGNAL(clicked()),
             this, SLOT(close()));
@@ -65,13 +70,13 @@ void OpenSearchDialog::addButtonClicked()
 
 void OpenSearchDialog::deleteButtonClicked()
 {
-    if (m_listView->model()->rowCount() == 1) {
+    if (m_tableView->model()->rowCount() == 1) {
         QMessageBox::critical(this, tr("Error"),
                 tr("You must have at least one search engine in here."));
         return;
     }
 
-    m_listView->removeSelected();
+    m_tableView->removeSelected();
 }
 
 void OpenSearchDialog::restoreButtonClicked()
