@@ -37,8 +37,10 @@ OpenSearchDialog::OpenSearchDialog(QWidget *parent)
 
     m_model = new OpenSearchEngineModel(ToolbarSearch::openSearchManager(), this);
     m_tableView->setModel(m_model);
-    m_tableView->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
-    m_tableView->horizontalHeader()->setResizeMode(1, QHeaderView::ResizeToContents);
+    m_tableView->horizontalHeader()->resizeSection(0, 200);
+    m_tableView->horizontalHeader()->setStretchLastSection(true);
+    m_tableView->verticalHeader()->hide();
+    m_tableView->verticalHeader()->setDefaultSectionSize(1.2 * fontMetrics().height());
     m_tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_tableView->setShowGrid(false);
     m_tableView->setAlternatingRowColors(true);

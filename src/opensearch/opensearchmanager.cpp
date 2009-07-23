@@ -155,12 +155,6 @@ bool OpenSearchManager::addEngine(OpenSearchEngine *engine)
     return true;
 }
 
-void OpenSearchManager::removeKeywordsForEngine(OpenSearchEngine *engine)
-{
-    foreach (QString key, keywordsForEngine(engine))
-        m_keywords.remove(key);
-}
-
 void OpenSearchManager::removeEngine(const QString &name)
 {
     if (m_engines.count() <= 1)
@@ -170,7 +164,8 @@ void OpenSearchManager::removeEngine(const QString &name)
         return;
 
     OpenSearchEngine *engine = m_engines[name];
-    removeKeywordsForEngine(engine);
+    foreach (const QString &keyword, m_keywords.keys(engine))
+        m_keywords.remove(keyword);
     engine->deleteLater();
 
     m_engines[name] = 0;
@@ -234,13 +229,17 @@ void OpenSearchManager::save()
     settings.beginGroup(QLatin1String("openSearch"));
     settings.setValue(QLatin1String("engine"), m_current);
 
-    settings.beginGroup(QLatin1String("keywords"));
+    settings.beginWriteArray(QLatin1String("keywords"), m_keywords.count());
     QHash<QString, OpenSearchEngine*>::const_iterator i = m_keywords.constBegin();
     QHash<QString, OpenSearchEngine*>::const_iterator end = m_keywords.constEnd();
-    for (; i != end; ++i)
-        settings.setValue(i.key(), i.value()->name());
+    int j = 0;
+    for (; i != end; ++i) {
+        settings.setArrayIndex(j++);
+        settings.setValue(QLatin1String("keyword"), i.key());
+        settings.setValue(QLatin1String("engine"), i.value()->name());
+    }
+    settings.endArray();
 
-    settings.endGroup();
     settings.endGroup();
 }
 
@@ -274,10 +273,14 @@ void OpenSearchManager::load()
     settings.beginGroup(QLatin1String("openSearch"));
     m_current = settings.value(QLatin1String("engine"), QLatin1String("Google")).toString();
 
-    settings.beginGroup(QLatin1String("keywords"));
-    foreach (QString key, settings.childKeys())
-        m_keywords[key] = engine(settings.value(key, QString()).toString());
-    settings.endGroup();
+    int size = settings.beginReadArray(QLatin1String("keywords"));
+    for (int i = 0; i < size; ++i) {
+        settings.setArrayIndex(i);
+        QString keyword = settings.value(QLatin1String("keyword")).toString();
+        QString engineName = settings.value(QLatin1String("engine")).toString();
+        m_keywords.insert(keyword, engine(engineName));
+    }
+    settings.endArray();
 
     settings.endGroup();
 
@@ -352,20 +355,47 @@ void OpenSearchManager::engineFromUrlAvailable()
     }
 }
 
-OpenSearchEngine* OpenSearchManager::engineForKeyword(const QString &keyword) const
+OpenSearchEngine *OpenSearchManager::engineForKeyword(const QString &keyword) const
 {
+    if (keyword.isEmpty())
+        return 0;
     if (!m_keywords.contains(keyword))
         return 0;
     return m_keywords.value(keyword);
 }
 
-void OpenSearchManager::setEngineForKeyword(const QString &engineName, const QString &keyword)
+void OpenSearchManager::setEngineForKeyword(const QString &keyword, OpenSearchEngine *engine)
 {
-    m_keywords[keyword] = engine(engineName);
+    if (keyword.isEmpty())
+        return;
+
+    if (!engine)
+        m_keywords.remove(keyword);
+    else
+        m_keywords.insert(keyword, engine);
+
     emit changed();
 }
 
-QList<QString> OpenSearchManager::keywordsForEngine(OpenSearchEngine *engine) const
+QStringList OpenSearchManager::keywordsForEngine(OpenSearchEngine *engine) const
 {
     return m_keywords.keys(engine);
+}
+
+void OpenSearchManager::setKeywordsForEngine(OpenSearchEngine *engine, const QStringList &keywords)
+{
+    if (!engine)
+        return;
+
+    foreach (const QString &keyword, keywordsForEngine(engine))
+        m_keywords.remove(keyword);
+
+    foreach (const QString &keyword, keywords) {
+        if (keyword.isEmpty())
+            continue;
+
+        m_keywords.insert(keyword, engine);
+    }
+
+    emit changed();
 }

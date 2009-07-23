@@ -96,11 +96,13 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
         switch (role) {
         case Qt::DisplayRole:
             return engine->name();
+        break;
         case Qt::DecorationRole: {
             QImage image = engine->image();
             if (image.isNull())
                 return BrowserApplication::icon(engine->imageUrl());
             return image;
+        break;
         }
         case Qt::ToolTipRole:
             QString description = tr("<strong>Description:</strong> %1").arg(engine->description());
@@ -111,6 +113,7 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
             }
 
             return description;
+        break;
         }
         break;
 
@@ -120,7 +123,8 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
         case Qt::DisplayRole:
             return QStringList(m_manager->keywordsForEngine(engine)).join(QLatin1String(","));
         case Qt::ToolTipRole:
-            return tr("Comma-separated list of keywords that may be entered in the location bar followed by search terms to search with this engine");
+            return tr("Comma-separated list of keywords that may be entered in the location bar"
+                      "followed by search terms to search with this engine");
         }
         break;
     }
@@ -133,7 +137,7 @@ bool OpenSearchEngineModel::setData(const QModelIndex &index, const QVariant &va
     if (index.column() != 1)
         return false;
 
-    if (index.row() >= m_manager->enginesCount() || index.row() < 0)
+    if (index.row() >= rowCount() || index.row() < 0)
         return false;
 
     if (role != Qt::EditRole)
@@ -142,10 +146,7 @@ bool OpenSearchEngineModel::setData(const QModelIndex &index, const QVariant &va
     QString engineName = m_manager->allEnginesNames().at(index.row());
     QStringList keywords = value.toString().split(QRegExp(QLatin1String("[ ,]+")), QString::SkipEmptyParts);
 
-    m_manager->removeKeywordsForEngine(m_manager->engine(engineName));
-
-    foreach (QString keyword, keywords)
-        m_manager->setEngineForKeyword(engineName, keyword);
+    m_manager->setKeywordsForEngine(m_manager->engine(engineName), keywords);
 
     return true;
 }

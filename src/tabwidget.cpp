@@ -924,12 +924,13 @@ void TabWidget::loadString(const QString &string, OpenUrlIn tab)
         return;
 
     int i = string.indexOf(QLatin1Char(' '));
-    if (i != -1) {
+    if (i > 0) {
         OpenSearchManager *manager = ToolbarSearch::openSearchManager();
         QString keyword = string.left(i);
         if (OpenSearchEngine *engine = manager->engineForKeyword(keyword)) {
             QString terms = string.mid(i + 1);
             loadUrl(engine->searchUrl(terms), tab);
+            return;
         }
     }
 

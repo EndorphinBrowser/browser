@@ -61,9 +61,10 @@ public:
     bool engineExists(const QString &name);
 
     OpenSearchEngine *engineForKeyword(const QString &keyword) const;
-    void setEngineForKeyword(const QString &engineName, const QString &keyword);
-    QList<QString> keywordsForEngine(OpenSearchEngine *engine) const;
-    void removeKeywordsForEngine(OpenSearchEngine *engine);
+    void setEngineForKeyword(const QString &keyword, OpenSearchEngine *engine);
+
+    QStringList keywordsForEngine(OpenSearchEngine *engine) const;
+    void setKeywordsForEngine(OpenSearchEngine *engine, const QStringList &keywords);
 
     void addEngine(const QUrl &url);
     bool addEngine(const QString &fileName);
