@@ -620,8 +620,9 @@ void TabWidget::cloneTab(int index)
         index = currentIndex();
     if (index < 0 || index >= count())
         return;
+    QUrl url = webView(index)->url();
     WebView *tab = makeNewTab();
-    tab->loadUrl(webView(index)->url());
+    tab->loadUrl(url);
 }
 
 // When index is -1 index chooses the current tab
