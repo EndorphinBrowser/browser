@@ -284,9 +284,9 @@ void tst_OpenSearchManager::keywords()
         OpenSearchEngine *engine1 = manager.engine(manager.allEnginesNames().at(0));
         OpenSearchEngine *engine2 = manager.engine(manager.allEnginesNames().at(1));
 
-        QCOMPARE(manager.engineForKeyword("foo"), engine2);
-        QCOMPARE(manager.engineForKeyword("bar"), engine2);
-        QCOMPARE(manager.engineForKeyword("baz"), engine1);
+        QCOMPARE(*manager.engineForKeyword("foo"), *engine2);
+        QCOMPARE(*manager.engineForKeyword("bar"), *engine2);
+        QCOMPARE(*manager.engineForKeyword("baz"), *engine1);
 
         QCOMPARE(manager.keywordsForEngine(engine2), QStringList() << "foo" << "bar");
         QCOMPARE(manager.keywordsForEngine(engine1), QStringList() << "baz");
@@ -294,8 +294,8 @@ void tst_OpenSearchManager::keywords()
         manager.setEngineForKeyword("foo", 0);
 
         QVERIFY(!manager.engineForKeyword("foo"));
-        QCOMPARE(manager.engineForKeyword("bar"), engine2);
-        QCOMPARE(manager.engineForKeyword("baz"), engine1);
+        QCOMPARE(*manager.engineForKeyword("bar"), *engine2);
+        QCOMPARE(*manager.engineForKeyword("baz"), *engine1);
 
         QCOMPARE(manager.keywordsForEngine(engine2), QStringList() << "bar");
         QCOMPARE(manager.keywordsForEngine(engine1), QStringList() << "baz");
@@ -314,6 +314,8 @@ void tst_OpenSearchManager::convertKeywordSearchToUrl_data()
     QTest::newRow("invalid-1") << "foo" << false;
     QTest::newRow("invalid-2") << "bar" << false;
     QTest::newRow("invalid-3") << "baz" << false;
+    QTest::newRow("invalid-4") << "foo " << false;
+    QTest::newRow("invalid-5") << "foobar" << false;
     QTest::newRow("valid-0") << "foo searchstring" << true;
 }
 
