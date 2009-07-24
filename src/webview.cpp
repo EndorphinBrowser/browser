@@ -664,7 +664,6 @@ void WebView::keyPressEvent(QKeyEvent *event)
     if (m_enableAccessKeys) {
         m_accessKeysPressed = (event->modifiers() == Qt::ControlModifier
                                && event->key() == Qt::Key_Control);
-
         if (!m_accessKeysPressed) {
             if (checkForAccessKey(event)) {
                 hideAccessKeys();
@@ -710,6 +709,15 @@ void WebView::keyReleaseEvent(QKeyEvent *event)
     }
 
     QWebView::keyReleaseEvent(event);
+}
+
+void WebView::focusOutEvent(QFocusEvent *event)
+{
+    if (m_accessKeysPressed) {
+        hideAccessKeys();
+        m_accessKeysPressed = false;
+    }
+    QWebView::focusOutEvent(event);
 }
 
 bool WebView::checkForAccessKey(QKeyEvent *event)

@@ -91,6 +91,7 @@ public:
 
 #if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     void keyReleaseEvent(QKeyEvent *event);
+    void focusOutEvent(QFocusEvent *event);
 #endif
 
     void loadUrl(const QUrl &url, const QString &title = QString());
