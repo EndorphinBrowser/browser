@@ -1,6 +1,7 @@
 /*
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  * Copyright 2009 Christian Franke <cfchris6@ts2server.com>
+ * Copyright 2009 Christopher Eby <kreed@kreed.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -162,7 +163,11 @@ void OpenSearchManager::removeEngine(const QString &name)
     if (!m_engines.contains(name))
         return;
 
-    m_engines[name]->deleteLater();
+    OpenSearchEngine *engine = m_engines[name];
+    foreach (const QString &keyword, m_keywords.keys(engine))
+        m_keywords.remove(keyword);
+    engine->deleteLater();
+
     m_engines[name] = 0;
     m_engines.remove(name);
 
@@ -223,6 +228,18 @@ void OpenSearchManager::save()
     QSettings settings;
     settings.beginGroup(QLatin1String("openSearch"));
     settings.setValue(QLatin1String("engine"), m_current);
+
+    settings.beginWriteArray(QLatin1String("keywords"), m_keywords.count());
+    QHash<QString, OpenSearchEngine*>::const_iterator i = m_keywords.constBegin();
+    QHash<QString, OpenSearchEngine*>::const_iterator end = m_keywords.constEnd();
+    int j = 0;
+    for (; i != end; ++i) {
+        settings.setArrayIndex(j++);
+        settings.setValue(QLatin1String("keyword"), i.key());
+        settings.setValue(QLatin1String("engine"), i.value()->name());
+    }
+    settings.endArray();
+
     settings.endGroup();
 }
 
@@ -255,7 +272,18 @@ void OpenSearchManager::load()
     QSettings settings;
     settings.beginGroup(QLatin1String("openSearch"));
     m_current = settings.value(QLatin1String("engine"), QLatin1String("Google")).toString();
+
+    int size = settings.beginReadArray(QLatin1String("keywords"));
+    for (int i = 0; i < size; ++i) {
+        settings.setArrayIndex(i);
+        QString keyword = settings.value(QLatin1String("keyword")).toString();
+        QString engineName = settings.value(QLatin1String("engine")).toString();
+        m_keywords.insert(keyword, engine(engineName));
+    }
+    settings.endArray();
+
     settings.endGroup();
+
     if (!m_engines.contains(m_current) && m_engines.count() > 0)
         m_current = m_engines.keys().at(0);
 
@@ -327,3 +355,64 @@ void OpenSearchManager::engineFromUrlAvailable()
     }
 }
 
+QUrl OpenSearchManager::convertKeywordSearchToUrl(const QString &string)
+{
+    int i = string.indexOf(QLatin1Char(' '));
+    if (i <= 0)
+        return QUrl();
+
+    const QString keyword = string.left(i);
+    const QString terms = string.mid(i + 1);
+    if (terms.isEmpty())
+        return QUrl();
+
+    if (OpenSearchEngine *engine = engineForKeyword(keyword))
+        return engine->searchUrl(terms);
+
+    return QUrl();
+}
+
+OpenSearchEngine *OpenSearchManager::engineForKeyword(const QString &keyword) const
+{
+    if (keyword.isEmpty())
+        return 0;
+    if (!m_keywords.contains(keyword))
+        return 0;
+    return m_keywords.value(keyword);
+}
+
+void OpenSearchManager::setEngineForKeyword(const QString &keyword, OpenSearchEngine *engine)
+{
+    if (keyword.isEmpty())
+        return;
+
+    if (!engine)
+        m_keywords.remove(keyword);
+    else
+        m_keywords.insert(keyword, engine);
+
+    emit changed();
+}
+
+QStringList OpenSearchManager::keywordsForEngine(OpenSearchEngine *engine) const
+{
+    return m_keywords.keys(engine);
+}
+
+void OpenSearchManager::setKeywordsForEngine(OpenSearchEngine *engine, const QStringList &keywords)
+{
+    if (!engine)
+        return;
+
+    foreach (const QString &keyword, keywordsForEngine(engine))
+        m_keywords.remove(keyword);
+
+    foreach (const QString &keyword, keywords) {
+        if (keyword.isEmpty())
+            continue;
+
+        m_keywords.insert(keyword, engine);
+    }
+
+    emit changed();
+}

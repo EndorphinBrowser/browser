@@ -1,6 +1,7 @@
 /*
  * Copyright 2009 Christian Franke <cfchris6@ts2server.com>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
+ * Copyright 2009 Christopher Eby <kreed@kreed.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +27,7 @@
 class OpenSearchEngine;
 class OpenSearchManager;
 
-class OpenSearchEngineModel : public QAbstractListModel
+class OpenSearchEngineModel : public QAbstractTableModel
 {
     Q_OBJECT
 
@@ -34,7 +35,11 @@ public:
     OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent = 0);
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
 protected slots:
     void enginesChanged();

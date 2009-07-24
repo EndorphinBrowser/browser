@@ -42,6 +42,9 @@ private slots:
     void generateEngineFileName_data();
     void generateEngineFileName();
     void restoreDefaults();
+    void keywords();
+    void convertKeywordSearchToUrl();
+    void convertKeywordSearchToUrl_data();
 };
 
 class SubOpenSearchManager : public OpenSearchManager
@@ -65,12 +68,6 @@ void tst_OpenSearchManager::initTestCase()
     QCoreApplication::setApplicationName("opensearchtest");
 
     SubOpenSearchManager manager;
-
-    foreach (const QString &name, manager.allEnginesNames()) {
-        manager.removeEngine(name);
-    }
-
-    // Never let the manager have no engines.
     QCOMPARE(manager.enginesCount(), 1);
 }
 
@@ -79,18 +76,23 @@ void tst_OpenSearchManager::initTestCase()
 void tst_OpenSearchManager::cleanupTestCase()
 {
     SubOpenSearchManager manager;
-
     QCOMPARE(manager.enginesCount(), 1);
 }
 
 // This will be called before each test function is executed.
 void tst_OpenSearchManager::init()
 {
+    SubOpenSearchManager manager;
+    QCOMPARE(manager.enginesCount(), 1);
 }
 
 // This will be called after every test function.
 void tst_OpenSearchManager::cleanup()
 {
+    SubOpenSearchManager manager;
+    foreach (const QString &name, manager.allEnginesNames())
+        manager.removeEngine(name);
+    QCOMPARE(manager.enginesCount(), 1);
 }
 
 void tst_OpenSearchManager::addRemoveEngine_data()
@@ -210,9 +212,8 @@ void tst_OpenSearchManager::restoreDefaults()
     manager.restoreDefaults();
     QCOMPARE(manager.enginesCount(), manager.defaultCount());
 
-    foreach (const QString &name, manager.allEnginesNames()) {
+    foreach (const QString &name, manager.allEnginesNames())
         manager.removeEngine(name);
-    }
 
     // Never let the manager have no engines.
     QCOMPARE(manager.enginesCount(), 1);
@@ -226,13 +227,112 @@ void tst_OpenSearchManager::restoreDefaults()
     QCOMPARE(manager.enginesCount(), manager.defaultCount() + 1);
 
     manager.removeEngine(engine->name());
+}
 
-    foreach (const QString &name, manager.allEnginesNames()) {
-        manager.removeEngine(name);
+void tst_OpenSearchManager::keywords()
+{
+    {
+        SubOpenSearchManager manager;
+
+        QVERIFY(!manager.engineForKeyword("foo"));
+        QVERIFY(!manager.engineForKeyword(QString()));
+
+        manager.setEngineForKeyword("foo", 0);
+        manager.setEngineForKeyword(QString(), 0);
+        QVERIFY(!manager.engineForKeyword("foo"));
+        QVERIFY(!manager.engineForKeyword(QString()));
+        QCOMPARE(manager.keywordsForEngine(0), QStringList());
+
+        manager.setKeywordsForEngine(0, QStringList() << "foo");
+        QCOMPARE(manager.keywordsForEngine(0), QStringList());
+
+        manager.restoreDefaults();
+
+        OpenSearchEngine *engine1 = manager.engine(manager.allEnginesNames().at(0));
+        OpenSearchEngine *engine2 = manager.engine(manager.allEnginesNames().at(1));
+
+        QCOMPARE(manager.keywordsForEngine(engine1), QStringList());
+        QCOMPARE(manager.keywordsForEngine(engine2), QStringList());
+
+        manager.setEngineForKeyword("foo", engine1);
+        manager.setEngineForKeyword("bar", engine1);
+        manager.setEngineForKeyword("baz", engine2);
+
+        QCOMPARE(manager.engineForKeyword("foo"), engine1);
+        QCOMPARE(manager.engineForKeyword("bar"), engine1);
+        QCOMPARE(manager.engineForKeyword("baz"), engine2);
+
+        QCOMPARE(manager.keywordsForEngine(engine1), QStringList() << "foo" << "bar");
+        QCOMPARE(manager.keywordsForEngine(engine2), QStringList() << "baz");
+
+        manager.setKeywordsForEngine(engine1, QStringList() << "baz");
+        manager.setKeywordsForEngine(engine2, QStringList() << "foo" << "bar");
+
+        QCOMPARE(manager.engineForKeyword("foo"), engine2);
+        QCOMPARE(manager.engineForKeyword("bar"), engine2);
+        QCOMPARE(manager.engineForKeyword("baz"), engine1);
+
+        QCOMPARE(manager.keywordsForEngine(engine2), QStringList() << "foo" << "bar");
+        QCOMPARE(manager.keywordsForEngine(engine1), QStringList() << "baz");
     }
 
-    // Never let the manager have no engines.
-    QCOMPARE(manager.enginesCount(), 1);
+    {
+        SubOpenSearchManager manager;
+
+        manager.restoreDefaults();
+
+        OpenSearchEngine *engine1 = manager.engine(manager.allEnginesNames().at(0));
+        OpenSearchEngine *engine2 = manager.engine(manager.allEnginesNames().at(1));
+
+        QCOMPARE(*manager.engineForKeyword("foo"), *engine2);
+        QCOMPARE(*manager.engineForKeyword("bar"), *engine2);
+        QCOMPARE(*manager.engineForKeyword("baz"), *engine1);
+
+        QCOMPARE(manager.keywordsForEngine(engine2), QStringList() << "foo" << "bar");
+        QCOMPARE(manager.keywordsForEngine(engine1), QStringList() << "baz");
+
+        manager.setEngineForKeyword("foo", 0);
+
+        QVERIFY(!manager.engineForKeyword("foo"));
+        QCOMPARE(*manager.engineForKeyword("bar"), *engine2);
+        QCOMPARE(*manager.engineForKeyword("baz"), *engine1);
+
+        QCOMPARE(manager.keywordsForEngine(engine2), QStringList() << "bar");
+        QCOMPARE(manager.keywordsForEngine(engine1), QStringList() << "baz");
+
+        manager.setKeywordsForEngine(engine1, QStringList());
+        manager.setKeywordsForEngine(engine2, QStringList());
+    }
+}
+
+void tst_OpenSearchManager::convertKeywordSearchToUrl_data()
+{
+    QTest::addColumn<QString>("string");
+    QTest::addColumn<bool>("valid");
+
+    QTest::newRow("invalid-0") << "null" << false;
+    QTest::newRow("invalid-1") << "foo" << false;
+    QTest::newRow("invalid-2") << "bar" << false;
+    QTest::newRow("invalid-3") << "baz" << false;
+    QTest::newRow("invalid-4") << "foo " << false;
+    QTest::newRow("invalid-5") << "foobar" << false;
+    QTest::newRow("valid-0") << "foo searchstring" << true;
+}
+
+void tst_OpenSearchManager::convertKeywordSearchToUrl()
+{
+    QFETCH(QString, string);
+    QFETCH(bool, valid);
+
+    SubOpenSearchManager manager;
+    manager.restoreDefaults();
+    OpenSearchEngine *engine1 = manager.engine(manager.allEnginesNames().at(0));
+    manager.setEngineForKeyword("foo", engine1);
+    manager.setEngineForKeyword("bar", engine1);
+    OpenSearchEngine *engine2 = manager.engine(manager.allEnginesNames().at(1));
+    manager.setEngineForKeyword("baz", engine2);
+
+    QCOMPARE(manager.convertKeywordSearchToUrl(string).isValid(), valid);
 }
 
 QTEST_MAIN(tst_OpenSearchManager)

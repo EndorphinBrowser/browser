@@ -930,7 +930,12 @@ void TabWidget::loadString(const QString &string, OpenUrlIn tab)
 
 QUrl TabWidget::guessUrlFromString(const QString &string)
 {
-    QUrl url = WebView::guessUrlFromString(string);
+    OpenSearchManager *manager = ToolbarSearch::openSearchManager();
+    QUrl url = manager->convertKeywordSearchToUrl(string);
+    if (url.isValid())
+        return url;
+
+    url = WebView::guessUrlFromString(string);
 
     if (url.scheme() == QLatin1String("about")
         && url.path() == QLatin1String("home"))
