@@ -923,17 +923,6 @@ void TabWidget::loadString(const QString &string, OpenUrlIn tab)
     if (string.isEmpty())
         return;
 
-    int i = string.indexOf(QLatin1Char(' '));
-    if (i > 0) {
-        OpenSearchManager *manager = ToolbarSearch::openSearchManager();
-        QString keyword = string.left(i);
-        if (OpenSearchEngine *engine = manager->engineForKeyword(keyword)) {
-            QString terms = string.mid(i + 1);
-            loadUrl(engine->searchUrl(terms), tab);
-            return;
-        }
-    }
-
     QUrl url = guessUrlFromString(string);
     currentLineEdit()->setText(QString::fromUtf8(url.toEncoded()));
     loadUrl(url, tab);
@@ -941,7 +930,12 @@ void TabWidget::loadString(const QString &string, OpenUrlIn tab)
 
 QUrl TabWidget::guessUrlFromString(const QString &string)
 {
-    QUrl url = WebView::guessUrlFromString(string);
+    OpenSearchManager *manager = ToolbarSearch::openSearchManager();
+    QUrl url = manager->convertKeywordSearchToUrl(string);
+    if (url.isValid())
+        return url;
+
+    url = WebView::guessUrlFromString(string);
 
     if (url.scheme() == QLatin1String("about")
         && url.path() == QLatin1String("home"))

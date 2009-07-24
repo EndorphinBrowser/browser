@@ -355,6 +355,19 @@ void OpenSearchManager::engineFromUrlAvailable()
     }
 }
 
+QUrl OpenSearchManager::convertKeywordSearchToUrl(const QString &string)
+{
+    int i = string.indexOf(QLatin1Char(' '));
+    if (i > 0) {
+        const QString keyword = string.left(i);
+        if (OpenSearchEngine *engine = engineForKeyword(keyword)) {
+            const QString terms = string.mid(i + 1);
+            return engine->searchUrl(terms);
+        }
+    }
+    return QUrl();
+}
+
 OpenSearchEngine *OpenSearchManager::engineForKeyword(const QString &keyword) const
 {
     if (keyword.isEmpty())

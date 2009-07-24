@@ -43,6 +43,8 @@ private slots:
     void generateEngineFileName();
     void restoreDefaults();
     void keywords();
+    void convertKeywordSearchToUrl();
+    void convertKeywordSearchToUrl_data();
 };
 
 class SubOpenSearchManager : public OpenSearchManager
@@ -301,6 +303,34 @@ void tst_OpenSearchManager::keywords()
         manager.setKeywordsForEngine(engine1, QStringList());
         manager.setKeywordsForEngine(engine2, QStringList());
     }
+}
+
+void tst_OpenSearchManager::convertKeywordSearchToUrl_data()
+{
+    QTest::addColumn<QString>("string");
+    QTest::addColumn<bool>("valid");
+
+    QTest::newRow("invalid-0") << "null" << false;
+    QTest::newRow("invalid-1") << "foo" << false;
+    QTest::newRow("invalid-2") << "bar" << false;
+    QTest::newRow("invalid-3") << "baz" << false;
+    QTest::newRow("valid-0") << "foo searchstring" << true;
+}
+
+void tst_OpenSearchManager::convertKeywordSearchToUrl()
+{
+    QFETCH(QString, string);
+    QFETCH(bool, valid);
+
+    SubOpenSearchManager manager;
+    manager.restoreDefaults();
+    OpenSearchEngine *engine1 = manager.engine(manager.allEnginesNames().at(0));
+    manager.setEngineForKeyword("foo", engine1);
+    manager.setEngineForKeyword("bar", engine1);
+    OpenSearchEngine *engine2 = manager.engine(manager.allEnginesNames().at(1));
+    manager.setEngineForKeyword("baz", engine2);
+
+    QCOMPARE(manager.convertKeywordSearchToUrl(string).isValid(), valid);
 }
 
 QTEST_MAIN(tst_OpenSearchManager)
