@@ -82,6 +82,8 @@ QWidget *ClickToFlashPlugin::create(const QString &mimeType, const QUrl &url,
 QWebPluginFactory::Plugin ClickToFlashPlugin::metaPlugin()
 {
     QWebPluginFactory::Plugin plugin;
+    if (!m_enabled)
+        return plugin;
     plugin.name = QLatin1String("ClickToFlashPlugin");
     QWebPluginFactory::MimeType mimeType;
     mimeType.fileExtensions << QLatin1String("swf");
