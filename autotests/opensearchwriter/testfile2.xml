@@ -3,5 +3,5 @@
     <ShortName>Arora!</ShortName>
     <Description>a cross platform web browser built using Qt and WebKit</Description>
     <Url method="get" type="text/html" template="http://foobar.barfoo/search"/>
-    <Url method="get" type="application/x-suggestions+json" template="http://foobar.barfoo/suggest"/>
+    <Url method="post" type="application/x-suggestions+json" template="http://foobar.barfoo/suggest"/>
 </OpenSearchDescription>

@@ -104,6 +104,7 @@ OpenSearchEngine *OpenSearchReader::read()
 
             QString type = attributes().value(QLatin1String("type")).toString();
             QString url = attributes().value(QLatin1String("template")).toString();
+            QString method = attributes().value(QLatin1String("method")).toString();
 
             if (type == QLatin1String("application/x-suggestions+json")
                 && !engine->suggestionsUrlTemplate().isEmpty())
@@ -141,9 +142,11 @@ OpenSearchEngine *OpenSearchReader::read()
             if (type == QLatin1String("application/x-suggestions+json")) {
                 engine->setSuggestionsUrlTemplate(url);
                 engine->setSuggestionsParameters(parameters);
+                engine->setSuggestionsMethod(method);
             } else if (type.isEmpty() || type == QLatin1String("text/html") || type == QLatin1String("application/xhtml+xml")) {
                 engine->setSearchUrlTemplate(url);
                 engine->setSearchParameters(parameters);
+                engine->setSearchMethod(method);
             }
 
         } else if (name() == QLatin1String("Image")) {

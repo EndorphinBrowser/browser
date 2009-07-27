@@ -6,7 +6,7 @@
         <Param name="q" value="{searchTerms}"/>
         <Parameter name="b" value="foo"/>
     </Url>
-    <Url method="get" type="application/x-suggestions+json" template="http://github.com/suggestions">
+    <Url method="post" type="application/x-suggestions+json" template="http://github.com/suggestions">
         <Parameter name="bar" value="baz"/>
     </Url>
 </OpenSearchDescription>

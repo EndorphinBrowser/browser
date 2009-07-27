@@ -85,7 +85,7 @@ void OpenSearchWriter::write(OpenSearchEngine *engine)
 
     if (!engine->searchUrlTemplate().isEmpty()) {
         writeStartElement(QLatin1String("Url"));
-        writeAttribute(QLatin1String("method"), QLatin1String("get"));
+        writeAttribute(QLatin1String("method"), engine->searchMethod());
         writeAttribute(QLatin1String("type"), QLatin1String("text/html"));
         writeAttribute(QLatin1String("template"), engine->searchUrlTemplate());
 
@@ -107,7 +107,7 @@ void OpenSearchWriter::write(OpenSearchEngine *engine)
 
     if (!engine->suggestionsUrlTemplate().isEmpty()) {
         writeStartElement(QLatin1String("Url"));
-        writeAttribute(QLatin1String("method"), QLatin1String("get"));
+        writeAttribute(QLatin1String("method"), engine->suggestionsMethod());
         writeAttribute(QLatin1String("type"), QLatin1String("application/x-suggestions+json"));
         writeAttribute(QLatin1String("template"), engine->suggestionsUrlTemplate());
 

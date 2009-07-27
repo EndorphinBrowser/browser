@@ -71,37 +71,41 @@ void tst_OpenSearchReader::read_data()
     QTest::addColumn<QString>("imageUrl");
     QTest::addColumn<OpenSearchEngine::Parameters>("searchParameters");
     QTest::addColumn<OpenSearchEngine::Parameters>("suggestionsParameters");
+    QTest::addColumn<QString>("searchMethod");
+    QTest::addColumn<QString>("suggestionsMethod");
 
     QTest::newRow("null") << QString(":/doesNotExist") << false << QString() << QString() << QString() << QString()
-            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters();
+            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QString("get") << QString("get");
 
     QTest::newRow("testfile1") << QString(":/testfile1.xml") << true << QString("Wikipedia (en)")
             << QString("Full text search in the English Wikipedia") << QString("http://en.wikipedia.org/bar")
             << QString("http://en.wikipedia.org/foo") << QString("http://en.wikipedia.org/favicon.ico")
-            << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters();
+            << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QString("post") << QString("get");
 
     QTest::newRow("testfile2") << QString(":/testfile2.xml") << false << QString("Wikipedia (en)")
             << QString() << QString() << QString("http://en.wikipedia.org/foo") << QString("http://en.wikipedia.org/favicon.ico")
-            << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters();
+            << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QString("get") << QString("get");
 
     QTest::newRow("testfile3") << QString(":/testfile3.xml") << true << QString("GitHub") << QString("Search GitHub")
             << QString("http://github.com/search") << QString("http://github.com/suggestions") << QString()
             << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter(QString("q"), QString("{searchTerms}"))
                                                << OpenSearchEngine::Parameter(QString("b"), QString("foo")))
-            << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter(QString("bar"), QString("baz")));
+            << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter(QString("bar"), QString("baz")))
+            << QString("get") << QString("post");
 
     QTest::newRow("testfile4") << QString(":/testfile4.xml") << true << QString("Google") << QString("Google Web Search")
             << QString("http://www.google.com/search?bar") << QString("http://suggestqueries.google.com/complete/foo")
-            << QString("http://www.google.com/favicon.ico") << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters();
+            << QString("http://www.google.com/favicon.ico") << OpenSearchEngine::Parameters()
+            << OpenSearchEngine::Parameters() << QString("get") << QString("get");
 
     QTest::newRow("testfile5") << QString(":/testfile5.xml") << false << QString() << QString() << QString() << QString()
-            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters();
+            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QString("get") << QString("get");
 
     QTest::newRow("testfile6") << QString(":/testfile6.xml") << false << QString() << QString() << QString() << QString()
-            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters();
+            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()  << QString("get") << QString("get");
 
     QTest::newRow("testfile7") << QString(":/testfile7.xml") << false << QString() << QString() << QString() << QString()
-            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters();
+            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()  << QString("get") << QString("get");
 }
 
 void tst_OpenSearchReader::read()
@@ -115,6 +119,8 @@ void tst_OpenSearchReader::read()
     QFETCH(QString, imageUrl);
     QFETCH(OpenSearchEngine::Parameters, searchParameters);
     QFETCH(OpenSearchEngine::Parameters, suggestionsParameters);
+    QFETCH(QString, searchMethod);
+    QFETCH(QString, suggestionsMethod);
 
     QFile file(fileName);
     file.open(QIODevice::ReadOnly);
@@ -129,6 +135,8 @@ void tst_OpenSearchReader::read()
     QCOMPARE(engine->searchParameters(), searchParameters);
     QCOMPARE(engine->suggestionsParameters(), suggestionsParameters);
     QCOMPARE(engine->imageUrl(), imageUrl);
+    QCOMPARE(engine->searchMethod(), searchMethod);
+    QCOMPARE(engine->suggestionsMethod(), suggestionsMethod);
 
     delete engine;
 }

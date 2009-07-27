@@ -77,6 +77,7 @@ private slots:
     void parseTemplate();
     void languageCodes_data();
     void languageCodes();
+    void requestMethods();
 };
 
 // Subclass that exposes the protected functions.
@@ -167,11 +168,17 @@ public:
     {
     }
 
+    QNetworkRequest lastRequest;
+    Operation lastOperation;
+    bool lastOutgoingData;
+
 protected:
     QNetworkReply *createRequest(QNetworkAccessManager::Operation operation, const QNetworkRequest &request, QIODevice *outgoingData = 0)
     {
-        Q_UNUSED(operation);
-        Q_UNUSED(outgoingData);
+        lastOperation = operation;
+        lastRequest = request;
+        lastOutgoingData = (bool)outgoingData;
+
         return new SuggestionsTestNetworkReply(request, 0);
     }
 };
@@ -421,6 +428,9 @@ void tst_OpenSearchEngine::operatorequal_data()
     QTest::newRow("imageUrl") << QString() << QString() << QString("x") << QString() << QString()
                           << Parameters() << Parameters()
                           << false;
+    QTest::newRow("parameters") << QString() << QString() << QString() << QString() << QString()
+                          << (Parameters() << OpenSearchEngine::Parameter("a", "b")) << Parameters()
+                          << false;
 }
 
 // public bool operator==(OpenSearchEngine const &other) const
@@ -477,19 +487,28 @@ void tst_OpenSearchEngine::providesSuggestions()
 void tst_OpenSearchEngine::requestSuggestions_data()
 {
     QTest::addColumn<QString>("searchTerm");
-    QTest::newRow("null") << QString();
-    QTest::newRow("foo") << QString("foo");
+    QTest::addColumn<QString>("method");
+    QTest::addColumn<QNetworkAccessManager::Operation>("lastOperation");
+    QTest::newRow("null") << QString() << QString() << QNetworkAccessManager::GetOperation;
+    QTest::newRow("foo") << QString("foo") << QString("get") << QNetworkAccessManager::GetOperation;
+    QTest::newRow("bar") << QString("bar") << QString("post") << QNetworkAccessManager::PostOperation;
+    QTest::newRow("baz") << QString("baz") << QString("put") << QNetworkAccessManager::GetOperation;
 }
 
+Q_DECLARE_METATYPE(QNetworkAccessManager::Operation)
 // public void requestSuggestions(QString const &searchTerm)
 void tst_OpenSearchEngine::requestSuggestions()
 {
     QFETCH(QString, searchTerm);
+    QFETCH(QString, method);
+    QFETCH(QNetworkAccessManager::Operation, lastOperation);
 
     SuggestionsTestNetworkAccessManager manager;
     SubOpenSearchEngine engine;
     engine.setNetworkAccessManager(&manager);
+    engine.setSuggestionsMethod(method);
     engine.setSuggestionsUrlTemplate("http://foobar.baz");
+    engine.setSuggestionsParameters(Parameters() << OpenSearchEngine::Parameter("a", "b"));
 
     QVERIFY(engine.providesSuggestions());
 
@@ -506,6 +525,9 @@ void tst_OpenSearchEngine::requestSuggestions()
         QStringList suggestions;
         suggestions << "sears" << "search engines" << "search engine" << "search" << "sears.com" << "seattle times";
         QCOMPARE(spy.at(0).at(0).toStringList(), suggestions);
+
+        QCOMPARE(manager.lastOperation, lastOperation);
+        QCOMPARE(manager.lastOutgoingData, lastOperation == QNetworkAccessManager::PostOperation);
     }
 }
 
@@ -758,6 +780,34 @@ void tst_OpenSearchEngine::languageCodes()
 
     SubOpenSearchEngine engine;
     QCOMPARE(engine.call_parseTemplate(QString("foo"), QString("http://foobar.baz/?l={language}")), url);
+}
+
+void tst_OpenSearchEngine::requestMethods()
+{
+    SubOpenSearchEngine engine;
+
+    QCOMPARE(engine.searchMethod(), QString("get"));
+    QCOMPARE(engine.suggestionsMethod(), QString("get"));
+
+    engine.setSearchMethod("post");
+    QCOMPARE(engine.searchMethod(), QString("post"));
+    QCOMPARE(engine.suggestionsMethod(), QString("get"));
+
+    engine.setSearchMethod("get");
+    QCOMPARE(engine.searchMethod(), QString("get"));
+    QCOMPARE(engine.suggestionsMethod(), QString("get"));
+
+    engine.setSuggestionsMethod("PoSt");
+    QCOMPARE(engine.searchMethod(), QString("get"));
+    QCOMPARE(engine.suggestionsMethod(), QString("post"));
+
+    engine.setSearchMethod("foo");
+    QCOMPARE(engine.searchMethod(), QString("get"));
+    QCOMPARE(engine.suggestionsMethod(), QString("post"));
+
+    engine.setSuggestionsMethod("bar");
+    QCOMPARE(engine.searchMethod(), QString("get"));
+    QCOMPARE(engine.suggestionsMethod(), QString("post"));
 }
 
 QTEST_MAIN(tst_OpenSearchEngine)

@@ -22,10 +22,11 @@
 
 #include <qpair.h>
 #include <qimage.h>
+#include <qmap.h>
+#include <qnetworkaccessmanager.h>
 #include <qstring.h>
 #include <qurl.h>
 
-class QNetworkAccessManager;
 class QNetworkReply;
 class QScriptEngine;
 
@@ -45,8 +46,10 @@ public:
     Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(QString searchUrlTemplate READ searchUrlTemplate WRITE setSearchUrlTemplate)
     Q_PROPERTY(Parameters searchParameters READ searchParameters WRITE setSearchParameters)
+    Q_PROPERTY(QString searchMethod READ searchMethod WRITE setSearchMethod)
     Q_PROPERTY(QString suggestionsUrlTemplate READ suggestionsUrlTemplate WRITE setSuggestionsUrlTemplate)
     Q_PROPERTY(Parameters suggestionsParameters READ suggestionsParameters WRITE setSuggestionsParameters)
+    Q_PROPERTY(QString suggestionsMethod READ suggestionsMethod WRITE setSuggestionsMethod)
     Q_PROPERTY(bool providesSuggestions READ providesSuggestions)
     Q_PROPERTY(QString imageUrl READ imageUrl WRITE setImageUrl)
     Q_PROPERTY(bool valid READ isValid)
@@ -76,6 +79,12 @@ public:
 
     Parameters suggestionsParameters() const;
     void setSuggestionsParameters(const Parameters &suggestionsParameters);
+
+    QString searchMethod() const;
+    void setSearchMethod(const QString &method);
+
+    QString suggestionsMethod() const;
+    void setSuggestionsMethod(const QString &method);
 
     QString imageUrl() const;
     void setImageUrl(const QString &url);
@@ -113,6 +122,10 @@ private:
     QString m_suggestionsUrlTemplate;
     Parameters m_searchParameters;
     Parameters m_suggestionsParameters;
+    QString m_searchMethod;
+    QString m_suggestionsMethod;
+
+    QMap<QString, QNetworkAccessManager::Operation> m_requestMethods;
 
     QNetworkAccessManager *m_networkAccessManager;
     QNetworkReply *m_suggestionsReply;

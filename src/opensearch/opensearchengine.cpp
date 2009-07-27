@@ -22,7 +22,6 @@
 #include <qbuffer.h>
 #include <qcoreapplication.h>
 #include <qlocale.h>
-#include <qnetworkaccessmanager.h>
 #include <qnetworkrequest.h>
 #include <qnetworkreply.h>
 #include <qregexp.h>
@@ -82,10 +81,14 @@
 */
 OpenSearchEngine::OpenSearchEngine(QObject *parent)
     : QObject(parent)
+    , m_searchMethod(QLatin1String("get"))
+    , m_suggestionsMethod(QLatin1String("get"))
     , m_networkAccessManager(0)
     , m_suggestionsReply(0)
     , m_scriptEngine(0)
 {
+    m_requestMethods.insert(QLatin1String("get"), QNetworkAccessManager::GetOperation);
+    m_requestMethods.insert(QLatin1String("post"), QNetworkAccessManager::PostOperation);
 }
 
 /*!
@@ -201,10 +204,12 @@ QUrl OpenSearchEngine::searchUrl(const QString &searchTerm) const
 
     QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_searchUrlTemplate).toUtf8());
 
-    Parameters::const_iterator end = m_searchParameters.constEnd();
-    Parameters::const_iterator i = m_searchParameters.constBegin();
-    for (; i != end; ++i)
-        retVal.addQueryItem(i->first, parseTemplate(searchTerm, i->second));
+    if (m_searchMethod != QLatin1String("post")) {
+        Parameters::const_iterator end = m_searchParameters.constEnd();
+        Parameters::const_iterator i = m_searchParameters.constBegin();
+        for (; i != end; ++i)
+            retVal.addQueryItem(i->first, parseTemplate(searchTerm, i->second));
+    }
 
     return retVal;
 }
@@ -251,10 +256,12 @@ QUrl OpenSearchEngine::suggestionsUrl(const QString &searchTerm) const
 
     QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_suggestionsUrlTemplate).toUtf8());
 
-    Parameters::const_iterator end = m_suggestionsParameters.constEnd();
-    Parameters::const_iterator i = m_suggestionsParameters.constBegin();
-    for (; i != end; ++i)
-        retVal.addQueryItem(i->first, parseTemplate(searchTerm, i->second));
+    if (m_suggestionsMethod != QLatin1String("post")) {
+        Parameters::const_iterator end = m_suggestionsParameters.constEnd();
+        Parameters::const_iterator i = m_suggestionsParameters.constBegin();
+        for (; i != end; ++i)
+            retVal.addQueryItem(i->first, parseTemplate(searchTerm, i->second));
+    }
 
     return retVal;
 }
@@ -291,6 +298,42 @@ OpenSearchEngine::Parameters OpenSearchEngine::suggestionsParameters() const
 void OpenSearchEngine::setSuggestionsParameters(const Parameters &suggestionsParameters)
 {
     m_suggestionsParameters = suggestionsParameters;
+}
+
+/*!
+    \property searchMethod
+    \brief HTTP request method that will be used to perform search requests
+*/
+QString OpenSearchEngine::searchMethod() const
+{
+    return m_searchMethod;
+}
+
+void OpenSearchEngine::setSearchMethod(const QString &method)
+{
+    QString requestMethod = method.toLower();
+    if (!m_requestMethods.contains(requestMethod))
+        return;
+
+    m_searchMethod = requestMethod;
+}
+
+/*!
+    \property suggestionsMethod
+    \brief HTTP request method that will be used to perform suggestions requests
+*/
+QString OpenSearchEngine::suggestionsMethod() const
+{
+    return m_suggestionsMethod;
+}
+
+void OpenSearchEngine::setSuggestionsMethod(const QString &method)
+{
+    QString requestMethod = method.toLower();
+    if (!m_requestMethods.contains(requestMethod))
+        return;
+
+    m_suggestionsMethod = requestMethod;
 }
 
 /*!
@@ -424,7 +467,21 @@ void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
         m_suggestionsReply = 0;
     }
 
-    m_suggestionsReply = m_networkAccessManager->get(QNetworkRequest(suggestionsUrl(searchTerm)));
+    Q_ASSERT(m_requestMethods.contains(m_suggestionsMethod));
+    if (m_suggestionsMethod == QLatin1String("get")) {
+        m_suggestionsReply = m_networkAccessManager->get(QNetworkRequest(suggestionsUrl(searchTerm)));
+    } else {
+        QStringList parameters;
+
+        Parameters::const_iterator end = m_suggestionsParameters.constEnd();
+        Parameters::const_iterator i = m_suggestionsParameters.constBegin();
+        for (; i != end; ++i)
+            parameters.append(i->first + QLatin1String("=") + i->second);
+
+        QByteArray data = parameters.join(QLatin1String("&")).toUtf8();
+        m_suggestionsReply = m_networkAccessManager->post(QNetworkRequest(suggestionsUrl(searchTerm)), data);
+    }
+
     connect(m_suggestionsReply, SIGNAL(finished()), this, SLOT(suggestionsObtained()));
 }
 
