@@ -41,6 +41,7 @@ public:
     QWidget *create(const QString &mimeType, const QUrl &url,
                     const QStringList &argumentNames, const QStringList &argumentValues);
     void configure();
+    bool isAnonymous() const;
 
     bool onWhitelist(const QString &host) const;
     void addToWhitelist(const QString &host);

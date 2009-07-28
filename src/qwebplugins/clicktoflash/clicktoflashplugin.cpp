@@ -103,6 +103,11 @@ void ClickToFlashPlugin::configure()
     }
 }
 
+bool ClickToFlashPlugin::isAnonymous() const
+{
+    return true;
+}
+
 bool ClickToFlashPlugin::onWhitelist(const QString &host) const
 {
     return m_whitelist.contains(host);

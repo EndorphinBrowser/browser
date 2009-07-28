@@ -36,3 +36,7 @@ AroraWebPlugin::~AroraWebPlugin()
 {
 }
 
+bool AroraWebPlugin::isAnonymous() const
+{
+    return false;
+}

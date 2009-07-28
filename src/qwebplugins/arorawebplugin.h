@@ -42,6 +42,7 @@ public:
     virtual QWidget *create(const QString &mimeType, const QUrl &url,
                             const QStringList &argumentNames, const QStringList &argumentValues) = 0;
     virtual void configure() = 0;
+    virtual bool isAnonymous() const;
 };
 
 #endif // ARORAWEBPLUGIN_H
