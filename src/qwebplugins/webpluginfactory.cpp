@@ -64,11 +64,8 @@ QList<QWebPluginFactory::Plugin> WebPluginFactory::plugins() const
     if (!m_loaded)
         init();
     QList<QWebPluginFactory::Plugin> plugins;
-    foreach (AroraWebPlugin *plugin, m_plugins) {
-        QWebPluginFactory::Plugin pluginInfo = plugin->metaPlugin();
-        if (!pluginInfo.mimeTypes.isEmpty())
-            plugins.append(pluginInfo);
-    }
+    foreach (AroraWebPlugin *plugin, m_plugins)
+        plugins.append(plugin->metaPlugin());
     return plugins;
 }
 
