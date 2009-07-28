@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>454</width>
-    <height>236</height>
+    <width>450</width>
+    <height>240</height>
    </rect>
   </property>
   <property name="modal" >
@@ -66,6 +66,29 @@
      <property name="font" >
       <font>
        <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="webkitVersion" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font" >
+      <font>
+       <pointsize>11</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
