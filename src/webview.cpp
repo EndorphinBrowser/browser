@@ -596,21 +596,26 @@ void WebView::dragEnterEvent(QDragEnterEvent *event)
 
 void WebView::dragMoveEvent(QDragMoveEvent *event)
 {
-    if (!event->mimeData()->urls().isEmpty()) {
-        event->acceptProposedAction();
-    } else {
-        QUrl url(event->mimeData()->text());
-        if (url.isValid())
+    event->ignore();
+    if (event->source() != this) {
+        if (!event->mimeData()->urls().isEmpty()) {
             event->acceptProposedAction();
+        } else {
+            QUrl url(event->mimeData()->text());
+            if (url.isValid())
+                event->acceptProposedAction();
+        }
     }
-    if (!event->isAccepted())
+    if (!event->isAccepted()) {
         QWebView::dragMoveEvent(event);
+    }
 }
 
 void WebView::dropEvent(QDropEvent *event)
 {
     QWebView::dropEvent(event);
     if (!event->isAccepted()
+        && event->source() != this
         && event->possibleActions() & Qt::CopyAction) {
 
         QUrl url;
