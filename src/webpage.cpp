@@ -209,7 +209,7 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
     QString scheme = request.url().scheme();
     if (scheme == QLatin1String("mailto")
         || scheme == QLatin1String("ftp")) {
-        QDesktopServices::openUrl(request.url());
+        BrowserApplication::instance()->askDesktopToOpenUrl(request.url());
         return false;
     }
 

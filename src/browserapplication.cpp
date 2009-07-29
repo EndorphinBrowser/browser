@@ -196,6 +196,11 @@ void BrowserApplication::messageReceived(const QString &message)
         settings.beginGroup(QLatin1String("tabs"));
         TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
         settings.endGroup();
+        if (QUrl(message) == m_lastAskedUrl
+            && m_lastAskedUrlDateTime.addSecs(10) > QDateTime::currentDateTime()) {
+            qWarning() << "Possible recursive openUrl called, ignoring url:" << m_lastAskedUrl;
+            return;
+        }
         mainWindow()->tabWidget()->loadString(message, tab);
     }
     mainWindow()->raise();
@@ -455,6 +460,13 @@ bool BrowserApplication::event(QEvent *event)
     return QApplication::event(event);
 }
 #endif
+
+void BrowserApplication::askDesktopToOpenUrl(const QUrl &url)
+{
+    m_lastAskedUrl = url;
+    m_lastAskedUrlDateTime = QDateTime::currentDateTime();
+    QDesktopServices::openUrl(url);
+}
 
 void BrowserApplication::openUrl(const QUrl &url)
 {

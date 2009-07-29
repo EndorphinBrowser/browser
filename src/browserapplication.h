@@ -68,6 +68,7 @@
 #include <qicon.h>
 #include <qpointer.h>
 #include <qurl.h>
+#include <qdatetime.h>
 
 class BookmarksManager;
 class BrowserMainWindow;
@@ -127,6 +128,8 @@ public slots:
 
     static void setZoomTextOnly(bool textOnly);
 
+    void askDesktopToOpenUrl(const QUrl &url);
+
 private slots:
     void retranslate();
     void messageReceived(const QString &message);
@@ -153,6 +156,9 @@ private:
 
     Qt::MouseButtons m_eventMouseButtons;
     Qt::KeyboardModifiers m_eventKeyboardModifiers;
+
+    QUrl m_lastAskedUrl;
+    QDateTime m_lastAskedUrlDateTime;
 };
 
 #endif // BROWSERAPPLICATION_H
