@@ -68,6 +68,8 @@ void tst_OpenSearchManager::initTestCase()
     QCoreApplication::setApplicationName("opensearchtest");
 
     SubOpenSearchManager manager;
+    foreach (const QString &name, manager.allEnginesNames())
+        manager.removeEngine(name);
     QCOMPARE(manager.enginesCount(), 1);
 }
 
