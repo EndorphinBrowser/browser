@@ -239,28 +239,29 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Segnalibri XBEL</translation>
     </message>
     <message>
         <source>HTML Netscape bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Segnalibri HTML Netscape</translation>
     </message>
     <message>
         <source>htmlToXBel tool required</source>
-        <translation type="unfinished"></translation>
+        <translation>Strumento htmlToXBel richiesto</translation>
     </message>
     <message>
         <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lo strumento htmlToXBel, fornito con Arora e necessario a importare segnalibri HTML, non è installato o non è disponibile nei percorsi di ricerca.</translation>
     </message>
     <message>
         <source>Loading Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Caricamento segnalibro</translation>
     </message>
     <message>
         <source>Error when loading HTML bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Errore durante il caricamento dei segnalibri HTML: %1
+</translation>
     </message>
 </context>
 <context>
@@ -309,7 +310,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished">Segnalibri</translation>
+        <translation>Segnalibri</translation>
     </message>
 </context>
 <context>
@@ -733,15 +734,15 @@ Vuoi ricaricare tutte le pagine?</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished">Predefinita</translation>
+        <translation>Predefinita</translation>
     </message>
     <message>
         <source>Text Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Codifica del testo</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quando la navigazione anonima è attivata, alcune azioni relative alla riservatezza saranno disabilitate:&lt;ul&gt;&lt;li&gt; Le pagine web non saranno aggiunte alla cronologia.&lt;/li&gt;&lt;li&gt; Gli elementi presenti nella finestra Scaricamenti saranno rimossi automaticamente.&lt;/li&gt;&lt;li&gt; I nuovi cookie non sono conservati, i cookie correnti non sono accessibili.&lt;/li&gt;&lt;li&gt; Le icone dei siti non saranno conservate, le sessioni non saranno salvate.&lt;/li&gt;&lt;li&gt; Le ricerche non sono aggiunte al menu a comparsa nel riquadro di ricerca.&lt;/li&gt;&lt;li&gt; La cache di rete è disabilitata.&lt;/li&gt;&lt;/ul&gt;Fino alla chiusura della finestra, potrai fare clic sui pulsanti Indietro e Avanti per tornare alle pagine precedentemente aperte.</translation>
     </message>
 </context>
 <context>
@@ -1081,7 +1082,7 @@ Vuoi ricaricare tutte le pagine?</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella degli scaricamenti (%1) non può essere creata.</translation>
     </message>
 </context>
 <context>
@@ -1135,30 +1136,30 @@ Vuoi uscire comunque?</translation>
     </message>
     <message>
         <source>GB</source>
-        <translation type="unfinished"></translation>
+        <translation>GB</translation>
     </message>
 </context>
 <context>
     <name>FileAccessReply</name>
     <message>
         <source>No Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun errore</translation>
     </message>
     <message>
         <source>Error opening: %1: No such file or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore di apertura: %1: Nessun file o cartella</translation>
     </message>
     <message>
         <source>Unable to read %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile leggere %1</translation>
     </message>
     <message>
         <source>Contents of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Contenuto di %1</translation>
     </message>
     <message>
         <source>%1 KB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KB</translation>
     </message>
 </context>
 <context>
@@ -1240,23 +1241,23 @@ Vuoi uscire comunque?</translation>
     <name>JavaScriptAroraObject</name>
     <message>
         <source>Welcome to Arora!</source>
-        <translation type="unfinished"></translation>
+        <translation>Benvenuti in Arora!</translation>
     </message>
     <message>
         <source>Arora Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio di Arora</translation>
     </message>
     <message>
         <source>Search!</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerca!</translation>
     </message>
     <message>
         <source>Search results provided by</source>
-        <translation type="unfinished"></translation>
+        <translation>Risultati di ricerca forniti da</translation>
     </message>
     <message>
         <source>About Arora</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni su Arora</translation>
     </message>
 </context>
 <context>
@@ -1330,19 +1331,19 @@ Vuoi ignorare questi errori?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Issuer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Emittente: %1</translation>
     </message>
     <message>
         <source>Not valid before: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Non valido prima di: %1</translation>
     </message>
     <message>
         <source>Valid until: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Valido fino a: %1</translation>
     </message>
     <message>
         <source>Alternate Names:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nomi alternativi:</translation>
     </message>
 </context>
 <context>
@@ -1567,7 +1568,7 @@ Vuoi ignorare questi errori?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Highlight All</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona tutto</translation>
     </message>
 </context>
 <context>
@@ -1905,7 +1906,7 @@ Vuoi ignorare questi errori?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizza il motore di ricerca predefinito come ripiego quando l&apos;URL specificato dall&apos;utente non è valido</translation>
     </message>
 </context>
 <context>
@@ -1947,7 +1948,7 @@ Vuoi ignorare questi errori?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorgente della pagina %1</translation>
     </message>
 </context>
 <context>
@@ -2123,11 +2124,11 @@ Sei sicuro di volerlo fare?
     </message>
     <message>
         <source>Resending POST request</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo invio della richiesta POST</translation>
     </message>
     <message>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Per visualizzare il sito, la richiesta con tutti i dati deve essere inviata nuovamente, ciò potrebbe causare un comportamento imprevisto del sito, ad es. la stessa azione potrebbe essere eseguita due volte. Vuoi continuare comunque?</translation>
     </message>
 </context>
 <context>
@@ -2182,31 +2183,31 @@ Sei sicuro di volerlo fare?
     </message>
     <message>
         <source>Add to the toolbar search</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi alla barra delle ricerche</translation>
     </message>
     <message>
         <source>Method not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Metodo non supportato</translation>
     </message>
     <message>
         <source>%1 method is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il metodo %1 non è supportato.</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Motore di ricerca</translation>
     </message>
     <message>
         <source>Choose the desired search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli il motore di ricerca desiderato</translation>
     </message>
     <message>
         <source>Engine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del motore</translation>
     </message>
     <message>
         <source>Type in a name for the engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Digita un nome per il motore</translation>
     </message>
 </context>
 <context>
