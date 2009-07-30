@@ -291,7 +291,13 @@ void TabBar::dropEvent(QDropEvent *event)
     QUrl url = mimeData->urls().at(0);
     if (url.isValid()) {
         event->acceptProposedAction();
-        loadUrl(url, TabWidget::NewSelectedTab);
+        int index = tabAt(event->pos());
+        if (-1 != index) {
+            setCurrentIndex(index);
+            emit loadUrl(url, TabWidget::CurrentTab);
+        } else {
+            emit loadUrl(url, TabWidget::NewSelectedTab);
+        }
     }
 
     QTabBar::dropEvent(event);
