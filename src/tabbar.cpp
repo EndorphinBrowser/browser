@@ -279,7 +279,7 @@ void TabBar::mouseMoveEvent(QMouseEvent *event)
 void TabBar::dragEnterEvent(QDragEnterEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
-    if (mimeData->hasUrls())
+    if (mimeData->hasUrls() || mimeData->hasText())
         event->acceptProposedAction();
 
     QTabBar::dragEnterEvent(event);
@@ -288,8 +288,13 @@ void TabBar::dragEnterEvent(QDragEnterEvent *event)
 void TabBar::dropEvent(QDropEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
-    QUrl url = mimeData->urls().at(0);
-    if (url.isValid()) {
+    QUrl url;
+    if (mimeData->hasUrls())
+        url = mimeData->urls().at(0);
+    else if (mimeData->hasText())
+	url = mimeData->text();
+
+    if (!url.isEmpty() && url.isValid()) {
         event->acceptProposedAction();
         int index = tabAt(event->pos());
         if (-1 != index) {
