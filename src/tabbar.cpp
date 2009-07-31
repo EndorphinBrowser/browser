@@ -292,7 +292,7 @@ void TabBar::dropEvent(QDropEvent *event)
     if (mimeData->hasUrls())
         url = mimeData->urls().at(0);
     else if (mimeData->hasText())
-	url = mimeData->text();
+        url = QUrl::fromEncoded(mimeData->text().toUtf8());
 
     if (!url.isEmpty() && url.isValid()) {
         event->acceptProposedAction();
