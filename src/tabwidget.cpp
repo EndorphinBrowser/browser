@@ -145,12 +145,6 @@ TabWidget::TabWidget(QWidget *parent)
 
     QSettings settings;
     settings.beginGroup(QLatin1String("tabs"));
-    bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
-    if (oneCloseButton) {
-        // With Qt < 4.5 do this always, with >=4.5 only if enabled.
-        m_closeTabAction->setIcon(QIcon(QLatin1String(":graphics/closetab.png")));
-        m_closeTabAction->setIconVisibleInMenu(false);
-    }
 
     m_nextTabAction = new QAction(this);
     connect(m_nextTabAction, SIGNAL(triggered()), this, SLOT(nextTab()));
@@ -176,9 +170,11 @@ TabWidget::TabWidget(QWidget *parent)
     setCornerWidget(addTabButton, newTabButtonInRightCorner ? Qt::TopRightCorner : Qt::TopLeftCorner);
 #endif
 
+    bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
     if (oneCloseButton) {
+        m_closeTabAction->setIcon(QIcon(QLatin1String(":graphics/closetab.png")));
+        m_closeTabAction->setIconVisibleInMenu(false);
         // corner buttons
-        // With Qt < 4.5 do this always, with >=4.5 only if enabled.
         QToolButton *closeTabButton = new QToolButton(this);
         closeTabButton->setDefaultAction(m_closeTabAction);
         closeTabButton->setAutoRaise(true);
