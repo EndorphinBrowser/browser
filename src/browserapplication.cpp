@@ -155,6 +155,8 @@ BrowserApplication::~BrowserApplication()
     qDeleteAll(m_mainWindows);
     delete s_networkAccessManager;
     delete s_bookmarksManager;
+    delete s_languageManager;
+    delete s_historyManager;
 }
 
 #if defined(Q_WS_MAC)
