@@ -1208,6 +1208,8 @@ void BrowserMainWindow::closeEvent(QCloseEvent *event)
 {
     if (!BrowserApplication::instance()->allowToCloseWindow(this)) {
         event->ignore();
+        if (m_tabWidget->count() == 0)
+            m_tabWidget->newTab();
         return;
     }
 
