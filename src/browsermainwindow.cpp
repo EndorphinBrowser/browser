@@ -1005,6 +1005,7 @@ void BrowserMainWindow::viewMenuBar()
     menuBar()->setVisible(!menuBar()->isVisible());
 
     m_menuBarVisible = menuBar()->isVisible();
+    m_autoSaver->changeOccurred();
 }
 
 void BrowserMainWindow::viewToolbar()
