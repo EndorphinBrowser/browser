@@ -236,23 +236,15 @@ BrowserMainWindow::~BrowserMainWindow()
 
 BrowserMainWindow *BrowserMainWindow::parentWindow(QWidget *widget)
 {
-    BrowserMainWindow *parentWindow = 0;
-
     while (widget) {
-        if (BrowserMainWindow *parent = qobject_cast<BrowserMainWindow*>(widget)) {
-            parentWindow = parent;
-            break;
-        }
+        if (BrowserMainWindow *parent = qobject_cast<BrowserMainWindow*>(widget))
+            return parent;
 
         widget = widget->parentWidget();
     }
 
-    if (!parentWindow) {
-        qWarning() << "BrowserMainWindow::" << __FUNCTION__ << " used with a widget none of whose parents is a main window.";
-        parentWindow = BrowserApplication::instance()->mainWindow();
-    }
-
-    return parentWindow;
+    qWarning() << "BrowserMainWindow::" << __FUNCTION__ << " used with a widget none of whose parents is a main window.";
+    return BrowserApplication::instance()->mainWindow();
 }
 
 void BrowserMainWindow::loadDefaultState()
