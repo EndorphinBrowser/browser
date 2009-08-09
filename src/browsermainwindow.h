@@ -195,6 +195,7 @@ private:
     QAction *m_editCutAction;
     QAction *m_editCopyAction;
     QAction *m_editPasteAction;
+    QAction *m_editSelectAllAction;
     QAction *m_editFindAction;
     QAction *m_editFindNextAction;
     QAction *m_editFindPreviousAction;

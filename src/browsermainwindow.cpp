@@ -540,6 +540,10 @@ void BrowserMainWindow::setupMenu()
     m_editPasteAction->setShortcuts(QKeySequence::Paste);
     m_tabWidget->addWebAction(m_editPasteAction, QWebPage::Paste);
     m_editMenu->addAction(m_editPasteAction);
+    m_editSelectAllAction = new QAction(m_editMenu);
+    m_editSelectAllAction->setShortcuts(QKeySequence::SelectAll);
+    m_tabWidget->addWebAction(m_editSelectAllAction, QWebPage::SelectAll);
+    m_editMenu->addAction(m_editSelectAllAction);
     m_editMenu->addSeparator();
 
     m_editFindAction = new QAction(m_editMenu);
@@ -856,6 +860,7 @@ void BrowserMainWindow::retranslate()
     m_editCutAction->setText(tr("Cu&t"));
     m_editCopyAction->setText(tr("&Copy"));
     m_editPasteAction->setText(tr("&Paste"));
+    m_editSelectAllAction->setText(tr("Select &All"));
     m_editFindAction->setText(tr("&Find"));
     m_editFindNextAction->setText(tr("Find Nex&t"));
     m_editFindPreviousAction->setText(tr("Find P&revious"));
