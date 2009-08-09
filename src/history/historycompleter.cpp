@@ -237,7 +237,8 @@ void HistoryCompleter::updateFilter()
     // mark it valid
     completionModel->setValid(true);
 
-    // and now update the QCompleter widget
-    complete();
-
+    // and now update the QCompleter widget, but only if the user is still
+    // typing a url
+    if (widget()->hasFocus())
+        complete();
 }
