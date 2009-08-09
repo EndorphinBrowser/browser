@@ -136,8 +136,6 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
             m_tabWidget, SLOT(loadUrlFromUser(const QUrl&, const QString&)));
     connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)),
             m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)));
-    connect(m_bookmarksToolbar->toggleViewAction(), SIGNAL(toggled(bool)),
-            this, SLOT(updateBookmarksToolbarActionText(bool)));
 
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setSpacing(0);
@@ -365,13 +363,11 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
         resize(size);
 
     m_navigationBar->setVisible(showToolbar);
-    updateToolbarActionText(showToolbar);
 
     m_bookmarksToolbar->setVisible(showBookmarksBar);
 #if defined(Q_WS_MAC)
     m_bookmarksToolbarFrame->setVisible(showBookmarksBar);
 #endif
-    updateBookmarksToolbarActionText(showBookmarksBar);
 
     if (maximized)
         setWindowState(windowState() | Qt::WindowMaximized);
@@ -383,7 +379,6 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     menuBar()->setVisible(showMenuBar);
 
     statusBar()->setVisible(showStatusbar);
-    updateStatusbarActionText(showStatusbar);
 
     m_navigationSplitter->restoreState(splitterState);
 
@@ -562,19 +557,20 @@ void BrowserMainWindow::setupMenu()
 
     // View
     m_viewMenu = new QMenu(menuBar());
+    connect(m_viewMenu, SIGNAL(aboutToShow()),
+            this, SLOT(aboutToShowViewMenu()));
     menuBar()->addMenu(m_viewMenu);
+
     m_viewShowMenuBarAction = new QAction(m_viewMenu);
     m_viewShowMenuBarAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_M));
     connect(m_viewShowMenuBarAction, SIGNAL(triggered()), this, SLOT(viewMenuBar()));
     addAction(m_viewShowMenuBarAction);
 
     m_viewToolbarAction = new QAction(this);
-    updateToolbarActionText(true);
     connect(m_viewToolbarAction, SIGNAL(triggered()), this, SLOT(viewToolbar()));
     m_viewMenu->addAction(m_viewToolbarAction);
 
     m_viewBookmarkBarAction = new QAction(m_viewMenu);
-    updateBookmarksToolbarActionText(true);
     connect(m_viewBookmarkBarAction, SIGNAL(triggered()), this, SLOT(viewBookmarksBar()));
     m_viewMenu->addAction(m_viewBookmarkBarAction);
 
@@ -584,7 +580,6 @@ void BrowserMainWindow::setupMenu()
             m_autoSaver, SLOT(changeOccurred()));
 
     m_viewStatusbarAction = new QAction(m_viewMenu);
-    updateStatusbarActionText(true);
     connect(m_viewStatusbarAction, SIGNAL(triggered()), this, SLOT(viewStatusbar()));
     m_viewMenu->addAction(m_viewStatusbarAction);
 
@@ -781,6 +776,12 @@ void BrowserMainWindow::setupMenu()
     m_helpMenu->addAction(m_helpAboutApplicationAction);
 }
 
+void BrowserMainWindow::aboutToShowViewMenu()
+{
+    m_viewToolbarAction->setText(m_navigationBar->isVisible() ? tr("Hide Toolbar") : tr("Show Toolbar"));
+    m_viewBookmarkBarAction->setText(m_bookmarksToolbar->isVisible() ? tr("Hide Bookmarks Bar") : tr("Show Bookmarks Bar"));
+    m_viewStatusbarAction->setText(statusBar()->isVisible() ? tr("Hide Status Bar") : tr("Show Status Bar"));
+}
 
 void BrowserMainWindow::aboutToShowTextEncodingMenu()
 {
@@ -904,9 +905,6 @@ void BrowserMainWindow::retranslate()
 
     // Toolbar
     m_navigationBar->setWindowTitle(tr("Navigation"));
-    updateStatusbarActionText(m_statusBarVisible);
-    updateToolbarActionText(m_navigationBar->isVisible());
-    updateBookmarksToolbarActionText(m_bookmarksToolbar->isVisible());
 }
 
 void BrowserMainWindow::setupToolBar()
@@ -914,8 +912,6 @@ void BrowserMainWindow::setupToolBar()
     setUnifiedTitleAndToolBarOnMac(true);
     m_navigationBar = new QToolBar(this);
     addToolBar(m_navigationBar);
-    connect(m_navigationBar->toggleViewAction(), SIGNAL(toggled(bool)),
-            this, SLOT(updateToolbarActionText(bool)));
 
     m_historyBackAction->setIcon(style()->standardIcon(QStyle::SP_ArrowBack, 0, this));
     m_historyBackMenu = new QMenu(this);
@@ -1003,10 +999,8 @@ void BrowserMainWindow::viewMenuBar()
 void BrowserMainWindow::viewToolbar()
 {
     if (m_navigationBar->isVisible()) {
-        updateToolbarActionText(false);
         m_navigationBar->close();
     } else {
-        updateToolbarActionText(true);
         m_navigationBar->show();
     }
     m_autoSaver->changeOccurred();
@@ -1015,13 +1009,11 @@ void BrowserMainWindow::viewToolbar()
 void BrowserMainWindow::viewBookmarksBar()
 {
     if (m_bookmarksToolbar->isVisible()) {
-        updateBookmarksToolbarActionText(false);
         m_bookmarksToolbar->hide();
 #if defined(Q_WS_MAC)
         m_bookmarksToolbarFrame->hide();
 #endif
     } else {
-        updateBookmarksToolbarActionText(true);
         m_bookmarksToolbar->show();
 #if defined(Q_WS_MAC)
         m_bookmarksToolbarFrame->show();
@@ -1030,28 +1022,11 @@ void BrowserMainWindow::viewBookmarksBar()
     m_autoSaver->changeOccurred();
 }
 
-void BrowserMainWindow::updateStatusbarActionText(bool visible)
-{
-    m_viewStatusbarAction->setText(!visible ? tr("Show Status Bar") : tr("Hide Status Bar"));
-}
-
-void BrowserMainWindow::updateToolbarActionText(bool visible)
-{
-    m_viewToolbarAction->setText(!visible ? tr("Show Toolbar") : tr("Hide Toolbar"));
-}
-
-void BrowserMainWindow::updateBookmarksToolbarActionText(bool visible)
-{
-    m_viewBookmarkBarAction->setText(!visible ? tr("Show Bookmarks Bar") : tr("Hide Bookmarks Bar"));
-}
-
 void BrowserMainWindow::viewStatusbar()
 {
     if (statusBar()->isVisible()) {
-        updateStatusbarActionText(false);
         statusBar()->close();
     } else {
-        updateStatusbarActionText(true);
         statusBar()->show();
     }
 
@@ -1067,10 +1042,8 @@ void BrowserMainWindow::downloadManager()
 
 void BrowserMainWindow::selectLineEdit()
 {
-    if (m_navigationBar->isHidden()) {
+    if (m_navigationBar->isHidden())
         m_navigationBar->show();
-        updateToolbarActionText(true);
-    }
 
     m_tabWidget->currentLineEdit()->selectAll();
     m_tabWidget->currentLineEdit()->setFocus();
@@ -1297,15 +1270,11 @@ void BrowserMainWindow::viewFullScreen(bool makeFullScreen)
 
         menuBar()->hide();
         statusBar()->hide();
-
-        updateStatusbarActionText(false);
     } else {
         setWindowState(windowState() & ~Qt::WindowFullScreen);
 
         menuBar()->setVisible(m_menuBarVisible);
         statusBar()->setVisible(m_statusBarVisible);
-
-        updateStatusbarActionText(m_statusBarVisible);
     }
 }
 

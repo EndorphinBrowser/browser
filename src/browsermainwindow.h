@@ -157,6 +157,7 @@ private slots:
 
     void aboutToShowBackMenu();
     void aboutToShowForwardMenu();
+    void aboutToShowViewMenu();
     void aboutToShowWindowMenu();
     void aboutToShowTextEncodingMenu();
     void openActionUrl(QAction *action);
@@ -165,15 +166,12 @@ private slots:
 
     void printRequested(QWebFrame *frame);
     void geometryChangeRequested(const QRect &geometry);
-    void updateToolbarActionText(bool visible);
-    void updateBookmarksToolbarActionText(bool visible);
 
 private:
     void retranslate();
     void loadDefaultState();
     void setupMenu();
     void setupToolBar();
-    void updateStatusbarActionText(bool visible);
 
 private:
     QMenu *m_fileMenu;
@@ -257,6 +255,9 @@ private:
     TabWidget *m_tabWidget;
 
     AutoSaver *m_autoSaver;
+
+    // These store if the user requested the menu/status bars visible. They are
+    // used to determine if these bars should be reshown when leaving fullscreen.
     bool m_menuBarVisible;
     bool m_statusBarVisible;
 };
