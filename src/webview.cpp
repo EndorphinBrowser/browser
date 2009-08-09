@@ -205,8 +205,6 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         if (!page()->selectedText().isEmpty())
             menu->addAction(pageAction(QWebPage::Copy));
         menu->addAction(tr("&Copy Link Location"), this, SLOT(copyLinkToClipboard()));
-        if (page()->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled))
-            menu->addAction(pageAction(QWebPage::InspectElement));
     }
 
     if (!r.imageUrl().isEmpty()) {
@@ -262,6 +260,9 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     if (menu->isEmpty()) {
         delete menu;
         menu = page()->createStandardContextMenu();
+    } else {
+        if (page()->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled))
+            menu->addAction(pageAction(QWebPage::InspectElement));
     }
 
     if (!menu->isEmpty()) {
