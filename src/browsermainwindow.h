@@ -260,6 +260,8 @@ private:
     // used to determine if these bars should be reshown when leaving fullscreen.
     bool m_menuBarVisible;
     bool m_statusBarVisible;
+
+    friend class BrowserApplication;
 };
 
 #endif // BROWSERMAINWINDOW_H

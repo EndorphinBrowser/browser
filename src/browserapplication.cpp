@@ -62,6 +62,7 @@
 
 #include "browserapplication.h"
 
+#include "autosaver.h"
 #include "bookmarksmanager.h"
 #include "browsermainwindow.h"
 #include "cookiejar.h"
@@ -479,6 +480,8 @@ void BrowserApplication::openUrl(const QUrl &url)
 
 BrowserMainWindow *BrowserApplication::newMainWindow()
 {
+    if (!m_mainWindows.isEmpty())
+        mainWindow()->m_autoSaver->saveIfNeccessary();
     BrowserMainWindow *browser = new BrowserMainWindow();
     m_mainWindows.prepend(browser);
     connect(this, SIGNAL(privacyChanged(bool)),
