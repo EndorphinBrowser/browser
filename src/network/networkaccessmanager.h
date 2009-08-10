@@ -92,6 +92,7 @@ private slots:
 #ifndef QT_NO_OPENSSL
     void sslErrors(QNetworkReply *reply, const QList<QSslError> &error);
 #endif
+    void privacyChanged(bool isPrivate);
 
 private:
 #ifndef QT_NO_OPENSSL
@@ -100,6 +101,8 @@ private:
 
     QByteArray m_acceptLanguage;
     QHash<QString, SchemeAccessHandler*> m_schemeHandlers;
+
+    QNetworkCookieJar *m_privateCookieJar;
 };
 
 #endif // NETWORKACCESSMANAGER_H

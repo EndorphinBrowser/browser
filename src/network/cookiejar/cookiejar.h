@@ -127,6 +127,8 @@ public:
     bool filterTrackingCookies() const;
     void setFilterTrackingCookies(bool filterTrackingCookies);
 
+    void setPrivate(bool isPrivate);
+
 public slots:
     void clear();
     void loadSettings();
@@ -151,6 +153,7 @@ private:
     QStringList m_exceptions_block;
     QStringList m_exceptions_allow;
     QStringList m_exceptions_allowForSession;
+    bool m_isPrivate;
 };
 
 #endif // COOKIEJAR_H

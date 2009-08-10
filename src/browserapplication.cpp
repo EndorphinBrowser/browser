@@ -521,10 +521,8 @@ DownloadManager *BrowserApplication::downloadManager()
 
 NetworkAccessManager *BrowserApplication::networkAccessManager()
 {
-    if (!s_networkAccessManager) {
+    if (!s_networkAccessManager)
         s_networkAccessManager = new NetworkAccessManager();
-        s_networkAccessManager->setCookieJar(new CookieJar);
-    }
     return s_networkAccessManager;
 }
 

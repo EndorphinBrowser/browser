@@ -65,6 +65,7 @@
 #include "acceptlanguagedialog.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
+#include "cookiejar.h"
 #include "schemeaccesshandler.h"
 #include "fileaccesshandler.h"
 #include "networkproxyfactory.h"
@@ -94,10 +95,27 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
     connect(this, SIGNAL(sslErrors(QNetworkReply*, const QList<QSslError>&)),
             SLOT(sslErrors(QNetworkReply*, const QList<QSslError>&)));
 #endif
+    connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
+            this, SLOT(privacyChanged(bool)));
     loadSettings();
 
     // Register custom scheme handlers
     setSchemeHandler(QLatin1String("file"), new FileAccessHandler(this));
+    setCookieJar(new CookieJar);
+}
+
+void NetworkAccessManager::privacyChanged(bool isPrivate)
+{
+    // Create a new CookieJar that has the privacy flag set so the old cookies
+    // are not loaded and the cookies are not saved on exit
+    if (isPrivate) {
+        CookieJar *cookieJar = new CookieJar;
+        cookieJar->setPrivate(isPrivate);
+        setCookieJar(cookieJar);
+    } else {
+        // it will delete the old one
+        setCookieJar(new CookieJar);
+    }
 }
 
 void NetworkAccessManager::setSchemeHandler(const QString &scheme, SchemeAccessHandler *handler)

@@ -71,8 +71,6 @@
 #include <qsettings.h>
 #include <qurl.h>
 
-#include <qwebsettings.h>
-
 #include <qdebug.h>
 
 static const unsigned int JAR_VERSION = 23;
@@ -120,6 +118,7 @@ CookieJar::CookieJar(QObject *parent)
     , m_loaded(false)
     , m_saveTimer(new AutoSaver(this))
     , m_acceptCookies(AcceptOnlyFromSitesNavigatedTo)
+    , m_isPrivate(false)
 {
 }
 
@@ -128,6 +127,11 @@ CookieJar::~CookieJar()
     if (m_loaded && m_keepCookies == KeepUntilExit)
         clear();
     m_saveTimer->saveIfNeccessary();
+}
+
+void CookieJar::setPrivate(bool isPrivate)
+{
+    m_isPrivate = isPrivate;
 }
 
 void CookieJar::clear()
@@ -144,7 +148,9 @@ void CookieJar::load()
     // load cookies and exceptions
     qRegisterMetaTypeStreamOperators<QList<QNetworkCookie> >("QList<QNetworkCookie>");
     QSettings cookieSettings(QDesktopServices::storageLocation(QDesktopServices::DataLocation) + QLatin1String("/cookies.ini"), QSettings::IniFormat);
-    setAllCookies(qvariant_cast<QList<QNetworkCookie> >(cookieSettings.value(QLatin1String("cookies"))));
+    if (!m_isPrivate) {
+        setAllCookies(qvariant_cast<QList<QNetworkCookie> >(cookieSettings.value(QLatin1String("cookies"))));
+    }
     cookieSettings.beginGroup(QLatin1String("Exceptions"));
     m_exceptions_block = cookieSettings.value(QLatin1String("block")).toStringList();
     m_exceptions_allow = cookieSettings.value(QLatin1String("allow")).toStringList();
@@ -183,7 +189,7 @@ void CookieJar::loadSettings()
 
 void CookieJar::save()
 {
-    if (!m_loaded)
+    if (!m_loaded || m_isPrivate)
         return;
     purgeOldCookies();
     QString directory = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
@@ -240,12 +246,6 @@ QList<QNetworkCookie> CookieJar::cookiesForUrl(const QUrl &url) const
     if (!m_loaded)
         that->load();
 
-    QWebSettings *globalSettings = QWebSettings::globalSettings();
-    if (globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled)) {
-        QList<QNetworkCookie> noCookies;
-        return noCookies;
-    }
-
     return NetworkCookieJar::cookiesForUrl(url);
 }
 
@@ -253,10 +253,6 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
 {
     if (!m_loaded)
         load();
-
-    QWebSettings *globalSettings = QWebSettings::globalSettings();
-    if (globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled))
-        return false;
 
     QString host = url.host();
     bool eBlock = isOnDomainList(m_exceptions_block, host);
