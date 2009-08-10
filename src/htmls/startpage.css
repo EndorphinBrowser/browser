@@ -7,7 +7,7 @@
 body {
     background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff), color-stop(0.5, #fff));
     background-repeat: repeat-x;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 #header, #search, #footer {
