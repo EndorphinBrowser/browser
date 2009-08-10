@@ -3,13 +3,14 @@ Section: web
 Priority: extra
 Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
 XSBC-Original-Maintainer: Sune Vuorela <debian@pusling.com>
-Build-Depends: debhelper (>= 5), libqt4-dev (>= 4.4)
+Build-Depends: debhelper (>= 5), libqt4-dev (>= 4.5)
 Standards-Version: 3.7.3
 Homepage: http://arora-browser.org
 
 Package: arora
 Architecture: any
 Depends: ${shlibs:Depends}
+Provides: www-browser
 Description: Simple cross-platform QtWebKit web browser
  Arora is a simple WebKit-based web browser using the Qt toolkit, originally
  based on the Qt demo browser written to showcase the capabilities of QtWebKit.
