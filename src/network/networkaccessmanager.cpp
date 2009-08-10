@@ -67,6 +67,7 @@
 #include "browsermainwindow.h"
 #include "schemeaccesshandler.h"
 #include "fileaccesshandler.h"
+#include "networkproxyfactory.h"
 #include "ui_passworddialog.h"
 #include "ui_proxy.h"
 
@@ -84,32 +85,6 @@
 #include <qsslconfiguration.h>
 #include <qsslerror.h>
 #include <qdatetime.h>
-
-NetworkProxyFactory::NetworkProxyFactory()
-    : QNetworkProxyFactory()
-{
-}
-
-void NetworkProxyFactory::setHttpProxy(const QNetworkProxy &proxy)
-{
-    m_httpProxy = proxy;
-}
-
-void NetworkProxyFactory::setGlobalProxy(const QNetworkProxy &proxy)
-{
-    m_globalProxy = proxy;
-}
-
-QList<QNetworkProxy> NetworkProxyFactory::queryProxy(const QNetworkProxyQuery &query)
-{
-    QList<QNetworkProxy> ret;
-
-    if (query.protocolTag() == QLatin1String("http") && m_httpProxy.type() != QNetworkProxy::DefaultProxy)
-        ret << m_httpProxy;
-    ret << m_globalProxy;
-
-    return ret;
-}
 
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
     : QNetworkAccessManager(parent)

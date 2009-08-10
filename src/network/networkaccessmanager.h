@@ -69,21 +69,6 @@
 
 class SchemeAccessHandler;
 
-class NetworkProxyFactory : public QNetworkProxyFactory
-{
-public:
-    NetworkProxyFactory();
-
-    void setHttpProxy(const QNetworkProxy &proxy);
-    void setGlobalProxy(const QNetworkProxy &proxy);
-
-    virtual QList<QNetworkProxy> queryProxy(const QNetworkProxyQuery &query = QNetworkProxyQuery());
-
-private:
-    QNetworkProxy m_httpProxy;
-    QNetworkProxy m_globalProxy;
-};
-
 class NetworkAccessManager : public QNetworkAccessManager
 {
     Q_OBJECT

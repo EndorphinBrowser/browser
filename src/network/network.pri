@@ -6,13 +6,15 @@ FORMS += \
     proxy.ui
 
 HEADERS += \
-    networkaccessmanager.h \
     fileaccesshandler.h \
+    networkaccessmanager.h \
+    networkproxyfactory.h \
     schemeaccesshandler.h
 
 SOURCES += \
-    networkaccessmanager.cpp \
     fileaccesshandler.cpp \
+    networkaccessmanager.cpp \
+    networkproxyfactory.cpp \
     schemeaccesshandler.cpp
 
 include(cookiejar/cookiejar.pri)
