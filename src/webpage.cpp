@@ -265,7 +265,6 @@ void WebPage::loadSettings()
     m_openTargetBlankLinksIn = (TabWidget::OpenUrlIn)settings.value(QLatin1String("openTargetBlankLinksIn"),
                                                                     TabWidget::NewSelectedTab).toInt();
     settings.endGroup();
-    settings.beginGroup(QLatin1String("general"));
     s_userAgent = settings.value(QLatin1String("userAgent")).toString();
 }
 

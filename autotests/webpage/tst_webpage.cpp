@@ -377,7 +377,6 @@ void tst_WebPage::javaScriptObjects()
 void tst_WebPage::userAgent()
 {
     QSettings settings;
-    settings.beginGroup("general");
     settings.setValue("userAgent", QString());
     SubWebPage page;
     QString defaultUserAgent = page.call_userAgentForUrl(QUrl());
