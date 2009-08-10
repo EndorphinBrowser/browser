@@ -36,8 +36,6 @@ FORMS += \
     acceptlanguagedialog.ui \
     downloaditem.ui \
     downloads.ui \
-    passworddialog.ui \
-    proxy.ui \
     searchbanner.ui \
     settings.ui
 
@@ -51,9 +49,7 @@ HEADERS += \
     downloadmanager.h \
     languagemanager.h \
     modelmenu.h \
-    networkaccessmanager.h \
     plaintexteditsearch.h \
-    schemeaccesshandler.h \
     searchbar.h \
     searchbutton.h \
     searchlineedit.h \
@@ -78,9 +74,7 @@ SOURCES += \
     downloadmanager.cpp \
     languagemanager.cpp \
     modelmenu.cpp \
-    networkaccessmanager.cpp \
     plaintexteditsearch.cpp \
-    schemeaccesshandler.cpp \
     searchbar.cpp \
     searchbutton.cpp \
     searchlineedit.cpp \
@@ -96,9 +90,9 @@ SOURCES += \
     webviewsearch.cpp
 
 include(bookmarks/bookmarks.pri)
-include(cookiejar/cookiejar.pri)
 include(history/history.pri)
 include(locationbar/locationbar.pri)
+include(network/network.pri)
 include(opensearch/opensearch.pri)
 include(qwebplugins/qwebplugins.pri)
 include(utils/utils.pri)
