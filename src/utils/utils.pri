@@ -2,7 +2,6 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 HEADERS += \
-    autosaver.h \
     editlistview.h \
     edittableview.h \
     edittreeview.h \
@@ -12,7 +11,6 @@ HEADERS += \
     squeezelabel.h
 
 SOURCES += \
-    autosaver.cpp \
     editlistview.cpp \
     edittableview.cpp \
     edittreeview.cpp \

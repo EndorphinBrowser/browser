@@ -1,1 +1,1 @@
-This directory contains stand alone utility classes that provide functionality beyond the normal Qt class or is a general purpose class that would be useful for multiple applications, not just Arora.  All classes should have auto tests and manual tests were applicable.
+This directory contains stand alone utility classes that provide functionality beyond the normal Qt class or is a general purpose class that would be useful for multiple applications, not just Arora.  All classes should have auto tests, manual tests were applicable, and be licensed under the BSD.
