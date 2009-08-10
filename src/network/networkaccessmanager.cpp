@@ -79,8 +79,6 @@
 #include <qtextdocument.h>
 
 #include <qauthenticator.h>
-#include <qnetworkproxy.h>
-#include <qnetworkreply.h>
 #include <qsslconfiguration.h>
 #include <qsslerror.h>
 #include <qdatetime.h>
