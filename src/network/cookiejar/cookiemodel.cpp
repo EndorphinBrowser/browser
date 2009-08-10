@@ -73,6 +73,7 @@ CookieModel::CookieModel(CookieJar *cookieJar, QObject *parent)
 {
     connect(m_cookieJar, SIGNAL(cookiesChanged()), this, SLOT(cookiesChanged()));
     m_cookieJar->load();
+    m_cookies = m_cookieJar->allCookies();
 }
 
 QVariant CookieModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -112,16 +113,13 @@ QVariant CookieModel::headerData(int section, Qt::Orientation orientation, int r
 
 QVariant CookieModel::data(const QModelIndex &index, int role) const
 {
-    QList<QNetworkCookie> lst;
-    if (m_cookieJar)
-        lst = m_cookieJar->allCookies();
-    if (index.row() < 0 || index.row() >= lst.size())
+    if (index.row() < 0 || index.row() >= m_cookies.size())
         return QVariant();
 
     switch (role) {
     case Qt::DisplayRole:
     case Qt::EditRole: {
-        QNetworkCookie cookie = lst.at(index.row());
+        QNetworkCookie cookie = m_cookies.at(index.row());
         switch (index.column()) {
         case 0:
             return cookie.domain();
@@ -154,7 +152,7 @@ int CookieModel::columnCount(const QModelIndex &parent) const
 
 int CookieModel::rowCount(const QModelIndex &parent) const
 {
-    return (parent.isValid() || !m_cookieJar) ? 0 : m_cookieJar->allCookies().count();
+    return (parent.isValid() || !m_cookieJar) ? 0 : m_cookies.count();
 }
 
 bool CookieModel::removeRows(int row, int count, const QModelIndex &parent)
@@ -163,16 +161,19 @@ bool CookieModel::removeRows(int row, int count, const QModelIndex &parent)
         return false;
     int lastRow = row + count - 1;
     beginRemoveRows(parent, row, lastRow);
-    QList<QNetworkCookie> lst = m_cookieJar->allCookies();
+    QList<QNetworkCookie> lst = m_cookies;
     for (int i = lastRow; i >= row; --i) {
         lst.removeAt(i);
     }
     m_cookieJar->setAllCookies(lst);
+    m_cookies = lst;
     endRemoveRows();
     return true;
 }
 
 void CookieModel::cookiesChanged()
 {
+    if (m_cookieJar)
+        m_cookies = m_cookieJar->allCookies();
     reset();
 }

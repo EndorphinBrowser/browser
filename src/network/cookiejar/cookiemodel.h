@@ -65,6 +65,8 @@
 
 #include <qabstractitemmodel.h>
 
+#include <qnetworkcookie.h>
+
 class CookieJar;
 class CookieModel : public QAbstractTableModel
 {
@@ -82,6 +84,7 @@ private slots:
     void cookiesChanged();
 
 private:
+    QList<QNetworkCookie> m_cookies;
     CookieJar *m_cookieJar;
 };
 
