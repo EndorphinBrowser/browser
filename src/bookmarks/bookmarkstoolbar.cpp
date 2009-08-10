@@ -47,6 +47,7 @@ BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
     connect(m_bookmarksModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), this, SLOT(build()));
     connect(m_bookmarksModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(build()));
     setAcceptDrops(true);
+    setHidden(true);
 }
 
 QModelIndex BookmarksToolBar::index(QAction *action)
