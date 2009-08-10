@@ -87,7 +87,6 @@ public slots:
     void loadSettings();
 
 private slots:
-    void privacyChanged(bool isPrivate);
     void authenticationRequired(QNetworkReply *reply, QAuthenticator *auth);
     void proxyAuthenticationRequired(const QNetworkProxy &proxy, QAuthenticator *auth);
 #ifndef QT_NO_OPENSSL

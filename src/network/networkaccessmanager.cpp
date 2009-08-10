@@ -68,6 +68,7 @@
 #include "schemeaccesshandler.h"
 #include "fileaccesshandler.h"
 #include "networkproxyfactory.h"
+#include "networkdiskcache.h"
 #include "ui_passworddialog.h"
 #include "ui_proxy.h"
 
@@ -78,8 +79,6 @@
 #include <qtextdocument.h>
 
 #include <qauthenticator.h>
-#include <qdesktopservices.h>
-#include <qnetworkdiskcache.h>
 #include <qnetworkproxy.h>
 #include <qnetworkreply.h>
 #include <qsslconfiguration.h>
@@ -97,8 +96,6 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
     connect(this, SIGNAL(sslErrors(QNetworkReply*, const QList<QSslError>&)),
             SLOT(sslErrors(QNetworkReply*, const QList<QSslError>&)));
 #endif
-    connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
-            this, SLOT(privacyChanged(bool)));
     loadSettings();
 
     // Register custom scheme handlers
@@ -161,36 +158,19 @@ void NetworkAccessManager::loadSettings()
         cacheEnabled = false;
 
     if (cacheEnabled) {
-        int maximumCacheSize = settings.value(QLatin1String("maximumCacheSize"), 50).toInt() * 1024 * 1024;
-
-        QNetworkDiskCache *diskCache;
+        NetworkDiskCache *diskCache;
         if (cache())
-            diskCache = qobject_cast<QNetworkDiskCache*>(cache());
+            diskCache = qobject_cast<NetworkDiskCache*>(cache());
         else
-            diskCache = new QNetworkDiskCache(this);
-
-        QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
-                                + QLatin1String("/browser");
-        diskCache->setCacheDirectory(location);
-        diskCache->setMaximumCacheSize(maximumCacheSize);
+            diskCache = new NetworkDiskCache(this);
         setCache(diskCache);
+        diskCache->loadSettings();
     } else {
         if (QLatin1String(qVersion()) > QLatin1String("4.5.1"))
             setCache(0);
     }
     settings.endGroup();
 }
-
-void NetworkAccessManager::privacyChanged(bool isPrivate)
-{
-    if (isPrivate) {
-        if (QLatin1String(qVersion()) > QLatin1String("4.5.1"))
-            setCache(0);
-    } else {
-        loadSettings();
-    }
-}
-
 
 void NetworkAccessManager::authenticationRequired(QNetworkReply *reply, QAuthenticator *auth)
 {

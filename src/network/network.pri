@@ -8,12 +8,14 @@ FORMS += \
 HEADERS += \
     fileaccesshandler.h \
     networkaccessmanager.h \
+    networkdiskcache.h \
     networkproxyfactory.h \
     schemeaccesshandler.h
 
 SOURCES += \
     fileaccesshandler.cpp \
     networkaccessmanager.cpp \
+    networkdiskcache.cpp \
     networkproxyfactory.cpp \
     schemeaccesshandler.cpp
 
