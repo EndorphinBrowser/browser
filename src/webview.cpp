@@ -143,6 +143,11 @@ void WebView::loadSettings()
 
 #if !(QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK))
 #include <qdir.h>
+// DO NOT CHANGE ANYTHING IN THIS FUNCTION
+// You want to change TabWidget::guessUrlFromString()
+// This is a copy of QWebView::guessUrlFromStringis from
+// QtWebKit and should never be out of sync with that code.
+// This function is fragile, very easy to break, and tested in QtWebKit.
 QUrl WebView::guessUrlFromString(const QString &string)
 {
     QString trimmedString = string.trimmed();
