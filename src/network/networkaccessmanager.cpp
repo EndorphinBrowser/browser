@@ -66,6 +66,7 @@
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "schemeaccesshandler.h"
+#include "fileaccesshandler.h"
 #include "ui_passworddialog.h"
 #include "ui_proxy.h"
 

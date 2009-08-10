@@ -17,10 +17,42 @@
  * Boston, MA  02110-1301  USA
  */
 
+#ifndef FILEACCESSHANDLER_H
+#define FILEACCESSHANDLER_H
+
 #include "schemeaccesshandler.h"
 
-SchemeAccessHandler::SchemeAccessHandler(QObject *parent)
-    : QObject(parent)
-{
-}
+#include <qbuffer.h>
+#include <qnetworkreply.h>
 
+class FileAccessHandler : public SchemeAccessHandler
+{
+public:
+    FileAccessHandler(QObject *parent = 0);
+
+    virtual QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0);
+};
+
+class FileAccessReply : public QNetworkReply
+{
+    Q_OBJECT
+
+public:
+    FileAccessReply(const QNetworkRequest &request, QObject *parent = 0);
+    ~FileAccessReply();
+
+    virtual qint64 bytesAvailable() const;
+    virtual void abort() { };
+    virtual void close();
+
+protected:
+    virtual qint64 readData(char *data, qint64 maxSize);
+
+private slots:
+    void listDirectory();
+
+private:
+    QBuffer buffer;
+};
+
+#endif // FILEACCESSHANDLER_H

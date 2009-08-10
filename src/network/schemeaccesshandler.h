@@ -20,47 +20,17 @@
 #ifndef SCHEMEACCESSHANDLER_H
 #define SCHEMEACCESSHANDLER_H
 
-#include <qbuffer.h>
 #include <qobject.h>
-#include <qnetworkaccessmanager.h>
-#include <qnetworkreply.h>
 
+#include <qnetworkaccessmanager.h>
+
+class QNetworkReply;
 class SchemeAccessHandler : public QObject
 {
 public:
     SchemeAccessHandler(QObject *parent = 0);
 
     virtual QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0) = 0;
-};
-
-class FileAccessHandler : public SchemeAccessHandler
-{
-public:
-    FileAccessHandler(QObject *parent = 0);
-
-    virtual QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0);
-};
-
-class FileAccessReply : public QNetworkReply
-{
-    Q_OBJECT
-
-public:
-    FileAccessReply(const QNetworkRequest &request, QObject *parent = 0);
-    ~FileAccessReply();
-
-    virtual qint64 bytesAvailable() const;
-    virtual void abort() { };
-    virtual void close();
-
-protected:
-    virtual qint64 readData(char *data, qint64 maxSize);
-
-private slots:
-    void listDirectory();
-
-private:
-    QBuffer buffer;
 };
 
 #endif // SCHEMEACCESSHANDLER_H
