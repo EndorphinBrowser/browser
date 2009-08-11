@@ -97,13 +97,33 @@ bool LanguageManager::isLanguageAvailable(const QString &language) const
     if (language.isEmpty())
         return true;
 
+    // optimization so we don't have to load all the languages
     if (!m_loaded) {
         QString file = translationLocation() + QLatin1Char('/') + language + QLatin1String(".qm");
-        return QFile::exists(file);
+        if (QFile::exists(file))
+            return true;
     }
 
+    return (!convertStringToLanguageFile(language).isEmpty());
+}
+
+// Return an empty string if we do not have the language file for string
+QString LanguageManager::convertStringToLanguageFile(const QString &string) const
+{
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__ << string;
+#endif
     loadAvailableLanguages();
-    return m_languages.contains(language);
+    if (m_languages.contains(string))
+       return string;
+    QLocale locale(string);
+    QString fallback = locale.name().split(QLatin1Char('_')).value(0);
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__ << "fallback" << fallback;
+#endif
+    if (m_languages.contains(fallback)) // fallback to the country
+        return locale.name();
+    return QString();
 }
 
 bool LanguageManager::setCurrentLanguage(const QString &language)
@@ -132,10 +152,11 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
 
     QTranslator *newAppTranslator = new QTranslator(this);
     QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-    bool loaded = newAppTranslator->load(m_currentLanguage, translationLocation());
+    QString languageFile = convertStringToLanguageFile(m_currentLanguage);
+    bool loaded = newAppTranslator->load(languageFile, translationLocation());
 
     QTranslator *newSysTranslator = new QTranslator(this);
-    QString translatorFileName = QLatin1String("qt_") + m_currentLanguage;
+    QString translatorFileName = QLatin1String("qt_") + languageFile;
     if (!newSysTranslator->load(translatorFileName, resourceDir)) {
         delete newSysTranslator;
         newSysTranslator = 0;
@@ -148,7 +169,7 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
         return false;
     }
 
-    QLocale::setDefault(QLocale(m_currentLanguage));
+    QLocale::setDefault(QLocale(translatorFileName));
 
     // A new language event is sent to all widgets in the application
     // They need to catch it and re-translate
@@ -218,7 +239,7 @@ void LanguageManager::chooseNewLanguage()
     setCurrentLanguage(m_languages.value(selection));
 }
 
-QString LanguageManager::translationLocation() const
+QString LanguageManager::translationLocation()
 {
     QString directory = BrowserApplication::dataDirectory() + QLatin1String("/locale");
     // work without installing

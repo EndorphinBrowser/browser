@@ -55,7 +55,8 @@ public slots:
     void chooseNewLanguage();
 
 private:
-    QString translationLocation() const;
+    static QString translationLocation();
+    QString convertStringToLanguageFile(const QString &string) const;
     void loadAvailableLanguages() const;
 
     QString m_currentLanguage;

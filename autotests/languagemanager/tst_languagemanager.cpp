@@ -43,6 +43,8 @@ private slots:
     void languagemanager_data();
     void languagemanager();
 
+    void isLanguageAvailable_data();
+    void isLanguageAvailable();
     void chooseNewLanguage_data();
     void chooseNewLanguage();
     void setCurrentLanguage_data();
@@ -111,6 +113,23 @@ void tst_LanguageManager::languagemanager()
     manager.setCurrentLanguage(QString());
 }
 
+void tst_LanguageManager::isLanguageAvailable_data()
+{
+    QTest::addColumn<QString>("language");
+    QTest::addColumn<bool>("available");
+    QTest::newRow("null") << QString() << true;
+    QTest::newRow("fallback0") << "ca_ES" << true;
+    QTest::newRow("fallback1") << "ca_ES.UTF-8" << true;
+}
+
+void tst_LanguageManager::isLanguageAvailable()
+{
+    QFETCH(QString, language);
+    QFETCH(bool, available);
+    SubLanguageManager manager;
+    QCOMPARE(manager.isLanguageAvailable(language), available);
+}
+
 void tst_LanguageManager::chooseNewLanguage_data()
 {
     QTest::addColumn<int>("foo");
@@ -149,6 +168,7 @@ void tst_LanguageManager::setCurrentLanguage_data()
     if (validLanguage.isEmpty())
         QSKIP("no languages to test with", SkipAll);
     QTest::newRow(validLanguage.toLatin1()) << validLanguage << true << validLanguage;
+    QTest::newRow("fallback") << "ca_ES" << true << "ca_ES";
 }
 
 // public void setCurrentLanguage(QString const &language)
