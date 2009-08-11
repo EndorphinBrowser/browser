@@ -125,6 +125,7 @@ class AutoSaver;
 class DownloadModel;
 QT_BEGIN_NAMESPACE
 class QFileIconProvider;
+class QMimeData;
 QT_END_NAMESPACE
 
 class DownloadManager : public QDialog, public Ui_DownloadDialog
@@ -192,7 +193,8 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
-
+    Qt::ItemFlags flags(const QModelIndex& index) const;
+    QMimeData* mimeData(const QModelIndexList &indices) const;
 private:
     DownloadManager *m_downloadManager;
 

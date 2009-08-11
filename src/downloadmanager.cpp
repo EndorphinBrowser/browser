@@ -76,6 +76,7 @@
 #include <qmetaobject.h>
 #include <qmessagebox.h>
 #include <qsettings.h>
+#include <qmimedata.h>
 
 #include <qdebug.h>
 
@@ -773,3 +774,25 @@ bool DownloadModel::removeRows(int row, int count, const QModelIndex &parent)
     return true;
 }
 
+Qt::ItemFlags DownloadModel::flags(const QModelIndex& index) const
+{
+    Qt::ItemFlags defaultFlags = QAbstractItemModel::flags(index);
+    if (index.row() < 0 || index.row() >= rowCount(index.parent())) return 0;
+    DownloadItem* item = m_downloadManager->m_downloads.at(index.row());
+
+    if(item->downloadedSuccessfully()) return defaultFlags | Qt::ItemIsDragEnabled;
+    return defaultFlags;
+}
+
+QMimeData* DownloadModel::mimeData(const QModelIndexList& indices) const
+{
+    QMimeData* mimeData = new QMimeData();
+    QList<QUrl> urls;
+    foreach(const QModelIndex& index, indices) {
+        if (index.row() < 0 || index.row() >= rowCount(index.parent())) continue;
+        DownloadItem* item = m_downloadManager->m_downloads.at(index.row());
+        urls.append(QUrl::fromLocalFile(QFileInfo(item->m_output).absoluteFilePath()));
+    }
+    mimeData->setUrls(urls);
+    return mimeData;
+}
