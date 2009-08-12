@@ -124,7 +124,7 @@ void SettingsDialog::loadDefaults()
     enablePlugins->setChecked(defaultSettings->testAttribute(QWebSettings::PluginsEnabled));
     enableImages->setChecked(defaultSettings->testAttribute(QWebSettings::AutoLoadImages));
     clickToFlash->setChecked(false);
-    filterTrackingCookiesCheckbox->setChecked(true);
+    filterTrackingCookiesCheckbox->setChecked(false);
 }
 
 void SettingsDialog::loadFromSettings()
@@ -218,7 +218,7 @@ void SettingsDialog::loadFromSettings()
         keepUntilCombo->setCurrentIndex(2);
         break;
     }
-    filterTrackingCookiesCheckbox->setChecked(settings.value(QLatin1String("filterTrackingCookies"), true).toBool());
+    filterTrackingCookiesCheckbox->setChecked(settings.value(QLatin1String("filterTrackingCookies"), false).toBool());
     settings.endGroup();
 
     // Network

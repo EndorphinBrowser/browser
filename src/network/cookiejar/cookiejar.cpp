@@ -117,6 +117,7 @@ CookieJar::CookieJar(QObject *parent)
     : NetworkCookieJar(parent)
     , m_loaded(false)
     , m_saveTimer(new AutoSaver(this))
+    , m_filterTrackingCookies(false)
     , m_acceptCookies(AcceptOnlyFromSitesNavigatedTo)
     , m_isPrivate(false)
 {
@@ -183,7 +184,7 @@ void CookieJar::loadSettings()
         setAllCookies(QList<QNetworkCookie>());
 
     m_loaded = true;
-    m_filterTrackingCookies = settings.value(QLatin1String("filterTrackingCookies"), true).toBool();
+    m_filterTrackingCookies = settings.value(QLatin1String("filterTrackingCookies"), m_filterTrackingCookies).toBool();
     emit cookiesChanged();
 }
 
