@@ -19,3 +19,8 @@ SOURCES += \
     lineedit.cpp \
     singleapplication.cpp \
     squeezelabel.cpp
+
+win32 {
+    include(explorerstyle.pri)
+}
+

@@ -126,6 +126,5 @@ unix {
 }
 
 win32 {
-    include(explorerstyle.pri)
     LIBS += -ladvapi32
 }
