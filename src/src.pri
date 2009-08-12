@@ -48,7 +48,6 @@ HEADERS += \
     clearprivatedata.h \
     clearbutton.h \
     downloadmanager.h \
-    languagemanager.h \
     modelmenu.h \
     plaintexteditsearch.h \
     searchbar.h \
@@ -74,7 +73,6 @@ SOURCES += \
     clearprivatedata.cpp \
     clearbutton.cpp \
     downloadmanager.cpp \
-    languagemanager.cpp \
     modelmenu.cpp \
     plaintexteditsearch.cpp \
     searchbar.cpp \

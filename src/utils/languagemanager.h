@@ -1,6 +1,6 @@
 /*
- * Copyright 2008 Diego Iastrubni, elcuco, at, kde.org
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Diego Iastrubni, elcuco, at, kde.org
+ * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -44,7 +44,7 @@ signals:
     void languageChanged(const QString &language);
 
 public:
-    LanguageManager(QObject *parent = 0);
+    LanguageManager(const QString &localeDirectory, QObject *parent = 0);
 
     QString currentLanguage() const;
     bool setCurrentLanguage(const QString &language);
@@ -55,10 +55,11 @@ public slots:
     void chooseNewLanguage();
 
 private:
-    static QString translationLocation();
+    QString translationLocation() const;
     QString convertStringToLanguageFile(const QString &string) const;
     void loadAvailableLanguages() const;
 
+    QString m_localeDirectory;
     QString m_currentLanguage;
     QTranslator *m_sysTranslator;
     QTranslator *m_appTranslator;

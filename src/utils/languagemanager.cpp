@@ -1,6 +1,6 @@
 /*
- * Copyright 2008 Diego Iastrubni, elcuco, at, kde.org
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Diego Iastrubni, elcuco, at, kde.org
+ * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -29,8 +29,6 @@
 
 #include "languagemanager.h"
 
-#include "browserapplication.h"
-
 #include <qapplication.h>
 #include <qdir.h>
 #include <qdiriterator.h>
@@ -46,8 +44,9 @@
 
 // #define LANGUAGEMANAGER_DEBUG
 
-LanguageManager::LanguageManager(QObject *parent)
+LanguageManager::LanguageManager(const QString &localeDirectory, QObject *parent)
     : QObject(parent)
+    , m_localeDirectory(localeDirectory)
     , m_sysTranslator(0)
     , m_appTranslator(0)
     , m_loaded(false)
@@ -252,9 +251,9 @@ void LanguageManager::chooseNewLanguage()
     setCurrentLanguage(m_languages.value(selection));
 }
 
-QString LanguageManager::translationLocation()
+QString LanguageManager::translationLocation() const
 {
-    QString directory = BrowserApplication::dataDirectory() + QLatin1String("/locale");
+    QString directory = m_localeDirectory + QLatin1String("/locale");
     // work without installing
     if (!QFile::exists(directory))
         directory = QLatin1String(".qm/locale");

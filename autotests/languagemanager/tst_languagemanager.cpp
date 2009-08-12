@@ -55,6 +55,7 @@ private slots:
 class SubLanguageManager : public LanguageManager
 {
 public:
+    SubLanguageManager() : LanguageManager(QString()) {}
 
 };
 
@@ -85,7 +86,7 @@ void tst_LanguageManager::cleanupTestCase()
 // This will be called before each test function is executed.
 void tst_LanguageManager::init()
 {
-    LanguageManager manager;
+    SubLanguageManager manager;
     manager.setCurrentLanguage(QString());
 }
 

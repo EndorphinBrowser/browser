@@ -543,7 +543,7 @@ BookmarksManager *BrowserApplication::bookmarksManager()
 LanguageManager *BrowserApplication::languageManager()
 {
     if (!s_languageManager) {
-        s_languageManager = new LanguageManager;
+        s_languageManager = new LanguageManager(dataDirectory());
         connect(s_languageManager, SIGNAL(languageChanged(const QString &)),
                 qApp, SLOT(retranslate()));
     }
