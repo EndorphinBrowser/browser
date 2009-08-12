@@ -21,6 +21,8 @@ SOURCES += \
     squeezelabel.cpp
 
 win32 {
-    include(explorerstyle.pri)
+    HEADERS += explorerstyle.h
+    SOURCES += explorerstyle.cpp
+    LIBS += -lgdi32
 }
 
