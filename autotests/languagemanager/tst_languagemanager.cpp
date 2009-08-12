@@ -120,6 +120,7 @@ void tst_LanguageManager::isLanguageAvailable_data()
     QTest::newRow("null") << QString() << true;
     QTest::newRow("fallback0") << "ca_ES" << true;
     QTest::newRow("fallback1") << "ca_ES.UTF-8" << true;
+    QTest::newRow("fallback2") << "de_AT" << true;
 }
 
 void tst_LanguageManager::isLanguageAvailable()

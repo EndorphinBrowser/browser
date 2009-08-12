@@ -104,10 +104,13 @@ bool LanguageManager::isLanguageAvailable(const QString &language) const
             return true;
     }
 
-    return (!convertStringToLanguageFile(language).isEmpty());
+    return !(convertStringToLanguageFile(language).isEmpty());
 }
 
 // Return an empty string if we do not have the language file for string
+// If we don't have an exact ma
+// - Fall back to country
+// - Fall back to the first country_ match if there is one
 QString LanguageManager::convertStringToLanguageFile(const QString &string) const
 {
 #ifdef LANGUAGEMANAGER_DEBUG
@@ -118,11 +121,21 @@ QString LanguageManager::convertStringToLanguageFile(const QString &string) cons
        return string;
     QLocale locale(string);
     QString fallback = locale.name().split(QLatin1Char('_')).value(0);
+    if (!string.contains(fallback))
+        return QString();
 #ifdef LANGUAGEMANAGER_DEBUG
     qDebug() << "LanguageManager::" << __FUNCTION__ << "fallback" << fallback;
 #endif
     if (m_languages.contains(fallback)) // fallback to the country
-        return locale.name();
+        return fallback;
+
+    // See if any language file matches the country
+    foreach (const QString &language, m_languages) {
+        QString country = QLocale(language).name().split(QLatin1Char('_')).value(0);
+        if (country == fallback)
+            return country;
+    }
+
     return QString();
 }
 
@@ -256,11 +269,11 @@ QString LanguageManager::translationLocation()
  */
 void LanguageManager::loadAvailableLanguages() const
 {
+    if (m_loaded)
+        return;
 #ifdef LANGUAGEMANAGER_DEBUG
     qDebug() << "LanguageManager::" << __FUNCTION__;
 #endif
-    if (m_loaded)
-        return;
     m_loaded = true;
 
     QDirIterator it(translationLocation());
