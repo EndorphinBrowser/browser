@@ -63,6 +63,7 @@
 #include "cookiemodel.h"
 
 #include "cookiejar.h"
+#include "autosaver.h"
 
 #include <qdatetime.h>
 #include <qfontmetrics.h>
@@ -166,6 +167,11 @@ bool CookieModel::removeRows(int row, int count, const QModelIndex &parent)
         lst.removeAt(i);
     }
     m_cookieJar->setAllCookies(lst);
+    disconnect(m_cookieJar, SIGNAL(cookiesChanged()), this, SLOT(cookiesChanged()));
+    m_cookieJar->m_saveTimer->changeOccurred();
+    emit m_cookieJar->cookiesChanged();
+    connect(m_cookieJar, SIGNAL(cookiesChanged()), this, SLOT(cookiesChanged()));
+
     m_cookies = lst;
     endRemoveRows();
     return true;
