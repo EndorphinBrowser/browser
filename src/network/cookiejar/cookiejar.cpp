@@ -137,6 +137,8 @@ void CookieJar::setPrivate(bool isPrivate)
 
 void CookieJar::clear()
 {
+    if (!m_loaded)
+        load();
     setAllCookies(QList<QNetworkCookie>());
     m_saveTimer->changeOccurred();
     emit cookiesChanged();
