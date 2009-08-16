@@ -7,5 +7,5 @@ include(../autotests.pri)
 include(../../src/locale/locale.pri)
 
 # Input
-SOURCES += tst_languagemanager.cpp
-HEADERS +=
+SOURCES = languagemanager.cpp tst_languagemanager.cpp
+HEADERS = languagemanager.h
