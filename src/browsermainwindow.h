@@ -171,6 +171,7 @@ private:
     void loadDefaultState();
     void setupMenu();
     void setupToolBar();
+    void updateStopReloadActionText(bool loading);
 
 private:
     QMenu *m_fileMenu;

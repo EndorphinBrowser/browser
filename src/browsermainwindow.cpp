@@ -1004,6 +1004,9 @@ void BrowserMainWindow::retranslate()
     // Toolbar
     m_navigationBar->setWindowTitle(tr("Navigation"));
     m_bookmarksToolbar->setWindowTitle(tr("&Bookmarks"));
+
+    m_stopReloadAction->setText(tr("Reload / Stop"));
+    updateStopReloadActionText(false);
 }
 
 void BrowserMainWindow::setupToolBar()
@@ -1456,18 +1459,29 @@ ToolbarSearch *BrowserMainWindow::toolbarSearch() const
     return m_toolbarSearch;
 }
 
+void BrowserMainWindow::updateStopReloadActionText(bool loading)
+{
+    if (loading) {
+        m_stopReloadAction->setToolTip(tr("Stop loading the current page"));
+        m_stopReloadAction->setIconText(tr("Stop"));
+    } else {
+        m_stopReloadAction->setToolTip(tr("Reload the current page"));
+        m_stopReloadAction->setIconText(tr("Reload"));
+    }
+}
+
 void BrowserMainWindow::loadProgress(int progress)
 {
     if (progress < 100 && progress > 0) {
         disconnect(m_stopReloadAction, SIGNAL(triggered()), m_viewReloadAction, SLOT(trigger()));
         m_stopReloadAction->setIcon(m_stopIcon);
         connect(m_stopReloadAction, SIGNAL(triggered()), m_viewStopAction, SLOT(trigger()));
-        m_stopReloadAction->setToolTip(tr("Stop loading the current page"));
+        updateStopReloadActionText(true);
     } else {
         disconnect(m_stopReloadAction, SIGNAL(triggered()), m_viewStopAction, SLOT(trigger()));
         m_stopReloadAction->setIcon(m_reloadIcon);
         connect(m_stopReloadAction, SIGNAL(triggered()), m_viewReloadAction, SLOT(trigger()));
-        m_stopReloadAction->setToolTip(tr("Reload the current page"));
+        updateStopReloadActionText(false);
     }
 }
 
