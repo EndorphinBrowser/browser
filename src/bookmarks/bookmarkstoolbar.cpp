@@ -176,8 +176,12 @@ void BookmarksToolBar::dropEvent(QDropEvent *event)
         QAction *action = actionAt(event->pos());
         QModelIndex index = this->index(action);
 
-        if (action && action->menu() && index.isValid())
-            parentIndex = index;
+        if (action && action->menu()) {
+            if (action->menu()->isAncestorOf(event->source()))
+                return;
+            if (index.isValid())
+                parentIndex = index;
+        }
 
         BookmarkNode *node = new BookmarkNode(BookmarkNode::Bookmark);
         node->url = QString::fromUtf8(url.toEncoded());
