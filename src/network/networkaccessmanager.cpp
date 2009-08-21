@@ -335,15 +335,14 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
     if (reply)
         return reply;
 
-    if (!m_acceptLanguage.isEmpty()) {
-        QNetworkRequest req = request;
+    QNetworkRequest req = request;
+#if QT_VERSION >= 0x040600
+    req.setAttribute(QNetworkRequest::HttpPipeliningAllowedAttribute, true);
+#endif
+    if (!m_acceptLanguage.isEmpty())
         req.setRawHeader("Accept-Language", m_acceptLanguage);
-        reply = QNetworkAccessManager::createRequest(op, req, outgoingData);
-        emit requestCreated(op, req, reply);
-    } else {
-        reply = QNetworkAccessManager::createRequest(op, request, outgoingData);
-        emit requestCreated(op, request, reply);
-    }
 
+    reply = QNetworkAccessManager::createRequest(op, req, outgoingData);
+    emit requestCreated(op, req, reply);
     return reply;
 }
