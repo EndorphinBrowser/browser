@@ -4,6 +4,7 @@ DEPENDPATH += $$PWD
 HEADERS += \
     opensearchdialog.h \
     opensearchengine.h \
+    opensearchenginedelegate.h \
     opensearchengineaction.h \
     opensearchenginemodel.h \
     opensearchmanager.h \
@@ -13,6 +14,7 @@ HEADERS += \
 SOURCES += \
     opensearchdialog.cpp \
     opensearchengine.cpp \
+    opensearchenginedelegate.cpp \
     opensearchengineaction.cpp \
     opensearchenginemodel.cpp \
     opensearchmanager.cpp \

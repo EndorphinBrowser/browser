@@ -19,6 +19,8 @@
 
 #include "opensearchengine.h"
 
+#include "opensearchenginedelegate.h"
+
 #include <qbuffer.h>
 #include <qcoreapplication.h>
 #include <qlocale.h>
@@ -86,6 +88,7 @@ OpenSearchEngine::OpenSearchEngine(QObject *parent)
     , m_networkAccessManager(0)
     , m_suggestionsReply(0)
     , m_scriptEngine(0)
+    , m_delegate(0)
 {
     m_requestMethods.insert(QLatin1String("get"), QNetworkAccessManager::GetOperation);
     m_requestMethods.insert(QLatin1String("post"), QNetworkAccessManager::PostOperation);
@@ -449,6 +452,8 @@ bool OpenSearchEngine::operator<(const OpenSearchEngine &other) const
 
     \note To be able to request suggestions, you need to provide a network access manager,
           which will be used for network operations.
+
+    \sa requestSearchResults()
 */
 void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
 {
@@ -472,7 +477,6 @@ void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
         m_suggestionsReply = m_networkAccessManager->get(QNetworkRequest(suggestionsUrl(searchTerm)));
     } else {
         QStringList parameters;
-
         Parameters::const_iterator end = m_suggestionsParameters.constEnd();
         Parameters::const_iterator i = m_suggestionsParameters.constBegin();
         for (; i != end; ++i)
@@ -483,6 +487,40 @@ void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
     }
 
     connect(m_suggestionsReply, SIGNAL(finished()), this, SLOT(suggestionsObtained()));
+}
+
+/*!
+    Requests search results on the search engine, for a given \a searchTerm.
+
+    The default implementation does nothing, to supply your own you need to create your own
+    OpenSearchEngineDelegate subclass and supply it to the engine. Then the function will call
+    the performSearchRequest() method of the delegate, which can then handle the request
+    in a custom way.
+
+    \sa requestSuggestions(), delegate()
+*/
+void OpenSearchEngine::requestSearchResults(const QString &searchTerm)
+{
+    if (!m_delegate || searchTerm.isEmpty())
+        return;
+
+    Q_ASSERT(m_requestMethods.contains(m_searchMethod));
+
+    QNetworkRequest request(QUrl(searchUrl(searchTerm)));
+    QByteArray data;
+    QNetworkAccessManager::Operation operation = m_requestMethods.value(m_searchMethod);
+
+    if (operation == QNetworkAccessManager::PostOperation) {
+        QStringList parameters;
+        Parameters::const_iterator end = m_searchParameters.constEnd();
+        Parameters::const_iterator i = m_searchParameters.constBegin();
+        for (; i != end; ++i)
+            parameters.append(i->first + QLatin1String("=") + i->second);
+
+        data = parameters.join(QLatin1String("&")).toUtf8();
+    }
+
+    m_delegate->performSearchRequest(request, operation, data);
 }
 
 void OpenSearchEngine::suggestionsObtained()
@@ -533,6 +571,23 @@ QNetworkAccessManager *OpenSearchEngine::networkAccessManager() const
 void OpenSearchEngine::setNetworkAccessManager(QNetworkAccessManager *networkAccessManager)
 {
     m_networkAccessManager = networkAccessManager;
+}
+
+/*!
+    \property delegate
+    \brief the delegate that is used to perform specific tasks.
+
+    It can be currently supplied to provide a custom behaviour ofthe requetSearchResults() method.
+    The default implementation does nothing.
+*/
+OpenSearchEngineDelegate *OpenSearchEngine::delegate() const
+{
+    return m_delegate;
+}
+
+void OpenSearchEngine::setDelegate(OpenSearchEngineDelegate *delegate)
+{
+    m_delegate = delegate;
 }
 
 /*!

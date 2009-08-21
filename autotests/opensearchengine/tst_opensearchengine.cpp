@@ -21,14 +21,19 @@
 #include <qtest.h>
 #include "qtry.h"
 #include "opensearchengine.h"
+#include "opensearchenginedelegate.h"
 
 #include <qbuffer.h>
 #include <qfile.h>
 #include <qlocale.h>
 #include <qnetworkaccessmanager.h>
 #include <qnetworkreply.h>
+#include <qnetworkrequest.h>
 #include <qsignalspy.h>
 #include <qtimer.h>
+
+typedef OpenSearchEngine::Parameters Parameters;
+typedef OpenSearchEngine::Parameter Parameter;
 
 class tst_OpenSearchEngine : public QObject
 {
@@ -78,6 +83,7 @@ private slots:
     void languageCodes_data();
     void languageCodes();
     void requestMethods();
+    void delegate();
 };
 
 // Subclass that exposes the protected functions.
@@ -183,6 +189,35 @@ protected:
     }
 };
 
+class Delegate : public OpenSearchEngineDelegate
+{
+    public:
+        Delegate()
+            : OpenSearchEngineDelegate()
+            , callsCount(0)
+        {
+        }
+
+        ~Delegate()
+        {
+        }
+
+        void performSearchRequest(const QNetworkRequest &request,
+                                  QNetworkAccessManager::Operation operation,
+                                  const QByteArray &data)
+        {
+            ++callsCount;
+            lastRequest = request;
+            lastOperation = operation;
+            lastData = data;
+        }
+
+        QNetworkRequest lastRequest;
+        QNetworkAccessManager::Operation lastOperation;
+        QByteArray lastData;
+        int callsCount;
+};
+
 // This will be called before the first test function is executed.
 // It is only called once.
 void tst_OpenSearchEngine::initTestCase()
@@ -223,18 +258,18 @@ void tst_OpenSearchEngine::opensearchengine()
     QCOMPARE(engine.operator==(other), true);
     QCOMPARE(engine.providesSuggestions(), false);
     engine.requestSuggestions(QString());
-    QCOMPARE(engine.searchParameters(), QList<OpenSearchEngine::Parameter>());
+    QCOMPARE(engine.searchParameters(), QList<Parameter>());
     QCOMPARE(engine.searchUrl(QString()), QUrl());
     QCOMPARE(engine.searchUrlTemplate(), QString());
     engine.setDescription(QString());
     engine.setImage(QImage());
     engine.setImageUrl(QString());
     engine.setName(QString());
-    engine.setSearchParameters(QList<OpenSearchEngine::Parameter>());
+    engine.setSearchParameters(QList<Parameter>());
     engine.setSearchUrlTemplate(QString());
-    engine.setSuggestionsParameters(QList<OpenSearchEngine::Parameter>());
+    engine.setSuggestionsParameters(QList<Parameter>());
     engine.setSuggestionsUrlTemplate(QString());
-    QCOMPARE(engine.suggestionsParameters(), QList<OpenSearchEngine::Parameter>());
+    QCOMPARE(engine.suggestionsParameters(), QList<Parameter>());
     QCOMPARE(engine.suggestionsUrl(QString()), QUrl());
     QCOMPARE(engine.suggestionsUrlTemplate(), QString());
     engine.call_imageChanged();
@@ -404,7 +439,6 @@ void tst_OpenSearchEngine::operatorlessthan()
     QVERIFY(engine1 < engine2);
 }
 
-typedef OpenSearchEngine::Parameters Parameters;
 Q_DECLARE_METATYPE(Parameters)
 void tst_OpenSearchEngine::operatorequal_data()
 {
@@ -429,7 +463,7 @@ void tst_OpenSearchEngine::operatorequal_data()
                           << Parameters() << Parameters()
                           << false;
     QTest::newRow("parameters") << QString() << QString() << QString() << QString() << QString()
-                          << (Parameters() << OpenSearchEngine::Parameter("a", "b")) << Parameters()
+                          << (Parameters() << Parameter("a", "b")) << Parameters()
                           << false;
 }
 
@@ -508,7 +542,7 @@ void tst_OpenSearchEngine::requestSuggestions()
     engine.setNetworkAccessManager(&manager);
     engine.setSuggestionsMethod(method);
     engine.setSuggestionsUrlTemplate("http://foobar.baz");
-    engine.setSuggestionsParameters(Parameters() << OpenSearchEngine::Parameter("a", "b"));
+    engine.setSuggestionsParameters(Parameters() << Parameter("a", "b"));
 
     QVERIFY(engine.providesSuggestions());
 
@@ -557,11 +591,11 @@ void tst_OpenSearchEngine::requestSuggestionsCrash()
 void tst_OpenSearchEngine::searchParameters_data()
 {
     QTest::addColumn<Parameters>("searchParameters");
-    QTest::newRow("null") << QList<OpenSearchEngine::Parameter>();
-    QTest::newRow("something") << (Parameters() << OpenSearchEngine::Parameter("a", "b"));
+    QTest::newRow("null") << QList<Parameter>();
+    QTest::newRow("something") << (Parameters() << Parameter("a", "b"));
 }
 
-// public QList<OpenSearchEngine::Parameter> searchParameters() const
+// public QList<Parameter> searchParameters() const
 void tst_OpenSearchEngine::searchParameters()
 {
     QFETCH(Parameters, searchParameters);
@@ -573,7 +607,7 @@ void tst_OpenSearchEngine::searchParameters()
 
     engine.setSearchParameters(searchParameters);
     QCOMPARE(engine.searchParameters(), searchParameters);
-    QCOMPARE(qvariant_cast<OpenSearchEngine::Parameters>(engine.property("searchParameters")), searchParameters);
+    QCOMPARE(qvariant_cast<Parameters>(engine.property("searchParameters")), searchParameters);
 
     QCOMPARE(spy0.count(), 0);
     QCOMPARE(spy1.count(), 0);
@@ -591,7 +625,7 @@ void tst_OpenSearchEngine::searchUrl_data()
     QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
                     << Parameters() << QUrl(QString("http://foobar.baz/?q="));
     QTest::newRow("parameters") << QString("baz") << QString("http://foobar.baz/?q={searchTerms}")
-                    << (Parameters() << OpenSearchEngine::Parameter("abc", "{searchTerms}") << OpenSearchEngine::Parameter("x", "yz"))
+                    << (Parameters() << Parameter("abc", "{searchTerms}") << Parameter("x", "yz"))
                     << QUrl(QString("http://foobar.baz/?q=baz&abc=baz&x=yz"));
 }
 
@@ -641,11 +675,11 @@ void tst_OpenSearchEngine::searchUrlTemplate()
 void tst_OpenSearchEngine::suggestionsParameters_data()
 {
     QTest::addColumn<Parameters>("suggestionsParameters");
-    QTest::newRow("null") << QList<OpenSearchEngine::Parameter>();
-    QTest::newRow("something") << (Parameters() << OpenSearchEngine::Parameter("a", "b"));
+    QTest::newRow("null") << QList<Parameter>();
+    QTest::newRow("something") << (Parameters() << Parameter("a", "b"));
 }
 
-// public QList<OpenSearchEngine::Parameter> suggestionsParameters() const
+// public QList<Parameter> suggestionsParameters() const
 void tst_OpenSearchEngine::suggestionsParameters()
 {
     QFETCH(Parameters, suggestionsParameters);
@@ -674,7 +708,7 @@ void tst_OpenSearchEngine::suggestionsUrl_data()
     QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
                     << Parameters() << QUrl(QString("http://foobar.baz/?q="));
     QTest::newRow("parameters") << QString("baz") << QString("http://foobar.baz/?q={searchTerms}")
-                    << (Parameters() << OpenSearchEngine::Parameter("a", "bc"))
+                    << (Parameters() << Parameter("a", "bc"))
                     << QUrl(QString("http://foobar.baz/?q=baz&a=bc"));
 }
 
@@ -808,6 +842,64 @@ void tst_OpenSearchEngine::requestMethods()
     engine.setSuggestionsMethod("bar");
     QCOMPARE(engine.searchMethod(), QString("get"));
     QCOMPARE(engine.suggestionsMethod(), QString("post"));
+}
+
+void tst_OpenSearchEngine::delegate()
+{
+    SubOpenSearchEngine engine;
+    engine.setName(QString("foo"));
+    engine.setDescription(QString("bar"));
+    engine.setSearchUrlTemplate(QString("http://foobar.baz/?q={searchTerms}"));
+
+    QCOMPARE(engine.delegate(), (Delegate*)0);
+    engine.setDelegate(0);
+    QCOMPARE(engine.delegate(), (Delegate*)0);
+    engine.requestSearchResults(QString("baz"));
+
+    Delegate delegate;
+    engine.setDelegate(&delegate);
+    QCOMPARE(engine.delegate(), &delegate);
+    engine.requestSearchResults(QString("baz"));
+
+    QCOMPARE(delegate.callsCount, 1);
+    QCOMPARE(delegate.lastOperation, QNetworkAccessManager::GetOperation);
+    QCOMPARE(delegate.lastData, QByteArray());
+    QNetworkRequest request(QUrl(engine.call_parseTemplate(QString("baz"), engine.searchUrlTemplate())));
+    QCOMPARE(delegate.lastRequest, request);
+    QVERIFY(delegate.lastRequest.url().hasQueryItem("q"));
+    QCOMPARE(delegate.lastRequest.url().queryItemValue("q"), QString("baz"));
+
+    engine.setSearchParameters(Parameters() << Parameter("a", "b") << Parameter("b", "c"));
+    engine.requestSearchResults(QString("baz"));
+
+    QCOMPARE(delegate.callsCount, 2);
+    QCOMPARE(delegate.lastOperation, QNetworkAccessManager::GetOperation);
+    QCOMPARE(delegate.lastData, QByteArray());
+
+    QVERIFY(delegate.lastRequest.url().hasQueryItem("a"));
+    QCOMPARE(delegate.lastRequest.url().queryItemValue("a"), QString("b"));
+    QVERIFY(delegate.lastRequest.url().hasQueryItem("b"));
+    QCOMPARE(delegate.lastRequest.url().queryItemValue("b"), QString("c"));
+    QVERIFY(delegate.lastRequest.url().hasQueryItem("q"));
+    QCOMPARE(delegate.lastRequest.url().queryItemValue("q"), QString("baz"));
+
+    QUrl url(engine.call_parseTemplate(QString("baz"), engine.searchUrlTemplate()));
+    QCOMPARE(delegate.lastRequest.url().toString(QUrl::RemoveQuery), url.toString(QUrl::RemoveQuery));
+
+    engine.setSearchMethod(QString("post"));
+    engine.requestSearchResults(QString("baz"));
+
+    QCOMPARE(delegate.callsCount, 3);
+    QCOMPARE(delegate.lastOperation, QNetworkAccessManager::PostOperation);
+    request = QNetworkRequest(QUrl(engine.call_parseTemplate(QString("baz"), engine.searchUrlTemplate())));
+    QCOMPARE(delegate.lastRequest, request);
+    QVERIFY(delegate.lastRequest.url().hasQueryItem("q"));
+    QCOMPARE(delegate.lastRequest.url().queryItemValue("q"), QString("baz"));
+
+    QVERIFY(!delegate.lastData.isEmpty());
+    QStringList query = QString(delegate.lastData).split('&');
+    QCOMPARE(query.count(), 2);
+    QCOMPARE(query, QStringList() << "a=b" << "b=c");
 }
 
 QTEST_MAIN(tst_OpenSearchEngine)

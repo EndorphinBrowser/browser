@@ -30,6 +30,7 @@
 class QNetworkReply;
 class QScriptEngine;
 
+class OpenSearchEngineDelegate;
 class OpenSearchEngine : public QObject
 {
     Q_OBJECT
@@ -97,11 +98,15 @@ public:
     QNetworkAccessManager *networkAccessManager() const;
     void setNetworkAccessManager(QNetworkAccessManager *networkAccessManager);
 
+    OpenSearchEngineDelegate *delegate() const;
+    void setDelegate(OpenSearchEngineDelegate *delegate);
+
     bool operator==(const OpenSearchEngine &other) const;
     bool operator<(const OpenSearchEngine &other) const;
 
 public slots:
     void requestSuggestions(const QString &searchTerm);
+    void requestSearchResults(const QString &searchTerm);
 
 protected:
     static QString parseTemplate(const QString &searchTerm, const QString &searchTemplate);
@@ -131,6 +136,8 @@ private:
     QNetworkReply *m_suggestionsReply;
 
     QScriptEngine *m_scriptEngine;
+
+    OpenSearchEngineDelegate *m_delegate;
 };
 
 #endif // OPENSEARCHENGINE_H

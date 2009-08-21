@@ -7,10 +7,12 @@ include(../autotests.pri)
 
 SOURCES = \
     opensearchengine.cpp \
+    opensearchenginedelegate.cpp \
     tst_opensearchengine.cpp
 
 HEADERS = \
-    opensearchengine.h
+    opensearchengine.h \
+    opensearchenginedelegate.h
 
 FORMS =
 
