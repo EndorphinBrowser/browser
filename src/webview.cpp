@@ -411,7 +411,7 @@ void WebView::addSearchEngine()
         return;
     }
 
-    QUrl searchUrl(url().resolved(QUrl(formElement.attribute(QLatin1String("action")))));
+    QUrl searchUrl(page()->mainFrame()->baseUrl().resolved(QUrl(formElement.attribute(QLatin1String("action")))));
     QMap<QString, QString> searchEngines;
     QList<QWebElement> inputFields = formElement.findAll(QLatin1String("input"));
     foreach (const QWebElement &inputField, inputFields) {
