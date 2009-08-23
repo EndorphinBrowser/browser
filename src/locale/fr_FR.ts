@@ -37,11 +37,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>About %1</source>
-        <translation>À propos d&apos;%1</translation>
+        <translation>À propos de %1</translation>
     </message>
     <message>
         <source>WebKit version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebKit version %1</translation>
     </message>
 </context>
 <context>
@@ -154,10 +154,6 @@ p, li { white-space: pre-wrap; }
         <translation>Ouvrir un fichier</translation>
     </message>
     <message>
-        <source>XBEL (*.xbel *.xml)</source>
-        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
-    </message>
-    <message>
         <source>Imported %1</source>
         <translation>%1 a été importé</translation>
     </message>
@@ -194,12 +190,6 @@ p, li { white-space: pre-wrap; }
         <translation>Menu des marque-pages</translation>
     </message>
     <message>
-        <source>Error when loading html bookmarks: %1
-</source>
-        <translation type="obsolete">Erreur pendant le chargement des marque-pages html: %1
-</translation>
-    </message>
-    <message>
         <source>Name Change</source>
         <comment>Undo bookmark title change</comment>
         <translation>Changement de nom</translation>
@@ -208,10 +198,6 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
         <translation>Changement d&apos;adresse</translation>
-    </message>
-    <message>
-        <source>XBEL</source>
-        <translation type="obsolete">XBEL</translation>
     </message>
     <message>
         <source>XBEL bookmarks</source>
@@ -261,10 +247,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <source>Bookmark</source>
-        <translation type="obsolete">Marque-page</translation>
-    </message>
-    <message>
         <source>Open</source>
         <translation>Ouvrir</translation>
     </message>
@@ -300,10 +282,6 @@ Voulez-vous tout de même quitter?</translation>
     <message>
         <source>Restore failed</source>
         <translation>Échec de la restauration</translation>
-    </message>
-    <message>
-        <source> (Change: %1 %2)</source>
-        <translation type="obsolete"> (Modification : %1 %2)</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
@@ -391,10 +369,6 @@ Voulez-vous tout de même quitter?</translation>
     <message>
         <source>&amp;View</source>
         <translation>&amp;Affichage</translation>
-    </message>
-    <message>
-        <source>Shift+Ctrl+B</source>
-        <translation type="obsolete">Shift+Ctrl+B</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
@@ -581,10 +555,6 @@ Do you want to reload all pages?</source>
         <translation>Afficher la barre de menus</translation>
     </message>
     <message>
-        <source>Show &amp;Network Monitor</source>
-        <translation type="obsolete">Afficher le &amp;gestionnaire réseau</translation>
-    </message>
-    <message>
         <source>Switch application language </source>
         <translation>Changer la langue de l&apos;application</translation>
     </message>
@@ -622,10 +592,6 @@ Do you want to reload all pages?</source>
         <translation>À propos d&apos;&amp;%1</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quand la navigation en mode privée est activée, certaines actions en rapport avec votre vie privée sont désactivées: &lt;ul&gt;&lt;li&gt; Les pages Web ne sont pas ajoutées à l&apos;historique.&lt;/li&gt;&lt;li&gt; Les fichiers sont automatiquements retirés de la fenêtre de téléchargements.&lt;/li&gt;&lt;li&gt; Les nouveaux cookies ne sont pas stockés, les cookies existants ne sont pas accessibles.&lt;/li&gt;&lt;li&gt; Les icônes de sites ne sont pas stockés, les sessions ne sont pas enregistrées.&lt;/li&gt;&lt;li&gt; Les recherches ne sont pas ajoutées au menu déroulant de la boite de recherches.&lt;/li&gt;&lt;li&gt; Jusqu&apos;à ce que la fenêtre soit fermée, il est toujours possible de cliquer sur les bouton « Page précédente » et « Page suivante » pour retourner sur les pages Web visitées.</translation>
-    </message>
-    <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>
@@ -639,20 +605,16 @@ Do you want to reload all pages?</source>
         <translation>Encodage des caractères</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Lorsque la navigation privée est activé, certaines actions qui concernent votre vie privée seront désactivés:&lt;ul&gt;&lt;li&gt; Les sites consultés ne seront pas ajoutés à l&apos;historique.&lt;/li&gt;&lt;li&gt; Les téléchargements seront automatiquement supprimés de la fenêtre des téléchargements.&lt;/li&gt;&lt;li&gt; Les nouveaux cookies ne seront pas stockés, les cookies actuels ne peuvent pas être accédés.&lt;/li&gt;&lt;li&gt; Les icônes des sites web ne seront pas stockés, la session ne sera pas sauvegardé.&lt;/li&gt;&lt;li&gt; Les recherches effectuées ne seront pas ajoutés aux recherches récentes.&lt;/li&gt;&lt;li&gt;Le cache sera désactivé.&lt;/li&gt;&lt;/ul&gt;Vous pourrez toujours utiliser les boutons Précédent et Suivant pour naviguer dans les pages que vous avez ouvert, jusqu&apos;à que vous fermiez la fenêtre.</translation>
-    </message>
-    <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tout sélectionner</translation>
     </message>
     <message>
         <source>Alt+Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Lorsque la navigation privée est activé, certaines actions qui concernent votre vie privée seront désactivés:&lt;ul&gt;&lt;li&gt; Les sites consultés ne seront pas ajoutés à l&apos;historique.&lt;/li&gt;&lt;li&gt; Les téléchargements seront automatiquement supprimés de la fenêtre des téléchargements.&lt;/li&gt;&lt;li&gt; Les nouveaux cookies ne seront pas stockés, les cookies actuels ne peuvent pas être accédés.&lt;/li&gt;&lt;li&gt; Les icônes des sites web ne seront pas stockés, la session ne sera pas sauvegardé.&lt;/li&gt;&lt;li&gt; Les recherches effectuées ne seront pas ajoutés aux recherches récentes.&lt;/li&gt;&lt;li&gt;Le cache sera désactivé.&lt;/li&gt;&lt;/ul&gt;Vous pourrez toujours utiliser les boutons Précédent et Suivant pour naviguer dans les pages que vous avez ouvert, jusqu&apos;à ce que vous fermiez la fenêtre.</translation>
     </message>
 </context>
 <context>
@@ -873,17 +835,9 @@ Do you want to reload all pages?</source>
         <source>0 Items</source>
         <translation>0 téléchargements</translation>
     </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation type="obsolete">&amp;OK</translation>
-    </message>
 </context>
 <context>
     <name>DownloadItem</name>
-    <message>
-        <source>Form</source>
-        <translation type="obsolete">Formulaire</translation>
-    </message>
     <message>
         <source>Ico</source>
         <translation>Ico</translation>
@@ -1163,44 +1117,6 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
-    <name>NetworkMonitor</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Nom</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Valeur</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkMonitorDialog</name>
-    <message>
-        <source>Network Monitor</source>
-        <translation type="obsolete">Gestionnaire de réseau</translation>
-    </message>
-    <message>
-        <source>Network Requests</source>
-        <translation type="obsolete">Requêtes réseaux</translation>
-    </message>
-    <message>
-        <source>Request Headers</source>
-        <translation type="obsolete">en-tête de la requête</translation>
-    </message>
-    <message>
-        <source>Response Headers</source>
-        <translation type="obsolete">en-tête de la réponse</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation type="obsolete">Supp&amp;rimer</translation>
-    </message>
-    <message>
-        <source>Remove &amp;All Requests</source>
-        <translation type="obsolete">Supprimer &amp;toutes les requêtes</translation>
-    </message>
-</context>
-<context>
     <name>OpenSearchDialog</name>
     <message>
         <source>Open File</source>
@@ -1255,15 +1171,15 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste de mots clés séparés par des virgules qui pourront être tapés dans la barre d&apos;adresse, suivi des termes à rechercher avec ce moteur</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Mots clés</translation>
     </message>
 </context>
 <context>
@@ -1338,42 +1254,7 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
-    <name>RequestModel</name>
-    <message>
-        <source>Redirect: %1</source>
-        <translation type="obsolete">Redirection: %1</translation>
-    </message>
-    <message>
-        <source>Method</source>
-        <translation type="obsolete">Méthode</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="obsolete">Adresse</translation>
-    </message>
-    <message>
-        <source>Response</source>
-        <translation type="obsolete">Réponse</translation>
-    </message>
-    <message>
-        <source>Length</source>
-        <translation type="obsolete">Longueur</translation>
-    </message>
-    <message>
-        <source>Content Type</source>
-        <translation type="obsolete">Content Type</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="obsolete">Info</translation>
-    </message>
-</context>
-<context>
     <name>SearchBanner</name>
-    <message>
-        <source>Form</source>
-        <translation type="obsolete">Formulaire</translation>
-    </message>
     <message>
         <source>Done</source>
         <translation>Fermer</translation>
@@ -1678,7 +1559,7 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le répertoire...</translation>
     </message>
 </context>
 <context>
@@ -1693,7 +1574,7 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le répertoire</translation>
     </message>
 </context>
 <context>
@@ -1717,10 +1598,6 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     <message>
         <source>&amp;Wrap lines</source>
         <translation>Retours à la ligne &amp;statiques</translation>
-    </message>
-    <message>
-        <source>Source of Page </source>
-        <translation type="obsolete">Source de la page</translation>
     </message>
     <message>
         <source>Source of Page %1</source>
