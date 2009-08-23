@@ -22,6 +22,7 @@ GenericName[nl_NL]=Webbrowser
 GenericName[pl_PL]=Przeglądarka WWW
 GenericName[sr]=Веб прегледач
 GenericName[sr@latin]=Web pregledač
+GenericName[nb_NO]=Nettleser
 Exec=arora %u
 Terminal=false
 Type=Application
