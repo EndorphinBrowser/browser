@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
-<context>
+<!DOCTYPE TS><TS>
+<context encoding="UTF-8">
     <name>AboutDialog</name>
     <message>
         <source>Lightweight WebKit-based web browser</source>
@@ -27,7 +25,7 @@
         <source>About %1</source>
         <translation>Acerca de %1</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -41,7 +39,7 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
     <message>
         <source>WebKit version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebKit versión: %1</translation>
     </message>
 </context>
 <context>
@@ -607,7 +605,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Zoom &amp;Text Only</source>
-        <translation>Zoom solo &amp;texto</translation>
+        <translation>Zoom &amp;solo texto</translation>
     </message>
     <message>
         <source>About &amp;%1</source>
@@ -645,15 +643,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar &amp;todo</translation>
     </message>
     <message>
         <source>Alt+Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Al activar la navegación privada, se desactivarán algunas de las medidas relativas a su privacidad:&lt;ul&gt;&lt;li&gt; Las páginas web so serán añadidas al historial..&lt;/li&gt;&lt;li&gt; Se eliminará automáticamente los elementos de la ventana de descargas..&lt;/li&gt;&lt;li&gt; No se añadiran nuevas cookies y las actuales no serán accesibles.&lt;/li&gt;&lt;li&gt; Los iconos de los sitios no se almacenarán, tampoco se guardarán las sesiones.&lt;/li&gt;&lt;li&gt; Las búsquedas no serán añadidas al menú emergente en el cuadro de búsqueda.&lt;/li&gt;&lt;li&gt; La nueva caché de red no se gravará en el disco.&lt;/li&gt;&lt;/ul&gt;Podrá hacer clic en los botones Atrás y Adelante para volver a las páginas web que ha abierto solo hasta que se cierre la ventana.</translation>
     </message>
 </context>
 <context>
@@ -948,14 +946,13 @@ Do you want to reload all pages?</source>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message numerus="yes">
+    <message>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform>%n Descarga(s)
+        <translation>%n Descarga(s)
         
         
         
-        </numerusform>
+        
         </translation>
     </message>
     <message>
@@ -964,22 +961,20 @@ Do you want to quit anyway?</source>
         <translation>Hay %1 descargas en proceso
 ¿Quiere salir de todos modos?</translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform>Faltan %n minutos
+        <translation>Faltan %n minutos
         
         
-        </numerusform>
+        
         </translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform>Faltan %n segundos
+        <translation>Faltan %n segundos
         
         
-        </numerusform>
+        
         </translation>
     </message>
     <message>
@@ -1085,14 +1080,13 @@ Do you want to quit anyway?</source>
         <source>Earlier Today</source>
         <translation>Hace un rato</translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n item(s)</source>
-        <translation type="unfinished">
-            <numerusform>%n elemento(s)
+        <translation>%n elemento(s)
         
         
         
-        </numerusform>
+        
         </translation>
     </message>
 </context>
@@ -1270,15 +1264,15 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista separada por comas de las palabras clave que se puede introducir en la barra seguidas de los términos de búsqueda para buscar con este motor</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Palabras clave</translation>
     </message>
 </context>
 <context>
@@ -1693,7 +1687,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>Elegir directorio...</translation>
     </message>
 </context>
 <context>
@@ -1708,7 +1702,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Elegir directorio</translation>
     </message>
 </context>
 <context>
