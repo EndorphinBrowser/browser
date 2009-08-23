@@ -59,6 +59,10 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
+    <message>
+        <source>WebKit version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AcceptLanguage</name>
@@ -434,7 +438,7 @@ Sei sicuro di voler uscire?</translation>
     </message>
     <message>
         <source>Shift+Ctrl+B</source>
-        <translation>Shift+Ctrl+B</translation>
+        <translation type="obsolete">Shift+Ctrl+B</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
@@ -742,7 +746,19 @@ Vuoi ricaricare tutte le pagine?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quando la navigazione anonima è attivata, alcune azioni relative alla riservatezza saranno disabilitate:&lt;ul&gt;&lt;li&gt; Le pagine web non saranno aggiunte alla cronologia.&lt;/li&gt;&lt;li&gt; Gli elementi presenti nella finestra Scaricamenti saranno rimossi automaticamente.&lt;/li&gt;&lt;li&gt; I nuovi cookie non sono conservati, i cookie correnti non sono accessibili.&lt;/li&gt;&lt;li&gt; Le icone dei siti non saranno conservate, le sessioni non saranno salvate.&lt;/li&gt;&lt;li&gt; Le ricerche non sono aggiunte al menu a comparsa nel riquadro di ricerca.&lt;/li&gt;&lt;li&gt; La cache di rete è disabilitata.&lt;/li&gt;&lt;/ul&gt;Fino alla chiusura della finestra, potrai fare clic sui pulsanti Indietro e Avanti per tornare alle pagine precedentemente aperte.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quando la navigazione anonima è attivata, alcune azioni relative alla riservatezza saranno disabilitate:&lt;ul&gt;&lt;li&gt; Le pagine web non saranno aggiunte alla cronologia.&lt;/li&gt;&lt;li&gt; Gli elementi presenti nella finestra Scaricamenti saranno rimossi automaticamente.&lt;/li&gt;&lt;li&gt; I nuovi cookie non sono conservati, i cookie correnti non sono accessibili.&lt;/li&gt;&lt;li&gt; Le icone dei siti non saranno conservate, le sessioni non saranno salvate.&lt;/li&gt;&lt;li&gt; Le ricerche non sono aggiunte al menu a comparsa nel riquadro di ricerca.&lt;/li&gt;&lt;li&gt; La cache di rete è disabilitata.&lt;/li&gt;&lt;/ul&gt;Fino alla chiusura della finestra, potrai fare clic sui pulsanti Indietro e Avanti per tornare alle pagine precedentemente aperte.</translation>
+    </message>
+    <message>
+        <source>Select &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1437,6 +1453,18 @@ Vuoi ignorare questi errori?&lt;/qt&gt;</translation>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Fornisce suggerimenti di contesto&lt;/strong&gt;</translation>
     </message>
+    <message>
+        <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nome</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
@@ -1908,6 +1936,10 @@ Vuoi ignorare questi errori?&lt;/qt&gt;</translation>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
         <translation>Utilizza il motore di ricerca predefinito come ripiego quando l&apos;URL specificato dall&apos;utente non è valido</translation>
     </message>
+    <message>
+        <source>Choose Directory...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1918,6 +1950,10 @@ Vuoi ignorare questi errori?&lt;/qt&gt;</translation>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
         <translation>La configurazione della cache di rete è cambiata. Affiché le modifiche abbiano effetto, è necessario riavviare il browser.</translation>
+    </message>
+    <message>
+        <source>Choose Directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

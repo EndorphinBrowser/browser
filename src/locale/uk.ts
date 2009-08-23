@@ -51,6 +51,10 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;￼&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;￼p, li { white-space: pre-wrap; }￼&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;￼&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
+    <message>
+        <source>WebKit version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AcceptLanguage</name>
@@ -432,7 +436,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Shift+Ctrl+B</source>
-        <translation>Shift+Ctrl+B</translation>
+        <translation type="obsolete">Shift+Ctrl+B</translation>
     </message>
     <message>
         <source>Ctrl+/</source>
@@ -692,7 +696,19 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Коли увімкнуто приватне переглядання, деякі дії стосовно вашої приватності будуть вимкнуті:&lt;ul&gt;&lt;li&gt; Сторінки не реєструються в журналі.&lt;/li&gt;&lt;li&gt; Звантаження автоматично вилучатимуться зі списку.&lt;/li&gt;&lt;li&gt; Нові куки не зберігатимуться, поточні куки будуть недоступні.&lt;/li&gt;&lt;li&gt; Піктограми сайтів не зберігатимуться, сеанси також.&lt;/li&gt;&lt;li&gt; Пошуки не додаватимуться до виринного меню в коробці пошуку.&lt;/li&gt;&lt;li&gt; Мережевий кеш буде вимкнено.&lt;/li&gt;&lt;/ul&gt;Допоки не закриті вікна, ви можете продовжувати натискати кнопки Назад і Вперед, щоб повертатись до сторінок, які ви повідкивали.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Коли увімкнуто приватне переглядання, деякі дії стосовно вашої приватності будуть вимкнуті:&lt;ul&gt;&lt;li&gt; Сторінки не реєструються в журналі.&lt;/li&gt;&lt;li&gt; Звантаження автоматично вилучатимуться зі списку.&lt;/li&gt;&lt;li&gt; Нові куки не зберігатимуться, поточні куки будуть недоступні.&lt;/li&gt;&lt;li&gt; Піктограми сайтів не зберігатимуться, сеанси також.&lt;/li&gt;&lt;li&gt; Пошуки не додаватимуться до виринного меню в коробці пошуку.&lt;/li&gt;&lt;li&gt; Мережевий кеш буде вимкнено.&lt;/li&gt;&lt;/ul&gt;Допоки не закриті вікна, ви можете продовжувати натискати кнопки Назад і Вперед, щоб повертатись до сторінок, які ви повідкивали.</translation>
+    </message>
+    <message>
+        <source>Select &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1432,6 +1448,18 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Забезпечує контекстові поради&lt;/strong&gt;</translation>
     </message>
+    <message>
+        <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Назва</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
@@ -1879,6 +1907,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
         <translation>Використовувати типовий рушій пошуку для помилкових посилань, котрі вводить користувач</translation>
     </message>
+    <message>
+        <source>Choose Directory...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1889,6 +1921,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
         <translation>Налаштування мережевого кеша змінено. Але переглядач потрібно перезапустити, щоб налаштування набрали чинності.</translation>
+    </message>
+    <message>
+        <source>Choose Directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

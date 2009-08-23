@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.0" language="sr">
 <context>
@@ -38,6 +38,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Close</source>
         <translation>Zatvori</translation>
+    </message>
+    <message>
+        <source>WebKit version: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -410,7 +414,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>Shift+Ctrl+B</source>
-        <translation>Shift+Ctrl+B</translation>
+        <translation type="obsolete">Shift+Ctrl+B</translation>
     </message>
     <message>
         <source>Ctrl+/</source>
@@ -637,7 +641,19 @@ Da li želite da ponovo učitate sve stranice?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kada je privatno pregledanje uključeno neke radnje koje se tiču vaše privatnosti će biti onemogućene:&lt;ul&gt;&lt;li&gt;Veb stranice se ne dodaju u istorijat.&lt;/li&gt;&lt;li&gt; Stavke se automatski uklanjaju iz prozora preuzimanja.&lt;/li&gt;&lt;li&gt;Novi kolačići se ne snimaju, postojećima se ne može pristupiti&lt;/li&gt;&lt;li&gt;Ikone stranice se ne čuvaju, sesije neće biti sačuvane.&lt;/li&gt;&lt;li&gt;Pretrage se ne dodaju u iskačući meni prozorčića pretrage.&lt;/li&gt;&lt;/ul&gt;Dok ne zatvorite prozor i dalje možete kliknuti na Napred i Nazad da bi se vratili na prethodno otvorene stranice.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kada je privatno pregledanje uključeno neke radnje koje se tiču vaše privatnosti će biti onemogućene:&lt;ul&gt;&lt;li&gt;Veb stranice se ne dodaju u istorijat.&lt;/li&gt;&lt;li&gt; Stavke se automatski uklanjaju iz prozora preuzimanja.&lt;/li&gt;&lt;li&gt;Novi kolačići se ne snimaju, postojećima se ne može pristupiti&lt;/li&gt;&lt;li&gt;Ikone stranice se ne čuvaju, sesije neće biti sačuvane.&lt;/li&gt;&lt;li&gt;Pretrage se ne dodaju u iskačući meni prozorčića pretrage.&lt;/li&gt;&lt;/ul&gt;Dok ne zatvorite prozor i dalje možete kliknuti na Napred i Nazad da bi se vratili na prethodno otvorene stranice.</translation>
+    </message>
+    <message>
+        <source>Select &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1247,6 +1263,18 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Daje predloge iz sadržaja&lt;/strong&gt;</translation>
     </message>
+    <message>
+        <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Ime</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
@@ -1662,6 +1690,10 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
         <translation>Koristi podrazumevani motor pretrage kao ispomoć ukoliko je URL zadat od strane korisnika neispravan</translation>
     </message>
+    <message>
+        <source>Choose Directory...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1672,6 +1704,10 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
         <translation>Podešavanje mrežnog keša je promenjeno. Da bi bilo uzeto u obzir pregledač mora biti ponovo pokrenut.</translation>
+    </message>
+    <message>
+        <source>Choose Directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

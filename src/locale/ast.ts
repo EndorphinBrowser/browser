@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -25,17 +27,21 @@
         <source>About %1</source>
         <translation>Tocante a %1</translation>
     </message>
-    <message>
+    <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright &#xa9; 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>WebKit version: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -149,7 +155,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL (*.xbel *.xml)</source>
-        <translation>XBEL (*.xbel *.xml)</translation>
+        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Imported %1</source>
@@ -190,12 +196,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading html bookmarks: %1
 </source>
-        <translation>Error al cargar marcadores html: %1
+        <translation type="obsolete">Error al cargar marcadores html: %1
 </translation>
     </message>
     <message>
         <source>XBEL</source>
-        <translation>XBEL</translation>
+        <translation type="obsolete">XBEL</translation>
     </message>
     <message>
         <source>Name Change</source>
@@ -206,6 +212,31 @@ p, li { white-space: pre-wrap; }
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
         <translation>Cambear la direición</translation>
+    </message>
+    <message>
+        <source>XBEL bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML Netscape bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error when loading HTML bookmarks: %1
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -230,7 +261,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksToolBar</name>
     <message>
         <source>Bookmark</source>
-        <translation>Marcador</translation>
+        <translation type="obsolete">Marcador</translation>
     </message>
     <message>
         <source>Open</source>
@@ -252,12 +283,16 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Amestar carpeta...</translation>
     </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished">Marcadores</translation>
+    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
     <message>
         <source> (Change: %1 %2)</source>
-        <translation> (Cambéu: %1 %2)</translation>
+        <translation type="obsolete"> (Cambéu: %1 %2)</translation>
     </message>
     <message>
         <source>There are %1 windows and %2 tabs open
@@ -378,7 +413,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Shift+Ctrl+B</source>
-        <translation>Shift+Ctrl+B</translation>
+        <translation type="obsolete">Shift+Ctrl+B</translation>
     </message>
     <message>
         <source>Ctrl+/</source>
@@ -449,7 +484,7 @@ Do you want to quit anyway?</source>
         <comment>
 Web Search
 </comment>
-        <translation>Ctrl+K</translation>
+        <translation type="obsolete">Ctrl+K</translation>
     </message>
     <message>
         <source>&amp;Clear Private Data</source>
@@ -460,7 +495,7 @@ Web Search
         <comment>
 Clear Private Data
 </comment>
-        <translation>Ctrl+Shift+Delete</translation>
+        <translation type="obsolete">Ctrl+Shift+Delete</translation>
     </message>
     <message>
         <source>Enable Web &amp;Inspector</source>
@@ -507,7 +542,7 @@ Clear Private Data
         <comment>
 Page title and Browser name
 </comment>
-        <translation>%1 - Arora</translation>
+        <translation type="obsolete">%1 - Arora</translation>
     </message>
     <message>
         <source>Open Web Resource</source>
@@ -553,7 +588,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show &amp;Network Monitor</source>
-        <translation>Amosar mo&amp;nitor de rede</translation>
+        <translation type="obsolete">Amosar mo&amp;nitor de rede</translation>
     </message>
     <message>
         <source>Switch application language </source>
@@ -583,14 +618,14 @@ Do you want to reload all pages?</source>
         <source>About &amp;%1</source>
         <comment>About Browser
 </comment>
-        <translation>Tocante a &amp;%1</translation>
+        <translation type="obsolete">Tocante a &amp;%1</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>
 Download Manager
 </comment>
-        <translation>Ctrl+Y</translation>
+        <translation type="obsolete">Ctrl+Y</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
@@ -602,7 +637,52 @@ Download Manager
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Al activar la restolación privao, desactiváranse delles midíes relatives a la to privacidá:&lt;ul&gt;&lt;li&gt; Les páxines web nun van amestase al hestorial.&lt;/li&gt;&lt;li&gt; Desaniciaránse automáticamente los elementos de la ventana de descargues.&lt;/li&gt;&lt;li&gt; Nun s&apos;amestarán nueves galletes y les actuales nun sedrán accesibles.&lt;/li&gt;&lt;li&gt; Los iconos de los sitios nun s&apos;atroxarán, nin se guardarán les sesiones.&lt;/li&gt;&lt;li&gt; Les guetes nun s&apos;amestarán al menú emerxente nel cuadru de gueta.&lt;/li&gt;&lt;/ul&gt;Podrás facer clic nos botones Atrás y Alantre pa volver a les páxines web qu&apos;abristi namás fasta que se zarre la ventana.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Al activar la restolación privao, desactiváranse delles midíes relatives a la to privacidá:&lt;ul&gt;&lt;li&gt; Les páxines web nun van amestase al hestorial.&lt;/li&gt;&lt;li&gt; Desaniciaránse automáticamente los elementos de la ventana de descargues.&lt;/li&gt;&lt;li&gt; Nun s&apos;amestarán nueves galletes y les actuales nun sedrán accesibles.&lt;/li&gt;&lt;li&gt; Los iconos de los sitios nun s&apos;atroxarán, nin se guardarán les sesiones.&lt;/li&gt;&lt;li&gt; Les guetes nun s&apos;amestarán al menú emerxente nel cuadru de gueta.&lt;/li&gt;&lt;/ul&gt;Podrás facer clic nos botones Atrás y Alantre pa volver a les páxines web qu&apos;abristi namás fasta que se zarre la ventana.</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+K</source>
+        <comment>Web Search</comment>
+        <translation type="unfinished">Ctrl+K</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+Delete</source>
+        <comment>Clear Private Data</comment>
+        <translation type="unfinished">Ctrl+Shift+Delete</translation>
+    </message>
+    <message>
+        <source>About &amp;%1</source>
+        <comment>About Browser</comment>
+        <translation type="unfinished">Tocante a &amp;%1</translation>
+    </message>
+    <message>
+        <source>%1 - Arora</source>
+        <comment>Page title and Browser name</comment>
+        <translation type="unfinished">%1 - Arora</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Y</source>
+        <comment>Download Manager</comment>
+        <translation type="unfinished">Ctrl+Y</translation>
     </message>
 </context>
 <context>
@@ -828,7 +908,7 @@ Download Manager
     <name>DownloadItem</name>
     <message>
         <source>Form</source>
-        <translation>Formulariu</translation>
+        <translation type="obsolete">Formulariu</translation>
     </message>
     <message>
         <source>Ico</source>
@@ -882,14 +962,20 @@ Download Manager
         <source>%1 of %2 (%3/sec) - %4</source>
         <translation>%1 de %2 (%3/seg) - %4</translation>
     </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
+    <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation>%n Descarga(ues)
+        <translation type="unfinished">
+            <numerusform>%n Descarga(ues)
         
         
+        </numerusform>
         </translation>
     </message>
     <message>
@@ -898,16 +984,20 @@ Do you want to quit anyway?</source>
         <translation>Hai %1 descargues en procesu
 ¿Quiés colar de toes formes?</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation>Falten %n minutos
+        <translation type="unfinished">
+            <numerusform>Falten %n minutos
         
+        </numerusform>
         </translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation>Falten %n segundos
+        <translation type="unfinished">
+            <numerusform>Falten %n segundos
         
+        </numerusform>
         </translation>
     </message>
     <message>
@@ -921,6 +1011,33 @@ Do you want to quit anyway?</source>
     <message>
         <source>MB</source>
         <translation>MB</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileAccessReply</name>
+    <message>
+        <source>No Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error opening: %1: No such file or directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -986,12 +1103,37 @@ Do you want to quit anyway?</source>
         <source>Earlier Today</source>
         <translation>Vai un ratu</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n item(s)</source>
-        <translation>%n elementu(os)
+        <translation type="unfinished">
+            <numerusform>%n elementu(os)
         
         
+        </numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>JavaScriptAroraObject</name>
+    <message>
+        <source>Welcome to Arora!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arora Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Arora</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1035,43 +1177,59 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Certificaos:&lt;br/&gt;%1&lt;br/&gt;¿Quiés aceutar toos estos certificaos?&lt;/qt&gt;</translation>
     </message>
+    <message>
+        <source>Issuer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not valid before: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternate Names:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="obsolete">Nome</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation>Valor</translation>
+        <translation type="obsolete">Valor</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitorDialog</name>
     <message>
         <source>Network Monitor</source>
-        <translation>Monitor de rede</translation>
+        <translation type="obsolete">Monitor de rede</translation>
     </message>
     <message>
         <source>Network Requests</source>
-        <translation>Solicitudes de rede</translation>
+        <translation type="obsolete">Solicitudes de rede</translation>
     </message>
     <message>
         <source>Request Headers</source>
-        <translation>Cabeceres de les solicitudes</translation>
+        <translation type="obsolete">Cabeceres de les solicitudes</translation>
     </message>
     <message>
         <source>Response Headers</source>
-        <translation>Cabeceres de retruca</translation>
+        <translation type="obsolete">Cabeceres de retruca</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Desaniciar</translation>
+        <translation type="obsolete">&amp;Desaniciar</translation>
     </message>
     <message>
         <source>Remove &amp;All Requests</source>
-        <translation>Desaniciar &amp;toles solicitudes</translation>
+        <translation type="obsolete">Desaniciar &amp;toles solicitudes</translation>
     </message>
 </context>
 <context>
@@ -1126,6 +1284,18 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Proporciona suxerencies contestuales&lt;/strong&gt;</translation>
+    </message>
+    <message>
+        <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nome</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1203,42 +1373,46 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>RequestModel</name>
     <message>
         <source>Redirect: %1</source>
-        <translation>Redirixe a: %1</translation>
+        <translation type="obsolete">Redirixe a: %1</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Métodu</translation>
+        <translation type="obsolete">Métodu</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Direición</translation>
+        <translation type="obsolete">Direición</translation>
     </message>
     <message>
         <source>Response</source>
-        <translation>Retruca</translation>
+        <translation type="obsolete">Retruca</translation>
     </message>
     <message>
         <source>Length</source>
-        <translation>Llonxitú</translation>
+        <translation type="obsolete">Llonxitú</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>Triba de conteníu</translation>
+        <translation type="obsolete">Triba de conteníu</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Información</translation>
+        <translation type="obsolete">Información</translation>
     </message>
 </context>
 <context>
     <name>SearchBanner</name>
     <message>
         <source>Form</source>
-        <translation>Formulariu</translation>
+        <translation type="obsolete">Formulariu</translation>
     </message>
     <message>
         <source>Done</source>
         <translation>Fecho</translation>
+    </message>
+    <message>
+        <source>Highlight All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1530,6 +1704,14 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source> MB</source>
         <translation> MB</translation>
     </message>
+    <message>
+        <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose Directory...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1540,6 +1722,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
         <translation>La configuración de la caché de rede camudó. Col fin de que seya tenida en cunta, el restolador tién de reaniciase.</translation>
+    </message>
+    <message>
+        <source>Choose Directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1566,7 +1752,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Source of Page </source>
-        <translation>Códigu fonte de la páxina </translation>
+        <translation type="obsolete">Códigu fonte de la páxina </translation>
+    </message>
+    <message>
+        <source>Source of Page %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1720,6 +1910,14 @@ Do you really want to close this page?
         <source>If the address is correct, try checking the network connection.</source>
         <translation>Si la direición ye correcha, comproba la conesión de rede.</translation>
     </message>
+    <message>
+        <source>Resending POST request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WebView</name>
@@ -1770,6 +1968,34 @@ Do you really want to close this page?
     <message>
         <source>Search with...</source>
         <translation>Guetar con...</translation>
+    </message>
+    <message>
+        <source>Add to the toolbar search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 method is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the desired search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Engine name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type in a name for the engine</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

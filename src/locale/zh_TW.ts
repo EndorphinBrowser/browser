@@ -39,6 +39,10 @@ p, li { white-space: pre-wrap; }
         <source>Close</source>
         <translation>關閉</translation>
     </message>
+    <message>
+        <source>WebKit version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AcceptLanguage</name>
@@ -391,7 +395,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Shift+Ctrl+B</source>
-        <translation>Shift+Ctrl+B</translation>
+        <translation type="obsolete">Shift+Ctrl+B</translation>
     </message>
     <message>
         <source>Ctrl+/</source>
@@ -575,7 +579,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;當啟用私密瀏覽後，一些關於私隱的功能將會被停用：&lt;ul&gt;&lt;li&gt; 網頁不會加入歷史記錄中。&lt;/li&gt;&lt;li&gt; 項目會自動從下載視窗中移除。&lt;/li&gt;&lt;li&gt; 不會儲存新的 cookie，亦不會存取目前的 cookie。&lt;/li&gt;&lt;li&gt; 網站的圖示不會儲存，階段不會儲存。&lt;/li&gt;&lt;li&gt;搜尋不會加入到搜尋方塊中的彈出式選單。&lt;/li&gt;&lt;li&gt; 網路快取已被停用。&lt;/li&gt;&lt;/ul&gt;當你關閉視窗時，您仍可按上一頁及下一頁來回到您剛才開啟的網頁。</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;當啟用私密瀏覽後，一些關於私隱的功能將會被停用：&lt;ul&gt;&lt;li&gt; 網頁不會加入歷史記錄中。&lt;/li&gt;&lt;li&gt; 項目會自動從下載視窗中移除。&lt;/li&gt;&lt;li&gt; 不會儲存新的 cookie，亦不會存取目前的 cookie。&lt;/li&gt;&lt;li&gt; 網站的圖示不會儲存，階段不會儲存。&lt;/li&gt;&lt;li&gt;搜尋不會加入到搜尋方塊中的彈出式選單。&lt;/li&gt;&lt;li&gt; 網路快取已被停用。&lt;/li&gt;&lt;/ul&gt;當你關閉視窗時，您仍可按上一頁及下一頁來回到您剛才開啟的網頁。</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
@@ -607,6 +611,18 @@ Do you want to reload all pages?</source>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <source>Select &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1157,6 +1173,18 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;提供範圍內的建議&lt;/strong&gt;</translation>
     </message>
+    <message>
+        <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">名稱</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
@@ -1533,6 +1561,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source> MB</source>
         <translation> MB</translation>
     </message>
+    <message>
+        <source>Choose Directory...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1543,6 +1575,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
         <translation>網路快取設定已經修改。瀏覽器需要重新啟動才能使其生效。</translation>
+    </message>
+    <message>
+        <source>Choose Directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

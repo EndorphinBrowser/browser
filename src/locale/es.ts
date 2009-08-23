@@ -1,5 +1,7 @@
-<!DOCTYPE TS><TS>
-<context encoding="UTF-8">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
+<context>
     <name>AboutDialog</name>
     <message>
         <source>Lightweight WebKit-based web browser</source>
@@ -25,7 +27,7 @@
         <source>About %1</source>
         <translation>Acerca de %1</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -36,6 +38,10 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }(new line)
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;(new line)
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>WebKit version: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -408,7 +414,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Shift+Ctrl+B</source>
-        <translation>Shift+Ctrl+B</translation>
+        <translation type="obsolete">Shift+Ctrl+B</translation>
     </message>
     <message>
         <source>Ctrl+/</source>
@@ -635,7 +641,19 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Al activar la navegación privada, se desactivarán algunas de las medidas relativas a su privacidad:&lt;ul&gt;&lt;li&gt; Las páginas web so serán añadidas al historial.&lt;/li&gt;&lt;li&gt; Se eliminará automáticamente los elementos de la ventana de descargas.&lt;/li&gt;&lt;li&gt; No se añadiran nuevas cookies y las actuales no serán accesibles.&lt;/li&gt;&lt;li&gt; Los iconos de los sitios no se almacenarán, tampoco se guardarán las sesiones.&lt;/li&gt;&lt;li&gt; Las búsquedas no serán añadidas al menú emergente en el cuadro de búsqueda.&lt;/li&gt;&lt;/ul&gt;Se desactiva la caché de red.&lt;/li&gt;&lt;/ul&gt;Podrá hacer clic en los botones Atrás y Adelante para volver a las páginas web que ha abierto solo hasta que se cierre la ventana.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Al activar la navegación privada, se desactivarán algunas de las medidas relativas a su privacidad:&lt;ul&gt;&lt;li&gt; Las páginas web so serán añadidas al historial.&lt;/li&gt;&lt;li&gt; Se eliminará automáticamente los elementos de la ventana de descargas.&lt;/li&gt;&lt;li&gt; No se añadiran nuevas cookies y las actuales no serán accesibles.&lt;/li&gt;&lt;li&gt; Los iconos de los sitios no se almacenarán, tampoco se guardarán las sesiones.&lt;/li&gt;&lt;li&gt; Las búsquedas no serán añadidas al menú emergente en el cuadro de búsqueda.&lt;/li&gt;&lt;/ul&gt;Se desactiva la caché de red.&lt;/li&gt;&lt;/ul&gt;Podrá hacer clic en los botones Atrás y Adelante para volver a las páginas web que ha abierto solo hasta que se cierre la ventana.</translation>
+    </message>
+    <message>
+        <source>Select &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -930,12 +948,14 @@ Do you want to reload all pages?</source>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
+    <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation>%n Descarga(s)
+        <translation type="unfinished">
+            <numerusform>%n Descarga(s)
         
         
         
+        </numerusform>
         </translation>
     </message>
     <message>
@@ -944,18 +964,22 @@ Do you want to quit anyway?</source>
         <translation>Hay %1 descargas en proceso
 ¿Quiere salir de todos modos?</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation>Faltan %n minutos
+        <translation type="unfinished">
+            <numerusform>Faltan %n minutos
         
         
+        </numerusform>
         </translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation>Faltan %n segundos
+        <translation type="unfinished">
+            <numerusform>Faltan %n segundos
         
         
+        </numerusform>
         </translation>
     </message>
     <message>
@@ -1061,12 +1085,14 @@ Do you want to quit anyway?</source>
         <source>Earlier Today</source>
         <translation>Hace un rato</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n item(s)</source>
-        <translation>%n elemento(s)
+        <translation type="unfinished">
+            <numerusform>%n elemento(s)
         
         
         
+        </numerusform>
         </translation>
     </message>
 </context>
@@ -1241,6 +1267,18 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Proporciona sugerencias contextuales&lt;/strong&gt;</translation>
+    </message>
+    <message>
+        <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nombre</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1653,6 +1691,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
         <translation>Use el motor de búsqueda predeterminado como último recurso cuando la URL dada por el usuario no es correcta</translation>
     </message>
+    <message>
+        <source>Choose Directory...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1663,6 +1705,10 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
         <translation>La configuración de la caché de red ha cambiado. A fin de que pueda ser tenida en cuenta, el navegador tiene que ser reiniciado.</translation>
+    </message>
+    <message>
+        <source>Choose Directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -39,6 +39,10 @@ p, li { white-space: pre-wrap; }
         <source>About %1</source>
         <translation>À propos d&apos;%1</translation>
     </message>
+    <message>
+        <source>WebKit version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AcceptLanguage</name>
@@ -390,7 +394,7 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>Shift+Ctrl+B</source>
-        <translation>Shift+Ctrl+B</translation>
+        <translation type="obsolete">Shift+Ctrl+B</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
@@ -636,7 +640,19 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Lorsque la navigation privée est activé, certaines actions qui concernent votre vie privée seront désactivés:&lt;ul&gt;&lt;li&gt; Les sites consultés ne seront pas ajoutés à l&apos;historique.&lt;/li&gt;&lt;li&gt; Les téléchargements seront automatiquement supprimés de la fenêtre des téléchargements.&lt;/li&gt;&lt;li&gt; Les nouveaux cookies ne seront pas stockés, les cookies actuels ne peuvent pas être accédés.&lt;/li&gt;&lt;li&gt; Les icônes des sites web ne seront pas stockés, la session ne sera pas sauvegardé.&lt;/li&gt;&lt;li&gt; Les recherches effectuées ne seront pas ajoutés aux recherches récentes.&lt;/li&gt;&lt;li&gt;Le cache sera désactivé.&lt;/li&gt;&lt;/ul&gt;Vous pourrez toujours utiliser les boutons Précédent et Suivant pour naviguer dans les pages que vous avez ouvert, jusqu&apos;à que vous fermiez la fenêtre.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Lorsque la navigation privée est activé, certaines actions qui concernent votre vie privée seront désactivés:&lt;ul&gt;&lt;li&gt; Les sites consultés ne seront pas ajoutés à l&apos;historique.&lt;/li&gt;&lt;li&gt; Les téléchargements seront automatiquement supprimés de la fenêtre des téléchargements.&lt;/li&gt;&lt;li&gt; Les nouveaux cookies ne seront pas stockés, les cookies actuels ne peuvent pas être accédés.&lt;/li&gt;&lt;li&gt; Les icônes des sites web ne seront pas stockés, la session ne sera pas sauvegardé.&lt;/li&gt;&lt;li&gt; Les recherches effectuées ne seront pas ajoutés aux recherches récentes.&lt;/li&gt;&lt;li&gt;Le cache sera désactivé.&lt;/li&gt;&lt;/ul&gt;Vous pourrez toujours utiliser les boutons Précédent et Suivant pour naviguer dans les pages que vous avez ouvert, jusqu&apos;à que vous fermiez la fenêtre.</translation>
+    </message>
+    <message>
+        <source>Select &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1237,6 +1253,18 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Afficher des suggestions contextuels&lt;/strong&gt;</translation>
     </message>
+    <message>
+        <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
@@ -1648,6 +1676,10 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
         <translation>Utiliser le moteur de recherche par défaut en secours quand l&apos;URL donnée par l&apos;utilisateur est invalide</translation>
     </message>
+    <message>
+        <source>Choose Directory...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1658,6 +1690,10 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
         <translation>La configuration du cache réseau a changée. Pour que ces changements soient pris en compte, le navigateur doit être redémarrer.</translation>
+    </message>
+    <message>
+        <source>Choose Directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
