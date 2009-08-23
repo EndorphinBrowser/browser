@@ -41,7 +41,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>WebKit version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Верзија Вебкита: %1</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation>Језици: Према редоследу пожељности:</translation>
+        <translation>Језици према редоследу пожељности:</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
@@ -87,7 +87,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Title</source>
-        <translation>Назив</translation>
+        <translation>Наслов</translation>
     </message>
     <message>
         <source>Add Folder</source>
@@ -251,7 +251,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksModel</name>
     <message>
         <source>Title</source>
-        <translation>Назив</translation>
+        <translation>Наслов</translation>
     </message>
     <message>
         <source>Address</source>
@@ -299,7 +299,7 @@ p, li { white-space: pre-wrap; }
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
         <translation>Отворено је  %1 прозор(а) и %2 језичак(а)
-Да ли свеједно желите да напустите?</translation>
+Свеједно напустити?</translation>
     </message>
     <message>
         <source>Restore failed</source>
@@ -398,7 +398,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Prefere&amp;nces...</source>
-        <translation>Поста&amp;вке...</translation>
+        <translation>Подеша&amp;вање...</translation>
     </message>
     <message>
         <source>Ctrl+,</source>
@@ -644,16 +644,16 @@ Do you want to reload all pages?</source>
         <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Када је приватно прегледање укључено неке радње које се тичу ваше приватности ће бити онемогућене:&lt;ul&gt;&lt;li&gt;Веб странице се не додају у историјат.&lt;/li&gt;&lt;li&gt; Ставке се аутоматски уклањају из прозора преузимања.&lt;/li&gt;&lt;li&gt;Нови колачићи се не снимају, постојећима се не може приступити&lt;/li&gt;&lt;li&gt;Иконе странице се не чувају, сесије неће бити сачуване.&lt;/li&gt;&lt;li&gt;Претраге се не додају у искачући мени прозорчића претраге.&lt;/li&gt;&lt;/ul&gt;Док не затворите прозор и даље можете кликнути на Напред и Назад да би се вратили на претходно отворене странице.</translation>
     </message>
     <message>
-        <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <source>Alt+Ctrl+B</source>
+        <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
-        <source>Alt+Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <source>Select &amp;All</source>
+        <translation>Изабери &amp;све</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Када је укључено приватно прегледање онемогућене су неке радње које се тичу ваше приватности:&lt;ul&gt;&lt;li&gt; Веб странице се не додају у историјат.&lt;/li&gt;&lt;li&gt;Ставке се аутоматски уклањају из дијалога „Преузимања“.&lt;/li&gt;&lt;li&gt;Нови колачићи се не чувају, постојећим се не може приступити.&lt;/li&gt;&lt;li&gt;Иконе сајтова се неће чувати, сесије се не могу снимати.&lt;/li&gt;&lt;li&gt;Претраге се не додају у искачући мени прозорчића претраге.&lt;/li&gt;&lt;li&gt;Новонастали мрежни кеш се не уписује на диск.&lt;/li&gt;&lt;/ul&gt;Све док не затворите прозор и даље можете кликнути на дугмад „Напред“и „Назад“ како би се вратили на претходно отваране странице.</translation>
     </message>
 </context>
 <context>
@@ -675,27 +675,27 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Browsing History</source>
-        <translation>Историјат &amp;претраге</translation>
+        <translation>историјат &amp;претраге</translation>
     </message>
     <message>
         <source>&amp;Download History</source>
-        <translation>Историјат п&amp;реузимања</translation>
+        <translation>историјат п&amp;реузимања</translation>
     </message>
     <message>
         <source>&amp;Search History</source>
-        <translation>Историјат пр&amp;етраге</translation>
+        <translation>историјат пр&amp;етраге</translation>
     </message>
     <message>
         <source>&amp;Cookies</source>
-        <translation>&amp;Колачићи</translation>
+        <translation>&amp;колачиће</translation>
     </message>
     <message>
         <source>C&amp;ached Web Pages</source>
-        <translation>Кеширане &amp;веб странице</translation>
+        <translation>кеширане &amp;веб странице</translation>
     </message>
     <message>
         <source>Website &amp;Icons</source>
-        <translation>&amp;Иконе веб сајтова</translation>
+        <translation>&amp;иконе веб сајтова</translation>
     </message>
     <message>
         <source>Clear &amp;Private Data</source>
@@ -948,7 +948,7 @@ Do you want to reload all pages?</source>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
         <translation>У току су %1 преузимања
-Да ли свеједно желите да напустите?</translation>
+Свеједно напустити?</translation>
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
@@ -1057,7 +1057,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Do you want to clear the history?</source>
-        <translation>Да ли желите да очистите историјат?</translation>
+        <translation>Желите ли да очистите историјат?</translation>
     </message>
 </context>
 <context>
@@ -1121,7 +1121,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Можете поставити различит језик од оног&lt;br&gt;који оперативни систем подразумева.&lt;/p&gt;&lt;p&gt;Молим изаберите језик који би требало користити&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Можете поставити различит језик од оног&lt;br&gt;који оперативни систем подразумева.&lt;/p&gt;&lt;p&gt;Изаберите језик који ћете користити&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -1265,29 +1265,29 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Списак зарезом раздвојених кључних речи које могу бити унете у траку локације заједно са изразима са претрагу у овом мотору претраге</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Име</translation>
+        <translation>Име</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Кључне речи</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation>Да ли желите да додате следећи мотор на вашу листу мотора претраге? &lt;br /&gt;&lt;br /&gt;Име: %1&lt;br /&gt;Претражује на: %2</translation>
+        <translation>Желите ли да додате следећи мотор на вашу листу мотора претраге? &lt;br /&gt;&lt;br /&gt;Име: %1&lt;br /&gt;Претражује на: %2</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
-        <translation>Захтева се аутентификација</translation>
+        <translation>Неопходна аутентификација</translation>
     </message>
     <message>
         <source>DUMMY ICON</source>
@@ -1420,23 +1420,23 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Show my home page</source>
-        <translation>Прикажи моју страницу</translation>
+        <translation>прикажи домаћу страницу</translation>
     </message>
     <message>
         <source>Show a blank page</source>
-        <translation>Прикажи празну страницу</translation>
+        <translation>прикажи празну страницу</translation>
     </message>
     <message>
         <source>Restore windows and tabs from last time</source>
-        <translation>Поврати прозоре и језичке од прошлог пута</translation>
+        <translation>поврати прозоре и језичке од прошлог пута</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation>Моја страница:</translation>
+        <translation>Домаћа страница:</translation>
     </message>
     <message>
         <source>Set to current page</source>
-        <translation>Користи тренутну страницу</translation>
+        <translation>Постави трекућу страницу</translation>
     </message>
     <message>
         <source>Remove history items:</source>
@@ -1444,31 +1444,31 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>After one day</source>
-        <translation>После једног дана</translation>
+        <translation>после једног дана</translation>
     </message>
     <message>
         <source>After one week</source>
-        <translation>После једне седмице</translation>
+        <translation>после једне седмице</translation>
     </message>
     <message>
         <source>After two weeks</source>
-        <translation>После две седмице</translation>
+        <translation>после две седмице</translation>
     </message>
     <message>
         <source>After one month</source>
-        <translation>После једног месеца</translation>
+        <translation>после једног месеца</translation>
     </message>
     <message>
         <source>After one year</source>
-        <translation>После једне године</translation>
+        <translation>после једне године</translation>
     </message>
     <message>
         <source>Manually</source>
-        <translation>Ручно</translation>
+        <translation>ручно</translation>
     </message>
     <message>
         <source>On application exit</source>
-        <translation>При гашењу програма</translation>
+        <translation>при напуштању програма</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -1540,15 +1540,15 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Always</source>
-        <translation>Увек</translation>
+        <translation>увек</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>Никад</translation>
+        <translation>никад</translation>
     </message>
     <message>
         <source>Only from sites you navigate to</source>
-        <translation>Само са веб сајтова које посећујем</translation>
+        <translation>само са веб сајтова које посећујем</translation>
     </message>
     <message>
         <source>Exceptions...</source>
@@ -1560,15 +1560,15 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>They expire</source>
-        <translation>Истекну</translation>
+        <translation>истекну</translation>
     </message>
     <message>
         <source>I exit the application</source>
-        <translation>Напустим програм</translation>
+        <translation>напустим програм</translation>
     </message>
     <message>
         <source>At most 90 days</source>
-        <translation>Истекне највише 90 дана</translation>
+        <translation>истекне највише 90 дана</translation>
     </message>
     <message>
         <source>Cookies...</source>
@@ -1608,19 +1608,19 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>In a new window</source>
-        <translation>У новом прозору</translation>
+        <translation>у новом прозору</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation>У изабраном новом језичку тренутног прозора</translation>
+        <translation>у изабраном новом језичку тренутног прозора</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation>У новом језичку тренутног прозора</translation>
+        <translation>у новом језичку тренутног прозора</translation>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation>У тренутном језичку</translation>
+        <translation>у тренутном језичку</translation>
     </message>
     <message>
         <source>Open links from applications:</source>
@@ -1692,7 +1692,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>Изаберите фасциклу...</translation>
     </message>
 </context>
 <context>
@@ -1707,7 +1707,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Изаберите фасциклу</translation>
     </message>
 </context>
 <context>

@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>Lagani veb pregledač baziran na Vebkitu</translation>
+        <translation>Lagani web pregledač baziran na Webkit-u</translation>
     </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -41,7 +41,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>WebKit version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzija Webkit-a: %1</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation>Jezici: Prema redosledu poželjnosti:</translation>
+        <translation>Jezici prema redosledu poželjnosti:</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
@@ -87,7 +87,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Title</source>
-        <translation>Naziv</translation>
+        <translation>Naslov</translation>
     </message>
     <message>
         <source>Add Folder</source>
@@ -215,19 +215,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL bookmarks</source>
-        <translation>IksBEL markeri</translation>
+        <translation>XBEL markeri</translation>
     </message>
     <message>
         <source>HTML Netscape bookmarks</source>
-        <translation>HTML Netskejp markeri</translation>
+        <translation>HTML Netscape markeri</translation>
     </message>
     <message>
         <source>htmlToXBel tool required</source>
-        <translation>Neophodna je Html-U-IksBEL alatka</translation>
+        <translation>Neophodna je Html-U-XBEL alatka</translation>
     </message>
     <message>
         <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
-        <translation>Html-U-IksBEL alatka, koja se destavlja sa Arorom i neophodna je za uvoz HTML markera, nije instalirana ili se ne nalazi u pretraženim putanjama.</translation>
+        <translation>Html-U-XBEL alatka, koja se destavlja sa Arorom i neophodna je za uvoz HTML markera, nije instalirana ili se ne nalazi u pretraženim putanjama.</translation>
     </message>
     <message>
         <source>Loading Bookmark</source>
@@ -251,7 +251,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksModel</name>
     <message>
         <source>Title</source>
-        <translation>Naziv</translation>
+        <translation>Naslov</translation>
     </message>
     <message>
         <source>Address</source>
@@ -299,7 +299,7 @@ p, li { white-space: pre-wrap; }
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
         <translation>Otvoreno je  %1 prozor(a) i %2 jezičak(a)
-Da li svejedno želite da napustite?</translation>
+Svejedno napustiti?</translation>
     </message>
     <message>
         <source>Restore failed</source>
@@ -398,7 +398,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>Prefere&amp;nces...</source>
-        <translation>Posta&amp;vke...</translation>
+        <translation>Podeša&amp;vanje...</translation>
     </message>
     <message>
         <source>Ctrl+,</source>
@@ -506,7 +506,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>Web &amp;Search</source>
-        <translation>&amp;Veb pretraga</translation>
+        <translation>&amp;Web pretraga</translation>
     </message>
     <message>
         <source>Ctrl+K</source>
@@ -528,7 +528,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>Enable Web &amp;Inspector</source>
-        <translation>Omogući &amp;veb inspektor</translation>
+        <translation>Omogući &amp;Web inspektor</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -582,11 +582,11 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>Open Web Resource</source>
-        <translation>Otvori veb resurs</translation>
+        <translation>Otvori web resurs</translation>
     </message>
     <message>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
-        <translation>Veb resursi (*.html *.htm *.svg *.png *.gif *.svgz);;Svi fajlovi (*.*)</translation>
+        <translation>Web resursi (*.html *.htm *.svg *.png *.gif *.svgz);;Svi fajlovi (*.*)</translation>
     </message>
     <message>
         <source>Print Document</source>
@@ -606,12 +606,12 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>Web Inspector</source>
-        <translation>Veb inspektor</translation>
+        <translation>Web inspektor</translation>
     </message>
     <message>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation>Veb inspektor će ispravno raditi samo na stranicama učitanim nakon njegovog uključivanja.
+        <translation>Web inspektor će ispravno raditi samo na stranicama učitanim nakon njegovog uključivanja.
 Da li želite da ponovo učitate sve stranice?</translation>
     </message>
     <message>
@@ -644,16 +644,16 @@ Da li želite da ponovo učitate sve stranice?</translation>
         <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kada je privatno pregledanje uključeno neke radnje koje se tiču vaše privatnosti će biti onemogućene:&lt;ul&gt;&lt;li&gt;Veb stranice se ne dodaju u istorijat.&lt;/li&gt;&lt;li&gt; Stavke se automatski uklanjaju iz prozora preuzimanja.&lt;/li&gt;&lt;li&gt;Novi kolačići se ne snimaju, postojećima se ne može pristupiti&lt;/li&gt;&lt;li&gt;Ikone stranice se ne čuvaju, sesije neće biti sačuvane.&lt;/li&gt;&lt;li&gt;Pretrage se ne dodaju u iskačući meni prozorčića pretrage.&lt;/li&gt;&lt;/ul&gt;Dok ne zatvorite prozor i dalje možete kliknuti na Napred i Nazad da bi se vratili na prethodno otvorene stranice.</translation>
     </message>
     <message>
-        <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <source>Alt+Ctrl+B</source>
+        <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
-        <source>Alt+Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <source>Select &amp;All</source>
+        <translation>Izaberi &amp;sve</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kada je uključeno privatno pregledanje onemogućene su neke radnje koje se tiču vaše privatnosti:&lt;ul&gt;&lt;li&gt; Web stranice se ne dodaju u istorijat.&lt;/li&gt;&lt;li&gt;Stavke se automatski uklanjaju iz dijaloga „Preuzimanja“.&lt;/li&gt;&lt;li&gt;Novi kolačići se ne čuvaju, postojećim se ne može pristupiti.&lt;/li&gt;&lt;li&gt;Ikone sajtova se neće čuvati, sesije se ne mogu snimati.&lt;/li&gt;&lt;li&gt;Pretrage se ne dodaju u iskačući meni prozorčića pretrage.&lt;/li&gt;&lt;li&gt;Novonastali mrežni keš se ne upisuje na disk.&lt;/li&gt;&lt;/ul&gt;Sve dok ne zatvorite prozor i dalje možete kliknuti na dugmad „Napred“i „Nazad“ kako bi se vratili na prethodno otvarane stranice.</translation>
     </message>
 </context>
 <context>
@@ -675,27 +675,27 @@ Da li želite da ponovo učitate sve stranice?</translation>
     </message>
     <message>
         <source>&amp;Browsing History</source>
-        <translation>Istorijat &amp;pretrage</translation>
+        <translation>istorijat &amp;pretrage</translation>
     </message>
     <message>
         <source>&amp;Download History</source>
-        <translation>Istorijat p&amp;reuzimanja</translation>
+        <translation>istorijat p&amp;reuzimanja</translation>
     </message>
     <message>
         <source>&amp;Search History</source>
-        <translation>Istorijat pr&amp;etrage</translation>
+        <translation>istorijat pr&amp;etrage</translation>
     </message>
     <message>
         <source>&amp;Cookies</source>
-        <translation>&amp;Kolačići</translation>
+        <translation>&amp;kolačiće</translation>
     </message>
     <message>
         <source>C&amp;ached Web Pages</source>
-        <translation>Keširane &amp;veb stranice</translation>
+        <translation>Keširane &amp;web stranice</translation>
     </message>
     <message>
         <source>Website &amp;Icons</source>
-        <translation>&amp;Ikone veb sajtova</translation>
+        <translation>&amp;ikone web sajtova</translation>
     </message>
     <message>
         <source>Clear &amp;Private Data</source>
@@ -744,7 +744,7 @@ Da li želite da ponovo učitate sve stranice?</translation>
     <name>CookieExceptionsModel</name>
     <message>
         <source>Website</source>
-        <translation>Veb sajt</translation>
+        <translation>Web sajt</translation>
     </message>
     <message>
         <source>Rule</source>
@@ -767,7 +767,7 @@ Da li želite da ponovo učitate sve stranice?</translation>
     <name>CookieModel</name>
     <message>
         <source>Website</source>
-        <translation>Veb sajt</translation>
+        <translation>Web sajt</translation>
     </message>
     <message>
         <source>Name</source>
@@ -948,7 +948,7 @@ Da li želite da ponovo učitate sve stranice?</translation>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
         <translation>U toku su %1 preuzimanja
-Da li svejedno želite da napustite?</translation>
+Svejedno napustiti?</translation>
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
@@ -1057,7 +1057,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>Do you want to clear the history?</source>
-        <translation>Da li želite da očistite istorijat?</translation>
+        <translation>Želite li da očistite istorijat?</translation>
     </message>
 </context>
 <context>
@@ -1121,7 +1121,7 @@ Da li svejedno želite da napustite?</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Možete postaviti različit jezik od onog&lt;br&gt;koji operativni sistem podrazumeva.&lt;/p&gt;&lt;p&gt;Molim izaberite jezik koji bi trebalo koristiti&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Možete postaviti različit jezik od onog&lt;br&gt;koji operativni sistem podrazumeva.&lt;/p&gt;&lt;p&gt;Izaberite jezik koji ćete koristiti&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -1265,29 +1265,29 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Spisak zarezom razdvojenih ključnih reči koje mogu biti unete u traku lokacije zajedno sa izrazima sa pretragu u ovom motoru pretrage</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Ime</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Ključne reči</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation>Da li želite da dodate sledeći motor na vašu listu motora pretrage? &lt;br /&gt;&lt;br /&gt;Ime: %1&lt;br /&gt;Pretražuje na: %2</translation>
+        <translation>Želite li da dodate sledeći motor na vašu listu motora pretrage? &lt;br /&gt;&lt;br /&gt;Ime: %1&lt;br /&gt;Pretražuje na: %2</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
-        <translation>Zahteva se autentifikacija</translation>
+        <translation>Neophodna autentifikacija</translation>
     </message>
     <message>
         <source>DUMMY ICON</source>
@@ -1336,7 +1336,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     <name>QObject</name>
     <message>
         <source>The file is not an XBEL version 1.0 file.</source>
-        <translation>Fajl nije tipa IksBEL 1.0.</translation>
+        <translation>Fajl nije tipa XBEL 1.0.</translation>
     </message>
     <message>
         <source>Unknown title</source>
@@ -1420,23 +1420,23 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Show my home page</source>
-        <translation>Prikaži moju stranicu</translation>
+        <translation>prikaži domaću stranicu</translation>
     </message>
     <message>
         <source>Show a blank page</source>
-        <translation>Prikaži praznu stranicu</translation>
+        <translation>prikaži praznu stranicu</translation>
     </message>
     <message>
         <source>Restore windows and tabs from last time</source>
-        <translation>Povrati prozore i jezičke od prošlog puta</translation>
+        <translation>povrati prozore i jezičke od prošlog puta</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation>Moja stranica:</translation>
+        <translation>Domaća stranica:</translation>
     </message>
     <message>
         <source>Set to current page</source>
-        <translation>Koristi trenutnu stranicu</translation>
+        <translation>Postavi trekuću stranicu</translation>
     </message>
     <message>
         <source>Remove history items:</source>
@@ -1444,31 +1444,31 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>After one day</source>
-        <translation>Posle jednog dana</translation>
+        <translation>posle jednog dana</translation>
     </message>
     <message>
         <source>After one week</source>
-        <translation>Posle jedne sedmice</translation>
+        <translation>posle jedne sedmice</translation>
     </message>
     <message>
         <source>After two weeks</source>
-        <translation>Posle dve sedmice</translation>
+        <translation>posle dve sedmice</translation>
     </message>
     <message>
         <source>After one month</source>
-        <translation>Posle jednog meseca</translation>
+        <translation>posle jednog meseca</translation>
     </message>
     <message>
         <source>After one year</source>
-        <translation>Posle jedne godine</translation>
+        <translation>posle jedne godine</translation>
     </message>
     <message>
         <source>Manually</source>
-        <translation>Ručno</translation>
+        <translation>ručno</translation>
     </message>
     <message>
         <source>On application exit</source>
-        <translation>Pri gašenju programa</translation>
+        <translation>pri napuštanju programa</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -1500,7 +1500,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation>Poželjni jezici za pregledanje veb stranica:</translation>
+        <translation>Poželjni jezici za pregledanje web stranica:</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -1508,7 +1508,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Web Content</source>
-        <translation>Veb sadržaj</translation>
+        <translation>Web sadržaj</translation>
     </message>
     <message>
         <source>Block Popup Windows</source>
@@ -1524,7 +1524,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Enable Javascript</source>
-        <translation>Omogući Javaskript</translation>
+        <translation>Omogući Javascript</translation>
     </message>
     <message>
         <source>View Images</source>
@@ -1540,15 +1540,15 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation>Uvek</translation>
+        <translation>uvek</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>Nikad</translation>
+        <translation>nikad</translation>
     </message>
     <message>
         <source>Only from sites you navigate to</source>
-        <translation>Samo sa veb sajtova koje posećujem</translation>
+        <translation>samo sa veb sajtova koje posećujem</translation>
     </message>
     <message>
         <source>Exceptions...</source>
@@ -1560,15 +1560,15 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>They expire</source>
-        <translation>Isteknu</translation>
+        <translation>isteknu</translation>
     </message>
     <message>
         <source>I exit the application</source>
-        <translation>Napustim program</translation>
+        <translation>napustim program</translation>
     </message>
     <message>
         <source>At most 90 days</source>
-        <translation>Istekne najviše 90 dana</translation>
+        <translation>istekne najviše 90 dana</translation>
     </message>
     <message>
         <source>Cookies...</source>
@@ -1608,19 +1608,19 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>In a new window</source>
-        <translation>U novom prozoru</translation>
+        <translation>u novom prozoru</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation>U izabranom novom jezičku trenutnog prozora</translation>
+        <translation>u izabranom novom jezičku trenutnog prozora</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation>U novom jezičku trenutnog prozora</translation>
+        <translation>u novom jezičku trenutnog prozora</translation>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation>U trenutnom jezičku</translation>
+        <translation>u trenutnom jezičku</translation>
     </message>
     <message>
         <source>Open links from applications:</source>
@@ -1640,15 +1640,15 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Socks5</source>
-        <translation>SOKS5</translation>
+        <translation>Socks5</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
-        <translation>HTTP (Bezbedno)</translation>
+        <translation>Http (Bezbedno)</translation>
     </message>
     <message>
         <source>Http (Transparent)</source>
-        <translation>HTTP (Transparentno)</translation>
+        <translation>Http (Transparentno)</translation>
     </message>
     <message>
         <source>Host name:</source>
@@ -1692,7 +1692,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>Izaberite fasciklu...</translation>
     </message>
 </context>
 <context>
@@ -1707,7 +1707,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Izaberite fasciklu</translation>
     </message>
 </context>
 <context>
