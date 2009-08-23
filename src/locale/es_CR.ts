@@ -37,7 +37,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>About %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca %1</translation>
     </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -45,34 +45,34 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>AcceptLanguage</name>
     <message>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Idiomas</translation>
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation type="unfinished"></translation>
+        <translation>Idiomas: En orden de preferencia:</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir &amp;Arriba</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir &amp;Abajo</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">&amp;Remover</translation>
+        <translation>&amp;Remover</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar...</translation>
     </message>
 </context>
 <context>
@@ -87,15 +87,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Título</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <source>Add Folder</source>
-        <translation type="unfinished">Agregar carpeta</translation>
+        <translation>Agregar carpeta</translation>
     </message>
 </context>
 <context>
@@ -130,11 +130,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar nombre</translation>
     </message>
     <message>
         <source>Edit Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar dirección</translation>
     </message>
 </context>
 <context>
@@ -199,53 +199,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra de marcadores</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menú de marcadores</translation>
     </message>
     <message>
         <source>Name Change</source>
         <comment>Undo bookmark title change</comment>
-        <translation type="unfinished">Cambiar nombre</translation>
+        <translation>Cambiar nombre</translation>
     </message>
     <message>
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
-        <translation type="unfinished">Cambiar dirección</translation>
+        <translation>Cambiar dirección</translation>
     </message>
     <message>
         <source>XBEL bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcadores XBEL</translation>
     </message>
     <message>
         <source>HTML Netscape bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcadores Netscape HTML </translation>
     </message>
     <message>
         <source>htmlToXBel tool required</source>
-        <translation type="unfinished"></translation>
+        <translation>Herramienta htmlToXBel requerida</translation>
     </message>
     <message>
         <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>Herramienta htmlToXBel, la cual viene incluida con Arora y es necesaria para importar marcadores HTML, no está instalado o disponible en las rutas de búsqueda.</translation>
     </message>
     <message>
         <source>Loading Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargando marcador</translation>
     </message>
     <message>
         <source>Error when loading HTML bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Error durante la carga de marcadores HTML: %1
+</translation>
     </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
     <message>
         <source>Open in Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir en pestañas</translation>
     </message>
 </context>
 <context>
@@ -267,27 +268,27 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Abrir</translation>
+        <translation>Abrir</translation>
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
-        <translation type="unfinished">Abrir en una nueva &amp;pestaña</translation>
+        <translation>Abrir en una nueva &amp;pestaña</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
-        <translation type="unfinished">Agregar Marcador...</translation>
+        <translation>Agregar marcador...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar carpeta...</translation>
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished">Marcadores</translation>
+        <translation>Marcadores</translation>
     </message>
 </context>
 <context>
@@ -300,7 +301,7 @@ p, li { white-space: pre-wrap; }
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
         <translation>Hay %1 ventanas y %2 pestañas abiertas
-¿Desea cerrarlas de todos modos?</translation>
+¿Desea cerrarla(s) de todos modos?</translation>
     </message>
     <message>
         <source>Restore failed</source>
@@ -308,7 +309,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
-        <translation>La sesión guardada no pudo ser restaurada porque Arora se bloqueo mientras intentaba restaurar esta sesión.</translation>
+        <translation>La sesión guardada no pudo ser restaurada porque Arora se bloqueó mientras intentaba restaurar esta sesión.</translation>
     </message>
 </context>
 <context>
@@ -335,11 +336,11 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&amp;Import Bookmarks...</source>
-        <translation>&amp;Importar Marcadores...</translation>
+        <translation>&amp;Importar marcadores...</translation>
     </message>
     <message>
         <source>&amp;Export Bookmarks...</source>
-        <translation>&amp;Exportar Marcadores...</translation>
+        <translation>&amp;Exportar marcadores...</translation>
     </message>
     <message>
         <source>P&amp;rint Preview...</source>
@@ -351,7 +352,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Private &amp;Browsing...</source>
-        <translation>Navegar &amp; de forma privada...</translation>
+        <translation>Navegación &amp;privada...</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -383,11 +384,11 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation>&amp;Encontrar</translation>
+        <translation>&amp;Buscar</translation>
     </message>
     <message>
         <source>Find Nex&amp;t</source>
-        <translation>Encontrar Próxi&amp;mo</translation>
+        <translation>Buscar Próxi&amp;mo</translation>
     </message>
     <message>
         <source>Find P&amp;revious</source>
@@ -586,7 +587,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
-        <translation>¿Está seguro que desea cerrar esta ventana? Hay %1 pestañana(s) abiertas</translation>
+        <translation>¿Está seguro que desea cerrar esta ventana? Hay %1 pestañana(s) abierta(s)</translation>
     </message>
     <message>
         <source>Page Source of %1</source>
@@ -594,12 +595,12 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Web Inspector</source>
-        <translation>Inspección web</translation>
+        <translation>Inspector web</translation>
     </message>
     <message>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation>La inspección web solo funcionará correctamente para páginas que fueron cargadas después de haber sido habilitado.
+        <translation>El Inspector web solo funcionará correctamente para páginas que fueron cargadas después de haber sido habilitado.
 ¿Desea recargar las páginas?</translation>
     </message>
     <message>
@@ -621,57 +622,57 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Switch application language </source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar el idioma del programa</translation>
     </message>
     <message>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar ventana</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation>Acercamiento &amp;Ampliar</translation>
     </message>
     <message>
         <source>Zoom &amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Acercamiento &amp;Normal</translation>
     </message>
     <message>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Acercamiento &amp;Achicar</translation>
     </message>
     <message>
         <source>Zoom &amp;Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Acercamiento &amp;Sólo texto</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar todos los marcadores...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar carpeta...</translation>
     </message>
     <message>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
-        <translation type="unfinished"></translation>
+        <translation>Acerca &amp;%1</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Predeterminado</translation>
     </message>
     <message>
         <source>Text Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Codificación de caracteres</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Cuando la navegación privada se activa, algunas accciones relacionadas con su privacidad son deshabilitadas:&lt;ul&gt;&lt;li&gt; Las páginas web no son agregadas en el historial.&lt;/li&gt;&lt;li&gt; Los objetos son automáticamente removidos de la ventana de descargas.&lt;/li&gt;&lt;li&gt; Las cookies nuevas no son guardadas, las cookies actuales no podrán ser accesadas.&lt;/li&gt;&lt;li&gt; Los íconos de los sitios no serán guardados, la sesión tampoco podrá ser guardada.&lt;/li&gt;&lt;li&gt; Las búsquedas no son agregadas al menú emergente de la caja de búsqueda.&lt;/li&gt;&lt;/ul&gt; A menos que usted cierre la ventana, podrá utilizar los botones Regresar y Adelantar para regresar a páginas web que han sido abiertas.</translation>
     </message>
 </context>
 <context>
@@ -728,34 +729,34 @@ Do you want to reload all pages?</source>
     <name>ClickToFlash</name>
     <message>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar</translation>
     </message>
     <message>
         <source>Load All</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar todo</translation>
     </message>
     <message>
         <source>Add %1 to Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar %1 a la lista blanca</translation>
     </message>
     <message>
         <source>Remove from Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover de la lista blanca</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuraciones</translation>
     </message>
     <message>
         <source>Load Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar Flash</translation>
     </message>
 </context>
 <context>
     <name>ClickToFlashSettings</name>
     <message>
         <source>Whitelist sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Sitios de la lista blanca</translation>
     </message>
 </context>
 <context>
@@ -817,7 +818,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Session cookie</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookie de la sesión</translation>
     </message>
 </context>
 <context>
@@ -836,7 +837,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Add &amp;Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar &amp;regla</translation>
     </message>
 </context>
 <context>
@@ -987,11 +988,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 de %2 (%3/seg) - %4</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargando directorio (%1) no puede ser creado.</translation>
     </message>
 </context>
 <context>
@@ -1006,60 +1007,61 @@ Do you want to reload all pages?</source>
     <message>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hay %1 descarga(s) en progreso
+¿Desea quitarlo de todos modos?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n minuto restante</numerusform>
+            <numerusform>%n minutos restantes</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n segundo restante</numerusform>
+            <numerusform>%n segundos restantes</numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">bytes</translation>
+        <translation>bites</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">kB</translation>
+        <translation>kB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>MB</translation>
     </message>
     <message>
         <source>GB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>FileAccessReply</name>
     <message>
         <source>No Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin Error</translation>
     </message>
     <message>
         <source>Error opening: %1: No such file or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Error abriendo %1: No s pudo encontrar el archivo o directorio</translation>
     </message>
     <message>
         <source>Unable to read %1</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede leer %1</translation>
     </message>
     <message>
         <source>Contents of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Contenidos de %1</translation>
     </message>
     <message>
         <source>%1 KB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KB</translation>
     </message>
 </context>
 <context>
@@ -1137,38 +1139,38 @@ Do you want to quit anyway?</source>
     <name>JavaScriptAroraObject</name>
     <message>
         <source>Welcome to Arora!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Bienvenido a Arora!</translation>
     </message>
     <message>
         <source>Arora Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar Arora</translation>
     </message>
     <message>
         <source>Search!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Buscar!</translation>
     </message>
     <message>
         <source>Search results provided by</source>
-        <translation type="unfinished"></translation>
+        <translation>Resultados de la búsqueda proveídos por</translation>
     </message>
     <message>
         <source>About Arora</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de Arora</translation>
     </message>
 </context>
 <context>
     <name>LanguageManager</name>
     <message>
         <source>Choose language</source>
-        <translation type="unfinished"></translation>
+        <translation>Elija el idioma</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Usted puede ejecutar un idioma distinto al del &lt;br&gt;sistema operativo predeterminado.&lt;/p&gt;&lt;p&gt;Por favor el idioma que desea utilizar&lt;/p&gt;</translation>
     </message>
     <message>
         <source>No translation files are installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se instalarán archivos de traducción</translation>
     </message>
 </context>
 <context>
@@ -1201,33 +1203,35 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation> - Errores-SSL</translation>
     </message>
     <message>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Errores SSL:&lt;br/&gt;&lt;br/&gt;para: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+¿Quieres ignorar esos errores?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;Certificados:&lt;br/&gt;%1&lt;br/&gt;¿Quieres aceptar todos esos certificados?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Issuer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Emitido por: %1</translation>
     </message>
     <message>
         <source>Not valid before: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>No válido antes: %1</translation>
     </message>
     <message>
         <source>Valid until: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Válidao hasta: %1</translation>
     </message>
     <message>
         <source>Alternate Names:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombres alternativos:</translation>
     </message>
 </context>
 <context>
@@ -1248,68 +1252,68 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>OpenSearchDialog</name>
     <message>
         <source>Open File</source>
-        <translation type="unfinished">Abrir archivo</translation>
+        <translation>Abrir archivo</translation>
     </message>
     <message>
         <source>OpenSearch</source>
-        <translation type="unfinished"></translation>
+        <translation>BuscadorLibre</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 no es una descripción de BuscadorLibre 1.1  o ya está en su lista.</translation>
     </message>
     <message>
         <source>You must have at least one search engine in here.</source>
-        <translation type="unfinished"></translation>
+        <translation>Debes tener al menos un motor de búsqueda acá.</translation>
     </message>
     <message>
         <source>OpenSearch Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrador de BuscadorLibre</translation>
     </message>
     <message>
         <source>&amp;Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Restaurar Predeterminado</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Borrar</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Agregar</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cerrar</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchEngineModel</name>
     <message>
         <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Descripción:&lt;/strong&gt; %1</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;Provee sugerencias contextuales&lt;/strong&gt;</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Quieres agregar el siguiente motor a su lista de motores de búsqueda?&lt;br /&gt;&lt;br /&gt;Nombre: %1&lt;br /&gt;Reliza búsquedas en: %2</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
-        <translation>Se requiere autenticación</translation>
+        <translation>Autenticación requerida</translation>
     </message>
     <message>
         <source>DUMMY ICON</source>
@@ -1321,18 +1325,18 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Username:</source>
-        <translation>Usuario:</translation>
+        <translation>Nombre de usuario:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>Clave:</translation>
+        <translation>Contraseña:</translation>
     </message>
 </context>
 <context>
     <name>PlainTextEditSearch</name>
     <message>
         <source>Not Found</source>
-        <translation type="unfinished">No encontrado</translation>
+        <translation>No encontrado</translation>
     </message>
 </context>
 <context>
@@ -1370,7 +1374,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este no es un archivo BuscadorLibre 1.1</translation>
     </message>
 </context>
 <context>
@@ -1404,7 +1408,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Highlight All</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar todo</translation>
     </message>
 </context>
 <context>
@@ -1725,38 +1729,38 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>SettingsDialog</name>
     <message>
         <source>Restart required</source>
-        <translation type="unfinished"></translation>
+        <translation>Reinicio requerido</translation>
     </message>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>La configuración del cache de red ha cambiado. Con el fin de que sea tomado en su cuenta, el navegador debe ser reiniciado.</translation>
     </message>
 </context>
 <context>
     <name>SourceViewer</name>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">Cargando...</translation>
+        <translation>Cargando...</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Editar</translation>
+        <translation>&amp;Editar</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished">&amp;Encontrar</translation>
+        <translation>&amp;Buscar</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">&amp;Ver</translation>
+        <translation>&amp;Ver</translation>
     </message>
     <message>
         <source>&amp;Wrap lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ajustar líneas </translation>
     </message>
     <message>
         <source>Source of Page %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuente de la página %1</translation>
     </message>
 </context>
 <context>
@@ -1806,7 +1810,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Show Next Tab</source>
-        <translation>Mostrar la  próxima pestaña</translation>
+        <translation>Mostrar la siguiente pestaña</translation>
     </message>
     <message>
         <source>Show Previous Tab</source>
@@ -1829,40 +1833,40 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
 Do you really want to close this page?
 </source>
         <translation>Usted ha modificado esta página y una vez que la haya cerrado los cambios se perderán
-¿En realidad desea cerrrar esta página?
+¿Desea realmente cerrrar esta página?
 </translation>
     </message>
     <message>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-]</translation>
     </message>
     <message>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-[</translation>
     </message>
     <message>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Pestañas guardadas</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">Cargando...</translation>
+        <translation>Cargando...</translation>
     </message>
     <message>
         <source>Loading %1% (%2 %3)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargando %1% (%2 %3)...</translation>
     </message>
     <message>
         <source>Finished loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Carga finalizada</translation>
     </message>
     <message>
         <source>Failed to load</source>
-        <translation type="unfinished"></translation>
+        <translation>Falló al cargar</translation>
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar en los marcadores todas las pestañas</translation>
     </message>
 </context>
 <context>
@@ -1877,19 +1881,19 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation type="unfinished">Limpiar búsquedas recientes</translation>
+        <translation>Limpiar búsquedas recientes</translation>
     </message>
     <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Sugerencies</translation>
     </message>
     <message>
         <source>Add &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar &apos;%1&apos;</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar motores de búsqueda...</translation>
     </message>
 </context>
 <context>
@@ -1900,27 +1904,27 @@ Do you really want to close this page?
     </message>
     <message>
         <source>When connecting to: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuando se conecta a: %1</translation>
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifica errores en la dirección como &lt;b&gt;ww&lt;/b&gt;.arora-browser.org en lugar de &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>si su computadora o red está protegida por un corta fuegos o proxy, asegúrese de que el navegador web tiene acceso permitido a la red.</translation>
     </message>
     <message>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>si la dirección es correcta, intente verificar la conexión de red.</translation>
     </message>
     <message>
         <source>Resending POST request</source>
-        <translation type="unfinished"></translation>
+        <translation>Reenviando petición POST</translation>
     </message>
     <message>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Con el fin de mostrar el sitio, la solicitud con toda la información debe ser enviada una vez más, lo cual puede generar un comportamiento inesperado en el sitio p.e. la misma acción debe ser desempeñada una vez más. ¿Quieres continuar de todos modos?</translation>
     </message>
 </context>
 <context>
@@ -1971,35 +1975,35 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Search with...</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar con...</translation>
     </message>
     <message>
         <source>Add to the toolbar search</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar a la barra de búsqueda</translation>
     </message>
     <message>
         <source>Method not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Método no soportado</translation>
     </message>
     <message>
         <source>%1 method is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 método no es soportado.</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Motor de búsqueda</translation>
     </message>
     <message>
         <source>Choose the desired search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Elija el nombre deseado para el motor de búsqueda</translation>
     </message>
     <message>
         <source>Engine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de motor</translation>
     </message>
     <message>
         <source>Type in a name for the engine</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
