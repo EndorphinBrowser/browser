@@ -1139,25 +1139,30 @@ void BrowserMainWindow::privateBrowsing()
 {
     if (!BrowserApplication::isPrivate()) {
         QString title = tr("Are you sure you want to turn on private browsing?");
-        QString text = tr("<b>%1</b><br><br>When private browsing is turned on,"
-            " some actions concerning your privacy will be disabled:"
-            "<ul><li> Webpages are not added to the history.</li>"
-            "<li> Items are automatically removed from the Downloads window.</li>"
-            "<li> New cookies are not stored, current cookies can't be accessed.</li>"
-            "<li> Site icons won't be stored, session won't be saved.</li>"
-            "<li> Searches are not added to the pop-up menu in the search box.</li>"
-            "<li> No new network cache is written to disk.</li></ul>"
-            "Until you close the window, you can still click the Back and Forward buttons"
-            " to return to the webpages you have opened.").arg(title);
+        QString text1 = tr("When private browsing is turned on, some actions concerning your privacy will be disabled:");
 
-        QMessageBox::StandardButton button = QMessageBox::question(this, QString(), text,
-                               QMessageBox::Ok | QMessageBox::Cancel,
-                               QMessageBox::Ok);
-        if (button == QMessageBox::Ok) {
+        QStringList actions;
+        actions.append(tr("Webpages are not added to the history."));
+        actions.append(tr("Items are automatically removed from the Downloads window."));
+        actions.append(tr("New cookies are not stored, current cookies can't be accessed."));
+        actions.append(tr("Site icons won't be stored."));
+        actions.append(tr("Session won't be saved."));
+        actions.append(tr("Searches are not added to the pop-up menu in the search box."));
+        actions.append(tr("No new network cache is written to disk."));
+
+        QString text2 = tr("Until you close the window, you can still click the Back and Forward "
+                           "buttons to return to the webpages you have opened.");
+
+        QString message = QString(QLatin1String("<b>%1</b><p>%2</p><ul><li>%3</li></ul><p>%4</p>"))
+                          .arg(title, text1, actions.join(QLatin1String("</li><li>")), text2);
+
+        QMessageBox::StandardButton button = QMessageBox::question(this, tr("Private Browsing"), message,
+                                                                   QMessageBox::Ok | QMessageBox::Cancel,
+                                                                   QMessageBox::Ok);
+        if (button == QMessageBox::Ok)
             BrowserApplication::setPrivate(true);
-        } else {
+        else
             m_filePrivateBrowsingAction->setChecked(false);
-        }
     } else {
         BrowserApplication::setPrivate(false);
     }
