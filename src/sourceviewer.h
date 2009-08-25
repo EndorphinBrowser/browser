@@ -31,14 +31,13 @@ class QMenu;
 class QUrl;
 class QAction;
 class QNetworkReply;
-class QNetworkRequest;
 class SourceViewer : public QDialog
 {
     Q_OBJECT
 
 public:
     SourceViewer(const QString &source, const QString &title,
-                    const QUrl &url, QWidget *parent = 0);
+                 const QUrl &url, QWidget *parent = 0);
 
 private:
     QPlainTextEdit *m_edit;
@@ -50,8 +49,7 @@ private:
     QAction *m_findAction;
     QMenu *m_viewMenu;
     QNetworkReply *m_reply;
-    QNetworkRequest *m_request;
-    QString *m_source;
+    QString m_source;
 
 private slots:
     void loadingFinished();
