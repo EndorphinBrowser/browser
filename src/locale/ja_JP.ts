@@ -57,7 +57,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>WebKit version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebKit バージョン: %1</translation>
     </message>
 </context>
 <context>
@@ -706,15 +706,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>すべてを選択(&amp;A)</translation>
     </message>
     <message>
         <source>Alt+Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;プライベート モードに移行した場合、あなたのプライバシーを守る為、いくつかの機能は制限されます:&lt;ul&gt;&lt;li&gt; 表示したページは履歴に追加されません。&lt;/li&gt;&lt;li&gt; ダウンロード履歴は残りません。&lt;/li&gt;&lt;li&gt; 新しく受け取った Cookie は保存されません。既に保存済みの Cookie を参照する事もできません。&lt;/li&gt;&lt;li&gt; Web サイトのアイコンやセッションは保存されません。&lt;/li&gt;&lt;li&gt; 検索ボックスの検索履歴に追加されません。&lt;/li&gt;&lt;li&gt;新しいネットワークキャッシュをディスクに保存しません。&lt;/li&gt;&lt;/ul&gt;ウィンドウを閉じるまで閲覧した Web ページに戻る/進むボタンで戻る事ができます。</translation>
     </message>
 </context>
 <context>
@@ -1373,15 +1373,15 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation type="unfinished"></translation>
+        <translation>カンマで区切られたキーワードのリストは、検索時にロケーション バー内の検索語に続けて渡されます</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">名前</translation>
+        <translation>名前</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>キーワード</translation>
     </message>
 </context>
 <context>
@@ -1832,7 +1832,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>ディレクトリを選択...</translation>
     </message>
 </context>
 <context>
@@ -1847,7 +1847,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>ディレクトリを選択</translation>
     </message>
 </context>
 <context>
