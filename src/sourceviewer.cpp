@@ -44,15 +44,14 @@ SourceViewer::SourceViewer(const QString &source,
     , m_menuBar(new QMenuBar(this))
     , m_editMenu(new QMenu(tr("&Edit"), m_menuBar))
     , m_findAction(new QAction(tr("&Find"), m_editMenu))
-    , m_viewMenu(new QMenu(tr("&View"), m_menuBar))
-    , m_setWrappingAction(new QAction(tr("&Wrap lines"), m_viewMenu))
 {
     setWindowTitle(tr("Source of Page %1").arg(title));
     resize(640, 480);
 
+    m_edit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
+
     m_source = new QString(source);
 
-    m_edit->setLineWrapMode(QPlainTextEdit::NoWrap);
     m_edit->setReadOnly(true);
     QFont font = m_edit->font();
     font.setFamily(QLatin1String("Monospace"));
@@ -65,13 +64,6 @@ SourceViewer::SourceViewer(const QString &source,
     m_findAction->setShortcuts(QKeySequence::Find);
     connect(m_findAction, SIGNAL(triggered()),
             m_plainTextEditSearch, SLOT(showFind()));
-
-    m_menuBar->addMenu(m_viewMenu);
-    m_viewMenu->addAction(m_setWrappingAction);
-    m_setWrappingAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_W));
-    m_setWrappingAction->setCheckable(true);
-    connect(m_setWrappingAction, SIGNAL(triggered(bool)),
-            this, SLOT(setWrapping(bool)));
 
     m_layout->setSpacing(0);
     m_layout->setContentsMargins(0, 0, 0, 0);
@@ -104,12 +96,4 @@ void SourceViewer::loadingFinished()
     m_reply->close();
     delete m_request;
     delete m_source;
-}
-
-void SourceViewer::setWrapping(bool wrap)
-{
-    if (wrap)
-        m_edit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
-    else
-        m_edit->setLineWrapMode(QPlainTextEdit::NoWrap);
 }
