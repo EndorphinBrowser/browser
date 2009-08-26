@@ -29,6 +29,9 @@ ModelToolBar::ModelToolBar(QWidget *parent)
     : QToolBar(parent)
     , m_model(0)
 {
+    if (isVisible())
+        build();
+
     setAcceptDrops(true);
 }
 
@@ -36,6 +39,9 @@ ModelToolBar::ModelToolBar(const QString &title, QWidget *parent)
     : QToolBar(title, parent)
     , m_model(0)
 {
+    if (isVisible())
+        build();
+
     setAcceptDrops(true);
 }
 
@@ -179,6 +185,19 @@ void ModelToolBar::dragEnterEvent(QDragEnterEvent *event)
     }
 
     QToolBar::dragEnterEvent(event);
+}
+
+void ModelToolBar::hideEvent(QHideEvent *event)
+{
+    clear();
+    QToolBar::hideEvent(event);
+}
+
+void ModelToolBar::showEvent(QShowEvent *event)
+{
+    if (actions().isEmpty())
+        build();
+    QToolBar::showEvent(event);
 }
 
 void ModelToolBar::dropEvent(QDropEvent *event)

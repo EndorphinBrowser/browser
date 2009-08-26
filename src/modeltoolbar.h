@@ -53,6 +53,8 @@ protected:
 
     bool eventFilter(QObject *object, QEvent *event);
 
+    void hideEvent(QHideEvent *event);
+    void showEvent(QShowEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

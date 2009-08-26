@@ -36,7 +36,6 @@ BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
 {
     setModel(model);
     setRootIndex(model->index(BrowserApplication::bookmarksManager()->toolbar()));
-    build();
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
