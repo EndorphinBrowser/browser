@@ -25,47 +25,33 @@
 #include "bookmarksmanager.h"
 #include "bookmarksmenu.h"
 #include "bookmarksmodel.h"
-#include "bookmarktoolbutton.h"
 #include "browserapplication.h"
 #include "modelmenu.h"
 
 #include <qevent.h>
 
-Q_DECLARE_METATYPE(QModelIndex)
-
 BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
-    : QToolBar(tr("Bookmarks"), parent)
+    : ModelToolBar(tr("Bookmarks"), parent)
     , m_bookmarksModel(model)
 {
+    setModel(model);
+    setRootIndex(model->index(BrowserApplication::bookmarksManager()->toolbar()));
+    build();
+
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(contextMenuRequested(const QPoint &)));
+    connect(this, SIGNAL(activated(const QModelIndex &)),
+            this, SLOT(bookmarkActivated(const QModelIndex &)));
 
-    setRootIndex(model->index(BrowserApplication::bookmarksManager()->toolbar()));
-    connect(m_bookmarksModel, SIGNAL(modelReset()), this, SLOT(build()));
-    connect(m_bookmarksModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(build()));
-    connect(m_bookmarksModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), this, SLOT(build()));
-    connect(m_bookmarksModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(build()));
-    setAcceptDrops(true);
     setHidden(true);
-}
-
-QModelIndex BookmarksToolBar::index(QAction *action)
-{
-    QModelIndex index;
-    if (!action)
-        return index;
-
-    QVariant variant = action->data();
-    if (!variant.canConvert<QModelIndex>())
-        return index;
-
-    return qvariant_cast<QModelIndex>(variant);
+    setToolButtonStyle(Qt::ToolButtonTextOnly);
 }
 
 void BookmarksToolBar::contextMenuRequested(const QPoint &position)
 {
     QAction *action = actionAt(position);
+
     QMenu menu;
 
     if (action) {
@@ -96,9 +82,18 @@ void BookmarksToolBar::contextMenuRequested(const QPoint &position)
     menu.exec(QCursor::pos());
 }
 
+void BookmarksToolBar::bookmarkActivated(const QModelIndex &index)
+{
+    Q_ASSERT(index.isValid());
+
+    emit openUrl(
+        index.data(BookmarksModel::UrlRole).toUrl(),
+        index.data(Qt::DisplayRole).toString());
+}
+
 void BookmarksToolBar::openBookmark()
 {
-    QModelIndex index = this->index(qobject_cast<QAction*>(sender()));
+    QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
     emit openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
@@ -107,7 +102,7 @@ void BookmarksToolBar::openBookmark()
 
 void BookmarksToolBar::openBookmarkInCurrentTab()
 {
-    QModelIndex index = this->index(qobject_cast<QAction*>(sender()));
+    QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
     emit openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
@@ -117,7 +112,7 @@ void BookmarksToolBar::openBookmarkInCurrentTab()
 
 void BookmarksToolBar::openBookmarkInNewTab()
 {
-    QModelIndex index = this->index(qobject_cast<QAction*>(sender()));
+    QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
     emit openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
@@ -127,171 +122,30 @@ void BookmarksToolBar::openBookmarkInNewTab()
 
 void BookmarksToolBar::removeBookmark()
 {
-    QModelIndex index = this->index(qobject_cast<QAction*>(sender()));
+    QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
-    m_bookmarksModel->removeRow(index.row(), m_root);
+    m_bookmarksModel->removeRow(index.row(), rootIndex());
 }
 
 void BookmarksToolBar::newBookmark()
 {
     AddBookmarkDialog dialog;
-    dialog.setCurrentIndex(m_root);
+    dialog.setCurrentIndex(rootIndex());
     dialog.exec();
 }
 
 void BookmarksToolBar::newFolder()
 {
     AddBookmarkDialog dialog;
-    dialog.setCurrentIndex(m_root);
+    dialog.setCurrentIndex(rootIndex());
     dialog.setFolder(true);
     dialog.exec();
 }
 
-void BookmarksToolBar::dragEnterEvent(QDragEnterEvent *event)
+ModelMenu *BookmarksToolBar::createMenu()
 {
-    const QMimeData *mimeData = event->mimeData();
-    if (mimeData->hasUrls())
-        event->acceptProposedAction();
-
-    QToolBar::dragEnterEvent(event);
+    BookmarksMenu *menu = new BookmarksMenu(this);
+    connect(menu, SIGNAL(openUrl(const QUrl&, const QString&)),
+            this, SIGNAL(openUrl(const QUrl&, const QString&)));
+    return menu;
 }
-
-void BookmarksToolBar::dropEvent(QDropEvent *event)
-{
-    const QMimeData *mimeData = event->mimeData();
-
-    if (mimeData->hasUrls()) {
-        QUrl url = mimeData->urls().at(0);
-        QString title = mimeData->text();
-
-        if (url.isEmpty()) {
-            QToolBar::dropEvent(event);
-            return;
-        }
-
-        if (title.isEmpty())
-            title = QString::fromUtf8(url.toEncoded());
-
-        QModelIndex parentIndex = m_root;
-        QAction *action = actionAt(event->pos());
-        QModelIndex index = this->index(action);
-
-        if (action && action->menu()) {
-            if (action->menu()->isAncestorOf(event->source()))
-                return;
-            if (index.isValid())
-                parentIndex = index;
-        }
-
-        BookmarkNode *node = new BookmarkNode(BookmarkNode::Bookmark);
-        node->url = QString::fromUtf8(url.toEncoded());
-        node->title = title;
-
-        int row = m_bookmarksModel->rowCount(parentIndex);
-        BookmarkNode *parent = m_bookmarksModel->node(parentIndex);
-        BookmarksManager *bookmarksManager = m_bookmarksModel->bookmarksManager();
-        bookmarksManager->addBookmark(parent, node, row);
-
-        event->acceptProposedAction();
-    }
-
-    QToolBar::dropEvent(event);
-}
-
-void BookmarksToolBar::mouseMoveEvent(QMouseEvent *event)
-{
-    if (!(event->buttons() & Qt::LeftButton)) {
-        QToolBar::mouseMoveEvent(event);
-        return;
-    }
-
-    if ((event->pos() - m_dragStartPosition).manhattanLength()
-        < QApplication::startDragDistance()) {
-        QToolBar::mouseMoveEvent(event);
-        return;
-    }
-
-    QAction *action = actionAt(m_dragStartPosition);
-    QModelIndex index = this->index(action);
-    if (!index.isValid()) {
-        QToolBar::mouseMoveEvent(event);
-        return;
-    }
-
-    QString title = index.data().toString();
-    QUrl url = index.data(BookmarksModel::UrlRole).toUrl();
-
-    QDrag *drag = new QDrag(this);
-    QMimeData *mimeData = new QMimeData();
-    mimeData->setText(title);
-    mimeData->setUrls(QList<QUrl>() << url);
-    drag->setMimeData(mimeData);
-
-    drag->exec(Qt::CopyAction);
-}
-
-void BookmarksToolBar::mousePressEvent(QMouseEvent *event)
-{
-    if (event->button() == Qt::LeftButton)
-        m_dragStartPosition = mapFromGlobal(event->globalPos());
-
-    QToolBar::mousePressEvent(event);
-}
-
-void BookmarksToolBar::setRootIndex(const QModelIndex &index)
-{
-    m_root = index;
-    build();
-}
-
-QModelIndex BookmarksToolBar::rootIndex() const
-{
-    return m_root;
-}
-
-void BookmarksToolBar::build()
-{
-    clear();
-
-    for (int i = 0; i < m_bookmarksModel->rowCount(m_root); ++i) {
-        QModelIndex idx = m_bookmarksModel->index(i, 0, m_root);
-        QVariant variant;
-        variant.setValue(idx);
-
-        QString title = idx.data().toString();
-        bool folder = m_bookmarksModel->hasChildren(idx);
-
-        QToolButton *button = 0;
-        if (folder)
-            button = new QToolButton(this);
-        else
-            button = new BookmarkToolButton(this);
-
-        button->setPopupMode(QToolButton::InstantPopup);
-        button->setToolButtonStyle(Qt::ToolButtonTextOnly);
-
-        QAction *action = addWidget(button);
-        action->setData(variant);
-        action->setText(title);
-        button->setDefaultAction(action);
-
-        if (folder) {
-            button->setArrowType(Qt::DownArrow);
-
-            ModelMenu *menu = new BookmarksMenu(this);
-            menu->setModel(m_bookmarksModel);
-            menu->setRootIndex(idx);
-            menu->addAction(new QAction(menu));
-            action->setMenu(menu);
-
-            connect(menu, SIGNAL(openUrl(const QUrl &, const QString &)),
-                    this, SIGNAL(openUrl(const QUrl &, const QString &)));
-            connect(menu, SIGNAL(openUrl(const QUrl &, TabWidget::OpenUrlIn, const QString &)),
-                    this, SIGNAL(openUrl(const QUrl &, TabWidget::OpenUrlIn, const QString &)));
-        } else {
-            connect(action, SIGNAL(triggered()),
-                    this, SLOT(openBookmark()));
-        }
-    }
-}
-

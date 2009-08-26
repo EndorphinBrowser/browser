@@ -65,7 +65,6 @@
 #include "addbookmarkdialog.h"
 #include "bookmarknode.h"
 #include "bookmarksmanager.h"
-#include "bookmarktoolbutton.h"
 #include "browserapplication.h"
 #include "xbelreader.h"
 #include "xbelwriter.h"

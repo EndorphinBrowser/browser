@@ -8,8 +8,7 @@ HEADERS += \
     bookmarksmenu.h \
     bookmarksmodel.h \
     bookmarkstoolbar.h \
-    bookmarknode.h \
-    bookmarktoolbutton.h
+    bookmarknode.h
 
 SOURCES += \
     addbookmarkdialog.cpp \
@@ -18,8 +17,7 @@ SOURCES += \
     bookmarksmenu.cpp \
     bookmarksmodel.cpp \
     bookmarkstoolbar.cpp \
-    bookmarknode.cpp \
-    bookmarktoolbutton.cpp
+    bookmarknode.cpp
 
 FORMS += \
     addbookmarkdialog.ui \
