@@ -53,7 +53,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>WebKit version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Версія WebKit: %1</translation>
     </message>
 </context>
 <context>
@@ -700,15 +700,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати в&amp;се</translation>
     </message>
     <message>
         <source>Alt+Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Коли увімкнуто приватне переглядання, деякі дії стосовно вашої приватності будуть вимкнуті:&lt;ul&gt;&lt;li&gt; Сторінки не реєструються в журналі.&lt;/li&gt;&lt;li&gt; Звантаження автоматично вилучатимуться зі списку.&lt;/li&gt;&lt;li&gt; Нові куки не зберігатимуться, поточні куки будуть недоступні.&lt;/li&gt;&lt;li&gt; Піктограми сайтів не зберігатимуться, сеанси також.&lt;/li&gt;&lt;li&gt; Пошуки не додаватимуться до виринного меню в коробці пошуку.&lt;/li&gt;&lt;li&gt; Мережевий кеш буде вимкнено.&lt;/li&gt;&lt;/ul&gt;Допоки не закриті вікна, ви можете продовжувати натискати кнопки Назад і Вперед, щоб повертатись до сторінок, які ви повідкривали.</translation>
     </message>
 </context>
 <context>
@@ -1450,15 +1450,15 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Список відокремлених комами ключевих слів, які можна ввести для пошуку термінів з цим рушієм</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Назва</translation>
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Ключові слова</translation>
     </message>
 </context>
 <context>
@@ -1909,7 +1909,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати теку...</translation>
     </message>
 </context>
 <context>
@@ -1924,7 +1924,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати теку</translation>
     </message>
 </context>
 <context>
