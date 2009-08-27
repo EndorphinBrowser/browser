@@ -80,6 +80,8 @@ public:
 // It is only called once.
 void tst_WebPage::initTestCase()
 {
+    QCoreApplication::setApplicationName("tst_webpage");
+
     QDesktopServices::setUrlHandler(QLatin1String("mailto"), this, "openUrl");
     QDesktopServices::setUrlHandler(QLatin1String("ftp"), this, "openUrl");
 }
@@ -89,7 +91,6 @@ void tst_WebPage::initTestCase()
 void tst_WebPage::cleanupTestCase()
 {
     QSettings settings;
-    settings.beginGroup("general");
     settings.setValue("userAgent", QString());
 }
 
@@ -381,12 +382,12 @@ void tst_WebPage::userAgent()
     SubWebPage page;
     QString defaultUserAgent = page.call_userAgentForUrl(QUrl());
     QVERIFY(!defaultUserAgent.isEmpty());
-    QVERIFY(defaultUserAgent.contains("Arora"));
+    QVERIFY(defaultUserAgent.contains("tst_webpage"));
     settings.setValue("userAgent", "ben");
     page.loadSettings();
     QString customUserAgent = page.call_userAgentForUrl(QUrl());
     QVERIFY(!customUserAgent.isEmpty());
-    QVERIFY(customUserAgent.contains("ben"));
+    QCOMPARE(customUserAgent, QString("ben"));
 }
 
 
