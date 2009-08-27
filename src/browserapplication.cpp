@@ -578,6 +578,19 @@ QString BrowserApplication::installedDataDirectory()
 #endif
 }
 
+QString BrowserApplication::getConfigFile(QString fileName)
+{
+    QString directory = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    if (directory.isEmpty())
+        directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
+    if (!QFile::exists(directory)) {
+        QDir dir;
+        dir.mkpath(directory);
+    }
+    return directory + QLatin1String("/") + fileName;
+}
+
+
 bool BrowserApplication::zoomTextOnly()
 {
     return QWebSettings::globalSettings()->testAttribute(QWebSettings::ZoomTextOnly);

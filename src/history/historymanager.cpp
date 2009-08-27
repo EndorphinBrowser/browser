@@ -63,6 +63,7 @@
 #include "historymanager.h"
 
 #include "autosaver.h"
+#include "browserapplication.h"
 #include "history.h"
 
 #include <qbuffer.h>
@@ -290,8 +291,8 @@ void HistoryManager::load()
 {
     loadSettings();
 
-    QFile historyFile(QDesktopServices::storageLocation(QDesktopServices::DataLocation)
-                      + QLatin1String("/history"));
+    QFile historyFile(BrowserApplication::getConfigFile(QLatin1String("history")));
+
     if (!historyFile.exists())
         return;
     if (!historyFile.open(QFile::ReadOnly)) {
@@ -381,15 +382,8 @@ void HistoryManager::save()
     if (first == m_history.count() - 1)
         saveAll = true;
 
-    QString directory = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    if (directory.isEmpty())
-        directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
-    if (!QFile::exists(directory)) {
-        QDir dir;
-        dir.mkpath(directory);
-    }
+    QFile historyFile(BrowserApplication::getConfigFile(QLatin1String("history")));
 
-    QFile historyFile(directory + QLatin1String("/history"));
     // When saving everything use a temporary file to prevent possible data loss.
     QTemporaryFile tempFile;
     tempFile.setAutoRemove(false);

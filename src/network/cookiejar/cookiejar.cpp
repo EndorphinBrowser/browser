@@ -63,9 +63,9 @@
 #include "cookiejar.h"
 
 #include "autosaver.h"
+#include "browserapplication.h"
 
 #include <qapplication.h>
-#include <qdesktopservices.h>
 #include <qdir.h>
 #include <qmetaobject.h>
 #include <qsettings.h>
@@ -150,7 +150,7 @@ void CookieJar::load()
         return;
     // load cookies and exceptions
     qRegisterMetaTypeStreamOperators<QList<QNetworkCookie> >("QList<QNetworkCookie>");
-    QSettings cookieSettings(QDesktopServices::storageLocation(QDesktopServices::DataLocation) + QLatin1String("/cookies.ini"), QSettings::IniFormat);
+    QSettings cookieSettings(BrowserApplication::getConfigFile(QLatin1String("cookies.ini")), QSettings::IniFormat);
     if (!m_isPrivate) {
         setAllCookies(qvariant_cast<QList<QNetworkCookie> >(cookieSettings.value(QLatin1String("cookies"))));
     }
@@ -195,14 +195,9 @@ void CookieJar::save()
     if (!m_loaded || m_isPrivate)
         return;
     purgeOldCookies();
-    QString directory = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    if (directory.isEmpty())
-        directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
-    if (!QFile::exists(directory)) {
-        QDir dir;
-        dir.mkpath(directory);
-    }
-    QSettings cookieSettings(directory + QLatin1String("/cookies.ini"), QSettings::IniFormat);
+
+    QSettings cookieSettings(BrowserApplication::getConfigFile(QLatin1String("cookies.ini")), QSettings::IniFormat);
+
     QList<QNetworkCookie> cookies = allCookies();
     for (int i = cookies.count() - 1; i >= 0; --i) {
         if (cookies.at(i).isSessionCookie())
