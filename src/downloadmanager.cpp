@@ -782,7 +782,7 @@ Qt::ItemFlags DownloadModel::flags(const QModelIndex &index) const
     Qt::ItemFlags defaultFlags = QAbstractItemModel::flags(index);
 
     DownloadItem *item = m_downloadManager->m_downloads.at(index.row());
-    if(item->downloadedSuccessfully())
+    if (item->downloadedSuccessfully())
         return defaultFlags | Qt::ItemIsDragEnabled;
 
     return defaultFlags;
