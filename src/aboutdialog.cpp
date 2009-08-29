@@ -63,7 +63,9 @@ void AboutDialog::displayFile(const QString &fileName, const QString &title)
     if (!file.open(QIODevice::ReadOnly))
         return;
 
-    QString text = QTextStream(&file).readAll();
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");
+    QString text = stream.readAll();
     // this is done to force the content of the text editor to be LTR, and monospaced.
     textEdit.setHtml(QString(QLatin1String("<pre>%1</pre>")).arg(text));
 
