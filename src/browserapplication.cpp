@@ -96,7 +96,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
-    QString version = QLatin1String("0.8.0");
+    QString version = QLatin1String("0.9.0");
     QString gitVersion = QLatin1String(GITCHANGENUMBER);
     if (gitVersion != QLatin1String("0")
         && !gitVersion.isEmpty())
