@@ -1202,7 +1202,6 @@ void BrowserMainWindow::closeEvent(QCloseEvent *event)
     }
 
     event->accept();
-    deleteLater();
 }
 
 void BrowserMainWindow::mousePressEvent(QMouseEvent *event)
