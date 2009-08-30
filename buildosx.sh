@@ -28,4 +28,5 @@ hdiutil internet-enable -yes "$APP.dmg"
 rm -rf $DIR
 
 DATE=`date +"%m-%d-%Y"`
-mv $APP.dmg "$APP Snapshot ($DATE) Intel-qt4.5.dmg"
+QTVERSION=`qmake --version | grep Qt | sed -e s/.*4/4/g -e 's/\/.*//g'`
+mv $APP.dmg "$APP Snapshot ($DATE) Intel-Qt$QTVERSION.dmg"
