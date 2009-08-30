@@ -1,3 +1,63 @@
+0.9.0
+Drop support for Qt 4.4.
+
+Interface
+FEATURES:
+- Add support for search keywords in the location bar.
+- POST support for OpenSearch suggestion requests.
+- Add WebKit version to the About dialog [WebKit trunk only].
+- Use HTTP pipelining for all network requests [Qt 4.6 only].
+
+IMPROVEMENTS:
+- Remember last used save directory.
+- Added file dialog to download location settings.
+- Restrict drag and drop to the same page unless a QWebView accepts it.
+- Open an URL dropped on the tab bar as new tab or replace existing tab.
+- Allow url to be dropped on the tab bar from other applications.
+- Add a Select All action.
+- Rather than not allowing setting or getting of any cookies in private mode create a blank cookie jar.
+- Significantly speed up the cookie dialog by keeping a cached copy of all the cookies.
+- Enhance the language manager to fallback to the country file if the country_language file doesn't exists.
+- Add drag support for downloaded item in the download manager.
+- Add Planet Qt to the default set of bookmarks.
+- Remove the text wrapping option from the source viewer's menu and instead enable it by default.
+
+BUGFIXES:
+- Avoid duplicated and contradictory rules on the cookie rule list.
+- Change the shortcut for showing the bookmark toolbar as it was conflicting with the show bookmark dialog shortcut.
+- Encode the user input before inserting it into an URL template.
+- Fix a crash when cloning a blank tab.
+- When the widget losses focus hide the access keys.
+- Fix detection of flash on various websites when ClickToFlash is used.
+- Avoid an infinite recursion when asking the desktop to open an URL.
+- When the download manager prevents the application from closing add a new tab when there are none.
+- Only show the url completer if the user is typing a url.
+- Always add the Inspect Element Action to the context menu when the developer extra tools are enabled.
+- Bookmarklets were not working properly.
+- Work around for a segfault in Qt 4.5.2 where you go into privacy mode while a QNetworkReply is still working.
+- Clarify the networkdisk cache behavior in the messagebox.
+- Start page: Reduce the top margin to 100px from so it fits on a netbook screen.
+- Hide the bookmarks toolbar by default.
+- Turn off cookie tracking filtering by default because it breaks sites like StackOverflow.com.
+- Before clearing the cookie jar, load it so the exceptions and other settings are loaded.
+- When removing cookies from the cookie jar via the cookie dialog notify the autosaver.
+- When receiving a drop event on a bookmark folder, make sure that we don't drop a child bookmark.
+- Avoid overwriting the user agent string in the WebPage autotest.
+- Fix non-ASCII characters displayed garbled for Authors.
+
+Behind the scenes
+- Merge two blocks of code that deals with oneCloseButton policy.
+- Make parentWindow() prettier.
+- Simplify updates of actions in view menu.
+- Save the window state when toggling the menu bar.
+- Save UI changes in the active window before creating a new one.
+- Move all network related files into one directory.
+
+Build system
+- When building on osx use qmake -r.
+- Ignore generated files built on windows.
+
+
 0.8.0
 Interface
 FEATURES:
