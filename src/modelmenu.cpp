@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -79,6 +80,8 @@ ModelMenu::ModelMenu(QWidget *parent)
     , m_separatorRole(0)
     , m_model(0)
 {
+    setAcceptDrops(true);
+
     connect(this, SIGNAL(aboutToShow()), this, SLOT(aboutToShow()));
     connect(this, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));
 }
@@ -174,6 +177,9 @@ ModelMenu *ModelMenu::createBaseMenu()
 void ModelMenu::createMenu(const QModelIndex &parent, int max, QMenu *parentMenu, QMenu *menu)
 {
     if (!menu) {
+        QVariant v;
+        v.setValue(parent);
+
         QString title = parent.data().toString();
         ModelMenu *modelMenu = createBaseMenu();
         // triggered goes all the way up the menu structure
@@ -182,7 +188,7 @@ void ModelMenu::createMenu(const QModelIndex &parent, int max, QMenu *parentMenu
         modelMenu->setTitle(title);
         QIcon icon = qvariant_cast<QIcon>(parent.data(Qt::DecorationRole));
         modelMenu->setIcon(icon);
-        parentMenu->addMenu(modelMenu);
+        parentMenu->addMenu(modelMenu)->setData(v);
         modelMenu->setRootIndex(parent);
         modelMenu->setModel(m_model);
         return;
@@ -251,6 +257,49 @@ QModelIndex ModelMenu::index(QAction *action)
     return qvariant_cast<QModelIndex>(variant);
 }
 
+void ModelMenu::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (!m_model) {
+        QMenu::dragEnterEvent(event);
+        return;
+    }
+
+    QStringList mimeTypes = m_model->mimeTypes();
+    foreach (const QString &mimeType, mimeTypes) {
+        if (event->mimeData()->hasFormat(mimeType))
+            event->acceptProposedAction();
+    }
+
+    QMenu::dragEnterEvent(event);
+}
+
+void ModelMenu::dropEvent(QDropEvent *event)
+{
+    if (!m_model) {
+        QMenu::dropEvent(event);
+        return;
+    }
+
+    int row;
+    QAction *action = actionAt(mapFromGlobal(QCursor::pos()));
+    QModelIndex index;
+    QModelIndex parentIndex = m_root;
+    if (!action) {
+        row = m_model->rowCount(m_root);
+    } else {
+        index = this->index(action);
+        Q_ASSERT(index.isValid());
+        row = index.row();
+
+        if (m_model->hasChildren(index))
+            parentIndex = index;
+    }
+
+    event->acceptProposedAction();
+    m_model->dropMimeData(event->mimeData(), event->dropAction(), row, 0, parentIndex);
+    QMenu::dropEvent(event);
+}
+
 void ModelMenu::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
@@ -267,19 +316,38 @@ void ModelMenu::mouseReleaseEvent(QMouseEvent *event)
 
 void ModelMenu::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()) {
-        QAction *action = actionAt(m_dragStartPos);
-        QModelIndex idx = index(action);
-        if (event->buttons() == Qt::LeftButton
-            && idx.isValid()
-            && !m_model->hasChildren(idx)) {
-            QDrag *drag = new QDrag(this);
-            drag->setMimeData(m_model->mimeData((QModelIndexList() << idx)));
-            QRect actionRect = actionGeometry(action);
-            drag->setPixmap(QPixmap::grabWidget(this, actionRect));
-            drag->exec();
-        }
+    int manhattanLength = (event->pos() - m_dragStartPos).manhattanLength();
+
+    if (manhattanLength <= QApplication::startDragDistance()) {
+        QMenu::mouseMoveEvent(event);
+        return;
     }
-    QMenu::mouseMoveEvent(event);
+
+    if (!(event->buttons() & Qt::LeftButton)) {
+        QMenu::mouseMoveEvent(event);
+        return;
+    }
+
+    QAction *action = actionAt(m_dragStartPos);
+    QModelIndex idx = index(action);
+
+    if (!idx.isValid()) {
+        QMenu::mouseMoveEvent(event);
+        return;
+    }
+
+    QDrag *drag = new QDrag(this);
+    drag->setMimeData(m_model->mimeData((QModelIndexList() << idx)));
+    QRect actionRect = actionGeometry(action);
+    drag->setPixmap(QPixmap::grabWidget(this, actionRect));
+
+    if (drag->exec() == Qt::MoveAction) {
+        m_model->removeRow(idx.row(), m_root);
+
+        if (!this->isAncestorOf(drag->target()))
+            close();
+        else
+            aboutToShow();
+    }
 }
 

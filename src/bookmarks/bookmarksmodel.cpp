@@ -65,7 +65,6 @@
 #include "addbookmarkdialog.h"
 #include "bookmarknode.h"
 #include "bookmarksmanager.h"
-#include "bookmarktoolbutton.h"
 #include "browserapplication.h"
 #include "xbelreader.h"
 #include "xbelwriter.h"
@@ -285,6 +284,7 @@ QStringList BookmarksModel::mimeTypes() const
 {
     QStringList types;
     types << MIMETYPE;
+    types << QLatin1String("text/uri-list");
     return types;
 }
 
@@ -317,9 +317,26 @@ bool BookmarksModel::dropMimeData(const QMimeData *data,
     if (action == Qt::IgnoreAction)
         return true;
 
-    if (!data->hasFormat(MIMETYPE)
-        || column > 0)
+    if (column > 0)
         return false;
+
+    BookmarkNode *parentNode = node(parent);
+
+    if (!data->hasFormat(MIMETYPE)) {
+        if (!data->hasUrls())
+            return false;
+
+        BookmarkNode *node = new BookmarkNode(BookmarkNode::Bookmark, parentNode);
+        node->url = QString::fromUtf8(data->urls().at(0).toEncoded());
+
+        if (data->hasText())
+            node->title = data->text();
+        else
+            node->title = node->url;
+
+        m_bookmarksManager->addBookmark(parentNode, node, row);
+        return true;
+    }
 
     QByteArray ba = data->data(MIMETYPE);
     QDataStream stream(&ba, QIODevice::ReadOnly);
@@ -342,7 +359,6 @@ bool BookmarksModel::dropMimeData(const QMimeData *data,
             BookmarkNode *bookmarkNode = children.at(i);
             rootNode->remove(bookmarkNode);
             row = qMax(0, row);
-            BookmarkNode *parentNode = node(parent);
             m_bookmarksManager->addBookmark(parentNode, bookmarkNode, row);
             m_endMacro = true;
         }

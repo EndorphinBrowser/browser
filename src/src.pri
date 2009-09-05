@@ -49,6 +49,7 @@ HEADERS += \
     clearbutton.h \
     downloadmanager.h \
     modelmenu.h \
+    modeltoolbar.h \
     plaintexteditsearch.h \
     searchbar.h \
     searchbutton.h \
@@ -74,6 +75,7 @@ SOURCES += \
     clearbutton.cpp \
     downloadmanager.cpp \
     modelmenu.cpp \
+    modeltoolbar.cpp \
     plaintexteditsearch.cpp \
     searchbar.cpp \
     searchbutton.cpp \

@@ -9,6 +9,7 @@ SUBDIRS  = \
     historymanager \
     languagemanager \
     lineedit \
+    modeltoolbar \
     opensearchengine \
     opensearchmanager \
     opensearchreader \

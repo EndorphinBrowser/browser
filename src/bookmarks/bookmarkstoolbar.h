@@ -21,7 +21,7 @@
 #ifndef BOOKMARKSTOOLBAR_H
 #define BOOKMARKSTOOLBAR_H
 
-#include <qtoolbar.h>
+#include "modeltoolbar.h"
 
 #include "tabwidget.h"
 
@@ -30,7 +30,7 @@
 #include <qurl.h>
 
 class BookmarksModel;
-class BookmarksToolBar : public QToolBar
+class BookmarksToolBar : public ModelToolBar
 {
     Q_OBJECT
 
@@ -40,20 +40,11 @@ signals:
 
 public:
     BookmarksToolBar(BookmarksModel *model, QWidget *parent = 0);
-    void setRootIndex(const QModelIndex &index);
-    QModelIndex rootIndex() const;
-
-private:
-    QModelIndex index(QAction *action);
 
 protected:
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
-    void mousePressEvent(QMouseEvent *event);
+    virtual ModelMenu *createMenu();
 
 private slots:
-    void build();
     void contextMenuRequested(const QPoint &position);
 
 protected slots:
@@ -63,10 +54,10 @@ protected slots:
     void removeBookmark();
     void newBookmark();
     void newFolder();
+    void bookmarkActivated(const QModelIndex &);
 
 private:
     BookmarksModel *m_bookmarksModel;
-    QPersistentModelIndex m_root;
 
     QPoint m_dragStartPosition;
 };
