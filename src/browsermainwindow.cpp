@@ -964,6 +964,7 @@ void BrowserMainWindow::retranslate()
 
     // Toolbar
     m_navigationBar->setWindowTitle(tr("Navigation"));
+    m_bookmarksToolbar->setWindowTitle(tr("&Bookmarks"));
 }
 
 void BrowserMainWindow::setupToolBar()

@@ -31,7 +31,7 @@
 #include <qevent.h>
 
 BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
-    : ModelToolBar(tr("Bookmarks"), parent)
+    : ModelToolBar(parent)
     , m_bookmarksModel(model)
 {
     setModel(model);
