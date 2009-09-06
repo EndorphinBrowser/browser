@@ -334,6 +334,12 @@ void DownloadItem::metaDataChanged()
 
 void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
+    QTime now = QTime::currentTime();
+    if (m_lastProgressTime.msecsTo(now) < 200)
+        return;
+
+    m_lastProgressTime = now;
+
     m_bytesReceived = bytesReceived;
     qint64 currentValue = 0;
     qint64 totalValue = 0;
