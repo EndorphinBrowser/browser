@@ -102,7 +102,8 @@ public:
     static NetworkAccessManager *networkAccessManager();
     static BookmarksManager *bookmarksManager();
     static LanguageManager *languageManager();
-    static QString dataDirectory();
+    static QString installedDataDirectory();
+    static QString getConfigFile(QString fileName);
 
     Qt::MouseButtons eventMouseButtons() const;
     Qt::KeyboardModifiers eventKeyboardModifiers() const;

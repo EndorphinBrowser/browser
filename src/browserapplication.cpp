@@ -546,7 +546,7 @@ BookmarksManager *BrowserApplication::bookmarksManager()
 LanguageManager *BrowserApplication::languageManager()
 {
     if (!s_languageManager) {
-        s_languageManager = new LanguageManager(dataDirectory());
+        s_languageManager = new LanguageManager(installedDataDirectory());
         connect(s_languageManager, SIGNAL(languageChanged(const QString &)),
                 qApp, SLOT(retranslate()));
     }
@@ -569,7 +569,7 @@ QIcon BrowserApplication::icon(const QUrl &url)
     return icon;
 }
 
-QString BrowserApplication::dataDirectory()
+QString BrowserApplication::installedDataDirectory()
 {
 #if defined(Q_WS_X11)
     return QLatin1String(PKGDATADIR);
