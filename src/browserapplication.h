@@ -103,7 +103,7 @@ public:
     static BookmarksManager *bookmarksManager();
     static LanguageManager *languageManager();
     static QString installedDataDirectory();
-    static QString getConfigFile(QString fileName);
+    static QString dataFilePath(const QString &fileName);
 
     Qt::MouseButtons eventMouseButtons() const;
     Qt::KeyboardModifiers eventKeyboardModifiers() const;

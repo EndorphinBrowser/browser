@@ -150,7 +150,7 @@ void CookieJar::load()
         return;
     // load cookies and exceptions
     qRegisterMetaTypeStreamOperators<QList<QNetworkCookie> >("QList<QNetworkCookie>");
-    QSettings cookieSettings(BrowserApplication::getConfigFile(QLatin1String("cookies.ini")), QSettings::IniFormat);
+    QSettings cookieSettings(BrowserApplication::dataFilePath(QLatin1String("cookies.ini")), QSettings::IniFormat);
     if (!m_isPrivate) {
         setAllCookies(qvariant_cast<QList<QNetworkCookie> >(cookieSettings.value(QLatin1String("cookies"))));
     }
@@ -196,7 +196,7 @@ void CookieJar::save()
         return;
     purgeOldCookies();
 
-    QSettings cookieSettings(BrowserApplication::getConfigFile(QLatin1String("cookies.ini")), QSettings::IniFormat);
+    QSettings cookieSettings(BrowserApplication::dataFilePath(QLatin1String("cookies.ini")), QSettings::IniFormat);
 
     QList<QNetworkCookie> cookies = allCookies();
     for (int i = cookies.count() - 1; i >= 0; --i) {

@@ -578,7 +578,7 @@ QString BrowserApplication::installedDataDirectory()
 #endif
 }
 
-QString BrowserApplication::getConfigFile(QString fileName)
+QString BrowserApplication::dataFilePath(const QString &fileName)
 {
     QString directory = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     if (directory.isEmpty())
@@ -589,7 +589,6 @@ QString BrowserApplication::getConfigFile(QString fileName)
     }
     return directory + QLatin1String("/") + fileName;
 }
-
 
 bool BrowserApplication::zoomTextOnly()
 {

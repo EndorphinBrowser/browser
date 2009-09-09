@@ -291,7 +291,7 @@ void HistoryManager::load()
 {
     loadSettings();
 
-    QFile historyFile(BrowserApplication::getConfigFile(QLatin1String("history")));
+    QFile historyFile(BrowserApplication::dataFilePath(QLatin1String("history")));
 
     if (!historyFile.exists())
         return;
@@ -382,7 +382,7 @@ void HistoryManager::save()
     if (first == m_history.count() - 1)
         saveAll = true;
 
-    QFile historyFile(BrowserApplication::getConfigFile(QLatin1String("history")));
+    QFile historyFile(BrowserApplication::dataFilePath(QLatin1String("history")));
 
     // When saving everything use a temporary file to prevent possible data loss.
     QTemporaryFile tempFile;
