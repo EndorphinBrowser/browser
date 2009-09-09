@@ -159,8 +159,7 @@ bool ModelToolBar::eventFilter(QObject *object, QEvent *event)
         Q_ASSERT(this->index(action).isValid());
         emit activated(index);
     } else if (event->type() == QEvent::MouseButtonPress) {
-        QToolButton *button = static_cast<QToolButton*>(object);
-        Q_ASSERT(button);
+        Q_ASSERT(QToolButton *button = static_cast<QToolButton*>(object));
 
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
 
