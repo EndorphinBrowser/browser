@@ -20,3 +20,5 @@ SUBDIRS  = \
     webactionmapper \
     webpage \
     xbel
+
+CONFIG += ordered

@@ -10,3 +10,5 @@ SUBDIRS = bookmarks \
           singleapplication \
           squeezelabel \
           webviewsearch
+
+CONFIG += ordered
