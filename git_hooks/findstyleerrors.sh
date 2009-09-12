@@ -12,6 +12,8 @@ fi
 
 options="-n --exclude=moc_* --exclude=qrc_* --include=*.cpp --include=*.h -r"
 
+grep $options '( ' $args
+grep $options ' )' $args
 grep $options 'if(' $args
 grep $options 'for(' $args
 grep $options 'while(' $args
