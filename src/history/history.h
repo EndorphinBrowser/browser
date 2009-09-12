@@ -265,20 +265,6 @@ private:
 
 };
 
-// A modified QSortFilterProxyModel that always accepts the root nodes in the tree
-// so filtering is only done on the children.
-// Used in the HistoryDialog
-class TreeProxyModel : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-public:
-    TreeProxyModel(QObject *parent = 0);
-
-protected:
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
-};
-
 #include "ui_history.h"
 
 class HistoryDialog : public QDialog, public Ui_HistoryDialog

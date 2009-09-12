@@ -66,9 +66,10 @@
 #include "bookmarksmanager.h"
 #include "bookmarksmodel.h"
 #include "browserapplication.h"
-#include "history.h"
+#include "treesortfilterproxymodel.h"
 
 #include <qheaderview.h>
+#include <qmenu.h>
 
 BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     : QDialog(parent)
@@ -86,7 +87,7 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     tree->setSelectionMode(QAbstractItemView::ExtendedSelection);
     tree->setTextElideMode(Qt::ElideMiddle);
     m_bookmarksModel = m_bookmarksManager->bookmarksModel();
-    m_proxyModel = new TreeProxyModel(this);
+    m_proxyModel = new TreeSortFilterProxyModel(this);
     m_proxyModel->setFilterKeyColumn(-1);
     connect(search, SIGNAL(textChanged(QString)),
             m_proxyModel, SLOT(setFilterFixedString(QString)));

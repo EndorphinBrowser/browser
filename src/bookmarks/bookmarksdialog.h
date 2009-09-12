@@ -71,7 +71,7 @@
 #include <qabstractitemmodel.h>
 #include <qurl.h>
 
-class TreeProxyModel;
+class TreeSortFilterProxyModel;
 class BookmarksManager;
 class BookmarksModel;
 class BookmarkNode;
@@ -102,7 +102,7 @@ private:
 
     BookmarksManager *m_bookmarksManager;
     BookmarksModel *m_bookmarksModel;
-    TreeProxyModel *m_proxyModel;
+    TreeSortFilterProxyModel *m_proxyModel;
 };
 
 #endif // BOOKMARKSDIALOG_H

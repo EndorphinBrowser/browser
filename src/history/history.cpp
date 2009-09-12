@@ -65,6 +65,7 @@
 #include "autosaver.h"
 #include "browserapplication.h"
 #include "historymanager.h"
+#include "treesortfilterproxymodel.h"
 
 #include <qbuffer.h>
 #include <qclipboard.h>
@@ -396,20 +397,6 @@ void HistoryMenu::setInitialActions(QList<QAction*> actions)
         addAction(m_initialActions.at(i));
 }
 
-TreeProxyModel::TreeProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
-{
-    setSortRole(HistoryModel::DateTimeRole);
-    setFilterCaseSensitivity(Qt::CaseInsensitive);
-}
-
-bool TreeProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
-{
-    QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
-    if (sourceModel()->hasChildren(idx))
-        return true;
-    return QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent);
-}
-
 HistoryDialog::HistoryDialog(QWidget *parent, HistoryManager *setHistory) : QDialog(parent)
 {
     HistoryManager *history = setHistory;
@@ -421,7 +408,8 @@ HistoryDialog::HistoryDialog(QWidget *parent, HistoryManager *setHistory) : QDia
     tree->setSelectionMode(QAbstractItemView::ExtendedSelection);
     tree->setTextElideMode(Qt::ElideMiddle);
     QAbstractItemModel *model = history->historyTreeModel();
-    TreeProxyModel *proxyModel = new TreeProxyModel(this);
+    TreeSortFilterProxyModel *proxyModel = new TreeSortFilterProxyModel(this);
+    proxyModel->setSortRole(HistoryModel::DateTimeRole);
     proxyModel->setFilterKeyColumn(-1);
     connect(search, SIGNAL(textChanged(QString)),
             proxyModel, SLOT(setFilterFixedString(QString)));

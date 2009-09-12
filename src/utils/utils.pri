@@ -9,7 +9,8 @@ HEADERS += \
     lineedit.h \
     lineedit_p.h \
     singleapplication.h \
-    squeezelabel.h
+    squeezelabel.h \
+    treesortfilterproxymodel.h
 
 SOURCES += \
     editlistview.cpp \
@@ -18,7 +19,8 @@ SOURCES += \
     languagemanager.cpp \
     lineedit.cpp \
     singleapplication.cpp \
-    squeezelabel.cpp
+    squeezelabel.cpp \
+    treesortfilterproxymodel.cpp
 
 win32 {
     HEADERS += explorerstyle.h
