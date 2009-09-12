@@ -63,7 +63,7 @@ table {
 #reloadButton {
   padding-left: 48px;
 }
-.hidden {
+body:not(.showDotFiles) .hidden {
   display: none;
 }
 .showHide{
@@ -74,17 +74,10 @@ table {
 <script type="text/javascript">
 function showHide()
 {
-    var hiddenRows = document.getElementsByClassName('hidden');
-    if (hiddenRows.length < 1)
-        return;
-
-    var show = (window.getComputedStyle(hiddenRows[0], null).getPropertyValue("display") == 'none');
-    for (var i = 0; i < hiddenRows.length; ++i) {
-        if (show)
-            hiddenRows[i].style.display = 'table-row';
-        else
-            hiddenRows[i].style.display = 'none';
-    }
+    if (document.body.className.indexOf("showDotFiles") != -1)
+        document.body.className = document.body.className.replace("showDotFiles", "");
+    else
+        document.body.className += " showDotFiles";
 }
 </script>
 </head>
