@@ -393,7 +393,7 @@ void ToolbarSearch::setupList()
         m_model->clear();
         m_suggestionsItem = 0;
     } else {
-        m_model->removeRows(1, m_model->rowCount() -1 );
+        m_model->removeRows(1, m_model->rowCount() - 1);
     }
 
     QFont lightFont;

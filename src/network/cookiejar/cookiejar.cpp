@@ -287,7 +287,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
                         QList<QNetworkCookie> cookies = allCookies();
                         QList<QNetworkCookie>::Iterator it = cookies.begin(),
                                    end = cookies.end();
-                        for ( ; it != end; ++it) {
+                        for (; it != end; ++it) {
                             // does this cookie already exist?
                             if (cookie.name() == it->name() &&
                                 cookie.domain() == it->domain() &&
