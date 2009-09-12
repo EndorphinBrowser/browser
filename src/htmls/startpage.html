@@ -16,7 +16,7 @@
             document.getElementById('footer').innerHTML = window.arora.translate('Search results provided by') + ' '
                                                           + searchEngine.name + ' | ' + '<a href="http://arora-browser.org/">'
                                                           + window.arora.translate('About Arora') + '</a>';
-            document.getElementById('lineEdit').innerHTML = searchEngine.name;
+            document.getElementById('lineEdit').placeholder = searchEngine.name;
         }
 
         function formSubmitted()
