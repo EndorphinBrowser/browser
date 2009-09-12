@@ -63,11 +63,37 @@ table {
 #reloadButton {
   padding-left: 48px;
 }
+.hidden {
+  display: none;
+}
+.showHide{
+  font-size: 80%;
+  padding-left: 48px;
+}
 </style>
+<script type="text/javascript">
+function showHide()
+{
+    var hiddenRows = document.getElementsByClassName('hidden');
+    if (hiddenRows.length < 1)
+        return;
+
+    var show = (window.getComputedStyle(hiddenRows[0], null).getPropertyValue("display") == 'none');
+    for (var i = 0; i < hiddenRows.length; ++i) {
+        if (show)
+            hiddenRows[i].style.display = 'table-row';
+        else
+            hiddenRows[i].style.display = 'none';
+    }
+}
+</script>
 </head>
 <body>
   <div id="box">
     <h1>%2</h1>
+    <div class='showHide'>
+        <input type="checkbox" onchange="showHide()" name="Show Hidden Filles"/> Show Hidden Filles
+    </div>
     <table>
 %4
     </table>

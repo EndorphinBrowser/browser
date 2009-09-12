@@ -137,7 +137,7 @@ void FileAccessReply::listDirectory()
 
     // Templates for the listing
     QString link = QLatin1String("<a class=\"%1\" href=\"%2\">%3</a>");
-    QString row = QLatin1String("<tr> <td class=\"name\">%1</td> <td class=\"size\">%2</td> <td class=\"modified\">%3</td> </tr>\n");
+    QString row = QLatin1String("<tr%1> <td class=\"name\">%2</td> <td class=\"size\">%3</td> <td class=\"modified\">%4</td> </tr>\n");
 
     QFileIconProvider iconProvider;
     QHash<QString, bool> existingClasses;
@@ -152,7 +152,7 @@ void FileAccessReply::listDirectory()
 
         QString addr = QString::fromUtf8(QUrl::fromLocalFile(QFileInfo(dir.absoluteFilePath(QLatin1String(".."))).canonicalFilePath()).toEncoded());
         QString size, modified; // Empty by intention
-        dirlist += row.arg(link.arg(QLatin1String("link_parent")).arg(addr).arg(QLatin1String(".."))).arg(size).arg(modified);
+        dirlist += row.arg(QString()).arg(link.arg(QLatin1String("link_parent")).arg(addr).arg(QLatin1String(".."))).arg(size).arg(modified);
     }
 
     for (int i = 0; i < list.count(); ++i) {
@@ -179,7 +179,10 @@ void FileAccessReply::listDirectory()
             modified = list[i].lastModified().toString(Qt::SystemLocaleShortDate);
         }
 
-        dirlist += row.arg(link.arg(className).arg(addr).arg(list[i].fileName())).arg(size).arg(modified);
+        QString classes;
+        if (list[i].isHidden())
+            classes = QLatin1String(" class=\"hidden\"");
+        dirlist += row.arg(classes).arg(link.arg(className).arg(addr).arg(list[i].fileName())).arg(size).arg(modified);
     }
 
     html = html.arg(classes).arg(dirlist);
