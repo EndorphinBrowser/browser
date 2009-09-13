@@ -17,6 +17,17 @@
                                                           + searchEngine.name + ' | ' + '<a href="http://arora-browser.org/">'
                                                           + window.arora.translate('About Arora') + '</a>';
             document.getElementById('lineEdit').placeholder = searchEngine.name;
+
+            // Try to change the direction of the page:
+            //   This string is defined in QApplication
+            //   src/gui/kernel/qapplication.cpp#qt_detectRTLLanguage()
+            //   it should contain LTR or RTL
+
+            var newDir = window.arora.translate('QT_LAYOUT_DIRECTION');
+            newDir = newDir.toLowerCase();
+            if ((newDir != 'ltr') && (newDir != 'rtl'))
+                newDir = 'ltr';
+            document.getElementsByTagName('body')[0].setAttribute('dir', newDir);
         }
 
         function formSubmitted()
