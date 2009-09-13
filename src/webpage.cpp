@@ -74,7 +74,15 @@ JavaScriptAroraObject::JavaScriptAroraObject(QObject *parent)
 
 QString JavaScriptAroraObject::translate(const QString &string)
 {
-    return trUtf8(string.toUtf8().constData());
+    QString translatedString = trUtf8(string.toUtf8().constData());
+
+    // If the translation is the same as the original string
+    // it could not be translated.  In that case
+    // try to translate using the QApplication domain
+    if (translatedString != string)
+        return translatedString;
+    else
+        return qApp->trUtf8(string.toUtf8().constData());
 }
 
 QObject *JavaScriptAroraObject::currentEngine() const
