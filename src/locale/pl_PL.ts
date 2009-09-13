@@ -222,7 +222,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading HTML bookmarks: %1
 </source>
-        <translation>Błąd w trakcie ładowania zakładek</translation>
+        <translation>Błąd w trakcie ładowania zakładek: %1
+</translation>
     </message>
 </context>
 <context>
@@ -547,10 +548,6 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
         <translation>Znajdź &amp;następny</translation>
     </message>
     <message>
-        <source>Prefere&amp;nces...</source>
-        <translation>Prefe&amp;rencje...</translation>
-    </message>
-    <message>
         <source>Show Menu Bar</source>
         <translation>Pokaż pasek menu</translation>
     </message>
@@ -605,10 +602,6 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
         <translation>Kodowanie znaków</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone.&lt;ul&gt;&lt;li&gt;Historia nie jest uzupełniana o odwiedzane strony.&lt;/li&gt;&lt;li&gt;Pobrane pliki są automatycznie usuwane z okna Pobierania.&lt;/li&gt;&lt;li&gt;Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.&lt;/li&gt;&lt;li&gt;Ikony stron nie będą przechowywane&lt;/li&gt;&lt;li&gt;Sesja nie zostanie zapisana.&lt;/li&gt;&lt;li&gt;Wyszukiwania nie są dodawane do historii wyszukiwań.&lt;/li&gt;&lt;li&gt;Sieciowa pamięć podręczna jest wyłączona.&lt;/li&gt;&lt;/ul&gt;Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
-    </message>
-    <message>
         <source>Alt+Ctrl+B</source>
         <translation>Alt+Ctrl+B</translation>
     </message>
@@ -617,8 +610,52 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
         <translation>Zaznacz &amp;wszystko</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone.&lt;ul&gt;&lt;li&gt;Historia nie jest uzupełniana o odwiedzane strony.&lt;/li&gt;&lt;li&gt;Pobrane pliki są automatycznie usuwane z okna Pobierania.&lt;/li&gt;&lt;li&gt;Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.&lt;/li&gt;&lt;li&gt;Ikony stron nie będą przechowywane&lt;/li&gt;&lt;li&gt;Sesja nie zostanie zapisana.&lt;/li&gt;&lt;li&gt;Wyszukiwania nie są dodawane do historii wyszukiwań.&lt;/li&gt;&lt;li&gt;Sieciowa pamięć podręczna jest wyłączona.&lt;/li&gt;&lt;/ul&gt;Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
+        <source>Options...</source>
+        <translation>Opcje...</translation>
+    </message>
+    <message>
+        <source>Configure Search Engines...</source>
+        <translation>Konfiguruj wyszukiwarki...</translation>
+    </message>
+    <message>
+        <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
+        <translation>Kiedy prywatne przeglądanie jest włączone, niektóre akcje wpływające na Twoją prywatność są wyłączone:</translation>
+    </message>
+    <message>
+        <source>Webpages are not added to the history.</source>
+        <translation>Historia nie jest uzupełniana o odwiedzane strony.</translation>
+    </message>
+    <message>
+        <source>Items are automatically removed from the Downloads window.</source>
+        <translation>Pobrane pliki są automatycznie usuwane z okna Pobierania.</translation>
+    </message>
+    <message>
+        <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
+        <translation>Nowe ciasteczka nie są przechowywane, aktualnie istniejące nie mogą być modyfikowane.</translation>
+    </message>
+    <message>
+        <source>Site icons won&apos;t be stored.</source>
+        <translation>Ikony stron nie będą zapisywane.</translation>
+    </message>
+    <message>
+        <source>Session won&apos;t be saved.</source>
+        <translation>Sesja nie jest zachowywana.</translation>
+    </message>
+    <message>
+        <source>Searches are not added to the pop-up menu in the search box.</source>
+        <translation>Wyszukiwania nie są dodawane do historii wyszukiwań.</translation>
+    </message>
+    <message>
+        <source>No new network cache is written to disk.</source>
+        <translation>Sieciowa pamięć podręczna jest tylko do odczytu.</translation>
+    </message>
+    <message>
+        <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation>Dopóki nie zamkniesz okna, możesz zawsze uzyć przycisków Wstecz i Do przodu, by wrócić do stron, które przeglądałeś.</translation>
+    </message>
+    <message>
+        <source>Private Browsing</source>
+        <translation>Prywatne przeglądanie</translation>
     </message>
 </context>
 <context>
@@ -1601,14 +1638,6 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
         <translation>&amp;Znajdź</translation>
     </message>
     <message>
-        <source>&amp;View</source>
-        <translation>&amp;Widok</translation>
-    </message>
-    <message>
-        <source>&amp;Wrap lines</source>
-        <translation>Za&amp;wijaj wiersze</translation>
-    </message>
-    <message>
         <source>Source of Page %1</source>
         <translation>Źródło strony %1</translation>
     </message>
@@ -1736,10 +1765,6 @@ Czy na pewno chcesz zamknąć tę stronę?
     <message>
         <source>Add &apos;%1&apos;</source>
         <translation>Dodaj &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>Configure Search Engines...</source>
-        <translation>Konfiguruj wyszukiwarki...</translation>
     </message>
 </context>
 <context>
