@@ -41,7 +41,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>About %1</source>
-        <translation type="unfinished"></translation>
+        <translation>אודות %1</translation>
     </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -49,38 +49,42 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;כל הזכויות שמורות © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>WebKit version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>גרסת WebKit: %1</translation>
     </message>
 </context>
 <context>
     <name>AcceptLanguage</name>
     <message>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
+        <translation>שפות</translation>
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation type="unfinished"></translation>
+        <translation>שפות: בסדר המועדף:</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;מעלה</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>מ&amp;טה</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;הסר</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>הוסף...</translation>
     </message>
 </context>
 <context>
@@ -95,15 +99,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>כתובת</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">כותרת</translation>
+        <translation>כותרת</translation>
     </message>
     <message>
         <source>Add Folder</source>
-        <translation type="unfinished">הוסף תיקייה</translation>
+        <translation>הוסף תיקייה</translation>
     </message>
 </context>
 <context>
@@ -138,11 +142,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Name</source>
-        <translation type="unfinished"></translation>
+        <translation>ערוך שם</translation>
     </message>
     <message>
         <source>Edit Address</source>
-        <translation type="unfinished"></translation>
+        <translation>ערוך כתובת</translation>
     </message>
 </context>
 <context>
@@ -207,53 +211,53 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>סרגל סימניות</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>תפריט סימניות</translation>
     </message>
     <message>
         <source>Name Change</source>
         <comment>Undo bookmark title change</comment>
-        <translation type="unfinished">שנה שם</translation>
+        <translation>שנה שם</translation>
     </message>
     <message>
         <source>Address Change</source>
         <comment>Undo bookmark url change</comment>
-        <translation type="unfinished">שנה כתובת</translation>
+        <translation>שנה כתובת</translation>
     </message>
     <message>
         <source>XBEL bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>סימניות XBEL</translation>
     </message>
     <message>
         <source>HTML Netscape bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>סימניות HTML של נטסקייפ</translation>
     </message>
     <message>
         <source>htmlToXBel tool required</source>
-        <translation type="unfinished"></translation>
+        <translation>נדרש הכלי htmlToXBell </translation>
     </message>
     <message>
         <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>הכלי htmlToXBel המופץ עם הדפדפן Arora נדרש בכדי לייבא סימניות HTML, ונראה כי הוא לא מותקן או לא זמין בנתיב החיפוש PATH.</translation>
     </message>
     <message>
         <source>Loading Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>טוען סימנייה</translation>
     </message>
     <message>
         <source>Error when loading HTML bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאה בעת טעינת סימניות: %1</translation>
     </message>
 </context>
 <context>
     <name>BookmarksMenu</name>
     <message>
         <source>Open in Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>פתח בלשוניות</translation>
     </message>
 </context>
 <context>
@@ -275,27 +279,27 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">פתח</translation>
+        <translation>פתח</translation>
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
-        <translation type="unfinished">פתח ב&amp;כרטיסייה חדשה</translation>
+        <translation>פתח ב&amp;כרטיסייה חדשה</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>הסר</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
-        <translation type="unfinished">הוסף סימנייה...</translation>
+        <translation>הוסף סימנייה...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>הוסף תיקייה...</translation>
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished">סימניות</translation>
+        <translation>סימניות</translation>
     </message>
 </context>
 <context>
@@ -630,65 +634,101 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Switch application language </source>
-        <translation type="unfinished"></translation>
+        <translation>שנה את שפת היישום</translation>
     </message>
     <message>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>סגור חלון</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation>הת&amp;קרב</translation>
     </message>
     <message>
         <source>Zoom &amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>מרחק ר&amp;גיל</translation>
     </message>
     <message>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation>התר&amp;חק</translation>
     </message>
     <message>
         <source>Zoom &amp;Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>הגדל &amp;טקסט בלבד</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation type="unfinished"></translation>
+        <translation>הצג את כל הסימניות...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>הוסף תיקייה...</translation>
     </message>
     <message>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
-        <translation type="unfinished"></translation>
+        <translation>אודות &amp;%1</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>ברירת מחדל</translation>
     </message>
     <message>
         <source>Text Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>קידוד הטקסט</translation>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>בחר &amp;הכל</translation>
     </message>
     <message>
         <source>Alt+Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
+        <translation>כאשר גלישה פרטית מופעלת, כמה פעילויות הקשורות בפרטיות שלך יהיו מנוטרלות:</translation>
+    </message>
+    <message>
+        <source>Webpages are not added to the history.</source>
+        <translation>דפים לא נשמרים בהיסטוריה.</translation>
+    </message>
+    <message>
+        <source>Items are automatically removed from the Downloads window.</source>
+        <translation>פריטים מוסרים באופן אוטומטי מחלון ההורדות.</translation>
+    </message>
+    <message>
+        <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
+        <translation>עוגיות חדשות לא נשמרות, אין אפשרות לגשת אל עוגיות נוכחיות.</translation>
+    </message>
+    <message>
+        <source>Site icons won&apos;t be stored.</source>
+        <translation>סמלים של אתרים לא נשמרים.</translation>
+    </message>
+    <message>
+        <source>Session won&apos;t be saved.</source>
+        <translation>ההפעלה לא תישמר.</translation>
+    </message>
+    <message>
+        <source>Searches are not added to the pop-up menu in the search box.</source>
+        <translation>חיפושים לא נשמרים בתפריט של החיפוש.</translation>
+    </message>
+    <message>
+        <source>No new network cache is written to disk.</source>
+        <translation>מטמון רשת לא נשמר  בדיסק.</translation>
+    </message>
+    <message>
+        <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation>עד שתסגור את החלון, עדיין תוכל ללחוץ על הכפתור קדימה ואחורה בכדי לבקר בדפים בהם ביקרת בעבר.</translation>
+    </message>
+    <message>
+        <source>Private Browsing</source>
+        <translation>גלישה מאובטחת</translation>
     </message>
 </context>
 <context>
@@ -745,34 +785,34 @@ Do you want to reload all pages?</source>
     <name>ClickToFlash</name>
     <message>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>טען</translation>
     </message>
     <message>
         <source>Load All</source>
-        <translation type="unfinished"></translation>
+        <translation>טען הכל</translation>
     </message>
     <message>
         <source>Add %1 to Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>הוסף %1 לרשימה הלבנה</translation>
     </message>
     <message>
         <source>Remove from Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>הסר מהרשימה הלבנה</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>הגדרות</translation>
     </message>
     <message>
         <source>Load Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>טען פלאש</translation>
     </message>
 </context>
 <context>
     <name>ClickToFlashSettings</name>
     <message>
         <source>Whitelist sites</source>
-        <translation type="unfinished"></translation>
+        <translation>אתרים ברשימה לבנה</translation>
     </message>
 </context>
 <context>
@@ -834,7 +874,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Session cookie</source>
-        <translation type="unfinished"></translation>
+        <translation>עוגייה ההפעלה</translation>
     </message>
 </context>
 <context>
@@ -853,7 +893,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Add &amp;Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>הוסף &amp;חוק</translation>
     </message>
 </context>
 <context>
@@ -946,7 +986,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Download canceled: %1</source>
-        <translation>ההודעה הופסקה: %1</translation>
+        <translation>ההורדה הופסקה: %1</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
@@ -1004,11 +1044,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 מתוך %2 (%3/שנייה) - %4</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>אין אפשרות ליצור את תיקיית ההורדה (%1).</translation>
     </message>
 </context>
 <context>
@@ -1023,60 +1063,61 @@ Do you want to reload all pages?</source>
     <message>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>ישנן %1 הודרות פעילות.
+האם לצאת בכל זאת?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>חסרה דקה</numerusform>
+            <numerusform>חסרות %n דקות</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>חסרה שנייה</numerusform>
+            <numerusform>חסרות %n שניות</numerusform>
         </translation>
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished">בתים</translation>
+        <translation>בתים</translation>
     </message>
     <message>
         <source>kB</source>
-        <translation type="unfinished">ק&quot;ב</translation>
+        <translation>ק&quot;ב</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">מ&quot;ב</translation>
+        <translation>מ&quot;ב</translation>
     </message>
     <message>
         <source>GB</source>
-        <translation type="unfinished"></translation>
+        <translation>ג&quot;ב</translation>
     </message>
 </context>
 <context>
     <name>FileAccessReply</name>
     <message>
         <source>No Error</source>
-        <translation type="unfinished"></translation>
+        <translation>אין שגיאה</translation>
     </message>
     <message>
         <source>Error opening: %1: No such file or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>ארעה שגיאה בעת הפתיחה: %1 : אין קובץ או ספרייה</translation>
     </message>
     <message>
         <source>Unable to read %1</source>
-        <translation type="unfinished"></translation>
+        <translation>אין אפשרות לקרוא את %1</translation>
     </message>
     <message>
         <source>Contents of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>התוכן של %1</translation>
     </message>
     <message>
         <source>%1 KB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ק&quot;ב</translation>
     </message>
 </context>
 <context>
@@ -1154,38 +1195,38 @@ Do you want to quit anyway?</source>
     <name>JavaScriptAroraObject</name>
     <message>
         <source>Welcome to Arora!</source>
-        <translation type="unfinished"></translation>
+        <translation>ברוך בואך אל Arora!</translation>
     </message>
     <message>
         <source>Arora Start</source>
-        <translation type="unfinished"></translation>
+        <translation>דף ההפעלה של Arora</translation>
     </message>
     <message>
         <source>Search!</source>
-        <translation type="unfinished"></translation>
+        <translation>חפש!</translation>
     </message>
     <message>
         <source>Search results provided by</source>
-        <translation type="unfinished"></translation>
+        <translation>תוצאות החיפוש מסופקות על ידי</translation>
     </message>
     <message>
         <source>About Arora</source>
-        <translation type="unfinished"></translation>
+        <translation>אודות Arora</translation>
     </message>
 </context>
 <context>
     <name>LanguageManager</name>
     <message>
         <source>Choose language</source>
-        <translation type="unfinished"></translation>
+        <translation>בחר שפה</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;ניתן להפעיל את היישום עם ממשק בשפה שונה &lt;br&gt;מזאת של מערכת ההפעלה.&lt;/p&gt;&lt;p&gt;אנא בחר את השפה לשימוש&lt;/p&gt;</translation>
     </message>
     <message>
-        <source>No translation files are installed.</source>
-        <translation type="unfinished"></translation>
+        <source>No translation files are installed at %1.</source>
+        <translation>לא מותקנים קבצי תרגום בתיקיות %1.</translation>
     </message>
 </context>
 <context>
@@ -1217,33 +1258,35 @@ Do you want to ignore these errors?</source>
     </message>
     <message>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation> - שגיאות SSL</translation>
     </message>
     <message>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;שגיאות SSL:&lt;br/&gt;&lt;br/&gt; עבור: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+האם ברצונך להתעלם מהשגיאות הללו?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;תעודות:&lt;br/&gt;%1&lt;br/&gt;האם ברצונך לקבל את כל התעודות הללו?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Issuer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>מנפיק: %1</translation>
     </message>
     <message>
         <source>Not valid before: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>לא תקין לפני: %1</translation>
     </message>
     <message>
         <source>Valid until: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>תקין עד: %1</translation>
     </message>
     <message>
         <source>Alternate Names:</source>
-        <translation type="unfinished"></translation>
+        <translation>שמות נוספים:</translation>
     </message>
 </context>
 <context>
@@ -1257,73 +1300,73 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>OpenSearchDialog</name>
     <message>
         <source>Open File</source>
-        <translation type="unfinished">פתח קובץ</translation>
+        <translation>פתח קובץ</translation>
     </message>
     <message>
         <source>OpenSearch</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenSearch</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאה</translation>
     </message>
     <message>
         <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 הוא לא תיאור תקין של OpenSearch 1.1 או הוא כבר ברשימה שלך.</translation>
     </message>
     <message>
         <source>You must have at least one search engine in here.</source>
-        <translation type="unfinished"></translation>
+        <translation>חייב להכיל לפחות מנוע חיפוש אחד.</translation>
     </message>
     <message>
         <source>OpenSearch Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>מנהל OpenSearch</translation>
     </message>
     <message>
         <source>&amp;Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;שחזר ברירות מחדל</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;מחק</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;הוסף</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;סגור</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchEngineModel</name>
     <message>
         <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;תיאור:&lt;/strong&gt; %1</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation type="unfinished"></translation>
+        <translation>רשימה מופרדת פסיקים של מילות המפתח שייתכן נכנסו במיקום שלאחריה מונחי החיפוש של מנוע זה</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">שם</translation>
+        <translation>שם</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>מילות מפתח</translation>
     </message>
 </context>
 <context>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>האם ברצונך להוסיף את המנוע הבא לרשימה של מנוע החיפוש? &lt;br /&gt;&lt;br /&gt;שם: %1&lt;br /&gt;מחפש בתוך: %2</translation>
     </message>
 </context>
 <context>
@@ -1353,7 +1396,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>PlainTextEditSearch</name>
     <message>
         <source>Not Found</source>
-        <translation type="unfinished">לא נמצא</translation>
+        <translation>לא נמצא</translation>
     </message>
 </context>
 <context>
@@ -1391,7 +1434,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>הקובץ הוא לא קובץ של OpenSearch 1.1.</translation>
     </message>
 </context>
 <context>
@@ -1425,7 +1468,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Highlight All</source>
-        <translation type="unfinished"></translation>
+        <translation>סמן הכל</translation>
     </message>
 </context>
 <context>
@@ -1543,7 +1586,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Fixed-width font:</source>
-        <translation>גופן קוחב קבוע:</translation>
+        <translation>גופן רוחב קבוע:</translation>
     </message>
     <message>
         <source>Courier 13</source>
@@ -1667,125 +1710,121 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Style Sheet:</source>
-        <translation>גיליון סגנון</translation>
+        <translation>גיליון סגנון:</translation>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
-        <translation type="unfinished"></translation>
+        <translation>הצג רק כפתור סגירה אחד, במקום בכל כרטיסייה</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation type="unfinished"></translation>
+        <translation>שפות מועדפות לתצוגת דפים:</translation>
     </message>
     <message>
         <source>Block Popup Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>חסום חלונות קופצים</translation>
     </message>
     <message>
         <source>Opening links</source>
-        <translation type="unfinished"></translation>
+        <translation>פתיחת קישורים</translation>
     </message>
     <message>
         <source>Links that want to open in a new window:</source>
-        <translation type="unfinished"></translation>
+        <translation>קישורים שרוצים להיפתח בחלון חדש:</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>בכרטיסייה חדשה בעלת פוקוס</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>בכרטיסייה חדשה בחלון הנוכחי</translation>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation type="unfinished"></translation>
+        <translation>בכרטיסייה הנוכחית</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (מאובטח)</translation>
     </message>
     <message>
         <source>Http (Transparent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (שקוף)</translation>
     </message>
     <message>
         <source>Use ClickToFlash on flash plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>השתמש בתוסף ClickToFlash עבור תוספי פלאש</translation>
     </message>
     <message>
         <source>Filter Tracking Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>מסנן עוגיות מעקב</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs or windows</source>
-        <translation type="unfinished"></translation>
+        <translation>אשר בעת סגירה כאשר יש מספר כרטיסיות או חלונות</translation>
     </message>
     <message>
         <source>Quit the application when last tab is closed</source>
-        <translation type="unfinished"></translation>
+        <translation>סגור את היישום כאשר הלשונית האחרונה נסגרת</translation>
     </message>
     <message>
         <source>Enable network cache</source>
-        <translation type="unfinished"></translation>
+        <translation>אפשר מטמון רשת</translation>
     </message>
     <message>
         <source>Maximum Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>גודל מירבי:</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation>מ&quot;ב</translation>
     </message>
     <message>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>השתמש במנוע החיפוש כאשר הכתובת המתקבלת על ידי המשתמש אינה תקינה</translation>
     </message>
     <message>
         <source>Choose Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>בחר ספרייה...</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
         <source>Restart required</source>
-        <translation type="unfinished"></translation>
+        <translation>נדרשת הפעלה מחדש</translation>
     </message>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>הגדרות מטמון הרשת שונו. בכדי שיכנסו לתוקף יש להפעיל מחדש את הדפדפן.</translation>
     </message>
     <message>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>בחר ספרייה</translation>
     </message>
 </context>
 <context>
     <name>SourceViewer</name>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">טוען...</translation>
+        <translation>טוען...</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">ע&amp;ריכה</translation>
+        <translation>ע&amp;ריכה</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished">&amp;חפש</translation>
+        <translation>&amp;חפש</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">&amp;תצוגה</translation>
-    </message>
-    <message>
-        <source>&amp;Wrap lines</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;תצוגה</translation>
     </message>
     <message>
         <source>Source of Page %1</source>
-        <translation type="unfinished"></translation>
+        <translation>קוד מקור של דף %1</translation>
     </message>
 </context>
 <context>
@@ -1862,35 +1901,35 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-]</translation>
     </message>
     <message>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-[</translation>
     </message>
     <message>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>כרטיסיות שנשמרו</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished">טוען...</translation>
+        <translation>טוען...</translation>
     </message>
     <message>
         <source>Loading %1% (%2 %3)...</source>
-        <translation type="unfinished"></translation>
+        <translation>טוען %1% (%2 %3)...</translation>
     </message>
     <message>
         <source>Finished loading</source>
-        <translation type="unfinished"></translation>
+        <translation>הטעינה הסתיימה</translation>
     </message>
     <message>
         <source>Failed to load</source>
-        <translation type="unfinished"></translation>
+        <translation>הטעינה נכשלה</translation>
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>שמור את כל הכרטיסיות בסימניות</translation>
     </message>
 </context>
 <context>
@@ -1905,19 +1944,19 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation type="unfinished">אפס את החיפושים האחרונים</translation>
+        <translation>נקה את החיפושים האחרונים</translation>
     </message>
     <message>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>המלצות</translation>
     </message>
     <message>
         <source>Add &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>הוסף &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>הגדרת מנועי חיפוש...</translation>
     </message>
 </context>
 <context>
@@ -1928,27 +1967,27 @@ Do you really want to close this page?
     </message>
     <message>
         <source>When connecting to: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>בעת החיבור אל %1.</translation>
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation type="unfinished"></translation>
+        <translation>בדוק האם הכתובת מכילה שגיאות בנוסחח &lt;b&gt;ww&lt;/b&gt;.arora-browse.org במקום &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>אם המחשב שלך או הרשת שלך מוגנת על ידי חומת או או שרת proxy, אנא וודא שהדפדפן מורה לגשת לרשת.</translation>
     </message>
     <message>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>אם הכתובת היא נכונה, אנא בדוק את חיבור הרשת.</translation>
     </message>
     <message>
         <source>Resending POST request</source>
-        <translation type="unfinished"></translation>
+        <translation>שולחת מחדש בקשת POST</translation>
     </message>
     <message>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>בכדי להציג את האתר, הבקשה וכל המידע שאיתה חייב להישלח מחדש, דבר אשר יכול לגרום להתנהגויות לא צפויות באתר. למשל ייתכן והפעולה שניסית לעשות תתבצע שוב. האם ברצונך להמשיך בכל זאת?</translation>
     </message>
 </context>
 <context>
@@ -1999,35 +2038,35 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Search with...</source>
-        <translation type="unfinished"></translation>
+        <translation>חפש בעזרת...</translation>
     </message>
     <message>
         <source>Add to the toolbar search</source>
-        <translation type="unfinished"></translation>
+        <translation>הוסף תסרגל החיפוש</translation>
     </message>
     <message>
         <source>Method not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>לא סופקה שיטה</translation>
     </message>
     <message>
         <source>%1 method is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>השיטה %1 לא נתמכת.</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>מנוע חיפוש</translation>
     </message>
     <message>
         <source>Choose the desired search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>בחר את מנוע החיפוש</translation>
     </message>
     <message>
         <source>Engine name</source>
-        <translation type="unfinished"></translation>
+        <translation>שם המנוע</translation>
     </message>
     <message>
         <source>Type in a name for the engine</source>
-        <translation type="unfinished"></translation>
+        <translation>אנא הקלד את שם המנוע</translation>
     </message>
 </context>
 <context>
