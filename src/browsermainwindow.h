@@ -197,7 +197,6 @@ private:
     QAction *m_editFindAction;
     QAction *m_editFindNextAction;
     QAction *m_editFindPreviousAction;
-    QAction *m_editPreferencesAction;
 
     QMenu *m_viewMenu;
     QAction *m_viewShowMenuBarAction;
@@ -232,6 +231,7 @@ private:
     QAction *m_toolsWebSearchAction;
     QAction *m_toolsClearPrivateDataAction;
     QAction *m_toolsEnableInspector;
+    QAction *m_toolsPreferencesAction;
 
     QMenu *m_helpMenu;
     QAction *m_helpChangeLanguageAction;

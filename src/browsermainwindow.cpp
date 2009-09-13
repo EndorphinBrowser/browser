@@ -549,12 +549,6 @@ void BrowserMainWindow::setupMenu()
     connect(m_editFindPreviousAction, SIGNAL(triggered()), this, SLOT(editFindPrevious()));
     m_editMenu->addAction(m_editFindPreviousAction);
 
-    m_editMenu->addSeparator();
-    m_editPreferencesAction = new QAction(m_editMenu);
-    connect(m_editPreferencesAction, SIGNAL(triggered()),
-            this, SLOT(preferences()));
-    m_editMenu->addAction(m_editPreferencesAction);
-
     // View
     m_viewMenu = new QMenu(menuBar());
     connect(m_viewMenu, SIGNAL(aboutToShow()),
@@ -755,6 +749,12 @@ void BrowserMainWindow::setupMenu()
     m_toolsEnableInspector->setChecked(settings.value(QLatin1String("enableInspector"), false).toBool());
     m_toolsMenu->addAction(m_toolsEnableInspector);
 
+    m_toolsMenu->addSeparator();
+    m_toolsPreferencesAction = new QAction(m_editMenu);
+    connect(m_toolsPreferencesAction, SIGNAL(triggered()),
+            this, SLOT(preferences()));
+    m_toolsMenu->addAction(m_toolsPreferencesAction);
+
     // Help
     m_helpMenu = new QMenu(menuBar());
     menuBar()->addMenu(m_helpMenu);
@@ -857,8 +857,6 @@ void BrowserMainWindow::retranslate()
     m_editFindAction->setText(tr("&Find"));
     m_editFindNextAction->setText(tr("Find Nex&t"));
     m_editFindPreviousAction->setText(tr("Find P&revious"));
-    m_editPreferencesAction->setText(tr("Prefere&nces..."));
-    m_editPreferencesAction->setShortcut(tr("Ctrl+,"));
 
     m_viewMenu->setTitle(tr("&View"));
     m_viewToolbarAction->setShortcut(tr("Ctrl+|"));
@@ -897,6 +895,8 @@ void BrowserMainWindow::retranslate()
     m_toolsClearPrivateDataAction->setText(tr("&Clear Private Data"));
     m_toolsClearPrivateDataAction->setShortcut(QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
     m_toolsEnableInspector->setText(tr("Enable Web &Inspector"));
+    m_toolsPreferencesAction->setText(tr("Options..."));
+    m_toolsPreferencesAction->setShortcut(tr("Ctrl+,"));
 
     m_helpMenu->setTitle(tr("&Help"));
     m_helpChangeLanguageAction->setText(tr("Switch application language "));
