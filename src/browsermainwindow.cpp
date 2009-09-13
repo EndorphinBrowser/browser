@@ -740,14 +740,14 @@ void BrowserMainWindow::setupMenu()
             this, SLOT(clearPrivateData()));
     m_toolsMenu->addAction(m_toolsClearPrivateDataAction);
 
-    m_toolsEnableInspector = new QAction(m_toolsMenu);
-    connect(m_toolsEnableInspector, SIGNAL(triggered(bool)),
+    m_toolsEnableInspectorAction = new QAction(m_toolsMenu);
+    connect(m_toolsEnableInspectorAction, SIGNAL(triggered(bool)),
             this, SLOT(toggleInspector(bool)));
-    m_toolsEnableInspector->setCheckable(true);
+    m_toolsEnableInspectorAction->setCheckable(true);
     QSettings settings;
     settings.beginGroup(QLatin1String("websettings"));
-    m_toolsEnableInspector->setChecked(settings.value(QLatin1String("enableInspector"), false).toBool());
-    m_toolsMenu->addAction(m_toolsEnableInspector);
+    m_toolsEnableInspectorAction->setChecked(settings.value(QLatin1String("enableInspector"), false).toBool());
+    m_toolsMenu->addAction(m_toolsEnableInspectorAction);
 
     m_toolsMenu->addSeparator();
     m_toolsPreferencesAction = new QAction(m_editMenu);
@@ -894,7 +894,7 @@ void BrowserMainWindow::retranslate()
     m_toolsWebSearchAction->setShortcut(QKeySequence(tr("Ctrl+K", "Web Search")));
     m_toolsClearPrivateDataAction->setText(tr("&Clear Private Data"));
     m_toolsClearPrivateDataAction->setShortcut(QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
-    m_toolsEnableInspector->setText(tr("Enable Web &Inspector"));
+    m_toolsEnableInspectorAction->setText(tr("Enable Web &Inspector"));
     m_toolsPreferencesAction->setText(tr("Options..."));
     m_toolsPreferencesAction->setShortcut(tr("Ctrl+,"));
 

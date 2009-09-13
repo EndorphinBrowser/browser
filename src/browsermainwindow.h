@@ -230,7 +230,7 @@ private:
     QMenu *m_toolsMenu;
     QAction *m_toolsWebSearchAction;
     QAction *m_toolsClearPrivateDataAction;
-    QAction *m_toolsEnableInspector;
+    QAction *m_toolsEnableInspectorAction;
     QAction *m_toolsPreferencesAction;
 
     QMenu *m_helpMenu;
