@@ -78,6 +78,7 @@
 #include "history.h"
 #include "languagemanager.h"
 #include "networkaccessmanager.h"
+#include "opensearchdialog.h"
 #include "settings.h"
 #include "sourceviewer.h"
 #include "tabbar.h"
@@ -749,6 +750,11 @@ void BrowserMainWindow::setupMenu()
     m_toolsEnableInspectorAction->setChecked(settings.value(QLatin1String("enableInspector"), false).toBool());
     m_toolsMenu->addAction(m_toolsEnableInspectorAction);
 
+    m_toolsSearchManagerAction = new QAction(m_toolsMenu);
+    connect(m_toolsSearchManagerAction, SIGNAL(triggered()),
+            this, SLOT(showSearchDialog()));
+    m_toolsMenu->addAction(m_toolsSearchManagerAction);
+
     m_toolsMenu->addSeparator();
     m_toolsPreferencesAction = new QAction(m_editMenu);
     connect(m_toolsPreferencesAction, SIGNAL(triggered()),
@@ -897,6 +903,7 @@ void BrowserMainWindow::retranslate()
     m_toolsEnableInspectorAction->setText(tr("Enable Web &Inspector"));
     m_toolsPreferencesAction->setText(tr("Options..."));
     m_toolsPreferencesAction->setShortcut(tr("Ctrl+,"));
+    m_toolsSearchManagerAction->setText(tr("Configure Search Engines..."));
 
     m_helpMenu->setTitle(tr("&Help"));
     m_helpChangeLanguageAction->setText(tr("Switch application language "));
@@ -1372,6 +1379,12 @@ void BrowserMainWindow::loadProgress(int progress)
         connect(m_stopReloadAction, SIGNAL(triggered()), m_viewReloadAction, SLOT(trigger()));
         m_stopReloadAction->setToolTip(tr("Reload the current page"));
     }
+}
+
+void BrowserMainWindow::showSearchDialog()
+{
+    OpenSearchDialog dialog(this);
+    dialog.exec();
 }
 
 void BrowserMainWindow::aboutToShowBackMenu()

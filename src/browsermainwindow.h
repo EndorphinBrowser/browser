@@ -103,6 +103,7 @@ public:
     QByteArray saveState(bool withTabs = true) const;
     bool restoreState(const QByteArray &state);
     QAction *showMenuBarAction() const;
+    QAction *searchManagerAction() const { return m_toolsSearchManagerAction; }
 
 public slots:
     void goHome();
@@ -161,6 +162,7 @@ private slots:
     void aboutToShowWindowMenu();
     void aboutToShowTextEncodingMenu();
     void openActionUrl(QAction *action);
+    void showSearchDialog();
     void showWindow();
     void swapFocus();
 
@@ -232,6 +234,7 @@ private:
     QAction *m_toolsClearPrivateDataAction;
     QAction *m_toolsEnableInspectorAction;
     QAction *m_toolsPreferencesAction;
+    QAction *m_toolsSearchManagerAction;
 
     QMenu *m_helpMenu;
     QAction *m_helpChangeLanguageAction;

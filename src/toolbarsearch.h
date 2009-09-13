@@ -99,7 +99,6 @@ private slots:
     void getSuggestions();
     void showEnginesMenu();
     void changeCurrentEngine();
-    void showDialog();
     void addEngineFromUrl();
 
 protected:
