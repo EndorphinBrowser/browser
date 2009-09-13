@@ -504,6 +504,16 @@ void BrowserMainWindow::setupMenu()
     m_fileQuit->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Q));
     m_fileMenu->addAction(m_fileQuit);
 
+#if QT_VERSION >= 0x040600
+    m_fileNewWindowAction->setIcon(QIcon::fromTheme(QLatin1String("window-new")));
+    m_fileOpenFileAction->setIcon(QIcon::fromTheme(QLatin1String("document-open")));
+    m_filePrintPreviewAction->setIcon(QIcon::fromTheme(QLatin1String("document-print-preview")));
+    m_filePrintAction->setIcon(QIcon::fromTheme(QLatin1String("document-print")));
+    m_fileSaveAsAction->setIcon(QIcon::fromTheme(QLatin1String("document-save-as")));
+    m_fileCloseWindow->setIcon(QIcon::fromTheme(QLatin1String("window-close")));
+    m_fileQuit->setIcon(QIcon::fromTheme(QLatin1String("application-exit")));
+#endif
+
     // Edit
     m_editMenu = new QMenu(menuBar());
     menuBar()->addMenu(m_editMenu);
@@ -549,6 +559,16 @@ void BrowserMainWindow::setupMenu()
     m_editFindPreviousAction->setShortcuts(QKeySequence::FindPrevious);
     connect(m_editFindPreviousAction, SIGNAL(triggered()), this, SLOT(editFindPrevious()));
     m_editMenu->addAction(m_editFindPreviousAction);
+
+#if QT_VERSION >= 0x040600
+    m_editUndoAction->setIcon(QIcon::fromTheme(QLatin1String("edit-undo")));
+    m_editRedoAction->setIcon(QIcon::fromTheme(QLatin1String("edit-redo")));
+    m_editCutAction->setIcon(QIcon::fromTheme(QLatin1String("edit-cut")));
+    m_editCopyAction->setIcon(QIcon::fromTheme(QLatin1String("edit-copy")));
+    m_editPasteAction->setIcon(QIcon::fromTheme(QLatin1String("edit-paste")));
+    m_editSelectAllAction->setIcon(QIcon::fromTheme(QLatin1String("edit-select-all")));
+    m_editFindAction->setIcon(QIcon::fromTheme(QLatin1String("edit-find")));
+#endif
 
     // View
     m_viewMenu = new QMenu(menuBar());
@@ -656,6 +676,17 @@ void BrowserMainWindow::setupMenu()
             this, SLOT(viewTextEncoding(QAction *)));
 #endif
 
+    m_stopIcon = style()->standardIcon(QStyle::SP_BrowserStop);
+    m_reloadIcon = style()->standardIcon(QStyle::SP_BrowserReload);
+#if QT_VERSION >= 0x040600
+    m_viewStopAction->setIcon(m_stopIcon);
+    m_viewReloadAction->setIcon(m_reloadIcon);
+    m_viewZoomInAction->setIcon(QIcon::fromTheme(QLatin1String("zoom-in")));
+    m_viewZoomNormalAction->setIcon(QIcon::fromTheme(QLatin1String("zoom-original")));
+    m_viewZoomOutAction->setIcon(QIcon::fromTheme(QLatin1String("zoom-out")));
+    m_viewFullScreenAction->setIcon(QIcon::fromTheme(QLatin1String("view-fullscreen")));
+#endif
+
     // History
     m_historyMenu = new HistoryMenu(this);
     connect(m_historyMenu, SIGNAL(openUrl(const QUrl&, const QString&)),
@@ -666,12 +697,16 @@ void BrowserMainWindow::setupMenu()
     m_historyBackAction = new QAction(this);
     m_tabWidget->addWebAction(m_historyBackAction, QWebPage::Back);
     m_historyBackAction->setShortcuts(QKeySequence::Back);
+#if QT_VERSION < 0x040600
     m_historyBackAction->setIconVisibleInMenu(false);
+#endif
 
     m_historyForwardAction = new QAction(this);
     m_tabWidget->addWebAction(m_historyForwardAction, QWebPage::Forward);
     m_historyForwardAction->setShortcuts(QKeySequence::Forward);
+#if QT_VERSION < 0x040600
     m_historyForwardAction->setIconVisibleInMenu(false);
+#endif
 
     m_historyHomeAction = new QAction(this);
     connect(m_historyHomeAction, SIGNAL(triggered()), this, SLOT(goHome()));
@@ -688,6 +723,10 @@ void BrowserMainWindow::setupMenu()
     historyActions.append(m_tabWidget->recentlyClosedTabsAction());
     historyActions.append(m_historyRestoreLastSessionAction);
     m_historyMenu->setInitialActions(historyActions);
+#if QT_VERSION >= 0x040600
+    m_historyRestoreLastSessionAction->setIcon(QIcon::fromTheme(QLatin1String("document-revert")));
+    m_historyHomeAction->setIcon(QIcon::fromTheme(QLatin1String("go-home")));
+#endif
 
     // Bookmarks
     m_bookmarksMenu = new BookmarksMenuBarMenu(this);
@@ -704,7 +743,9 @@ void BrowserMainWindow::setupMenu()
 
     m_bookmarksAddAction = new QAction(this);
     m_bookmarksAddAction->setIcon(QIcon(QLatin1String(":addbookmark.png")));
+#if QT_VERSION < 0x040600
     m_bookmarksAddAction->setIconVisibleInMenu(false);
+#endif
     connect(m_bookmarksAddAction, SIGNAL(triggered()),
             this, SLOT(addBookmark()));
     m_bookmarksAddAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_D));
@@ -719,6 +760,11 @@ void BrowserMainWindow::setupMenu()
     bookmarksActions.append(tabWidget()->bookmarkTabsAction());
     bookmarksActions.append(m_bookmarksAddFolderAction);
     m_bookmarksMenu->setInitialActions(bookmarksActions);
+
+#if QT_VERSION >= 0x040600
+    m_bookmarksAddFolderAction->setIcon(QIcon::fromTheme(QLatin1String("folder-new")));
+    m_bookmarksShowAllAction->setIcon(QIcon::fromTheme(QLatin1String("user-bookmarks")));
+#endif
 
     // Window
     m_windowMenu = new QMenu(menuBar());
@@ -780,6 +826,12 @@ void BrowserMainWindow::setupMenu()
     connect(m_helpAboutApplicationAction, SIGNAL(triggered()),
             this, SLOT(aboutApplication()));
     m_helpMenu->addAction(m_helpAboutApplicationAction);
+
+#if QT_VERSION >= 0x040600
+    m_helpChangeLanguageAction->setIcon(QIcon::fromTheme(QLatin1String("preferences-desktop-locale")));
+    m_helpAboutQtAction->setIcon(QPixmap(QLatin1String(":/trolltech/qmessagebox/images/qtlogo-64.png")));
+    m_helpAboutApplicationAction->setIcon(windowIcon());
+#endif
 }
 
 void BrowserMainWindow::aboutToShowViewMenu()
@@ -939,7 +991,6 @@ void BrowserMainWindow::setupToolBar()
     m_navigationBar->addAction(m_historyForwardAction);
 
     m_stopReloadAction = new QAction(this);
-    m_reloadIcon = style()->standardIcon(QStyle::SP_BrowserReload);
     m_stopReloadAction->setIcon(m_reloadIcon);
     m_navigationBar->addAction(m_stopReloadAction);
 
@@ -1368,8 +1419,6 @@ void BrowserMainWindow::loadProgress(int progress)
 {
     if (progress < 100 && progress > 0) {
         disconnect(m_stopReloadAction, SIGNAL(triggered()), m_viewReloadAction, SLOT(trigger()));
-        if (m_stopIcon.isNull())
-            m_stopIcon = style()->standardIcon(QStyle::SP_BrowserStop);
         m_stopReloadAction->setIcon(m_stopIcon);
         connect(m_stopReloadAction, SIGNAL(triggered()), m_viewStopAction, SLOT(trigger()));
         m_stopReloadAction->setToolTip(tr("Stop loading the current page"));
@@ -1429,7 +1478,13 @@ void BrowserMainWindow::aboutToShowWindowMenu()
     m_windowMenu->addAction(m_tabWidget->nextTabAction());
     m_windowMenu->addAction(m_tabWidget->previousTabAction());
     m_windowMenu->addSeparator();
-    m_windowMenu->addAction(tr("Downloads"), this, SLOT(downloadManager()), QKeySequence(tr("Ctrl+Y", "Download Manager")));
+    QAction *downloadManagerAction = m_windowMenu->addAction(tr("Downloads"), this, SLOT(downloadManager()), QKeySequence(tr("Ctrl+Y", "Download Manager")));
+
+#if QT_VERSION >= 0x040600
+    downloadManagerAction->setIcon(QIcon::fromTheme(QLatin1String("emblem-downloads")));
+#else
+    Q_UNUSED(downloadManagerAction);
+#endif
 
     m_windowMenu->addSeparator();
     QList<BrowserMainWindow*> windows = BrowserApplication::instance()->mainWindows();

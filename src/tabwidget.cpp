@@ -141,7 +141,9 @@ TabWidget::TabWidget(QWidget *parent)
     connect(m_bookmarkTabsAction, SIGNAL(triggered()), this, SLOT(bookmarkTabs()));
 
     m_newTabAction->setIcon(QIcon(QLatin1String(":graphics/addtab.png")));
+#if QT_VERSION < 0x040600
     m_newTabAction->setIconVisibleInMenu(false);
+#endif
 
     QSettings settings;
     settings.beginGroup(QLatin1String("tabs"));
@@ -151,6 +153,10 @@ TabWidget::TabWidget(QWidget *parent)
 
     m_previousTabAction = new QAction(this);
     connect(m_previousTabAction, SIGNAL(triggered()), this, SLOT(previousTab()));
+#if QT_VERSION >= 0x040600
+    m_previousTabAction->setIcon(QIcon::fromTheme(QLatin1String("go-previous")));
+    m_nextTabAction->setIcon(QIcon::fromTheme(QLatin1String("go-next")));
+#endif
 
     m_recentlyClosedTabsMenu = new QMenu(this);
     connect(m_recentlyClosedTabsMenu, SIGNAL(aboutToShow()),
@@ -171,9 +177,14 @@ TabWidget::TabWidget(QWidget *parent)
 #endif
 
     bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
+#if QT_VERSION >= 0x040600
+    m_closeTabAction->setIcon(QIcon(QLatin1String(":graphics/closetab.png")));
+#endif
     if (oneCloseButton) {
+#if QT_VERSION < 0x040600
         m_closeTabAction->setIcon(QIcon(QLatin1String(":graphics/closetab.png")));
         m_closeTabAction->setIconVisibleInMenu(false);
+#endif
         // corner buttons
         QToolButton *closeTabButton = new QToolButton(this);
         closeTabButton->setDefaultAction(m_closeTabAction);
