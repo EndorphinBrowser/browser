@@ -55,7 +55,7 @@ private slots:
 class SubLanguageManager : public LanguageManager
 {
 public:
-    SubLanguageManager() : LanguageManager(QString()) {}
+    SubLanguageManager() : LanguageManager() {}
 
 };
 

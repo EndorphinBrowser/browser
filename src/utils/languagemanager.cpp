@@ -44,7 +44,7 @@
 
 // #define LANGUAGEMANAGER_DEBUG
 
-LanguageManager::LanguageManager(const QString &localeDirectory, QObject *parent)
+LanguageManager::LanguageManager(QObject *parent)
     : QObject(parent)
     , m_sysTranslator(0)
     , m_appTranslator(0)
@@ -53,12 +53,18 @@ LanguageManager::LanguageManager(const QString &localeDirectory, QObject *parent
 #ifdef LANGUAGEMANAGER_DEBUG
     qDebug() << "LanguageManager::" << __FUNCTION__;
 #endif
-    m_localeDirectories.append(localeDirectory);
+
+    m_localeDirectories += QLatin1String(".qm/locale");
 }
 
 void LanguageManager::addLocaleDirectory(const QString &directory)
 {
     m_localeDirectories.append(directory);
+}
+
+QStringList LanguageManager::localeDirectories() const
+{
+    return m_localeDirectories;
 }
 
 QString LanguageManager::currentLanguage() const
@@ -280,6 +286,7 @@ void LanguageManager::loadAvailableLanguages() const
 {
     if (m_loaded)
         return;
+    m_loaded = true;
 #ifdef LANGUAGEMANAGER_DEBUG
     qDebug() << "LanguageManager::" << __FUNCTION__;
 #endif
@@ -293,7 +300,6 @@ void LanguageManager::loadAvailableLanguages() const
             const QFileInfo info = it.fileInfo();
             QString language = info.completeBaseName();
             m_languages.append(language);
-            m_loaded = true;
         }
     }
 }

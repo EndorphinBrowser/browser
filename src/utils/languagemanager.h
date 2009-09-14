@@ -44,10 +44,14 @@ signals:
     void languageChanged(const QString &language);
 
 public:
-    LanguageManager(const QString &localeDirectory, QObject *parent = 0);
+    LanguageManager(QObject *parent = 0);
+
     void addLocaleDirectory(const QString &directory);
+    QStringList localeDirectories() const;
+
     QString currentLanguage() const;
     bool setCurrentLanguage(const QString &language);
+
     QStringList languages() const;
     bool isLanguageAvailable(const QString &language) const;
 
