@@ -45,26 +45,26 @@ signals:
 
 public:
     LanguageManager(const QString &localeDirectory, QObject *parent = 0);
-
+    void addLocaleDirectory(const QString &directory);
     QString currentLanguage() const;
     bool setCurrentLanguage(const QString &language);
     QStringList languages() const;
     bool isLanguageAvailable(const QString &language) const;
 
 public slots:
+    void loadLanguageFromSettings();
     void chooseNewLanguage();
 
 private:
-    QString translationLocation() const;
     QString convertStringToLanguageFile(const QString &string) const;
     void loadAvailableLanguages() const;
 
-    QString m_localeDirectory;
     QString m_currentLanguage;
     QTranslator *m_sysTranslator;
     QTranslator *m_appTranslator;
     mutable bool m_loaded;
     mutable QStringList m_languages;
+    QStringList m_localeDirectories;
 };
 
 #endif //LANGUAGEMANAGER_H

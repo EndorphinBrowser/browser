@@ -547,8 +547,9 @@ LanguageManager *BrowserApplication::languageManager()
 {
     if (!s_languageManager) {
         s_languageManager = new LanguageManager(installedDataDirectory());
-        connect(s_languageManager, SIGNAL(languageChanged(const QString &)),
-                qApp, SLOT(retranslate()));
+        s_languageManager->addLocaleDirectory(qApp->applicationDirPath()+QLatin1String("/src/locale"));
+        s_languageManager->loadLanguageFromSettings();
+        connect(s_languageManager, SIGNAL(languageChanged(const QString &)), qApp, SLOT(retranslate()));
     }
     return s_languageManager;
 }

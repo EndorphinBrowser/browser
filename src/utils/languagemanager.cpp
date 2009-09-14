@@ -46,7 +46,6 @@
 
 LanguageManager::LanguageManager(const QString &localeDirectory, QObject *parent)
     : QObject(parent)
-    , m_localeDirectory(localeDirectory)
     , m_sysTranslator(0)
     , m_appTranslator(0)
     , m_loaded(false)
@@ -54,24 +53,12 @@ LanguageManager::LanguageManager(const QString &localeDirectory, QObject *parent
 #ifdef LANGUAGEMANAGER_DEBUG
     qDebug() << "LanguageManager::" << __FUNCTION__;
 #endif
-    QSettings settings;
-    settings.beginGroup(QLatin1String("LanguageManager"));
-    if (settings.contains(QLatin1String("language"))) {
-        QString selectedLanguage = settings.value(QLatin1String("language")).toString();
-#ifdef LANGUAGEMANAGER_DEBUG
-        qDebug() << "LanguageManager::" << __FUNCTION__ << "Loading language from settings" << selectedLanguage;
-#endif
-        // When a translation fails to load remove it from the settings
-        // to prevent it from being loaded every time.
-        if (!setCurrentLanguage(selectedLanguage)) {
-#ifdef LANGUAGEMANAGER_DEBUG
-            qDebug() << "LanguageManager::" << __FUNCTION__ << "Failed to load language";
-#endif
-            settings.remove(QLatin1String("language"));
-        }
-    } else if (!currentLanguage().isEmpty()) {
-        setCurrentLanguage(currentLanguage());
-    }
+    m_localeDirectories.append(localeDirectory);
+}
+
+void LanguageManager::addLocaleDirectory(const QString &directory)
+{
+    m_localeDirectories.append(directory);
 }
 
 QString LanguageManager::currentLanguage() const
@@ -98,9 +85,11 @@ bool LanguageManager::isLanguageAvailable(const QString &language) const
 
     // optimization so we don't have to load all the languages
     if (!m_loaded) {
-        QString file = translationLocation() + QLatin1Char('/') + language + QLatin1String(".qm");
-        if (QFile::exists(file))
-            return true;
+        foreach (const QString &dir, m_localeDirectories) {
+            QString file = dir + QLatin1Char('/') + language + QLatin1String(".qm");
+            if (QFile::exists(file))
+                return true;
+        }
     }
 
     return !(convertStringToLanguageFile(language).isEmpty());
@@ -165,7 +154,12 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
     QTranslator *newAppTranslator = new QTranslator(this);
     QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
     QString languageFile = convertStringToLanguageFile(m_currentLanguage);
-    bool loaded = newAppTranslator->load(languageFile, translationLocation());
+    bool loaded = false;
+    foreach (const QString &dir, m_localeDirectories) {
+        loaded = newAppTranslator->load(languageFile, dir);
+        if (loaded)
+            break;
+    }
 
     QTranslator *newSysTranslator = new QTranslator(this);
     QString translatorFileName = QLatin1String("qt_") + languageFile;
@@ -204,6 +198,32 @@ QStringList LanguageManager::languages() const
     return m_languages;
 }
 
+void LanguageManager::loadLanguageFromSettings()
+{
+#ifdef LANGUAGEMANAGER_DEBUG
+    qDebug() << "LanguageManager::" << __FUNCTION__;
+#endif
+
+    QSettings settings;
+    settings.beginGroup(QLatin1String("LanguageManager"));
+    if (settings.contains(QLatin1String("language"))) {
+        QString selectedLanguage = settings.value(QLatin1String("language")).toString();
+#ifdef LANGUAGEMANAGER_DEBUG
+        qDebug() << "LanguageManager::" << __FUNCTION__ << "Loading language from settings" << selectedLanguage;
+#endif
+        // When a translation fails to load remove it from the settings
+        // to prevent it from being loaded every time.
+        if (!setCurrentLanguage(selectedLanguage)) {
+#ifdef LANGUAGEMANAGER_DEBUG
+            qDebug() << "LanguageManager::" << __FUNCTION__ << "Failed to load language";
+#endif
+            settings.remove(QLatin1String("language"));
+        }
+    } else if (!currentLanguage().isEmpty()) {
+        setCurrentLanguage(currentLanguage());
+    }
+}
+
 void LanguageManager::chooseNewLanguage()
 {
 #ifdef LANGUAGEMANAGER_DEBUG
@@ -212,7 +232,9 @@ void LanguageManager::chooseNewLanguage()
     loadAvailableLanguages();
     if (m_languages.isEmpty()) {
         QMessageBox messageBox;
-        messageBox.setText(tr("No translation files are installed."));
+        QLatin1String separator = QLatin1String(", ");
+        messageBox.setText(tr("No translation files are installed at %1.")
+            .arg(m_localeDirectories.join(separator)));
         messageBox.setStandardButtons(QMessageBox::Ok);
         messageBox.exec();
         return;
@@ -251,18 +273,6 @@ void LanguageManager::chooseNewLanguage()
     setCurrentLanguage(m_languages.value(selection));
 }
 
-QString LanguageManager::translationLocation() const
-{
-    QString directory = m_localeDirectory + QLatin1String("/locale");
-    // work without installing
-    if (!QFile::exists(directory))
-        directory = QLatin1String(".qm/locale");
-#ifdef LANGUAGEMANAGER_DEBUG
-    qDebug() << "LanguageManager::" << __FUNCTION__ << directory;
-#endif
-    return directory;
-}
-
 /*!
     Find all *.qm files in the data directory that have a Qt translation.
  */
@@ -273,16 +283,17 @@ void LanguageManager::loadAvailableLanguages() const
 #ifdef LANGUAGEMANAGER_DEBUG
     qDebug() << "LanguageManager::" << __FUNCTION__;
 #endif
-    m_loaded = true;
 
-    QDirIterator it(translationLocation());
-    while (it.hasNext()) {
-        QString fileName = it.next();
-        if (!fileName.endsWith(QLatin1String(".qm")))
-            continue;
-        const QFileInfo info = it.fileInfo();
-        QString language = info.completeBaseName();
-        m_languages.append(language);
+    foreach (const QString &dir, m_localeDirectories) {
+        QDirIterator it(dir);
+        while (it.hasNext()) {
+            QString fileName = it.next();
+            if (!fileName.endsWith(QLatin1String(".qm")))
+                continue;
+            const QFileInfo info = it.fileInfo();
+            QString language = info.completeBaseName();
+            m_languages.append(language);
+            m_loaded = true;
+        }
     }
 }
-
