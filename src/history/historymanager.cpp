@@ -429,5 +429,5 @@ void HistoryManager::startFrecencyTimer()
 {
     // schedule us to recalculate the frecencies once per day, at 3:00 am (aka 03h00)
     QDateTime tomorrow(QDate::currentDate().addDays(1), QTime(3, 00));
-    m_frecencyTimer.start(QDateTime::currentDateTime().secsTo(tomorrow) * 1000);
+    m_frecencyTimer.start(QDateTime::currentDateTime().secsTo(tomorrow)*1000);
 }

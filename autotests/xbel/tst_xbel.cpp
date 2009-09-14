@@ -110,7 +110,7 @@ void tst_Xbel::read_data()
     QTest::newRow("bad") << QString("bad.xbel") << QXmlStreamReader::CustomError;
 }
 
-// public BookmarkNode* read(QString const& fileName)
+// public BookmarkNode* read(QString const &fileName)
 void tst_Xbel::read()
 {
     QFETCH(QString, fileName);
@@ -129,7 +129,7 @@ void tst_Xbel::readProperly()
     SubXbelReader reader;
     BookmarkNode *root = reader.read("all.xbel");
     QCOMPARE(reader.error(), QXmlStreamReader::NoError);
-    QList<BookmarkNode *>children = root->children();
+    QList<BookmarkNode*>children = root->children();
     QCOMPARE(children.count(), 4);
     // null folder
     QCOMPARE(children[0]->children().count(), 0);
@@ -216,7 +216,7 @@ void tst_Xbel::write_data()
     QTest::newRow("all") << QString("all.xbel");
 }
 
-// public BookmarkNode* read(QString const& fileName)
+// public BookmarkNode* read(QString const &fileName)
 void tst_Xbel::write()
 {
     QFETCH(QString, readFileName);

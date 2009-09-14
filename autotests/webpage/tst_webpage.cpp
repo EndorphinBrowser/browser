@@ -63,13 +63,13 @@ public:
     QString call_userAgentForUrl(const QUrl &url) const
         { return SubWebPage::userAgentForUrl(url); }
 
-    void call_aboutToLoadUrl(QUrl const& url)
+    void call_aboutToLoadUrl(QUrl const &url)
         { return SubWebPage::aboutToLoadUrl(url); }
 
-    bool call_acceptNavigationRequest(QWebFrame* frame, QNetworkRequest const& request, NavigationType type)
+    bool call_acceptNavigationRequest(QWebFrame *frame, QNetworkRequest const &request, NavigationType type)
         { return SubWebPage::acceptNavigationRequest(frame, request, type); }
 
-    QObject* call_createPlugin(QString const& classId, QUrl const& url, QStringList const& paramNames, QStringList const& paramValues)
+    QObject* call_createPlugin(QString const &classId, QUrl const &url, QStringList const &paramNames, QStringList const &paramValues)
         { return SubWebPage::createPlugin(classId, url, paramNames, paramValues); }
 
     QWebPage* call_createWindow(QWebPage::WebWindowType type)
@@ -152,7 +152,7 @@ void tst_WebPage::webPluginFactory_data()
 #endif
 }
 
-// public WebPluginFactory* webPluginFactory()
+// public WebPluginFactory *webPluginFactory()
 void tst_WebPage::webPluginFactory()
 {
 #if 0
@@ -200,7 +200,7 @@ void tst_WebPage::acceptNavigationRequest_data()
     QTest::newRow("midclick-2") << Qt::MidButton << Qt::AltModifier << true << QNetworkRequest(QUrl("http://www.foo.com")) << QWebPage::NavigationTypeLinkClicked << false << 0;
 }
 
-// protected bool acceptNavigationRequest(QWebFrame* frame, QNetworkRequest const& request, NavigationType type)
+// protected bool acceptNavigationRequest(QWebFrame *frame, QNetworkRequest const &request, NavigationType type)
 void tst_WebPage::acceptNavigationRequest()
 {
     QFETCH(Qt::MouseButton, pressedButton);
@@ -238,7 +238,7 @@ void tst_WebPage::createPlugin_data()
 #endif
 }
 
-// protected QObject* createPlugin(QString const& classId, QUrl const& url, QStringList const& paramNames, QStringList const& paramValues)
+// protected QObject* createPlugin(QString const &classId, QUrl const &url, QStringList const &paramNames, QStringList const &paramValues)
 void tst_WebPage::createPlugin()
 {
 #if 0

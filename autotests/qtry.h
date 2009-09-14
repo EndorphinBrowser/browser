@@ -44,7 +44,7 @@
             __i += __TRY_STEP__; \
         } \
         __functionToCall__; \
-    } while(0)
+    } while (0)
 
 #define QTRY_COMPARE(__expression__, __expected__) \
     __QTRY((__expression__ == __expected__), QCOMPARE(__expression__, __expected__));

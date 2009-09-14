@@ -75,7 +75,7 @@ public:
     void call_cookiesChanged()
         { return SubCookieJar::cookiesChanged(); }
 
-    static bool call_isOnDomainList(QStringList const& list, QString const& domain)
+    static bool call_isOnDomainList(QStringList const &list, QString const &domain)
         { return SubCookieJar::isOnDomainList(list, domain); }
 };
 
@@ -263,7 +263,7 @@ void tst_CookieJar::cookiesForUrl_data()
 #endif
 }
 
-// public QList<QNetworkCookie> cookiesForUrl(QUrl const& url) const
+// public QList<QNetworkCookie> cookiesForUrl(QUrl const &url) const
 void tst_CookieJar::cookiesForUrl()
 {
 #if 0
@@ -364,7 +364,7 @@ void tst_CookieJar::setAllowedCookies_data()
 #endif
 }
 
-// public void setAllowedCookies(QStringList const& list)
+// public void setAllowedCookies(QStringList const &list)
 void tst_CookieJar::setAllowedCookies()
 {
 #if 0
@@ -389,7 +389,7 @@ void tst_CookieJar::setAllowForSessionCookies_data()
 #endif
 }
 
-// public void setAllowForSessionCookies(QStringList const& list)
+// public void setAllowForSessionCookies(QStringList const &list)
 void tst_CookieJar::setAllowForSessionCookies()
 {
 #if 0
@@ -414,7 +414,7 @@ void tst_CookieJar::setBlockedCookies_data()
 #endif
 }
 
-// public void setBlockedCookies(QStringList const& list)
+// public void setBlockedCookies(QStringList const &list)
 void tst_CookieJar::setBlockedCookies()
 {
 #if 0
@@ -441,7 +441,7 @@ void tst_CookieJar::setCookiesFromUrl_data()
 #endif
 }
 
-// public bool setCookiesFromUrl(QList<QNetworkCookie> const& cookieList, QUrl const& url)
+// public bool setCookiesFromUrl(QList<QNetworkCookie> const &cookieList, QUrl const &url)
 void tst_CookieJar::setCookiesFromUrl()
 {
 #if 0
@@ -539,7 +539,7 @@ void tst_CookieJar::isOnDomainList_data()
     QTest::newRow("edgecheck-5") << (QStringList() << "a") << "ab" << false;
 }
 
-// protected static bool isOnDomainList(QStringList const& list, QString const& domain)
+// protected static bool isOnDomainList(QStringList const &list, QString const &domain)
 void tst_CookieJar::isOnDomainList()
 {
     QFETCH(QStringList, list);

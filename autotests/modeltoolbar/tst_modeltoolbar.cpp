@@ -55,7 +55,7 @@ private slots:
 class SubModelToolBar : public ModelToolBar
 {
 public:
-    void call_activated(QModelIndex const& index)
+    void call_activated(QModelIndex const &index)
         { return SubModelToolBar::activated(index); }
 
     void call_build()
@@ -161,7 +161,7 @@ void tst_ModelToolBar::modeltoolbar()
     bar.call_build();
 }
 
-// public static QModelIndex index(QAction* action)
+// public static QModelIndex index(QAction *action)
 void tst_ModelToolBar::index()
 {
     SubModelToolBar bar;
@@ -194,7 +194,7 @@ void tst_ModelToolBar::index()
     }
 }
 
-// public QAbstractItemModel* model() const
+// public QAbstractItemModel *model() const
 void tst_ModelToolBar::model()
 {
     SubModelToolBar bar;
@@ -233,7 +233,7 @@ void tst_ModelToolBar::activated_data()
     QTest::newRow("environment") << QProcess::systemEnvironment();
 }
 
-// protected void activated(QModelIndex const& index)
+// protected void activated(QModelIndex const &index)
 void tst_ModelToolBar::activated()
 {
     QFETCH(QStringList, items);

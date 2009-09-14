@@ -53,7 +53,7 @@ class JavaScriptAroraObject : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QObject* currentEngine READ currentEngine)
+    Q_PROPERTY(QObject *currentEngine READ currentEngine)
 
 public:
     JavaScriptAroraObject(QObject *parent = 0);

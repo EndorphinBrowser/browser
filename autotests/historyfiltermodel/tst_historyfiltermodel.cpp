@@ -141,7 +141,7 @@ void tst_HistoryFilterModel::historyContains_data()
     QTest::newRow("many-3") << list2 << QString("foo") << false;
 }
 
-// public bool historyContains(QString const& url) const
+// public bool historyContains(QString const &url) const
 void tst_HistoryFilterModel::historyContains()
 {
     QFETCH(HistoryList, list);
@@ -154,7 +154,7 @@ void tst_HistoryFilterModel::historyContains()
     QCOMPARE(model.historyContains(url), historyContains);
 }
 
-// public void setSourceModel(QAbstractItemModel* sourceModel)
+// public void setSourceModel(QAbstractItemModel *sourceModel)
 void tst_HistoryFilterModel::setSourceModel()
 {
     SubHistoryFilterModel model;

@@ -54,7 +54,7 @@ public:
     Q_PROPERTY(bool providesSuggestions READ providesSuggestions)
     Q_PROPERTY(QString imageUrl READ imageUrl WRITE setImageUrl)
     Q_PROPERTY(bool valid READ isValid)
-    Q_PROPERTY(QNetworkAccessManager* networkAccessManager READ networkAccessManager WRITE setNetworkAccessManager)
+    Q_PROPERTY(QNetworkAccessManager *networkAccessManager READ networkAccessManager WRITE setNetworkAccessManager)
 
     OpenSearchEngine(QObject *parent = 0);
     ~OpenSearchEngine();

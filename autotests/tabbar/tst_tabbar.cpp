@@ -55,16 +55,16 @@ public:
     void call_closeTab(int index)
         { return SubTabBar::closeTab(index); }
 
-    void call_dragEnterEvent(QDragEnterEvent* event)
+    void call_dragEnterEvent(QDragEnterEvent *event)
         { return SubTabBar::dragEnterEvent(event); }
 
-    void call_dropEvent(QDropEvent* event)
+    void call_dropEvent(QDropEvent *event)
         { return SubTabBar::dropEvent(event); }
 
-    void call_mouseMoveEvent(QMouseEvent* event)
+    void call_mouseMoveEvent(QMouseEvent *event)
         { return SubTabBar::mouseMoveEvent(event); }
 
-    void call_mousePressEvent(QMouseEvent* event)
+    void call_mousePressEvent(QMouseEvent *event)
         { return SubTabBar::mousePressEvent(event); }
 
     void call_newTab()

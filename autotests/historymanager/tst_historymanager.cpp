@@ -190,7 +190,7 @@ void tst_HistoryManager::addHistoryEntry_data()
     */
 }
 
-// public void addHistoryEntry(HistoryEntry* item)
+// public void addHistoryEntry(HistoryEntry *item)
 void tst_HistoryManager::addHistoryEntry()
 {
     QFETCH(HistoryList, initial);
@@ -216,7 +216,7 @@ void tst_HistoryManager::updateHistoryEntry_data()
     QTest::newRow("two") << (HistoryList() << HistoryEntry() << HistoryEntry("http://foo.com")) << QUrl() << QString("foo");
 }
 
-// public void updateHistoryEntry(QUrl const& url, QString const title)
+// public void updateHistoryEntry(QUrl const &url, QString const title)
 void tst_HistoryManager::updateHistoryEntry()
 {
     QFETCH(HistoryList, list);
@@ -271,7 +271,7 @@ void tst_HistoryManager::daysToExpire()
     history.setDaysToExpire(daysToExpire);
     QCOMPARE(history.daysToExpire(), daysToExpire);
 
-    QTest::qWait(wait_seconds * 1000);
+    QTest::qWait(wait_seconds*1000);
     QCOMPARE(history.history(), post);
 
     // re-add the items that have probably expired to catch any cache issues

@@ -75,16 +75,16 @@ private slots:
 class SubTabWidget : public TabWidget
 {
 public:
-    void call_linkHovered(QString const& link)
+    void call_linkHovered(QString const &link)
         { return SubTabWidget::linkHovered(link); }
 
     void call_loadProgress(int progress)
         { return SubTabWidget::loadProgress(progress); }
 
-    void call_setCurrentTitle(QString const& url)
+    void call_setCurrentTitle(QString const &url)
         { return SubTabWidget::setCurrentTitle(url); }
 
-    void call_showStatusBarMessage(QString const& message)
+    void call_showStatusBarMessage(QString const &message)
         { return SubTabWidget::showStatusBarMessage(message); }
 
     void call_tabsChanged()
@@ -226,7 +226,7 @@ void tst_TabWidget::currentLineEdit_data()
     */
 }
 
-// public QLineEdit* currentLineEdit() const
+// public QLineEdit *currentLineEdit() const
 void tst_TabWidget::currentLineEdit()
 {
     /*
@@ -331,7 +331,7 @@ void tst_TabWidget::loadUrl_data()
     QTest::newRow("null") << QUrl();
 }
 
-// public void loadUrl(QUrl const& url)
+// public void loadUrl(QUrl const &url)
 void tst_TabWidget::loadUrl()
 {
     /*
@@ -498,7 +498,7 @@ void tst_TabWidget::linkHovered_data()
     QTest::newRow("null") << QString("foo");
 }
 
-// protected void linkHovered(QString const& link)
+// protected void linkHovered(QString const &link)
 void tst_TabWidget::linkHovered(const QString &)
 {
     /*
@@ -564,7 +564,7 @@ void tst_TabWidget::setCurrentTitle_data()
     QTest::newRow("null") << QString("foo");
 }
 
-// protected void setCurrentTitle(QString const& url)
+// protected void setCurrentTitle(QString const &url)
 void tst_TabWidget::setCurrentTitle(const QString &)
 {
     /*
@@ -597,7 +597,7 @@ void tst_TabWidget::showStatusBarMessage_data()
     QTest::newRow("null") << QString("foo");
 }
 
-// protected void showStatusBarMessage(QString const& message)
+// protected void showStatusBarMessage(QString const &message)
 void tst_TabWidget::showStatusBarMessage(const QString &)
 {
     /*

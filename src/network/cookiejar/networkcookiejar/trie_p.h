@@ -48,7 +48,7 @@
 /*
     A Trie tree (prefix tree) where the lookup takes m in the worst case.
 
-    The key is stored in *reverse* order
+    The key is stored in _reverse_ order
 
     Example:
     Keys: x,a y,a

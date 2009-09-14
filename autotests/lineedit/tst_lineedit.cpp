@@ -50,7 +50,7 @@ private slots:
 class SubLineEdit : public LineEdit
 {
 public:
-    void call_resizeEvent(QResizeEvent* event)
+    void call_resizeEvent(QResizeEvent *event)
         { return SubLineEdit::resizeEvent(event); }
 };
 
@@ -128,7 +128,7 @@ void tst_LineEdit::addWidget()
     QCOMPARE(edit.textMargin(position), 0);
 }
 
-// public void removeWidget(QWidget* widget)
+// public void removeWidget(QWidget *widget)
 void tst_LineEdit::removeWidget()
 {
     SubLineEdit edit;
