@@ -191,7 +191,10 @@ void tst_LanguageManager::setCurrentLanguage()
 
     // test if we set the default locale properly
     // this is essential for opensearch localization
-    QCOMPARE(QLocale(manager.currentLanguage()), QLocale());
+    QLocale currentLocale(manager.currentLanguage());
+    if (manager.currentLanguage().isEmpty())
+        currentLocale = QLocale();
+    QCOMPARE(currentLocale, QLocale());
 
     qApp->processEvents();
     QCOMPARE(widget.retranslate, success);
