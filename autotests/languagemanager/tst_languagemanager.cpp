@@ -55,7 +55,9 @@ private slots:
 class SubLanguageManager : public LanguageManager
 {
 public:
-    SubLanguageManager() : LanguageManager() {}
+    SubLanguageManager() : LanguageManager() {
+        addLocaleDirectory(qApp->applicationDirPath() + QLatin1String("/.qm/locale"));
+    }
 
 };
 

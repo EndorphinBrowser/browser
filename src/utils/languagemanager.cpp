@@ -53,8 +53,6 @@ LanguageManager::LanguageManager(QObject *parent)
 #ifdef LANGUAGEMANAGER_DEBUG
     qDebug() << "LanguageManager::" << __FUNCTION__;
 #endif
-
-    m_localeDirectories += QLatin1String(".qm/locale");
 }
 
 void LanguageManager::addLocaleDirectory(const QString &directory)
