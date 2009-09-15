@@ -95,6 +95,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(fixedFontButton, SIGNAL(clicked()), this, SLOT(chooseFixedFont()));
     connect(languageButton, SIGNAL(clicked()), this, SLOT(chooseAcceptLanguage()));
     connect(downloadDirectoryButton, SIGNAL(clicked()), this, SLOT(chooseDownloadDirectory()));
+    connect(styleSheetBrowseButton, SIGNAL(clicked()), this, SLOT(chooseStyleSheet()));
 
     // As network cache has too many bugs in 4.5.1, do not allow to enable it.
     if (QLatin1String(qVersion()) == QLatin1String("4.5.1"))
@@ -438,5 +439,12 @@ void SettingsDialog::chooseAcceptLanguage()
 {
     AcceptLanguageDialog dialog;
     dialog.exec();
+}
+
+void SettingsDialog::chooseStyleSheet()
+{
+    QUrl url = QUrl::fromEncoded(userStyleSheet->text().toUtf8());
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose CSS File"), url.toLocalFile());
+    userStyleSheet->setText(QString::fromUtf8(QUrl::fromLocalFile(fileName).toEncoded()));
 }
 

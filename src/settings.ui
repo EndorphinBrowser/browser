@@ -853,6 +853,19 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="2">
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </widget>
        </item>
@@ -868,6 +881,13 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="styleSheetBrowseButton">
+         <property name="text">
+          <string>Browse...</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
