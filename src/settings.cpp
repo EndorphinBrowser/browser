@@ -131,6 +131,10 @@ void SettingsDialog::loadDefaults()
 void SettingsDialog::loadFromSettings()
 {
     QSettings settings;
+    settings.beginGroup(QLatin1String("Settings"));
+    tabWidget->setCurrentIndex(settings.value(QLatin1String("currentTab"), 0).toInt());
+    settings.endGroup();
+
     settings.beginGroup(QLatin1String("MainWindow"));
     QString defaultHome = QLatin1String("about:home");
     homeLineEdit->setText(settings.value(QLatin1String("home"), defaultHome).toString());
@@ -253,6 +257,10 @@ void SettingsDialog::loadFromSettings()
 void SettingsDialog::saveToSettings()
 {
     QSettings settings;
+    settings.beginGroup(QLatin1String("Settings"));
+    settings.setValue(QLatin1String("currentTab"), tabWidget->currentIndex());
+    settings.endGroup();
+
     settings.beginGroup(QLatin1String("MainWindow"));
     settings.setValue(QLatin1String("home"), homeLineEdit->text());
     settings.setValue(QLatin1String("startupBehavior"), startupBehavior->currentIndex());
