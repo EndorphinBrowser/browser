@@ -9,6 +9,7 @@ SUBDIRS = bookmarks \
           searchlineedit \
           singleapplication \
           squeezelabel \
+          treesortfilterproxymodel \
           webviewsearch
 
 CONFIG += ordered
