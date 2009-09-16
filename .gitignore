@@ -16,4 +16,5 @@ ui_
 *.pdb
 massif.out.*
 ms_print.*
+doc/
 
