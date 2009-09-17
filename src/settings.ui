@@ -821,7 +821,14 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="0" column="2">
+        <widget class="QPushButton" name="styleSheetBrowseButton">
+         <property name="text">
+          <string>Browse...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
         <widget class="QGroupBox" name="networkCache">
          <property name="title">
           <string>Enable network cache</string>
@@ -881,13 +888,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="styleSheetBrowseButton">
-         <property name="text">
-          <string>Browse...</string>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
