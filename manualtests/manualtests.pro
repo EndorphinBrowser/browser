@@ -1,15 +1,11 @@
 TEMPLATE      = subdirs
 SUBDIRS = bookmarks \
           downloadmanager \
-          editview \
           history \
-          lineedit \
           locationbar \
           modelmenu \
           searchlineedit \
-          singleapplication \
-          squeezelabel \
-          treesortfilterproxymodel \
+          utils \
           webviewsearch
 
 CONFIG += ordered

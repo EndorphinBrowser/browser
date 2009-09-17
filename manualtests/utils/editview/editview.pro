@@ -3,7 +3,7 @@ TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 
-include(../manualtests.pri)
+include(../../manualtests.pri)
 
 # Input
 FORMS   += editview.ui

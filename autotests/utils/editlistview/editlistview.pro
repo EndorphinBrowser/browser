@@ -3,7 +3,7 @@ TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 
-include(../autotests.pri)
+include(../../autotests.pri)
 
 # Input
 SOURCES = tst_editlistview.cpp editlistview.cpp
