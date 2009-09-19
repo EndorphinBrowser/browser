@@ -9,17 +9,17 @@ DEPENDPATH += $$PWD
 
 QT += webkit network
 
+# Share object files for faster compiling
+RCC_DIR     = $$PWD/.rcc
+UI_DIR      = $$PWD/.ui
+MOC_DIR     = $$PWD/.moc
+OBJECTS_DIR = $$PWD/.obj
+
+
 win32 {
     DEFINES += GITVERSION=0
     DEFINES += GITCHANGENUMBER=0
-}
-!win32 {
-    # Share object files for faster compiling
-    RCC_DIR     = $$PWD/.rcc
-    UI_DIR      = $$PWD/.ui
-    MOC_DIR     = $$PWD/.moc
-    OBJECTS_DIR = $$PWD/.obj
-
+} else {
     exists($$PWD/../.git/HEAD) {
         GITVERSION=$$system(git log -n1 --pretty=format:%h)
         DEFINES += GITVERSION=\"\\\"$$GITVERSION\\\"\"
