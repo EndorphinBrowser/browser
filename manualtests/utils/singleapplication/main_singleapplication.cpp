@@ -28,23 +28,44 @@
 
 #include <qplaintextedit.h>
 #include <qdebug.h>
+#include <qlocalsocket.h>
+#include <qtextstream.h>
 
 #include <singleapplication.h>
+
+class PlainTextEdit : public QPlainTextEdit {
+    Q_OBJECT
+
+public:
+    PlainTextEdit(QWidget *parent = 0)
+        : QPlainTextEdit(parent) { }
+
+public slots:
+    void messageReceived(QLocalSocket *socket) {
+        QString message;
+        QTextStream stream(socket);
+        stream >> message;
+        appendPlainText(message);
+    }
+
+};
 
 int main(int argc, char **argv)
 {
     SingleApplication app(argc, argv);
     app.setApplicationName("testapp");
     if (app.arguments().count() > 1
-        && app.sendMessage(app.arguments().last()))
+        && app.sendMessage(app.arguments().last().toUtf8()))
         return 0;
 
-    QPlainTextEdit plainTextEdit;
+    PlainTextEdit plainTextEdit;
     plainTextEdit.show();
     if (!app.startSingleServer())
         qWarning() << "Error starting server";
-    app.connect(&app, SIGNAL(messageReceived(const QString &)),
-                &plainTextEdit, SLOT(appendPlainText(const QString &)));
+    app.connect(&app, SIGNAL(messageReceived(QLocalSocket *)),
+                &plainTextEdit, SLOT(messageReceived(QLocalSocket *)));
     return app.exec();
 }
+
+#include "main_singleapplication.moc"
 
