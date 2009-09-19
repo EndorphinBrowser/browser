@@ -53,7 +53,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>WebKit version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebKit-versie: %1</translation>
     </message>
 </context>
 <context>
@@ -239,28 +239,29 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>XBEL bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>XBEL-bladwijzers</translation>
     </message>
     <message>
         <source>HTML Netscape bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML Netscape-bladwijzers</translation>
     </message>
     <message>
         <source>htmlToXBel tool required</source>
-        <translation type="unfinished"></translation>
+        <translation>htmlToXBel is nodig</translation>
     </message>
     <message>
         <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>htmlToXBel, wat wordt geleverd met Arora, is nodig om HTML-bladwijzers te importeren. Het is echter niet geïnstalleerd.</translation>
     </message>
     <message>
         <source>Loading Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Bladwijzer laden</translation>
     </message>
     <message>
         <source>Error when loading HTML bookmarks: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Fout bij het laden van HTML-bladwijzers: %1
+</translation>
     </message>
 </context>
 <context>
@@ -309,7 +310,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished">Bladwijzers</translation>
+        <translation>Bladwijzers</translation>
     </message>
 </context>
 <context>
@@ -660,23 +661,23 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaard</translation>
     </message>
     <message>
         <source>Text Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekstcodering</translation>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Alle selecteren</translation>
     </message>
     <message>
         <source>Alt+Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Als privésurfen aan staat zullen sommige acties omtrent uw privacy worden uitgeschakeld:&lt;ul&gt;&lt;li&gt; Webpagina&apos;s worden niet toegevoegd aan de geschiedenis.&lt;/li&gt;&lt;li&gt; Items worden automatisch verwijderd uit het Downloads-scherm.&lt;/li&gt;&lt;li&gt; Nieuwe cookies worden niet opgeslagen, huidige cookies kunnen niet worden bereikt.&lt;/li&gt;&lt;li&gt; Sitepictogrammen en sessie&apos;s worden niet opgeslagen.&lt;/li&gt;&lt;li&gt; Zoekopdrachten worden niet toegevoegd aan het pop-upmenu in de zoekbalk.&lt;/li&gt;&lt;/ul&gt;Totdat u het venster sluit, kunt u nog altijd de Terug- en Vooruitknoppen gebruiken om terug te keren naar webpagina&apos;s die u heeft geopend.</translation>
     </message>
 </context>
 <context>
@@ -996,7 +997,7 @@ Wilt u alle pagina&apos;s herladen?</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloadmap (%1) kon niet worden gemaakt.</translation>
     </message>
 </context>
 <context>
@@ -1042,30 +1043,30 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <source>GB</source>
-        <translation type="unfinished"></translation>
+        <translation>GB</translation>
     </message>
 </context>
 <context>
     <name>FileAccessReply</name>
     <message>
         <source>No Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen fout</translation>
     </message>
     <message>
         <source>Error opening: %1: No such file or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Fout bij het openen: %1: is geen bestand of map</translation>
     </message>
     <message>
         <source>Unable to read %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kon %1 niet lezen</translation>
     </message>
     <message>
         <source>Contents of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Inhoud van %1</translation>
     </message>
     <message>
         <source>%1 KB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KB</translation>
     </message>
 </context>
 <context>
@@ -1143,23 +1144,23 @@ Wilt u toch afsluiten?</translation>
     <name>JavaScriptAroraObject</name>
     <message>
         <source>Welcome to Arora!</source>
-        <translation type="unfinished"></translation>
+        <translation>Welkom bij Arora!</translation>
     </message>
     <message>
         <source>Arora Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora Start</translation>
     </message>
     <message>
         <source>Search!</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoeken</translation>
     </message>
     <message>
         <source>Search results provided by</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoekresultaten van</translation>
     </message>
     <message>
         <source>About Arora</source>
-        <translation type="unfinished"></translation>
+        <translation>Over Arora</translation>
     </message>
 </context>
 <context>
@@ -1209,19 +1210,19 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Issuer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UItgever: %1</translation>
     </message>
     <message>
         <source>Not valid before: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet geldig voor: %1</translation>
     </message>
     <message>
         <source>Valid until: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Geldig tot: %1</translation>
     </message>
     <message>
         <source>Alternate Names:</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternatieve namen:</translation>
     </message>
 </context>
 <context>
@@ -1317,15 +1318,15 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommagescheiden lijst sleutelwoorden die in de zoekbalk mogen worden ingevoerd, gevolgd door zoektermen voor deze zoekmachine</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Sleutelwoorden</translation>
     </message>
 </context>
 <context>
@@ -1764,11 +1765,11 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Op de standaard zoekmachine terugvallen bij een foute URL</translation>
     </message>
     <message>
         <source>Choose Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>Map kiezen...</translation>
     </message>
 </context>
 <context>
@@ -1783,7 +1784,7 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Map kiezen</translation>
     </message>
 </context>
 <context>
@@ -1814,7 +1815,7 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Source of Page %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Paginabron van %1</translation>
     </message>
 </context>
 <context>
@@ -1974,7 +1975,7 @@ Bent u zeker dat u deze pagina wilt sluiten?
     </message>
     <message>
         <source>Resending POST request</source>
-        <translation type="unfinished"></translation>
+        <translation>POST opnieuw versturen</translation>
     </message>
     <message>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
@@ -2033,31 +2034,31 @@ Bent u zeker dat u deze pagina wilt sluiten?
     </message>
     <message>
         <source>Add to the toolbar search</source>
-        <translation type="unfinished"></translation>
+        <translation>Aan zoekbalk toevoegen</translation>
     </message>
     <message>
         <source>Method not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Methode niet ondersteund</translation>
     </message>
     <message>
         <source>%1 method is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>De methode %1 wordt niet ondersteund.</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoekmachine</translation>
     </message>
     <message>
         <source>Choose the desired search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Kies de zoekmachine</translation>
     </message>
     <message>
         <source>Engine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Type in a name for the engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Kies een naam voor de zoekmachine</translation>
     </message>
 </context>
 <context>
