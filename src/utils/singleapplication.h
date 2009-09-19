@@ -36,17 +36,18 @@
     instant of the application to exist at a time.
 */
 class QLocalServer;
+class QLocalSocket;
 class SingleApplication : public QApplication
 {
     Q_OBJECT
 
 signals:
-    void messageReceived(const QString &message);
+    void messageReceived(QLocalSocket *socket);
 
 public:
     SingleApplication(int &argc, char **argv);
 
-    bool sendMessage(const QString &message);
+    bool sendMessage(const QByteArray &message, int waitMsecsForReply = 0);
     bool startSingleServer();
     bool isRunning() const;
 

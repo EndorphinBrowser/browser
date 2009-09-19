@@ -113,6 +113,7 @@ DISTFILES += ../AUTHORS \
 
 win32 {
     RC_FILE = $$PWD/browser.rc
+    LIBS += -luser32
 }
 
 mac {

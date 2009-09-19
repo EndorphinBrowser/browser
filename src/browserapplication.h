@@ -77,6 +77,7 @@ class DownloadManager;
 class HistoryManager;
 class NetworkAccessManager;
 class LanguageManager;
+class QLocalSocket;
 class BrowserApplication : public SingleApplication
 {
     Q_OBJECT
@@ -133,7 +134,7 @@ public slots:
 
 private slots:
     void retranslate();
-    void messageReceived(const QString &message);
+    void messageReceived(QLocalSocket *socket);
     void postLaunch();
     void openUrl(const QUrl &url);
 

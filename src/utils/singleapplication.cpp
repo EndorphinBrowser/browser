@@ -40,28 +40,39 @@
 #include <windows.h>
 #endif
 
+// #define SINGALAPPLICATION_DEBUG
+
 SingleApplication::SingleApplication(int &argc, char **argv)
     : QApplication(argc, argv)
     , m_localServer(0)
 {
 }
 
-bool SingleApplication::sendMessage(const QString &message)
+bool SingleApplication::sendMessage(const QByteArray &message, int waitMsecsForReply)
 {
+#ifdef SINGALAPPLICATION_DEBUG
+    qDebug() << "SingleApplication::" << __FUNCTION__ << message << waitMsecsForReply;
+#endif
     QLocalSocket socket;
     socket.connectToServer(serverName());
-    if (socket.waitForConnected(500)) {
-        QTextStream stream(&socket);
-        stream << message;
-        stream.flush();
-        if (socket.waitForBytesWritten())
-            return true;
-        // if the message was sent before waitForBytesWritten was called
-        // it will return false
-        if (socket.error() == QLocalSocket::UnknownSocketError)
-            return true;
+    if (!socket.waitForConnected(500))
+        return false;
+    socket.write(message);
+    socket.flush();
+    socket.waitForBytesWritten();
+    bool success = true;
+    if (socket.error() != QLocalSocket::UnknownSocketError) {
+#ifdef SINGALAPPLICATION_DEBUG
+        qDebug() << "SingleApplication::" << __FUNCTION__ << socket.errorString();
+#endif
+        success = false;
     }
-    return false;
+    if (success) {
+        socket.waitForReadyRead(waitMsecsForReply);
+        if (socket.bytesAvailable() > 0)
+            emit messageReceived(&socket);
+    }
+    return success;
 }
 
 bool SingleApplication::startSingleServer()
@@ -119,10 +130,7 @@ void SingleApplication::newConnection()
     if (!socket)
         return;
     socket->waitForReadyRead();
-    QTextStream stream(socket);
-    QString message;
-    stream >> message;
-    emit messageReceived(message);
+    emit messageReceived(socket);
     delete socket;
 }
 

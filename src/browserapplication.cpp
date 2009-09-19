@@ -78,11 +78,18 @@
 #include <qdir.h>
 #include <qevent.h>
 #include <qlibraryinfo.h>
+#include <qlocalsocket.h>
 #include <qmessagebox.h>
 #include <qsettings.h>
 #include <qwebsettings.h>
 
 #include <qdebug.h>
+
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
+// #define BROWSERAPPLICATION_DEBUG
 
 DownloadManager *BrowserApplication::s_downloadManager = 0;
 HistoryManager *BrowserApplication::s_historyManager = 0;
@@ -106,15 +113,26 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 
     QCoreApplication::setApplicationVersion(version);
 #ifndef AUTOTESTS
+    connect(this, SIGNAL(messageReceived(QLocalSocket *)),
+            this, SLOT(messageReceived(QLocalSocket *)));
+
     QStringList args = QCoreApplication::arguments();
-    QString message = (args.count() > 1) ? parseArgumentUrl(args.last()) : QString();
-    if (sendMessage(message))
+    if (args.count() > 1) {
+        QString message = parseArgumentUrl(args.last());
+        sendMessage(message.toUtf8());
+    }
+    // If we could connect to another Arora then exit
+    QString message = QString(QLatin1String("aroramessage://getwinid"));
+    if (sendMessage(message.toUtf8(), 500))
         return;
+
+#ifdef BROWSERAPPLICATION_DEBUG
+    qDebug() << "BrowserApplication::" << __FUNCTION__ << "I am the only arora";
+#endif
+
     // not sure what else to do...
     if (!startSingleServer())
         return;
-    connect(this, SIGNAL(messageReceived(const QString &)),
-            this, SLOT(messageReceived(const QString &)));
 #endif
 
 #if defined(Q_WS_MAC)
@@ -192,22 +210,63 @@ QString BrowserApplication::parseArgumentUrl(const QString &string) const
     return string;
 }
 
-void BrowserApplication::messageReceived(const QString &message)
+void BrowserApplication::messageReceived(QLocalSocket *socket)
 {
-    if (!message.isEmpty()) {
+    QString message;
+    QTextStream stream(socket);
+    stream >> message;
+#ifdef BROWSERAPPLICATION_DEBUG
+    qDebug() << "BrowserApplication::" << __FUNCTION__ << message;
+#endif
+    if (message.isEmpty())
+        return;
+
+    // Got a normal url
+    if (!message.startsWith(QLatin1String("aroramessage://"))) {
         QSettings settings;
         settings.beginGroup(QLatin1String("tabs"));
         TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
         settings.endGroup();
         if (QUrl(message) == m_lastAskedUrl
-            && m_lastAskedUrlDateTime.addSecs(10) > QDateTime::currentDateTime()) {
+                && m_lastAskedUrlDateTime.addSecs(10) > QDateTime::currentDateTime()) {
             qWarning() << "Possible recursive openUrl called, ignoring url:" << m_lastAskedUrl;
             return;
         }
         mainWindow()->tabWidget()->loadString(message, tab);
+        return;
     }
-    mainWindow()->raise();
-    mainWindow()->activateWindow();
+
+    if (message.startsWith(QLatin1String("aroramessage://getwinid"))) {
+#ifdef Q_OS_WIN
+        QString winid = QString(QLatin1String("%1")).arg((qlonglong)mainWindow()->winId());
+#else
+        mainWindow()->show();
+        mainWindow()->setFocus();
+        mainWindow()->raise();
+        mainWindow()->activateWindow();
+        alert(mainWindow());
+        QString winid;
+#endif
+#ifdef BROWSERAPPLICATION_DEBUG
+        qDebug() << "BrowserApplication::" << __FUNCTION__ << "sending win id" << winid << mainWindow()->winId();
+#endif
+        QString message = QLatin1String("aroramessage://winid/") + winid;
+        socket->write(message.toUtf8());
+        socket->waitForBytesWritten();
+        return;
+    }
+
+    if (message.startsWith(QLatin1String("aroramessage://winid"))) {
+        QString winid = message.mid(21);
+#ifdef BROWSERAPPLICATION_DEBUG
+        qDebug() << "BrowserApplication::" << __FUNCTION__ << "got win id:" << winid;
+#endif
+#ifdef Q_OS_WIN
+        WId wid = (WId)winid.toLongLong();
+        SetForegroundWindow(wid);
+#endif
+        return;
+    }
 }
 
 void BrowserApplication::quitBrowser()
