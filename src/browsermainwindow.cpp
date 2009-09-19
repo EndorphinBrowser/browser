@@ -65,6 +65,7 @@
 #include "browsermainwindow.h"
 
 #include "aboutdialog.h"
+#include "adblockmanager.h"
 #include "addbookmarkdialog.h"
 #include "autosaver.h"
 #include "bookmarksdialog.h"
@@ -801,6 +802,11 @@ void BrowserMainWindow::setupMenu()
             this, SLOT(showSearchDialog()));
     m_toolsMenu->addAction(m_toolsSearchManagerAction);
 
+    m_adBlockDialogAction = new QAction(m_toolsMenu);
+    connect(m_adBlockDialogAction, SIGNAL(triggered()),
+            AdBlockManager::instance(), SLOT(showDialog()));
+    m_toolsMenu->addAction(m_adBlockDialogAction);
+
     m_toolsMenu->addSeparator();
     m_toolsPreferencesAction = new QAction(m_editMenu);
     connect(m_toolsPreferencesAction, SIGNAL(triggered()),
@@ -956,6 +962,7 @@ void BrowserMainWindow::retranslate()
     m_toolsPreferencesAction->setText(tr("Options..."));
     m_toolsPreferencesAction->setShortcut(tr("Ctrl+,"));
     m_toolsSearchManagerAction->setText(tr("Configure Search Engines..."));
+    m_adBlockDialogAction->setText(tr("&Ad Block..."));
 
     m_helpMenu->setTitle(tr("&Help"));
     m_helpChangeLanguageAction->setText(tr("Switch application language "));

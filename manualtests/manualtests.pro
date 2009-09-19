@@ -1,5 +1,6 @@
 TEMPLATE      = subdirs
 SUBDIRS = \
+    adblock \
     bookmarks \
     downloadmanager \
     history \

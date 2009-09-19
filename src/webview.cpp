@@ -64,6 +64,9 @@
 
 #include "webview.h"
 
+#include "adblockdialog.h"
+#include "adblockmanager.h"
+#include "adblockpage.h"
 #include "addbookmarkdialog.h"
 #include "bookmarksmanager.h"
 #include "browserapplication.h"
@@ -223,6 +226,8 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         menu->addAction(tr("&Save Image"), this, SLOT(downloadImageToDisk()));
         menu->addAction(tr("&Copy Image"), this, SLOT(copyImageToClipboard()));
         menu->addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(r.imageUrl().toString());
+        menu->addSeparator();
+        menu->addAction(tr("Block Image"), this, SLOT(blockImage()))->setData(r.imageUrl().toString());
     }
 
     if (!page()->selectedText().isEmpty()) {
@@ -357,6 +362,15 @@ void WebView::copyImageLocationToClipboard()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         BrowserApplication::clipboard()->setText(action->data().toString());
+    }
+}
+
+void WebView::blockImage()
+{
+    if (QAction *action = qobject_cast<QAction*>(sender())) {
+        QString imageUrl = action->data().toString();
+        AdBlockDialog *dialog = AdBlockManager::instance()->showDialog();
+        dialog->addCustomRule(imageUrl);
     }
 }
 
@@ -542,6 +556,7 @@ void WebView::loadFinished()
                    << "Url:" << url();
     }
     m_progress = 0;
+    AdBlockManager::instance()->page()->applyRulesToPage(page());
 }
 
 void WebView::loadUrl(const QUrl &url, const QString &title)

@@ -91,6 +91,7 @@ SOURCES += \
     webview.cpp \
     webviewsearch.cpp
 
+include(adblock/adblock.pri)
 include(bookmarks/bookmarks.pri)
 include(history/history.pri)
 include(locationbar/locationbar.pri)

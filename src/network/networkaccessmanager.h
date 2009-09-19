@@ -69,6 +69,7 @@
 
 class SchemeAccessHandler;
 
+class AdBlockNetwork;
 class NetworkAccessManager : public QNetworkAccessManager
 {
     Q_OBJECT
@@ -103,6 +104,7 @@ private:
     QHash<QString, SchemeAccessHandler*> m_schemeHandlers;
 
     QNetworkCookieJar *m_privateCookieJar;
+    AdBlockNetwork *m_adblockNetwork;
 };
 
 #endif // NETWORKACCESSMANAGER_H

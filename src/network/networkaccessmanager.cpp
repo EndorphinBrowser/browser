@@ -62,6 +62,9 @@
 
 #include "networkaccessmanager.h"
 
+#include "adblockmanager.h"
+#include "adblocknetwork.h"
+#include "adblockschemeaccesshandler.h"
 #include "acceptlanguagedialog.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
@@ -86,6 +89,7 @@
 
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
     : QNetworkAccessManager(parent)
+    , m_adblockNetwork(0)
 {
     connect(this, SIGNAL(authenticationRequired(QNetworkReply*, QAuthenticator*)),
             SLOT(authenticationRequired(QNetworkReply*, QAuthenticator*)));
@@ -101,6 +105,7 @@ NetworkAccessManager::NetworkAccessManager(QObject *parent)
 
     // Register custom scheme handlers
     setSchemeHandler(QLatin1String("file"), new FileAccessHandler(this));
+    setSchemeHandler(QLatin1String("abp"), new AdBlockSchemeAccessHandler(this));
     setCookieJar(new CookieJar);
 }
 
@@ -341,6 +346,15 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
 #endif
     if (!m_acceptLanguage.isEmpty())
         req.setRawHeader("Accept-Language", m_acceptLanguage);
+
+    // Adblock
+    if (op == QNetworkAccessManager::GetOperation) {
+        if (!m_adblockNetwork)
+            m_adblockNetwork = AdBlockManager::instance()->network();
+        reply = m_adblockNetwork->block(req);
+        if (reply)
+            return reply;
+    }
 
     reply = QNetworkAccessManager::createRequest(op, req, outgoingData);
     emit requestCreated(op, req, reply);

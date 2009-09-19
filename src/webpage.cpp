@@ -312,6 +312,9 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
 
     QUrl replyUrl = reply->url();
 
+    if (replyUrl.scheme() == QLatin1String("abp"))
+        return;
+
     switch (reply->error()) {
     case QNetworkReply::NoError:
         if (reply->header(QNetworkRequest::ContentTypeHeader).isValid()) {
