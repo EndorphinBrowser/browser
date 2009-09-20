@@ -108,7 +108,7 @@ TabWidget::TabWidget(QWidget *parent)
     , m_recentlyClosedTabsMenu(0)
     , m_swappedDelayedWidget(false)
     , m_lineEditCompleter(0)
-    , m_lineEdits(0)
+    , m_locationBars(0)
     , m_tabBar(new TabBar(this))
 {
     setElideMode(Qt::ElideRight);
@@ -201,7 +201,7 @@ TabWidget::TabWidget(QWidget *parent)
     connect(this, SIGNAL(currentChanged(int)),
             this, SLOT(currentChanged(int)));
 
-    m_lineEdits = new QStackedWidget(this);
+    m_locationBars = new QStackedWidget(this);
 
     connect(BrowserApplication::historyManager(), SIGNAL(historyCleared()),
         this, SLOT(historyCleared()));
@@ -222,8 +222,8 @@ void TabWidget::clear()
     m_recentlyClosedTabs.clear();
     m_recentlyClosedTabsAction->setEnabled(false);
     // clear the line edit history
-    for (int i = 0; i < m_lineEdits->count(); ++i) {
-        QLineEdit *qLineEdit = lineEdit(i);
+    for (int i = 0; i < m_locationBars->count(); ++i) {
+        QLineEdit *qLineEdit = locationBar(i);
         qLineEdit->setText(qLineEdit->text());
         webViewSearch(i)->clear();
     }
@@ -244,9 +244,9 @@ void TabWidget::reloadTab(int index)
 
 void TabWidget::moveTab(int fromIndex, int toIndex)
 {
-    QWidget *lineEdit = m_lineEdits->widget(fromIndex);
-    m_lineEdits->removeWidget(lineEdit);
-    m_lineEdits->insertWidget(toIndex, lineEdit);
+    QWidget *lineEdit = m_locationBars->widget(fromIndex);
+    m_locationBars->removeWidget(lineEdit);
+    m_locationBars->insertWidget(toIndex, lineEdit);
 }
 
 void TabWidget::addWebAction(QAction *action, QWebPage::WebAction webAction)
@@ -262,9 +262,9 @@ void TabWidget::currentChanged(int index)
     if (!webView)
         return;
 
-    Q_ASSERT(m_lineEdits->count() == count());
+    Q_ASSERT(m_locationBars->count() == count());
 
-    WebView *oldWebView = this->webView(m_lineEdits->currentIndex());
+    WebView *oldWebView = this->webView(m_locationBars->currentIndex());
     if (oldWebView) {
         disconnect(oldWebView, SIGNAL(statusBarMessage(const QString&)),
                    this, SIGNAL(showStatusBarMessage(const QString&)));
@@ -286,11 +286,11 @@ void TabWidget::currentChanged(int index)
         mapper->updateCurrent(webView->page());
     }
     emit setCurrentTitle(webView->title());
-    m_lineEdits->setCurrentIndex(index);
+    m_locationBars->setCurrentIndex(index);
     emit loadProgress(webView->progress());
     emit showStatusBarMessage(webView->lastStatusBarText());
     if (webView->url().isEmpty() && webView->hasFocus()) {
-        m_lineEdits->currentWidget()->setFocus();
+        m_locationBars->currentWidget()->setFocus();
     } else if (!webView->url().isEmpty()) {
         webView->setFocus();
     }
@@ -326,14 +326,14 @@ QAction *TabWidget::previousTabAction() const
     return m_previousTabAction;
 }
 
-QWidget *TabWidget::lineEditStack() const
+QWidget *TabWidget::locationBarStack() const
 {
-    return m_lineEdits;
+    return m_locationBars;
 }
 
-QLineEdit *TabWidget::currentLineEdit() const
+QLineEdit *TabWidget::currentLocationBar() const
 {
-    return lineEdit(m_lineEdits->currentIndex());
+    return locationBar(m_locationBars->currentIndex());
 }
 
 WebView *TabWidget::currentWebView() const
@@ -341,9 +341,9 @@ WebView *TabWidget::currentWebView() const
     return webView(currentIndex());
 }
 
-QLineEdit *TabWidget::lineEdit(int index) const
+QLineEdit *TabWidget::locationBar(int index) const
 {
-    return qobject_cast<LocationBar*>(m_lineEdits->widget(index));
+    return qobject_cast<LocationBar*>(m_locationBars->widget(index));
 }
 
 WebView *TabWidget::webView(int index) const
@@ -356,16 +356,16 @@ WebView *TabWidget::webView(int index) const
         if (count() == 1) {
             TabWidget *that = const_cast<TabWidget*>(this);
             that->setUpdatesEnabled(false);
-            LocationBar *currentLocationBar = qobject_cast<LocationBar*>(m_lineEdits->widget(0));
+            LocationBar *currentLocationBar = qobject_cast<LocationBar*>(m_locationBars->widget(0));
             bool giveBackFocus = currentLocationBar->hasFocus();
-            m_lineEdits->removeWidget(currentLocationBar);
-            m_lineEdits->addWidget(new QWidget());
+            m_locationBars->removeWidget(currentLocationBar);
+            m_locationBars->addWidget(new QWidget());
             that->newTab();
             that->closeTab(0);
-            QWidget *newEmptyLineEdit = m_lineEdits->widget(0);
-            m_lineEdits->removeWidget(newEmptyLineEdit);
+            QWidget *newEmptyLineEdit = m_locationBars->widget(0);
+            m_locationBars->removeWidget(newEmptyLineEdit);
             newEmptyLineEdit->deleteLater();
-            m_lineEdits->addWidget(currentLocationBar);
+            m_locationBars->addWidget(currentLocationBar);
             currentLocationBar->setWebView(currentWebView());
             if (giveBackFocus)
                 currentLocationBar->setFocus();
@@ -427,8 +427,8 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     }
     locationBar->setCompleter(m_lineEditCompleter);
     connect(locationBar, SIGNAL(returnPressed()), this, SLOT(lineEditReturnPressed()));
-    m_lineEdits->addWidget(locationBar);
-    m_lineEdits->setSizePolicy(locationBar->sizePolicy());
+    m_locationBars->addWidget(locationBar);
+    m_locationBars->setSizePolicy(locationBar->sizePolicy());
 
 #ifndef AUTOTESTS
     QWidget::setTabOrder(locationBar, qFindChild<ToolbarSearch*>(BrowserMainWindow::parentWindow(this)));
@@ -558,7 +558,7 @@ void TabWidget::lineEditReturnPressed()
 {
     if (QLineEdit *lineEdit = qobject_cast<QLineEdit*>(sender())) {
         loadString(lineEdit->text());
-        if (m_lineEdits->currentWidget() == lineEdit)
+        if (m_locationBars->currentWidget() == lineEdit)
             currentWebView()->setFocus();
     }
 }
@@ -632,8 +632,8 @@ void TabWidget::closeTab(int index)
         if (m_recentlyClosedTabs.size() >= TabWidget::m_recentlyClosedTabsSize)
             m_recentlyClosedTabs.removeLast();
     }
-    QWidget *lineEdit = m_lineEdits->widget(index);
-    m_lineEdits->removeWidget(lineEdit);
+    QWidget *lineEdit = m_locationBars->widget(index);
+    m_locationBars->removeWidget(lineEdit);
     lineEdit->deleteLater();
 
     QWidget *webViewWithSearch = widget(index);
@@ -839,7 +839,7 @@ void TabWidget::loadString(const QString &string, OpenUrlIn tab)
         return;
 
     QUrl url = guessUrlFromString(string);
-    currentLineEdit()->setText(QString::fromUtf8(url.toEncoded()));
+    currentLocationBar()->setText(QString::fromUtf8(url.toEncoded()));
     loadUrl(url, tab);
 }
 

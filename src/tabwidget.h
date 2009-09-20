@@ -132,12 +132,12 @@ public:
     QAction *nextTabAction() const;
     QAction *previousTabAction() const;
 
-    QWidget *lineEditStack() const;
-    QLineEdit *currentLineEdit() const;
+    QWidget *locationBarStack() const;
+    QLineEdit *currentLocationBar() const;
     WebView *currentWebView() const;
     WebView *webView(int index) const;
     WebViewSearch *webViewSearch(int index) const;
-    QLineEdit *lineEdit(int index) const;
+    QLineEdit *locationBar(int index) const;
     int webViewIndex(WebView *webView) const;
     WebView *makeNewTab(bool makeCurrent = false);
 
@@ -203,7 +203,7 @@ private:
     bool m_swappedDelayedWidget;
 
     QCompleter *m_lineEditCompleter;
-    QStackedWidget *m_lineEdits;
+    QStackedWidget *m_locationBars;
     TabBar *m_tabBar;
 };
 

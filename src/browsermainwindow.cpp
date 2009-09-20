@@ -206,7 +206,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     updateWindowTitle();
     loadDefaultState();
     m_tabWidget->newTab();
-    m_tabWidget->currentLineEdit()->setFocus();
+    m_tabWidget->currentLocationBar()->setFocus();
 #if defined(Q_WS_MAC)
     m_navigationBar->setIconSize(QSize(18, 18));
 #endif
@@ -1003,14 +1003,14 @@ void BrowserMainWindow::setupToolBar()
     m_navigationBar->addAction(m_stopReloadAction);
 
     m_navigationSplitter = new QSplitter(m_navigationBar);
-    m_navigationSplitter->addWidget(m_tabWidget->lineEditStack());
+    m_navigationSplitter->addWidget(m_tabWidget->locationBarStack());
 
     m_toolbarSearch = new ToolbarSearch(m_navigationBar);
     m_navigationSplitter->addWidget(m_toolbarSearch);
     connect(m_toolbarSearch, SIGNAL(search(const QUrl&)),
             m_tabWidget, SLOT(loadUrl(const QUrl&)));
     m_navigationSplitter->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
-    m_tabWidget->lineEditStack()->setMinimumWidth(120);
+    m_tabWidget->locationBarStack()->setMinimumWidth(120);
     m_navigationSplitter->setCollapsible(0, false);
     m_navigationBar->addWidget(m_navigationSplitter);
     int splitterWidth = m_navigationSplitter->width();
@@ -1111,8 +1111,8 @@ void BrowserMainWindow::selectLineEdit()
     if (m_navigationBar->isHidden())
         m_navigationBar->show();
 
-    m_tabWidget->currentLineEdit()->selectAll();
-    m_tabWidget->currentLineEdit()->setFocus();
+    m_tabWidget->currentLocationBar()->selectAll();
+    m_tabWidget->currentLocationBar()->setFocus();
 }
 
 void BrowserMainWindow::fileSaveAs()
@@ -1401,8 +1401,8 @@ void BrowserMainWindow::toggleInspector(bool enable)
 void BrowserMainWindow::swapFocus()
 {
     if (currentTab()->hasFocus()) {
-        m_tabWidget->currentLineEdit()->setFocus();
-        m_tabWidget->currentLineEdit()->selectAll();
+        m_tabWidget->currentLocationBar()->setFocus();
+        m_tabWidget->currentLocationBar()->selectAll();
     } else {
         currentTab()->setFocus();
     }
