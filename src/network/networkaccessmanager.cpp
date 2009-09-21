@@ -88,7 +88,7 @@
 #include <qdatetime.h>
 
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
-    : QNetworkAccessManager(parent)
+    : NetworkAccessManagerProxy(parent)
     , m_adblockNetwork(0)
 {
     connect(this, SIGNAL(authenticationRequired(QNetworkReply*, QAuthenticator*)),

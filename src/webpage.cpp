@@ -96,13 +96,16 @@ QString JavaScriptAroraObject::searchUrl(const QString &string) const
 }
 
 WebPage::WebPage(QObject *parent)
-    : QWebPage(parent)
+    : WebPageProxy(parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
     , m_javaScriptExternalObject(0)
     , m_javaScriptAroraObject(0)
 {
     setPluginFactory(webPluginFactory());
-    setNetworkAccessManager(BrowserApplication::networkAccessManager());
+    NetworkAccessManagerProxy *networkManagerProxy = new NetworkAccessManagerProxy(this);
+    networkManagerProxy->setWebPage(this);
+    networkManagerProxy->setPrimaryNetworkAccessManager(BrowserApplication::networkAccessManager());
+    setNetworkAccessManager(networkManagerProxy);
     connect(this, SIGNAL(unsupportedContent(QNetworkReply *)),
             this, SLOT(handleUnsupportedContent(QNetworkReply *)));
     connect(this, SIGNAL(frameCreated(QWebFrame *)),

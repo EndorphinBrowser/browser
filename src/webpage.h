@@ -20,10 +20,10 @@
 #ifndef WEBPAGE_H
 #define WEBPAGE_H
 
+#include "webpageproxy.h"
 #include "tabwidget.h"
 
 #include <qlist.h>
-#include <qwebpage.h>
 
 class WebPageLinkedResource
 {
@@ -64,7 +64,7 @@ public slots:
     QString searchUrl(const QString &string) const;
 };
 
-class WebPage : public QWebPage
+class WebPage : public WebPageProxy
 {
     Q_OBJECT
 

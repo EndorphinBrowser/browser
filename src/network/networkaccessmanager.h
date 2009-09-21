@@ -65,11 +65,12 @@
 
 #include <qnetworkaccessmanager.h>
 #include <qsslconfiguration.h>
+#include "networkaccessmanagerproxy.h"
 
 class SchemeAccessHandler;
 
 class AdBlockNetwork;
-class NetworkAccessManager : public QNetworkAccessManager
+class NetworkAccessManager : public NetworkAccessManagerProxy
 {
     Q_OBJECT
 
