@@ -2,6 +2,12 @@
 #
 # A simple test to prevent work on Arora during the work day.
 
+
+user=`whoami`
+if [ $user != "ben" ] ; then
+    exit 0;
+fi
+
 # If it is the weekend, bail out
 day=`date +%w`
 # Saturday
