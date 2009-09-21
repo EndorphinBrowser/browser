@@ -66,6 +66,7 @@
 #include "adblocknetwork.h"
 #include "adblockschemeaccesshandler.h"
 #include "acceptlanguagedialog.h"
+#include "autofillmanager.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "cookiejar.h"
@@ -332,6 +333,11 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
 
 QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
 {
+    if (op == PostOperation && outgoingData) {
+        QByteArray outgoingDataByteArray = outgoingData->peek(1024 * 1024);
+        BrowserApplication::autoFillManager()->post(request, outgoingDataByteArray);
+    }
+
     QNetworkReply *reply = 0;
 
     // Check if there is a valid handler registered for the requested URL scheme
@@ -360,3 +366,4 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
     emit requestCreated(op, req, reply);
     return reply;
 }
+

@@ -33,6 +33,7 @@ win32 {
 
 FORMS += \
     aboutdialog.ui \
+    autofilldialog.ui \
     acceptlanguagedialog.ui \
     downloaditem.ui \
     downloads.ui \
@@ -43,6 +44,8 @@ HEADERS += \
     aboutdialog.h \
     acceptlanguagedialog.h \
     autosaver.h \
+    autofilldialog.h \
+    autofillmanager.h \
     browserapplication.h \
     browsermainwindow.h \
     clearprivatedata.h \
@@ -69,6 +72,8 @@ SOURCES += \
     aboutdialog.cpp \
     acceptlanguagedialog.cpp \
     autosaver.cpp \
+    autofilldialog.cpp \
+    autofillmanager.cpp \
     browserapplication.cpp \
     browsermainwindow.cpp \
     clearprivatedata.cpp \

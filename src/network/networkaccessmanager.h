@@ -81,6 +81,11 @@ public:
     NetworkAccessManager(QObject *parent = 0);
     void setSchemeHandler(const QString &scheme, SchemeAccessHandler *handler);
 
+    inline QNetworkReply *createRequestProxy(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
+    {
+        return createRequest(op, request, outgoingData);
+    }
+
 protected:
     QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0);
 

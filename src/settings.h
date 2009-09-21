@@ -89,6 +89,8 @@ private slots:
     void chooseAcceptLanguage();
 
     void chooseStyleSheet();
+    void editAutoFillUser();
+    void editAutoFillOther();
 
 private:
     QFont m_standardFont;

@@ -63,6 +63,8 @@
 #include "settings.h"
 
 #include "acceptlanguagedialog.h"
+#include "autofilldialog.h"
+#include "autofillmanager.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "cookiedialog.h"
@@ -97,6 +99,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(downloadDirectoryButton, SIGNAL(clicked()), this, SLOT(chooseDownloadDirectory()));
     connect(styleSheetBrowseButton, SIGNAL(clicked()), this, SLOT(chooseStyleSheet()));
 
+    connect(editAutoFillUserButton, SIGNAL(clicked()), this, SLOT(editAutoFillUser()));
+    connect(editAutoFillOtherButton, SIGNAL(clicked()), this, SLOT(editAutoFillOther()));
+
     // As network cache has too many bugs in 4.5.1, do not allow to enable it.
     if (QLatin1String(qVersion()) == QLatin1String("4.5.1"))
         networkCache->setVisible(false);
@@ -126,6 +131,9 @@ void SettingsDialog::loadDefaults()
     enableImages->setChecked(defaultSettings->testAttribute(QWebSettings::AutoLoadImages));
     clickToFlash->setChecked(false);
     filterTrackingCookiesCheckbox->setChecked(false);
+
+    autoFillPasswordFormsCheckBox->setChecked(false);
+    autoFillOtherFormsCheckBox->setChecked(false);
 }
 
 void SettingsDialog::loadFromSettings()
@@ -251,6 +259,11 @@ void SettingsDialog::loadFromSettings()
     openTargetBlankLinksIn->setCurrentIndex(settings.value(QLatin1String("openTargetBlankLinksIn"), TabWidget::NewSelectedTab).toInt());
     openLinksFromAppsIn->setCurrentIndex(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
     settings.endGroup();
+
+    settings.beginGroup(QLatin1String("autofill"));
+    autoFillPasswordFormsCheckBox->setChecked(settings.value(QLatin1String("passwordForms"), false).toBool());
+    autoFillOtherFormsCheckBox->setChecked(settings.value(QLatin1String("otherForms"), false).toBool());
+    settings.endGroup();
 }
 
 void SettingsDialog::saveToSettings()
@@ -370,10 +383,16 @@ void SettingsDialog::saveToSettings()
     settings.setValue(QLatin1String("openLinksFromAppsIn"), openLinksFromAppsIn->currentIndex());
     settings.endGroup();
 
+    settings.beginGroup(QLatin1String("autofill"));
+    settings.setValue(QLatin1String("passwordForms"), autoFillPasswordFormsCheckBox->isChecked());
+    settings.setValue(QLatin1String("otherForms"), autoFillOtherFormsCheckBox->isChecked());
+    settings.endGroup();
+
     BrowserApplication::instance()->loadSettings();
     BrowserApplication::networkAccessManager()->loadSettings();
     BrowserApplication::cookieJar()->loadSettings();
     BrowserApplication::historyManager()->loadSettings();
+    BrowserApplication::autoFillManager()->loadSettings();
 
     WebPage::webPluginFactory()->refreshPlugins();
 
@@ -452,5 +471,17 @@ void SettingsDialog::chooseStyleSheet()
     QUrl url = QUrl::fromEncoded(userStyleSheet->text().toUtf8());
     QString fileName = QFileDialog::getOpenFileName(this, tr("Choose CSS File"), url.toLocalFile());
     userStyleSheet->setText(QString::fromUtf8(QUrl::fromLocalFile(fileName).toEncoded()));
+}
+
+void SettingsDialog::editAutoFillUser()
+{
+    AutoFillDialog dialog(true);
+    dialog.exec();
+}
+
+void SettingsDialog::editAutoFillOther()
+{
+    AutoFillDialog dialog;
+    dialog.exec();
 }
 
