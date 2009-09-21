@@ -184,6 +184,14 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
     return resources;
 }
 
+void WebPage::populateNetworkRequest(QNetworkRequest &request)
+{
+    if (request == lastRequest) {
+        request.setAttribute((QNetworkRequest::Attribute)(pageAttributeId() + 1), lastRequestType);
+    }
+    WebPageProxy::populateNetworkRequest(request);
+}
+
 void WebPage::addExternalBinding(QWebFrame *frame)
 {
     if (!m_javaScriptExternalObject)
@@ -217,6 +225,9 @@ QString WebPage::userAgentForUrl(const QUrl &url) const
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
                                       NavigationType type)
 {
+    lastRequest = request;
+    lastRequestType = type;
+
     QString scheme = request.url().scheme();
     if (scheme == QLatin1String("mailto")
         || scheme == QLatin1String("ftp")) {

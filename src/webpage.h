@@ -24,6 +24,7 @@
 #include "tabwidget.h"
 
 #include <qlist.h>
+#include <qnetworkrequest.h>
 
 class WebPageLinkedResource
 {
@@ -90,12 +91,18 @@ protected slots:
     void addExternalBinding(QWebFrame *frame = 0);
 
 protected:
+    void populateNetworkRequest(QNetworkRequest &request);
     static QString s_userAgent;
     static WebPluginFactory *s_webPluginFactory;
     TabWidget::OpenUrlIn m_openTargetBlankLinksIn;
     QUrl m_requestedUrl;
     JavaScriptExternalObject *m_javaScriptExternalObject;
     JavaScriptAroraObject *m_javaScriptAroraObject;
+
+private:
+    QNetworkRequest lastRequest;
+    QWebPage::NavigationType lastRequestType;
+
 };
 
 #endif // WEBPAGE_H
