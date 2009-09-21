@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Check that the code follows a consistant code style
+# Check that the code follows a consistent code style
 #
 
 astyle --version 2>> /dev/null
