@@ -132,6 +132,7 @@ WebView::WebView(QWidget *parent)
     connect(m_page, SIGNAL(scrollRequested(int, int, const QRect &)),
             this, SLOT(hideAccessKeys()));
 #endif
+    loadSettings();
 }
 
 void WebView::loadSettings()
