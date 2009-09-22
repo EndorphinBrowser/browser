@@ -505,7 +505,7 @@ void BrowserMainWindow::setupMenu()
     m_fileQuit->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Q));
     m_fileMenu->addAction(m_fileQuit);
 
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= 0x040600 && defined(Q_OS_LINUX)
     m_fileNewWindowAction->setIcon(QIcon::fromTheme(QLatin1String("window-new")));
     m_fileOpenFileAction->setIcon(QIcon::fromTheme(QLatin1String("document-open")));
     m_filePrintPreviewAction->setIcon(QIcon::fromTheme(QLatin1String("document-print-preview")));
@@ -561,7 +561,7 @@ void BrowserMainWindow::setupMenu()
     connect(m_editFindPreviousAction, SIGNAL(triggered()), this, SLOT(editFindPrevious()));
     m_editMenu->addAction(m_editFindPreviousAction);
 
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= 0x040600 && defined(Q_OS_LINUX)
     m_editUndoAction->setIcon(QIcon::fromTheme(QLatin1String("edit-undo")));
     m_editRedoAction->setIcon(QIcon::fromTheme(QLatin1String("edit-redo")));
     m_editCutAction->setIcon(QIcon::fromTheme(QLatin1String("edit-cut")));
@@ -679,7 +679,7 @@ void BrowserMainWindow::setupMenu()
 
     m_stopIcon = style()->standardIcon(QStyle::SP_BrowserStop);
     m_reloadIcon = style()->standardIcon(QStyle::SP_BrowserReload);
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= 0x040600 && defined(Q_OS_LINUX)
     m_viewStopAction->setIcon(m_stopIcon);
     m_viewReloadAction->setIcon(m_reloadIcon);
     m_viewZoomInAction->setIcon(QIcon::fromTheme(QLatin1String("zoom-in")));
@@ -698,14 +698,14 @@ void BrowserMainWindow::setupMenu()
     m_historyBackAction = new QAction(this);
     m_tabWidget->addWebAction(m_historyBackAction, QWebPage::Back);
     m_historyBackAction->setShortcuts(QKeySequence::Back);
-#if QT_VERSION < 0x040600
+#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_OS_LINUX))
     m_historyBackAction->setIconVisibleInMenu(false);
 #endif
 
     m_historyForwardAction = new QAction(this);
     m_tabWidget->addWebAction(m_historyForwardAction, QWebPage::Forward);
     m_historyForwardAction->setShortcuts(QKeySequence::Forward);
-#if QT_VERSION < 0x040600
+#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_OS_LINUX))
     m_historyForwardAction->setIconVisibleInMenu(false);
 #endif
 
@@ -724,7 +724,7 @@ void BrowserMainWindow::setupMenu()
     historyActions.append(m_tabWidget->recentlyClosedTabsAction());
     historyActions.append(m_historyRestoreLastSessionAction);
     m_historyMenu->setInitialActions(historyActions);
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= 0x040600 && defined(Q_OS_LINUX)
     m_historyRestoreLastSessionAction->setIcon(QIcon::fromTheme(QLatin1String("document-revert")));
     m_historyHomeAction->setIcon(QIcon::fromTheme(QLatin1String("go-home")));
 #endif
@@ -744,7 +744,7 @@ void BrowserMainWindow::setupMenu()
 
     m_bookmarksAddAction = new QAction(this);
     m_bookmarksAddAction->setIcon(QIcon(QLatin1String(":addbookmark.png")));
-#if QT_VERSION < 0x040600
+#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_OS_LINUX))
     m_bookmarksAddAction->setIconVisibleInMenu(false);
 #endif
     connect(m_bookmarksAddAction, SIGNAL(triggered()),
@@ -833,7 +833,7 @@ void BrowserMainWindow::setupMenu()
             this, SLOT(aboutApplication()));
     m_helpMenu->addAction(m_helpAboutApplicationAction);
 
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= 0x040600 && defined(Q_OS_LINUX)
     m_helpChangeLanguageAction->setIcon(QIcon::fromTheme(QLatin1String("preferences-desktop-locale")));
     m_helpAboutQtAction->setIcon(QPixmap(QLatin1String(":/trolltech/qmessagebox/images/qtlogo-64.png")));
     m_helpAboutApplicationAction->setIcon(windowIcon());
