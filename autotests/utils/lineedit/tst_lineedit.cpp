@@ -17,9 +17,10 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtTest/QtTest>
-#include <QtGui/QtGui>
+#include <qtest.h>
+
 #include <lineedit.h>
+#include <qtoolbutton.h>
 
 class tst_LineEdit : public QObject
 {

@@ -17,9 +17,10 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtGui/QtGui>
-#include <QtTest/QtTest>
+#include <qtest.h>
+
 #include <edittreeview.h>
+#include <qstandarditemmodel.h>
 
 class tst_EditTreeView : public QObject
 {
