@@ -7,7 +7,7 @@
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * but WITHOUT ANY WARRANTY; without even the iQ_WS_X11mplied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
@@ -142,7 +142,7 @@ TabWidget::TabWidget(QWidget *parent)
     connect(m_bookmarkTabsAction, SIGNAL(triggered()), this, SLOT(bookmarkTabs()));
 
     m_newTabAction->setIcon(QIcon(QLatin1String(":graphics/addtab.png")));
-#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_OS_LINUX))
+#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_WS_X11))
     m_newTabAction->setIconVisibleInMenu(false);
 #endif
 
@@ -154,7 +154,7 @@ TabWidget::TabWidget(QWidget *parent)
 
     m_previousTabAction = new QAction(this);
     connect(m_previousTabAction, SIGNAL(triggered()), this, SLOT(previousTab()));
-#if QT_VERSION >= 0x040600 && defined(Q_OS_LINUX)
+#if QT_VERSION >= 0x040600 && defined(Q_WS_X11)
     m_previousTabAction->setIcon(QIcon::fromTheme(QLatin1String("go-previous")));
     m_nextTabAction->setIcon(QIcon::fromTheme(QLatin1String("go-next")));
 #endif
@@ -179,11 +179,11 @@ TabWidget::TabWidget(QWidget *parent)
 
     bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
     m_closeTabAction->setIcon(QIcon(QLatin1String(":graphics/closetab.png")));
-#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_OS_LINUX))
+#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_WS_X11))
     m_closeTabAction->setIconVisibleInMenu(false);
 #endif
     if (oneCloseButton) {
-#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_OS_LINUX))
+#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_WS_X11))
         m_closeTabAction->setIconVisibleInMenu(false);
 #endif
         // corner buttons
