@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,12 +64,9 @@
 #define BROWSERMAINWINDOW_H
 
 #include <qmainwindow.h>
-#include <qicon.h>
-#include <qurl.h>
 
 class AutoSaver;
 class BookmarksToolBar;
-class ChaseWidget;
 class QWebFrame;
 class TabWidget;
 class ToolbarSearch;
@@ -78,7 +75,6 @@ class QSplitter;
 class QFrame;
 class HistoryMenu;
 class BookmarksMenuBarMenu;
-
 
 /*!
     The MainWindow of the Browser Application.

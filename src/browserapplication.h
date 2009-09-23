@@ -65,7 +65,6 @@
 
 #include "singleapplication.h"
 
-#include <qicon.h>
 #include <qpointer.h>
 #include <qurl.h>
 #include <qdatetime.h>

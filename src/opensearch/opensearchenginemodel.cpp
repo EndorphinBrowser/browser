@@ -26,6 +26,7 @@
 #include "opensearchmanager.h"
 
 #include <qimage.h>
+#include <qicon.h>
 
 OpenSearchEngineModel::OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent)
     : QAbstractTableModel(parent)
