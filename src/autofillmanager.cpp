@@ -172,7 +172,9 @@ void AutoFillManager::post(const QNetworkRequest &request, const QByteArray &out
     // Find the matching form on the webpage
     Form form = findForm(webPage, outgoingData);
     if (!form.isValid()) {
+#if 0
         qWarning() << "AutoFillManager:" << "Unable to find matching form on the webpage.";
+#endif
         return;
     }
     form.url = url;
@@ -191,14 +193,14 @@ void AutoFillManager::post(const QNetworkRequest &request, const QByteArray &out
         }
     }
     if (form.hasAPassword && alreadyAccepted == -1) {
-        QMessageBox *messageBox = new QMessageBox(BrowserApplication::instance()->mainWindow());
-        messageBox->setText(tr("<b>Would you like to save this password?</b><br> \
+        QMessageBox messageBox;
+        messageBox.setText(tr("<b>Would you like to save this password?</b><br> \
         To review passwords you have saved and remove them, open the AutoFill pane of preferences."));
-        messageBox->addButton(tr("Never for this site"), QMessageBox::DestructiveRole);
-        messageBox->addButton(tr("Not now"), QMessageBox::RejectRole);
-        messageBox->addButton(QMessageBox::Yes);
-        messageBox->setDefaultButton(QMessageBox::Yes);
-        switch (messageBox->exec()) {
+        messageBox.addButton(tr("Never for this site"), QMessageBox::DestructiveRole);
+        messageBox.addButton(tr("Not now"), QMessageBox::RejectRole);
+        messageBox.addButton(QMessageBox::Yes);
+        messageBox.setDefaultButton(QMessageBox::Yes);
+        switch (messageBox.exec()) {
         case QMessageBox::DestructiveRole:
             m_never.append(url);
             return;
@@ -207,7 +209,6 @@ void AutoFillManager::post(const QNetworkRequest &request, const QByteArray &out
         default:
             break;
         }
-        messageBox->deleteLater();
     }
 
 #ifdef AUTOFILL_DEBUG
