@@ -75,68 +75,69 @@ p, li { white-space: pre-wrap; }
     <name>AdBlockBlockedNetworkReply</name>
     <message>
         <source>Blocked by AdBlockRule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokowany przez regułę AdBlock: %1</translation>
     </message>
 </context>
 <context>
     <name>AdBlockDialog</name>
     <message>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj własną regułę</translation>
     </message>
     <message>
         <source>Learn more about writing rules...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dowiedz się więcej o tworzeniu reguł...</translation>
     </message>
     <message>
         <source>Update Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaktualizuj subskrypcję</translation>
     </message>
     <message>
         <source>Browse Subscriptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądaj subskrypcje...</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń subskrypcję</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja AdBlock</translation>
     </message>
     <message>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz AdBlock</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcja</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Własne reguły</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">Zasada</translation>
+        <translation>Reguła</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>Subskrybować?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodać tę subskrypcję AdBlocka?
+%1</translation>
     </message>
 </context>
 <context>
@@ -166,41 +167,41 @@ p, li { white-space: pre-wrap; }
     <name>AutoFillDialog</name>
     <message>
         <source>Form Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasła w formularzach</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Usuń</translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wszystkie</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Chciałbyś zapisać to hasło?&lt;/b&gt;&lt;br /&gt;         By przeglądać hasła, które zapisałeś i usunąć je, otwórz panel AutoFill w preferencjach.</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>Nigdy dla tej strony</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie teraz</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa użytkownika</translation>
     </message>
 </context>
 <context>
@@ -398,7 +399,7 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora wywalila się w trakcie odzyskiwania sesji. Spróbować jeszcze raz?</translation>
     </message>
 </context>
 <context>
@@ -772,7 +773,7 @@ Czy chcesz odświeżyć wszystkie strony?</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;AdBlock...</translation>
     </message>
 </context>
 <context>
@@ -1236,7 +1237,7 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source>No translation files are installed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Żadne pliki językowe nie są zainstalowane w %1.</translation>
     </message>
 </context>
 <context>
@@ -1730,51 +1731,51 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesja ciasteczka kończy się:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>Podczas zamykania aplikacji</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 dzień</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>2 dni</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>3 dni</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>7 dni</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30 dni</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>Autouzupełnianie formularzy</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzupełniaj formularze:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwy użytkownika i hasła</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądaj...</translation>
     </message>
 </context>
 <context>
@@ -1793,7 +1794,7 @@ Czy chcesz zignorować te błędy?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik CSS</translation>
     </message>
 </context>
 <context>
@@ -2051,7 +2052,7 @@ Czy na pewno chcesz zamknąć tę stronę?
     </message>
     <message>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokuj obrazek</translation>
     </message>
 </context>
 <context>
