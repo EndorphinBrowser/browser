@@ -41,6 +41,7 @@
 #include <qurl.h>
 #include <qwebframe.h>
 #include <qwebpage.h>
+#include <qwebsettings.h>
 
 #include <qdebug.h>
 
@@ -123,6 +124,12 @@ void AutoFillManager::post(const QNetworkRequest &request, const QByteArray &out
 #ifdef AUTOFILL_DEBUG
     qDebug() << "AutoFillManager::" << __FUNCTION__ << outgoingData << request.url();
 #endif
+
+    // Don't even give the options to save this site user name & password.
+    if (QWebSettings::globalSettings()->testAttribute(QWebSettings::PrivateBrowsingEnabled)) {
+        return;
+    }
+
     // Determine the url
     QByteArray refererHeader = request.rawHeader("Referer");
     if (refererHeader.isEmpty()) {
