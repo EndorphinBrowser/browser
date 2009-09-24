@@ -465,9 +465,10 @@ bool BrowserApplication::restoreLastSession()
         QSettings settings;
         settings.beginGroup(QLatin1String("MainWindow"));
         if (settings.value(QLatin1String("restoring"), false).toBool()) {
-            QMessageBox::information(0, tr("Restore failed"),
-                tr("The saved session will not be restored because Arora crashed while trying to restore this session."));
-            return false;
+            QMessageBox::StandardButton result = QMessageBox::question(0, tr("Restore failed"),
+                tr("Arora crashed while trying to restore this session.  Should I try again?"), QMessageBox::Yes | QMessageBox::No);
+            if (result == QMessageBox::No)
+                return false;
         }
         // saveSession will be called by an AutoSaver timer from the set tabs
         // and in saveSession we will reset this flag back to false
