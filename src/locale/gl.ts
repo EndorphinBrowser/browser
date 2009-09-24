@@ -1,5 +1,7 @@
-<!DOCTYPE TS><TS>
-<context encoding="UTF-8">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
+<context>
     <name>AboutDialog</name>
     <message>
         <source>Lightweight WebKit-based web browser</source>
@@ -25,7 +27,7 @@
         <source>About %1</source>
         <translation>Acerca de %1</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -70,6 +72,74 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
 </context>
 <context>
+    <name>AdBlockBlockedNetworkReply</name>
+    <message>
+        <source>Blocked by AdBlockRule: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AdBlockDialog</name>
+    <message>
+        <source>Add Custom Rule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Learn more about writing rules...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browse Subscriptions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AdBlock Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable AdBlock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AdBlockManager</name>
+    <message>
+        <source>Custom Rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AdBlockModel</name>
+    <message>
+        <source>Rule</source>
+        <translation type="unfinished">Regra</translation>
+    </message>
+</context>
+<context>
+    <name>AdBlockSchemeAccessHandler</name>
+    <message>
+        <source>Subscribe?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscribe to this AdBlock subscription?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
@@ -90,6 +160,47 @@ p, li { white-space: pre-wrap; }(new line)
     <message>
         <source>Add Folder</source>
         <translation>Engadir cartafol</translation>
+    </message>
+</context>
+<context>
+    <name>AutoFillDialog</name>
+    <message>
+        <source>Form Passwords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Eliminar</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AutoFillManager</name>
+    <message>
+        <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never for this site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not now</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AutoFillModel</name>
+    <message>
+        <source>WebSite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Name</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -284,7 +395,7 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation>Marcadores</translation>
+        <translation type="obsolete">Marcadores</translation>
     </message>
 </context>
 <context>
@@ -305,7 +416,11 @@ Desexa saír de todos os xeitos?</translation>
     </message>
     <message>
         <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
-        <translation>Non se puido recuperar a sesión gardada xaque  Arora fallou a última vez que se recuperou .</translation>
+        <translation type="obsolete">Non se puido recuperar a sesión gardada xaque  Arora fallou a última vez que se recuperou .</translation>
+    </message>
+    <message>
+        <source>Arora crashed while trying to restore this session.  Should I try again?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -392,7 +507,7 @@ Desexa saír de todos os xeitos?</translation>
     </message>
     <message>
         <source>Prefere&amp;nces...</source>
-        <translation>&amp;Preferencias...</translation>
+        <translation type="obsolete">&amp;Preferencias...</translation>
     </message>
     <message>
         <source>Ctrl+,</source>
@@ -651,7 +766,59 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Cando se activa a navegación privada, algunhas accións relativas a súa intimidade han de ser desactivadas:&lt;ul&gt;&lt;li&gt; As páxinas web non serán engadidas ao historial.&lt;/li&gt;&lt;li&gt; Hanse eliminar automaticamente os elementos no xestor de descargas.&lt;/li&gt;&lt;li&gt; Non se almacenarán as novas cookies e as actuais non estarán accesibles.&lt;/li&gt;&lt;li&gt; As iconas dos sitios non han ser gardadas e tampouco as sesións.&lt;/li&gt;&lt;li&gt; A nova caché de rede non se vai grabar no disco.&lt;/li&gt;&lt;/ul&gt;Poderá facer clic nos botóns Adiante e Atrás para volver as páxinas visitadas, pero só mentres non peche a ventá.</translation>
+        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Cando se activa a navegación privada, algunhas accións relativas a súa intimidade han de ser desactivadas:&lt;ul&gt;&lt;li&gt; As páxinas web non serán engadidas ao historial.&lt;/li&gt;&lt;li&gt; Hanse eliminar automaticamente os elementos no xestor de descargas.&lt;/li&gt;&lt;li&gt; Non se almacenarán as novas cookies e as actuais non estarán accesibles.&lt;/li&gt;&lt;li&gt; As iconas dos sitios non han ser gardadas e tampouco as sesións.&lt;/li&gt;&lt;li&gt; A nova caché de rede non se vai grabar no disco.&lt;/li&gt;&lt;/ul&gt;Poderá facer clic nos botóns Adiante e Atrás para volver as páxinas visitadas, pero só mentres non peche a ventá.</translation>
+    </message>
+    <message>
+        <source>Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configure Search Engines...</source>
+        <translation type="unfinished">Configurar motores de busca...</translation>
+    </message>
+    <message>
+        <source>&amp;Ad Block...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Webpages are not added to the history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items are automatically removed from the Downloads window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Site icons won&apos;t be stored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session won&apos;t be saved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Searches are not added to the pop-up menu in the search box.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No new network cache is written to disk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private Browsing</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -708,7 +875,7 @@ Desexa recargar tódalas páxinas?</translation>
     <name>ClickToFlash</name>
     <message>
         <source>Load</source>
-        <translation>Cargar<byte value="x9"/></translation>
+        <translation>Cargar	</translation>
     </message>
     <message>
         <source>Load All</source>
@@ -938,13 +1105,15 @@ Desexa recargar tódalas páxinas?</translation>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
+    <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation>%n Descarga(s)
+        <translation type="unfinished">
+            <numerusform>%n Descarga(s)
         
         
         
         
+        </numerusform>
         </translation>
     </message>
     <message>
@@ -953,19 +1122,23 @@ Do you want to quit anyway?</source>
         <translation>Hai %1 descargas en proceso
 Saír de tódolos xeitos?</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n minutes remaining</source>
-        <translation>Faltan %n minutos
+        <translation type="unfinished">
+            <numerusform>Faltan %n minutos
         
         
+        </numerusform>
         </translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n seconds remaining</source>
-        <translation>Faltan %n segundos
+        <translation type="unfinished">
+            <numerusform>Faltan %n segundos
         
         
         
+        </numerusform>
         </translation>
     </message>
     <message>
@@ -1071,12 +1244,14 @@ Saír de tódolos xeitos?</translation>
         <source>Earlier Today</source>
         <translation>Antes de hoxe</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>%n item(s)</source>
-        <translation>%n elemento(s)
+        <translation type="unfinished">
+            <numerusform>%n elemento(s)
         
         
         
+        </numerusform>
         </translation>
     </message>
 </context>
@@ -1115,7 +1290,11 @@ Saír de tódolos xeitos?</translation>
     </message>
     <message>
         <source>No translation files are installed.</source>
-        <translation>Os ficheiros de tradución non están instalados.</translation>
+        <translation type="obsolete">Os ficheiros de tradución non están instalados.</translation>
+    </message>
+    <message>
+        <source>No translation files are installed at %1.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1683,6 +1862,54 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
         <source>Choose Directory...</source>
         <translation>Escoller directorio...</translation>
     </message>
+    <message>
+        <source>A cookie session ends:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When I exit the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>7 days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>30 days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AutoFill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AutoFill web forms:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User names and passwords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browse...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
@@ -1697,6 +1924,10 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     <message>
         <source>Choose Directory</source>
         <translation>Escoller directorio</translation>
+    </message>
+    <message>
+        <source>Choose CSS File</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1715,11 +1946,11 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Ver</translation>
+        <translation type="obsolete">&amp;Ver</translation>
     </message>
     <message>
         <source>&amp;Wrap lines</source>
-        <translation>A&amp;xustar as liñas</translation>
+        <translation type="obsolete">A&amp;xustar as liñas</translation>
     </message>
     <message>
         <source>Source of Page </source>
@@ -1856,7 +2087,7 @@ Está seguro de que quere pechar esta páxina?
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation>Configurar motores de busca...</translation>
+        <translation type="obsolete">Configurar motores de busca...</translation>
     </message>
 </context>
 <context>
@@ -1967,6 +2198,10 @@ Está seguro de que quere pechar esta páxina?
     <message>
         <source>Type in a name for the engine</source>
         <translation>Escriba un nome para o motor</translation>
+    </message>
+    <message>
+        <source>Block Image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
