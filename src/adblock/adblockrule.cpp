@@ -149,9 +149,9 @@ bool AdBlockRule::networkMatch(const QString &encodedUrl) const
             }
         }
 
-//#if defined(ADBLOCKRULE_DEBUG)
+#if defined(ADBLOCKRULE_DEBUG)
         qDebug() << "AdBlockRule::" << __FUNCTION__ << "options are currently not supported" << m_options;
-//#endif
+#endif
         return false;
     }
 #if defined(ADBLOCKRULE_DEBUG)
