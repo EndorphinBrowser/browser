@@ -33,27 +33,6 @@
 
 #include <qdebug.h>
 
-AutoFillPasswordProxyModel::AutoFillPasswordProxyModel(bool showPasswords, QObject *parent)
-    : QSortFilterProxyModel(parent)
-    , m_showPasswords(showPasswords)
-{
-}
-
-int AutoFillPasswordProxyModel::columnCount(const QModelIndex &parent) const
-{
-    if (m_showPasswords)
-        return qMin(2, QSortFilterProxyModel::columnCount(parent));
-    else
-        return qMin(1, QSortFilterProxyModel::columnCount(parent));
-}
-
-bool AutoFillPasswordProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
-{
-    QModelIndex idx = sourceModel()->index(sourceRow, 0, sourceParent);
-    bool hasPassword = idx.data(Qt::UserRole).toBool();
-    return (m_showPasswords == hasPassword);
-}
-
 AutoFillModel::AutoFillModel(QObject *parent)
     : QAbstractTableModel(parent)
 {
@@ -143,7 +122,7 @@ bool AutoFillModel::removeRows(int row, int count, const QModelIndex &parent)
     return true;
 }
 
-AutoFillDialog::AutoFillDialog(bool onlyShowPasswords, QWidget *parent, Qt::WindowFlags flags)
+AutoFillDialog::AutoFillDialog(QWidget *parent, Qt::WindowFlags flags)
     : QDialog(parent, flags)
 {
     setupUi(this);
@@ -161,9 +140,7 @@ AutoFillDialog::AutoFillDialog(bool onlyShowPasswords, QWidget *parent, Qt::Wind
     QSortFilterProxyModel *m_proxyModel = new QSortFilterProxyModel(this);
     connect(search, SIGNAL(textChanged(QString)),
             m_proxyModel, SLOT(setFilterFixedString(QString)));
-    AutoFillPasswordProxyModel *passwordProxy = new AutoFillPasswordProxyModel(onlyShowPasswords, this);
-    passwordProxy->setSourceModel(model);
-    m_proxyModel->setSourceModel(passwordProxy);
+    m_proxyModel->setSourceModel(model);
     tableView->setModel(m_proxyModel);
 
     QFont f = font();

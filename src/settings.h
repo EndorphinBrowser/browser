@@ -90,7 +90,6 @@ private slots:
 
     void chooseStyleSheet();
     void editAutoFillUser();
-    void editAutoFillOther();
 
 private:
     QFont m_standardFont;

@@ -36,21 +36,6 @@
 
 #include <qsortfilterproxymodel.h>
 
-class AutoFillPasswordProxyModel : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-public:
-    AutoFillPasswordProxyModel(bool showPasswords, QObject *parent = 0);
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-
-protected:
-    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-
-private:
-    bool m_showPasswords;
-};
-
 class AutoFillModel : public QAbstractTableModel
 {
     Q_OBJECT
@@ -76,9 +61,7 @@ class AutoFillDialog : public QDialog, public Ui_AutoFillDialog
     Q_OBJECT
 
 public:
-    AutoFillDialog(bool onlyShowPasswords = false, QWidget *parent = 0, Qt::WindowFlags flags = 0);
-
-private:
+    AutoFillDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 };
 

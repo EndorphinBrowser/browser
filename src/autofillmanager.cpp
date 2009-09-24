@@ -49,7 +49,6 @@
 AutoFillManager::AutoFillManager(QObject *parent)
     : QObject(parent)
     , m_savePasswordForms(false)
-    , m_saveOtherForms(false)
     , m_allowAutoCompleteOff(true)
     , m_saveTimer(new AutoSaver(this))
 {
@@ -85,7 +84,6 @@ void AutoFillManager::loadSettings()
     QSettings settings;
     settings.beginGroup(QLatin1String("autofill"));
     m_savePasswordForms = settings.value(QLatin1String("passwordForms"), m_savePasswordForms).toBool();
-    m_saveOtherForms = settings.value(QLatin1String("otherForms"), m_saveOtherForms).toBool();
     m_allowAutoCompleteOff = settings.value(QLatin1String("ignoreAutoCompleteOff"), m_allowAutoCompleteOff).toBool();
 }
 
@@ -294,8 +292,6 @@ QUrl AutoFillManager::stripUrl(const QUrl &url)
 bool AutoFillManager::allowedToAutoFill(bool password) const
 {
     if (password && !m_savePasswordForms)
-        return false;
-    if (!password && !m_saveOtherForms)
         return false;
     return true;
 }

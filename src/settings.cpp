@@ -100,7 +100,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(styleSheetBrowseButton, SIGNAL(clicked()), this, SLOT(chooseStyleSheet()));
 
     connect(editAutoFillUserButton, SIGNAL(clicked()), this, SLOT(editAutoFillUser()));
-    connect(editAutoFillOtherButton, SIGNAL(clicked()), this, SLOT(editAutoFillOther()));
 
     // As network cache has too many bugs in 4.5.1, do not allow to enable it.
     if (QLatin1String(qVersion()) == QLatin1String("4.5.1"))
@@ -133,7 +132,6 @@ void SettingsDialog::loadDefaults()
     filterTrackingCookiesCheckbox->setChecked(false);
 
     autoFillPasswordFormsCheckBox->setChecked(false);
-    autoFillOtherFormsCheckBox->setChecked(false);
 }
 
 void SettingsDialog::loadFromSettings()
@@ -262,7 +260,6 @@ void SettingsDialog::loadFromSettings()
 
     settings.beginGroup(QLatin1String("autofill"));
     autoFillPasswordFormsCheckBox->setChecked(settings.value(QLatin1String("passwordForms"), false).toBool());
-    autoFillOtherFormsCheckBox->setChecked(settings.value(QLatin1String("otherForms"), false).toBool());
     settings.endGroup();
 }
 
@@ -385,7 +382,6 @@ void SettingsDialog::saveToSettings()
 
     settings.beginGroup(QLatin1String("autofill"));
     settings.setValue(QLatin1String("passwordForms"), autoFillPasswordFormsCheckBox->isChecked());
-    settings.setValue(QLatin1String("otherForms"), autoFillOtherFormsCheckBox->isChecked());
     settings.endGroup();
 
     BrowserApplication::instance()->loadSettings();
@@ -474,12 +470,6 @@ void SettingsDialog::chooseStyleSheet()
 }
 
 void SettingsDialog::editAutoFillUser()
-{
-    AutoFillDialog dialog(true);
-    dialog.exec();
-}
-
-void SettingsDialog::editAutoFillOther()
 {
     AutoFillDialog dialog;
     dialog.exec();

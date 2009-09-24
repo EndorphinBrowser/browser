@@ -81,7 +81,6 @@ private:
     void loadFormData();
 
     bool m_savePasswordForms;
-    bool m_saveOtherForms;
     bool m_allowAutoCompleteOff;
 
     QList<Form> m_forms;
