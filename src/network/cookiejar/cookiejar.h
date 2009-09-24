@@ -154,6 +154,7 @@ private:
     QStringList m_exceptions_allow;
     QStringList m_exceptions_allowForSession;
     bool m_isPrivate;
+    int m_sessionLength;
 };
 
 #endif // COOKIEJAR_H

@@ -129,6 +129,7 @@ void SettingsDialog::loadDefaults()
     enablePlugins->setChecked(defaultSettings->testAttribute(QWebSettings::PluginsEnabled));
     enableImages->setChecked(defaultSettings->testAttribute(QWebSettings::AutoLoadImages));
     clickToFlash->setChecked(false);
+    cookieSessionCombo->setCurrentIndex(0);
     filterTrackingCookiesCheckbox->setChecked(false);
 
     autoFillPasswordFormsCheckBox->setChecked(false);
@@ -227,6 +228,16 @@ void SettingsDialog::loadFromSettings()
     case CookieJar::KeepUntilTimeLimit:
         keepUntilCombo->setCurrentIndex(2);
         break;
+    }
+    int sessionLength = settings.value(QLatin1String("sessionLength"), -1).toInt();
+    switch (sessionLength) {
+    case 1: cookieSessionCombo->setCurrentIndex(1); break;
+    case 2: cookieSessionCombo->setCurrentIndex(2); break;
+    case 3: cookieSessionCombo->setCurrentIndex(3); break;
+    case 7: cookieSessionCombo->setCurrentIndex(4); break;
+    case 30: cookieSessionCombo->setCurrentIndex(5); break;
+    default:
+    case 0: cookieSessionCombo->setCurrentIndex(0); break;
     }
     filterTrackingCookiesCheckbox->setChecked(settings.value(QLatin1String("filterTrackingCookies"), false).toBool());
     settings.endGroup();
@@ -351,6 +362,17 @@ void SettingsDialog::saveToSettings()
 
     QMetaEnum keepPolicyEnum = CookieJar::staticMetaObject.enumerator(CookieJar::staticMetaObject.indexOfEnumerator("KeepPolicy"));
     settings.setValue(QLatin1String("keepCookiesUntil"), QLatin1String(keepPolicyEnum.valueToKey(keepPolicy)));
+    int sessionLength = cookieSessionCombo->currentIndex();
+    switch (sessionLength) {
+    case 1: sessionLength = 1; break;
+    case 2: sessionLength = 2; break;
+    case 3: sessionLength = 3; break;
+    case 4: sessionLength = 7; break;
+    case 5: sessionLength = 30; break;
+    default:
+    case 0: sessionLength = -1; break;
+    }
+    settings.setValue(QLatin1String("sessionLength"), sessionLength);
     settings.setValue(QLatin1String("filterTrackingCookies"), filterTrackingCookiesCheckbox->isChecked());
     settings.endGroup();
 
