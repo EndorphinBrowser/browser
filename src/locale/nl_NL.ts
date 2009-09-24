@@ -4,10 +4,6 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation type="obsolete">Over</translation>
-    </message>
-    <message>
         <source>Authors</source>
         <translation>Auteurs</translation>
     </message>
@@ -26,14 +22,6 @@
     <message>
         <source>Close</source>
         <translation>Sluiten</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2008 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>About %1</source>
@@ -87,68 +75,69 @@ p, li { white-space: pre-wrap; }
     <name>AdBlockBlockedNetworkReply</name>
     <message>
         <source>Blocked by AdBlockRule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Geblokkeerd door regel: %1</translation>
     </message>
 </context>
 <context>
     <name>AdBlockDialog</name>
     <message>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigen regel toevoegen</translation>
     </message>
     <message>
         <source>Learn more about writing rules...</source>
-        <translation type="unfinished"></translation>
+        <translation>Meer leren over regels schrijven...</translation>
     </message>
     <message>
         <source>Update Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonnement bijwerken</translation>
     </message>
     <message>
         <source>Browse Subscriptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonnementen bekijken...</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonnement verwijderen</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Advertentieblokkering instellen</translation>
     </message>
     <message>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"></translation>
+        <translation>Advertentieblokkering inschakelen</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Actie</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigen regels</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">Regel</translation>
+        <translation>Regel</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonneren?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Aan dit abonnement voor advertentieblokkering abonneren?
+%1</translation>
     </message>
 </context>
 <context>
@@ -178,41 +167,41 @@ p, li { white-space: pre-wrap; }
     <name>AutoFillDialog</name>
     <message>
         <source>Form Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulierwachtwoorden</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Verwijderen</translation>
+        <translation>Verwijderen</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle verwijderen</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Wilt u dit wachtwoord opslaan?&lt;/b&gt;&lt;br&gt;         Om opgeslagen wachtwoorden na te kijken of te verwijderen, open het deel Automatisch Invullen in de voorkeuren.</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>Nooit voor deze site</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet nu</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>Website</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruikersnaam</translation>
     </message>
 </context>
 <context>
@@ -275,10 +264,6 @@ p, li { white-space: pre-wrap; }
         <translation>Bestand openen</translation>
     </message>
     <message>
-        <source>XBEL (*.xbel *.xml)</source>
-        <translation type="obsolete">XBEL (*.xbel *.xml)</translation>
-    </message>
-    <message>
         <source>Imported %1</source>
         <translation>%1 geïmporteerd</translation>
     </message>
@@ -307,34 +292,12 @@ p, li { white-space: pre-wrap; }
         <translation>Bladwijzer invoegen</translation>
     </message>
     <message>
-        <source>Name Change</source>
-        <translation type="obsolete">Naam wijzigen</translation>
-    </message>
-    <message>
-        <source>Address Change</source>
-        <translation type="obsolete">Adres wijzigen</translation>
-    </message>
-    <message>
         <source>Bookmarks Bar</source>
         <translation>Bladwijzersbalk</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
         <translation>Bladwijzersmenu</translation>
-    </message>
-    <message>
-        <source>XBEL (*.xbel *.xml *.html)</source>
-        <translation type="obsolete">XBEL (*.xbel *.xml *.html)</translation>
-    </message>
-    <message>
-        <source>Error when loading html bookmarks: %1
-</source>
-        <translation type="obsolete">Fout bij het laden van html-bladwijzers: %1
-</translation>
-    </message>
-    <message>
-        <source>XBEL</source>
-        <translation type="obsolete">XBEL</translation>
     </message>
     <message>
         <source>Name Change</source>
@@ -394,10 +357,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <source>Bookmark</source>
-        <translation type="obsolete">Bladwijzer</translation>
-    </message>
-    <message>
         <source>Open</source>
         <translation>Openen</translation>
     </message>
@@ -417,10 +376,6 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Map toevoegen...</translation>
     </message>
-    <message>
-        <source>Bookmarks</source>
-        <translation type="obsolete">Bladwijzers</translation>
-    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
@@ -435,16 +390,8 @@ Wilt u toch afsluiten?</translation>
         <translation>Herstellen mislukt</translation>
     </message>
     <message>
-        <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
-        <translation type="obsolete">De opgeslagen sessie zal niet worden hersteld omdat Arora crashte toen het probeerde de sessie te herstellen.</translation>
-    </message>
-    <message>
-        <source> (Change: %1 %2)</source>
-        <translation type="obsolete">(Verandering: %1 %2)</translation>
-    </message>
-    <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora crashte bij het herstellen van deze sessie. Opnieuw proberen?</translation>
     </message>
 </context>
 <context>
@@ -487,7 +434,7 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <source>Private &amp;Browsing...</source>
-        <translation>Privésur&amp;fen...</translation>
+        <translation>Anoniem sur&amp;fen...</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -534,10 +481,6 @@ Wilt u toch afsluiten?</translation>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <source>Shift+Ctrl+B</source>
-        <translation type="obsolete">Shift+Ctrl+B</translation>
-    </message>
-    <message>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
@@ -580,10 +523,6 @@ Wilt u toch afsluiten?</translation>
     <message>
         <source>&amp;Bookmarks</source>
         <translation>Bladwi&amp;jzers</translation>
-    </message>
-    <message>
-        <source>Manage Bookmarks...</source>
-        <translation type="obsolete">Bladwijzers beheren...</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -666,7 +605,7 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <source>Are you sure you want to turn on private browsing?</source>
-        <translation>Bent u zeker dat u privésurfen wilt inschakelen?</translation>
+        <translation>Bent u zeker dat u anoniem surfen wilt inschakelen?</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
@@ -715,16 +654,8 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <translation>Volgend&amp;e zoeken</translation>
     </message>
     <message>
-        <source>Prefere&amp;nces...</source>
-        <translation type="obsolete">Voorkeure&amp;n...</translation>
-    </message>
-    <message>
         <source>Show Menu Bar</source>
         <translation>Menubalk tonen</translation>
-    </message>
-    <message>
-        <source>Show &amp;Network Monitor</source>
-        <translation type="obsolete">&amp;Netwerkmonitor tonen</translation>
     </message>
     <message>
         <source>Switch application language </source>
@@ -761,10 +692,6 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Als privésurfen aan staat zullen sommige acties omtrent uw privacy worden uitgeschakeld:&lt;ul&gt;&lt;li&gt; Webpagina&apos;s worden niet toegevoegd aan de geschiedenis.&lt;/li&gt;&lt;li&gt; Items worden automatisch verwijderd uit het Downloads-scherm.&lt;/li&gt;&lt;li&gt; Nieuwe cookies worden niet opgeslagen, huidige cookies kunnen niet worden bereikt.&lt;/li&gt;&lt;li&gt; Sitepictogrammen en sessie&apos;s worden niet opgeslagen.&lt;/li&gt;&lt;li&gt; Zoekopdrachten worden niet toegevoegd aan het pop-upmenu in de zoekbalk.&lt;/li&gt;&lt;/ul&gt;Totdat u het venster sluit, kunt u nog altijd de Terug- en Vooruitknoppen gebruiken om terug te keren naar webpagina&apos;s die u heeft geopend.</translation>
-    </message>
-    <message>
         <source>Show All Bookmarks...</source>
         <translation>Alle bladwijzers tonen...</translation>
     </message>
@@ -789,60 +716,56 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Als privésurfen aan staat zullen sommige acties omtrent uw privacy worden uitgeschakeld:&lt;ul&gt;&lt;li&gt; Webpagina&apos;s worden niet toegevoegd aan de geschiedenis.&lt;/li&gt;&lt;li&gt; Items worden automatisch verwijderd uit het Downloads-scherm.&lt;/li&gt;&lt;li&gt; Nieuwe cookies worden niet opgeslagen, huidige cookies kunnen niet worden bereikt.&lt;/li&gt;&lt;li&gt; Sitepictogrammen en sessie&apos;s worden niet opgeslagen.&lt;/li&gt;&lt;li&gt; Zoekopdrachten worden niet toegevoegd aan het pop-upmenu in de zoekbalk.&lt;/li&gt;&lt;/ul&gt;Totdat u het venster sluit, kunt u nog altijd de Terug- en Vooruitknoppen gebruiken om terug te keren naar webpagina&apos;s die u heeft geopend.</translation>
-    </message>
-    <message>
         <source>Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>Opties...</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished">Zoekmachines instellen...</translation>
+        <translation>Zoekmachines instellen...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Advertentieblokkering...</translation>
     </message>
     <message>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wanneer anoniem surfen aan staat zullen sommige acties omtrent uw privacy worden uitgeschakeld:</translation>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>Webpagina&apos;s worden niet aan de geschiedenis toegevoegd.</translation>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Items worden automatisch verwijderd uit het Downloads-scherm.</translation>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuwe cookies worden niet opgeslagen, huidige cookies kunnen niet worden bereikt.</translation>
     </message>
     <message>
         <source>Site icons won&apos;t be stored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sitepictogrammen worden niet opgeslagen.</translation>
     </message>
     <message>
         <source>Session won&apos;t be saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>De sessie wordt niet opgeslagen.</translation>
     </message>
     <message>
         <source>Searches are not added to the pop-up menu in the search box.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoekopdrachten worden niet toegevoegd aan het pop-upmenu in de zoekbalk.</translation>
     </message>
     <message>
         <source>No new network cache is written to disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Er wordt geen nieuwe cache naar de schijf geschreven.</translation>
     </message>
     <message>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Totdat u het venster sluit, kunt u nog altijd de Terug- en Vooruitknoppen gebruiken om terug te keren naar webpagina&apos;s die u geopend heeft.</translation>
     </message>
     <message>
         <source>Private Browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>Anoniem surfen</translation>
     </message>
 </context>
 <context>
@@ -1063,17 +986,9 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <source>0 Items</source>
         <translation>0 items</translation>
     </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation type="obsolete">&amp;OK</translation>
-    </message>
 </context>
 <context>
     <name>DownloadItem</name>
-    <message>
-        <source>Form</source>
-        <translation type="obsolete">Form</translation>
-    </message>
     <message>
         <source>Ico</source>
         <translation>Ico</translation>
@@ -1111,46 +1026,12 @@ Wilt u alle pagina&apos;s herladen?</translation>
         <translation>Netwerkfout: %1</translation>
     </message>
     <message>
-        <source>seconds</source>
-        <translation type="obsolete">seconden</translation>
-    </message>
-    <message>
-        <source>%1 of %2 (%3/sec) %4</source>
-        <translation type="obsolete">%1 van %2 (%3/sec) %4</translation>
-    </message>
-    <message>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
         <source>%1 of %2 - Stopped</source>
         <translation>%1 van %2 - Gestopt</translation>
-    </message>
-    <message>
-        <source>bytes</source>
-        <translation type="obsolete">bytes</translation>
-    </message>
-    <message>
-        <source>kB</source>
-        <translation type="obsolete">kB</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation type="obsolete">MB</translation>
-    </message>
-    <message numerus="yes">
-        <source>- %n minutes remaining</source>
-        <translation type="obsolete">
-            <numerusform>- 1 minuut resterend</numerusform>
-            <numerusform>- %n minuten resterend</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>- %n seconds remaining</source>
-        <translation type="obsolete">
-            <numerusform>- 1 seconde resterend</numerusform>
-            <numerusform>- %n seconden resterend</numerusform>
-        </translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
@@ -1317,7 +1198,7 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <source>Search!</source>
-        <translation>Zoeken</translation>
+        <translation>Zoeken!</translation>
     </message>
     <message>
         <source>Search results provided by</source>
@@ -1339,12 +1220,8 @@ Wilt u toch afsluiten?</translation>
         <translation>&lt;p&gt;U kan een andere taal gebruiken dan&lt;br&gt;de standaardtaal van het besturingssysteem.&lt;/p&gt;&lt;p&gt;Kies de te gebruiken taal.&lt;/p&gt;</translation>
     </message>
     <message>
-        <source>No translation files are installed.</source>
-        <translation type="obsolete">Er zijn geen vertaalbestanden geïnstalleerd.</translation>
-    </message>
-    <message>
         <source>No translation files are installed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Er zijn geen vertaalbestanden geïnstalleerd op %1.</translation>
     </message>
 </context>
 <context>
@@ -1370,10 +1247,6 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
 Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
-        <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="obsolete">&lt;qt&gt;Certificaten:&lt;br/&gt;%1&lt;br/&gt;Wilt u al deze certificaten accepteren?&lt;/qt&gt;</translation>
-    </message>
-    <message>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Certificaten:&lt;br/&gt;%1&lt;br/&gt;Wilt u al deze certificaten accepteren?&lt;/qt&gt;</translation>
     </message>
@@ -1392,44 +1265,6 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     <message>
         <source>Alternate Names:</source>
         <translation>Alternatieve namen:</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkMonitor</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Naam</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Waarde</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkMonitorDialog</name>
-    <message>
-        <source>Network Monitor</source>
-        <translation type="obsolete">Netwerkmonitor</translation>
-    </message>
-    <message>
-        <source>Network Requests</source>
-        <translation type="obsolete">Netwerkaanvragen</translation>
-    </message>
-    <message>
-        <source>Request Headers</source>
-        <translation type="obsolete">Kopteksten opvragen</translation>
-    </message>
-    <message>
-        <source>Response Headers</source>
-        <translation type="obsolete">Reagerende kopteksten</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation type="obsolete">Ver&amp;wijderen</translation>
-    </message>
-    <message>
-        <source>Remove &amp;All Requests</source>
-        <translation type="obsolete">&amp;Alle aanvragen verwijderen</translation>
     </message>
 </context>
 <context>
@@ -1542,10 +1377,6 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
         <translation>Proxy-authentificatie</translation>
     </message>
     <message>
-        <source>ICON</source>
-        <translation type="obsolete">ICON</translation>
-    </message>
-    <message>
         <source>Connect to proxy</source>
         <translation>Met proxy verbinden</translation>
     </message>
@@ -1574,54 +1405,7 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
-    <name>RequestModel</name>
-    <message>
-        <source>Redirect: %1</source>
-        <translation type="obsolete">Doorverwijzing: %1</translation>
-    </message>
-    <message>
-        <source>Method</source>
-        <translation type="obsolete">Methode</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="obsolete">Adres</translation>
-    </message>
-    <message>
-        <source>Response</source>
-        <translation type="obsolete">Reactie</translation>
-    </message>
-    <message>
-        <source>Length</source>
-        <translation type="obsolete">Lengte</translation>
-    </message>
-    <message>
-        <source>Content Type</source>
-        <translation type="obsolete">Inhoudtype</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="obsolete">Info</translation>
-    </message>
-</context>
-<context>
     <name>SearchBanner</name>
-    <message>
-        <source>Form</source>
-        <translation type="obsolete">Form</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation type="obsolete">TextLabel</translation>
-    </message>
-    <message>
-        <source>&lt;</source>
-        <translation type="obsolete">&lt;</translation>
-    </message>
-    <message>
-        <source>&gt;</source>
-        <translation type="obsolete">&gt;</translation>
-    </message>
     <message>
         <source>Done</source>
         <translation>Klaar</translation>
@@ -1709,20 +1493,12 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
         <translation>Standaard lettertype:</translation>
     </message>
     <message>
-        <source>Times 16</source>
-        <translation type="obsolete">Times 16</translation>
-    </message>
-    <message>
         <source>Select...</source>
         <translation>Selecteren...</translation>
     </message>
     <message>
         <source>Fixed-width font:</source>
         <translation>Lettertype met vaste breedte:</translation>
-    </message>
-    <message>
-        <source>Courier 13</source>
-        <translation type="obsolete">Courier 13</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -1787,10 +1563,6 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     <message>
         <source>Select tabs and windows as they are created</source>
         <translation>Tabs en vensters selecteren als ze gemaakt worden</translation>
-    </message>
-    <message>
-        <source>Confirm when closing multiple tabs</source>
-        <translation type="obsolete">Bevestiging vragen bij het sluiten van meerdere tabs</translation>
     </message>
     <message>
         <source>Proxy</source>
@@ -1942,51 +1714,51 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>Een cookiesessie eindigt:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>Wanneer ik het programma afsluit</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>Na 1 dag</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>Na 2 dagen</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>Na 3 dagen</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>Na 7 dagen</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>Na 30 dagen</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisch invullen</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>Webformulieren automatisch invullen:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruikersnamen en wachtwoorden</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewerken...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bladeren...</translation>
     </message>
 </context>
 <context>
@@ -2005,7 +1777,7 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>Een CSS-bestand kiezen</translation>
     </message>
 </context>
 <context>
@@ -2023,18 +1795,6 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
         <translation>&amp;Zoeken</translation>
     </message>
     <message>
-        <source>&amp;View</source>
-        <translation type="obsolete">Bee&amp;ld</translation>
-    </message>
-    <message>
-        <source>&amp;Wrap lines</source>
-        <translation type="obsolete">&amp;Regels laten doorlopen</translation>
-    </message>
-    <message>
-        <source>Source of Page </source>
-        <translation type="obsolete">Paginabron</translation>
-    </message>
-    <message>
         <source>Source of Page %1</source>
         <translation>Paginabron van %1</translation>
     </message>
@@ -2048,10 +1808,6 @@ Wilt u deze fouten negeren?&lt;/qt&gt;</translation>
     <message>
         <source>Hide Tab Bar</source>
         <translation>Tabbalk verbergen</translation>
-    </message>
-    <message>
-        <source>New &amp;Tab</source>
-        <translation type="obsolete">Nieuwe &amp;tab</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -2166,10 +1922,6 @@ Bent u zeker dat u deze pagina wilt sluiten?
     <message>
         <source>Add &apos;%1&apos;</source>
         <translation>&apos;%1&apos; toevoegen</translation>
-    </message>
-    <message>
-        <source>Configure Search Engines...</source>
-        <translation type="obsolete">Zoekmachines instellen...</translation>
     </message>
 </context>
 <context>
