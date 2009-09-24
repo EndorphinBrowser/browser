@@ -892,7 +892,7 @@
         </spacer>
        </item>
        <item row="1" column="3">
-        <spacer name="horizontalSpacer_5">
+        <spacer name="horizontalSpacer_6">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
