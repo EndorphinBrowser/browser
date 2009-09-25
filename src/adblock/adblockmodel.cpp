@@ -222,6 +222,7 @@ bool AdBlockModel::setData(const QModelIndex &index, const QVariant &value, int 
         return false;
 
     disconnect(m_manager, SIGNAL(rulesChanged()), this, SLOT(rulesChanged()));
+    bool changed = false;
     switch (role) {
     case Qt::EditRole:
     case Qt::DisplayRole:
@@ -232,12 +233,14 @@ bool AdBlockModel::setData(const QModelIndex &index, const QVariant &value, int 
                 r.setFilter(value.toString());
                 sub->replaceRule(r, index.row());
                 dataChanged(index, index);
+                changed = true;
             }
         } else {
             AdBlockSubscription *sub = subscription(index);
             if (sub) {
                 sub->setTitle(value.toString());
                 dataChanged(index, index);
+                changed = true;
             }
         }
         break;
@@ -249,12 +252,14 @@ bool AdBlockModel::setData(const QModelIndex &index, const QVariant &value, int 
                 r.setEnabled(value == Qt::Checked);
                 sub->replaceRule(r, index.row());
                 dataChanged(index, index);
+                changed = true;
             }
         } else {
             AdBlockSubscription *sub = subscription(index);
             if (sub) {
                 sub->setEnabled(value == Qt::Checked);
                 dataChanged(index, index);
+                changed = true;
             }
         }
         break;
@@ -262,7 +267,7 @@ bool AdBlockModel::setData(const QModelIndex &index, const QVariant &value, int 
         break;
     }
     connect(m_manager, SIGNAL(rulesChanged()), this, SLOT(rulesChanged()));
-    return false;
+    return changed;
 }
 
 bool AdBlockModel::hasChildren(const QModelIndex &parent) const
