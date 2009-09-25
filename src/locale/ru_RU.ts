@@ -121,26 +121,27 @@ p, li { white-space: pre-wrap; }
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Собственные правила</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">Правило</translation>
+        <translation>Правило</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>Подписаться?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Согласиться на подписку AdBlock?
+%1</translation>
     </message>
 </context>
 <context>
@@ -174,37 +175,37 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Удалить</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить всё</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;Сохранить пароль?&lt;/b&gt;&lt;br&gt;         Чтобы увидеть сохранённые пароли и удалить их, откройте панель Автозаполнение в опциях.</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>Никогда для этого сайта</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>Не сейчас</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>Веб-сайт</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя пользователя</translation>
     </message>
 </context>
 <context>
@@ -439,7 +440,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Произошла ошибка при восстановлении сеанса. Попытаться снова?</translation>
     </message>
 </context>
 <context>
@@ -876,7 +877,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ad Block...</translation>
     </message>
 </context>
 <context>
@@ -2042,51 +2043,51 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>Сеанс cookie заканчивается:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>При выходе из приложения</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 день</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>2 дня</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>3 дня</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>7 дней</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30 дней</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>Автозаполнение</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>Автозаполнение веб-форм:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Имена пользователей и пароли</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Обзор...</translation>
     </message>
 </context>
 <context>
@@ -2105,7 +2106,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать CSS файл</translation>
     </message>
 </context>
 <context>
@@ -2391,7 +2392,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Блоировать изображение</translation>
     </message>
 </context>
 <context>
