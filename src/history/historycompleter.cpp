@@ -37,6 +37,9 @@ HistoryCompletionView::HistoryCompletionView(QWidget *parent)
 
     QFontMetrics metrics = fontMetrics();
     verticalHeader()->setDefaultSectionSize(metrics.height());
+    
+    // As URLs are always LRT, this should be LRT as well
+    setLayoutDirection(Qt::LeftToRight);
 }
 
 void HistoryCompletionView::resizeEvent(QResizeEvent *event)
