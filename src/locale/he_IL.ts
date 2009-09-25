@@ -91,68 +91,69 @@ p, li { white-space: pre-wrap; }
     <name>AdBlockBlockedNetworkReply</name>
     <message>
         <source>Blocked by AdBlockRule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>נחסם על ידי חוק: %1</translation>
     </message>
 </context>
 <context>
     <name>AdBlockDialog</name>
     <message>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>הוסף חוק מותאם אישית</translation>
     </message>
     <message>
         <source>Learn more about writing rules...</source>
-        <translation type="unfinished"></translation>
+        <translation>מידע נודף אודות כתיבת חוקים...</translation>
     </message>
     <message>
         <source>Update Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>עדכן רישום</translation>
     </message>
     <message>
         <source>Browse Subscriptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>עדיין ברישומים...</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>הסר רישום</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>תצורת AdBlock</translation>
     </message>
     <message>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"></translation>
+        <translation>אפשר AdBlock</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>פעולה</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>חוקים מותאמים אישית</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">חוק</translation>
+        <translation>חוק</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>רישום?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>האים להירשם לחוק AdBlock?
+%1</translation>
     </message>
 </context>
 <context>
@@ -182,41 +183,41 @@ p, li { white-space: pre-wrap; }
     <name>AutoFillDialog</name>
     <message>
         <source>Form Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>ססמאות של טפסים</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">הסר</translation>
+        <translation>הסר</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>הסר הכל</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;האם ברצונך לשמור את הססמה הזאת?&lt;b&gt;&lt;br&gt; לעיון בססמאות השמורות, ובכדי למחוק אותן, אנא פתח את חלון ההגדרות בלשונית המילוי האוטומטי.</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>לעולם לא עבור אתר זה</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>לא כעת</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>אתר</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>שם משתמש</translation>
     </message>
 </context>
 <context>
@@ -433,7 +434,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>היישום קרס בעת ניסיון השחזור של ההפעלה. האם לנסות שוב?</translation>
     </message>
 </context>
 <context>
@@ -845,15 +846,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>אפשרויות...</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished">הגדרת מנועי חיפוש...</translation>
+        <translation>הגדרת מנועי חיפוש...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;חסימת פרסומות - AdBlock</translation>
     </message>
 </context>
 <context>
@@ -999,7 +1000,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Session cookie</source>
-        <translation>עוגייה ההפעלה</translation>
+        <translation>עוגיית ההפעלה</translation>
     </message>
 </context>
 <context>
@@ -1320,7 +1321,10 @@ Do you want to quit anyway?</source>
     <name>JavaScriptAroraObject</name>
     <message>
         <source>Welcome to Arora!</source>
-        <translation>ברוך בואך אל Arora!</translation>
+        <translatorcomment>Please put RLE in the beginning of the translation and RLM+PDF at the end. The PushDirectionFlag is needed because of the Right(to)LftEmbeding at the beginning, and the Right(to)Leftmark is needed, to put the ! and the right of the arora name.
+
+Don&apos;t ask why next time, ok? :)</translatorcomment>
+        <translation>‫ברוך בואך אל Arora!‏‬</translation>
     </message>
     <message>
         <source>Arora Start</source>
@@ -1915,51 +1919,51 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>עוגייה ההפעלה מסתיימת:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>כאשר אני יוצא מהיישום</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>יום אחד</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>שני ימים</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>שלושה ימים</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>שבעה ימים</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30 יום</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>מילוי אוטומטי</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>מילוי אוטומטי של טפסים:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>שמות משתמשים וססמאות</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>עריכה...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>עיון...</translation>
     </message>
 </context>
 <context>
@@ -1978,7 +1982,8 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Please put at the start of the translation RLE and at the end PDF, k? 10x bye</translatorcomment>
+        <translation>‫בחר קובץ CSS‬</translation>
     </message>
 </context>
 <context>
@@ -2247,7 +2252,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>חסום תמונה</translation>
     </message>
 </context>
 <context>
