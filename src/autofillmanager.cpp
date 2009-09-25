@@ -299,9 +299,9 @@ QUrl AutoFillManager::stripUrl(const QUrl &url)
 
 bool AutoFillManager::allowedToAutoFill(bool password) const
 {
-    if (password && !m_savePasswordForms)
-        return false;
-    return true;
+    if (password && m_savePasswordForms)
+        return true;
+    return false;
 }
 
 QList<AutoFillManager::Form> AutoFillManager::fetchForms(const QUrl &url) const
