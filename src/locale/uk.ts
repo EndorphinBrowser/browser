@@ -87,75 +87,76 @@ p, li { white-space: pre-wrap; }
     <name>AdBlockBlockedNetworkReply</name>
     <message>
         <source>Blocked by AdBlockRule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AdBlockRule заборонив: %1</translation>
     </message>
 </context>
 <context>
     <name>AdBlockDialog</name>
     <message>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати спеціальне правило</translation>
     </message>
     <message>
         <source>Learn more about writing rules...</source>
-        <translation type="unfinished"></translation>
+        <translation>Дізнатись детальніше щодо написання правил...</translation>
     </message>
     <message>
         <source>Update Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Оновити підписку</translation>
     </message>
     <message>
         <source>Browse Subscriptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Переглянути підписки...</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Вилучити підписку</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштування AdBlock</translation>
     </message>
     <message>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути AdBlock</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Дія</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Спеціальні правила</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">Правило</translation>
+        <translation>Правило</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>Підписатись?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Підписатись до цієї підписки AdBlock?
+%1</translation>
     </message>
 </context>
 <context>
     <name>AddBookmarkDialog</name>
     <message>
         <source>Add Bookmark</source>
-        <translation>Додати закладку</translation>
+        <translation>Закласти</translation>
     </message>
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
@@ -178,41 +179,41 @@ p, li { white-space: pre-wrap; }
     <name>AutoFillDialog</name>
     <message>
         <source>Form Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Форма паролів</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Вилучити</translation>
+        <translation>Вилучити</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Вилучити всі</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Бажаєте зберегти цей пароль?&lt;/b&gt;&lt;br&gt;         Щоб переглядати і вилучати збережені паролі, відкрийте налаштування автоматичного заповнення.</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>Ніколи для цього сайта</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>Не зараз</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>Сайт</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ім&apos;я користувача</translation>
     </message>
 </context>
 <context>
@@ -409,7 +410,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add Bookmark...</source>
-        <translation>Додати закладку...</translation>
+        <translation>Закласти...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
@@ -442,7 +443,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora зазнала краху протягом відновлення цього сеансу.  Спробувати ще раз?</translation>
     </message>
 </context>
 <context>
@@ -493,7 +494,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Редагувати</translation>
+        <translation>&amp;Правка</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
@@ -537,7 +538,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Переглянути</translation>
+        <translation>&amp;Огляд</translation>
     </message>
     <message>
         <source>Show Menu Bar</source>
@@ -617,7 +618,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Add Bookmark...</source>
-        <translation>Додати закладку...</translation>
+        <translation>Закласти...</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -825,55 +826,55 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>Варіанти...</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished">Налаштувати рушії пошуку...</translation>
+        <translation>Налаштувати рушії пошуку...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ad Block...</translation>
     </message>
     <message>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
-        <translation type="unfinished"></translation>
+        <translation>Коли приватне переглядання ввімкнуто, деякі дії, стосовно ваших приватних вподобань, будуть вимкнуті:</translation>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сторінки не записуються в журналі.</translation>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пункти звантажень автоматично вилучаються з вікна звантажень.</translation>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нові куки не зберегіяються, і їх неможливо дозволити.</translation>
     </message>
     <message>
         <source>Site icons won&apos;t be stored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Піктограми сайтів не будуть зберігатись.</translation>
     </message>
     <message>
         <source>Session won&apos;t be saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сеанс не буде зберігатись.</translation>
     </message>
     <message>
         <source>Searches are not added to the pop-up menu in the search box.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пошуки не долучаються до виринного меню в коробці пошуку.</translation>
     </message>
     <message>
         <source>No new network cache is written to disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Новий мережевий кеш не зберігається на диск.</translation>
     </message>
     <message>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви можете натискати кнопки Назад та Вперед, щоб повертатись до сторінок, котрі ви повідкривали, поки не ви не закриєте саме вікно.</translation>
     </message>
     <message>
         <source>Private Browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>Приватне переглядання</translation>
     </message>
 </context>
 <context>
@@ -1456,7 +1457,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>No translation files are installed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Немає файлів перекладів у %1.</translation>
     </message>
 </context>
 <context>
@@ -1846,7 +1847,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>In a new window</source>
-        <translation>В новому вікні</translation>
+        <translation>У новому вікні</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -1854,7 +1855,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Ask for a destination each time</source>
-        <translation>Запитувати куди зберігати кожного разу</translation>
+        <translation>Запитувати кожного разу, куди зберігати</translation>
     </message>
     <message>
         <source>Use this destination:</source>
@@ -1922,7 +1923,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Only from sites you navigate to</source>
-        <translation>Тільки з сайтів, які ви переглядаєте</translation>
+        <translation>Тільки для сайтів, які ви переглядаєте</translation>
     </message>
     <message>
         <source>Exceptions...</source>
@@ -2018,7 +2019,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Opening links</source>
-        <translation>Відкриваються посилання</translation>
+        <translation>Відкриття посилань</translation>
     </message>
     <message>
         <source>Links that want to open in a new window:</source>
@@ -2082,51 +2083,51 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>Сеанс куків закінчився:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>Коли я виходжу з програми</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 день</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>2 дні</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>3 дні</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>7 днів</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30 днів</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматичне заповнення</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматичне заповнення форм у тенеті:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Псевда і паролі користувача</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Правка...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Огляд...</translation>
     </message>
 </context>
 <context>
@@ -2145,7 +2146,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати файл CSS</translation>
     </message>
 </context>
 <context>
@@ -2156,7 +2157,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Редагувати</translation>
+        <translation>&amp;Правка</translation>
     </message>
     <message>
         <source>&amp;Find</source>
@@ -2282,7 +2283,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation>Додати всі вкладки до закладок</translation>
+        <translation>Закласти всі вкладки</translation>
     </message>
 </context>
 <context>
@@ -2423,7 +2424,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Заборонити зображення</translation>
     </message>
 </context>
 <context>
