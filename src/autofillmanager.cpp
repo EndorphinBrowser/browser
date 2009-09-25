@@ -195,7 +195,7 @@ void AutoFillManager::post(const QNetworkRequest &request, const QByteArray &out
     if (form.hasAPassword && alreadyAccepted == -1) {
         QMessageBox messageBox;
         messageBox.setText(tr("<b>Would you like to save this password?</b><br> \
-        To review passwords you have saved and remove them, open the AutoFill pane of preferences."));
+        To review passwords you have saved and remove them, open the AutoFill panel of preferences."));
         messageBox.addButton(tr("Never for this site"), QMessageBox::DestructiveRole);
         messageBox.addButton(tr("Not now"), QMessageBox::RejectRole);
         messageBox.addButton(QMessageBox::Yes);
