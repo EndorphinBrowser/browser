@@ -166,9 +166,9 @@ void LocationBar::keyPressEvent(QKeyEvent *event)
         return;
     }
 
-    QString url = text();
+    QString currentText = text().trimmed();
     if ((event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
-        && !url.startsWith(QLatin1String("http://"), Qt::CaseInsensitive)) {
+        && !currentText.startsWith(QLatin1String("http://"), Qt::CaseInsensitive)) {
         QString append;
         if (event->modifiers() == Qt::ControlModifier)
             append = QLatin1String(".com");
@@ -176,9 +176,13 @@ void LocationBar::keyPressEvent(QKeyEvent *event)
             append = QLatin1String(".org");
         else if (event->modifiers() == Qt::ShiftModifier)
             append = QLatin1String(".net");
-        if (!url.endsWith(append, Qt::CaseInsensitive))
-            url += append;
-        setText(url);
+        QUrl url(QLatin1String("http://") + currentText);
+        QString host = url.host();
+        if (!host.endsWith(append, Qt::CaseInsensitive)) {
+            host += append;
+            url.setHost(host);
+            setText(url.toString());
+        }
     }
 
     LineEdit::keyPressEvent(event);
