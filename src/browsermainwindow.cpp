@@ -303,8 +303,8 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
     // version 3
     stream << isMaximized();
     stream << isFullScreen();
-    stream << !menuBar()->isHidden();
-    stream << m_menuBarVisible;
+    stream << menuBar()->isVisible();
+    stream << m_menuBarVisible; // DEAD
     stream << m_statusBarVisible;
 
     return data;
@@ -351,13 +351,12 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
         stream >> maximized;
         stream >> fullScreen;
         stream >> showMenuBar;
-        stream >> m_menuBarVisible;
+        stream >> showMenuBar; // m_menuBarVisible DEAD
         stream >> m_statusBarVisible;
     } else {
         maximized = false;
         fullScreen = false;
         showMenuBar = true;
-        m_menuBarVisible = true;
         m_statusBarVisible = showStatusbar;
     }
 
@@ -379,6 +378,7 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     }
 
     menuBar()->setVisible(showMenuBar);
+    m_menuBarVisible = showMenuBar;
 
     statusBar()->setVisible(showStatusbar);
 
