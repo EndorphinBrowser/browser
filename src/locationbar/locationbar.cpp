@@ -163,9 +163,25 @@ void LocationBar::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_Escape && m_webView) {
         setText(QString::fromUtf8(m_webView->url().toEncoded()));
         selectAll();
-    } else {
-        QLineEdit::keyPressEvent(event);
+        return;
     }
+
+    QString url = text();
+    if ((event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
+        && !url.startsWith(QLatin1String("http://"), Qt::CaseInsensitive)) {
+        QString append;
+        if (event->modifiers() == Qt::ControlModifier)
+            append = QLatin1String(".com");
+        else if (event->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier))
+            append = QLatin1String(".org");
+        else if (event->modifiers() == Qt::ShiftModifier)
+            append = QLatin1String(".net");
+        if (!url.endsWith(append, Qt::CaseInsensitive))
+            url += append;
+        setText(url);
+    }
+
+    LineEdit::keyPressEvent(event);
 }
 
 void LocationBar::dragEnterEvent(QDragEnterEvent *event)
