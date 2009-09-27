@@ -558,7 +558,11 @@ void TabWidget::bookmarkTabs()
 void TabWidget::lineEditReturnPressed()
 {
     if (QLineEdit *lineEdit = qobject_cast<QLineEdit*>(sender())) {
-        loadString(lineEdit->text());
+        OpenUrlIn tab = CurrentTab;
+        if (qApp->keyboardModifiers() == Qt::AltModifier)
+            tab = NewSelectedTab;
+
+        loadString(lineEdit->text(), tab);
         if (m_locationBars->currentWidget() == lineEdit)
             currentWebView()->setFocus();
     }
