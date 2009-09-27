@@ -134,6 +134,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
     m_bookmarksToolbar = new BookmarksToolBar(boomarksModel, this);
+    m_bookmarksToolbar->setObjectName(QLatin1String("BookmarksToolbar"));
     connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&, const QString&)),
             m_tabWidget, SLOT(loadUrlFromUser(const QUrl&, const QString&)));
     connect(m_bookmarksToolbar, SIGNAL(openUrl(const QUrl&, TabWidget::OpenUrlIn, const QString&)),
@@ -287,8 +288,8 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
 
     // save the normal size so exiting fullscreen/maximize will work reasonably
     stream << normalGeometry().size();
-    stream << !m_navigationBar->isHidden();
-    stream << !m_bookmarksToolbar->isHidden();
+    stream << !m_navigationBar->isHidden(); // DEAD
+    stream << !m_bookmarksToolbar->isHidden(); // DEAD
     stream << !statusBar()->isHidden();
     if (withTabs)
         stream << tabWidget()->saveState();
@@ -306,6 +307,8 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
     stream << menuBar()->isVisible();
     stream << m_menuBarVisible; // DEAD
     stream << m_statusBarVisible;
+
+    stream << QMainWindow::saveState();
 
     return data;
 }
@@ -325,8 +328,8 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
         return false;
 
     QSize size;
-    bool showToolbar;
-    bool showBookmarksBar;
+    bool showToolbarDEAD;
+    bool showBookmarksBarDEAD;
     bool showStatusbar;
     QByteArray tabState;
     QByteArray splitterState;
@@ -336,10 +339,11 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     bool maximized;
     bool fullScreen;
     bool showMenuBar;
+    QByteArray qMainWindowState;
 
     stream >> size;
-    stream >> showToolbar;
-    stream >> showBookmarksBar;
+    stream >> showToolbarDEAD;
+    stream >> showBookmarksBarDEAD;
     stream >> showStatusbar;
     stream >> tabState;
     stream >> splitterState;
@@ -353,6 +357,7 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
         stream >> showMenuBar;
         stream >> showMenuBar; // m_menuBarVisible DEAD
         stream >> m_statusBarVisible;
+        stream >> qMainWindowState;
     } else {
         maximized = false;
         fullScreen = false;
@@ -363,9 +368,6 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     if (size.isValid())
         resize(size);
 
-    m_navigationBar->setVisible(showToolbar);
-
-    m_bookmarksToolbar->setVisible(showBookmarksBar);
 #if defined(Q_WS_MAC)
     m_bookmarksToolbarFrame->setVisible(showBookmarksBar);
 #endif
@@ -384,17 +386,22 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
 
     m_navigationSplitter->restoreState(splitterState);
 
-    if (!tabState.isEmpty() && !tabWidget()->restoreState(tabState))
-        return false;
+    tabWidget()->restoreState(tabState);
 
     m_tabWidget->tabBar()->setShowTabBarWhenOneTab(showTabBarWhenOneTab);
 
-    Qt::ToolBarArea navigationArea = Qt::ToolBarArea(navigationBarLocation);
-    if (navigationArea != Qt::TopToolBarArea && navigationArea != Qt::NoToolBarArea)
-        addToolBar(navigationArea, m_navigationBar);
-    Qt::ToolBarArea bookmarkArea = Qt::ToolBarArea(bookmarkBarLocation);
-    if (bookmarkArea != Qt::TopToolBarArea && bookmarkArea != Qt::NoToolBarArea)
-        addToolBar(bookmarkArea, m_bookmarksToolbar);
+    if (qMainWindowState.isEmpty()) {
+        m_navigationBar->setVisible(showToolbarDEAD);
+        m_bookmarksToolbar->setVisible(showBookmarksBarDEAD);
+        Qt::ToolBarArea navigationArea = Qt::ToolBarArea(navigationBarLocation);
+        if (navigationArea != Qt::TopToolBarArea && navigationArea != Qt::NoToolBarArea)
+            addToolBar(navigationArea, m_navigationBar);
+        Qt::ToolBarArea bookmarkArea = Qt::ToolBarArea(bookmarkBarLocation);
+        if (bookmarkArea != Qt::TopToolBarArea && bookmarkArea != Qt::NoToolBarArea)
+            addToolBar(bookmarkArea, m_bookmarksToolbar);
+    } else {
+        QMainWindow::restoreState(qMainWindowState);
+    }
 
     return true;
 }
@@ -978,6 +985,7 @@ void BrowserMainWindow::setupToolBar()
 {
     setUnifiedTitleAndToolBarOnMac(true);
     m_navigationBar = new QToolBar(this);
+    m_navigationBar->setObjectName(QLatin1String("NavigationToolBar"));
     addToolBar(m_navigationBar);
 
     m_historyBackAction->setIcon(style()->standardIcon(QStyle::SP_ArrowBack, 0, this));
