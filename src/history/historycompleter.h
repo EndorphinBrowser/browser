@@ -92,6 +92,9 @@ public:
     virtual QString pathFromIndex(const QModelIndex &index) const;
     virtual QStringList splitPath(const QString &path) const;
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *event);
+
 private slots:
     void updateFilter();
 

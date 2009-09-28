@@ -226,6 +226,35 @@ QStringList HistoryCompleter::splitPath(const QString &path) const
     return QStringList() << QLatin1String("a");
 }
 
+bool HistoryCompleter::eventFilter(QObject *obj, QEvent *event)
+{
+    if(event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->key() == Qt::Key_Tab) {
+            QKeyEvent *newEvent = new QKeyEvent(QEvent::KeyPress,
+                                                Qt::Key_Down,
+                                                keyEvent->modifiers(),
+                                                QString());
+
+            if (!QCompleter::eventFilter(obj, newEvent))
+                obj->event(newEvent);
+            return true;
+        } else if (keyEvent->key() == Qt::Key_Backtab) {
+            QKeyEvent *newEvent = new QKeyEvent(QEvent::KeyPress,
+                                                Qt::Key_Up,
+                                                keyEvent->modifiers(),
+                                                keyEvent->text(),
+                                                keyEvent->isAutoRepeat(),
+                                                keyEvent->count());
+
+            if (!QCompleter::eventFilter(obj, newEvent))
+                obj->event(newEvent);
+            return true;
+        }
+    }
+    return QCompleter::eventFilter(obj, event);
+}
+
 void HistoryCompleter::updateFilter()
 {
     HistoryCompletionModel *completionModel = qobject_cast<HistoryCompletionModel*>(model());
