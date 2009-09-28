@@ -91,68 +91,69 @@ p, li { white-space: pre-wrap; }
     <name>AdBlockBlockedNetworkReply</name>
     <message>
         <source>Blocked by AdBlockRule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AdBlock ルール:%1 によってブロックされました</translation>
     </message>
 </context>
 <context>
     <name>AdBlockDialog</name>
     <message>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>カスタム ルールの追加</translation>
     </message>
     <message>
         <source>Learn more about writing rules...</source>
-        <translation type="unfinished"></translation>
+        <translation>ルールの書き方について...</translation>
     </message>
     <message>
         <source>Update Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>サブスクリプションの更新</translation>
     </message>
     <message>
         <source>Browse Subscriptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>サブスクリプションを参照...</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>サブスクリプションを削除</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>AdBlock 設定</translation>
     </message>
     <message>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"></translation>
+        <translation>AdBlock を有効にする</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>アクション</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>カスタム ルール</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">ルール</translation>
+        <translation>ルール</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>登録しますか?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>この AdBlock サブスクリプションを登録しますか?
+%1</translation>
     </message>
 </context>
 <context>
@@ -182,41 +183,41 @@ p, li { white-space: pre-wrap; }
     <name>AutoFillDialog</name>
     <message>
         <source>Form Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>フォーム パスワード</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">削除</translation>
+        <translation>削除</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>全て削除</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;パスワードを保存しますか?&lt;/b&gt;&lt;br&gt;         保存したり削除したパスワードを見直すには、オプションの自動入力タブを開いてください。</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>このサイトでは記憶しない</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>今は記憶しない</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>Webサイト</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>ユーザ名</translation>
     </message>
 </context>
 <context>
@@ -448,7 +449,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora は、セッションの復元を試みている時にクラッシュしました。再度復元を試みますか?</translation>
     </message>
 </context>
 <context>
@@ -491,7 +492,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Private &amp;Browsing...</source>
-        <translation>プライベート モード(&amp;B)...</translation>
+        <translation>プライベート ブラウジング(&amp;B)...</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -722,7 +723,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Are you sure you want to turn on private browsing?</source>
-        <translation>プライベート モードに移行しますか?</translation>
+        <translation>プライベート ブラウジングを開始しますか?</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
@@ -831,55 +832,55 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>オプション...</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished">検索エンジンのカスタマイズ...</translation>
+        <translation>検索エンジンのカスタマイズ...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>広告ブロック(AdBlock)(&amp;A)...</translation>
     </message>
     <message>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
-        <translation type="unfinished"></translation>
+        <translation>プライベート ブラウジングを有効にすると、あなたのプライバシーを守る為、いくつかの動作が制限されます:</translation>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>参照したWebページが履歴に追加されなくなります。</translation>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロードが終了したものは、自動的にダウンロード ウィンドウから削除されます。</translation>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
-        <translation type="unfinished"></translation>
+        <translation>新しく受け取った Cookie は保存されなくなり、既に保存されている Cookie へアクセスする事もできません。</translation>
     </message>
     <message>
         <source>Site icons won&apos;t be stored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Web サイトのアイコン(favicon)は、保存されません。</translation>
     </message>
     <message>
         <source>Session won&apos;t be saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>セッションは保存されません。</translation>
     </message>
     <message>
         <source>Searches are not added to the pop-up menu in the search box.</source>
-        <translation type="unfinished"></translation>
+        <translation>検索語は、検索ボックスのポップアップ メニューに追加されません。</translation>
     </message>
     <message>
         <source>No new network cache is written to disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>新たにネットワーク キャッシュをディスクに保存しません。</translation>
     </message>
     <message>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>ウィンドウを閉じるまでの間に閲覧したWebページに、戻る/進むボタンで戻る事ができます。</translation>
     </message>
     <message>
         <source>Private Browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>プライベート ブラウジング</translation>
     </message>
 </context>
 <context>
@@ -1379,7 +1380,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>No translation files are installed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 に翻訳ファイルがありません。</translation>
     </message>
 </context>
 <context>
@@ -2005,51 +2006,51 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookie セッションの有効期間:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリケーションが終了するまで</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 日間</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>2 日間</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>3 日間</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>7 日間</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30 日間</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>自動入力</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>フォームの自動入力:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>ユーザ名とパスワード</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>編集...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>参照...</translation>
     </message>
 </context>
 <context>
@@ -2068,7 +2069,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>CSS ファイルを選択</translation>
     </message>
 </context>
 <context>
@@ -2349,7 +2350,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>画像の読み込みをブロック</translation>
     </message>
 </context>
 <context>
