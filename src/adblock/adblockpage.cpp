@@ -102,9 +102,12 @@ void AdBlockPage::applyRulesToPage(QWebPage *page)
 {
     if (!page || !page->mainFrame())
         return;
+    AdBlockManager *manager = AdBlockManager::instance();
+    if (!manager->isEnabled())
+        return;
 #if QT_VERSION >= 0x040600
     QString host = page->mainFrame()->url().host();
-    QList<AdBlockSubscription*> subscriptions = AdBlockManager::instance()->subscriptions();
+    QList<AdBlockSubscription*> subscriptions = manager->subscriptions();
     foreach (AdBlockSubscription *subscription, subscriptions) {
         QList<const AdBlockRule*> rules = subscription->pageRules();
         foreach (const AdBlockRule *rule, rules) {
