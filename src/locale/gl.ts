@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
-<context>
+<!DOCTYPE TS><TS>
+<context encoding="UTF-8">
     <name>AboutDialog</name>
     <message>
         <source>Lightweight WebKit-based web browser</source>
@@ -27,7 +25,7 @@
         <source>About %1</source>
         <translation>Acerca de %1</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -75,68 +73,69 @@ p, li { white-space: pre-wrap; }(new line)
     <name>AdBlockBlockedNetworkReply</name>
     <message>
         <source>Blocked by AdBlockRule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloqueado pola regra AdBlock: %1</translation>
     </message>
 </context>
 <context>
     <name>AdBlockDialog</name>
     <message>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Engadir regra personalizada</translation>
     </message>
     <message>
         <source>Learn more about writing rules...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aprender máis de como escribir regras...</translation>
     </message>
     <message>
         <source>Update Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizar a subscripción</translation>
     </message>
     <message>
         <source>Browse Subscriptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Examinar as subscripcións...</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar a subscripción</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración de AdBlock</translation>
     </message>
     <message>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar AdBlock</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Acción</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Regras personalizadas</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">Regra</translation>
+        <translation>Regra</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>Subscribir?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceptar esta subscripción AdBlock?
+%1</translation>
     </message>
 </context>
 <context>
@@ -166,41 +165,41 @@ p, li { white-space: pre-wrap; }(new line)
     <name>AutoFillDialog</name>
     <message>
         <source>Form Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulario de contrasinais</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Eliminar</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar todo</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Desexa gardar este contrasinal?&lt;/b&gt;&lt;br&gt;         Para revisar e eliminar os contrasinais gardados, abra o panel Autocompletar de Preferencias.</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>Nunca para este sitio</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>Agora non</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>Páxina web</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome de usuario</translation>
     </message>
 </context>
 <context>
@@ -420,7 +419,7 @@ Desexa saír de todos os xeitos?</translation>
     </message>
     <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora pechouse inesperadamente mentres tentaba recuperar esta sesión.  Tentalo de novo?</translation>
     </message>
 </context>
 <context>
@@ -770,55 +769,55 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcións...</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished">Configurar motores de busca...</translation>
+        <translation>Configurar os motores de busca...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bloquear publicidade...</translation>
     </message>
     <message>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuando se activa a navegación privada, desactivaránse algunhas accións relacionadas coa súa intimidade:</translation>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>As páxinas web no serán engadidas ao historial.</translation>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminaránse automaticamente os elementos da ventá de descargas.</translation>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Non se gardarán as novas cookies, no se poderá acceder as cookies actuais.</translation>
     </message>
     <message>
         <source>Site icons won&apos;t be stored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Non se gardarán as iconas da páxina.</translation>
     </message>
     <message>
         <source>Session won&apos;t be saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Non se gardará a sesión.</translation>
     </message>
     <message>
         <source>Searches are not added to the pop-up menu in the search box.</source>
-        <translation type="unfinished"></translation>
+        <translation>As buscas non serán engadidas ao menú emerxente no cadro de buscas.</translation>
     </message>
     <message>
         <source>No new network cache is written to disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se escribirá no disco a nova caché da rede.</translation>
     </message>
     <message>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Até que se peche a ventá, vostede poderá facer clic nos botóns Atrás e Adiante para volver ás páxinas web que teña aberto.</translation>
     </message>
     <message>
         <source>Private Browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegación privada</translation>
     </message>
 </context>
 <context>
@@ -875,7 +874,7 @@ Desexa recargar tódalas páxinas?</translation>
     <name>ClickToFlash</name>
     <message>
         <source>Load</source>
-        <translation>Cargar	</translation>
+        <translation>Cargar<byte value="x9"/></translation>
     </message>
     <message>
         <source>Load All</source>
@@ -1105,15 +1104,14 @@ Desexa recargar tódalas páxinas?</translation>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message numerus="yes">
+    <message>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform>%n Descarga(s)
+        <translation>%n Descarga(s)
         
         
         
         
-        </numerusform>
+        
         </translation>
     </message>
     <message>
@@ -1122,23 +1120,21 @@ Do you want to quit anyway?</source>
         <translation>Hai %1 descargas en proceso
 Saír de tódolos xeitos?</translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform>Faltan %n minutos
+        <translation>Faltan %n minutos
         
         
-        </numerusform>
+        
         </translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform>Faltan %n segundos
+        <translation>Faltan %n segundos
         
         
         
-        </numerusform>
+        
         </translation>
     </message>
     <message>
@@ -1244,14 +1240,13 @@ Saír de tódolos xeitos?</translation>
         <source>Earlier Today</source>
         <translation>Antes de hoxe</translation>
     </message>
-    <message numerus="yes">
+    <message>
         <source>%n item(s)</source>
-        <translation type="unfinished">
-            <numerusform>%n elemento(s)
+        <translation>%n elemento(s)
         
         
         
-        </numerusform>
+        
         </translation>
     </message>
 </context>
@@ -1294,7 +1289,7 @@ Saír de tódolos xeitos?</translation>
     </message>
     <message>
         <source>No translation files are installed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Non hai ficheiros de tradución instalados en %1.</translation>
     </message>
 </context>
 <context>
@@ -1864,51 +1859,51 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>Unha cookie de sesión caduca:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>Cando saia do aplicativo</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 día</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>2 días</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>3 días</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>7 días</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30 días</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>Autocompletado</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autocompletado de formularios web:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Nomes de usuario e contrasinais</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Examinar...</translation>
     </message>
 </context>
 <context>
@@ -1927,7 +1922,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>Escoller ficheiro CSS</translation>
     </message>
 </context>
 <context>
@@ -2201,7 +2196,7 @@ Está seguro de que quere pechar esta páxina?
     </message>
     <message>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloquear imaxe</translation>
     </message>
 </context>
 <context>
