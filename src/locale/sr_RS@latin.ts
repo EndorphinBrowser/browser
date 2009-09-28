@@ -75,68 +75,68 @@ p, li { white-space: pre-wrap; }
     <name>AdBlockBlockedNetworkReply</name>
     <message>
         <source>Blocked by AdBlockRule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokirano AdBlockovim pravilom: %1</translation>
     </message>
 </context>
 <context>
     <name>AdBlockDialog</name>
     <message>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj prilagođeno pravilo</translation>
     </message>
     <message>
         <source>Learn more about writing rules...</source>
-        <translation type="unfinished"></translation>
+        <translation>Naučite više o pisanju pravila...</translation>
     </message>
     <message>
         <source>Update Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Ažuriraj pretplatu</translation>
     </message>
     <message>
         <source>Browse Subscriptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pregledaj pretplate...</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukloni pretplatu</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Podešavanje AdBlocka</translation>
     </message>
     <message>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"></translation>
+        <translation>Omogući AdBlock</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Radnja</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Prilagođena pravila</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">Pravilo</translation>
+        <translation>Pravilo</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pertplati se?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pretplati se na ovu AdBlockovu pretplatu? %1</translation>
     </message>
 </context>
 <context>
@@ -166,41 +166,41 @@ p, li { white-space: pre-wrap; }
     <name>AutoFillDialog</name>
     <message>
         <source>Form Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Lozinke obrazaca</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Ukloni</translation>
+        <translation>Ukloni</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukloni sve</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Želite li da sačuvate ovu lozinku&lt;/b&gt;&lt;br&gt;         Da bi ste pregledali ili uklonili sačuvane lozinke koristite panel samopopunjavanja u podešavanjima.</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>Nikad za ovaj sajt</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne sad</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>Web sajt</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Korisničko ime</translation>
     </message>
 </context>
 <context>
@@ -271,16 +271,6 @@ p, li { white-space: pre-wrap; }
         <translation>Otvori fajl</translation>
     </message>
     <message>
-        <source>XBEL</source>
-        <translation type="obsolete">IksBEL</translation>
-    </message>
-    <message>
-        <source>Error when loading html bookmarks: %1
-</source>
-        <translation type="obsolete">Greška pri učitavanju html markera: %1
-</translation>
-    </message>
-    <message>
         <source>Imported %1</source>
         <translation>Uvezeno %1</translation>
     </message>
@@ -291,10 +281,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>%1 Bookmarks.xbel</source>
         <translation>%1 Markeri.xbel</translation>
-    </message>
-    <message>
-        <source>XBEL (*.xbel *.xml)</source>
-        <translation type="obsolete">IksBEL (*.xbel *.xml)</translation>
     </message>
     <message>
         <source>Export error</source>
@@ -370,10 +356,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BookmarksToolBar</name>
     <message>
-        <source>Bookmark</source>
-        <translation type="obsolete">Markeri</translation>
-    </message>
-    <message>
         <source>Open</source>
         <translation>Otvori</translation>
     </message>
@@ -393,17 +375,9 @@ p, li { white-space: pre-wrap; }
         <source>Add Folder...</source>
         <translation>Dodaj fasciklu...</translation>
     </message>
-    <message>
-        <source>Bookmarks</source>
-        <translation type="obsolete">Markeri</translation>
-    </message>
 </context>
 <context>
     <name>BrowserApplication</name>
-    <message>
-        <source> (Change: %1 %2)</source>
-        <translation type="obsolete">(Revizija: %1 %2)</translation>
-    </message>
     <message>
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
@@ -415,12 +389,8 @@ Svejedno napustiti?</translation>
         <translation>Povraćaj nije uspeo</translation>
     </message>
     <message>
-        <source>The saved session will not be restored because Arora crashed while trying to restore this session.</source>
-        <translation type="obsolete">Sačuvana sesija neće biti povraćena jer se Arora srušila pokušavajući da je povrati.</translation>
-    </message>
-    <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora se srušila u pokušaju da povrati prethodnu sesiju. Pokušati ponovo?</translation>
     </message>
 </context>
 <context>
@@ -510,10 +480,6 @@ Svejedno napustiti?</translation>
         <translation>Nađi &amp;prethodno</translation>
     </message>
     <message>
-        <source>Prefere&amp;nces...</source>
-        <translation type="obsolete">Podeša&amp;vanje...</translation>
-    </message>
-    <message>
         <source>Ctrl+,</source>
         <translation>Ctrl+,</translation>
     </message>
@@ -524,10 +490,6 @@ Svejedno napustiti?</translation>
     <message>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
-    </message>
-    <message>
-        <source>Shift+Ctrl+B</source>
-        <translation type="obsolete">Shift+Ctrl+B</translation>
     </message>
     <message>
         <source>Ctrl+/</source>
@@ -636,10 +598,6 @@ Svejedno napustiti?</translation>
         <translation>Ctrl+Shift+Delete</translation>
     </message>
     <message>
-        <source>Show &amp;Network Monitor</source>
-        <translation type="obsolete">Prikaži mon&amp;itor mreže</translation>
-    </message>
-    <message>
         <source>Enable Web &amp;Inspector</source>
         <translation>Omogući &amp;Web inspektor</translation>
     </message>
@@ -710,10 +668,6 @@ Svejedno napustiti?</translation>
         <translation>Da li ste sigurni da želite da uključite privatno pregledanje?</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kada je privatno pregledanje uključeno neke radnje koje se tiču vaše privatnosti će biti onemogućene:&lt;ul&gt;&lt;li&gt;Veb stranice se ne dodaju u istorijat.&lt;/li&gt;&lt;li&gt; Stavke se automatski uklanjaju iz prozora preuzimanja.&lt;/li&gt;&lt;li&gt;Novi kolačići se ne snimaju, postojećima se ne može pristupiti&lt;/li&gt;&lt;li&gt;Ikone stranice se ne čuvaju, sesije neće biti sačuvane.&lt;/li&gt;&lt;li&gt;Pretrage se ne dodaju u iskačući meni prozorčića pretrage.&lt;/li&gt;&lt;/ul&gt;Dok ne zatvorite prozor i dalje možete kliknuti na Napred i Nazad da bi se vratili na prethodno otvorene stranice.</translation>
-    </message>
-    <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>Da li ste sigurni da želite da zatvorite prozor? Otvoren(o) je %1 jezičak(a)</translation>
     </message>
@@ -737,7 +691,7 @@ Da li želite da ponovo učitate sve stranice?</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation>Preuzimanja</translation>
+        <translation>Prijemi</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
@@ -753,10 +707,6 @@ Da li želite da ponovo učitate sve stranice?</translation>
         <translation>Kodiranje teksta</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; Network cache is disabled.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kada je privatno pregledanje uključeno neke radnje koje se tiču vaše privatnosti će biti onemogućene:&lt;ul&gt;&lt;li&gt;Veb stranice se ne dodaju u istorijat.&lt;/li&gt;&lt;li&gt; Stavke se automatski uklanjaju iz prozora preuzimanja.&lt;/li&gt;&lt;li&gt;Novi kolačići se ne snimaju, postojećima se ne može pristupiti&lt;/li&gt;&lt;li&gt;Ikone stranice se ne čuvaju, sesije neće biti sačuvane.&lt;/li&gt;&lt;li&gt;Pretrage se ne dodaju u iskačući meni prozorčića pretrage.&lt;/li&gt;&lt;/ul&gt;Dok ne zatvorite prozor i dalje možete kliknuti na Napred i Nazad da bi se vratili na prethodno otvorene stranice.</translation>
-    </message>
-    <message>
         <source>Alt+Ctrl+B</source>
         <translation>Alt+Ctrl+B</translation>
     </message>
@@ -765,60 +715,56 @@ Da li želite da ponovo učitate sve stranice?</translation>
         <translation>Izaberi &amp;sve</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing is turned on, some actions concerning your privacy will be disabled:&lt;ul&gt;&lt;li&gt; Webpages are not added to the history.&lt;/li&gt;&lt;li&gt; Items are automatically removed from the Downloads window.&lt;/li&gt;&lt;li&gt; New cookies are not stored, current cookies can&apos;t be accessed.&lt;/li&gt;&lt;li&gt; Site icons won&apos;t be stored, session won&apos;t be saved.&lt;/li&gt;&lt;li&gt; Searches are not added to the pop-up menu in the search box.&lt;/li&gt;&lt;li&gt; No new network cache is written to disk.&lt;/li&gt;&lt;/ul&gt;Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="obsolete">&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Kada je uključeno privatno pregledanje onemogućene su neke radnje koje se tiču vaše privatnosti:&lt;ul&gt;&lt;li&gt; Web stranice se ne dodaju u istorijat.&lt;/li&gt;&lt;li&gt;Stavke se automatski uklanjaju iz dijaloga „Preuzimanja“.&lt;/li&gt;&lt;li&gt;Novi kolačići se ne čuvaju, postojećim se ne može pristupiti.&lt;/li&gt;&lt;li&gt;Ikone sajtova se neće čuvati, sesije se ne mogu snimati.&lt;/li&gt;&lt;li&gt;Pretrage se ne dodaju u iskačući meni prozorčića pretrage.&lt;/li&gt;&lt;li&gt;Novonastali mrežni keš se ne upisuje na disk.&lt;/li&gt;&lt;/ul&gt;Sve dok ne zatvorite prozor i dalje možete kliknuti na dugmad „Napred“i „Nazad“ kako bi se vratili na prethodno otvarane stranice.</translation>
-    </message>
-    <message>
         <source>Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcije...</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished">Podesi motore pretrage...</translation>
+        <translation>Podesi motore pretrage...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;AdBlock...</translation>
     </message>
     <message>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kada je uključeno privatno pregledanje onemogućene su neke radnje koje se tiču vaše privatnosti:</translation>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>Web stranice se ne dodaju u istorijat.</translation>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stavke se automatski uklanjaju iz prozora prijema.</translation>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Novi kolačići se ne čuvaju, postojećim se ne može pristupiti.</translation>
     </message>
     <message>
         <source>Site icons won&apos;t be stored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikone sajtova se ne čuvaju.</translation>
     </message>
     <message>
         <source>Session won&apos;t be saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesije se snimaju.</translation>
     </message>
     <message>
         <source>Searches are not added to the pop-up menu in the search box.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pretrage se ne dodaju u iskačući meni prozorčića pretrage.</translation>
     </message>
     <message>
         <source>No new network cache is written to disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mrežni keš se ne dopisuje na disk.</translation>
     </message>
     <message>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dok ne zatvorite prozor i dalje možete kliknuti na „Napred“ i „Nazad“ da bi ste se vratili na prethodno otvarane stranice.</translation>
     </message>
     <message>
         <source>Private Browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>Privatno pregledanje</translation>
     </message>
 </context>
 <context>
@@ -1039,17 +985,9 @@ Da li želite da ponovo učitate sve stranice?</translation>
         <source>0 Items</source>
         <translation>Nema stavki</translation>
     </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation type="obsolete">&amp;OK</translation>
-    </message>
 </context>
 <context>
     <name>DownloadItem</name>
-    <message>
-        <source>Form</source>
-        <translation type="obsolete">Formular</translation>
-    </message>
     <message>
         <source>Ico</source>
         <translation>Ikona</translation>
@@ -1277,10 +1215,6 @@ Svejedno napustiti?</translation>
 <context>
     <name>LanguageManager</name>
     <message>
-        <source>No translation files are installed.</source>
-        <translation type="obsolete">Nema instaliranih fajlova prevoda.</translation>
-    </message>
-    <message>
         <source>Choose language</source>
         <translation>Izaberite jezik</translation>
     </message>
@@ -1290,7 +1224,7 @@ Svejedno napustiti?</translation>
     </message>
     <message>
         <source>No translation files are installed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nema instaliranih fajlova prevoda u %1.</translation>
     </message>
 </context>
 <context>
@@ -1306,12 +1240,6 @@ Svejedno napustiti?</translation>
     <message>
         <source> - SSL Errors</source>
         <translation>- SSL greške</translation>
-    </message>
-    <message>
-        <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
-Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation type="obsolete">&lt;qt&gt;SSL greške:&lt;br/&gt;&lt;br/&gt;za: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
-Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
@@ -1339,44 +1267,6 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     <message>
         <source>Alternate Names:</source>
         <translation>Alternativni nazivi:</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkMonitor</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Ime</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Vrednost</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkMonitorDialog</name>
-    <message>
-        <source>Network Monitor</source>
-        <translation type="obsolete">Monitor mreže</translation>
-    </message>
-    <message>
-        <source>Network Requests</source>
-        <translation type="obsolete">Mrežni zahtevi</translation>
-    </message>
-    <message>
-        <source>Request Headers</source>
-        <translation type="obsolete">Zaglavlja zahteva</translation>
-    </message>
-    <message>
-        <source>Response Headers</source>
-        <translation type="obsolete">Zaglavlja odgovora</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation type="obsolete">&amp;Ukloni</translation>
-    </message>
-    <message>
-        <source>Remove &amp;All Requests</source>
-        <translation type="obsolete">Ukloni &amp;sve zahteve</translation>
     </message>
 </context>
 <context>
@@ -1517,46 +1407,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
-    <name>RequestModel</name>
-    <message>
-        <source>Redirect: %1</source>
-        <translation type="obsolete">Preusmeravanje: %1</translation>
-    </message>
-    <message>
-        <source>Method</source>
-        <translation type="obsolete">Metod</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="obsolete">Adresa</translation>
-    </message>
-    <message>
-        <source>Response</source>
-        <translation type="obsolete">Odgovor</translation>
-    </message>
-    <message>
-        <source>Length</source>
-        <translation type="obsolete">Trajanje</translation>
-    </message>
-    <message>
-        <source>Content Type</source>
-        <translation type="obsolete">Tip sadržaja</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="obsolete">Informacije</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Nepoznato</translation>
-    </message>
-</context>
-<context>
     <name>SearchBanner</name>
-    <message>
-        <source>Form</source>
-        <translation type="obsolete">Formular</translation>
-    </message>
     <message>
         <source>Done</source>
         <translation>Završeno</translation>
@@ -1605,7 +1456,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Set to current page</source>
-        <translation>Postavi trekuću stranicu</translation>
+        <translation>Postavi tekuću stranicu</translation>
     </message>
     <message>
         <source>Remove history items:</source>
@@ -1865,51 +1716,51 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesija kolačića ističe:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>kad napustim program</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>za 1 dan</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>za 2 dana</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>za 3 dana</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>za 7 dana</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>za 30 dana</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>Samopopunjavanje</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>Samopopunjavanje web obrazaca:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Korisnička imena i lozinke</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uredi...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pregledaj...</translation>
     </message>
 </context>
 <context>
@@ -1928,7 +1779,7 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>Izaberite CSS fajl</translation>
     </message>
 </context>
 <context>
@@ -1944,18 +1795,6 @@ Da li želite da zanemarite ove greške?&lt;/qt&gt;</translation>
     <message>
         <source>&amp;Find</source>
         <translation>Nađ&amp;i</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation type="obsolete">Prika&amp;z</translation>
-    </message>
-    <message>
-        <source>&amp;Wrap lines</source>
-        <translation type="obsolete">Poravnaj &amp;redove</translation>
-    </message>
-    <message>
-        <source>Source of Page </source>
-        <translation type="obsolete">Izvorni kod stranice</translation>
     </message>
     <message>
         <source>Source of Page %1</source>
@@ -2083,10 +1922,6 @@ Da li zaista želite da zatvorite ovu stranicu?
         <translation>Dodaj &apos;%1&apos;</translation>
     </message>
     <message>
-        <source>Configure Search Engines...</source>
-        <translation type="obsolete">Podesi motore pretrage...</translation>
-    </message>
-    <message>
         <source>Clear Recent Searches</source>
         <translation>Ukloni skorašnje pretrage</translation>
     </message>
@@ -2202,7 +2037,7 @@ Da li zaista želite da zatvorite ovu stranicu?
     </message>
     <message>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokiraj sliku</translation>
     </message>
 </context>
 <context>
