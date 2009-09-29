@@ -115,6 +115,7 @@ TabWidget::TabWidget(QWidget *parent)
     setElideMode(Qt::ElideRight);
 
     new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_T), this, SLOT(openLastTab()));
+    new QShortcut(QKeySequence::Undo, this, SLOT(openLastTab()));
 
     connect(m_tabBar, SIGNAL(loadUrl(const QUrl&, TabWidget::OpenUrlIn)),
             this, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
