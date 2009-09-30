@@ -245,11 +245,6 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
     }
 
     TabWidget::OpenUrlIn openIn = frame ? TabWidget::CurrentTab : TabWidget::NewWindow;
-    // If the user just clicked on the back or forward button on the toolbar
-    if (type == QWebPage::NavigationTypeBackOrForward) {
-        BrowserApplication::instance()->setEventMouseButtons(qApp->mouseButtons());
-        BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
-    }
     openIn = TabWidget::modifyWithUserBehavior(openIn);
 
     // handle the case where we want to do something different then
