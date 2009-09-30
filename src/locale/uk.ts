@@ -160,7 +160,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
-        <translation>Введіть назву закладинки та виберіть куди її додати.</translation>
+        <translation>Введіть назву закладки та виберіть куди її додати.</translation>
     </message>
     <message>
         <source>Url</source>
@@ -431,7 +431,7 @@ p, li { white-space: pre-wrap; }
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
         <translation>Відкрито %1 вікон та %2 вкладок
-Ви все одно бажаєте вийти?</translation>
+Бажаєте вийти попри все?</translation>
     </message>
     <message>
         <source>Restore failed</source>
@@ -838,7 +838,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
-        <translation>Коли приватне переглядання ввімкнуто, деякі дії, стосовно ваших приватних вподобань, будуть вимкнуті:</translation>
+        <translation>Коли приватне переглядання ввімкнуто, деякі дії, стосовно ваших приватних вподобань, буде вимкнуто:</translation>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
@@ -850,7 +850,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
-        <translation>Нові куки не зберегіяються, і їх неможливо дозволити.</translation>
+        <translation>Нові куки не зберігаються, і їх неможливо дозволити.</translation>
     </message>
     <message>
         <source>Site icons won&apos;t be stored.</source>
@@ -1046,7 +1046,7 @@ Do you want to reload all pages?</source>
     <name>CookiesExceptionsDialog</name>
     <message>
         <source>Cookie Exceptions</source>
-        <translation>Винятки куків</translation>
+        <translation>Винятки куки</translation>
     </message>
     <message>
         <source>New Exception</source>
@@ -1284,7 +1284,7 @@ Do you want to reload all pages?</source>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
         <translation>Звантажень в поступі: %1
-Ви все одно бажаєте вийти?</translation>
+Бажаєте вийти попри все?</translation>
     </message>
     <message numerus="yes">
         <source>%n minutes remaining</source>
@@ -1620,7 +1620,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation>Список відокремлених комами ключевих слів, які можна ввести для пошуку термінів з цим рушієм</translation>
+        <translation>Список відокремлених комами ключових слів, які можна ввести для пошуку термінів з цим рушієм</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1983,7 +1983,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Host name:</source>
-        <translation>Назва хоста:</translation>
+        <translation>Назва хосту:</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -2051,7 +2051,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Filter Tracking Cookies</source>
-        <translation>Фільтр відстежування куків</translation>
+        <translation>Фільтр відстежування кук</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs or windows</source>
@@ -2083,7 +2083,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation>Сеанс куків закінчився:</translation>
+        <translation>Сеанс куки закінчився:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
@@ -2115,11 +2115,11 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation>Автоматичне заповнення форм у тенеті:</translation>
+        <translation>Автоматичне заповнення форм у тенетах:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation>Псевда і паролі користувача</translation>
+        <translation>Псевдоніми і паролі користувача</translation>
     </message>
     <message>
         <source>Edit...</source>
@@ -2134,7 +2134,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <name>SettingsDialog</name>
     <message>
         <source>Restart required</source>
-        <translation>Необхіно перезапустити</translation>
+        <translation>Потрібно перезапустити</translation>
     </message>
     <message>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
@@ -2341,7 +2341,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
-        <translation>Для того, щоб показати сайт, запит всіх даних потрібно відправити ще раз, що може призвести до несподіваної поведінки сайта, наприклад, ті самі дії виконаються ще раз. Ви все одно бажаєте продовжити?</translation>
+        <translation>Для того, щоб показати сайт, запит всіх даних потрібно відправити ще раз, що може призвести до несподіваної поведінки сайта, наприклад, ті самі дії виконаються ще раз.Бажаєте продовжити попри все?</translation>
     </message>
 </context>
 <context>
@@ -2368,7 +2368,7 @@ Do you really want to close this page?
     </message>
     <message>
         <source>Open Image in New &amp;Window</source>
-        <translation>Відкрити зобаження в новому &amp;вікні</translation>
+        <translation>Відкрити зображення в новому &amp;вікні</translation>
     </message>
     <message>
         <source>Open Image in New &amp;Tab</source>
