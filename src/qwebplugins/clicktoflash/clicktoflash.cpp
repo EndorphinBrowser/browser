@@ -123,7 +123,7 @@ void ClickToFlash::load(bool loadAll)
         QWebElement element;
         foreach (element, elements) {
             if (!loadAll) {
-                if (!element.scriptableProperty(QLatin1String("swapping")).toBool())
+                if (!element.evaluateJavaScript(QLatin1String("this.swapping")).toBool())
                     continue;
             }
 

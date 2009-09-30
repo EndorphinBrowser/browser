@@ -431,10 +431,10 @@ void WebView::addSearchEngine()
     QUrl searchUrl(page()->mainFrame()->baseUrl().resolved(QUrl(formElement.attribute(QLatin1String("action")))));
     QMap<QString, QString> searchEngines;
     QList<QWebElement> inputFields = formElement.findAll(QLatin1String("input"));
-    foreach (const QWebElement &inputField, inputFields) {
+    foreach (QWebElement inputField, inputFields) {
         QString type = inputField.attribute(QLatin1String("type"), QLatin1String("text"));
         QString name = inputField.attribute(QLatin1String("name"));
-        QString value = inputField.scriptableProperty(QLatin1String("value")).toString();
+        QString value = inputField.evaluateJavaScript(QLatin1String("this.value")).toString();
 
         if (type == QLatin1String("submit")) {
             searchEngines.insert(value, name);
@@ -444,7 +444,7 @@ void WebView::addSearchEngine()
 
             searchUrl.addQueryItem(name, value);
         } else if (type == QLatin1String("checkbox") || type == QLatin1String("radio")) {
-            if (inputField.scriptableProperty(QLatin1String("checked")).toBool()) {
+            if (inputField.evaluateJavaScript(QLatin1String("this.checked")).toBool()) {
                 searchUrl.addQueryItem(name, value);
             }
         } else if (type == QLatin1String("hidden")) {
@@ -453,9 +453,9 @@ void WebView::addSearchEngine()
     }
 
     QList<QWebElement> selectFields = formElement.findAll(QLatin1String("select"));
-    foreach (const QWebElement &selectField, selectFields) {
+    foreach (QWebElement selectField, selectFields) {
         QString name = selectField.attribute(QLatin1String("name"));
-        int selectedIndex = selectField.scriptableProperty(QLatin1String("selectedIndex")).toInt();
+        int selectedIndex = selectField.evaluateJavaScript(QLatin1String("this.selectedIndex")).toInt();
         if (selectedIndex == -1)
             continue;
 
