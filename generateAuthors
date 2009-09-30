@@ -16,11 +16,12 @@ git log --pretty="format:%an %ae" $1 \
 	| sed -e 's/^faw /Jakub Wieczorek /g' \
 	| sed -e 's/^LEW21 /Janusz Lewandowski /g' \
 	| sed -e 's/lew21@pecet.(none)$/lew21st@gmail.com/g' \
-        | sed -e 's/adam\.treat@torchmobile\.com/treat@kde\.org/g' \
-        | sed -e 's/torarnv@gmail\.com/tavestbo@trolltech\.com/g' \
-        | sed -e 's/bks@coldkeck2\.colorado\.edu/bks24@cornell\.edu/g' \
-        | sed -e 's/porphyr /Mark Reiche /g' \
-        | sed -e 's/vinx@zulu\.(none)/smart2128@baslug\.org/g' \
-        | sed -e 's/Matvey Kozhev/Maia Kozheva/g' \
-        | sed -e 's/kristof@localhost.(none)/kristof.bal@gmail.com/g' \
+    | sed -e 's/adam\.treat@torchmobile\.com/treat@kde\.org/g' \
+    | sed -e 's/torarnv@gmail\.com/tavestbo@trolltech\.com/g' \
+    | sed -e 's/bks@coldkeck2\.colorado\.edu/bks24@cornell\.edu/g' \
+    | sed -e 's/porphyr /Mark Reiche /g' \
+    | sed -e 's/vinx@zulu\.(none)/smart2128@baslug\.org/g' \
+    | sed -e 's/Matvey Kozhev/Maia Kozheva/g' \
+    | sed -e 's/kristof@localhost.(none)/kristof.bal@gmail.com/g' \
+    | sed -e 's/tavestbo@trolltech.com/tor.arne.vestbo@nokia.com/g' \
 	| sort | uniq -c | sort -n -r | sed -e 's/^ *[0-9]* //g'
