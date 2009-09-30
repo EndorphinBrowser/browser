@@ -83,6 +83,7 @@
 #include <qdebug.h>
 #include <qevent.h>
 #include <qmenubar.h>
+#include <qtimer.h>
 #include <qwebframe.h>
 
 #if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
@@ -688,6 +689,8 @@ void WebView::keyPressEvent(QKeyEvent *event)
                 return;
             }
             hideAccessKeys();
+        } else {
+            QTimer::singleShot(200, this, SLOT(accessKeyShortcut()));
         }
     }
 #endif
@@ -714,17 +717,24 @@ void WebView::keyPressEvent(QKeyEvent *event)
 }
 
 #if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
+void WebView::accessKeyShortcut()
+{
+    if (!hasFocus()
+        || !m_accessKeysPressed
+        || !m_enableAccessKeys)
+        return;
+    if (m_accessKeyLabels.isEmpty()) {
+        showAccessKeys();
+    } else {
+        hideAccessKeys();
+    }
+    m_accessKeysPressed = false;
+}
+
 void WebView::keyReleaseEvent(QKeyEvent *event)
 {
-    if (m_accessKeysPressed) {
-        if (m_accessKeyLabels.isEmpty()) {
-            showAccessKeys();
-        } else {
-            hideAccessKeys();
-        }
-        m_accessKeysPressed = false;
-    }
-
+    if (m_enableAccessKeys)
+        m_accessKeysPressed = event->key() == Qt::Key_Control;
     QWebView::keyReleaseEvent(event);
 }
 

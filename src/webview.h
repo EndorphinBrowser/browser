@@ -143,6 +143,7 @@ private slots:
 #if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     void addSearchEngine();
     void hideAccessKeys();
+    void accessKeyShortcut();
 #endif
 
 private:
