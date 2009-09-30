@@ -104,68 +104,68 @@ p, li { white-space: pre-wrap; }
     <name>AdBlockBlockedNetworkReply</name>
     <message>
         <source>Blocked by AdBlockRule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokkert av AdBlockRule:%1</translation>
     </message>
 </context>
 <context>
     <name>AdBlockDialog</name>
     <message>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til regel</translation>
     </message>
     <message>
         <source>Learn more about writing rules...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lær mer om å skrive regler...</translation>
     </message>
     <message>
         <source>Update Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdater abonement</translation>
     </message>
     <message>
         <source>Browse Subscriptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bla igjennom abonementer...</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjern abonement</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>AdBlock konfigurasjon</translation>
     </message>
     <message>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"></translation>
+        <translation>Skru på AdBlock</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Handling</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Regel</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">Regel</translation>
+        <translation>Regel</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonemer?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonemer på dette AdBlock abonementet? %1</translation>
     </message>
 </context>
 <context>
@@ -195,41 +195,41 @@ p, li { white-space: pre-wrap; }
     <name>AutoFillDialog</name>
     <message>
         <source>Form Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Passord</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Fjern</translation>
+        <translation>Fjern</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjern alle</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Vil du lagre dette passordet?&lt;/b&gt;&lt;br&gt;         Du kan se hvilke passord du har lagret og eventuelt slette dem under Egenskaper.</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldri for denne siden</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke nå</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettside</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Brukernavn</translation>
     </message>
 </context>
 <context>
@@ -451,7 +451,7 @@ Er du sikker på at du vil avslutte Arora?</translation>
     </message>
     <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora kræsjet forrige gang vi prøvde å gjennoprette denne siden. Skal vi prøve igjenn?</translation>
     </message>
 </context>
 <context>
@@ -842,55 +842,55 @@ Vil du laste alle sider på nytt?</translation>
     </message>
     <message>
         <source>Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativer...</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished">Konfigurer søkemotorer...</translation>
+        <translation>Konfigurer søkemotorer...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;AdBlock...</translation>
     </message>
     <message>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
-        <translation type="unfinished"></translation>
+        <translation>Så lenge privat surfing er skrudd på, vil noen handlinger være skrudd av:</translation>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettsider blir ikke lagt til i historien.</translation>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlastninger blir automatisk fjernet fra Nedlastninger vinduet.</translation>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nye informasjonskapsler blir ikke lagret og eksisterende informasjonskapsler kan ikke brukes.</translation>
     </message>
     <message>
         <source>Site icons won&apos;t be stored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettsideikoner blir ikke lagret.</translation>
     </message>
     <message>
         <source>Session won&apos;t be saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessjoner blir ikke lagret.</translation>
     </message>
     <message>
         <source>Searches are not added to the pop-up menu in the search box.</source>
-        <translation type="unfinished"></translation>
+        <translation>Søk blir ikke lagt til i søkemenyen.</translation>
     </message>
     <message>
         <source>No new network cache is written to disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettverkshurtiglageret blir ikke skrevet til platelageret.</translation>
     </message>
     <message>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Så lenge du ikke lukker vinduet kan du fremdeles klikke Fram og Tilbake for å se sider du har åpnet.</translation>
     </message>
     <message>
         <source>Private Browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>Privat surfing</translation>
     </message>
 </context>
 <context>
@@ -1408,7 +1408,7 @@ Er du sikker på at du vil avslutte?</translation>
     </message>
     <message>
         <source>No translation files are installed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen oversettelsesfiler er installert i %1.</translation>
     </message>
 </context>
 <context>
@@ -2044,51 +2044,51 @@ Vil du ignorere disse feilene?&lt;qt&gt;</translation>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>En informasjonskapselsesjon slutter:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>Når jeg skruv av programmet</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 dag</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>2 dager</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>3 dager</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>7 dager</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30 dager</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>AutoFill</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>AutoFill skjemaer:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Brukernavn og passord</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rediger...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bla igjennom...</translation>
     </message>
 </context>
 <context>
@@ -2107,7 +2107,7 @@ Vil du ignorere disse feilene?&lt;qt&gt;</translation>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg CSS fil</translation>
     </message>
 </context>
 <context>
@@ -2401,7 +2401,7 @@ Vil du virkelig lukke denne siden?
     </message>
     <message>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokker bilde</translation>
     </message>
 </context>
 <context>
