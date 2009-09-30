@@ -359,11 +359,16 @@ void AutoFillManager::fill(QWebPage *page) const
             QString setType = (type == QLatin1String("checkbox"))
                                 ? QLatin1String("checked")
                                 : QLatin1String("value");
+
+            // XXX is there a cleaner way to do this?
+            QString jsValue = value;
+            jsValue.replace(QLatin1Char('\\'), QLatin1String("\\\\"));
+            jsValue.replace(QLatin1Char('\"'), QLatin1String("\\\""));
             QString javascript = QString(QLatin1String("document.forms[%1].%2.%3=\"%4\";"))
                     .arg(formName)
                     .arg(key)
                     .arg(setType)
-                    .arg(value);
+                    .arg(jsValue);
             page->mainFrame()->evaluateJavaScript(javascript);
         }
     }
