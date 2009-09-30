@@ -61,7 +61,7 @@ public:
     void call_build()
         { SubModelToolBar::build(); resize(sizeHint()); }
 
-    ModelMenu* call_createMenu()
+    ModelMenu *call_createMenu()
         { return SubModelToolBar::createMenu(); }
 };
 

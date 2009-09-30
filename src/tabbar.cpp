@@ -258,8 +258,7 @@ void TabBar::mouseMoveEvent(QMouseEvent *event)
         int diffY = event->pos().y() - m_dragStartPos.y();
         if ((event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()
             && diffX < 3 && diffX > -3
-            && diffY < -10
-            ) {
+            && diffY < -10) {
             QDrag *drag = new QDrag(this);
             QMimeData *mimeData = new QMimeData;
             QList<QUrl> urls;

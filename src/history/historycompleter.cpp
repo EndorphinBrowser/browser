@@ -37,7 +37,7 @@ HistoryCompletionView::HistoryCompletionView(QWidget *parent)
 
     QFontMetrics metrics = fontMetrics();
     verticalHeader()->setDefaultSectionSize(metrics.height());
-    
+
     // As URLs are always LRT, this should be LRT as well
     setLayoutDirection(Qt::LeftToRight);
 }
@@ -228,8 +228,8 @@ QStringList HistoryCompleter::splitPath(const QString &path) const
 
 bool HistoryCompleter::eventFilter(QObject *obj, QEvent *event)
 {
-    if(event->type() == QEvent::KeyPress) {
-        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
         if (keyEvent->key() == Qt::Key_Tab) {
             QKeyEvent *newEvent = new QKeyEvent(QEvent::KeyPress,
                                                 Qt::Key_Down,

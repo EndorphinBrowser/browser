@@ -110,7 +110,7 @@ void tst_Xbel::read_data()
     QTest::newRow("bad") << QString("bad.xbel") << QXmlStreamReader::CustomError;
 }
 
-// public BookmarkNode* read(QString const &fileName)
+// public BookmarkNode *read(QString const &fileName)
 void tst_Xbel::read()
 {
     QFETCH(QString, fileName);
@@ -216,7 +216,7 @@ void tst_Xbel::write_data()
     QTest::newRow("all") << QString("all.xbel");
 }
 
-// public BookmarkNode* read(QString const &fileName)
+// public BookmarkNode *read(QString const &fileName)
 void tst_Xbel::write()
 {
     QFETCH(QString, readFileName);

@@ -69,10 +69,10 @@ public:
     bool call_acceptNavigationRequest(QWebFrame *frame, QNetworkRequest const &request, NavigationType type)
         { return SubWebPage::acceptNavigationRequest(frame, request, type); }
 
-    QObject* call_createPlugin(QString const &classId, QUrl const &url, QStringList const &paramNames, QStringList const &paramValues)
+    QObject *call_createPlugin(QString const &classId, QUrl const &url, QStringList const &paramNames, QStringList const &paramValues)
         { return SubWebPage::createPlugin(classId, url, paramNames, paramValues); }
 
-    QWebPage* call_createWindow(QWebPage::WebWindowType type)
+    QWebPage *call_createWindow(QWebPage::WebWindowType type)
         { return SubWebPage::createWindow(type); }
 };
 
@@ -238,7 +238,7 @@ void tst_WebPage::createPlugin_data()
 #endif
 }
 
-// protected QObject* createPlugin(QString const &classId, QUrl const &url, QStringList const &paramNames, QStringList const &paramValues)
+// protected QObject *createPlugin(QString const &classId, QUrl const &url, QStringList const &paramNames, QStringList const &paramValues)
 void tst_WebPage::createPlugin()
 {
 #if 0
@@ -269,7 +269,7 @@ void tst_WebPage::createWindow_data()
 #endif
 }
 
-// protected QWebPage* createWindow(QWebPage::WebWindowType type)
+// protected QWebPage *createWindow(QWebPage::WebWindowType type)
 void tst_WebPage::createWindow()
 {
 #if 0
