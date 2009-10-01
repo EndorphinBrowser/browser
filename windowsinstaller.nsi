@@ -47,12 +47,17 @@ Section "Main Components"
   File "${QTDIR}\lib\QtNetwork4.dll"
   File "${QTDIR}\lib\QtWebKit4.dll"
   File "${QTDIR}\lib\QtScript4.dll"
-  File "${QTDIR}\lib\phonon4.dll"
+  File "${QTDIR}\lib\QtSql4.dll"
+  ;File "${QTDIR}\lib\phonon4.dll"
   File "C:\Qt\openssl-0.9.8j\out32dll\ssleay32.dll"
   File "C:\Qt\openssl-0.9.8j\out32dll\libeay32.dll"
 
   SetOutPath "$INSTDIR\locale"
   File "src\.qm\locale\*.qm"
+  File "${QTDIR}\translations\qt*.qm"
+
+  SetOutPath "$INSTDIR\plugins\sqldrivers"
+  File "${QTDIR}\plugins\sqldrivers\qsqlite4.dll"
 
   SetOutPath "$INSTDIR\imageformats"
   File "${QTDIR}\plugins\imageformats\qtiff4.dll"
