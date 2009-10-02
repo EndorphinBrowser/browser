@@ -49,7 +49,7 @@
 
 AutoFillManager::AutoFillManager(QObject *parent)
     : QObject(parent)
-    , m_savePasswordForms(false)
+    , m_savePasswordForms(true)
     , m_allowAutoCompleteOff(true)
     , m_saveTimer(new AutoSaver(this))
 {
