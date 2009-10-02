@@ -88,6 +88,8 @@
 #include <qsslerror.h>
 #include <qdatetime.h>
 
+// #define NETWORKACCESSMANAGER_DEBUG
+
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
     : NetworkAccessManagerProxy(parent)
     , m_adblockNetwork(0)
@@ -165,7 +167,6 @@ void NetworkAccessManager::loadSettings()
     QList<QSslCertificate> ca_list = sslCfg.caCertificates();
     QList<QSslCertificate> ca_new = QSslCertificate::fromData(settings.value(QLatin1String("CaCertificates")).toByteArray());
     ca_list += ca_new;
-
     sslCfg.setCaCertificates(ca_list);
     QSslConfiguration::setDefaultConfiguration(sslCfg);
 #endif
@@ -196,6 +197,9 @@ void NetworkAccessManager::loadSettings()
 
 void NetworkAccessManager::authenticationRequired(QNetworkReply *reply, QAuthenticator *auth)
 {
+#ifdef NETWORKACCESSMANAGER_DEBUG
+    qDebug() << __FUNCTION__ << reply;
+#endif
     BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
 
     QDialog dialog(mainWindow);
@@ -220,6 +224,9 @@ void NetworkAccessManager::authenticationRequired(QNetworkReply *reply, QAuthent
 
 void NetworkAccessManager::proxyAuthenticationRequired(const QNetworkProxy &proxy, QAuthenticator *auth)
 {
+#ifdef NETWORKACCESSMANAGER_DEBUG
+    qDebug() << __FUNCTION__;
+#endif
     BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
 
     QDialog dialog(mainWindow);
@@ -269,6 +276,9 @@ QString NetworkAccessManager::certToFormattedString(QSslCertificate cert)
 
 void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError> &error)
 {
+#ifdef NETWORKACCESSMANAGER_DEBUG
+    qDebug() << __FUNCTION__;
+#endif
     BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
 
     QSettings settings;
@@ -339,7 +349,6 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
     }
 
     QNetworkReply *reply = 0;
-
     // Check if there is a valid handler registered for the requested URL scheme
     if (m_schemeHandlers.contains(request.url().scheme()))
         reply = m_schemeHandlers[request.url().scheme()]->createRequest(op, request, outgoingData);
