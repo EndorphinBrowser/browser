@@ -9,7 +9,7 @@ Interface
 - Issue #85: Alt+Enter on the location bar opens the url in a new tab.
 - Issue #119: Add Password Management / AutoFill
 - Issue #411: Save and restore the tab back/forward history
-- Issue $630: Limit download progress updates to 5 per second to reduces CPU use from 18% to 3% when downloading.
+- Issue #630: Limit download progress updates to 5 per second to reduces CPU use from 18% to 3% when downloading.
 - Issue #650: Save the toolbar location allowing the toolbars to be next to each other
 - Add ctrl-z shortcut to undo the closing of the last tab.
 - Behave better when access keys are enabled by adding a slight delay to make sure that the ctrl is actually for access keys and not for another shortcut such as ctrl-tab or ctrl-a
