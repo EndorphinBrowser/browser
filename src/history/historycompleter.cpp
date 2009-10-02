@@ -228,7 +228,7 @@ QStringList HistoryCompleter::splitPath(const QString &path) const
 
 bool HistoryCompleter::eventFilter(QObject *obj, QEvent *event)
 {
-    if (event->type() == QEvent::KeyPress) {
+    if (event->type() == QEvent::KeyPress && popup()->isVisible()) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
         if (keyEvent->key() == Qt::Key_Tab) {
             QKeyEvent *newEvent = new QKeyEvent(QEvent::KeyPress,
