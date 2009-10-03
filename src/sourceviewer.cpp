@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Christian Franke <cfchris6@ts2server.com>
+ * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,15 +49,11 @@ SourceViewer::SourceViewer(const QString &source, const QString &title,
     , m_source(source)
 {
     setWindowTitle(tr("Source of Page %1").arg(title));
-    setParent(0);
 
     QSettings settings;
     settings.beginGroup(QLatin1String("SourceViewer"));
-    QPoint pos = settings.value(QLatin1String("pos"), QPoint(0, 0)).toPoint();
     QSize size = settings.value(QLatin1String("size"), QSize(640, 480)).toSize();
     resize(size);
-    if (pos.x() || pos.y())
-        move(pos);
 
     m_edit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
     m_edit->setReadOnly(true);
@@ -90,7 +87,6 @@ SourceViewer::~SourceViewer()
 {
     QSettings settings;
     settings.beginGroup(QLatin1String("SourceViewer"));
-    settings.setValue(QLatin1String("pos"), pos());
     settings.setValue(QLatin1String("size"), size());
 }
 
