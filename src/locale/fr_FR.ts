@@ -694,7 +694,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation>Afficher tout les marque-pages...</translation>
+        <translation>Afficher tous les marque-pages...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
