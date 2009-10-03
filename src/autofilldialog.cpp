@@ -79,6 +79,8 @@ QVariant AutoFillModel::data(const QModelIndex &index, int role) const
             QStringList choices;
             foreach (const AutoFillManager::Element &element, m_forms[index.row()].elements) {
                 QString key = element.first.toLower();
+                if (key.contains(QLatin1String("pass")))
+                    continue;
                 if (key.contains(QLatin1String("user"))
                     || key.contains(QLatin1String("email"))
                     || key.contains(QLatin1String("login"))
