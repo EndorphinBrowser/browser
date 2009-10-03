@@ -81,6 +81,7 @@ class TabBar;
 class WebView;
 class WebActionMapper;
 class WebViewSearch;
+class QToolButton;
 
 /*!
     TabWidget that contains WebViews and a stack widget of associated line edits.
@@ -207,6 +208,8 @@ private:
     QCompleter *m_lineEditCompleter;
     QStackedWidget *m_locationBars;
     TabBar *m_tabBar;
+    QToolButton *addTabButton;
+    QToolButton *closeTabButton;
 };
 
 #endif // TABWIDGET_H

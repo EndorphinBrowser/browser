@@ -111,6 +111,8 @@ TabWidget::TabWidget(QWidget *parent)
     , m_lineEditCompleter(0)
     , m_locationBars(0)
     , m_tabBar(new TabBar(this))
+    , addTabButton(0)
+    , closeTabButton(0)
 {
     setElideMode(Qt::ElideRight);
 
@@ -137,6 +139,10 @@ TabWidget::TabWidget(QWidget *parent)
 
     m_closeTabAction = new QAction(this);
     m_closeTabAction->setShortcuts(QKeySequence::Close);
+    m_closeTabAction->setIcon(QIcon(QLatin1String(":graphics/closetab.png")));
+#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_WS_X11))
+    m_closeTabAction->setIconVisibleInMenu(false);
+#endif
     connect(m_closeTabAction, SIGNAL(triggered()), this, SLOT(closeTab()));
 
     m_bookmarkTabsAction = new QAction(this);
@@ -146,9 +152,6 @@ TabWidget::TabWidget(QWidget *parent)
 #if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_WS_X11))
     m_newTabAction->setIconVisibleInMenu(false);
 #endif
-
-    QSettings settings;
-    settings.beginGroup(QLatin1String("tabs"));
 
     m_nextTabAction = new QAction(this);
     connect(m_nextTabAction, SIGNAL(triggered()), this, SLOT(nextTab()));
@@ -169,37 +172,15 @@ TabWidget::TabWidget(QWidget *parent)
     m_recentlyClosedTabsAction->setMenu(m_recentlyClosedTabsMenu);
     m_recentlyClosedTabsAction->setEnabled(false);
 
-    bool newTabButtonInRightCorner = settings.value(QLatin1String("newTabButtonInRightCorner"), true).toBool();
 #ifndef Q_WS_MAC // can't seem to figure out the background color :(
-    QToolButton *addTabButton = new QToolButton(this);
+    addTabButton = new QToolButton(this);
     addTabButton->setDefaultAction(m_newTabAction);
     addTabButton->setAutoRaise(true);
     addTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    setCornerWidget(addTabButton, newTabButtonInRightCorner ? Qt::TopRightCorner : Qt::TopLeftCorner);
 #endif
 
-    bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
-    m_closeTabAction->setIcon(QIcon(QLatin1String(":graphics/closetab.png")));
-#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_WS_X11))
-    m_closeTabAction->setIconVisibleInMenu(false);
-#endif
-    if (oneCloseButton) {
-#if QT_VERSION < 0x040600 || (QT_VERSION >= 0x040600 && !defined(Q_WS_X11))
-        m_closeTabAction->setIconVisibleInMenu(false);
-#endif
-        // corner buttons
-        QToolButton *closeTabButton = new QToolButton(this);
-        closeTabButton->setDefaultAction(m_closeTabAction);
-        closeTabButton->setAutoRaise(true);
-        closeTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-        setCornerWidget(closeTabButton, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
-    } else {
-        m_tabBar->setTabsClosable(true);
-
-        connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
-                this, SLOT(closeTab(int)));
-    }
-
+    connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
+            this, SLOT(closeTab(int)));
     connect(this, SIGNAL(currentChanged(int)),
             this, SLOT(currentChanged(int)));
 
@@ -210,6 +191,7 @@ TabWidget::TabWidget(QWidget *parent)
 
     // Initialize Actions' labels
     retranslate();
+    loadSettings();
 }
 
 void TabWidget::historyCleared()
@@ -921,6 +903,29 @@ void TabWidget::loadSettings()
         if (v && v->page())
             v->loadSettings();
     }
+
+    QSettings settings;
+    settings.beginGroup(QLatin1String("tabs"));
+    bool newTabButtonInRightCorner = settings.value(QLatin1String("newTabButtonInRightCorner"), true).toBool();
+#ifndef Q_WS_MAC
+    setCornerWidget(addTabButton, newTabButtonInRightCorner ? Qt::TopRightCorner : Qt::TopLeftCorner);
+    addTabButton->show();
+#endif
+
+    bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
+    if (oneCloseButton) {
+        if (!closeTabButton) {
+            closeTabButton = new QToolButton(this);
+            closeTabButton->setDefaultAction(m_closeTabAction);
+            closeTabButton->setAutoRaise(true);
+            closeTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        }
+        setCornerWidget(closeTabButton, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
+        closeTabButton->setVisible(oneCloseButton);
+    } else {
+        setCornerWidget(0, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
+    }
+    m_tabBar->setTabsClosable(!oneCloseButton);
 }
 
 /*
