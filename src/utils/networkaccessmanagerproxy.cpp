@@ -27,6 +27,7 @@
  */
 
 #include "networkaccessmanagerproxy.h"
+#include "networkaccessmanagerproxy_p.h"
 
 #include "webpageproxy.h"
 
@@ -55,9 +56,7 @@ void NetworkAccessManagerProxy::setPrimaryNetworkAccessManager(NetworkAccessMana
 {
     Q_ASSERT(manager);
     m_primaryManager = manager;
-    setCookieJar(m_primaryManager->cookieJar());
-    // Do not steal ownership!
-    cookieJar()->setParent(manager);
+    setCookieJar(new NetworkCookieJarProxy(this));
 
     connect(this, SIGNAL(authenticationRequired(QNetworkReply*, QAuthenticator*)),
             m_primaryManager, SIGNAL(authenticationRequired(QNetworkReply*, QAuthenticator*)));

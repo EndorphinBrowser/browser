@@ -9,6 +9,7 @@ HEADERS += \
     lineedit.h \
     lineedit_p.h \
     networkaccessmanagerproxy.h \
+    networkaccessmanagerproxy_p.h \
     singleapplication.h \
     squeezelabel.h \
     treesortfilterproxymodel.h \

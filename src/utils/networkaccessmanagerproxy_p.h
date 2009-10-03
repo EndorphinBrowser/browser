@@ -26,34 +26,28 @@
  * SUCH DAMAGE.
  */
 
-#ifndef NETWORKACCESSMANAGERPROXY_H
-#define NETWORKACCESSMANAGERPROXY_H
+#ifndef NETWORKACCESSMANAGERPROXY_P_H
+#define NETWORKACCESSMANAGERPROXY_P_H
 
-#include <qnetworkaccessmanager.h>
+#include <qnetworkcookie.h>
 
-class WebPageProxy;
-class NetworkAccessManagerProxy : public QNetworkAccessManager
+#include "networkaccessmanagerproxy.h"
+
+class NetworkCookieJarProxy : public QNetworkCookieJar
 {
     Q_OBJECT
 
 public:
-    NetworkAccessManagerProxy(QObject *parent = 0);
+    NetworkCookieJarProxy(QObject *parent = 0)
+        : QNetworkCookieJar(parent) { }
 
-    void setPrimaryNetworkAccessManager(NetworkAccessManagerProxy *primaryManager);
-    NetworkAccessManagerProxy *primaryNetworkAccessManager() const { return m_primaryManager; }
+    inline QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const
+        { return NetworkAccessManagerProxy::m_primaryManager->cookieJar()->cookiesForUrl(url); }
 
-    void setWebPage(WebPageProxy *page);
-    WebPageProxy *webPage() const { return m_webPage; };
-
-protected:
-    QNetworkReply *createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0);
-
-private:
-    friend class NetworkCookieJarProxy;
-    static NetworkAccessManagerProxy *m_primaryManager;
-    WebPageProxy *m_webPage;
+    inline bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
+        { return NetworkAccessManagerProxy::m_primaryManager->cookieJar()->setCookiesFromUrl(cookieList, url); }
 
 };
 
-#endif // NETWORKACCESSMANAGERPROXY_H
+#endif // NETWORKACCESSMANAGERPROXY_P_H
 
