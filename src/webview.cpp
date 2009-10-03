@@ -94,6 +94,7 @@ Q_DECLARE_METATYPE(QWebElement)
 #include <qsettings.h>
 #include <qtooltip.h>
 #include <qwebelement.h>
+#include <qwindowsstyle.h>
 #endif
 
 #include <qdebug.h>
@@ -109,6 +110,14 @@ WebView::WebView(QWidget *parent)
 #endif
 {
     setPage(m_page);
+#if QT_VERSION >= 0x040600
+    QPalette p;
+    if (p.color(QPalette::Window) != Qt::white) {
+        QWindowsStyle s;
+        p = s.standardPalette();
+        setPalette(p);
+    }
+#endif
     connect(page(), SIGNAL(statusBarMessage(const QString&)),
             SLOT(setStatusBarText(const QString&)));
     connect(this, SIGNAL(loadProgress(int)),
