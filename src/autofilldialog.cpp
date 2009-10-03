@@ -76,6 +76,7 @@ QVariant AutoFillModel::data(const QModelIndex &index, int role) const
             return m_forms[index.row()].url.host();
         case 1: {
             QStringList help;
+            QStringList choices;
             foreach (const AutoFillManager::Element &element, m_forms[index.row()].elements) {
                 QString key = element.first.toLower();
                 if (key.contains(QLatin1String("user"))
@@ -83,9 +84,12 @@ QVariant AutoFillModel::data(const QModelIndex &index, int role) const
                     || key.contains(QLatin1String("login"))
                     || key == QLatin1String("u"))
                     return element.second;
+                choices.append(element.second);
                 help.append(element.first);
             }
-            qWarning() << "AutoFillModel: Unknown user id, choices:" << help;
+            if (choices.count() == 1)
+                return choices.first();
+            qWarning() << "AutoFillModel: Unknown user id, choices:" << help << "url" << m_forms[index.row()].url.toString();
             return help.join(QLatin1String(","));
         }
         }
