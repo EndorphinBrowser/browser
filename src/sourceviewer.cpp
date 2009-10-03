@@ -26,6 +26,7 @@
 #include <qnetworkrequest.h>
 #include <qplaintextedit.h>
 #include <qshortcut.h>
+#include <qsettings.h>
 #include <qwebframe.h>
 #include <qwebpage.h>
 
@@ -47,7 +48,15 @@ SourceViewer::SourceViewer(const QString &source, const QString &title,
     , m_source(source)
 {
     setWindowTitle(tr("Source of Page %1").arg(title));
-    resize(640, 480);
+    setParent(0);
+
+    QSettings settings;
+    settings.beginGroup(QLatin1String("SourceViewer"));
+    QPoint pos = settings.value(QLatin1String("pos"), QPoint(0, 0)).toPoint();
+    QSize size = settings.value(QLatin1String("size"), QSize(640, 480)).toSize();
+    resize(size);
+    if (pos.x() || pos.y())
+        move(pos);
 
     m_edit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
     m_edit->setReadOnly(true);
@@ -75,6 +84,14 @@ SourceViewer::SourceViewer(const QString &source, const QString &title,
     m_reply = BrowserApplication::networkAccessManager()->get(request);
     connect(m_reply, SIGNAL(finished()), this, SLOT(loadingFinished()));
     m_reply->setParent(this);
+}
+
+SourceViewer::~SourceViewer()
+{
+    QSettings settings;
+    settings.beginGroup(QLatin1String("SourceViewer"));
+    settings.setValue(QLatin1String("pos"), pos());
+    settings.setValue(QLatin1String("size"), size());
 }
 
 void SourceViewer::loadingFinished()

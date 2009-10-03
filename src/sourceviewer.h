@@ -38,6 +38,7 @@ class SourceViewer : public QDialog
 public:
     SourceViewer(const QString &source, const QString &title,
                  const QUrl &url, QWidget *parent = 0);
+    ~SourceViewer();
 
 private:
     QPlainTextEdit *m_edit;
