@@ -340,14 +340,14 @@ void AutoFillManager::fill(QWebPage *page) const
             const QString value = element.second;
 
             // When we drop 4.5 migrate this to the 4.6 dom API
-            bool disabled = page->mainFrame()->evaluateJavaScript(QString(QLatin1String("document.forms[%1].%2.disabled")).arg(formName).arg(key)).toBool();
+            bool disabled = page->mainFrame()->evaluateJavaScript(QString(QLatin1String("document.forms[%1].elements[\"%2\"].disabled")).arg(formName).arg(key)).toBool();
             if (disabled) {
 #ifdef AUTOFILL_DEBUG
                 qDebug() << formName << "is disabled";
 #endif
                 continue;
             }
-            bool readOnly = page->mainFrame()->evaluateJavaScript(QString(QLatin1String("document.forms[%1].%2.readonly")).arg(formName).arg(key)).toBool();
+            bool readOnly = page->mainFrame()->evaluateJavaScript(QString(QLatin1String("document.forms[%1].elements[\"%2\"].readonly")).arg(formName).arg(key)).toBool();
             if (readOnly) {
 #ifdef AUTOFILL_DEBUG
                 qDebug() << formName << "is readOnly";
@@ -355,7 +355,7 @@ void AutoFillManager::fill(QWebPage *page) const
                 continue;
             }
 
-            QString type = page->mainFrame()->evaluateJavaScript(QString(QLatin1String("document.forms[%1].%2.type")).arg(formName).arg(key)).toString();
+            QString type = page->mainFrame()->evaluateJavaScript(QString(QLatin1String("document.forms[%1].elements[\"%2\"].type")).arg(formName).arg(key)).toString();
             if (type.isEmpty()
                 || type == QLatin1String("hidden")
                 || type == QLatin1String("reset")
@@ -376,7 +376,7 @@ void AutoFillManager::fill(QWebPage *page) const
             QString jsValue = value;
             jsValue.replace(QLatin1Char('\\'), QLatin1String("\\\\"));
             jsValue.replace(QLatin1Char('\"'), QLatin1String("\\\""));
-            QString javascript = QString(QLatin1String("document.forms[%1].%2.%3=\"%4\";"))
+            QString javascript = QString(QLatin1String("document.forms[%1].elements[\"%2\"].%3=\"%4\";"))
                     .arg(formName)
                     .arg(key)
                     .arg(setType)
