@@ -235,6 +235,31 @@ BrowserMainWindow::~BrowserMainWindow()
     m_autoSaver->saveIfNeccessary();
 }
 
+void BrowserMainWindow::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case Qt::Key_HomePage:
+        m_historyHomeAction->trigger();
+        event->accept();
+        break;
+    case Qt::Key_Favorites:
+        m_bookmarksShowAllAction->trigger();
+        event->accept();
+        break;
+    case Qt::Key_Search:
+        m_toolsWebSearchAction->trigger();
+        event->accept();
+        break;
+    case Qt::Key_OpenUrl:
+        m_fileOpenLocationAction->trigger();
+        event->accept();
+        break;
+    default:
+        break;
+    }
+    QMainWindow::keyPressEvent(event);
+}
+
 BrowserMainWindow *BrowserMainWindow::parentWindow(QWidget *widget)
 {
     while (widget) {
