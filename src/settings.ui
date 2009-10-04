@@ -960,7 +960,7 @@
              <number>0</number>
             </property>
             <property name="maximum">
-             <number>100</number>
+             <number>9999999</number>
             </property>
            </widget>
           </item>
