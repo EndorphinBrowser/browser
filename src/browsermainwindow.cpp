@@ -255,9 +255,9 @@ void BrowserMainWindow::keyPressEvent(QKeyEvent *event)
         event->accept();
         break;
     default:
+        QMainWindow::keyPressEvent(event);
         break;
     }
-    QMainWindow::keyPressEvent(event);
 }
 
 BrowserMainWindow *BrowserMainWindow::parentWindow(QWidget *widget)

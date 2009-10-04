@@ -723,7 +723,8 @@ void WebView::keyPressEvent(QKeyEvent *event)
         event->accept();
         break;
     default:
-        break;
+        QWebView::keyPressEvent(event);
+        return;
     }
 #endif
     QWebView::keyPressEvent(event);
