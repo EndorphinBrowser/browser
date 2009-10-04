@@ -133,6 +133,8 @@ void SettingsDialog::loadDefaults()
     filterTrackingCookiesCheckbox->setChecked(false);
 
     autoFillPasswordFormsCheckBox->setChecked(false);
+    minimFontSizeCheckBox->setChecked(false);
+    minimumFontSizeSpinBox->setValue(9);
 }
 
 void SettingsDialog::loadFromSettings()
@@ -191,6 +193,10 @@ void SettingsDialog::loadFromSettings()
     enableImages->setChecked(settings.value(QLatin1String("enableImages"), enableImages->isChecked()).toBool());
     userStyleSheet->setText(QString::fromUtf8(settings.value(QLatin1String("userStyleSheet")).toUrl().toEncoded()));
     clickToFlash->setChecked(settings.value(QLatin1String("enableClickToFlash"), clickToFlash->isChecked()).toBool());
+    int minimumFontSize = settings.value(QLatin1String("minimumFontSize"), 0).toInt();
+    minimFontSizeCheckBox->setChecked(minimumFontSize != 0);
+    if (minimumFontSize != 0)
+        minimumFontSizeSpinBox->setValue(minimumFontSize);
     settings.endGroup();
 
     // Privacy
@@ -325,6 +331,11 @@ void SettingsDialog::saveToSettings()
     else
         settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromEncoded(userStyleSheetString.toUtf8()));
     settings.setValue(QLatin1String("enableClickToFlash"), clickToFlash->isChecked());
+
+    if (minimFontSizeCheckBox->isChecked())
+        settings.setValue(QLatin1String("minimumFontSize"), minimumFontSizeSpinBox->value());
+    else
+        settings.setValue(QLatin1String("minimumFontSize"), 0);
     settings.endGroup();
 
     // Privacy
