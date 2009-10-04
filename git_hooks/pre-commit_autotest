@@ -20,7 +20,7 @@ for file in `git diff-index --name-only HEAD | grep .cpp` ; do
 
         tempfoo=`basename $0`
         TMPFILE=`mktemp -t ${tempfoo}.XXXXXXXXXX` || exit 1
-        (cd "$dir/../../autotests/$file/"; $QMAKE; make --quiet; ./$autotest >> $TMPFILE)
+        (cd "$dir/../../autotests/$file/"; $QMAKE; make --quiet $MAKE_FLAGS; ./$autotest >> $TMPFILE)
         output=`cat $TMPFILE | grep ' failed,' | sed -e 's/.*passed, //g' -e 's/ failed.*//g'`
         if [ "${output}" != "0" ] ; then
             echo "Autotests failed for $file, please fix before committing."
