@@ -703,6 +703,8 @@ void WebView::keyPressEvent(QKeyEvent *event)
         }
     }
 #endif
+
+#if QT_VERSION < 0x040600
     switch (event->key()) {
     case Qt::Key_Back:
         pageAction(WebPage::Back)->trigger();
@@ -721,8 +723,10 @@ void WebView::keyPressEvent(QKeyEvent *event)
         event->accept();
         break;
     default:
-        QWebView::keyPressEvent(event);
+        break;
     }
+#endif
+    QWebView::keyPressEvent(event);
 }
 
 #if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
