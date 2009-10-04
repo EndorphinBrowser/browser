@@ -849,7 +849,6 @@ void TabWidget::loadString(const QString &string, OpenUrlIn tab)
         return;
 
     QUrl url = guessUrlFromString(string);
-    currentLocationBar()->setText(QString::fromUtf8(url.toEncoded()));
     loadUrl(url, tab);
 }
 
@@ -974,8 +973,10 @@ void TabWidget::loadUrl(const QUrl &url, OpenUrlIn tab, const QString &title)
     if (!url.isValid())
         return;
     WebView *webView = getView(tab, currentWebView());
-    if (webView)
+    if (webView) {
+        locationBar(webViewIndex(webView))->setText(QString::fromUtf8(url.toEncoded()));
         webView->loadUrl(url, title);
+    }
 }
 
 /*
