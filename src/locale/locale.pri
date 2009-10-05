@@ -24,6 +24,7 @@ TRANSLATIONS += \
     nb_NO.ts \
     nl_NL.ts \
     pl_PL.ts \
+    pt_PT.ts \
     pt_BR.ts \
     ru_RU.ts \
     sk_SK.ts \
