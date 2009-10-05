@@ -1,3 +1,29 @@
+0.10.1
+The major issues:
+    Issue: 666 Sites were showing a "SSL handshake failure". With the new NetworkAccessManagerProxy the signals were being sent to the proxy and not the primary networkaccessmanager.
+    Issue: 683: Arora crashes when using privacy mode.
+	When switching to private mode the primary networkaccessmanagers swaps cookiejar's which caused a segfault. Introduce a CookieJarProxy class which will pass the cookie requests to the primary networkaccessmanager's cookiejar.
+
+Translations:
+    Add Portuguese translation from Américo Monteiro <a_monteiro@netcabo.pt>
+    Updated Turkish translation from Mehmet Nur Olcay <mnurolcay@gmail.com>
+    Issue: 682,677 Fix several FR spelling mistakes.
+
+Fixed Issues:
+    Issue: 79 Only tab down the completer when the popup is visible.
+    Issue: 221 When using Qt 4.6 hardcode a webpage to have a white background even when using a dark theme.
+    Issue: 472 Set the url on the location bar that matches the webview that we are loading the url in, not in the current location bar which might not be the correct one.
+    Issue: 637 Startup Crash with Qt 4.5.0 (not with any other version)
+    Issue: 679 Selecting Show only one close button instead of one for each tab requires an application restart to be applied.
+    Issue: 676 Fix openstreetmap.org's login saving and improve the Wallet password dialog when finding the login name.
+	Rather than using the document.form[0].name use document.form[0].elements["name"] this allows the name to contain things such as []'s without causing a problem.
+
+Other issues / changes
+    Add support for the home, favorites, search, and openurl multimedia keys found on some keyboards
+    Turn on AutoFill by default
+    Remove the accidental 100MB limit on the disk cache size in the settings dialog.
+    Make source viewer remember the window size and not block access to the main window
+
 0.10.0
 Interface
 - Issue #24: Add support for AdBlock
