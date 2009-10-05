@@ -393,10 +393,6 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     if (size.isValid())
         resize(size);
 
-#if defined(Q_WS_MAC)
-    m_bookmarksToolbarFrame->setVisible(showBookmarksBar);
-#endif
-
     if (maximized)
         setWindowState(windowState() | Qt::WindowMaximized);
     if (fullScreen) {
@@ -427,6 +423,10 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     } else {
         QMainWindow::restoreState(qMainWindowState);
     }
+
+#if defined(Q_WS_MAC)
+    m_bookmarksToolbarFrame->setVisible(m_bookmarksToolbar->isVisible());
+#endif
 
     return true;
 }
