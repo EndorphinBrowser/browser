@@ -107,7 +107,7 @@ void tst_AdBlockManager::adblockmanager()
     manager.addSubscription((AdBlockSubscription*)0);
     QVERIFY(manager.customRules());
     QVERIFY(manager.instance() != (AdBlockManager*)0);
-    QCOMPARE(manager.isEnabled(), false);
+    QCOMPARE(manager.isEnabled(), true);
     manager.load();
     QVERIFY(manager.network());
     QVERIFY(manager.page());

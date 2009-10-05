@@ -48,7 +48,7 @@ AdBlockManager *AdBlockManager::s_adBlockManager = 0;
 AdBlockManager::AdBlockManager(QObject *parent)
     : QObject(parent)
     , m_loaded(false)
-    , m_enabled(false)
+    , m_enabled(true)
     , m_saveTimer(new AutoSaver(this))
     , m_adBlockDialog(0)
     , m_adBlockNetwork(0)
