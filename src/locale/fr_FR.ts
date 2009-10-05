@@ -633,7 +633,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Clear Private Data</source>
-        <translation>&amp;Effacer les informations privée</translation>
+        <translation>&amp;Effacer les informations privées</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Delete</source>
@@ -748,7 +748,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
-        <translation>Les pages visités ne sont pas ajoutées à l&apos;historique.</translation>
+        <translation>Les pages visitées ne sont pas ajoutées à l&apos;historique.</translation>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
@@ -794,7 +794,7 @@ Do you want to reload all pages?</source>
     <name>ClearPrivateData</name>
     <message>
         <source>Clear Private Data</source>
-        <translation>Effacer les informations privées</translation>
+        <translation>Effacer les informations privéess</translation>
     </message>
     <message>
         <source>Clear the following items:</source>
@@ -1661,7 +1661,7 @@ Voulez-vous ignorer ces erreurs?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation>Langues préférés pour visualiser les pages web:</translation>
+        <translation>Langues préférées pour visualiser les pages web:</translation>
     </message>
     <message>
         <source>Block Popup Windows</source>

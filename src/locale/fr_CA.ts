@@ -856,7 +856,7 @@ Do you want to reload all pages?</source>
     <name>ClearPrivateData</name>
     <message>
         <source>Clear Private Data</source>
-        <translation>Effacer les informations privées</translation>
+        <translation>Effacer les informations privéess</translation>
     </message>
     <message>
         <source>Clear the following items:</source>
@@ -888,7 +888,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Clear &amp;Private Data</source>
-        <translation>Effacer les informations privées</translation>
+        <translation>Effacer les informations privéess</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
