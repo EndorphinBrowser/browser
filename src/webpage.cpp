@@ -194,6 +194,11 @@ void WebPage::populateNetworkRequest(QNetworkRequest &request)
 
 void WebPage::addExternalBinding(QWebFrame *frame)
 {
+#if QT_VERSION < 0x040600
+    QWebSettings *defaultSettings = QWebSettings::globalSettings();
+    if (!defaultSettings->testAttribute(QWebSettings::JavascriptEnabled))
+        return;
+#endif
     if (!m_javaScriptExternalObject)
         m_javaScriptExternalObject = new JavaScriptExternalObject(this);
 
