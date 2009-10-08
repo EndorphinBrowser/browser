@@ -114,6 +114,11 @@ WebPage::WebPage(QObject *parent)
     loadSettings();
 }
 
+WebPage::~WebPage()
+{
+    setNetworkAccessManager(0);
+}
+
 WebPluginFactory *WebPage::webPluginFactory()
 {
     if (!s_webPluginFactory)

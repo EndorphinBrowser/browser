@@ -74,6 +74,8 @@ signals:
 
 public:
     WebPage(QObject *parent = 0);
+    ~WebPage();
+
     void loadSettings();
 
     static WebPluginFactory *webPluginFactory();
