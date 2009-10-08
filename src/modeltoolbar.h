@@ -38,7 +38,6 @@ signals:
 public:
     ModelToolBar(QWidget *parent = 0);
     ModelToolBar(const QString &title, QWidget *parent = 0);
-    ~ModelToolBar();
 
     void setModel(QAbstractItemModel *model);
     QAbstractItemModel *model() const;

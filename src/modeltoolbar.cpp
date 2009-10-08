@@ -45,10 +45,6 @@ ModelToolBar::ModelToolBar(const QString &title, QWidget *parent)
     setAcceptDrops(true);
 }
 
-ModelToolBar::~ModelToolBar()
-{
-}
-
 void ModelToolBar::setModel(QAbstractItemModel *model)
 {
     if (m_model) {
