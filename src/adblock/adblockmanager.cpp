@@ -52,6 +52,7 @@ AdBlockManager::AdBlockManager(QObject *parent)
     , m_saveTimer(new AutoSaver(this))
     , m_adBlockDialog(0)
     , m_adBlockNetwork(0)
+    , m_adBlockPage(0)
 {
     connect(this, SIGNAL(rulesChanged()),
             m_saveTimer, SLOT(changeOccurred()));
