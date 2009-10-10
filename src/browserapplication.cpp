@@ -282,7 +282,9 @@ void BrowserApplication::quitBrowser()
         }
 
         if (tabCount > 1) {
-            int ret = QMessageBox::warning(mainWindow(), QString(),
+            QWidget *widget = mainWindow();
+            QApplication::alert(widget);
+            int ret = QMessageBox::warning(widget, QString(),
                                tr("There are %1 windows and %2 tabs open\n"
                                   "Do you want to quit anyway?").arg(m_mainWindows.count()).arg(tabCount),
                                QMessageBox::Yes | QMessageBox::No,

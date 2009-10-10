@@ -1298,6 +1298,7 @@ void BrowserMainWindow::closeEvent(QCloseEvent *event)
         settings.beginGroup(QLatin1String("tabs"));
         bool confirm = settings.value(QLatin1String("confirmClosingMultipleTabs"), true).toBool();
         if (confirm) {
+            QApplication::alert(this);
             int ret = QMessageBox::warning(this, QString(),
                                            tr("Are you sure you want to close the window?"
                                               "  There are %1 tabs open").arg(m_tabWidget->count()),
