@@ -105,15 +105,12 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("arora-browser.org"));
     QCoreApplication::setApplicationName(QLatin1String("Arora"));
-    QString version = QLatin1String("0.10.1");
-    QString gitVersion = QLatin1String(GITCHANGENUMBER);
-    if (gitVersion != QLatin1String("0")
-        && !gitVersion.isEmpty())
-        version += QString(QLatin1String(" (Git: %1 %2)"))
-                    .arg(QLatin1String(GITCHANGENUMBER))
-                    .arg(QLatin1String(GITVERSION));
+    QCoreApplication::setApplicationVersion(QLatin1String("0.10.1"
+#ifdef GITVERSION
+    " (Git: " GITCHANGENUMBER " " GITVERSION ")"
+#endif
+    ));
 
-    QCoreApplication::setApplicationVersion(version);
 #ifndef AUTOTESTS
     connect(this, SIGNAL(messageReceived(QLocalSocket *)),
             this, SLOT(messageReceived(QLocalSocket *)));
