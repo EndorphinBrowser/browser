@@ -830,6 +830,7 @@ void BrowserMainWindow::setupMenu()
     m_toolsMenu->addAction(m_toolsEnableInspectorAction);
 
     m_toolsSearchManagerAction = new QAction(m_toolsMenu);
+    m_toolsSearchManagerAction->setMenuRole(QAction::NoRole);
     connect(m_toolsSearchManagerAction, SIGNAL(triggered()),
             this, SLOT(showSearchDialog()));
     m_toolsMenu->addAction(m_toolsSearchManagerAction);
@@ -840,7 +841,8 @@ void BrowserMainWindow::setupMenu()
     m_toolsMenu->addAction(m_adBlockDialogAction);
 
     m_toolsMenu->addSeparator();
-    m_toolsPreferencesAction = new QAction(m_editMenu);
+    m_toolsPreferencesAction = new QAction(m_toolsMenu);
+    m_toolsPreferencesAction->setMenuRole(QAction::PreferencesRole);
     connect(m_toolsPreferencesAction, SIGNAL(triggered()),
             this, SLOT(preferences()));
     m_toolsMenu->addAction(m_toolsPreferencesAction);
