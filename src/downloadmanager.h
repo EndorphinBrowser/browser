@@ -119,7 +119,10 @@ private:
     bool m_startedSaving;
     bool m_finishedDownloading;
     bool m_gettingFileName;
+    bool m_canceledFileSelect;
     QTime m_lastProgressTime;
+
+    friend class DownloadManager;
 };
 
 class AutoSaver;

@@ -97,6 +97,7 @@ DownloadItem::DownloadItem(QNetworkReply *reply, bool requestFileName, QWidget *
     , m_startedSaving(false)
     , m_finishedDownloading(false)
     , m_gettingFileName(false)
+    , m_canceledFileSelect(false)
 {
     setupUi(this);
     QPalette p = downloadInfoLabel->palette();
@@ -171,6 +172,7 @@ void DownloadItem::getFileName()
             progressBar->setVisible(false);
             stop();
             fileNameLabel->setText(tr("Download canceled: %1").arg(QFileInfo(defaultFileName).fileName()));
+            m_canceledFileSelect = true;
             return;
         }
         QFileInfo fileInfo = QFileInfo(fileName);
@@ -536,6 +538,9 @@ void DownloadManager::handleUnsupportedContent(QNetworkReply *reply, bool reques
 
     DownloadItem *item = new DownloadItem(reply, requestFileName, this);
     addItem(item);
+
+    if (item->m_canceledFileSelect)
+        return;
 
     if (!isVisible())
         show();
