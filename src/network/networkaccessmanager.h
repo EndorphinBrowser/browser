@@ -65,6 +65,7 @@
 
 #include <qnetworkaccessmanager.h>
 #include <qsslconfiguration.h>
+#include <qhash.h>
 #include "networkaccessmanagerproxy.h"
 
 class SchemeAccessHandler;
