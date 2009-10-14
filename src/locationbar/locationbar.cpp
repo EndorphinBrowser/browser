@@ -101,14 +101,18 @@ void LocationBar::paintEvent(QPaintEvent *event)
     // set the progress bar
     if (m_webView) {
         int progress = m_webView->progress();
-        QColor loadingColor = QColor(116, 192, 250);
-        if (p.color(QPalette::Text).value() >= 128)
-            loadingColor = defaultBaseColor.darker(200);
+        if (progress == 0) {
+            p.setBrush(QPalette::Base, backgroundColor);
+        } else {
+            QColor loadingColor = QColor(116, 192, 250);
+            if (p.color(QPalette::Text).value() >= 128)
+                loadingColor = defaultBaseColor.darker(200);
 
-        QLinearGradient gradient(0, 0, width(), 0);
-        gradient.setColorAt(0, loadingColor);
-        gradient.setColorAt(((double)progress)/100, backgroundColor);
-        p.setBrush(QPalette::Base, gradient);
+            QLinearGradient gradient(0, 0, width(), 0);
+            gradient.setColorAt(0, loadingColor);
+            gradient.setColorAt(((double)progress)/100, backgroundColor);
+            p.setBrush(QPalette::Base, gradient);
+        }
         setPalette(p);
     }
 
