@@ -50,7 +50,6 @@ private slots:
 
 private:
     QPointer<WebView> m_webView;
-    QColor m_defaultBaseColor;
 
     LocationBarSiteIcon *m_siteIcon;
     PrivacyIndicator *m_privacyIndicator;

@@ -61,8 +61,6 @@ LocationBar::LocationBar(QWidget *parent)
 
     updateTextMargins();
     setUpdatesEnabled(true);
-
-    m_defaultBaseColor = palette().color(QPalette::Base);
 }
 
 void LocationBar::setWebView(WebView *webView)
@@ -92,7 +90,8 @@ void LocationBar::webViewUrlChanged(const QUrl &url)
 void LocationBar::paintEvent(QPaintEvent *event)
 {
     QPalette p = palette();
-    QColor backgroundColor = m_defaultBaseColor;
+    QColor defaultBaseColor = QApplication::palette().color(QPalette::Base);
+    QColor backgroundColor = defaultBaseColor;
     if (m_webView && m_webView->url().scheme() == QLatin1String("https")
         && p.color(QPalette::Text).value() < 128) {
         QColor lightYellow(248, 248, 210);
@@ -104,7 +103,7 @@ void LocationBar::paintEvent(QPaintEvent *event)
         int progress = m_webView->progress();
         QColor loadingColor = QColor(116, 192, 250);
         if (p.color(QPalette::Text).value() >= 128)
-            loadingColor = m_defaultBaseColor.darker(200);
+            loadingColor = defaultBaseColor.darker(200);
 
         QLinearGradient gradient(0, 0, width(), 0);
         gradient.setColorAt(0, loadingColor);
