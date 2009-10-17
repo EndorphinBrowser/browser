@@ -810,6 +810,7 @@ bool DownloadModel::removeRows(int row, int count, const QModelIndex &parent)
         }
     }
     m_downloadManager->m_autoSaver->changeOccurred();
+    m_downloadManager->updateItemCount();
     return true;
 }
 
