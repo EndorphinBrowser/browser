@@ -175,6 +175,7 @@ private:
     void addItem(DownloadItem *item);
     void updateItemCount();
     void load();
+    bool externalDownload(const QUrl &url);
 
     AutoSaver *m_autoSaver;
     DownloadModel *m_model;

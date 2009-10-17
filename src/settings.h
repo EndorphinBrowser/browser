@@ -84,6 +84,7 @@ private slots:
     void showExceptions();
 
     void chooseDownloadDirectory();
+    void chooseDownloadProgram();
     void chooseFont();
     void chooseFixedFont();
     void chooseAcceptLanguage();

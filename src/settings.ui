@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
-    <height>457</height>
+    <width>651</width>
+    <height>464</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -195,6 +195,27 @@
              <widget class="QPushButton" name="downloadDirectoryButton">
               <property name="text">
                <string>Choose Directory...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QCheckBox" name="externalDownloadButton">
+              <property name="text">
+               <string>Use this external download program:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="externalDownloadPath"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="externalDownloadBrowse">
+              <property name="text">
+               <string>Choose Program...</string>
               </property>
              </widget>
             </item>
@@ -1156,6 +1177,38 @@
     <hint type="destinationlabel">
      <x>203</x>
      <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>externalDownloadButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>externalDownloadPath</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>161</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>388</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>externalDownloadButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>externalDownloadBrowse</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>161</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>554</x>
+     <y>315</y>
     </hint>
    </hints>
   </connection>

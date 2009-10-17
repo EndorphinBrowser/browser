@@ -73,10 +73,11 @@
 #include <qfiledialog.h>
 #include <qfileiconprovider.h>
 #include <qheaderview.h>
-#include <qmetaobject.h>
 #include <qmessagebox.h>
-#include <qsettings.h>
+#include <qmetaobject.h>
 #include <qmimedata.h>
+#include <qprocess.h>
+#include <qsettings.h>
 
 #include <qdebug.h>
 
@@ -515,9 +516,25 @@ bool DownloadManager::allowQuit()
     return true;
 }
 
+bool DownloadManager::externalDownload(const QUrl &url)
+{
+    QSettings settings;
+    settings.beginGroup(QLatin1String("downloadmanager"));
+    if (!settings.value(QLatin1String("external"), false).toBool())
+        return false;
+
+    QString program = settings.value(QLatin1String("externalPath")).toString();
+    if (program.isEmpty())
+        return false;
+
+    return QProcess::startDetached(program, QStringList() << url.toString());
+}
+
 void DownloadManager::download(const QNetworkRequest &request, bool requestFileName)
 {
     if (request.url().isEmpty())
+        return;
+    if (externalDownload(request.url()))
         return;
     handleUnsupportedContent(m_manager->get(request), requestFileName);
 }
@@ -526,6 +543,9 @@ void DownloadManager::handleUnsupportedContent(QNetworkReply *reply, bool reques
 {
     if (!reply || reply->url().isEmpty())
         return;
+    if (externalDownload(reply->url()))
+        return;
+
     QVariant header = reply->header(QNetworkRequest::ContentLengthHeader);
     bool ok;
     int size = header.toInt(&ok);
