@@ -393,6 +393,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="toolTip">
+             <string>If you enable this option, no flash objects will be loaded by default. Instead, each will be replaced by a button, allowing you to control which objects to load, and which not. </string>
+            </property>
             <property name="text">
              <string>Use ClickToFlash on flash plugins</string>
             </property>
