@@ -268,7 +268,10 @@ void ToolbarSearch::searchNow()
     }
 
     QUrl searchUrl = engine->searchUrl(searchText);
-    emit search(searchUrl);
+    TabWidget::OpenUrlIn tab = TabWidget::CurrentTab;
+    if (qApp->keyboardModifiers() == Qt::AltModifier)
+        tab = TabWidget::NewSelectedTab;
+    emit search(searchUrl, tab);
 }
 
 void ToolbarSearch::newSuggestions(const QStringList &suggestions)

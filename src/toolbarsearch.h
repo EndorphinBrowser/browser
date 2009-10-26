@@ -65,6 +65,8 @@
 
 #include "searchlineedit.h"
 
+#include "tabwidget.h"
+
 class AutoSaver;
 class OpenSearchManager;
 class QCompleter;
@@ -78,7 +80,7 @@ class ToolbarSearch : public SearchLineEdit
     Q_OBJECT
 
 signals:
-    void search(const QUrl &url);
+    void search(const QUrl &url, TabWidget::OpenUrlIn tab);
 
 public:
     ToolbarSearch(QWidget *parent = 0);
