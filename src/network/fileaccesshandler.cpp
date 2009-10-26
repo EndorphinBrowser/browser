@@ -185,7 +185,7 @@ void FileAccessReply::listDirectory()
         dirlist += row.arg(classes).arg(link.arg(className).arg(addr).arg(list[i].fileName())).arg(size).arg(modified);
     }
 
-    html = html.arg(classes).arg(dirlist);
+    html = html.arg(classes).arg(dirlist).arg(tr("Show Hidden Files"));
 
     // Save result to buffer
     QTextStream stream(&buffer);
