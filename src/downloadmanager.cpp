@@ -527,7 +527,7 @@ bool DownloadManager::externalDownload(const QUrl &url)
     if (program.isEmpty())
         return false;
 
-    return QProcess::startDetached(program, QStringList() << url.toString());
+    return QProcess::startDetached(program, QStringList() << QString::fromUtf8(url.toEncoded()));
 }
 
 void DownloadManager::download(const QNetworkRequest &request, bool requestFileName)
