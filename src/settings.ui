@@ -1139,11 +1139,11 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>76</x>
+     <x>104</x>
      <y>125</y>
     </hint>
     <hint type="destinationlabel">
-     <x>132</x>
+     <x>162</x>
      <y>154</y>
     </hint>
    </hints>
@@ -1159,7 +1159,7 @@
      <y>282</y>
     </hint>
     <hint type="destinationlabel">
-     <x>831</x>
+     <x>620</x>
      <y>292</y>
     </hint>
    </hints>
@@ -1171,12 +1171,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>163</y>
+     <x>31</x>
+     <y>153</y>
     </hint>
     <hint type="destinationlabel">
-     <x>203</x>
-     <y>172</y>
+     <x>189</x>
+     <y>151</y>
     </hint>
    </hints>
   </connection>
@@ -1209,6 +1209,70 @@
     <hint type="destinationlabel">
      <x>554</x>
      <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>externalDownloadButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>downloadAsk</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>102</x>
+     <y>311</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>105</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>externalDownloadButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>downloadDestination</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>170</x>
+     <y>313</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>169</x>
+     <y>285</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>externalDownloadButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>downloadsLocation</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>198</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>386</x>
+     <y>279</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>externalDownloadButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>downloadDirectoryButton</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>194</x>
+     <y>311</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>569</x>
+     <y>276</y>
     </hint>
    </hints>
   </connection>
