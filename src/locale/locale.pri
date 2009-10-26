@@ -22,7 +22,7 @@ TRANSLATIONS += \
     ja_JP.ts \
     ms.ts \
     nb_NO.ts \
-    nl_NL.ts \
+    nl.ts \
     pl_PL.ts \
     pt_PT.ts \
     pt_BR.ts \
