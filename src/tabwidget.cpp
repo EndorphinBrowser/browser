@@ -618,7 +618,10 @@ void TabWidget::closeTab(int index)
         m_recentlyClosedTabsAction->setEnabled(true);
         m_recentlyClosedTabs.prepend(tab->url());
 #if QT_VERSION >= 0x040600
-        m_recentlyClosedTabsHistory.prepend(tab->history()->saveState());
+        QByteArray tabHistory;
+        QDataStream tabHistoryStream(&tabHistory, QIODevice::WriteOnly);
+        tabHistoryStream << tab->history();
+        m_recentlyClosedTabsHistory.prepend(tabHistory);
 #else
         m_recentlyClosedTabsHistory.prepend(QByteArray());
 #endif
@@ -859,7 +862,11 @@ QUrl TabWidget::guessUrlFromString(const QString &string)
     if (url.isValid())
         return url;
 
+#if QT_VERSION >= 0x040600
+    url = QUrl::fromUserInput(string);
+#else
     url = WebView::guessUrlFromString(string);
+#endif
 
     if (url.scheme() == QLatin1String("about")
         && url.path() == QLatin1String("home"))
@@ -1066,10 +1073,14 @@ QByteArray TabWidget::saveState() const
         if (WebView *tab = webView(i)) {
             tabs.append(QString::fromUtf8(tab->url().toEncoded()));
 #if QT_VERSION >= 0x040600
-            if (tab->history()->count() != 0)
-                tabsHistory.append(tab->history()->saveState());
-            else
-                tabsHistory.append(QByteArray());
+            if (tab->history()->count() != 0) {
+                QByteArray tabHistory;
+                QDataStream tabHistoryStream(&tabHistory, QIODevice::WriteOnly);
+                tabHistoryStream << tab->history();
+                tabsHistory.append(tabHistory);
+            } else {
+                tabsHistory << QByteArray();
+            }
 #else
             tabsHistory.append(QByteArray());
 #endif
@@ -1131,8 +1142,10 @@ bool TabWidget::restoreState(const QByteArray &state)
 void TabWidget::createTab(const QByteArray &historyState, TabWidget::OpenUrlIn tab)
 {
 #if QT_VERSION >= 0x040600
-    if (WebView *webView = getView(tab, currentWebView()))
-        webView->history()->restoreState(historyState);
+    if (WebView *webView = getView(tab, currentWebView())) {
+        QDataStream historyStream(historyState);
+        historyStream >> *webView->history();
+    }
 #else
     qWarning() << "Warning: TabWidget::createTab should not be called, but it is...";
     Q_UNUSED(historyState);

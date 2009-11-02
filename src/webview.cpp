@@ -439,7 +439,7 @@ void WebView::addSearchEngine()
 
     QUrl searchUrl(page()->mainFrame()->baseUrl().resolved(QUrl(formElement.attribute(QLatin1String("action")))));
     QMap<QString, QString> searchEngines;
-    QList<QWebElement> inputFields = formElement.findAll(QLatin1String("input"));
+    QWebElementCollection inputFields = formElement.findAll(QLatin1String("input"));
     foreach (QWebElement inputField, inputFields) {
         QString type = inputField.attribute(QLatin1String("type"), QLatin1String("text"));
         QString name = inputField.attribute(QLatin1String("name"));
@@ -461,14 +461,14 @@ void WebView::addSearchEngine()
         }
     }
 
-    QList<QWebElement> selectFields = formElement.findAll(QLatin1String("select"));
+    QWebElementCollection selectFields = formElement.findAll(QLatin1String("select"));
     foreach (QWebElement selectField, selectFields) {
         QString name = selectField.attribute(QLatin1String("name"));
         int selectedIndex = selectField.evaluateJavaScript(QLatin1String("this.selectedIndex")).toInt();
         if (selectedIndex == -1)
             continue;
 
-        QList<QWebElement> options = selectField.findAll(QLatin1String("option"));
+        QWebElementCollection options = selectField.findAll(QLatin1String("option"));
         QString value = options.at(selectedIndex).toPlainText();
         searchUrl.addQueryItem(name, value);
     }
@@ -485,8 +485,8 @@ void WebView::addSearchEngine()
     }
 
     QString engineName;
-    QList<QWebElement> labels = formElement.findAll(QString(QLatin1String("label[for=\"%1\"]")).arg(elementName));
-    if (!labels.isEmpty())
+    QWebElementCollection labels = formElement.findAll(QString(QLatin1String("label[for=\"%1\"]")).arg(elementName));
+    if (labels.count() > 0)
         engineName = labels.at(0).toPlainText();
 
     engineName = QInputDialog::getText(this, tr("Engine name"), tr("Type in a name for the engine"),
@@ -824,7 +824,7 @@ void WebView::showAccessKeys()
     // Priority first goes to elements with accesskey attributes
     QList<QWebElement> alreadyLabeled;
     foreach (const QString &elementType, supportedElement) {
-        QList<QWebElement> result = page()->mainFrame()->findAllElements(elementType);
+        QList<QWebElement> result = page()->mainFrame()->findAllElements(elementType).toList();
         foreach (const QWebElement &element, result) {
             const QRect geometry = element.geometry();
             if (geometry.size().isEmpty()
@@ -853,7 +853,7 @@ void WebView::showAccessKeys()
     // Pick an access key first from the letters in the text and then from the
     // list of unused access keys
     foreach (const QString &elementType, supportedElement) {
-        QList<QWebElement> result = page()->mainFrame()->findAllElements(elementType);
+        QWebElementCollection result = page()->mainFrame()->findAllElements(elementType);
         foreach (const QWebElement &element, result) {
             const QRect geometry = element.geometry();
             if (unusedKeys.isEmpty()

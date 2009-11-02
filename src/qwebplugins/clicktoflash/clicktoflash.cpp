@@ -116,7 +116,7 @@ void ClickToFlash::load(bool loadAll)
         QWebFrame *frame = frames.takeFirst();
         QWebElement docElement = frame->documentElement();
 
-        QList<QWebElement> elements;
+        QWebElementCollection elements;
         elements.append(docElement.findAll(selector.arg(QLatin1String("object"))));
         elements.append(docElement.findAll(selector.arg(QLatin1String("embed"))));
 

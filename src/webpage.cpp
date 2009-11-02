@@ -133,7 +133,7 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
 #if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     QUrl baseUrl = mainFrame()->baseUrl();
 
-    QList<QWebElement> linkElements = mainFrame()->findAllElements(QLatin1String("html > head > link"));
+    QWebElementCollection linkElements = mainFrame()->findAllElements(QLatin1String("html > head > link"));
 
     foreach (const QWebElement &linkElement, linkElements) {
         QString rel = linkElement.attribute(QLatin1String("rel"));

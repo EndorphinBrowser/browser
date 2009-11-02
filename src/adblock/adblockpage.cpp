@@ -85,7 +85,7 @@ void AdBlockPage::checkRule(const AdBlockRule *rule, QWebPage *page, const QStri
     Q_UNUSED(page);
 #if QT_VERSION >= 0x040600
     QWebElement document = page->mainFrame()->documentElement();
-    QList<QWebElement> elements = document.findAll(selectorQuery);
+    QWebElementCollection elements = document.findAll(selectorQuery);
 #if defined(ADBLOCKPAGE_DEBUG)
     if (elements.count() != 0)
         qDebug() << "AdBlockPage::" << __FUNCTION__ << "blocking" << elements.count() << "items" << selectorQuery << elements.count() << "rule:" << rule->filter();
