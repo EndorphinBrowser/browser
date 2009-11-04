@@ -981,7 +981,9 @@ void TabWidget::loadUrl(const QUrl &url, OpenUrlIn tab, const QString &title)
         return;
     WebView *webView = getView(tab, currentWebView());
     if (webView) {
-        locationBar(webViewIndex(webView))->setText(QString::fromUtf8(url.toEncoded()));
+        int index = webViewIndex(webView);
+        if (index != -1)
+            locationBar(index)->setText(QString::fromUtf8(url.toEncoded()));
         webView->loadUrl(url, title);
     }
 }
