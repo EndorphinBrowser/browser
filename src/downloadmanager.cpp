@@ -527,7 +527,15 @@ bool DownloadManager::externalDownload(const QUrl &url)
     if (program.isEmpty())
         return false;
 
-    return QProcess::startDetached(program, QStringList() << QString::fromUtf8(url.toEncoded()));
+    // Split program at every space not inside double quotes
+    QRegExp regex(QLatin1String("\"([^\"]+)\"|([^ ]+)"));
+    QStringList args;
+    for (int pos = 0; (pos = regex.indexIn(program, pos)) != -1; pos += regex.matchedLength())
+        args << regex.cap(1) + regex.cap(2);
+    if (args.isEmpty())
+        return false;
+
+    return QProcess::startDetached(args.takeFirst(), args << QString::fromUtf8(url.toEncoded()));
 }
 
 void DownloadManager::download(const QNetworkRequest &request, bool requestFileName)

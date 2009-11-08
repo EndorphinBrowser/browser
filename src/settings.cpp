@@ -484,6 +484,8 @@ void SettingsDialog::chooseDownloadDirectory()
 void SettingsDialog::chooseDownloadProgram()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Choose Program"), externalDownloadPath->text());
+    if (fileName.contains(QLatin1Char(' ')))
+        fileName = QString(QLatin1String("\"%1\"")).arg(fileName);
     externalDownloadPath->setText(fileName);
 }
 
