@@ -219,8 +219,8 @@ void TabBar::closeOtherTabs()
 
 void TabBar::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if (!childAt(event->pos())
-        && event->button() == Qt::LeftButton) {
+    if (event->button() == Qt::LeftButton
+        && tabAt(event->pos()) == -1) {
         emit newTab();
         return;
     }
