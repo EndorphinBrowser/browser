@@ -329,6 +329,24 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
     return addedCookies;
 }
 
+QList<QNetworkCookie> CookieJar::cookies() const
+{
+    CookieJar *that = const_cast<CookieJar*>(this);
+    if (!m_loaded)
+        that->load();
+
+    return allCookies();
+}
+
+void CookieJar::setCookies(const QList<QNetworkCookie> &cookies)
+{
+    if (!m_loaded)
+        load();
+    setAllCookies(cookies);
+    m_saveTimer->changeOccurred();
+    emit cookiesChanged();
+}
+
 bool CookieJar::isOnDomainList(const QStringList &rules, const QString &domain)
 {
     // Either the rule matches the domain exactly

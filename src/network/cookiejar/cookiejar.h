@@ -70,7 +70,6 @@
 class AutoSaver;
 class CookieJar : public NetworkCookieJar
 {
-    friend class CookieModel;
     Q_OBJECT
     Q_PROPERTY(AcceptPolicy acceptPolicy READ acceptPolicy WRITE setAcceptPolicy)
     Q_PROPERTY(KeepPolicy keepPolicy READ keepPolicy WRITE setKeepPolicy)
@@ -109,6 +108,9 @@ public:
 
     QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
     bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
+
+    QList<QNetworkCookie> cookies() const;
+    void setCookies(const QList<QNetworkCookie> &cookies);
 
     AcceptPolicy acceptPolicy() const;
     void setAcceptPolicy(AcceptPolicy policy);
