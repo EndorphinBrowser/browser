@@ -156,7 +156,7 @@ void WebView::loadSettings()
     m_page->loadSettings();
 }
 
-#if !(QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK))
+#if !(QT_VERSION >= 0x040600)
 #include <qdir.h>
 // DO NOT CHANGE ANYTHING IN THIS FUNCTION
 // You want to change TabWidget::guessUrlFromString()
