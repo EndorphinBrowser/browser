@@ -1,3 +1,12 @@
+0.10.2
+The major issues:
+    - When compiling with Qt 4.6 Arora had been using some API that changes
+    shortly before the release of Qt 4.6.0 after an API review was done for
+    the new API in QtWebKit.  This release changes the code to build with the
+    final API that is found in Qt 4.6.0
+    - A segfault that could occur when opening a URL on a new window from the command-line.
+
+
 0.10.1
 The major issues:
     Issue: 666 Sites were showing a "SSL handshake failure". With the new NetworkAccessManagerProxy the signals were being sent to the proxy and not the primary networkaccessmanager.
