@@ -29,7 +29,11 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-size:9pt;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Autorská práva vyhrazena © 2007-2009 Benjamin C. Meyer &amp;lt;&lt;a href=&quot;mailto:ben@meyerhome.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;ben@meyerhome.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://arora-browser.org&quot;&gt;http://arora-browser.org&lt;/a&gt;</source>
@@ -52,7 +56,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Languages: in order of preference:</source>
-        <translation>Jazyky v pořadí přednosti:</translation>
+        <translation>Jazyky seřazené podle vašich preferencí:</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
@@ -64,7 +68,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Odebrat</translation>
+        <translation>&amp;Odstranit</translation>
     </message>
     <message>
         <source>Add...</source>
@@ -98,7 +102,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation>Odstranilt cizí filtry</translation>
+        <translation>Odstranit cizí filtry</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
@@ -136,7 +140,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation>Přidat tyto AdBlock cizí filtry?
+        <translation>Přidat tyto cizí AdBlock filtry?
 %1</translation>
     </message>
 </context>
@@ -148,7 +152,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Type a name for the bookmark, and choose where to keep it.</source>
-        <translation>Napiš jméno pro záložku, a vyber, kam ji uchovat.</translation>
+        <translation>Napište jméno pro záložku a vyberte, kde má být uložena.</translation>
     </message>
     <message>
         <source>Url</source>
@@ -171,18 +175,18 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Remove</source>
-        <translation>Smazat</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation>Smazat vše</translation>
+        <translation>Odstranit vše</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation>&lt;b&gt;Chceš uložit toto heslo?&lt;/b&gt;&lt;br&gt;         Pro prohlížení uložených hesel a jejich odstranění otevřete kartu AutoFill v dialogu nastavení.</translation>
+        <translation>&lt;b&gt;Chcete uložit toto heslo?&lt;/b&gt;&lt;br&gt;         Pro prohlížení uložených hesel a jejich odstranění otevřete kartu Automatické doplňování v dialogu nastavení.</translation>
     </message>
     <message>
         <source>Never for this site</source>
@@ -224,7 +228,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Smazat</translation>
+        <translation>&amp;Odstranit</translation>
     </message>
     <message>
         <source>Add Folder</source>
@@ -232,7 +236,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open in New Tab</source>
-        <translation>Otevřít v novém panelu</translation>
+        <translation>Otevřít v nové kartě</translation>
     </message>
     <message>
         <source>Edit Name</source>
@@ -248,11 +252,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Error when loading bookmarks on line %1, column %2:
 %3</source>
-        <translation>Chyba při načítání záložek na řádku %1, sloupci %2: %3</translation>
+        <translation>Chyba při načítání záložek na řádku %1, v sloupci %2: %3</translation>
     </message>
     <message>
         <source>Bookmarks Bar</source>
-        <translation>Panel záložek</translation>
+        <translation>Lišta záložek</translation>
     </message>
     <message>
         <source>Bookmarks Menu</source>
@@ -260,7 +264,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Toolbar Bookmarks</source>
-        <translation>Nástrojová lista záložek</translation>
+        <translation>Nástrojová lišta záložek</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -306,7 +310,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Remove Bookmark</source>
-        <translation>Smazat záložku</translation>
+        <translation>Odstranit záložku</translation>
     </message>
     <message>
         <source>Insert Bookmark</source>
@@ -336,7 +340,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>HTML Netscape bookmarks</source>
-        <translation>Netscape HTML záložky</translation>
+        <translation>Záložky Netscape HTML</translation>
     </message>
     <message>
         <source>htmlToXBel tool required</source>
@@ -344,11 +348,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>htmlToXBel tool, which is shipped with Arora and is needed to import HTML bookmarks, is not installed or not available in the search paths.</source>
-        <translation>nástroj htmlToXBel, který je dodáván s Arorou a je nutný k importu HTMl záložek, není nainstalován nebo není dostupný v hledaných cestách.</translation>
+        <translation>Nástroj htmlToXBel, který je dodáván s Arorou a je nutný k importu HTML záložek, není nainstalován nebo není dostupný v hledaných cestách.</translation>
     </message>
     <message>
         <source>Loading Bookmark</source>
-        <translation>Načítám záložku</translation>
+        <translation>Načítání záložky</translation>
     </message>
     <message>
         <source>Error when loading HTML bookmarks: %1
@@ -361,7 +365,7 @@ p, li { white-space: pre-wrap; }
     <name>BookmarksMenu</name>
     <message>
         <source>Open in Tabs</source>
-        <translation>Otevřít v panelech</translation>
+        <translation>Otevřít v kartách</translation>
     </message>
 </context>
 <context>
@@ -387,11 +391,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
-        <translation>Otevřít v &amp;novém panelu</translation>
+        <translation>Otevřít v &amp;nové kartě</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Smazat</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>Add Bookmark...</source>
@@ -411,7 +415,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
-        <translation>Je otevřeno %1 oken a %2 panelů
+        <translation>Je otevřeno %1 oken a %2 karet
 Přesto ukončit?</translation>
     </message>
     <message>
@@ -719,7 +723,7 @@ Přesto ukončit?</translation>
     </message>
     <message>
         <source>Are you sure you want to turn on private browsing?</source>
-        <translation>Opravdu chceš zapnout soukromé prohlížení?</translation>
+        <translation>Opravdu chcete zapnout soukromé prohlížení?</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;When private browsing in turned on, webpages are not added to the history, items are automatically removed from the Downloads window, new cookies are not stored, current cookies can&apos;t be accessed, site icons wont be stored, session wont be saved,  and searches are not addded to the pop-up menu in the Google search box.  Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
@@ -727,7 +731,7 @@ Přesto ukončit?</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
-        <translation>Opravdu chceš zavřít okno? Je tu otevřeno %1 panelů</translation>
+        <translation>Opravdu chcete zavřít okno? Je otevřeno %1 karet</translation>
     </message>
     <message>
         <source>Page Source of %1</source>
@@ -740,7 +744,8 @@ Přesto ukončit?</translation>
     <message>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
-        <translation>Webový inspektor bude fungovat pouze pro stránky načtené po jeho povolení. Chceš znovu načíst všechny stránky?</translation>
+        <translation>Webový inspektor bude fungovat pouze pro stránky načtené po jeho povolení.
+Chcete znovu načíst všechny stránky?</translation>
     </message>
     <message>
         <source>Stop loading the current page</source>
@@ -778,11 +783,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Show Bookmarks Bar</source>
-        <translation>Zobrazit panel záložek</translation>
+        <translation>Zobrazit lištu záložek</translation>
     </message>
     <message>
         <source>Hide Bookmarks Bar</source>
-        <translation>Skrýt panel záložek</translation>
+        <translation>Skrýt lištu záložek</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
@@ -870,7 +875,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation>Nastavit vyhledávací enginy...</translation>
+        <translation>Nastavit vyhledávače...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
@@ -878,7 +883,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
-        <translation>Při zapnutém soukromém prolížení budou některé akce týkající se tvého soukromí zakázány:</translation>
+        <translation>Při zapnutém soukromém prolížení budou některé akce týkající se vašeho soukromí zakázány:</translation>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
@@ -886,11 +891,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
-        <translation>Soubory jsou automaticky smazávány z okna stahování.</translation>
+        <translation>Soubory jsou automaticky odstraňovány z okna stahování.</translation>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
-        <translation>Nové cookies nejsou uloženy, ke stávajícím cookies nemůže být přistupováno.</translation>
+        <translation>Nové cookies nejsou ukládány, ke stávajícím cookies nemůže být přistupováno.</translation>
     </message>
     <message>
         <source>Site icons won&apos;t be stored.</source>
@@ -902,15 +907,15 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Searches are not added to the pop-up menu in the search box.</source>
-        <translation>Vyhledávání nejsou přidávány do pop-up menu vyhledávacího políčka.</translation>
+        <translation>Vyhledávání nejsou přidávána do vyskakovacího menu vyhledávacího políčka.</translation>
     </message>
     <message>
         <source>No new network cache is written to disk.</source>
-        <translation>Síťová cache není ukládána na disk.</translation>
+        <translation>Síťová mezipaměť není ukládána na disk.</translation>
     </message>
     <message>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>Dokud nezavřeš okno, pořád se můžeš pomocí tlačítek Zpět a Vpřed vrátit na stránky, které jsi otevřel.</translation>
+        <translation>Dokud nezavřete okno, můžete se pomocí tlačítek Zpět a Vpřed vrácet na vámi otevřené stránky.</translation>
     </message>
     <message>
         <source>Private Browsing</source>
@@ -928,11 +933,11 @@ Do you want to reload all pages?</source>
     <name>ClearPrivateData</name>
     <message>
         <source>Clear Private Data</source>
-        <translation>Vyčistit soukromá data</translation>
+        <translation>Snazat soukromá data</translation>
     </message>
     <message>
         <source>Clear the following items:</source>
-        <translation>Vyčistit tyto položky:</translation>
+        <translation>Smazat tyto položky:</translation>
     </message>
     <message>
         <source>&amp;Browsing History</source>
@@ -944,7 +949,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Search History</source>
-        <translation>Historie hledání</translation>
+        <translation>Historie vyhledávání</translation>
     </message>
     <message>
         <source>&amp;Cookies</source>
@@ -960,7 +965,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Clear &amp;Private Data</source>
-        <translation>Vyčistit soukromá data</translation>
+        <translation>Smazat soukromá data</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -968,7 +973,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>C&amp;ached Web Pages</source>
-        <translation>Stránky v &amp;cache</translation>
+        <translation>Stránky v &amp;mezipaměti</translation>
     </message>
 </context>
 <context>
@@ -987,7 +992,7 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>Remove from Whitelist</source>
-        <translation>Odebar z povolených</translation>
+        <translation>Odebrat z povolených</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -1009,7 +1014,7 @@ Do you want to reload all pages?</source>
     <name>CookieExceptionsModel</name>
     <message>
         <source>Website</source>
-        <translation>Adresa</translation>
+        <translation>Webová stránka</translation>
     </message>
     <message>
         <source>Status</source>
@@ -1036,7 +1041,7 @@ Do you want to reload all pages?</source>
     <name>CookieModel</name>
     <message>
         <source>Website</source>
-        <translation>Adresa</translation>
+        <translation>Webová stránka</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1122,11 +1127,11 @@ Do you want to reload all pages?</source>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Smazat</translation>
+        <translation>&amp;Odstranit</translation>
     </message>
     <message>
         <source>Remove &amp;All</source>
-        <translation>Smazat &amp;vše</translation>
+        <translation>Odstranit &amp;vše</translation>
     </message>
 </context>
 <context>
@@ -1297,7 +1302,7 @@ Přesto ukončit?</translation>
     </message>
     <message>
         <source>GB</source>
-        <translation></translation>
+        <translation>GB</translation>
     </message>
 </context>
 <context>
@@ -1320,7 +1325,7 @@ Přesto ukončit?</translation>
     </message>
     <message>
         <source>%1 KB</source>
-        <translation></translation>
+        <translation>%1 KB</translation>
     </message>
 </context>
 <context>
@@ -1343,18 +1348,18 @@ Přesto ukončit?</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Smazat</translation>
+        <translation>&amp;Odstranit</translation>
     </message>
     <message>
         <source>Remove &amp;All</source>
-        <translation>Smazat &amp;vše</translation>
+        <translation>Odstranit &amp;vše</translation>
     </message>
 </context>
 <context>
     <name>HistoryMenu</name>
     <message>
         <source>Show All History</source>
-        <translation>Zobrazit všechnu historii</translation>
+        <translation>Zobrazit celou historii</translation>
     </message>
     <message>
         <source>Clear History</source>
@@ -1366,7 +1371,7 @@ Přesto ukončit?</translation>
     </message>
     <message>
         <source>Do you want to clear the history?</source>
-        <translation>Chceš smazat historii?</translation>
+        <translation>Chcete vyčistit historii?</translation>
     </message>
 </context>
 <context>
@@ -1403,7 +1408,7 @@ Přesto ukončit?</translation>
     <name>JavaScriptAroraObject</name>
     <message>
         <source>Welcome to Arora!</source>
-        <translation>Vítej v Aroře!</translation>
+        <translation>Vítejte v Aroře!</translation>
     </message>
     <message>
         <source>Arora Start</source>
@@ -1411,11 +1416,11 @@ Přesto ukončit?</translation>
     </message>
     <message>
         <source>Search!</source>
-        <translation>Hledej!</translation>
+        <translation>Vyhledat!</translation>
     </message>
     <message>
         <source>Search results provided by</source>
-        <translation>Výsledky vyhledávání poskytuje</translation>
+        <translation>Výsledky vyhledávání poskytovány</translation>
     </message>
     <message>
         <source>About Arora</source>
@@ -1434,26 +1439,26 @@ Přesto ukončit?</translation>
     </message>
     <message>
         <source>Choose language</source>
-        <translation>Vyber jazyk</translation>
+        <translation>Vyberte jazyk</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Arora může používat jiný jazyk, než&lt;br&gt;je výchozí operačního systému.&lt;/p&gt;&lt;p&gt;Prosím vyber, který jazyk má být použit&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Arora může používat jiný jazyk, než&lt;br&gt;je výchozí jazyk operačního systému.&lt;/p&gt;&lt;p&gt;Prosím vyberte, který jazyk má být použit&lt;/p&gt;</translation>
     </message>
     <message>
         <source>No translation files are installed at %1.</source>
-        <translation>Žádné překladové soubory nejsou instalovány v %1.</translation>
+        <translation>Žádné překladové soubory nejsou nainstalovány v %1.</translation>
     </message>
 </context>
 <context>
     <name>NetworkAccessManager</name>
     <message>
         <source>&lt;qt&gt;Enter username and password for &quot;%1&quot; at %2&lt;/qt&gt;</source>
-        <translation>&lt;qt&gt;Napiš uživatelské jméno a heslo pro &quot;%1&quot; na %2&lt;/qt&gt;</translation>
+        <translation>&lt;qt&gt;Zadejte uživatelské jméno a heslo pro &quot;%1&quot; na %2&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</source>
-        <translation>&lt;qt&gt;Připojit k proxy &quot;%1&quot; použitím:&lt;/qt&gt;</translation>
+        <translation>&lt;qt&gt;Připojit k proxy &quot;%1&quot; pomocí:&lt;/qt&gt;</translation>
     </message>
     <message>
         <source> - SSL Errors</source>
@@ -1465,11 +1470,11 @@ Přesto ukončit?</translation>
 Do you want to ignore these errors?&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Chyby SSL:&lt;br/&gt;&lt;br/&gt;pro: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
-Chceš ignorovat tyto chyby?&lt;/qt&gt;</translation>
+Chcete ignorovat tyto chyby?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation>&lt;qt&gt;Certifikáty:&lt;br/&gt;%1&lt;br/&gt;Chceš přijmout všechny tyto certifikáty?&lt;/qt&gt;</translation>
+        <translation>&lt;qt&gt;Certifikáty:&lt;br/&gt;%1&lt;br/&gt;Chcete přijmout všechny tyto certifikáty?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>&lt;qt&gt;Certifactes:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
@@ -1505,7 +1510,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Valid until: %1</source>
-        <translation>Platný od: %1</translation>
+        <translation>Platný do: %1</translation>
     </message>
     <message>
         <source>Alternate Names:</source>
@@ -1558,7 +1563,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>OpenSearch</source>
-        <translation></translation>
+        <translation>OpenSearch</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1570,7 +1575,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>You must have at least one search engine in here.</source>
-        <translation>Musíš mít alespoň jeden vyhledávací engine.</translation>
+        <translation>Musíte mít alespoň jeden vyhledávač.</translation>
     </message>
     <message>
         <source>OpenSearch Manager</source>
@@ -1590,7 +1595,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Zavřit</translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>
@@ -1601,11 +1606,11 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation>Poskytuje kontextové návrhy</translation>
+        <translation>&lt;strong&gt;Poskytuje kontextové návrhy&lt;/strong&gt;</translation>
     </message>
     <message>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation>Čárkou oddělený seznam klíčkových slov, které mají být vloženy do vyhledávacího políčka následovány vyhledávanými slovy s tímto enginem</translation>
+        <translation>Seznam čárkou oddělených klíčových slov, která mají být vložena do vyhledávacího políčka následovány vyhledávanými slovy s tímto vyhledávačem</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1620,14 +1625,14 @@ Chceš ignorovat tyto chyby?</translation>
     <name>OpenSearchManager</name>
     <message>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation>Chceš přidat následující engine do seznamu tvých vyhledávacích enginů?&lt;br /&gt;&lt;br /&gt;Jméno: %1&lt;br /&gt;Vyhledává na: %2</translation>
+        <translation>Chcete přidat následující vyhledávač do seznamu svých vyhledávačů?&lt;br /&gt;&lt;br /&gt;Jméno: %1&lt;br /&gt;Vyhledává na: %2</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Authentication Required</source>
-        <translation>Vyžadované přihlášení</translation>
+        <translation>Vyžadováno přihlášení</translation>
     </message>
     <message>
         <source>DUMMY ICON</source>
@@ -1676,7 +1681,7 @@ Chceš ignorovat tyto chyby?</translation>
     <name>QObject</name>
     <message>
         <source>The file is not an XBEL version 1.0 file.</source>
-        <translation>Soubor není XBEL verze 1.0.</translation>
+        <translation>Soubor není souborem XBEL verze 1.0.</translation>
     </message>
     <message>
         <source>Unknown title</source>
@@ -1684,7 +1689,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation>Toto není OpeSearch 1.1 soubor.</translation>
+        <translation>Toto není soubor OpenSearch 1.1.</translation>
     </message>
 </context>
 <context>
@@ -1744,7 +1749,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Hlavní</translation>
+        <translation>Obecné</translation>
     </message>
     <message>
         <source>Home:</source>
@@ -1752,7 +1757,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Set to current page</source>
-        <translation>Nastav na aktuální stránku</translation>
+        <translation>Nastavit na aktuální stránku</translation>
     </message>
     <message>
         <source>Remove history items:</source>
@@ -1840,7 +1845,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Enable Plugins</source>
-        <translation>Povolit plug-iny</translation>
+        <translation>Povolit zásuvné moduly</translation>
     </message>
     <message>
         <source>Enable Javascript</source>
@@ -1956,11 +1961,11 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Tabs</source>
-        <translation>Panely</translation>
+        <translation>Karty</translation>
     </message>
     <message>
         <source>Select tabs and windows as they are created</source>
-        <translation>Přepínat na okna nebo panely, když jsou vytvořeny</translation>
+        <translation>Přepínat na okna nebo karty, když jsou vytvořeny</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs</source>
@@ -1980,7 +1985,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Restore windows and tabs from last time</source>
-        <translation>Obnovit okna a panely z poslední relace</translation>
+        <translation>Obnovit okna a karty z poslední relace</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1992,11 +1997,11 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Use ClickToFlash on flash plugins</source>
-        <translation>Používat ClickToFlash na flash pluginech</translation>
+        <translation>Používat ClickToFlash na zásuvných modulech flash</translation>
     </message>
     <message>
         <source>View Images</source>
-        <translation>Zobrazit obrázky</translation>
+        <translation>Zobrazovat obrázky</translation>
     </message>
     <message>
         <source>Keep Cookies Until:</source>
@@ -2008,11 +2013,11 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs or windows</source>
-        <translation>Vyžadovat potvzrení při zavírání více panelů nebo oken</translation>
+        <translation>Vyžadovat potvzrení při zavírání více karet nebo oken</translation>
     </message>
     <message>
         <source>Quit the application when last tab is closed</source>
-        <translation>Ukončit aplikaci, když je zavřen poslední panel</translation>
+        <translation>Ukončit aplikaci, když je zavřena poslední karta</translation>
     </message>
     <message>
         <source>Opening links</source>
@@ -2024,19 +2029,19 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation>V novém panelu aktuálního okna, který bude označen</translation>
+        <translation>V nové kartě aktuálního okna, který bude označen</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation>V novém panelu aktuálního okna</translation>
+        <translation>V nové kartě aktuálního okna</translation>
     </message>
     <message>
         <source>In the current tab</source>
-        <translation>V aktuálním panelu</translation>
+        <translation>V aktuálním kartě</translation>
     </message>
     <message>
         <source>Use proxy server</source>
-        <translation>Použít proxy server</translation>
+        <translation>Používat proxy server</translation>
     </message>
     <message>
         <source>Http (Secure)</source>
@@ -2052,7 +2057,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Enable network cache</source>
-        <translation>Povolit síťovou cache</translation>
+        <translation>Povolit síťovou mezipaměť</translation>
     </message>
     <message>
         <source>Maximum Size:</source>
@@ -2060,23 +2065,23 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation></translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Show only one close button instead of one for each tab</source>
-        <translation>Zobrazit pouze jedno zavírací tlačítko místo jednoho pro každý panel</translation>
+        <translation>Zobrazit pouze jedno zavírací tlačítko místo jednoho pro každou kartu</translation>
     </message>
     <message>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
-        <translation>Použít výchozí vyhledávácí engine jako nouzový, když URL zadaná uživatelem je neplatná</translation>
+        <translation>Použít výchozí vyhledávač jako nouzový, když je adresa zadaná uživatelem neplatná</translation>
     </message>
     <message>
         <source>Choose Directory...</source>
-        <translation>Vybrat složku...</translation>
+        <translation>Vybrat adresář...</translation>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation>Relace session končí:</translation>
+        <translation>Relace cookies končí:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
@@ -2104,7 +2109,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation></translation>
+        <translation>Automatické doplňování</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
@@ -2135,18 +2140,18 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Choose Directory</source>
-        <translation>Vybrat složku</translation>
+        <translation>Vybrat adresář</translation>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation>Vybrat CSS soubor</translation>
+        <translation>Vybrat soubor CSS</translation>
     </message>
 </context>
 <context>
     <name>SourceViewer</name>
     <message>
         <source>Loading...</source>
-        <translation>Načítám...</translation>
+        <translation>Načítání...</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -2181,58 +2186,58 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
-        <translation>Duplikovat panel</translation>
+        <translation>Duplikovat kartu</translation>
     </message>
     <message>
         <source>&amp;Close Tab</source>
-        <translation>&amp;Zavřít panel</translation>
+        <translation>&amp;Zavřít kartu</translation>
     </message>
     <message>
         <source>Close &amp;Other Tabs</source>
-        <translation>Zavřít o&amp;statní panely</translation>
+        <translation>Zavřít o&amp;statní karty</translation>
     </message>
     <message>
         <source>Reload Tab</source>
-        <translation>Obnovit panel</translation>
+        <translation>Obnovit kartu</translation>
     </message>
     <message>
         <source>Reload All Tabs</source>
-        <translation>Obnovit všechny panely</translation>
+        <translation>Obnovit všechny karty</translation>
     </message>
     <message>
         <source>Show Tab Bar</source>
-        <translation>Zobrazit lištu panelů</translation>
+        <translation>Zobrazit lištu karet</translation>
     </message>
     <message>
         <source>Hide Tab Bar</source>
-        <translation>Skrýt lištu panelů</translation>
+        <translation>Skrýt lištu karet</translation>
     </message>
 </context>
 <context>
     <name>TabWidget</name>
     <message>
         <source>New &amp;Tab</source>
-        <translation>&amp;Nový panel</translation>
+        <translation>&amp;Nová karta</translation>
     </message>
     <message>
         <source>&amp;Close Tab</source>
-        <translation>&amp;Zavřít panel</translation>
+        <translation>&amp;Zavřít kartu</translation>
     </message>
     <message>
         <source>Show Next Tab</source>
-        <translation>Zobrazit další panel</translation>
+        <translation>Zobrazit další kartu</translation>
     </message>
     <message>
         <source>Saved Tabs</source>
-        <translation>Uložené panely</translation>
+        <translation>Uložené karty</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation>Načítám...</translation>
+        <translation>Načítání...</translation>
     </message>
     <message>
         <source>Loading %1% (%2 %3)...</source>
-        <translation>Načítám %1% (%2 %3)...</translation>
+        <translation>Načítání %1% (%2 %3)...</translation>
     </message>
     <message>
         <source>Finished loading</source>
@@ -2248,7 +2253,7 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Show Previous Tab</source>
-        <translation>Zobrazit předchozí panel</translation>
+        <translation>Zobrazit předchozí kartu</translation>
     </message>
     <message>
         <source>Ctrl-[</source>
@@ -2256,11 +2261,11 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Recently Closed Tabs</source>
-        <translation>Posledně zavřené panely</translation>
+        <translation>Naposledy zavřené karty</translation>
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation>Přidat všechny panely do záložek</translation>
+        <translation>Přidat všechny karty do záložek</translation>
     </message>
     <message>
         <source>(Untitled)</source>
@@ -2268,14 +2273,14 @@ Chceš ignorovat tyto chyby?</translation>
     </message>
     <message>
         <source>Do you really want to close this page?</source>
-        <translation>Opravdu chceš zavřít tuto stránku?</translation>
+        <translation>Opravdu chcete zavřít tuto stránku?</translation>
     </message>
     <message>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
-        <translation>Stránka byla tebou měněna a když ji zavřeš, změny budou ztraceny.
-Opravdu chceš zavřít tuto stránku?
+        <translation>Změnili jste tuto stránku, pokud ji zavřete, změny budou ztraceny.
+Opravdu chcete zavřít tuto stránku?
 </translation>
     </message>
     <message>
@@ -2299,15 +2304,15 @@ Opravdu chceš zavřít tuto stránku?
     </message>
     <message>
         <source>No Recent Searches</source>
-        <translation>Žádná nedávná hledání</translation>
+        <translation>Žádná nedávná vyhledávání</translation>
     </message>
     <message>
         <source>Recent Searches</source>
-        <translation>Nedávná hledání</translation>
+        <translation>Nedávná vyhledávání</translation>
     </message>
     <message>
         <source>Clear Recent Searches</source>
-        <translation>Vyčistit nedávná hledání</translation>
+        <translation>Vyčistit nedávná vyhledávání</translation>
     </message>
 </context>
 <context>
@@ -2330,23 +2335,23 @@ Opravdu chceš zavřít tuto stránku?
     </message>
     <message>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation>Pokud je tvůj počítač nebo tvá síť chráněna firewallem nebo proxy, ujisti se, že je prohlížeči povolen přístup k síti.</translation>
+        <translation>Pokud je váš počítač nebo vaše síť chráněna firewallem nebo proxy, ujistěte se, že je prohlížeči povolen přístup k síti.</translation>
     </message>
     <message>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation>Zkontroluj adresu na chyby jako &lt;b&gt;ww&lt;/b&gt;.arora-browser.org namísto &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
+        <translation>Zkontrolujte adresu kvůli chybách jako &lt;b&gt;ww&lt;/b&gt;.arora-browser.org namísto &lt;b&gt;www&lt;/b&gt;.arora-browser.org</translation>
     </message>
     <message>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation>Pokud je adresa správná, zkontroluj síťové připojení.</translation>
+        <translation>Pokud je adresa správná, zkontrolujte síťové připojení.</translation>
     </message>
     <message>
         <source>Resending POST request</source>
-        <translation>Znovuposílám POST požadavek</translation>
+        <translation>Opětovné posílání POST požadavku</translation>
     </message>
     <message>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
-        <translation>Pro zobrazení stránky musí být požadavek spolu se všemi daty poslán znovu, což může způsobit neočekáváné chování stránky, například ta samá akce může být vykonána znovu. Přesto pokračovat?</translation>
+        <translation>Pro zobrazení stránky musí být požadavek spolu se všemi daty poslán znovu, což může způsobit neočekávané chování stránky, například ta samá akce může být vykonána znovu. Přesto pokračovat?</translation>
     </message>
 </context>
 <context>
@@ -2361,7 +2366,7 @@ Opravdu chceš zavřít tuto stránku?
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
-        <translation>Otevřít v &amp;novém panelu</translation>
+        <translation>Otevřít v &amp;nové kartě</translation>
     </message>
     <message>
         <source>Save Lin&amp;k</source>
@@ -2381,7 +2386,7 @@ Opravdu chceš zavřít tuto stránku?
     </message>
     <message>
         <source>Open Image in New &amp;Tab</source>
-        <translation>Otevřít obrázek v novém panelu</translation>
+        <translation>Otevřít obrázek v nové kartě</translation>
     </message>
     <message>
         <source>&amp;Save Image</source>
@@ -2397,11 +2402,11 @@ Opravdu chceš zavřít tuto stránku?
     </message>
     <message>
         <source>Search with...</source>
-        <translation>Hledat pomocí...</translation>
+        <translation>Vyhledat pomocí...</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation>Načítám...</translation>
+        <translation>Načítání...</translation>
     </message>
     <message>
         <source>Add to the toolbar search</source>
@@ -2417,19 +2422,19 @@ Opravdu chceš zavřít tuto stránku?
     </message>
     <message>
         <source>Search engine</source>
-        <translation>Vyhledávací engine</translation>
+        <translation>Vyhledávač</translation>
     </message>
     <message>
         <source>Choose the desired search engine</source>
-        <translation>Vyber požadovaný vyhledávací engine</translation>
+        <translation>Vyber požadovaný vyhledávač</translation>
     </message>
     <message>
         <source>Engine name</source>
-        <translation>Název enginu</translation>
+        <translation>Název vyhledávače</translation>
     </message>
     <message>
         <source>Type in a name for the engine</source>
-        <translation>Napiš jméno pro engine</translation>
+        <translation>Napište jméno pro vyhledávač</translation>
     </message>
     <message>
         <source>Block Image</source>
@@ -2440,7 +2445,7 @@ Opravdu chceš zavřít tuto stránku?
     <name>WebViewSearch</name>
     <message>
         <source>Not Found</source>
-        <translation>Neexistuje</translation>
+        <translation>Nenalezeno</translation>
     </message>
 </context>
 </TS>
