@@ -278,6 +278,14 @@ void SettingsDialog::loadFromSettings()
     openLinksFromAppsIn->setCurrentIndex(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
     settings.endGroup();
 
+    // Accessibility
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
+    settings.beginGroup(QLatin1String("WebView"));
+    enableAccessKeys->setChecked(settings.value(QLatin1String("enableAccessKeys"), true).toBool());
+#else
+    enableAccessKeys->setEnabled(false);
+#endif
+
     settings.beginGroup(QLatin1String("autofill"));
     autoFillPasswordFormsCheckBox->setChecked(settings.value(QLatin1String("passwordForms"), true).toBool());
     settings.endGroup();
@@ -421,6 +429,13 @@ void SettingsDialog::saveToSettings()
     settings.beginGroup(QLatin1String("autofill"));
     settings.setValue(QLatin1String("passwordForms"), autoFillPasswordFormsCheckBox->isChecked());
     settings.endGroup();
+
+    // Accessibility
+#if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
+    settings.beginGroup(QLatin1String("WebView"));
+    settings.setValue(QLatin1String("enableAccessKeys"), enableAccessKeys->isChecked());
+    settings.endGroup();
+#endif
 
     BrowserApplication::instance()->loadSettings();
     BrowserApplication::networkAccessManager()->loadSettings();

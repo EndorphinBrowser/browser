@@ -950,6 +950,24 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab_8">
+      <attribute name="title">
+       <string>Accessibility</string>
+      </attribute>
+      <widget class="QCheckBox" name="enableAccessKeys">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>9</y>
+         <width>611</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Enable access keys</string>
+       </property>
+      </widget>
+     </widget>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
        <string>Advanced</string>
