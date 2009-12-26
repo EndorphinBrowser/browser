@@ -620,7 +620,7 @@ void TabWidget::closeTab(int index)
 #if QT_VERSION >= 0x040600
         QByteArray tabHistory;
         QDataStream tabHistoryStream(&tabHistory, QIODevice::WriteOnly);
-        tabHistoryStream << tab->history();
+        tabHistoryStream << *tab->history();
         m_recentlyClosedTabsHistory.prepend(tabHistory);
 #else
         m_recentlyClosedTabsHistory.prepend(QByteArray());
