@@ -75,68 +75,69 @@ p, li { white-space: pre-wrap; }
     <name>AdBlockBlockedNetworkReply</name>
     <message>
         <source>Blocked by AdBlockRule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloqueado por AdBlockRule: %1</translation>
     </message>
 </context>
 <context>
     <name>AdBlockDialog</name>
     <message>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar regra personalizada</translation>
     </message>
     <message>
         <source>Learn more about writing rules...</source>
-        <translation type="unfinished"></translation>
+        <translation>Saiba mais sobre escrevendo regras...</translation>
     </message>
     <message>
         <source>Update Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar subscrição</translation>
     </message>
     <message>
         <source>Browse Subscriptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar nas subscrições...</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover subscrição</translation>
     </message>
     <message>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração do AdBlock</translation>
     </message>
     <message>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar AdBlock</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Ação</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
         <source>Custom Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizar regras</translation>
     </message>
 </context>
 <context>
     <name>AdBlockModel</name>
     <message>
         <source>Rule</source>
-        <translation type="unfinished">Regra</translation>
+        <translation>Regra</translation>
     </message>
 </context>
 <context>
     <name>AdBlockSchemeAccessHandler</name>
     <message>
         <source>Subscribe?</source>
-        <translation type="unfinished"></translation>
+        <translation>Inscrever-se?</translation>
     </message>
     <message>
         <source>Subscribe to this AdBlock subscription?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Inscrever-se nesta subscrição AdBlock?
+%1</translation>
     </message>
 </context>
 <context>
@@ -166,41 +167,41 @@ p, li { white-space: pre-wrap; }
     <name>AutoFillDialog</name>
     <message>
         <source>Form Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulário de senhas</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Remover</translation>
+        <translation>Remover</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover todos</translation>
     </message>
 </context>
 <context>
     <name>AutoFillManager</name>
     <message>
         <source>&lt;b&gt;Would you like to save this password?&lt;/b&gt;&lt;br&gt;         To review passwords you have saved and remove them, open the AutoFill pane of preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Gostaria de salvar esta senha?&lt;/b&gt;&lt;br&gt;         Para rever as senhas que você salvou e removê-las, abra a aba Preenchimento automático em Ferramentas &gt; Opções.</translation>
     </message>
     <message>
         <source>Never for this site</source>
-        <translation type="unfinished"></translation>
+        <translation>Nunca para este site</translation>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation>Não agora</translation>
     </message>
 </context>
 <context>
     <name>AutoFillModel</name>
     <message>
         <source>WebSite</source>
-        <translation type="unfinished"></translation>
+        <translation>Site</translation>
     </message>
     <message>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuário</translation>
     </message>
 </context>
 <context>
@@ -420,7 +421,7 @@ Você quer sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>Arora crashed while trying to restore this session.  Should I try again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Arora fechou durante a tentativa de restaurar essa sessão. Devo tentar novamente?</translation>
     </message>
 </context>
 <context>
@@ -670,7 +671,7 @@ Você quer sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>Hide Status Bar</source>
-        <translation>Esconder barra de status</translation>
+        <translation>Ocultar barra de status</translation>
     </message>
     <message>
         <source>Show Toolbar</source>
@@ -678,7 +679,7 @@ Você quer sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>Hide Toolbar</source>
-        <translation>Esconder barra de ferramentas</translation>
+        <translation>Ocultar barra de ferramentas</translation>
     </message>
     <message>
         <source>Show Bookmarks Bar</source>
@@ -686,7 +687,7 @@ Você quer sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>Hide Bookmarks Bar</source>
-        <translation>Esconder barra de favoritos</translation>
+        <translation>Ocultar barra de favoritos</translation>
     </message>
     <message>
         <source>%1 - Arora</source>
@@ -754,7 +755,7 @@ Você deseja recarregar todas as páginas?</translation>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation>Selecionar &amp;Tudo</translation>
+        <translation>Selecionar &amp;tudo</translation>
     </message>
     <message>
         <source>Alt+Ctrl+B</source>
@@ -766,55 +767,55 @@ Você deseja recarregar todas as páginas?</translation>
     </message>
     <message>
         <source>Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções...</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation type="unfinished">Configurar mecanismos de pesquisa...</translation>
+        <translation>Configurar mecanismos de pesquisa...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ad Block...</translation>
     </message>
     <message>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando a navegação privada estiver ligada, algumas ações a respeito de sua privacidade serão desabilitadas:</translation>
     </message>
     <message>
         <source>Webpages are not added to the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>As páginas web não serão adicionadas ao histórico.</translation>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Os itens serão automaticamente removidos da janela de Download.</translation>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Novos cookies não serão armazenados, e cookies atuais não poderão ser acessados.</translation>
     </message>
     <message>
         <source>Site icons won&apos;t be stored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Os ícones dos sites não serão armazenados.</translation>
     </message>
     <message>
         <source>Session won&apos;t be saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>A sessão não será salva.</translation>
     </message>
     <message>
         <source>Searches are not added to the pop-up menu in the search box.</source>
-        <translation type="unfinished"></translation>
+        <translation>As pesquisas não serão adicionadas para o menu pop-up na caixa de pesquisa.</translation>
     </message>
     <message>
         <source>No new network cache is written to disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum novo cache de rede será escrito em disco.</translation>
     </message>
     <message>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Até você fechar a janela, você ainda pode clicar nos botões Voltar e Avançar para retornar às páginas que você abriu.</translation>
     </message>
     <message>
         <source>Private Browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegação privada</translation>
     </message>
 </context>
 <context>
@@ -856,7 +857,7 @@ Você deseja recarregar todas as páginas?</translation>
     </message>
     <message>
         <source>Website &amp;Icons</source>
-        <translation>Ícones de webs&amp;ites</translation>
+        <translation>Ícones de s&amp;ites</translation>
     </message>
     <message>
         <source>Clear &amp;Private Data</source>
@@ -905,7 +906,7 @@ Você deseja recarregar todas as páginas?</translation>
     <name>CookieExceptionsModel</name>
     <message>
         <source>Website</source>
-        <translation>Website</translation>
+        <translation>Site</translation>
     </message>
     <message>
         <source>Rule</source>
@@ -928,7 +929,7 @@ Você deseja recarregar todas as páginas?</translation>
     <name>CookieModel</name>
     <message>
         <source>Website</source>
-        <translation>Website</translation>
+        <translation>Site</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1274,11 +1275,11 @@ Você deseja sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can run with a different language than&lt;br&gt;the operating system default.&lt;/p&gt;&lt;p&gt;Please choose the language which should be used&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Você pode executar com um idioma diferente do que&lt; br&gt;o padrão do sistema operacional.&lt;/p&gt;&lt;p&gt;Por favor, escolha o idioma que deve ser utilizado&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Você pode executar com um idioma diferente do que&lt;br&gt;o padrão do sistema operacional.&lt;/p&gt;&lt;p&gt;Por favor, escolha o idioma que deve ser utilizado&lt;/p&gt;</translation>
     </message>
     <message>
         <source>No translation files are installed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não há arquivos de tradução instalados em %1.</translation>
     </message>
 </context>
 <context>
@@ -1844,51 +1845,51 @@ Você deseja ignorar esses erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminar uma sessão de cookie:</translation>
     </message>
     <message>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando eu sair do programa</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 dia</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>2 dias</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>3 dias</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>7 dias</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30 dias</translation>
     </message>
     <message>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>Preenchimento automático</translation>
     </message>
     <message>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>Preenchimento automático de formulários web:</translation>
     </message>
     <message>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuários e senhas</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar...</translation>
     </message>
 </context>
 <context>
@@ -1907,7 +1908,7 @@ Você deseja ignorar esses erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo CSS</translation>
     </message>
 </context>
 <context>
@@ -1945,11 +1946,11 @@ Você deseja ignorar esses erros?&lt;/qt&gt;</translation>
     <name>TabBar</name>
     <message>
         <source>Show Tab Bar</source>
-        <translation>Mostrar a barra de abas</translation>
+        <translation>Mostrar barra de abas</translation>
     </message>
     <message>
         <source>Hide Tab Bar</source>
-        <translation>Esconder a barra de abas</translation>
+        <translation>Ocultar barra de abas</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -2181,7 +2182,7 @@ Você realmente deseja fechar esta página?
     </message>
     <message>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloquear imagem</translation>
     </message>
 </context>
 <context>
