@@ -83,6 +83,7 @@ CookieDialog::CookieDialog(CookieJar *cookieJar, QWidget *parent)
     connect(removeAllButton, SIGNAL(clicked()), cookiesTable, SLOT(removeAll()));
     connect(addRuleButton, SIGNAL(clicked()), this, SLOT(addRule()));
     m_proxyModel->setSourceModel(model);
+    m_proxyModel->setSortRole(CookieModel::SortRole);
     cookiesTable->verticalHeader()->hide();
     cookiesTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     cookiesTable->setModel(m_proxyModel);

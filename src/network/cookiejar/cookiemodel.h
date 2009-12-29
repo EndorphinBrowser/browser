@@ -73,6 +73,10 @@ class CookieModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
+    enum DisplayRole
+    {
+        SortRole = Qt::UserRole
+    };
     CookieModel(CookieJar *jar, QObject *parent = 0);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
