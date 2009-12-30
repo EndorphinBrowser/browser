@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>651</width>
-    <height>464</height>
+    <width>677</width>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -73,7 +73,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1" colspan="2">
+       <item row="1" column="1">
         <widget class="QLineEdit" name="homeLineEdit">
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
@@ -110,7 +110,7 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="1" colspan="2">
+       <item row="3" column="1">
         <widget class="QComboBox" name="expireHistory">
          <item>
           <property name="text">
@@ -160,11 +160,18 @@
         </widget>
        </item>
        <item row="5" column="0" colspan="3">
+        <widget class="QCheckBox" name="enableAccessKeys">
+         <property name="text">
+          <string>Enable access keys</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string>Downloads</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <widget class="QRadioButton" name="downloadAsk">
             <property name="text">
@@ -221,21 +228,21 @@
             </item>
            </layout>
           </item>
+          <item>
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>608</width>
+              <height>15</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </widget>
-       </item>
-       <item row="6" column="0" colspan="3">
-        <spacer>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>391</width>
-           <height>262</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
@@ -950,24 +957,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_8">
-      <attribute name="title">
-       <string>Accessibility</string>
-      </attribute>
-      <widget class="QCheckBox" name="enableAccessKeys">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>611</width>
-         <height>19</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Enable access keys</string>
-       </property>
-      </widget>
-     </widget>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
        <string>Advanced</string>
@@ -1167,22 +1156,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>downloadDestination</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>downloadDirectoryButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>182</x>
-     <y>282</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>620</x>
-     <y>292</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>minimFontSizeCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>minimumFontSizeSpinBox</receiver>
@@ -1195,6 +1168,22 @@
     <hint type="destinationlabel">
      <x>189</x>
      <y>151</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>downloadDestination</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>downloadDirectoryButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>182</x>
+     <y>282</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>620</x>
+     <y>292</y>
     </hint>
    </hints>
   </connection>
@@ -1249,22 +1238,6 @@
   <connection>
    <sender>externalDownloadButton</sender>
    <signal>toggled(bool)</signal>
-   <receiver>downloadDestination</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>170</x>
-     <y>313</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>169</x>
-     <y>285</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>externalDownloadButton</sender>
-   <signal>toggled(bool)</signal>
    <receiver>downloadsLocation</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
@@ -1275,6 +1248,22 @@
     <hint type="destinationlabel">
      <x>386</x>
      <y>279</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>externalDownloadButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>downloadDestination</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>170</x>
+     <y>313</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>169</x>
+     <y>285</y>
     </hint>
    </hints>
   </connection>
