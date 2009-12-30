@@ -1078,7 +1078,7 @@ QByteArray TabWidget::saveState() const
             if (tab->history()->count() != 0) {
                 QByteArray tabHistory;
                 QDataStream tabHistoryStream(&tabHistory, QIODevice::WriteOnly);
-                tabHistoryStream << tab->history();
+                tabHistoryStream << *tab->history();
                 tabsHistory.append(tabHistory);
             } else {
                 tabsHistory << QByteArray();
