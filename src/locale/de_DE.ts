@@ -887,7 +887,7 @@ Sollen alle Seiten neu geladen werden?</translation>
     </message>
     <message>
         <source>Configure Search Engines...</source>
-        <translation>Suchmaschienen verwalten...</translation>
+        <translation>Suchmaschinen verwalten...</translation>
     </message>
     <message>
         <source>&amp;Ad Block...</source>
@@ -2210,7 +2210,7 @@ Möchten Sie diese Fehler ignorieren?</translation>
     </message>
     <message>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
-        <translation>Standardsuchmaschiene benutzen falls die vom Nutzer angegebene URL ungültig ist</translation>
+        <translation>Standardsuchmaschine benutzen falls die vom Nutzer angegebene URL ungültig ist</translation>
     </message>
     <message>
         <source>Choose Directory...</source>
