@@ -699,7 +699,7 @@ void WebView::keyPressEvent(QKeyEvent *event)
             }
             hideAccessKeys();
         } else {
-            QTimer::singleShot(200, this, SLOT(accessKeyShortcut()));
+            QTimer::singleShot(300, this, SLOT(accessKeyShortcut()));
         }
     }
 #endif
