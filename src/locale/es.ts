@@ -498,7 +498,7 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>Find Nex&amp;t</source>
-        <translation>Buscar &amp;sigiente</translation>
+        <translation>Buscar &amp;siguiente</translation>
     </message>
     <message>
         <source>Find P&amp;revious</source>
