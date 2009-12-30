@@ -335,37 +335,12 @@ WebView *TabWidget::webView(int index) const
     QWidget *widget = this->widget(index);
     if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
         return webViewWithSearch->m_webView;
-    } else if (widget) {
-        // optimization to delay creating the first webview
-        if (count() == 1) {
-            TabWidget *that = const_cast<TabWidget*>(this);
-            that->setUpdatesEnabled(false);
-            LocationBar *currentLocationBar = qobject_cast<LocationBar*>(m_locationBars->widget(0));
-            bool giveBackFocus = currentLocationBar->hasFocus();
-            m_locationBars->removeWidget(currentLocationBar);
-            m_locationBars->addWidget(new QWidget());
-            that->newTab();
-            that->closeTab(0);
-            QWidget *newEmptyLineEdit = m_locationBars->widget(0);
-            m_locationBars->removeWidget(newEmptyLineEdit);
-            newEmptyLineEdit->deleteLater();
-            m_locationBars->addWidget(currentLocationBar);
-            currentLocationBar->setWebView(currentWebView());
-            if (giveBackFocus)
-                currentLocationBar->setFocus();
-            that->setUpdatesEnabled(true);
-            that->m_swappedDelayedWidget = true;
-            return currentWebView();
-        }
     }
     return 0;
 }
 
 WebViewSearch *TabWidget::webViewSearch(int index) const
 {
-    // so the optimization can be performed
-    webView(index);
-
     QWidget *widget = this->widget(index);
     if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
         return webViewWithSearch->m_webViewSearch;
@@ -417,21 +392,6 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
 #ifndef AUTOTESTS
     QWidget::setTabOrder(locationBar, qFindChild<ToolbarSearch*>(BrowserMainWindow::parentWindow(this)));
 #endif
-
-    // optimization to delay creating the more expensive WebView, history, etc
-    if (count() == 0) {
-        QWidget *emptyWidget = new QWidget;
-        QPalette p = emptyWidget->palette();
-        p.setColor(QPalette::Window, palette().color(QPalette::Base));
-        emptyWidget->setPalette(p);
-        emptyWidget->setAutoFillBackground(true);
-        disconnect(this, SIGNAL(currentChanged(int)),
-                   this, SLOT(currentChanged(int)));
-        addTab(emptyWidget, tr("Untitled"));
-        connect(this, SIGNAL(currentChanged(int)),
-                this, SLOT(currentChanged(int)));
-        return 0;
-    }
 
     // webview
     WebView *webView = new WebView;
