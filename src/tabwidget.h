@@ -203,7 +203,6 @@ private:
     QList<QUrl> m_recentlyClosedTabs;
     QList<QByteArray> m_recentlyClosedTabsHistory;
     QList<WebActionMapper*> m_actions;
-    bool m_swappedDelayedWidget;
 
     QCompleter *m_lineEditCompleter;
     QStackedWidget *m_locationBars;
