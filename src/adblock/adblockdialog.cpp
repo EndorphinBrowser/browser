@@ -51,8 +51,8 @@ AdBlockDialog::AdBlockDialog(QWidget *parent)
             m_proxyModel, SLOT(setFilterFixedString(QString)));
 
     AdBlockManager *manager = AdBlockManager::instance();
-    adblockGroupBox->setChecked(manager->isEnabled());
-    connect(adblockGroupBox, SIGNAL(toggled(bool)),
+    adblockCheckBox->setChecked(manager->isEnabled());
+    connect(adblockCheckBox, SIGNAL(toggled(bool)),
             AdBlockManager::instance(), SLOT(setEnabled(bool)));
 
     QMenu *menu = new QMenu(this);
