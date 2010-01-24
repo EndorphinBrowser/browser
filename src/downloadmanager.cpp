@@ -418,7 +418,7 @@ void DownloadItem::updateInfoLabel()
         if (m_bytesReceived == bytesTotal)
             info = DownloadManager::dataString(m_output.size());
         else
-            info = tr("%1 of %2 - Stopped")
+            info = tr("%1 of %2 - Download Complete")
                 .arg(DownloadManager::dataString(m_bytesReceived))
                 .arg(DownloadManager::dataString(bytesTotal));
     }
