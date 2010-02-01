@@ -406,7 +406,7 @@ p, li { white-space: pre-wrap; }(new line)
     <message>
         <source>There are %1 windows and %2 tabs open
 Do you want to quit anyway?</source>
-        <translation>Hai %1 ventá e %2 lingüetas abertas
+        <translation>Hai %1 xanela e %2 lingüetas abertas
 Desexa saír de todos os xeitos?</translation>
     </message>
     <message>
@@ -430,7 +430,7 @@ Desexa saír de todos os xeitos?</translation>
     </message>
     <message>
         <source>&amp;New Window</source>
-        <translation>&amp;Nova ventá</translation>
+        <translation>&amp;Nova xanela</translation>
     </message>
     <message>
         <source>&amp;Open File...</source>
@@ -582,7 +582,7 @@ Desexa saír de todos os xeitos?</translation>
     </message>
     <message>
         <source>&amp;Window</source>
-        <translation>&amp;Ventá</translation>
+        <translation>&amp;Xanela</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -669,7 +669,7 @@ Desexa saír de todos os xeitos?</translation>
     </message>
     <message>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
-        <translation>Está seguro de que quere pechar a ventá?  Hai %1 lingüetas abertas</translation>
+        <translation>Está seguro de que quere pechar a xanela?  Hai %1 lingüetas abertas</translation>
     </message>
     <message>
         <source>Web Inspector</source>
@@ -679,7 +679,7 @@ Desexa saír de todos os xeitos?</translation>
         <source>The web inspector will only work correctly for pages that were loaded after enabling.
 Do you want to reload all pages?</source>
         <translation>O inspectorda  web só funcionará correctamente coas páxinas que se carguen despois de activalo.
-Desexa recargar tódalas páxinas?</translation>
+Desexa recargar todas as páxinas?</translation>
     </message>
     <message>
         <source>Stop loading the current page</source>
@@ -699,11 +699,11 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>Switch application language </source>
-        <translation>Cambiar o idioma da aplicación </translation>
+        <translation>Cambiar o idioma do aplicativo </translation>
     </message>
     <message>
         <source>Close Window</source>
-        <translation>Pechar ventá</translation>
+        <translation>Pechar a xanela</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
@@ -733,7 +733,7 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>Show All Bookmarks...</source>
-        <translation>Amosar tódolos marcadores...</translation>
+        <translation>Amosar todos os marcadores...</translation>
     </message>
     <message>
         <source>Add Folder...</source>
@@ -789,7 +789,7 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>Items are automatically removed from the Downloads window.</source>
-        <translation>Eliminaránse automaticamente os elementos da ventá de descargas.</translation>
+        <translation>Eliminaránse automaticamente os elementos da xanela de descargas.</translation>
     </message>
     <message>
         <source>New cookies are not stored, current cookies can&apos;t be accessed.</source>
@@ -813,7 +813,7 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
-        <translation>Até que se peche a ventá, vostede poderá facer clic nos botóns Atrás e Adiante para volver ás páxinas web que teña aberto.</translation>
+        <translation>Até que se peche a xanela, vostede poderá facer clic nos botóns Atrás e Adiante para volver ás páxinas web que teña aberto.</translation>
     </message>
     <message>
         <source>Private Browsing</source>
@@ -978,7 +978,7 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>Remove &amp;All Cookies</source>
-        <translation>Eliminar &amp;tódalas cookies</translation>
+        <translation>Eliminar &amp;todas as cookies</translation>
     </message>
     <message>
         <source>Add &amp;Rule</source>
@@ -1055,7 +1055,7 @@ Desexa recargar tódalas páxinas?</translation>
     </message>
     <message>
         <source>Try Again</source>
-        <translation>Rentar de novo</translation>
+        <translation>Tentar de novo</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -1118,7 +1118,7 @@ Desexa recargar tódalas páxinas?</translation>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
         <translation>Hai %1 descargas en proceso
-Saír de tódolos xeitos?</translation>
+Saír de todos os xeitos?</translation>
     </message>
     <message>
         <source>%n minutes remaining</source>
@@ -1238,7 +1238,7 @@ Saír de tódolos xeitos?</translation>
     <name>HistoryTreeModel</name>
     <message>
         <source>Earlier Today</source>
-        <translation>Antes de hoxe</translation>
+        <translation>No día de hoxe</translation>
     </message>
     <message>
         <source>%n item(s)</source>
@@ -1587,7 +1587,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Restore windows and tabs from last time</source>
-        <translation>Recuperar ventás e lingüetas da última sexión</translation>
+        <translation>Recuperar as xanelas e lingüetas da última sexión</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -1627,15 +1627,15 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>On application exit</source>
-        <translation>Ao sair da aplicación</translation>
+        <translation>Ao sair do aplicativo</translation>
     </message>
     <message>
         <source>Open links from applications:</source>
-        <translation>Abrir ligazóns de aplicacións:</translation>
+        <translation>Abrir ligazóns de aplicativos:</translation>
     </message>
     <message>
         <source>In a new window</source>
-        <translation>Nunha nova ventá</translation>
+        <translation>Nunha nova xanela</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -1655,7 +1655,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Standard font:</source>
-        <translation>Fonte estándar:</translation>
+        <translation>Tipo de letra estándar:</translation>
     </message>
     <message>
         <source>Times 16</source>
@@ -1667,7 +1667,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Fixed-width font:</source>
-        <translation>Fonte de anchura fixa:</translation>
+        <translation>Tipo de letra de anchura fixa:</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -1723,7 +1723,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>I exit the application</source>
-        <translation>Se saia da aplicación</translation>
+        <translation>Se saia do aplicativo</translation>
     </message>
     <message>
         <source>At most 90 days</source>
@@ -1739,7 +1739,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Select tabs and windows as they are created</source>
-        <translation>Seleccionar lingüetas e ventás ao ser creadas</translation>
+        <translation>Seleccionar lingüetas e xanelas ao ser creadas</translation>
     </message>
     <message>
         <source>Proxy</source>
@@ -1787,7 +1787,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Block Popup Windows</source>
-        <translation>Bloquear ventás emerxentes</translation>
+        <translation>Bloquear xanelas emerxentes</translation>
     </message>
     <message>
         <source>Opening links</source>
@@ -1795,15 +1795,15 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Links that want to open in a new window:</source>
-        <translation>Ligazóns que desexa abrir nunha nova ventá:</translation>
+        <translation>Ligazóns que desexa abrir nunha nova xanela:</translation>
     </message>
     <message>
         <source>In a new selected tab in the current window</source>
-        <translation>Na lingüeta seleccionada na ventá actual</translation>
+        <translation>Na lingüeta seleccionada na xanela actual</translation>
     </message>
     <message>
         <source>In a new tab in the current window</source>
-        <translation>Nunha nova lingüeta na ventá ctual</translation>
+        <translation>Nunha nova lingüeta na xanela actual</translation>
     </message>
     <message>
         <source>In the current tab</source>
@@ -1819,7 +1819,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation>Idiomas preferidos para ver páxinas web en:</translation>
+        <translation>Idiomas preferidos para ver páxinas web:</translation>
     </message>
     <message>
         <source>Use ClickToFlash on flash plugins</source>
@@ -1831,11 +1831,11 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Confirm when closing multiple tabs or windows</source>
-        <translation>Pedir confirmación cando se pechen multiples lingüetas ou ventás</translation>
+        <translation>Pedir confirmación cando se pechen multiples lingüetas ou xanelas</translation>
     </message>
     <message>
         <source>Quit the application when last tab is closed</source>
-        <translation>Sair da aplicación cando se peche a última lingüeta</translation>
+        <translation>Sair do aplicativo cando se peche a última lingüeta</translation>
     </message>
     <message>
         <source>Enable network cache</source>
@@ -1984,7 +1984,7 @@ Ignorar estes erros?&lt;/qt&gt;</translation>
     </message>
     <message>
         <source>Reload All Tabs</source>
-        <translation>Recargar tódalas lingüetas</translation>
+        <translation>Recargar todas as lingüetas</translation>
     </message>
 </context>
 <context>
@@ -2055,7 +2055,7 @@ Está seguro de que quere pechar esta páxina?
     </message>
     <message>
         <source>Bookmark All Tabs</source>
-        <translation>Tódalas lingüetas a marcadores</translation>
+        <translation>Todas as lingüetas a marcadores</translation>
     </message>
 </context>
 <context>
@@ -2120,7 +2120,7 @@ Está seguro de que quere pechar esta páxina?
     <name>WebView</name>
     <message>
         <source>Open in New &amp;Window</source>
-        <translation>Abrir nunha &amp;ventá nova</translation>
+        <translation>Abrir nunha &amp;xanela nova</translation>
     </message>
     <message>
         <source>Open in New &amp;Tab</source>
@@ -2140,7 +2140,7 @@ Está seguro de que quere pechar esta páxina?
     </message>
     <message>
         <source>Open Image in New &amp;Window</source>
-        <translation>Abrir a imaxe nunha &amp;ventá nova</translation>
+        <translation>Abrir a imaxe nunha &amp;xanela nova</translation>
     </message>
     <message>
         <source>Open Image in New &amp;Tab</source>

@@ -1247,7 +1247,7 @@ Do you want to quit anyway?</source>
     <name>HistoryTreeModel</name>
     <message>
         <source>Earlier Today</source>
-        <translation>Hace un rato</translation>
+        <translation>En el día de hoy</translation>
     </message>
     <message>
         <source>%n item(s)</source>
@@ -1665,7 +1665,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Standard font:</source>
-        <translation>Fuente estándar:</translation>
+        <translation>Tipografía estándar:</translation>
     </message>
     <message>
         <source>Select...</source>
@@ -1673,7 +1673,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Fixed-width font:</source>
-        <translation>Fuente de anchura fija:</translation>
+        <translation>Tipografía de anchura fija:</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -1825,7 +1825,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     </message>
     <message>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation>Idiomas preferidos para visualizar páginas web en:</translation>
+        <translation>Idiomas preferidos para visualizar páginas web:</translation>
     </message>
     <message>
         <source>Use ClickToFlash on flash plugins</source>
