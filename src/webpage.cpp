@@ -225,11 +225,28 @@ void WebPage::addExternalBinding(QWebFrame *frame)
     frame->addToJavaScriptWindowObject(QLatin1String("external"), m_javaScriptExternalObject);
 }
 
+QString WebPage::userAgent()
+{
+    return s_userAgent;
+}
+
+void WebPage::setUserAgent(const QString &userAgent)
+{
+    if (userAgent == s_userAgent)
+        return;
+
+    QSettings settings;
+    if (userAgent.isEmpty()) {
+        settings.remove(QLatin1String("userAgent"));
+    } else {
+        settings.setValue(QLatin1String("userAgent"), userAgent);
+    }
+
+    s_userAgent = userAgent;
+}
+
 QString WebPage::userAgentForUrl(const QUrl &url) const
 {
-    QSettings settings;
-    s_userAgent = settings.value(QLatin1String("userAgent")).toString();
-
     if (s_userAgent.isEmpty())
         s_userAgent = QWebPage::userAgentForUrl(url);
     return s_userAgent;

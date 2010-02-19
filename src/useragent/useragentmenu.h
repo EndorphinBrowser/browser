@@ -1,5 +1,6 @@
 /**
  * Copyright (c) 2010, William C. Witt
+ * Copyright (c) 2010, Benjamin C. Meyer  <ben@meyerhome.net>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -37,18 +38,15 @@ class UserAgentMenu : public QMenu
 
 public:
     UserAgentMenu(QWidget *parent = 0);
-    void buildUserAgentMenu();
-};
 
-class DefaultUA : public QAction
-{
-    Q_OBJECT
+private slots:
+    void populateMenu();
+    void changeUserAgent();
+    void switchToDefaultUserAgent();
+    void switchToOtherUserAgent();
 
-public:
-    DefaultUA(QObject *parent = 0);
-
-public slots:
-    void onAction();
+private:
+    void addActionsFromFile(const QString &fileName);
 
 };
 

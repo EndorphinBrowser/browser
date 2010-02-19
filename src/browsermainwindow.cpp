@@ -1000,7 +1000,7 @@ void BrowserMainWindow::retranslate()
     m_toolsPreferencesAction->setText(tr("Options..."));
     m_toolsPreferencesAction->setShortcut(tr("Ctrl+,"));
     m_toolsSearchManagerAction->setText(tr("Configure Search Engines..."));
-    m_toolsUserAgentMenu->setTitle(tr("UserAgent Switcher"));
+    m_toolsUserAgentMenu->setTitle(tr("User Agent"));
     m_adBlockDialogAction->setText(tr("&Ad Block..."));
 
     m_helpMenu->setTitle(tr("&Help"));

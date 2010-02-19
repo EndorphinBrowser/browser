@@ -81,6 +81,9 @@ public:
     static WebPluginFactory *webPluginFactory();
     QList<WebPageLinkedResource> linkedResources(const QString &relation = QString());
 
+    static QString userAgent();
+    static void setUserAgent(const QString &userAgent);
+
 protected:
     QString userAgentForUrl(const QUrl &url) const;
     bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
