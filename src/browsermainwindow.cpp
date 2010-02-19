@@ -85,6 +85,7 @@
 #include "tabbar.h"
 #include "tabwidget.h"
 #include "toolbarsearch.h"
+#include "useragentmenu.h"
 #include "webview.h"
 #include "webviewsearch.h"
 
@@ -835,6 +836,9 @@ void BrowserMainWindow::setupMenu()
             this, SLOT(showSearchDialog()));
     m_toolsMenu->addAction(m_toolsSearchManagerAction);
 
+    m_toolsUserAgentMenu = new UserAgentMenu(m_toolsMenu);
+    m_toolsMenu->addMenu(m_toolsUserAgentMenu);
+
     m_adBlockDialogAction = new QAction(m_toolsMenu);
     connect(m_adBlockDialogAction, SIGNAL(triggered()),
             AdBlockManager::instance(), SLOT(showDialog()));
@@ -996,6 +1000,7 @@ void BrowserMainWindow::retranslate()
     m_toolsPreferencesAction->setText(tr("Options..."));
     m_toolsPreferencesAction->setShortcut(tr("Ctrl+,"));
     m_toolsSearchManagerAction->setText(tr("Configure Search Engines..."));
+    m_toolsUserAgentMenu->setTitle(tr("UserAgent Switcher"));
     m_adBlockDialogAction->setText(tr("&Ad Block..."));
 
     m_helpMenu->setTitle(tr("&Help"));

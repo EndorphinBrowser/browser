@@ -75,6 +75,7 @@ class QSplitter;
 class QFrame;
 class HistoryMenu;
 class BookmarksMenuBarMenu;
+class UserAgentMenu;
 
 /*!
     The MainWindow of the Browser Application.
@@ -233,6 +234,7 @@ private:
     QAction *m_toolsEnableInspectorAction;
     QAction *m_toolsPreferencesAction;
     QAction *m_toolsSearchManagerAction;
+    UserAgentMenu *m_toolsUserAgentMenu;
     QAction *m_adBlockDialogAction;
 
     QMenu *m_helpMenu;

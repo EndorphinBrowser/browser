@@ -7,7 +7,9 @@ win32 : Debug : CONFIG += console
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-QT += webkit network
+QT += webkit \
+    network\
+    xml
 
 # Share object files for faster compiling
 RCC_DIR     = $$PWD/.rcc
@@ -97,12 +99,14 @@ include(network/network.pri)
 include(opensearch/opensearch.pri)
 include(qwebplugins/qwebplugins.pri)
 include(utils/utils.pri)
+include(useragent/useragent.pri)
 
 RESOURCES += \
     $$PWD/data/data.qrc \
     $$PWD/data/graphics/graphics.qrc \
     $$PWD/data/searchengines/searchengines.qrc \
-    $$PWD/htmls/htmls.qrc
+    $$PWD/htmls/htmls.qrc \
+    data/useragents/useragents.qrc
 
 DISTFILES += ../AUTHORS \
     ../ChangeLog \
