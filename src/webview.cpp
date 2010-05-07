@@ -87,7 +87,9 @@
 #include <qwebframe.h>
 
 #if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
+#if !defined(QTWEBKIT_VERSION) || QTWEBKIT_VERSION < 0x020000
 Q_DECLARE_METATYPE(QWebElement)
+#endif
 #include <qinputdialog.h>
 #include <qlabel.h>
 #include <qmessagebox.h>
