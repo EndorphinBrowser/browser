@@ -11,5 +11,5 @@ unix {
     doxygen.target = doc dox
     doxygen.commands = doxygen Doxyfile
     doxygen.depends = Doxyfile
-    QMAKE_EXTRA_UNIX_TARGETS += doxygen
+    QMAKE_EXTRA_TARGETS += doxygen
 }
