@@ -1,9 +1,15 @@
 #!/bin/sh
 #
-# Hack of a script to find some common style errors
-#
 # Coding style: http://code.google.com/p/arora/wiki/CodingStyle
 #
+
+case "${1}" in
+    --about )
+        echo "Hack of a script to find some common style errors."
+        exit 0
+        ;;
+esac
+
 
 args=$1
 if [ -z "${args}" ] ; then
