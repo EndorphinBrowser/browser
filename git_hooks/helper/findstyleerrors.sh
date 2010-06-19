@@ -32,3 +32,5 @@ grep $options '[a-z]--' $args | grep 'for'
 # var *name;
 grep $options '[^\* \/]\* ' $args
 grep $options '[^& ]& ' $args
+
+exit 0
