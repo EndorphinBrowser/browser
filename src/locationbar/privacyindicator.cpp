@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009-2010 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,12 @@ PrivacyIndicator::PrivacyIndicator(QWidget *parent)
     setPixmap(QPixmap(QLatin1String(":graphics/private.png")));
     connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
             this, SLOT(setVisible(bool)));
+    setCursor(Qt::ArrowCursor);
     setVisible(BrowserApplication::isPrivate());
 }
 
+void PrivacyIndicator::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+    BrowserApplication::instance()->setPrivate(false);
+}

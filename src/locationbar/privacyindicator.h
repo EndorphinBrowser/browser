@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009-2010 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,9 @@ class PrivacyIndicator : public QLabel
 
 public:
     PrivacyIndicator(QWidget *parent = 0);
+
+protected:
+    void mousePressEvent(QMouseEvent *event);
 
 };
 
