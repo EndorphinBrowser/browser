@@ -903,7 +903,7 @@ void BrowserMainWindow::aboutToShowTextEncodingMenu()
     currentCodec = codecs.indexOf(defaultTextEncoding);
 
     QAction *defaultEncoding = m_viewTextEncodingMenu->addAction(tr("Default"));
-    defaultEncoding->setData(-1);
+    defaultEncoding->setData(QString());
     defaultEncoding->setCheckable(true);
     if (currentCodec == -1)
         defaultEncoding->setChecked(true);
@@ -912,8 +912,8 @@ void BrowserMainWindow::aboutToShowTextEncodingMenu()
     for (int i = 0; i < codecs.count(); ++i) {
         const QString &codec = codecs.at(i);
         QAction *action = m_viewTextEncodingMenu->addAction(codec);
-        action->setData(i);
-        action->setCheckable(true);
+		action->setData(codec);
+		action->setCheckable(true);
         if (currentCodec == i)
             action->setChecked(true);
     }
@@ -925,12 +925,11 @@ void BrowserMainWindow::viewTextEncoding(QAction *action)
     Q_UNUSED(action);
 #if QT_VERSION >= 0x040600 || defined(WEBKIT_TRUNK)
     Q_ASSERT(action);
-    QList<QByteArray> codecs = QTextCodec::availableCodecs();
-    int offset = action->data().toInt();
-    if (offset < 0 || offset >= codecs.count())
-        QWebSettings::globalSettings()->setDefaultTextEncoding(QString());
+    QString codec = action->data().toString();
+    if (codec.isEmpty())
+		QWebSettings::globalSettings()->setDefaultTextEncoding(QString());
     else
-        QWebSettings::globalSettings()->setDefaultTextEncoding(QLatin1String(codecs[offset]));
+        QWebSettings::globalSettings()->setDefaultTextEncoding(codec);
 #endif
 }
 
