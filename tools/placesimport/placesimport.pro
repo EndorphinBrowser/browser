@@ -3,7 +3,7 @@ TARGET = arora-placesimport
 DEPENDPATH += .
 INCLUDEPATH += .
 
-win32: CONFIG += console
+win32|os2: CONFIG += console
 mac:CONFIG -= app_bundle
 
 QT += sql
