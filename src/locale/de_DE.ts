@@ -32,7 +32,7 @@
     </message>
     <message>
         <source>Lightweight WebKit-based web browser</source>
-        <translation>leichtgewichtiger WebKit-basierter Webbrowser</translation>
+        <translation>schlanker WebKit-basierter Webbrowser</translation>
     </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -255,7 +255,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open in New Tab</source>
-        <translation>In einem neuen tab öffnen</translation>
+        <translation>In einem neuen Tab öffnen</translation>
     </message>
     <message>
         <source>Edit Name</source>
