@@ -116,6 +116,10 @@ win32 {
     LIBS += -luser32
 }
 
+os2 {
+    RC_FILE = $$PWD/browser_os2.rc
+}
+
 mac {
     ICON = browser.icns
     QMAKE_INFO_PLIST = Info_mac.plist
