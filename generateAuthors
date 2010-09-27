@@ -24,4 +24,5 @@ git log --pretty="format:%an %ae" $1 \
     | sed -e 's/Matvey Kozhev/Maia Kozheva/g' \
     | sed -e 's/kristof@localhost.(none)/kristof.bal@gmail.com/g' \
     | sed -e 's/tavestbo@trolltech.com/tor.arne.vestbo@nokia.com/g' \
+    | sed -e 's/ariya.hidayat@trolltech.com/ariya.hidayat@gmail.com/g' \
     | sort | uniq -c | sort -n -r | sed -e 's/^ *[0-9]* //g'
