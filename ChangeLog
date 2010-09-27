@@ -1,3 +1,39 @@
+0.11.0
+Interface:
+    When the privacy indicator is visible clicking on it will result in private mode being turned off.
+    Add a way to modify the user agent string from within the application.
+    Support arguments for the external download program
+    Tweak the adblock dialog spacing and size.
+    Change the AdBlock dialog to use a simple check box instead of a group box.
+    Replace Stopped with Download Complete (like in ffx it's less confusing )
+    Update the copyright year in the about dialog to include 2010
+    Issue: 768: Fix spelling mistake
+    Issue: 821: Sort columns in cookie dialog by data values instead of string value. This fixes the dates being alphanumerically sorted.
+
+Behind the scene:
+    Issue: 891: Fix Text Encoding to work correctly
+    Issue: 826: Correctly save the history state of a tab when using Qt 4.6
+    Fix build breakage with QtWebKit 2.0.
+    Remove remnant of delayed QWebView creation. Fixes tab restore again.
+    Style fix: convert tabs to spaces.
+
+Build system:
+    Add an application icon for os2.
+    For finding the locale tools on os2 behave like win32
+    When building in debug mode on OS2 just like with Windows enable the console.
+    Move Arora's hooks to the git-hooks format to utilize git-hooks (See: http://github.com/icefox/git-hooks)
+    Default to lrelease and not lrelease-qt4 on non unix platforms.
+    QMAKE_EXTRA_UNIX_TARGETS is deprecated; use QMAKE_EXTRA_TARGETS instead.
+    Enable the raster graphics system by default for X11
+
+Translation:
+    Make "Show Hidden Files" translatable.
+    Issue: 811: Fix typos in the German translation
+    Replaced "leichtgewichtiger" with "schlanker" in translation with source "Lightweight WebKit-based wen browser"
+    Fixed capitalization typo whare the word "Tab" began with a lowercase "t"
+    Renamed Dutch translation file from nl_BE to nl.
+
+
 0.10.2
 The major issues:
     - When compiling with Qt 4.6 Arora had been using some API that changes
