@@ -252,7 +252,7 @@ bool HistoryCompleter::eventFilter(QObject *obj, QEvent *event)
             return true;
         } else if (keyEvent->key() == Qt::Key_Escape) {
             popup()->hide();
-	}
+        }
     }
     return QCompleter::eventFilter(obj, event);
 }
