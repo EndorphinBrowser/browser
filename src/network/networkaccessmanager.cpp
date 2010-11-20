@@ -168,6 +168,7 @@ void NetworkAccessManager::loadSettings()
     QList<QSslCertificate> ca_new = QSslCertificate::fromData(settings.value(QLatin1String("CaCertificates")).toByteArray());
     ca_list += ca_new;
     sslCfg.setCaCertificates(ca_list);
+    sslCfg.setProtocol(QSsl::AnyProtocol);
     QSslConfiguration::setDefaultConfiguration(sslCfg);
 #endif
 
@@ -327,6 +328,7 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
                 QList<QSslCertificate> ca_list = sslCfg.caCertificates();
                 ca_list += ca_new;
                 sslCfg.setCaCertificates(ca_list);
+                sslCfg.setProtocol(QSsl::AnyProtocol);
                 QSslConfiguration::setDefaultConfiguration(sslCfg);
                 reply->setSslConfiguration(sslCfg);
 
