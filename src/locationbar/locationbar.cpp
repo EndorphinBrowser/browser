@@ -34,6 +34,8 @@
 
 #include <QDebug>
 
+bool LocationBar::s_firstSelectAll = false;
+
 LocationBar::LocationBar(QWidget *parent)
     : LineEdit(parent)
     , m_webView(nullptr)
@@ -62,6 +64,7 @@ LocationBar::LocationBar(QWidget *parent)
 
     updateTextMargins();
     setUpdatesEnabled(true);
+    LocationBar::resetFirstSelectAll();
 }
 
 void LocationBar::setWebView(WebView *webView)
@@ -137,6 +140,23 @@ void LocationBar::focusOutEvent(QFocusEvent *event)
     if (text().isEmpty() && m_webView)
         webViewUrlChanged(m_webView->url());
     QLineEdit::focusOutEvent(event);
+}
+
+void LocationBar::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton){
+        if(!hasSelectedText() && !LocationBar::s_firstSelectAll){
+            LocationBar::s_firstSelectAll = true;
+            selectAll();
+        }
+    }else{
+        QLineEdit::mouseReleaseEvent(event);
+    }
+}
+
+void LocationBar::resetFirstSelectAll()
+{
+    LocationBar::s_firstSelectAll = false;
 }
 
 void LocationBar::mouseDoubleClickEvent(QMouseEvent *event)

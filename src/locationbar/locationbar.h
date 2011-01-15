@@ -36,10 +36,12 @@ public:
     LocationBar(QWidget *parent = nullptr);
     void setWebView(WebView *webView);
     WebView *webView() const;
+    static void resetFirstSelectAll();
 
 protected:
     void paintEvent(QPaintEvent *event);
     void focusOutEvent(QFocusEvent *event);
+    void mouseReleaseEvent (QMouseEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
     void keyPressEvent(QKeyEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
@@ -49,6 +51,10 @@ private slots:
     void webViewUrlChanged(const QUrl &url);
 
 private:
+    /**
+     * Guard to imitate Chrome select all on first click
+     */
+    static bool s_firstSelectAll;
     QPointer<WebView> m_webView;
 
     LocationBarSiteIcon *m_siteIcon;

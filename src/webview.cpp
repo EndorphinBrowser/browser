@@ -119,6 +119,7 @@
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "downloadmanager.h"
+#include "locationbar.h"
 #include "opensearchengine.h"
 #include "opensearchengineaction.h"
 #include "opensearchmanager.h"
@@ -614,7 +615,7 @@ void WebView::mousePressEvent(QMouseEvent *event)
 {
     BrowserApplication::instance()->setEventMouseButtons(event->buttons());
     BrowserApplication::instance()->setEventKeyboardModifiers(event->modifiers());
-
+    LocationBar::resetFirstSelectAll();
     switch (event->button()) {
     case Qt::XButton1:
         pageAction(WebPage::Back)->trigger();
