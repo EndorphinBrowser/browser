@@ -201,7 +201,8 @@ void AutoFillManager::post(const QNetworkRequest &request, const QByteArray &out
         messageBox.addButton(tr("Not now"), QMessageBox::RejectRole);
         messageBox.addButton(QMessageBox::Yes);
         messageBox.setDefaultButton(QMessageBox::Yes);
-        switch (messageBox.exec()) {
+        messageBox.exec();
+        switch (messageBox.buttonRole(messageBox.clickedButton())) {
         case QMessageBox::DestructiveRole:
             m_never.append(url);
             return;
