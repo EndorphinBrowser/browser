@@ -32,6 +32,7 @@
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "networkaccessmanagerproxy.h"
+#include "webpageproxy.h"
 #include "webview.h"
 
 #include <qdesktopservices.h>
@@ -145,7 +146,7 @@ void AutoFillManager::post(const QNetworkRequest &request, const QByteArray &out
         return;
 
     // Check the request type
-    QVariant typeVariant = request.attribute((QNetworkRequest::Attribute)(QNetworkRequest::User + 101));
+    QVariant typeVariant = request.attribute((QNetworkRequest::Attribute)(WebPageProxy::pageAttributeId() + 1));
     QWebPage::NavigationType type = (QWebPage::NavigationType)typeVariant.toInt();
     if (typeVariant.isValid() && type != QWebPage::NavigationTypeFormSubmitted) {
         // XXX Does this occur normally?
@@ -155,7 +156,7 @@ void AutoFillManager::post(const QNetworkRequest &request, const QByteArray &out
     }
 
     // Determine the QWebView
-    QVariant v = request.attribute((QNetworkRequest::Attribute)(QNetworkRequest::User + 100));
+    QVariant v = request.attribute((QNetworkRequest::Attribute)(WebPageProxy::pageAttributeId()));
     QWebPage *webPage = (QWebPage*)(v.value<void*>());
     if (!webPage) {
         qWarning() << "AutoFillManager:" << "QWebPage is not set in QNetworkRequest.";
