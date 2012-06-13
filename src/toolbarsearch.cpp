@@ -104,8 +104,7 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     connect(openSearchManager(), SIGNAL(currentEngineChanged()),
             this, SLOT(currentEngineChanged()));
 
-    m_completer = new QCompleter(this);
-    m_completer->setModel(m_model);
+    m_completer = new QCompleter(m_model, this);
     m_completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
     setCompleter(m_completer);
 
