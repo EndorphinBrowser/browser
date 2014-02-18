@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2010, Benjamin C. Meyer <ben@meyerhome.net>
+# Copyright (c) 2010-2014, Benjamin C. Meyer <ben@meyerhome.net>
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -30,6 +30,9 @@ dir=`dirname $0`
 
 function test_file {
     file="${1}"
+    if [ ! -f "${file}" ] ; then
+        return
+    fi
     echo "--checking style via bash hack: $file"
     GITDIR=`git rev-parse --git-dir`
     cd $GITDIR/../
