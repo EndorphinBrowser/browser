@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2014 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,7 +78,7 @@ public:
 
     BookmarkNode(Type type = Root, BookmarkNode *parent = 0);
     ~BookmarkNode();
-    bool operator==(const BookmarkNode &other);
+    bool operator==(const BookmarkNode &other) const;
 
     Type type() const;
     void setType(Type type);
