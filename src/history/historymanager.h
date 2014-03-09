@@ -139,7 +139,7 @@ private slots:
     void refreshFrecencies();
 
 protected:
-    void addHistoryEntry(const HistoryEntry &item);
+    void prependHistoryEntry(const HistoryEntry &item);
     void removeHistoryEntry(const HistoryEntry &item);
 
 private:

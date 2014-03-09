@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2014 Benjamin C. Meyer <ben@meyerhome.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,8 +78,8 @@ public:
         setDaysToExpire(30);
     }
 
-    void addHistoryEntry(const HistoryEntry &item)
-        { HistoryManager::addHistoryEntry(item); }
+    void prependHistoryEntry(const HistoryEntry &item)
+        { HistoryManager::prependHistoryEntry(item); }
 };
 
 // This will be called before the first test function is executed.
@@ -132,7 +132,7 @@ void tst_HistoryManager::history_data()
 void tst_HistoryManager::history()
 {
     SubHistory history;
-    history.addHistoryEntry(HistoryEntry());
+    history.prependHistoryEntry(HistoryEntry());
     history.clear();
     QCOMPARE(history.daysToExpire(), 30);
     history.setDaysToExpire(-1);
@@ -200,7 +200,7 @@ void tst_HistoryManager::addHistoryEntry()
     SubHistory history;
     history.setHistory(initial);
     for (int i = 0; i < items.count(); ++i)
-        history.addHistoryEntry(items[i]);
+        history.prependHistoryEntry(items[i]);
     QCOMPARE(history.history().count(), expected.count());
     QCOMPARE(history.history(), expected);
 }
@@ -278,7 +278,7 @@ void tst_HistoryManager::daysToExpire()
     for (int i = 0; i < list.count(); ++i) {
         HistoryEntry item = list.at(i);
         item.dateTime = QDateTime::currentDateTime();
-        history.addHistoryEntry(item);
+        history.prependHistoryEntry(item);
     }
 }
 
@@ -387,7 +387,7 @@ void tst_HistoryManager::saveload()
         // add url
         HistoryEntry foo("http://new.com", QDateTime::currentDateTime().addDays(1));
         post.prepend(foo);
-        history.addHistoryEntry(foo);
+        history.prependHistoryEntry(foo);
     }
 
     {

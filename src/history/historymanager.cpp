@@ -144,7 +144,7 @@ void HistoryManager::addHistoryEntry(const QString &url)
     cleanUrl.setPassword(QString());
     cleanUrl.setHost(cleanUrl.host().toLower());
     HistoryEntry item(atomicString(cleanUrl.toString()), QDateTime::currentDateTime());
-    addHistoryEntry(item);
+    prependHistoryEntry(item);
 }
 
 void HistoryManager::setHistory(const QList<HistoryEntry> &history, bool loadedAndSorted)
@@ -210,7 +210,7 @@ void HistoryManager::checkForExpired()
         m_expiredTimer.start(nextTimeout * 1000);
 }
 
-void HistoryManager::addHistoryEntry(const HistoryEntry &item)
+void HistoryManager::prependHistoryEntry(const HistoryEntry &item)
 {
     QWebSettings *globalSettings = QWebSettings::globalSettings();
     if (globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled))
