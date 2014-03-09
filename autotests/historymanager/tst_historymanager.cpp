@@ -25,6 +25,8 @@
 #include <historycompleter.h>
 #include <modeltest.h>
 
+#include <qwebsettings.h>
+
 class tst_HistoryManager : public QObject
 {
     Q_OBJECT
@@ -40,6 +42,8 @@ private slots:
     void history();
     void addHistoryEntry_data();
     void addHistoryEntry();
+    void addHistoryEntry_private();
+    void addHistoryEntry_url();
     void updateHistoryEntry_data();
     void updateHistoryEntry();
     void daysToExpire_data();
@@ -203,6 +207,26 @@ void tst_HistoryManager::addHistoryEntry()
         history.prependHistoryEntry(items[i]);
     QCOMPARE(history.history().count(), expected.count());
     QCOMPARE(history.history(), expected);
+}
+
+void tst_HistoryManager::addHistoryEntry_private()
+{
+    SubHistory history;
+    history.setHistory(HistoryList());
+    QWebSettings *globalSettings = QWebSettings::globalSettings();
+    globalSettings->setAttribute(QWebSettings::PrivateBrowsingEnabled, true);
+    history.prependHistoryEntry(HistoryEntry());
+    globalSettings->setAttribute(QWebSettings::PrivateBrowsingEnabled, false);
+    QVERIFY(history.history().isEmpty());
+}
+
+void tst_HistoryManager::addHistoryEntry_url()
+{
+    SubHistory history;
+    QString urlWithPassword("http://username:password@example.com");
+    history.addHistoryEntry(urlWithPassword);
+    QString cleanedUrl = "http://username@example.com";
+    QCOMPARE(history.history()[0].url, cleanedUrl);
 }
 
 void tst_HistoryManager::updateHistoryEntry_data()
