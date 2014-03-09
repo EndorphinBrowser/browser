@@ -102,9 +102,6 @@ HistoryManager::HistoryManager(QObject *parent)
     m_expiredTimer.setSingleShot(true);
     connect(&m_expiredTimer, SIGNAL(timeout()),
             this, SLOT(checkForExpired()));
-    m_frecencyTimer.setSingleShot(true);
-    connect(&m_frecencyTimer, SIGNAL(timeout()),
-            this, SLOT(refreshFrecencies()));
     connect(this, SIGNAL(entryAdded(const HistoryEntry &)),
             m_saveTimer, SLOT(changeOccurred()));
     connect(this, SIGNAL(entryRemoved(const HistoryEntry &)),
@@ -117,7 +114,6 @@ HistoryManager::HistoryManager(QObject *parent)
 
     // QWebHistoryInterface will delete the history manager
     QWebHistoryInterface::setDefaultInterface(this);
-    startFrecencyTimer();
 }
 
 HistoryManager::~HistoryManager()
@@ -417,17 +413,4 @@ void HistoryManager::save()
             qWarning() << "History: error moving new history over old." << tempFile.errorString() << historyFile.fileName();
     }
     m_lastSavedUrl = m_history.value(0).url;
-}
-
-void HistoryManager::refreshFrecencies()
-{
-    m_historyFilterModel->recalculateFrecencies();
-    startFrecencyTimer();
-}
-
-void HistoryManager::startFrecencyTimer()
-{
-    // schedule us to recalculate the frecencies once per day, at 3:00 am (aka 03h00)
-    QDateTime tomorrow(QDate::currentDate().addDays(1), QTime(3, 00));
-    m_frecencyTimer.start(QDateTime::currentDateTime().secsTo(tomorrow)*1000);
 }

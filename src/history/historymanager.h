@@ -136,7 +136,6 @@ public slots:
 private slots:
     void save();
     void checkForExpired();
-    void refreshFrecencies();
 
 protected:
     void prependHistoryEntry(const HistoryEntry &item);
@@ -150,7 +149,6 @@ private:
     AutoSaver *m_saveTimer;
     int m_daysToExpire;
     QTimer m_expiredTimer;
-    QTimer m_frecencyTimer;
     QHash<QString, int> m_atomicStringHash;
     QList<HistoryEntry> m_history;
     QString m_lastSavedUrl;

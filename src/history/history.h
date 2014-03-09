@@ -144,9 +144,14 @@ private slots:
     void sourceDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
     void sourceRowsInserted(const QModelIndex &parent, int start, int end);
     void sourceRowsRemoved(const QModelIndex &, int, int);
+    void refreshFrecencies();
 
 private:
     void load() const;
+    void startFrecencyTimer();
+
+    QTimer m_frecencyTimer;
+    QString m_lastSavedUrl;
 
     struct HistoryData {
         int tailOffset;

@@ -470,7 +470,25 @@ HistoryFilterModel::HistoryFilterModel(QAbstractItemModel *sourceModel, QObject 
     : QAbstractProxyModel(parent)
     , m_loaded(false)
 {
+    m_frecencyTimer.setSingleShot(true);
+    connect(&m_frecencyTimer, SIGNAL(timeout()),
+            this, SLOT(refreshFrecencies()));
+
     setSourceModel(sourceModel);
+    startFrecencyTimer();
+}
+
+void HistoryFilterModel::refreshFrecencies()
+{
+    recalculateFrecencies();
+    startFrecencyTimer();
+}
+
+void HistoryFilterModel::startFrecencyTimer()
+{
+    // schedule us to recalculate the frecencies once per day, at 3:00 am (aka 03h00)
+    QDateTime tomorrow(QDate::currentDate().addDays(1), QTime(3, 00));
+    m_frecencyTimer.start(QDateTime::currentDateTime().secsTo(tomorrow)*1000);
 }
 
 int HistoryFilterModel::historyLocation(const QString &url) const
