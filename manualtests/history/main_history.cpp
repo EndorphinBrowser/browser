@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     historyCompletionModelView->setModel(completionModel);
     tabWidget.addTab(historyCompletionModelView, "HistoryCompletionModel");
 
-    HistoryDialog dialog;
+    HistoryDialog dialog(0, &history);
     tabWidget.addTab(dialog.tree, "DialogModel");
 
     tabWidget.setCurrentIndex(3);

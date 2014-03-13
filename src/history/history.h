@@ -201,6 +201,7 @@ public:
     QModelIndex index(int, int, const QModelIndex &parent = QModelIndex()) const;
     QModelIndex parent(const QModelIndex &index = QModelIndex()) const;
     QMimeData *mimeData(const QModelIndexList &indexes) const;
+    QModelIndex buddy(const QModelIndex &index) const;
 
     int bumpedRows() const;
 

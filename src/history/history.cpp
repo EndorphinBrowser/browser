@@ -243,6 +243,11 @@ int HistoryMenuModel::rowCount(const QModelIndex &parent) const
     return defaultCount;
 }
 
+QModelIndex HistoryMenuModel::buddy(const QModelIndex &index) const
+{
+    return index;
+}
+
 QModelIndex HistoryMenuModel::mapFromSource(const QModelIndex &sourceIndex) const
 {
     // currently not used or autotested
