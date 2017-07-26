@@ -1769,299 +1769,299 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="34"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>일반</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="40"/>
         <source>On startup:</source>
-        <translation type="unfinished"></translation>
+        <translation>시작할 때:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="51"/>
         <source>Show my home page</source>
-        <translation type="unfinished"></translation>
+        <translation>내 홈 페이지 보이기</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="56"/>
         <source>Show a blank page</source>
-        <translation type="unfinished"></translation>
+        <translation>빈 페이지 보이기</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="61"/>
         <source>Restore windows and tabs from last time</source>
-        <translation type="unfinished"></translation>
+        <translation>마지막으로 열었던 창과 탭 복원</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="69"/>
         <source>Home Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>홈 페이지:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="86"/>
         <source>Set to current page</source>
-        <translation type="unfinished"></translation>
+        <translation>현재 페이지로 설정</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="106"/>
         <source>Remove history items:</source>
-        <translation type="unfinished"></translation>
+        <translation>기록 항목 제거:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="117"/>
         <source>After one day</source>
-        <translation type="unfinished"></translation>
+        <translation>하루마다</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="122"/>
         <source>After one week</source>
-        <translation type="unfinished"></translation>
+        <translation>1주마다</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="127"/>
         <source>After two weeks</source>
-        <translation type="unfinished"></translation>
+        <translation>2주마다</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="132"/>
         <source>After one month</source>
-        <translation type="unfinished"></translation>
+        <translation>1달마다</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="137"/>
         <source>After one year</source>
-        <translation type="unfinished"></translation>
+        <translation>1년마다</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="142"/>
         <source>Manually</source>
-        <translation type="unfinished"></translation>
+        <translation>수동으로</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="147"/>
         <source>On application exit</source>
-        <translation type="unfinished"></translation>
+        <translation>어플리케이션을 종료할 때</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="155"/>
         <source>Use the default search engine as fallback when the URL given by the user is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>입력한 URL이 올바르지 않을 때 기본 검색 엔진 사용</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="165"/>
         <source>Enable access keys</source>
-        <translation type="unfinished"></translation>
+        <translation>접근 키 활성화</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="172"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>다운로드</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="178"/>
         <source>Ask for a destination each time</source>
-        <translation type="unfinished"></translation>
+        <translation>다운로드할 경로를 매번 물어봄</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="187"/>
         <source>Use this destination:</source>
-        <translation type="unfinished"></translation>
+        <translation>이 경로를 사용:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="204"/>
         <source>Choose Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>디렉토리 선택...</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="215"/>
         <source>Use this external download program:</source>
-        <translation type="unfinished"></translation>
+        <translation>다른 다운로드 프로그램 사용:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="225"/>
         <source>Choose Program...</source>
-        <translation type="unfinished"></translation>
+        <translation>프로그램 선택...</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="251"/>
         <source>Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>모양새</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="257"/>
         <source>Standard font:</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 글꼴:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="286"/>
         <location filename="../settings.ui" line="316"/>
         <location filename="../settings.ui" line="330"/>
         <source>Select...</source>
-        <translation type="unfinished"></translation>
+        <translation>선택...</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="293"/>
         <source>Fixed-width font:</source>
-        <translation type="unfinished"></translation>
+        <translation>고정폭 글꼴:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="323"/>
         <source>Preferred languages for viewing webpages in:</source>
-        <translation type="unfinished"></translation>
+        <translation>웹 페이지를 볼 언어:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="337"/>
         <source>Minimum Font size:</source>
-        <translation type="unfinished"></translation>
+        <translation>글꼴 최소 크기:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="371"/>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>개인 정보</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="377"/>
         <source>Web Content</source>
-        <translation type="unfinished"></translation>
+        <translation>웹 항목</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="383"/>
         <source>Block Popup Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>팝업 창 차단</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="393"/>
         <source>Enable Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>플러그인 활성화</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="425"/>
         <source>If you enable this option, no flash objects will be loaded by default. Instead, each will be replaced by a button, allowing you to control which objects to load, and which not. </source>
-        <translation type="unfinished"></translation>
+        <translation>이 옵션을 활성화하면 플래시 객체를 바로 불러들이지 않도록 않도록 설정됩니다. 이 플래시 객체는 각각 버튼으로 대체되며, 사용자가 버튼을 눌러 이 플래시 객체를 불러들일 것인지 선택할 수 있습니다. </translation>
     </message>
     <message>
         <location filename="../settings.ui" line="428"/>
         <source>Use ClickToFlash on flash plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>플래시 플러그인에 ClickToFlash 사용</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="438"/>
         <source>Enable Javascript</source>
-        <translation type="unfinished"></translation>
+        <translation>Javascript 활성화</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="448"/>
         <source>View Images</source>
-        <translation type="unfinished"></translation>
+        <translation>이미지 보기</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="458"/>
         <source>Persistent Data Storage</source>
-        <translation type="unfinished"></translation>
+        <translation>오프라인 저장소 사용</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="471"/>
         <source>Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>쿠키</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="477"/>
         <source>Accept Cookies:</source>
-        <translation type="unfinished"></translation>
+        <translation>쿠키 허용:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="488"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>항상</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="493"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>안함</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="498"/>
         <source>Only from sites you navigate to</source>
-        <translation type="unfinished"></translation>
+        <translation>방문한 사이트만</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="506"/>
         <source>Exceptions...</source>
-        <translation type="unfinished"></translation>
+        <translation>예외...</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="513"/>
         <source>Keep Cookies Until:</source>
-        <translation type="unfinished"></translation>
+        <translation>쿠키 보존 기한:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="524"/>
         <source>They expire</source>
-        <translation type="unfinished"></translation>
+        <translation>사이트가 지정한 만료일</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="529"/>
         <source>I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>어플리케이션을 닫을 때까지</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="534"/>
         <source>At most 90 days</source>
-        <translation type="unfinished"></translation>
+        <translation>90일간</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="542"/>
         <source>Cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>쿠키...</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="562"/>
         <source>Filter Tracking Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>방문자 추적 쿠키 거르기</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="569"/>
         <source>A cookie session ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>쿠키 세션 만료일:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="580"/>
         <source>When I exit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>어플리케이션을 닫을 때</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="585"/>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1일</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="590"/>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>2일</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="595"/>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>3일</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="600"/>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>7일</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="605"/>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30일</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="630"/>
         <source>Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>탭</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="636"/>
@@ -2125,12 +2125,12 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.ui" line="764"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>프록시</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="770"/>
         <source>Use proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>프록시 서버 사용</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="779"/>
@@ -2175,52 +2175,52 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.ui" line="912"/>
         <source>AutoFill</source>
-        <translation type="unfinished"></translation>
+        <translation>자동완성</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="918"/>
         <source>AutoFill web forms:</source>
-        <translation type="unfinished"></translation>
+        <translation>웹 폼 자동완성</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="931"/>
         <source>User names and passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>사용자명과 암호</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="938"/>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>편집...</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="972"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>고급</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="978"/>
         <source>Style Sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>스타일시트:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="992"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>찾기...</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="999"/>
         <source>Enable network cache</source>
-        <translation type="unfinished"></translation>
+        <translation>네트워크 캐시 활성화</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="1011"/>
         <source>Maximum Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>용량 한도:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="1018"/>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
 </context>
 <context>
@@ -2228,7 +2228,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.cpp" line="463"/>
         <source>Restart required</source>
-        <translation>재시작 필요함</translation>
+        <translation>재시작이 필요함</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="464"/>
@@ -2238,17 +2238,17 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.cpp" line="484"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>디렉토리 선택</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="490"/>
         <source>Choose Program</source>
-        <translation type="unfinished"></translation>
+        <translation>프로그램 선택</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="533"/>
         <source>Choose CSS File</source>
-        <translation type="unfinished"></translation>
+        <translation>CSS 파일 선택</translation>
     </message>
 </context>
 <context>
@@ -2256,17 +2256,17 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../sourceviewer.cpp" line="42"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>불러오는 중...</translation>
     </message>
     <message>
         <location filename="../sourceviewer.cpp" line="47"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>편집 (&amp;E)</translation>
     </message>
     <message>
         <location filename="../sourceviewer.cpp" line="48"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>찾기 (&amp;F)</translation>
     </message>
     <message>
         <location filename="../sourceviewer.cpp" line="51"/>
@@ -2317,17 +2317,17 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../tabwidget.cpp" line="426"/>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation>제목 없음</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="479"/>
         <source>Saved Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>저장된 탭 목록</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="565"/>
         <source>Do you really want to close this page?</source>
-        <translation type="unfinished"></translation>
+        <translation>이 페이지를 정말로 닫을까요?</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="566"/>
@@ -2339,7 +2339,7 @@ Do you really want to close this page?
     <message>
         <location filename="../tabwidget.cpp" line="639"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>불러오는 중...</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="653"/>
@@ -2359,42 +2359,42 @@ Do you really want to close this page?
     <message>
         <location filename="../tabwidget.cpp" line="773"/>
         <source>Show Next Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>다음 탭 보기</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="777"/>
         <source>Ctrl-]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-]</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="781"/>
         <source>Show Previous Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>기존 탭 보기</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="785"/>
         <source>Ctrl-[</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-[</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="789"/>
         <source>Recently Closed Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>이전에 닫은 탭 보기</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="790"/>
         <source>New &amp;Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>새 탭 (&amp;T)</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="791"/>
         <source>&amp;Close Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>탭 닫기 (&amp;C)</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="792"/>
         <source>Bookmark All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 탭 북마크</translation>
     </message>
 </context>
 <context>
@@ -2402,7 +2402,7 @@ Do you really want to close this page?
     <message>
         <location filename="../toolbarsearch.cpp" line="292"/>
         <source>Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>제안</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="341"/>
@@ -2435,7 +2435,7 @@ Do you really want to close this page?
     <message>
         <location filename="../useragent/useragentmenu.cpp" line="67"/>
         <source>Other...</source>
-        <translation type="unfinished"></translation>
+        <translation>다른 설정...</translation>
     </message>
     <message>
         <location filename="../useragent/useragentmenu.cpp" line="132"/>
@@ -2586,7 +2586,7 @@ Do you really want to close this page?
     <message>
         <location filename="../webview.cpp" line="589"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>불러오는 중...</translation>
     </message>
 </context>
 <context>
