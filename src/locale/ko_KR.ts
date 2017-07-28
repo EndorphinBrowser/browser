@@ -952,7 +952,7 @@ Do you want to reload all pages?</source>
     <message>
         <location filename="../browsermainwindow.cpp" line="1478"/>
         <source>Reload</source>
-        <translation>새로고침</translation>
+        <translation>새로 고침</translation>
     </message>
     <message>
         <location filename="../browsermainwindow.cpp" line="1545"/>
@@ -1531,49 +1531,51 @@ Do you want to quit anyway?</source>
     <message>
         <location filename="../network/networkaccessmanager.cpp" line="215"/>
         <source>&lt;qt&gt;Enter username and password for &quot;%1&quot; at %2&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;&quot;%1&quot; 에서 사용하는 사용자명과 암호를 %2 에 입력하십시오.&lt;/qt&gt;</translation>
     </message>
     <message>
         <location filename="../network/networkaccessmanager.cpp" line="242"/>
         <source>&lt;qt&gt;Connect to proxy &quot;%1&quot; using:&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;&quot;%1&quot; 프록시 서버에 다음을 사용하여 연결:&lt;/qt&gt;</translation>
     </message>
     <message>
         <location filename="../network/networkaccessmanager.cpp" line="258"/>
         <source>Issuer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>발행자: %1</translation>
     </message>
     <message>
         <location filename="../network/networkaccessmanager.cpp" line="259"/>
         <source>Not valid before: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 부터 유효함</translation>
     </message>
     <message>
         <location filename="../network/networkaccessmanager.cpp" line="260"/>
         <source>Valid until: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 까지 유효함</translation>
     </message>
     <message>
         <location filename="../network/networkaccessmanager.cpp" line="266"/>
         <source>Alternate Names:</source>
-        <translation type="unfinished"></translation>
+        <translation>별칭:</translation>
     </message>
     <message>
         <location filename="../network/networkaccessmanager.cpp" line="305"/>
         <source> - SSL Errors</source>
-        <translation type="unfinished"></translation>
+        <translation> - SSL 오류</translation>
     </message>
     <message>
         <location filename="../network/networkaccessmanager.cpp" line="306"/>
         <source>&lt;qt&gt;SSL Errors:&lt;br/&gt;&lt;br/&gt;for: &lt;tt&gt;%1&lt;/tt&gt;&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
 
 Do you want to ignore these errors?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;SSL 오류:&lt;br/&gt;&lt;br/&gt;&lt;tt&gt;%1&lt;/tt&gt; 에서 발생&lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;
+
+이 오류를 무시하겠습니까?&lt;/qt&gt;</translation>
     </message>
     <message>
         <location filename="../network/networkaccessmanager.cpp" line="319"/>
         <source>&lt;qt&gt;Certificates:&lt;br/&gt;%1&lt;br/&gt;Do you want to accept all these certificates?&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;qt&gt;인증서:&lt;br/&gt;%1&lt;br/&gt;이 인증서를 모두 허용하시겠습니까?&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1581,7 +1583,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../opensearch/opensearchdialog.ui" line="14"/>
         <source>OpenSearch Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenSearch 관리자</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.ui" line="31"/>
@@ -1611,7 +1613,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../opensearch/opensearchdialog.cpp" line="63"/>
         <source>OpenSearch</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenSearch</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.cpp" line="67"/>
@@ -1622,12 +1624,12 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../opensearch/opensearchdialog.cpp" line="68"/>
         <source>%1 is not a valid OpenSearch 1.1 description or is already on your list.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 은(는) 올바른 OpenSearch 1.1 규격 파일이 아니거나 이미 목록에 있습니다.</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchdialog.cpp" line="77"/>
         <source>You must have at least one search engine in here.</source>
-        <translation type="unfinished"></translation>
+        <translation>하나 이상의 검색 엔진이 있어야 합니다.</translation>
     </message>
 </context>
 <context>
@@ -1635,17 +1637,17 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../opensearch/opensearchenginemodel.cpp" line="109"/>
         <source>&lt;strong&gt;Description:&lt;/strong&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;규격:&lt;/strong&gt; %1</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchenginemodel.cpp" line="113"/>
         <source>&lt;strong&gt;Provides contextual suggestions&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;strong&gt;문장 제안을 제공함&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchenginemodel.cpp" line="127"/>
         <source>Comma-separated list of keywords that may be entered in the location barfollowed by search terms to search with this engine</source>
-        <translation type="unfinished"></translation>
+        <translation>구분점으로 구분된 단어 목록은 주소 바에 입력할 수 있고, 이 검색 엔진을 사용할 때 검색 규칙에 따라 처리됩니다</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchenginemodel.cpp" line="165"/>
@@ -1663,7 +1665,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../opensearch/opensearchmanager.cpp" line="312"/>
         <source>Do you want to add the following engine to your list of search engines?&lt;br /&gt;&lt;br /&gt;Name: %1&lt;br /&gt;Searches on: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>이 검색 엔진 목록을 브라우저에서 이용할 검색 목록에 추가하시겠습니까?&lt;br /&gt;&lt;br /&gt;이름: %1&lt;br /&gt;검색 위치: %2</translation>
     </message>
 </context>
 <context>
@@ -1699,7 +1701,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../plaintexteditsearch.cpp" line="62"/>
         <source>Not Found</source>
-        <translation type="unfinished"></translation>
+        <translation>찾을 수 없음</translation>
     </message>
 </context>
 <context>
@@ -1707,22 +1709,22 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../network/proxy.ui" line="14"/>
         <source>Proxy Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>프록시 서버 인증</translation>
     </message>
     <message>
         <location filename="../network/proxy.ui" line="27"/>
         <source>Connect to proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>프록시 서버에 연결</translation>
     </message>
     <message>
         <location filename="../network/proxy.ui" line="37"/>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>사용자명:</translation>
     </message>
     <message>
         <location filename="../network/proxy.ui" line="47"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>암호:</translation>
     </message>
 </context>
 <context>
@@ -1730,17 +1732,17 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../bookmarks/xbel/xbelreader.cpp" line="111"/>
         <source>The file is not an XBEL version 1.0 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>이 파일은 XBEL 1.0 규격 파일이 아닙니다.</translation>
     </message>
     <message>
         <location filename="../bookmarks/xbel/xbelreader.cpp" line="209"/>
         <source>Unknown title</source>
-        <translation type="unfinished"></translation>
+        <translation>제목 없음</translation>
     </message>
     <message>
         <location filename="../opensearch/opensearchreader.cpp" line="89"/>
         <source>The file is not an OpenSearch 1.1 file.</source>
-        <translation type="unfinished"></translation>
+        <translation>이 파일은 OpenSearch 1.1 규격 파일이 아닙니다.</translation>
     </message>
 </context>
 <context>
@@ -2066,61 +2068,61 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.ui" line="636"/>
         <source>Select tabs and windows as they are created</source>
-        <translation type="unfinished"></translation>
+        <translation>생성된 탭과 창을 보여줌</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="643"/>
         <source>Confirm when closing multiple tabs or windows</source>
-        <translation type="unfinished"></translation>
+        <translation>여러 탭과 창을 닫을 때 물어보기</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="653"/>
         <source>Show only one close button instead of one for each tab</source>
-        <translation type="unfinished"></translation>
+        <translation>각 탭의 닫기 버튼을 단일 닫기 버튼으로 대체</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="663"/>
         <source>Quit the application when last tab is closed</source>
-        <translation type="unfinished"></translation>
+        <translation>마지막 탭을 닫았을 때 어플리케이션을 종료</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="673"/>
         <source>Opening links</source>
-        <translation type="unfinished"></translation>
+        <translation>링크를 열 방법</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="679"/>
         <source>Links that want to open in a new window:</source>
-        <translation type="unfinished"></translation>
+        <translation>새 창으로 링크를 열 때:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="690"/>
         <location filename="../settings.ui" line="724"/>
         <source>In a new window</source>
-        <translation type="unfinished"></translation>
+        <translation>새 창 열기</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="695"/>
         <location filename="../settings.ui" line="729"/>
         <source>In a new selected tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>현재 창에서 새 탭을 열어 보이기</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="700"/>
         <location filename="../settings.ui" line="734"/>
         <source>In a new tab in the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>현재 창에서 새 탭으로 열기</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="705"/>
         <location filename="../settings.ui" line="739"/>
         <source>In the current tab</source>
-        <translation type="unfinished"></translation>
+        <translation>현재 탭에서 보이기</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="713"/>
         <source>Open links from applications:</source>
-        <translation type="unfinished"></translation>
+        <translation>어플리케이션에서 링크를 열 때:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="764"/>
@@ -2135,42 +2137,42 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.ui" line="779"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>연결 종류:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="790"/>
         <source>Socks5</source>
-        <translation type="unfinished"></translation>
+        <translation>Socks5</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="795"/>
         <source>Http (Secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (보안)</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="800"/>
         <source>Http (Transparent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Http (투명)</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="808"/>
         <source>Host name:</source>
-        <translation type="unfinished"></translation>
+        <translation>호스트:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="825"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>포트:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="858"/>
         <source>User Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>사용자명:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="875"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>암호:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="912"/>
@@ -2220,7 +2222,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.ui" line="1018"/>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
 </context>
 <context>
@@ -2228,12 +2230,12 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../settings.cpp" line="463"/>
         <source>Restart required</source>
-        <translation>재시작이 필요함</translation>
+        <translation>다시 시작이 필요함</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="464"/>
         <source>The network cache configuration has changed. So that it can be taken into account, the browser has to be restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>네트워크 캐시 설정이 변경되었습니다. 변경된 설정을 적용하려면 브라우저를 다시 시작해야 합니다.</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="484"/>
@@ -2271,7 +2273,7 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../sourceviewer.cpp" line="51"/>
         <source>Source of Page %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 페이지의 소스</translation>
     </message>
 </context>
 <context>
@@ -2279,37 +2281,37 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../tabbar.cpp" line="143"/>
         <source>Show Tab Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>탭 바 보이기</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="143"/>
         <source>Hide Tab Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>탭 바 숨기기</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="168"/>
         <source>Duplicate Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>탭 복제</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="174"/>
         <source>&amp;Close Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>탭 닫기 (&amp;C)</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="178"/>
         <source>Close &amp;Other Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>다른 탭 닫기 (&amp;O)</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="184"/>
         <source>Reload Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>탭 새로 고침</translation>
     </message>
     <message>
         <location filename="../tabbar.cpp" line="190"/>
         <source>Reload All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 탭 새로 고침</translation>
     </message>
 </context>
 <context>
@@ -2327,14 +2329,16 @@ Do you want to ignore these errors?&lt;/qt&gt;</source>
     <message>
         <location filename="../tabwidget.cpp" line="565"/>
         <source>Do you really want to close this page?</source>
-        <translation>이 페이지를 정말로 닫을까요?</translation>
+        <translation>이 페이지를 정말 닫으시겠습니까?</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="566"/>
         <source>You have modified this page and when closing it you would lose the modification.
 Do you really want to close this page?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>이 페이지에서 편집한 내용은 페이지를 닫을 때 손실될 수 있습니다.
+이 페이지를 정말 닫으시겠습니까?
+</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="639"/>
@@ -2344,17 +2348,17 @@ Do you really want to close this page?
     <message>
         <location filename="../tabwidget.cpp" line="653"/>
         <source>Loading %1% (%2 %3)...</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% 불러오는 중 (%2 %3)...</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="678"/>
         <source>Finished loading</source>
-        <translation type="unfinished"></translation>
+        <translation>불러오기 성공</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="680"/>
         <source>Failed to load</source>
-        <translation type="unfinished"></translation>
+        <translation>불러오기 실패</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="773"/>
@@ -2407,22 +2411,22 @@ Do you really want to close this page?
     <message>
         <location filename="../toolbarsearch.cpp" line="341"/>
         <source>Add &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; 추가</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="351"/>
         <source>Clear Recent Searches</source>
-        <translation type="unfinished"></translation>
+        <translation>최근 검색 기록 비우기</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="406"/>
         <source>No Recent Searches</source>
-        <translation type="unfinished"></translation>
+        <translation>최근 검색 기록 없음</translation>
     </message>
     <message>
         <location filename="../toolbarsearch.cpp" line="410"/>
         <source>Recent Searches</source>
-        <translation type="unfinished"></translation>
+        <translation>최근 검색 기록</translation>
     </message>
 </context>
 <context>
@@ -2453,37 +2457,37 @@ Do you really want to close this page?
     <message>
         <location filename="../webpage.cpp" line="269"/>
         <source>Resending POST request</source>
-        <translation type="unfinished"></translation>
+        <translation>POST 요청 재전송 필요함</translation>
     </message>
     <message>
         <location filename="../webpage.cpp" line="270"/>
         <source>In order to display the site, the request along with all the data must be sent once again, which may lead to some unexpected behaviour of the site e.g. the same action might be performed once again. Do you want to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>이 사이트를 표시하려면 사이트를 요청할 때 이용한 모든 데이터를 다시 보내야 합니다. 이 작업은 사이트에서 기대하지 않은 동작을 진행할 수 있습니다. 예로, 방금 했던 작업이 다시 실행될 수 있습니다. 계속 진행하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../webpage.cpp" line="429"/>
         <source>Error loading page: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 페이지 불러오기 오류</translation>
     </message>
     <message>
         <location filename="../webpage.cpp" line="440"/>
         <source>When connecting to: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 에 접속하려고 하였습니다.</translation>
     </message>
     <message>
         <location filename="../webpage.cpp" line="441"/>
         <source>Check the address for errors such as &lt;b&gt;ww&lt;/b&gt;.arora-browser.org instead of &lt;b&gt;www&lt;/b&gt;.arora-browser.org</source>
-        <translation type="unfinished"></translation>
+        <translation>주소를 실수로 &lt;b&gt;www&lt;/b&gt;.arora-browser.org 대신 &lt;b&gt;ww&lt;/b&gt;.arora-browser.org 와 같이 입력하였는지 확인하여 주십시요.</translation>
     </message>
     <message>
         <location filename="../webpage.cpp" line="442"/>
         <source>If the address is correct, try checking the network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>주소를 제대로 입력하였다면 네트워크 연결을 확인하여 주십시요.</translation>
     </message>
     <message>
         <location filename="../webpage.cpp" line="443"/>
         <source>If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>컴퓨터나 네트워크가 방화벽이나 프록시 서버로 보호받고 있다면 브라우저가 네트워크에 접속하는 데 제한이 있는지 확인하여 주십시요.</translation>
     </message>
 </context>
 <context>
@@ -2501,87 +2505,87 @@ Do you really want to close this page?
     <message>
         <location filename="../webview.cpp" line="227"/>
         <source>Save Lin&amp;k</source>
-        <translation type="unfinished"></translation>
+        <translation>링크 저장 (&amp;K)</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="228"/>
         <source>&amp;Bookmark This Link</source>
-        <translation type="unfinished"></translation>
+        <translation>이 링크를 북마크 (&amp;B)</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="232"/>
         <source>&amp;Copy Link Location</source>
-        <translation type="unfinished"></translation>
+        <translation>링크 주소 복사 (&amp;C)</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="238"/>
         <source>Open Image in New &amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>새 창에 이미지 열기 (&amp;W)</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="240"/>
         <source>Open Image in New &amp;Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>새 탭에 이미지 열기 (&amp;T)</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="243"/>
         <source>&amp;Save Image</source>
-        <translation type="unfinished"></translation>
+        <translation>이미지 저장 (&amp;S)</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="244"/>
         <source>&amp;Copy Image</source>
-        <translation type="unfinished"></translation>
+        <translation>이미지 복사 (&amp;C)</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="245"/>
         <source>C&amp;opy Image Location</source>
-        <translation type="unfinished"></translation>
+        <translation>이미지 주소 복사 (&amp;O)</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="247"/>
         <source>Block Image</source>
-        <translation type="unfinished"></translation>
+        <translation>이미지 차단</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="256"/>
         <source>Search with...</source>
-        <translation type="unfinished"></translation>
+        <translation>이 부분을 검색...</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="283"/>
         <source>Add to the toolbar search</source>
-        <translation type="unfinished"></translation>
+        <translation>도구 검색에 추가</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="440"/>
         <source>Method not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>기능 지원 안됨</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="441"/>
         <source>%1 method is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 기능은 지원하지 않습니다.</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="483"/>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>검색 엔진</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="484"/>
         <source>Choose the desired search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>검색할 엔진을 선택하십시오</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="497"/>
         <source>Engine name</source>
-        <translation type="unfinished"></translation>
+        <translation>엔진 이름</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="497"/>
         <source>Type in a name for the engine</source>
-        <translation type="unfinished"></translation>
+        <translation>엔진 이름을 입력하십시오</translation>
     </message>
     <message>
         <location filename="../webview.cpp" line="589"/>
