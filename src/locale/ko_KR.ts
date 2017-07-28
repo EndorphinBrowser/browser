@@ -2348,7 +2348,7 @@ Do you really want to close this page?
     <message>
         <location filename="../tabwidget.cpp" line="653"/>
         <source>Loading %1% (%2 %3)...</source>
-        <translation>%1% 불러오는 중 (%2 %3)...</translation>
+        <translation>%1% 불러옴 (%2 %3)...</translation>
     </message>
     <message>
         <location filename="../tabwidget.cpp" line="678"/>
