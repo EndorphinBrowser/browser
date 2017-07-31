@@ -20,6 +20,7 @@ TRANSLATIONS += \
     hu_HU.ts \
     it_IT.ts \
     ja_JP.ts \
+    ko_KR.ts \
     ms.ts \
     nb_NO.ts \
     nl.ts \
