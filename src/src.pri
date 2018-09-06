@@ -7,7 +7,7 @@ win32|os2 : Debug : CONFIG += console
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-QT += webkit network
+QT += webkit network webkitwidgets printsupport uitools
 
 # Share object files for faster compiling
 RCC_DIR     = $$PWD/.rcc
@@ -23,6 +23,8 @@ exists(../.git/HEAD) {
         DEFINES += GITCHANGENUMBER=\"\\\"$$GITCHANGENUMBER\\\"\"
     }
 }
+
+VPATH += $$PWD
 
 FORMS += \
     aboutdialog.ui \
@@ -122,7 +124,7 @@ os2 {
 
 mac {
     ICON = browser.icns
-    QMAKE_INFO_PLIST = Info_mac.plist
+    QMAKE_INFO_PLIST = $$PWD/Info_mac.plist
 }
 
 include(../webkittrunk.pri)

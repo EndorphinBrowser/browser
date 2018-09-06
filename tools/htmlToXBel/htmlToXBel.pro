@@ -6,7 +6,7 @@ INCLUDEPATH += .
 win32|os2: CONFIG += console
 mac:CONFIG -= app_bundle
 
-QT += network webkit
+QT += network webkit webkitwidgets
 
 # Input
 SOURCES += main.cpp

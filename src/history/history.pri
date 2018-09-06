@@ -1,5 +1,6 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
+VPATH += $$PWD
 
 HEADERS += \
   history.h \
@@ -13,4 +14,3 @@ SOURCES += \
 
 FORMS += \
     history.ui
-

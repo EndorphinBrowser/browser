@@ -1,5 +1,6 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
+VPATH += $$PWD
 
 HEADERS += \
   cookiedialog.h \
@@ -20,4 +21,3 @@ FORMS += \
     cookiesexceptions.ui
 
 include($$PWD/networkcookiejar/networkcookiejar.pri)
-

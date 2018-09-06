@@ -63,7 +63,7 @@
 #ifndef WEBACTIONMAPPER_H
 #define WEBACTIONMAPPER_H
 
-#include <qwebpage.h>
+#include <QtWebKitWidgets>
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -99,4 +99,3 @@ private:
 };
 
 #endif // WEBACTIONMAPPER_H
-

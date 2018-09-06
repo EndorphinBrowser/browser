@@ -37,6 +37,7 @@
 #include "networkcookiejar.h"
 #include "networkcookiejar_p.h"
 #include "twoleveldomains_p.h"
+#include <QDataStream>
 
 //#define NETWORKCOOKIEJAR_DEBUG
 
@@ -372,4 +373,3 @@ void NetworkCookieJar::setSecondLevelDomains(const QStringList &secondLevelDomai
     d->secondLevelDomains = secondLevelDomains;
     qSort(d->secondLevelDomains);
 }
-

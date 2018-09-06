@@ -416,4 +416,3 @@ void AutoFillManager::Form::save(QDataStream &out, const AutoFillManager::Form &
     out << form.name;
     out << form.hasAPassword;
 }
-

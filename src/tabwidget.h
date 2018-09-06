@@ -65,7 +65,7 @@
 
 #include <qtabwidget.h>
 
-#include <qwebpage.h>
+#include <QtWebKitWidgets>
 #include <qurl.h>
 
 QT_BEGIN_NAMESPACE
@@ -212,4 +212,3 @@ private:
 };
 
 #endif // TABWIDGET_H
-

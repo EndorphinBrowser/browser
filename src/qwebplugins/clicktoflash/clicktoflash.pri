@@ -1,5 +1,6 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
+VPATH += $$PWD
 
 HEADERS += \
   clicktoflash.h \
@@ -12,4 +13,3 @@ SOURCES += \
 FORMS += clicktoflash.ui clicktoflashsettings.ui
 
 RESOURCES += clicktoflash.qrc
-

@@ -1,6 +1,8 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
+VPATH += $$PWD
+
 HEADERS += \
     adblockblockednetworkreply.h \
     adblockdialog.h \
@@ -25,4 +27,3 @@ SOURCES += \
 
 FORMS += \
     adblockdialog.ui
-

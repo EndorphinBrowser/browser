@@ -1,6 +1,7 @@
 
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
+VPATH += $$PWD
 
 TRANSLATIONS += \
     ast.ts \

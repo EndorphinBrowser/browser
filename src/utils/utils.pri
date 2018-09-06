@@ -1,5 +1,6 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
+VPATH += $$PWD
 
 HEADERS += \
     editlistview.h \
@@ -32,4 +33,3 @@ win32 {
     SOURCES += explorerstyle.cpp
     LIBS += -lgdi32
 }
-

@@ -44,8 +44,7 @@ int main(int argc, char **argv)
     }
 
     NetworkDiskCache diskCache;
-    QString location = QDesktopServices::storageLocation(QDesktopServices::CacheLocation)
-            + QLatin1String("/browser/");
+    QString location = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/browser/");
     diskCache.setCacheDirectory(location);
 
     QNetworkCacheMetaData metaData;
@@ -110,4 +109,3 @@ int main(int argc, char **argv)
     delete device;
     return 0;
 }
-

@@ -71,6 +71,7 @@
 #include <qsettings.h>
 #include <qurl.h>
 #include <QNetworkCookie>
+#include <QDataStream>
 
 #include <qdebug.h>
 
@@ -490,4 +491,3 @@ void CookieJar::setFilterTrackingCookies(bool filterTrackingCookies)
 {
     this->m_filterTrackingCookies = filterTrackingCookies;
 }
-

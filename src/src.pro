@@ -3,12 +3,10 @@ TEMPLATE = app
 TARGET = arora
 mac {
     TARGET = Arora
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.10
 }
 
 DEFINES += \
-    QT_NO_CAST_FROM_ASCII \
-    QT_NO_CAST_TO_ASCII \
     QT_STRICT_ITERATORS \
 
 include(../install.pri)

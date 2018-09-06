@@ -30,7 +30,8 @@
 #define WEBPAGEPROXY_H
 
 #include <qnetworkaccessmanager.h>
-#include <QWebPage>
+#include <QtWebKit>
+#include <QtWebKitWidgets>
 
 class WebPageProxy : public QWebPage
 {
@@ -46,4 +47,3 @@ protected:
 };
 
 #endif // WEBPAGEPROXY_H
-
