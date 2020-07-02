@@ -32,9 +32,7 @@
 #include "adblocksubscription.h"
 #include "adblockrule.h"
 
-#if QT_VERSION >= 0x040600
 #include <qwebelement.h>
-#endif
 #include <qwebpage.h>
 #include <qwebframe.h>
 
@@ -83,7 +81,6 @@ void AdBlockPage::checkRule(const AdBlockRule *rule, QWebPage *page, const QStri
         selectorQuery = filter.mid(2);
 
     Q_UNUSED(page);
-#if QT_VERSION >= 0x040600
     QWebElement document = page->mainFrame()->documentElement();
     QWebElementCollection elements = document.findAll(selectorQuery);
 #if defined(ADBLOCKPAGE_DEBUG)
@@ -94,8 +91,6 @@ void AdBlockPage::checkRule(const AdBlockRule *rule, QWebPage *page, const QStri
         element.setStyleProperty(QLatin1String("visibility"), QLatin1String("hidden"));
         element.removeFromDocument();
     }
-
-#endif
 }
 
 void AdBlockPage::applyRulesToPage(QWebPage *page)
@@ -105,7 +100,6 @@ void AdBlockPage::applyRulesToPage(QWebPage *page)
     AdBlockManager *manager = AdBlockManager::instance();
     if (!manager->isEnabled())
         return;
-#if QT_VERSION >= 0x040600
     QString host = page->mainFrame()->url().host();
     QList<AdBlockSubscription*> subscriptions = manager->subscriptions();
     foreach (AdBlockSubscription *subscription, subscriptions) {
@@ -114,6 +108,5 @@ void AdBlockPage::applyRulesToPage(QWebPage *page)
             checkRule(rule, page, host);
         }
     }
-#endif
 }
 

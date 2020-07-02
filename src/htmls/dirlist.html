@@ -1,4 +1,4 @@
-<?xml encoding="UTF-8" version="1.0"?>
+<!doctype html>
 <html>
 <head>
 <title>%1</title>
@@ -71,13 +71,10 @@ body:not(.showDotFiles) .hidden {
   padding-left: 48px;
 }
 </style>
-<script type="text/javascript">
+<script>
 function showHide()
 {
-    if (document.body.className.indexOf("showDotFiles") != -1)
-        document.body.className = document.body.className.replace("showDotFiles", "");
-    else
-        document.body.className += " showDotFiles";
+    document.body.classList.toggle("showDotFiles");
 }
 </script>
 </head>

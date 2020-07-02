@@ -65,7 +65,7 @@
 
 #include <qobject.h>
 #include <qbasictimer.h>
-#include <qdatetime.h>
+#include <QElapsedTimer>
 
 /*
     This class will call the save() slot on the parent object when the parent changes.
@@ -90,7 +90,7 @@ protected:
 
 private:
     QBasicTimer m_timer;
-    QTime m_firstChange;
+    QElapsedTimer m_firstChange;
 
 };
 

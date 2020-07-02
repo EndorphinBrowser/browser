@@ -71,6 +71,7 @@
 
 #include <qfile.h>
 #include <qdatetime.h>
+#include <QElapsedTimer>
 
 class DownloadItem : public QWidget, public Ui_DownloadItem
 {
@@ -116,7 +117,7 @@ private:
 
     bool m_requestFileName;
     qint64 m_bytesReceived;
-    QTime m_downloadTime;
+    QElapsedTimer m_downloadTime;
     bool m_startedSaving;
     bool m_finishedDownloading;
     bool m_gettingFileName;

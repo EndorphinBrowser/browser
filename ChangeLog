@@ -1,3 +1,29 @@
+0.12.0
+
+Interface:
+    Show the number of downloads in the download manager dialog title
+    
+Fixed issues:
+    When the 'delete' button is pressed, the downloaded item count was not updated.
+    Issue: 912: Autofill manager was always storing forms.
+    Issue: 915: Fixed ssl certificate problem with sites like https://webmail.us.army.mil
+        By default QSSLConfiguration was only accepting SSLv3 while we want to
+        accept all of them.
+    Issue: 918: "Autofill webforms" in Preferences was always checked.
+    Issue: 931: Fix for fullscreen on Mac
+    Issue: 957: Workaround for a bug in QCompleter
+    
+Behind the scenses:
+    Support persistent data storage (HTML5 localStorage)
+    Update to QT5 & latest WebKit to fix many issues with modern websites
+    Update some internal pages to HTML5
+    Code cleanup
+
+Other:
+    Remove OS2 support
+    
+This is not an official update to this browser.
+
 0.11.0
 Interface:
     When the privacy indicator is visible clicking on it will result in private mode being turned off.

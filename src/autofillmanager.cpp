@@ -268,17 +268,12 @@ AutoFillManager::Form AutoFillManager::findForm(QWebPage *webPage, const QByteAr
             if (!name.isEmpty())
                 formElements.insert(p);
         }
-#if 0
-        QT_VERSION >= 0x040600
-        if (formElements.contains(args)) {
-#else
         if (formElements.intersect(args) == args) {
-#endif
             form.hasAPassword = formHasPasswords;
             form.name = formName;
             if (m_allowAutoCompleteOff)
                 args = args.subtract(deadElements);
-            form.elements = args.toList();
+            form.elements = args.values();
             break;
         }
 #ifdef AUTOFILL_DEBUG

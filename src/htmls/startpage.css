@@ -5,8 +5,7 @@
 }
 
 body {
-    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff), color-stop(0.5, #fff));
-    background-repeat: repeat-x;
+    background: linear-gradient(90deg, #ccc, #fff 50%);
     margin-top: 100px;
 }
 
@@ -16,12 +15,12 @@ body {
 }
 
 #header, #search {
-    -webkit-border-radius: 0.8em;
+    border-radius: 0.8em;
     padding: 25px;
 }
 
 #header {
-    background: -webkit-gradient(linear, left top, left bottom, from(#228), to(#668), color-stop(0.9, #66a));
+    background: linear-gradient(0deg, #228, #66a 90%,#668);
     height: 20px;
 }
 
@@ -40,7 +39,7 @@ body {
 }
 
 #search {
-    background: -webkit-gradient(linear, left top, right top, from(#cdf), to(#cdf), color-stop(0.5, #eff));
+    background: linear-gradient(90deg, #cdf, #eff 50%, #cdf);
     height: 50px;
     color: #000;
     text-align: center;
