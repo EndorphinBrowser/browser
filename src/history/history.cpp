@@ -435,7 +435,7 @@ HistoryDialog::HistoryDialog(QWidget *parent, HistoryManager *setHistory) : QDia
     tree->setExpanded(proxyModel->index(0, 0), true);
     tree->setAlternatingRowColors(true);
     QFontMetrics fm(font());
-    int header = fm.width(QLatin1Char('m')) * 40;
+    int header = fm.horizontalAdvance(QLatin1Char('m')) * 40;
     tree->header()->resizeSection(0, header);
     tree->header()->setStretchLastSection(true);
     connect(tree, SIGNAL(activated(const QModelIndex&)),
@@ -601,7 +601,7 @@ QModelIndex HistoryFilterModel::mapFromSource(const QModelIndex &sourceIndex) co
 
     int sourceOffset = sourceModel()->rowCount() - sourceIndex.row();
 
-    QList<HistoryData>::iterator pos = qBinaryFind(m_filteredRows.begin(),
+    QList<HistoryData>::iterator pos = std::lower_bound(m_filteredRows.begin(),
         m_filteredRows.end(), HistoryData(sourceOffset, -1));
 
     if (pos == m_filteredRows.end())
@@ -642,7 +642,7 @@ void HistoryFilterModel::load() const
             m_historyHash.insert(url, sourceOffset);
         } else {
             // we already know about this url: just increment its frecency score
-            QList<HistoryData>::iterator pos = qBinaryFind(m_filteredRows.begin(),
+            QList<HistoryData>::iterator pos = std::lower_bound(m_filteredRows.begin(),
                 m_filteredRows.end(), HistoryData(m_historyHash[url], -1));
             Q_ASSERT(pos != m_filteredRows.end());
             pos->frecency += frecencyScore(idx);
@@ -661,7 +661,7 @@ void HistoryFilterModel::sourceRowsInserted(const QModelIndex &parent, int start
     QString url = idx.data(HistoryModel::UrlStringRole).toString();
     int currentFrecency = 0;
     if (m_historyHash.contains(url)) {
-        QList<HistoryData>::iterator pos = qBinaryFind(m_filteredRows.begin(),
+        QList<HistoryData>::iterator pos = std::lower_bound(m_filteredRows.begin(),
             m_filteredRows.end(), HistoryData(m_historyHash[url], -1));
         Q_ASSERT(pos != m_filteredRows.end());
         int realRow = pos - m_filteredRows.begin();
@@ -941,7 +941,7 @@ QModelIndex HistoryTreeModel::mapFromSource(const QModelIndex &sourceIndex) cons
         rowCount(QModelIndex());
 
     QList<int>::iterator it;
-    it = qLowerBound(m_sourceRowCache.begin(), m_sourceRowCache.end(), sourceIndex.row());
+    it = std::lower_bound(m_sourceRowCache.begin(), m_sourceRowCache.end(), sourceIndex.row());
     if (*it != sourceIndex.row())
         --it;
     int dateRow = qMax(0, it - m_sourceRowCache.begin());
@@ -988,7 +988,7 @@ void HistoryTreeModel::sourceRowsRemoved(const QModelIndex &parent, int start, i
     if (!m_sourceRowCache.isEmpty())
     for (int i = end; i >= start;) {
         QList<int>::iterator it;
-        it = qLowerBound(m_sourceRowCache.begin(), m_sourceRowCache.end(), i);
+        it = std::lower_bound(m_sourceRowCache.begin(), m_sourceRowCache.end(), i);
         if (*it != i)
             --it;
         int row = qMax(0, it - m_sourceRowCache.begin());
