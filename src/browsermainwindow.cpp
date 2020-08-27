@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
  * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
@@ -1172,7 +1172,7 @@ void BrowserMainWindow::updateWindowTitle(const QString &title)
 #if defined(Q_WS_MAC)
         setWindowTitle(title);
 #else
-        setWindowTitle(tr("%1 - Arora", "Page title and Browser name").arg(title));
+        setWindowTitle(tr("%1 - Endorphin", "Page title and Browser name").arg(title));
 #endif
     }
 }

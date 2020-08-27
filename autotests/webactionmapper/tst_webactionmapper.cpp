@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #include <webactionmapper.h>
 #include <webview.h>
 
-#include "qtest_arora.h"
+#include "qtest_endorphin.h"
 
 class tst_WebActionMapper : public QObject
 {

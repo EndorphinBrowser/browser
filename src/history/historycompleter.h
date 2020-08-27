@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Benjamin K. Stuhl <bks24@cornell.edu>
  *
  * This program is free software; you can redistribute it and/or modify

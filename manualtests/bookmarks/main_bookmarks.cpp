@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QCoreApplication::setApplicationName(QLatin1String("arora"));
+    QCoreApplication::setApplicationName(QLatin1String("endorphin"));
     QCoreApplication::setApplicationVersion(QLatin1String("0.1"));
 
     new ModelTest(BrowserApplication::bookmarksManager()->bookmarksModel());

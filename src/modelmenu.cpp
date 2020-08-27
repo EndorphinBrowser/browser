@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -63,7 +63,7 @@
 
 #include "modelmenu.h"
 
-// option to remove the browserapplication for arora-placesimport
+// option to remove the browserapplication for endorphin-placesimport
 #ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
 #endif

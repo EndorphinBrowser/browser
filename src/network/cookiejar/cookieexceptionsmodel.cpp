@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -207,7 +207,7 @@ void CookieExceptionsModel::addHost(QString host, QStringList &add, QStringList 
         remove1.removeOne(host);
         remove2.removeOne(host);
     }
-    // avoid to have similar rules, with or without starting dot, eg "arora-browser.org" and ".arora-browser.org"
+    // avoid to have similar rules, with or without starting dot, eg "endorphin-browser.org" and ".endorphin-browser.org"
     // means the same domain.
     QString otherRule;
     if (host.startsWith(QLatin1Char('.'))) {

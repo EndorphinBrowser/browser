@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include <qwebpluginfactory.h>
 #include <qhash.h>
 
-#include "arorawebplugin.h"
+#include "endorphinwebplugin.h"
 
 class WebPluginFactory : public QWebPluginFactory
 {
@@ -41,8 +41,8 @@ public:
 private:
     void init() const;
     mutable bool m_loaded;
-    mutable QList<AroraWebPlugin*> m_plugins;
-    mutable QHash<QString, AroraWebPlugin*> m_pluginsCache;
+    mutable QList<EndorphinWebPlugin*> m_plugins;
+    mutable QHash<QString, EndorphinWebPlugin*> m_pluginsCache;
 };
 
 #endif // WEBPLUGINFACTORY_H

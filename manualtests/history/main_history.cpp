@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     QApplication application(argc, argv);
     QMainWindow w;
 
-    QCoreApplication::setApplicationName("arora");
+    QCoreApplication::setApplicationName("endorphin");
 
     HistoryManager history;
 

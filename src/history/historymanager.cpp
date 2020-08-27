@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@
 // Fix so we don't have to include browserapplication. Reduces the size.
 QString  HistoryManager::dataFilePath(const QString &fileName)
 {
-    QString directory = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/data/Arora";
+    QString directory = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/data/Endorphin";
     if (!QFile::exists(directory)) {
         QDir dir;
         dir.mkpath(directory);

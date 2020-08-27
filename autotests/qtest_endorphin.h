@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef QTEST_ARORA_H
-#define QTEST_ARORA_H
+#ifndef QTEST_ENDORPHIN_H
+#define QTEST_ENDORPHIN_H
 
 #include <QtTest/QtTest>
 

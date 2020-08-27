@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify

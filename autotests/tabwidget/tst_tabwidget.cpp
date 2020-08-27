@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #include <QtGui/QtGui>
 #include <QAction>
 #include <QLineEdit>
-#include "qtest_arora.h"
+#include "qtest_endorphin.h"
 
 #include <tabwidget.h>
 #include <webview.h>

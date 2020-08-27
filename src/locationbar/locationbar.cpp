@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -89,7 +89,7 @@ void LocationBar::webViewUrlChanged(const QUrl &url)
     } else {
         QUrl newurl = QUrl(url.toString());
         QString url_tmp = newurl.toString().mid(5);
-        newurl = QUrl(QLatin1String("arora://") + url_tmp);
+        newurl = QUrl(QLatin1String("endorphin://") + url_tmp);
         QString urlstr = newurl.toString();
         if(urlstr.endsWith(QLatin1String(".html"))) {
             urlstr.chop(5);

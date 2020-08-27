@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Zsombor Gegesy <gzsombor@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify

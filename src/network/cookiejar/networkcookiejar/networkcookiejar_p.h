@@ -18,7 +18,7 @@
  * The Original Code is Torch Mobile Inc. (http://www.torchmobile.com/) code
  *
  * The Initial Developer of the Original Code is:
- *   Benjamin Meyer (benjamin.meyer@torchmobile.com)
+ *   Aaron Dewes (aaron.dewes@web.de)
  *
  * Alternatively, the contents of this file may be used under the terms of
  * either the GNU General Public License Version 2 or later (the "GPL"), or

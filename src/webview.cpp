@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Benjamin C. Meyer <ben@meyerhome.net>
+ * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
  * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
@@ -534,8 +534,8 @@ void WebView::loadUrl(const QUrl &url, const QString &title)
         emit titleChanged(title);
     QUrl oldurl = QUrl(url.toString());
     QUrl newurl = QUrl(url.toString());
-    if(newurl.toString().startsWith(QLatin1String("arora://"))) {
-        QString url_tmp = newurl.toString().mid(8);
+    if(newurl.toString().startsWith(QLatin1String("endorphin://"))) {
+        QString url_tmp = newurl.toString().mid(12);
         newurl = QUrl(QLatin1String("qrc:/") + url_tmp);
         QString urlstr = newurl.toString();
         if(!urlstr.endsWith(QLatin1String(".html"))) {

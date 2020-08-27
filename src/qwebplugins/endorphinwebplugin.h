@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009, Benjamin C. Meyer
+ * Copyright (c) 2009, Aaron Dewes
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -9,7 +9,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Benjamin Meyer nor the names of its contributors
+ * 3. Neither the name of the Aaron Dewes nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -26,17 +26,17 @@
  * SUCH DAMAGE.
  */
 
-#ifndef ARORAWEBPLUGIN_H
-#define ARORAWEBPLUGIN_H
+#ifndef ENDORPHINWEBPLUGIN_H
+#define ENDORPHINWEBPLUGIN_H
 
 #include <qwebpluginfactory.h>
 
-class AroraWebPlugin
+class EndorphinWebPlugin
 {
 
 public:
-    AroraWebPlugin();
-    virtual ~AroraWebPlugin();
+    EndorphinWebPlugin();
+    virtual ~EndorphinWebPlugin();
 
     virtual QWebPluginFactory::Plugin metaPlugin() = 0;
     virtual QWidget *create(const QString &mimeType, const QUrl &url,
@@ -45,5 +45,5 @@ public:
     virtual bool isAnonymous() const;
 };
 
-#endif // ARORAWEBPLUGIN_H
+#endif // ENDORPHINWEBPLUGIN_H
 
