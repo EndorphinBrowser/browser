@@ -95,6 +95,28 @@ QString JavaScriptEndorphinObject::searchUrl(const QString &string) const
     return QString::fromUtf8(ToolbarSearch::openSearchManager()->currentEngine()->searchUrl(string).toEncoded());
 }
 
+
+
+QString JavaScriptEndorphinObject::getSetting(const QString &string)
+{
+    QSettings settings;
+    return settings.value(string).toString();
+}
+
+int JavaScriptEndorphinObject::setSetting(const QString &string, const QString &value)
+{
+    QSettings settings;
+    settings.setValue(string, value);
+    return 0;
+}
+
+int JavaScriptEndorphinObject::setSetting(const QString &string, const int &value)
+{
+    QSettings settings;
+    settings.setValue(string, value);
+    return 0;
+}
+
 WebPage::WebPage(QObject *parent)
     : WebPageProxy(parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
@@ -173,8 +195,7 @@ void WebPage::addExternalBinding(QWebFrame *frame)
     if (frame == 0) { // called from QWebFrame::javaScriptWindowObjectCleared
         frame = qobject_cast<QWebFrame*>(sender());
 
-        if (frame->url().scheme() == QLatin1String("qrc")
-            && frame->url().path() == QLatin1String("/startpage.html")) {
+        if (frame->url().scheme() == QLatin1String("qrc")) {
 
             if (!m_javaScriptEndorphinObject)
                 m_javaScriptEndorphinObject = new JavaScriptEndorphinObject(this);
