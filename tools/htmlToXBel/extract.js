@@ -39,7 +39,6 @@ function walk() {
     }
     return result;
 }
-
 var xbel = walk(document, "    ");
 
 if (xbel != "") {

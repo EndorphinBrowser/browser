@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,10 @@
  */
 
 #include <QApplication>
-#include <QtWebKitWidgets>
+#include <QtWebEngineWidgets>
+#include <QThread>
+#include <QEventLoop>
+#include <mainapp.h>
 
 /*!
     A tool to convert html bookmark files into the xbel format.
@@ -69,19 +72,8 @@ int main(int argc, char **argv)
         qWarning() << "Unable to open streams";
         return 1;
     }
-
-    QWebPage webPage;
-    webPage.mainFrame()->setHtml(inFile.readAll());
-    QFile jsFile(":/extract.js");
-    if (!jsFile.open(QFile::ReadOnly)) {
-        qWarning() << "Unable to load javascript to extract bookmarks.";
-        return 1;
-    }
-    QString result = webPage.mainFrame()->evaluateJavaScript(jsFile.readAll()).toString();
-    if (result.isEmpty()) {
-        qWarning() << "Error while extracting bookmarks.";
-        return 1;
-    }
-    out << result;
+    MainApp m_MainApp;
+    QString input = inFile.readAll();
+    out << m_MainApp.get(input);
     return 0;
 }
