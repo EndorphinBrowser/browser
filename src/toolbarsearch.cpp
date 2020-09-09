@@ -66,7 +66,6 @@
 #include "autosaver.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
-#include "networkaccessmanager.h"
 #include "opensearchengine.h"
 #include "opensearchengineaction.h"
 #include "opensearchmanager.h"
@@ -83,6 +82,7 @@
 #include <qtimer.h>
 #include <qurl.h>
 #include <qwebsettings.h>
+#include <QNetworkAccessManager>
 
 OpenSearchManager *ToolbarSearch::s_openSearchManager = 0;
 
@@ -239,7 +239,7 @@ void ToolbarSearch::getSuggestions()
         return;
 
     if (!engine->networkAccessManager())
-        engine->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+        engine->setNetworkAccessManager(new QNetworkAccessManager());
 
     engine->requestSuggestions(text());
 }

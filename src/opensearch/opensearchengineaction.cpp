@@ -20,7 +20,7 @@
 #include "opensearchengineaction.h"
 
 #include "browserapplication.h"
-#include "networkaccessmanager.h"
+#include <qnetworkaccessmanager.h>
 #include "opensearchengine.h"
 
 OpenSearchEngineAction::OpenSearchEngineAction(OpenSearchEngine *engine, QObject *parent)
@@ -28,7 +28,7 @@ OpenSearchEngineAction::OpenSearchEngineAction(OpenSearchEngine *engine, QObject
     , m_engine(engine)
 {
     if (!engine->networkAccessManager())
-        engine->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+        engine->setNetworkAccessManager(new QNetworkAccessManager());
 
     setText(engine->name());
     imageChanged();

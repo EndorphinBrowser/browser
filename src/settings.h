@@ -80,8 +80,6 @@ private slots:
     void saveToSettings();
 
     void setHomeToCurrentPage();
-    void showCookies();
-    void showExceptions();
 
     void chooseDownloadDirectory();
     void chooseDownloadProgram();
@@ -90,7 +88,6 @@ private slots:
     void chooseAcceptLanguage();
 
     void chooseStyleSheet();
-    void editAutoFillUser();
 
 private:
     QFont m_standardFont;

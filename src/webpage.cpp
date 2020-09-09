@@ -23,12 +23,10 @@
 #include "browserapplication.h"
 #include "downloadmanager.h"
 #include "historymanager.h"
-#include "networkaccessmanager.h"
 #include "opensearchengine.h"
 #include "opensearchmanager.h"
 #include "tabwidget.h"
 #include "toolbarsearch.h"
-#include "webpluginfactory.h"
 #include "webview.h"
 
 #include <qbuffer.h>
@@ -42,110 +40,19 @@
 
 #include <qwebelement.h>
 
-WebPluginFactory *WebPage::s_webPluginFactory = 0;
 QString WebPage::s_userAgent;
 
-JavaScriptExternalObject::JavaScriptExternalObject(QObject *parent)
-    : QObject(parent)
-{
-}
-
-void JavaScriptExternalObject::AddSearchProvider(const QString &url)
-{
-    ToolbarSearch::openSearchManager()->addEngine(QUrl(url));
-}
-
-Q_DECLARE_METATYPE(OpenSearchEngine*)
-JavaScriptEndorphinObject::JavaScriptEndorphinObject(QObject *parent)
-    : QObject(parent)
-{
-    static const char *translations[] = {
-        QT_TR_NOOP("Welcome to Endorphin!"),
-        QT_TR_NOOP("Endorphin Start"),
-        QT_TR_NOOP("Search!"),
-        QT_TR_NOOP("Search the web with"),
-        QT_TR_NOOP("Search results provided by"),
-        QT_TR_NOOP("About Endorphin")
-    };
-    Q_UNUSED(translations);
-
-    qRegisterMetaType<OpenSearchEngine*>("OpenSearchEngine*");
-}
-
-QString JavaScriptEndorphinObject::translate(const QString &string)
-{
-    QString translatedString = tr(string.toUtf8().constData());
-
-    // If the translation is the same as the original string
-    // it could not be translated.  In that case
-    // try to translate using the QApplication domain
-    if (translatedString != string)
-        return translatedString;
-    else
-        return qApp->tr(string.toUtf8().constData());
-}
-
-QObject *JavaScriptEndorphinObject::currentEngine() const
-{
-    return ToolbarSearch::openSearchManager()->currentEngine();
-}
-
-QString JavaScriptEndorphinObject::searchUrl(const QString &string) const
-{
-    return QString::fromUtf8(ToolbarSearch::openSearchManager()->currentEngine()->searchUrl(string).toEncoded());
-}
-
-
-
-QString JavaScriptEndorphinObject::getSetting(const QString &string)
-{
-    QSettings settings;
-    return settings.value(string).toString();
-}
-
-int JavaScriptEndorphinObject::setSetting(const QString &string, const QString &value)
-{
-    QSettings settings;
-    settings.setValue(string, value);
-    return 0;
-}
-
-int JavaScriptEndorphinObject::setSetting(const QString &string, const int &value)
-{
-    QSettings settings;
-    settings.setValue(string, value);
-    return 0;
-}
-
 WebPage::WebPage(QObject *parent)
-    : WebPageProxy(parent)
+    : QWebPage(parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
-    , m_javaScriptExternalObject(0)
-    , m_javaScriptEndorphinObject(0)
 {
-    setPluginFactory(webPluginFactory());
-    NetworkAccessManagerProxy *networkManagerProxy = new NetworkAccessManagerProxy(this);
-    networkManagerProxy->setWebPage(this);
-    networkManagerProxy->setPrimaryNetworkAccessManager(BrowserApplication::networkAccessManager());
-    setNetworkAccessManager(networkManagerProxy);
     connect(this, SIGNAL(unsupportedContent(QNetworkReply *)),
             this, SLOT(handleUnsupportedContent(QNetworkReply *)));
-    connect(this, SIGNAL(frameCreated(QWebFrame *)),
-            this, SLOT(addExternalBinding(QWebFrame *)));
-    addExternalBinding(mainFrame());
     loadSettings();
 }
 
 WebPage::~WebPage()
 {
-    setNetworkAccessManager(0);
-}
-
-WebPluginFactory *WebPage::webPluginFactory()
-{
-    if (!s_webPluginFactory)
-        s_webPluginFactory = new WebPluginFactory(BrowserApplication::instance());
-    return s_webPluginFactory;
 }
 
 QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
@@ -177,36 +84,6 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
     }
 
     return resources;
-}
-
-void WebPage::populateNetworkRequest(QNetworkRequest &request)
-{
-    if (request == lastRequest) {
-        request.setAttribute((QNetworkRequest::Attribute)(pageAttributeId() + 1), lastRequestType);
-    }
-    WebPageProxy::populateNetworkRequest(request);
-}
-
-void WebPage::addExternalBinding(QWebFrame *frame)
-{
-    if (!m_javaScriptExternalObject)
-        m_javaScriptExternalObject = new JavaScriptExternalObject(this);
-
-    if (frame == 0) { // called from QWebFrame::javaScriptWindowObjectCleared
-        frame = qobject_cast<QWebFrame*>(sender());
-
-        if (frame->url().scheme() == QLatin1String("qrc")) {
-
-            if (!m_javaScriptEndorphinObject)
-                m_javaScriptEndorphinObject = new JavaScriptEndorphinObject(this);
-
-            frame->addToJavaScriptWindowObject(QLatin1String("endorphin"), m_javaScriptEndorphinObject);
-        }
-    } else { // called from QWebPage::frameCreated
-        connect(frame, SIGNAL(javaScriptWindowObjectCleared()),
-                this, SLOT(addExternalBinding()));
-    }
-    frame->addToJavaScriptWindowObject(QLatin1String("external"), m_javaScriptExternalObject);
 }
 
 QString WebPage::userAgent()
@@ -311,21 +188,6 @@ QWebPage *WebPage::createWindow(QWebPage::WebWindowType type)
         }
     }
     return 0;
-}
-
-QObject *WebPage::createPlugin(const QString &classId, const QUrl &url,
-                               const QStringList &paramNames, const QStringList &paramValues)
-{
-    Q_UNUSED(classId);
-    Q_UNUSED(url);
-    Q_UNUSED(paramNames);
-    Q_UNUSED(paramValues);
-#if !defined(QT_NO_UITOOLS)
-    QUiLoader loader;
-    return loader.createWidget(classId, view());
-#else
-    return 0;
-#endif
 }
 
 // The chromium guys have documented many examples of incompatibilities that

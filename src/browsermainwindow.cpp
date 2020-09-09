@@ -65,7 +65,6 @@
 #include "browsermainwindow.h"
 
 #include "aboutdialog.h"
-#include "adblockmanager.h"
 #include "addbookmarkdialog.h"
 #include "autosaver.h"
 #include "bookmarksdialog.h"
@@ -78,7 +77,6 @@
 #include "downloadmanager.h"
 #include "history.h"
 #include "languagemanager.h"
-#include "networkaccessmanager.h"
 #include "opensearchdialog.h"
 #include "settings.h"
 #include "sourceviewer.h"
@@ -836,11 +834,6 @@ void BrowserMainWindow::setupMenu()
     m_toolsUserAgentMenu = new UserAgentMenu(m_toolsMenu);
     m_toolsMenu->addMenu(m_toolsUserAgentMenu);
 
-    m_adBlockDialogAction = new QAction(m_toolsMenu);
-    connect(m_adBlockDialogAction, SIGNAL(triggered()),
-            AdBlockManager::instance(), SLOT(showDialog()));
-    m_toolsMenu->addAction(m_adBlockDialogAction);
-
     m_toolsMenu->addSeparator();
     m_toolsPreferencesAction = new QAction(m_toolsMenu);
     m_toolsPreferencesAction->setMenuRole(QAction::PreferencesRole);
@@ -991,7 +984,6 @@ void BrowserMainWindow::retranslate()
     m_toolsPreferencesAction->setShortcut(tr("Ctrl+,"));
     m_toolsSearchManagerAction->setText(tr("Configure Search Engines..."));
     m_toolsUserAgentMenu->setTitle(tr("User Agent"));
-    m_adBlockDialogAction->setText(tr("&Ad Block..."));
 
     m_helpMenu->setTitle(tr("&Help"));
     m_helpChangeLanguageAction->setText(tr("Switch application language "));
@@ -1243,7 +1235,6 @@ void BrowserMainWindow::privateBrowsing()
         QStringList actions;
         actions.append(tr("Webpages are not added to the history."));
         actions.append(tr("Items are automatically removed from the Downloads window."));
-        actions.append(tr("New cookies are not stored, current cookies can't be accessed."));
         actions.append(tr("Site icons won't be stored."));
         actions.append(tr("Session won't be saved."));
         actions.append(tr("Searches are not added to the pop-up menu in the search box."));

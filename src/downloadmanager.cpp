@@ -65,7 +65,6 @@
 
 #include "autosaver.h"
 #include "browserapplication.h"
-#include "networkaccessmanager.h"
 
 #include <math.h>
 
@@ -78,6 +77,7 @@
 #include <qmimedata.h>
 #include <qprocess.h>
 #include <qsettings.h>
+#include <qnetworkaccessmanager.h>
 
 #include <qdebug.h>
 
@@ -271,7 +271,8 @@ void DownloadItem::tryAgain()
     stopButton->setVisible(true);
     progressBar->setVisible(true);
 
-    QNetworkReply *r = BrowserApplication::networkAccessManager()->get(QNetworkRequest(m_url));
+    QNetworkAccessManager *manager = new QNetworkAccessManager();
+    QNetworkReply *r = manager->get(QNetworkRequest(m_url));
     if (m_reply)
         m_reply->deleteLater();
     if (m_output.exists())
@@ -327,7 +328,8 @@ void DownloadItem::metaDataChanged()
     if (locationHeader.isValid()) {
         m_url = locationHeader.toUrl();
         m_reply->deleteLater();
-        m_reply = BrowserApplication::networkAccessManager()->get(QNetworkRequest(m_url));
+        QNetworkAccessManager *manager = new QNetworkAccessManager();
+        m_reply = manager->get(QNetworkRequest(m_url));
         init();
         return;
     }
@@ -463,7 +465,7 @@ DownloadManager::DownloadManager(QWidget *parent)
     : QDialog(parent)
     , m_autoSaver(new AutoSaver(this))
     , m_model(new DownloadModel(this))
-    , m_manager(BrowserApplication::networkAccessManager())
+    , m_manager(new QNetworkAccessManager())
     , m_iconProvider(0)
     , m_removePolicy(Never)
 {

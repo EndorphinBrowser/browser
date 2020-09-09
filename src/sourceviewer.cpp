@@ -30,9 +30,9 @@
 #include <qsettings.h>
 #include <qwebframe.h>
 #include <qwebpage.h>
+#include <QNetworkAccessManager>
 
 #include "browserapplication.h"
-#include "networkaccessmanager.h"
 #include "plaintexteditsearch.h"
 #include "sourcehighlighter.h"
 
@@ -78,7 +78,8 @@ SourceViewer::SourceViewer(const QString &source, const QString &title,
 
     QNetworkRequest request(url);
     request.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
-    m_reply = BrowserApplication::networkAccessManager()->get(request);
+    QNetworkAccessManager *manager = new QNetworkAccessManager();
+    m_reply = manager->get(request);
     connect(m_reply, SIGNAL(finished()), this, SLOT(loadingFinished()));
     m_reply->setParent(this);
 }

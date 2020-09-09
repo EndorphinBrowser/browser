@@ -21,10 +21,8 @@
 
 #include "browserapplication.h"
 #include "browsermainwindow.h"
-#include "cookiejar.h"
 #include "downloadmanager.h"
 #include "historymanager.h"
-#include "networkaccessmanager.h"
 #include "toolbarsearch.h"
 
 #include <qabstractnetworkcache.h>
@@ -60,18 +58,6 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
     m_searchHistory->setChecked(settings.value(QLatin1String("searchHistory"), true).toBool());
     layout->addWidget(m_searchHistory);
 
-    m_cookies = new QCheckBox(tr("&Cookies"));
-    m_cookies->setChecked(settings.value(QLatin1String("cookies"), true).toBool());
-    layout->addWidget(m_cookies);
-
-    m_cache = new QCheckBox(tr("C&ached Web Pages"));
-    if (BrowserApplication::networkAccessManager()->cache()) {
-        m_cache->setChecked(settings.value(QLatin1String("cache"), true).toBool());
-    } else {
-        m_cache->setEnabled(false);
-    }
-    layout->addWidget(m_cache);
-
     m_favIcons = new QCheckBox(tr("Website &Icons"));
     m_favIcons->setChecked(settings.value(QLatin1String("favIcons"), true).toBool());
     layout->addWidget(m_favIcons);
@@ -100,7 +86,6 @@ void ClearPrivateData::accept()
     settings.setValue(QLatin1String("browsingHistory"), m_browsingHistory->isChecked());
     settings.setValue(QLatin1String("downloadHistory"), m_downloadHistory->isChecked());
     settings.setValue(QLatin1String("searchHistory"), m_searchHistory->isChecked());
-    settings.setValue(QLatin1String("cookies"), m_cookies->isChecked());
     settings.setValue(QLatin1String("cache"), m_cache->isChecked());
     settings.setValue(QLatin1String("favIcons"), m_favIcons->isChecked());
 
@@ -120,14 +105,6 @@ void ClearPrivateData::accept()
         for (int i = 0; i < mainWindows.count(); ++i) {
             mainWindows.at(i)->toolbarSearch()->setText(QString());
         }
-    }
-
-    if (m_cookies->isChecked()) {
-        BrowserApplication::cookieJar()->clear();
-    }
-
-    if (m_cache->isChecked() && BrowserApplication::networkAccessManager()->cache()) {
-        BrowserApplication::networkAccessManager()->cache()->clear();
     }
 
     if (m_favIcons->isChecked()) {

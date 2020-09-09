@@ -28,7 +28,6 @@ VPATH += $$PWD
 
 FORMS += \
     aboutdialog.ui \
-    autofilldialog.ui \
     acceptlanguagedialog.ui \
     downloaditem.ui \
     downloads.ui \
@@ -39,8 +38,6 @@ HEADERS += \
     aboutdialog.h \
     acceptlanguagedialog.h \
     autosaver.h \
-    autofilldialog.h \
-    autofillmanager.h \
     browserapplication.h \
     browsermainwindow.h \
     clearprivatedata.h \
@@ -67,8 +64,6 @@ SOURCES += \
     aboutdialog.cpp \
     acceptlanguagedialog.cpp \
     autosaver.cpp \
-    autofilldialog.cpp \
-    autofillmanager.cpp \
     browserapplication.cpp \
     browsermainwindow.cpp \
     clearprivatedata.cpp \
@@ -91,13 +86,10 @@ SOURCES += \
     webview.cpp \
     webviewsearch.cpp
 
-include(adblock/adblock.pri)
 include(bookmarks/bookmarks.pri)
 include(history/history.pri)
 include(locationbar/locationbar.pri)
-include(network/network.pri)
 include(opensearch/opensearch.pri)
-include(qwebplugins/qwebplugins.pri)
 include(utils/utils.pri)
 include(useragent/useragent.pri)
 

@@ -63,14 +63,11 @@
 #include "browserapplication.h"
 
 #include "autosaver.h"
-#include "autofillmanager.h"
 #include "bookmarksmanager.h"
 #include "browsermainwindow.h"
-#include "cookiejar.h"
 #include "downloadmanager.h"
 #include "historymanager.h"
 #include "languagemanager.h"
-#include "networkaccessmanager.h"
 #include "tabwidget.h"
 #include "webview.h"
 
@@ -94,10 +91,8 @@
 
 DownloadManager *BrowserApplication::s_downloadManager = 0;
 HistoryManager *BrowserApplication::s_historyManager = 0;
-NetworkAccessManager *BrowserApplication::s_networkAccessManager = 0;
 BookmarksManager *BrowserApplication::s_bookmarksManager = 0;
 LanguageManager *BrowserApplication::s_languageManager = 0;
-AutoFillManager *BrowserApplication::s_autoFillManager = 0;
 
 BrowserApplication::BrowserApplication(int &argc, char **argv)
     : SingleApplication(argc, argv)
@@ -171,11 +166,9 @@ BrowserApplication::~BrowserApplication()
     quitting = true;
     delete s_downloadManager;
     qDeleteAll(m_mainWindows);
-    delete s_networkAccessManager;
     delete s_bookmarksManager;
     delete s_languageManager;
     delete s_historyManager;
-    delete s_autoFillManager;
 }
 
 #if defined(Q_WS_MAC)
@@ -196,7 +189,6 @@ BrowserApplication *BrowserApplication::instance()
 void BrowserApplication::retranslate()
 {
     bookmarksManager()->retranslate();
-    networkAccessManager()->loadSettings();
 }
 
 // The only special property of an argument url is that the file's
@@ -381,7 +373,6 @@ void BrowserApplication::loadSettings()
 
     defaultSettings->setAttribute(QWebSettings::JavascriptCanOpenWindows, !(settings.value(QLatin1String("blockPopupWindows"), true).toBool()));
     defaultSettings->setAttribute(QWebSettings::JavascriptEnabled, settings.value(QLatin1String("enableJavascript"), true).toBool());
-    defaultSettings->setAttribute(QWebSettings::PluginsEnabled, settings.value(QLatin1String("enablePlugins"), true).toBool());
     defaultSettings->setAttribute(QWebSettings::AutoLoadImages, settings.value(QLatin1String("enableImages"), true).toBool());
     defaultSettings->setAttribute(QWebSettings::LocalStorageEnabled, settings.value(QLatin1String("enableLocalStorage"), true).toBool());
     defaultSettings->setAttribute(QWebSettings::DeveloperExtrasEnabled, settings.value(QLatin1String("enableInspector"), false).toBool());
@@ -583,23 +574,11 @@ BrowserMainWindow *BrowserApplication::mainWindow()
     return activeWindow;
 }
 
-CookieJar *BrowserApplication::cookieJar()
-{
-    return (CookieJar*)networkAccessManager()->cookieJar();
-}
-
 DownloadManager *BrowserApplication::downloadManager()
 {
     if (!s_downloadManager)
         s_downloadManager = new DownloadManager();
     return s_downloadManager;
-}
-
-NetworkAccessManager *BrowserApplication::networkAccessManager()
-{
-    if (!s_networkAccessManager)
-        s_networkAccessManager = new NetworkAccessManager();
-    return s_networkAccessManager;
 }
 
 HistoryManager *BrowserApplication::historyManager()
@@ -629,15 +608,6 @@ LanguageManager *BrowserApplication::languageManager()
     }
     return s_languageManager;
 }
-
-AutoFillManager *BrowserApplication::autoFillManager()
-{
-    if (!s_autoFillManager) {
-        s_autoFillManager = new AutoFillManager;
-    }
-    return s_autoFillManager;
-}
-
 QIcon BrowserApplication::icon(const QUrl &url)
 {
     QIcon icon = QWebSettings::iconForUrl(url);

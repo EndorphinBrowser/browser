@@ -69,13 +69,10 @@
 #include <qurl.h>
 #include <qdatetime.h>
 
-class AutoFillManager;
 class BookmarksManager;
 class BrowserMainWindow;
-class CookieJar;
 class DownloadManager;
 class HistoryManager;
-class NetworkAccessManager;
 class LanguageManager;
 class QLocalSocket;
 class BrowserApplication : public SingleApplication
@@ -98,12 +95,9 @@ public:
     bool canRestoreSession() const;
 
     static HistoryManager *historyManager();
-    static CookieJar *cookieJar();
     static DownloadManager *downloadManager();
-    static NetworkAccessManager *networkAccessManager();
     static BookmarksManager *bookmarksManager();
     static LanguageManager *languageManager();
-    static AutoFillManager *autoFillManager();
 
     static QString installedDataDirectory();
     static QString dataFilePath(const QString &fileName);
@@ -150,10 +144,8 @@ private:
 
     static HistoryManager *s_historyManager;
     static DownloadManager *s_downloadManager;
-    static NetworkAccessManager *s_networkAccessManager;
     static BookmarksManager *s_bookmarksManager;
     static LanguageManager *s_languageManager;
-    static AutoFillManager *s_autoFillManager;
 
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
     QByteArray m_lastSession;

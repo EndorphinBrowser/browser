@@ -23,7 +23,7 @@
 
 #include "autosaver.h"
 #include "browserapplication.h"
-#include "networkaccessmanager.h"
+#include <qnetworkaccessmanager.h>
 #include "opensearchengine.h"
 #include "opensearchreader.h"
 #include "opensearchwriter.h"
@@ -115,7 +115,8 @@ void OpenSearchManager::addEngine(const QUrl &url)
     if (!url.isValid())
         return;
 
-    QNetworkReply *reply = BrowserApplication::networkAccessManager()->get(QNetworkRequest(url));
+    QNetworkAccessManager *manager = new QNetworkAccessManager();
+    QNetworkReply *reply = manager->get(QNetworkRequest(url));
     connect(reply, SIGNAL(finished()), this, SLOT(engineFromUrlAvailable()));
     reply->setParent(this);
 }

@@ -130,7 +130,6 @@ private slots:
     void downloadImageToDisk();
     void copyImageToClipboard();
     void copyImageLocationToClipboard();
-    void blockImage();
     void bookmarkLink();
     void searchRequested(QAction *action);
     void addSearchEngine();

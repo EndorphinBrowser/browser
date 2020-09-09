@@ -5,7 +5,17 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/adblock ${CMAKE_CURRENT_SOURCE_DIR}/bookmarks ${CMAKE_CURRENT_SOURCE_DIR}/bookmarks/xbel ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_CURRENT_SOURCE_DIR}/history ${CMAKE_CURRENT_SOURCE_DIR}/htmls ${CMAKE_CURRENT_SOURCE_DIR}/locationbar ${CMAKE_CURRENT_SOURCE_DIR}/network ${CMAKE_CURRENT_SOURCE_DIR}/network/cookiejar ${CMAKE_CURRENT_SOURCE_DIR}/network/cookiejar/networkcookiejar ${CMAKE_CURRENT_SOURCE_DIR}/opensearch ${CMAKE_CURRENT_SOURCE_DIR}/qwebplugins ${CMAKE_CURRENT_SOURCE_DIR}/qwebplugins/clicktoflash ${CMAKE_CURRENT_SOURCE_DIR}/useragent ${CMAKE_CURRENT_SOURCE_DIR}/utils)
+INCLUDE_DIRECTORIES(
+${CMAKE_CURRENT_SOURCE_DIR}/bookmarks
+${CMAKE_CURRENT_SOURCE_DIR}/bookmarks/xbel
+${CMAKE_CURRENT_SOURCE_DIR}/data
+${CMAKE_CURRENT_SOURCE_DIR}/history
+${CMAKE_CURRENT_SOURCE_DIR}/htmls
+${CMAKE_CURRENT_SOURCE_DIR}/locationbar
+${CMAKE_CURRENT_SOURCE_DIR}/opensearch
+${CMAKE_CURRENT_SOURCE_DIR}/useragent
+${CMAKE_CURRENT_SOURCE_DIR}/utils
+)
 
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Core REQUIRED)
@@ -44,8 +54,6 @@ set(Endorphin_SRCS
 	aboutdialog.cpp
 	acceptlanguagedialog.cpp
 	autosaver.cpp
-	autofilldialog.cpp
-	autofillmanager.cpp
 	browserapplication.cpp
 	browsermainwindow.cpp
 	clearprivatedata.cpp
@@ -68,15 +76,6 @@ set(Endorphin_SRCS
 	webview.cpp
 	webviewsearch.cpp
 	main.cpp
-	adblock/adblockblockednetworkreply.cpp
-	adblock/adblockdialog.cpp
-	adblock/adblockmanager.cpp
-	adblock/adblockmodel.cpp
-	adblock/adblocknetwork.cpp
-	adblock/adblockpage.cpp
-	adblock/adblockrule.cpp
-	adblock/adblockschemeaccesshandler.cpp
-	adblock/adblocksubscription.cpp
 	bookmarks/addbookmarkdialog.cpp
 	bookmarks/bookmarksdialog.cpp
 	bookmarks/bookmarksmanager.cpp
@@ -92,17 +91,6 @@ set(Endorphin_SRCS
 	locationbar/locationbar.cpp
 	locationbar/locationbarsiteicon.cpp
 	locationbar/privacyindicator.cpp
-	network/fileaccesshandler.cpp
-	network/networkaccessmanager.cpp
-	network/networkdiskcache.cpp
-	network/networkproxyfactory.cpp
-	network/schemeaccesshandler.cpp
-	network/cookiejar/cookiedialog.cpp
-	network/cookiejar/cookieexceptionsmodel.cpp
-	network/cookiejar/cookiemodel.cpp
-	network/cookiejar/cookieexceptionsdialog.cpp
-	network/cookiejar/cookiejar.cpp
-	network/cookiejar/networkcookiejar/networkcookiejar.cpp
 	opensearch/opensearchdialog.cpp
 	opensearch/opensearchengine.cpp
 	opensearch/opensearchenginedelegate.cpp
@@ -111,37 +99,27 @@ set(Endorphin_SRCS
 	opensearch/opensearchmanager.cpp
 	opensearch/opensearchreader.cpp
 	opensearch/opensearchwriter.cpp
-	qwebplugins/endorphinwebplugin.cpp
-	qwebplugins/webpluginfactory.cpp
 	useragent/useragentmenu.cpp
 	utils/editlistview.cpp
 	utils/edittableview.cpp
 	utils/edittreeview.cpp
 	utils/languagemanager.cpp
 	utils/lineedit.cpp
-	utils/networkaccessmanagerproxy.cpp
 	utils/singleapplication.cpp
  	utils/squeezelabel.cpp
 	utils/treesortfilterproxymodel.cpp
-	utils/webpageproxy.cpp
 )
 
 set(Endorphin_UIS
 	aboutdialog.ui
-	autofilldialog.ui
 	acceptlanguagedialog.ui
 	downloaditem.ui
 	downloads.ui
 	searchbanner.ui
 	settings.ui
-	adblock/adblockdialog.ui
 	bookmarks/addbookmarkdialog.ui
 	bookmarks/bookmarksdialog.ui
 	history/history.ui
-	network/passworddialog.ui
-	network/proxy.ui
-	network/cookiejar/cookies.ui
-	network/cookiejar/cookiesexceptions.ui
 	opensearch/opensearchdialog.ui
 )
 QT5_WRAP_UI(UIS ${Endorphin_UIS})
@@ -159,8 +137,6 @@ set(Endorphin_MOCS
 	aboutdialog.h
 	acceptlanguagedialog.h
 	autosaver.h
-	autofilldialog.h
-	autofillmanager.h
 	browserapplication.h
 	browsermainwindow.h
 	clearprivatedata.h

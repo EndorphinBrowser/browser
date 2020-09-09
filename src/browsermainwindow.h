@@ -235,7 +235,6 @@ private:
     QAction *m_toolsPreferencesAction;
     QAction *m_toolsSearchManagerAction;
     UserAgentMenu *m_toolsUserAgentMenu;
-    QAction *m_adBlockDialogAction;
 
     QMenu *m_helpMenu;
     QAction *m_helpChangeLanguageAction;
