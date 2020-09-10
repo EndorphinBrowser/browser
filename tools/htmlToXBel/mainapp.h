@@ -21,7 +21,6 @@
 #define MAINAPP_H
 
 #include <QObject>
-#include <QVariant>
 
 class QWebEngineView;
 class QPushButton;

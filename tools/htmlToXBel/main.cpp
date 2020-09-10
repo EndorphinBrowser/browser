@@ -17,11 +17,12 @@
  * Boston, MA  02110-1301  USA
  */
 
+#include "mainapp.h"
+
 #include <QApplication>
 #include <QtWebEngineWidgets>
 #include <QThread>
 #include <QEventLoop>
-#include <mainapp.h>
 
 /*!
     A tool to convert html bookmark files into the xbel format.

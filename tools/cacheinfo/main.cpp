@@ -17,9 +17,8 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <Qt>
-#include <QtNetwork/QtNetwork>
-#include <QtGui/QtGui>
+#include <QtNetwork>
+#include <QtGui>
 
 class NetworkDiskCache : public QNetworkDiskCache
 {
