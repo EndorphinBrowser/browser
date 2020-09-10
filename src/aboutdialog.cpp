@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2008 Matvey Kozhev <sikon@ubuntu.com>
  *
  * This program is free software; you can redistribute it and/or modify

@@ -1,6 +1,6 @@
 /*
  * Copyright 2008 Christian Franke <cfchris6@ts2server.com>
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

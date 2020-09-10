@@ -1,6 +1,6 @@
 /*
  * Copyright 2008-2009 Benjamin K. Stuhl <bks24@cornell.edu>
- * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
