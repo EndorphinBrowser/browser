@@ -74,7 +74,7 @@ void OpenSearchManager::setCurrentEngineName(const QString &name)
 OpenSearchEngine *OpenSearchManager::currentEngine() const
 {
     if (m_current.isEmpty() || !m_engines.contains(m_current))
-        return 0;
+        return nullptr;
 
     return m_engines[m_current];
 }
@@ -90,7 +90,7 @@ void OpenSearchManager::setCurrentEngine(OpenSearchEngine *engine)
 OpenSearchEngine *OpenSearchManager::engine(const QString &name)
 {
     if (!m_engines.contains(name))
-        return 0;
+        return nullptr;
 
     return m_engines[name];
 }
@@ -309,10 +309,10 @@ bool OpenSearchManager::confirmAddition(OpenSearchEngine *engine)
 
     QString host = QUrl(engine->searchUrlTemplate()).host();
 
-    QMessageBox::StandardButton button = QMessageBox::question(0, QString(),
-            tr("Do you want to add the following engine to your list of search engines?<br /><br />"
-               "Name: %1<br />Searches on: %2").arg(engine->name(), host),
-            QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+    QMessageBox::StandardButton button = QMessageBox::question(nullptr, QString(),
+                                         tr("Do you want to add the following engine to your list of search engines?<br /><br />"
+                                            "Name: %1<br />Searches on: %2").arg(engine->name(), host),
+                                         QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
     return (button == QMessageBox::Yes);
 }
 
@@ -376,9 +376,9 @@ QUrl OpenSearchManager::convertKeywordSearchToUrl(const QString &string)
 OpenSearchEngine *OpenSearchManager::engineForKeyword(const QString &keyword) const
 {
     if (keyword.isEmpty())
-        return 0;
+        return nullptr;
     if (!m_keywords.contains(keyword))
-        return 0;
+        return nullptr;
     return m_keywords.value(keyword);
 }
 

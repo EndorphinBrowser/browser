@@ -39,7 +39,7 @@ signals:
     void entryChanged(BookmarkNode *item);
 
 public:
-    BookmarksManager(QObject *parent = 0);
+    BookmarksManager(QObject *parent = nullptr);
     ~BookmarksManager();
 
     void addBookmark(BookmarkNode *parent, BookmarkNode *node, int row = -1);

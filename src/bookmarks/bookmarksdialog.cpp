@@ -73,9 +73,9 @@
 
 BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     : QDialog(parent)
-    , m_bookmarksManager(0)
-    , m_bookmarksModel(0)
-    , m_proxyModel(0)
+    , m_bookmarksManager(nullptr)
+    , m_bookmarksModel(nullptr)
+    , m_proxyModel(nullptr)
 {
     m_bookmarksManager = manager;
     if (!m_bookmarksManager)
@@ -181,9 +181,9 @@ void BookmarksDialog::openBookmark(TabWidget::OpenUrlIn tab)
     if (!index.parent().isValid() || !node || node->type() == BookmarkNode::Folder)
         return;
     emit openUrl(
-          index.sibling(index.row(), 1).data(BookmarksModel::UrlRole).toUrl(),
-          tab,
-          index.sibling(index.row(), 0).data(Qt::DisplayRole).toString());
+        index.sibling(index.row(), 1).data(BookmarksModel::UrlRole).toUrl(),
+        tab,
+        index.sibling(index.row(), 0).data(Qt::DisplayRole).toString());
 }
 
 void BookmarksDialog::openBookmark()

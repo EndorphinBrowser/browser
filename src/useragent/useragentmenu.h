@@ -37,7 +37,7 @@ class UserAgentMenu : public QMenu
     Q_OBJECT
 
 public:
-    UserAgentMenu(QWidget *parent = 0);
+    UserAgentMenu(QWidget *parent = nullptr);
 
 private slots:
     void populateMenu();

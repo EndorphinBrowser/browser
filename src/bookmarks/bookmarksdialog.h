@@ -83,7 +83,7 @@ signals:
     void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
-    BookmarksDialog(QWidget *parent = 0, BookmarksManager *manager = 0);
+    BookmarksDialog(QWidget *parent = nullptr, BookmarksManager *manager = nullptr);
     ~BookmarksDialog();
 
 private slots:

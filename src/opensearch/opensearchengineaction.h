@@ -28,7 +28,7 @@ class OpenSearchEngineAction : public QAction
     Q_OBJECT
 
 public:
-    OpenSearchEngineAction(OpenSearchEngine *engine, QObject *parent = 0);
+    OpenSearchEngineAction(OpenSearchEngine *engine, QObject *parent = nullptr);
 
 private slots:
     void imageChanged();

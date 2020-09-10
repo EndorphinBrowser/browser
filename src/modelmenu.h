@@ -76,7 +76,7 @@ signals:
     void activated(const QModelIndex &index);
 
 public:
-    ModelMenu(QWidget *parent = 0);
+    ModelMenu(QWidget *parent = nullptr);
 
     void setModel(QAbstractItemModel *model);
     QAbstractItemModel *model() const;
@@ -108,7 +108,7 @@ protected:
     virtual ModelMenu *createBaseMenu();
 
     // put all of the children of parent into menu up to max
-    void createMenu(const QModelIndex &parent, int max, QMenu *parentMenu = 0, QMenu *menu = 0);
+    void createMenu(const QModelIndex &parent, int max, QMenu *parentMenu = nullptr, QMenu *menu = nullptr);
 
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);

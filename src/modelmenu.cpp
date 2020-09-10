@@ -84,7 +84,7 @@ ModelMenu::ModelMenu(QWidget *parent)
     , m_maxWidth(-1)
     , m_statusBarTextRole(0)
     , m_separatorRole(0)
-    , m_model(0)
+    , m_model(nullptr)
 {
     setAcceptDrops(true);
 
@@ -214,7 +214,7 @@ void ModelMenu::createMenu(const QModelIndex &parent, int max, QMenu *parentMenu
             createMenu(idx, -1, menu);
         } else {
             if (m_separatorRole != 0
-                && idx.data(m_separatorRole).toBool())
+                    && idx.data(m_separatorRole).toBool())
                 addSeparator();
             else
                 menu->addAction(makeAction(idx));

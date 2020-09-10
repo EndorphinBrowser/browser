@@ -83,7 +83,7 @@ signals:
     void search(const QUrl &url, TabWidget::OpenUrlIn tab);
 
 public:
-    ToolbarSearch(QWidget *parent = 0);
+    ToolbarSearch(QWidget *parent = nullptr);
     ~ToolbarSearch();
     static OpenSearchManager *openSearchManager();
 

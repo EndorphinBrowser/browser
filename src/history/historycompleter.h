@@ -33,7 +33,7 @@ class QResizeEvent;
 class HistoryCompletionView : public QTableView
 {
 public:
-    HistoryCompletionView(QWidget *parent = 0);
+    HistoryCompletionView(QWidget *parent = nullptr);
     int sizeHintForRow(int row) const;
 
 protected:
@@ -58,7 +58,7 @@ class HistoryCompletionModel : public QSortFilterProxyModel
     Q_PROPERTY(QString searchString READ searchString WRITE setSearchString)
 
 public:
-    HistoryCompletionModel(QObject *parent = 0);
+    HistoryCompletionModel(QObject *parent = nullptr);
 
     enum Roles { HistoryCompletionRole = HistoryFilterModel::MaxRole + 1 };
 
@@ -86,8 +86,8 @@ class HistoryCompleter : public QCompleter
     Q_OBJECT
 
 public:
-    HistoryCompleter(QObject *parent = 0);
-    HistoryCompleter(QAbstractItemModel *model, QObject *parent = 0);
+    HistoryCompleter(QObject *parent = nullptr);
+    HistoryCompleter(QAbstractItemModel *model, QObject *parent = nullptr);
 
     virtual QString pathFromIndex(const QModelIndex &index) const;
     virtual QStringList splitPath(const QString &path) const;

@@ -36,9 +36,9 @@
 
 LocationBar::LocationBar(QWidget *parent)
     : LineEdit(parent)
-    , m_webView(0)
-    , m_siteIcon(0)
-    , m_privacyIndicator(0)
+    , m_webView(nullptr)
+    , m_siteIcon(nullptr)
+    , m_privacyIndicator(nullptr)
 {
     // Urls are always LeftToRight
     setLayoutDirection(Qt::LeftToRight);
@@ -106,7 +106,7 @@ void LocationBar::paintEvent(QPaintEvent *event)
     QColor defaultBaseColor = QApplication::palette().color(QPalette::Base);
     QColor backgroundColor = defaultBaseColor;
     if (m_webView && m_webView->url().scheme() == QLatin1String("https")
-        && p.color(QPalette::Text).value() < 128) {
+            && p.color(QPalette::Text).value() < 128) {
         QColor lightYellow(248, 248, 210);
         backgroundColor = lightYellow;
     }
@@ -157,7 +157,7 @@ void LocationBar::keyPressEvent(QKeyEvent *event)
 
     QString currentText = text().trimmed();
     if ((event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
-        && !currentText.startsWith(QLatin1String("http://"), Qt::CaseInsensitive)) {
+            && !currentText.startsWith(QLatin1String("http://"), Qt::CaseInsensitive)) {
         QString append;
         if (event->modifiers() == Qt::ControlModifier)
             append = QLatin1String(".com");

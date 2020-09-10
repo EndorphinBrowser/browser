@@ -37,7 +37,7 @@ class EditTableView : public QTableView
     Q_OBJECT
 
 public:
-    EditTableView(QWidget *parent = 0);
+    EditTableView(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event);
 
 public slots:

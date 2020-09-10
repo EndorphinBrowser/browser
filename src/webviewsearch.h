@@ -33,7 +33,7 @@ class WebViewSearch : public SearchBar
     Q_OBJECT
 
 public:
-    WebViewSearch(QWebEngineView *webView, QWidget *parent = 0);
+    WebViewSearch(QWebEngineView *webView, QWidget *parent = nullptr);
 
 public slots:
     void findNext();
@@ -52,7 +52,7 @@ class WebViewWithSearch : public QWidget
     Q_OBJECT
 
 public:
-    WebViewWithSearch(WebView *webView, QWidget *parent = 0);
+    WebViewWithSearch(WebView *webView, QWidget *parent = nullptr);
     WebView *m_webView;
     WebViewSearch *m_webViewSearch;
 };

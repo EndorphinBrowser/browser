@@ -87,7 +87,7 @@ class BrowserMainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    BrowserMainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    BrowserMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = nullptr);
     ~BrowserMainWindow();
     QSize sizeHint() const;
 
@@ -100,7 +100,9 @@ public:
     QByteArray saveState(bool withTabs = true) const;
     bool restoreState(const QByteArray &state);
     QAction *showMenuBarAction() const;
-    QAction *searchManagerAction() const { return m_toolsSearchManagerAction; }
+    QAction *searchManagerAction() const {
+        return m_toolsSearchManagerAction;
+    }
 
 public slots:
     void goHome();

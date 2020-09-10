@@ -86,7 +86,7 @@ public:
         SeparatorRole = Qt::UserRole + 4
     };
 
-    BookmarksModel(BookmarksManager *bookmarkManager, QObject *parent = 0);
+    BookmarksModel(BookmarksManager *bookmarkManager, QObject *parent = nullptr);
     inline BookmarksManager *bookmarksManager() const {
         return m_bookmarksManager;
     }

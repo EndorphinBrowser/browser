@@ -29,7 +29,7 @@
 
 LocationBarSiteIcon::LocationBarSiteIcon(QWidget *parent)
     : QLabel(parent)
-    , m_webView(0)
+    , m_webView(nullptr)
 {
     resize(QSize(16, 16));
     webViewSiteIconChanged();
@@ -64,8 +64,8 @@ void LocationBarSiteIcon::mousePressEvent(QMouseEvent *event)
 void LocationBarSiteIcon::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() == Qt::LeftButton
-        && (event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()
-        && m_webView) {
+            && (event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()
+            && m_webView) {
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
         QString title = m_webView->title();

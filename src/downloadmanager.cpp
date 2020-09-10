@@ -292,7 +292,7 @@ void DownloadItem::downloadReadyRead()
             getFileName();
         if (!m_output.open(QIODevice::WriteOnly)) {
             downloadInfoLabel->setText(tr("Error opening output file: %1")
-                    .arg(m_output.errorString()));
+                                       .arg(m_output.errorString()));
             stop();
             emit statusChanged();
             return;
@@ -301,7 +301,7 @@ void DownloadItem::downloadReadyRead()
     }
     if (-1 == m_output.write(m_reply->readAll())) {
         downloadInfoLabel->setText(tr("Error saving: %1")
-                .arg(m_output.errorString()));
+                                   .arg(m_output.errorString()));
         stopButton->click();
     } else {
         m_startedSaving = true;
@@ -414,17 +414,17 @@ void DownloadItem::updateInfoLabel()
         }
 
         info = QString(tr("%1 of %2 (%3/sec) - %4"))
-            .arg(DownloadManager::dataString(m_bytesReceived))
-            .arg(bytesTotal == 0 ? tr("?") : DownloadManager::dataString(bytesTotal))
-            .arg(DownloadManager::dataString((int)speed))
-            .arg(remaining);
+               .arg(DownloadManager::dataString(m_bytesReceived))
+               .arg(bytesTotal == 0 ? tr("?") : DownloadManager::dataString(bytesTotal))
+               .arg(DownloadManager::dataString((int)speed))
+               .arg(remaining);
     } else {
         if (m_bytesReceived == bytesTotal)
             info = DownloadManager::dataString(m_output.size());
         else
             info = tr("%1 of %2 - Download Complete")
-                .arg(DownloadManager::dataString(m_bytesReceived))
-                .arg(DownloadManager::dataString(bytesTotal));
+                   .arg(DownloadManager::dataString(m_bytesReceived))
+                   .arg(DownloadManager::dataString(bytesTotal));
     }
     downloadInfoLabel->setText(info);
 }
@@ -466,7 +466,7 @@ DownloadManager::DownloadManager(QWidget *parent)
     , m_autoSaver(new AutoSaver(this))
     , m_model(new DownloadModel(this))
     , m_manager(new QNetworkAccessManager())
-    , m_iconProvider(0)
+    , m_iconProvider(nullptr)
     , m_removePolicy(Never)
 {
     setupUi(this);
@@ -509,10 +509,10 @@ bool DownloadManager::allowQuit()
 {
     if (activeDownloads() >= 1) {
         int choice = QMessageBox::warning(this, QString(),
-                                        tr("There are %1 downloads in progress\n"
-                                           "Do you want to quit anyway?").arg(activeDownloads()),
-                                        QMessageBox::Yes | QMessageBox::No,
-                                        QMessageBox::No);
+                                          tr("There are %1 downloads in progress\n"
+                                             "Do you want to quit anyway?").arg(activeDownloads()),
+                                          QMessageBox::Yes | QMessageBox::No,
+                                          QMessageBox::No);
         if (choice == QMessageBox::No) {
             show();
             return false;
@@ -651,7 +651,7 @@ void DownloadManager::updateRow(DownloadItem *item)
         remove = true;
 
     if (item->downloadedSuccessfully()
-        && removePolicy() == DownloadManager::SuccessFullDownload) {
+            && removePolicy() == DownloadManager::SuccessFullDownload) {
         remove = true;
     }
     if (remove)
@@ -709,8 +709,8 @@ void DownloadManager::load()
     QByteArray value = settings.value(QLatin1String("removeDownloadsPolicy"), QLatin1String("Never")).toByteArray();
     QMetaEnum removePolicyEnum = staticMetaObject.enumerator(staticMetaObject.indexOfEnumerator("RemovePolicy"));
     m_removePolicy = removePolicyEnum.keyToValue(value) == -1 ?
-                        Never :
-                        static_cast<RemovePolicy>(removePolicyEnum.keyToValue(value));
+                     Never :
+                     static_cast<RemovePolicy>(removePolicyEnum.keyToValue(value));
 
     int i = 0;
     QString key = QString(QLatin1String("download_%1_")).arg(i);
@@ -719,7 +719,7 @@ void DownloadManager::load()
         QString fileName = settings.value(key + QLatin1String("location")).toString();
         bool done = settings.value(key + QLatin1String("done"), true).toBool();
         if (!url.isEmpty() && !fileName.isEmpty()) {
-            DownloadItem *item = new DownloadItem(0, this);
+            DownloadItem *item = new DownloadItem(nullptr, this);
             item->m_output.setFileName(fileName);
             item->fileNameLabel->setText(QFileInfo(item->m_output.fileName()).fileName());
             item->m_url = url;
@@ -745,7 +745,7 @@ void DownloadManager::cleanup()
     updateActiveItemCount();
     if (m_downloads.isEmpty() && m_iconProvider) {
         delete m_iconProvider;
-        m_iconProvider = 0;
+        m_iconProvider = nullptr;
     }
     m_autoSaver->changeOccurred();
 }
@@ -836,7 +836,7 @@ bool DownloadModel::removeRows(int row, int count, const QModelIndex &parent)
     int lastRow = row + count - 1;
     for (int i = lastRow; i >= row; --i) {
         if (m_downloadManager->m_downloads.at(i)->downloadedSuccessfully()
-            || m_downloadManager->m_downloads.at(i)->tryAgainButton->isEnabled()) {
+                || m_downloadManager->m_downloads.at(i)->tryAgainButton->isEnabled()) {
             beginRemoveRows(parent, i, i);
             m_downloadManager->m_downloads.takeAt(i)->deleteLater();
             endRemoveRows();

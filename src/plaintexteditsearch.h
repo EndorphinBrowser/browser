@@ -30,7 +30,7 @@ class PlainTextEditSearch : public SearchBar
     Q_OBJECT
 
 public:
-    PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget *parent = 0);
+    PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget *parent = nullptr);
 
 public slots:
     void findNext();

@@ -44,7 +44,7 @@ signals:
     void currentEngineChanged();
 
 public:
-    OpenSearchManager(QObject *parent = 0);
+    OpenSearchManager(QObject *parent = nullptr);
     ~OpenSearchManager();
 
     QStringList allEnginesNames() const;

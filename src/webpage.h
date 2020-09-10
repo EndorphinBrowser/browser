@@ -46,7 +46,7 @@ signals:
     void aboutToLoadUrl(const QUrl &url);
 
 public:
-    WebPage(QObject *parent = 0);
+    WebPage(QObject *parent = nullptr);
     ~WebPage();
 
     void loadSettings();
@@ -58,10 +58,10 @@ public:
 
 protected:
     QString userAgentForUrl(const QUrl &url) const;
-/*
-    bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
-                                 NavigationType type);
-*/
+    /*
+        bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
+                                     NavigationType type);
+    */
     bool acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame);
     QWebEnginePage *createWindow(QWebEnginePage::WebWindowType type);
 

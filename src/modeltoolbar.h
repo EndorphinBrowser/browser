@@ -36,8 +36,8 @@ signals:
     void activated(const QModelIndex &index);
 
 public:
-    ModelToolBar(QWidget *parent = 0);
-    ModelToolBar(const QString &title, QWidget *parent = 0);
+    ModelToolBar(QWidget *parent = nullptr);
+    ModelToolBar(const QString &title, QWidget *parent = nullptr);
 
     void setModel(QAbstractItemModel *model);
     QAbstractItemModel *model() const;

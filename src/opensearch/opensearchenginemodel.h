@@ -32,7 +32,7 @@ class OpenSearchEngineModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent = 0);
+    OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent = nullptr);
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;

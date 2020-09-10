@@ -28,7 +28,7 @@ class SearchButton : public QAbstractButton
     Q_OBJECT
 
 public:
-    SearchButton(QWidget *parent = 0);
+    SearchButton(QWidget *parent = nullptr);
     void setImage(const QImage &image);
     void setShowMenuTriangle(bool show);
     bool showMenuTriangle() const;

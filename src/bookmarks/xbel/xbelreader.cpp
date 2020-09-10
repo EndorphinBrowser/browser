@@ -75,7 +75,7 @@ QString XmlEntityResolver::resolveUndeclaredEntity(const QString &entity)
 }
 
 XbelReader::XbelReader()
-    : m_entityResolver(0)
+    : m_entityResolver(nullptr)
 {
     m_entityResolver = new XmlEntityResolver();
     setEntityResolver(m_entityResolver);
@@ -105,7 +105,7 @@ BookmarkNode *XbelReader::read(QIODevice *device)
         if (isStartElement()) {
             QString version = attributes().value(QLatin1String("version")).toString();
             if (name() == QLatin1String("xbel")
-                && (version.isEmpty() || version == QLatin1String("1.0"))) {
+                    && (version.isEmpty() || version == QLatin1String("1.0"))) {
                 readXBEL(root);
             } else {
                 raiseError(QObject::tr("The file is not an XBEL version 1.0 file."));

@@ -79,8 +79,10 @@ class WebView : public QWebEngineView
     Q_OBJECT
 
 public:
-    WebView(QWidget *parent = 0);
-    WebPage *webPage() const { return m_page; }
+    WebView(QWidget *parent = nullptr);
+    WebPage *webPage() const {
+        return m_page;
+    }
 
     void loadSettings();
 
@@ -91,7 +93,9 @@ public:
     QUrl url() const;
 
     QString lastStatusBarText() const;
-    inline int progress() const { return m_progress; }
+    inline int progress() const {
+        return m_progress;
+    }
     TabWidget *tabWidget() const;
     void ranJavaScript();
 

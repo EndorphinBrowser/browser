@@ -33,7 +33,7 @@ class LocationBar : public LineEdit
     Q_OBJECT
 
 public:
-    LocationBar(QWidget *parent = 0);
+    LocationBar(QWidget *parent = nullptr);
     void setWebView(WebView *webView);
     WebView *webView() const;
 

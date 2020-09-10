@@ -57,7 +57,7 @@ void BookmarksToolBar::contextMenuRequested(const QPoint &position)
         QVariant variant = action->data();
         Q_ASSERT(variant.canConvert<QModelIndex>());
 
-        QAction *menuAction = 0;
+        QAction *menuAction = nullptr;
 
         if (!action->menu()) {
             menuAction = menu.addAction(tr("Open"), this, SLOT(openBookmarkInCurrentTab()));

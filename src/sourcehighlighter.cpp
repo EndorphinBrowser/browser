@@ -32,9 +32,9 @@ SourceHighlighter::SourceHighlighter(QTextDocument *document)
     QColor entityColor;
     entityColor.setRed((foreground.red() + background.red()) / 2);
     entityColor.setGreen(
-            (foreground.green() + background.green()) / 2);
+        (foreground.green() + background.green()) / 2);
     entityColor.setBlue(
-            (foreground.blue() + background.blue()) / 2);
+        (foreground.blue() + background.blue()) / 2);
     if (abs(entityColor.red() - background.red()) > 80)
         entityColor.setRed(foreground.red());
     else if (abs(entityColor.green()-background.green()) > 80)
@@ -48,9 +48,9 @@ SourceHighlighter::SourceHighlighter(QTextDocument *document)
     QColor tagColor;
     tagColor.setRed(foreground.red() + (background.red() - foreground.red()) / 4);
     tagColor.setGreen(
-            foreground.green() + (background.green() - foreground.green()) / 4);
+        foreground.green() + (background.green() - foreground.green()) / 4);
     tagColor.setBlue(
-            foreground.blue() + (background.blue() - foreground.blue()) / 4);
+        foreground.blue() + (background.blue() - foreground.blue()) / 4);
     tagFormat.setForeground(tagColor);
     tagFormat.setFontWeight(QFont::Bold);
     setFormatFor(Tag, tagFormat);
@@ -59,9 +59,9 @@ SourceHighlighter::SourceHighlighter(QTextDocument *document)
     QColor commentColor;
     commentColor.setRed(background.red() + (foreground.red() - background.red()) / 3);
     commentColor.setGreen(
-            background.green() + (foreground.green() - background.green()) / 3);
+        background.green() + (foreground.green() - background.green()) / 3);
     commentColor.setBlue(
-            background.blue() + (foreground.blue() - background.blue()) / 3);
+        background.blue() + (foreground.blue() - background.blue()) / 3);
     commentFormat.setForeground(commentColor);
     commentFormat.setFontWeight(QFont::Normal);
     setFormatFor(Comment, commentFormat);
@@ -70,9 +70,9 @@ SourceHighlighter::SourceHighlighter(QTextDocument *document)
     QColor attributeColor;
     attributeColor.setRed((foreground.red() + background.red()) / 2);
     attributeColor.setGreen(
-            (foreground.green() + background.green()) / 2);
+        (foreground.green() + background.green()) / 2);
     attributeColor.setBlue(
-            (foreground.blue() + background.blue()) / 2);
+        (foreground.blue() + background.blue()) / 2);
     if (abs(attributeColor.red() - background.red()) > 80)
         attributeColor.setRed(background.red());
     else if (abs(attributeColor.green() - background.green()) > 80)
@@ -89,7 +89,7 @@ QTextCharFormat SourceHighlighter::getFormatFor(Construct construct)
 }
 
 void SourceHighlighter::setFormatFor(Construct construct,
-                         QTextCharFormat &format)
+                                     QTextCharFormat &format)
 {
     formats[construct] = format;
 }
@@ -138,7 +138,7 @@ void SourceHighlighter::highlightBlock(const QString &text)
                 setFormat(start, len - start, formats[Comment]);
             }
             break;
-         case InTag:
+        case InTag:
             regex.setPattern(QLatin1String("[>\"]"));
             pos = regex.indexIn(text, pos);
             if (pos >= 0) {

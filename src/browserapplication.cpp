@@ -139,13 +139,13 @@
 
 // #define BROWSERAPPLICATION_DEBUG
 
-DownloadManager *BrowserApplication::s_downloadManager = 0;
-HistoryManager *BrowserApplication::s_historyManager = 0;
-BookmarksManager *BrowserApplication::s_bookmarksManager = 0;
-LanguageManager *BrowserApplication::s_languageManager = 0;
+DownloadManager *BrowserApplication::s_downloadManager = nullptr;
+HistoryManager *BrowserApplication::s_historyManager = nullptr;
+BookmarksManager *BrowserApplication::s_bookmarksManager = nullptr;
+LanguageManager *BrowserApplication::s_languageManager = nullptr;
 
 
-static void setUserStyleSheet(QWebEngineProfile *profile, const QString &styleSheet, BrowserMainWindow *mainWindow = 0)
+static void setUserStyleSheet(QWebEngineProfile *profile, const QString &styleSheet, BrowserMainWindow *mainWindow = nullptr)
 {
     Q_ASSERT(profile);
     QString scriptName(QStringLiteral("userStyleSheet"));
@@ -188,9 +188,9 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QCoreApplication::setApplicationName(QLatin1String("Endorphin"));
     QCoreApplication::setApplicationVersion(QLatin1String("0.12.1"
 #ifdef GITVERSION
-    " (Git: " GITCHANGENUMBER " " GITVERSION ")"
+                                            " (Git: " GITCHANGENUMBER " " GITVERSION ")"
 #endif
-    ));
+                                                         ));
 
 #ifndef AUTOTESTS
     connect(this, SIGNAL(messageReceived(QLocalSocket *)),
@@ -314,34 +314,34 @@ void BrowserApplication::messageReceived(QLocalSocket *socket)
         return;
     } else {
         if (message.startsWith(QLatin1String("endorphin://getwinid"))) {
-        #ifdef Q_OS_WIN
+#ifdef Q_OS_WIN
             QString winid = QString(QLatin1String("%1")).arg((qlonglong)mainWindow()->winId());
-        #else
+#else
             mainWindow()->show();
             mainWindow()->setFocus();
             mainWindow()->raise();
             mainWindow()->activateWindow();
             alert(mainWindow());
             QString winid;
-        #endif
-        #ifdef BROWSERAPPLICATION_DEBUG
+#endif
+#ifdef BROWSERAPPLICATION_DEBUG
             qDebug() << "BrowserApplication::" << __FUNCTION__ << "sending win id" << winid << mainWindow()->winId();
-        #endif
+#endif
             QString message = QLatin1String("endorphin://winid/") + winid;
             socket->write(message.toUtf8());
             socket->waitForBytesWritten();
             return;
-	}
+        }
 
-       if (message.startsWith(QLatin1String("endorphin://winid"))) {
+        if (message.startsWith(QLatin1String("endorphin://winid"))) {
             QString winid = message.mid(21);
-        #ifdef BROWSERAPPLICATION_DEBUG
+#ifdef BROWSERAPPLICATION_DEBUG
             qDebug() << "BrowserApplication::" << __FUNCTION__ << "got win id:" << winid;
-        #endif
-        #ifdef Q_OS_WIN
+#endif
+#ifdef Q_OS_WIN
             WId wid = (WId)winid.toLongLong();
             SetForegroundWindow(wid);
-        #endif
+#endif
             return;
         }
         QSettings settings;
@@ -374,10 +374,10 @@ void BrowserApplication::quitBrowser()
             QWidget *widget = mainWindow();
             QApplication::alert(widget);
             int ret = QMessageBox::warning(widget, QString(),
-                               tr("There are %1 windows and %2 tabs open\n"
-                                  "Do you want to quit anyway?").arg(m_mainWindows.count()).arg(tabCount),
-                               QMessageBox::Yes | QMessageBox::No,
-                               QMessageBox::No);
+                                           tr("There are %1 windows and %2 tabs open\n"
+                                              "Do you want to quit anyway?").arg(m_mainWindows.count()).arg(tabCount),
+                                           QMessageBox::Yes | QMessageBox::No,
+                                           QMessageBox::No);
             if (ret == QMessageBox::No)
                 return;
         }
@@ -448,7 +448,7 @@ void BrowserApplication::loadSettings()
     defaultSettings->setFontFamily(QWebEngineSettings::StandardFont, standardFont.family());
     defaultSettings->setFontSize(QWebEngineSettings::DefaultFontSize, standardFont.pointSize());
     int minimumFontSize = settings.value(QLatin1String("minimumFontSize"),
-                defaultSettings->fontSize(QWebEngineSettings::MinimumFontSize)).toInt();
+                                         defaultSettings->fontSize(QWebEngineSettings::MinimumFontSize)).toInt();
     defaultSettings->setFontSize(QWebEngineSettings::MinimumFontSize, minimumFontSize);
 
     QString fixedFontFamily = defaultSettings->fontFamily(QWebEngineSettings::FixedFont);
@@ -514,11 +514,11 @@ void BrowserApplication::saveSession()
     settings.setValue(QLatin1String("restoring"), false);
     settings.endGroup();
 
-/*
-    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
-    if (globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled))
-        return;
-*/
+    /*
+        QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
+        if (globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled))
+            return;
+    */
     clean();
 
     settings.beginGroup(QLatin1String("sessions"));
@@ -551,8 +551,8 @@ bool BrowserApplication::restoreLastSession()
         QSettings settings;
         settings.beginGroup(QLatin1String("MainWindow"));
         if (settings.value(QLatin1String("restoring"), false).toBool()) {
-            QMessageBox::StandardButton result = QMessageBox::question(0, tr("Restore failed"),
-                tr("Endorphin crashed while trying to restore this session.  Should I try again?"), QMessageBox::Yes | QMessageBox::No);
+            QMessageBox::StandardButton result = QMessageBox::question(nullptr, tr("Restore failed"),
+                                                 tr("Endorphin crashed while trying to restore this session.  Should I try again?"), QMessageBox::Yes | QMessageBox::No);
             if (result == QMessageBox::No)
                 return false;
         }
@@ -581,7 +581,7 @@ bool BrowserApplication::restoreLastSession()
         windows.append(windowState);
     }
     for (int i = 0; i < windows.count(); ++i) {
-        BrowserMainWindow *newWindow = 0;
+        BrowserMainWindow *newWindow = nullptr;
         if (i == 0 && m_mainWindows.count() >= 1) {
             newWindow = mainWindow();
         } else {
@@ -649,7 +649,7 @@ BrowserMainWindow *BrowserApplication::mainWindow()
 {
     clean();
 
-    BrowserMainWindow *activeWindow = 0;
+    BrowserMainWindow *activeWindow = nullptr;
 
     if (m_mainWindows.isEmpty()) {
         activeWindow = newMainWindow();

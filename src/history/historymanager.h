@@ -110,7 +110,7 @@ signals:
     void entryUpdated(int offset);
 
 public:
-    HistoryManager(QObject *parent = 0);
+    HistoryManager(QObject *parent = nullptr);
     ~HistoryManager();
 
     bool historyContains(const QString &url) const;

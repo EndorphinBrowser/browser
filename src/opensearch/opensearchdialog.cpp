@@ -30,7 +30,7 @@
 
 OpenSearchDialog::OpenSearchDialog(QWidget *parent)
     : QDialog(parent)
-    , m_model(0)
+    , m_model(nullptr)
 {
     setModal(true);
     setupUi(this);
@@ -58,14 +58,14 @@ OpenSearchDialog::OpenSearchDialog(QWidget *parent)
 void OpenSearchDialog::addButtonClicked()
 {
     QStringList fileNames = QFileDialog::getOpenFileNames(this,
-                                                          tr("Open File"),
-                                                          QString(),
-                                                          tr("OpenSearch") + QLatin1String(" (*.xml)"));
+                            tr("Open File"),
+                            QString(),
+                            tr("OpenSearch") + QLatin1String(" (*.xml)"));
 
     foreach (const QString &fileName, fileNames) {
         if (!ToolbarSearch::openSearchManager()->addEngine(fileName)) {
             QMessageBox::critical(this, tr("Error"),
-                    tr("%1 is not a valid OpenSearch 1.1 description or is already on your list.").arg(fileName));
+                                  tr("%1 is not a valid OpenSearch 1.1 description or is already on your list.").arg(fileName));
         }
     }
 }
@@ -74,7 +74,7 @@ void OpenSearchDialog::deleteButtonClicked()
 {
     if (m_tableView->model()->rowCount() == 1) {
         QMessageBox::critical(this, tr("Error"),
-                tr("You must have at least one search engine in here."));
+                              tr("You must have at least one search engine in here."));
         return;
     }
 

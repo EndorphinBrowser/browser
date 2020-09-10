@@ -44,7 +44,7 @@
 
 SingleApplication::SingleApplication(int &argc, char **argv)
     : QApplication(argc, argv)
-    , m_localServer(0)
+    , m_localServer(nullptr)
 {
 }
 
@@ -114,14 +114,14 @@ bool SingleApplication::startSingleServer()
 
     if (!success) {
         delete m_localServer;
-        m_localServer = 0;
+        m_localServer = nullptr;
     }
     return success;
 }
 
 bool SingleApplication::isRunning() const
 {
-    return (0 != m_localServer);
+    return (nullptr != m_localServer);
 }
 
 void SingleApplication::newConnection()

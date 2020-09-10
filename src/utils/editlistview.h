@@ -36,7 +36,7 @@ class EditListView : public QListView
     Q_OBJECT
 
 public:
-    EditListView(QWidget *parent = 0);
+    EditListView(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event);
 
 public slots:

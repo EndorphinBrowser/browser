@@ -52,10 +52,10 @@ void WebViewSearch::highlightAll()
 {
     webView()->findText(QString(), nullptr);
 
-/*
-    if (ui.highlightAllButton->isChecked())
-        find(QWebEnginePage::HighlightAllOccurrences);
-*/
+    /*
+        if (ui.highlightAllButton->isChecked())
+            find(QWebEnginePage::HighlightAllOccurrences);
+    */
 }
 
 void WebViewSearch::find(QWebEnginePage::FindFlags flags)
@@ -65,7 +65,7 @@ void WebViewSearch::find(QWebEnginePage::FindFlags flags)
         return;
     QString infoString;
     //if (!webView()->findText(searchString, flags))
-        //infoString = tr("Not Found");
+    //infoString = tr("Not Found");
     ui.searchInfo->setText(infoString);
 }
 

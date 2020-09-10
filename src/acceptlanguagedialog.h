@@ -30,7 +30,7 @@ class AcceptLanguageDialog : public QDialog, public Ui_AcceptLanguage
     Q_OBJECT
 
 public:
-    AcceptLanguageDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    AcceptLanguageDialog(QWidget *parent = nullptr, Qt::WindowFlags flags = nullptr);
     void accept();
     static QByteArray httpString(const QStringList &list);
     static QStringList defaultAcceptList();

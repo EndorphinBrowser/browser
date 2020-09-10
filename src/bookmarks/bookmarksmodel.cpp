@@ -131,7 +131,7 @@ bool BookmarksModel::removeRows(int row, int count, const QModelIndex &parent)
     for (int i = row + count - 1; i >= row; --i) {
         BookmarkNode *node = bookmarkNode->children().at(i);
         if (node == m_bookmarksManager->menu()
-            || node == m_bookmarksManager->toolbar())
+                || node == m_bookmarksManager->toolbar())
             continue;
 
         m_bookmarksManager->removeBookmark(node);
@@ -147,8 +147,10 @@ QVariant BookmarksModel::headerData(int section, Qt::Orientation orientation, in
 {
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
         switch (section) {
-        case 0: return tr("Title");
-        case 1: return tr("Address");
+        case 0:
+            return tr("Title");
+        case 1:
+            return tr("Address");
         }
     }
     return QAbstractItemModel::headerData(section, orientation, role);
@@ -165,14 +167,18 @@ QVariant BookmarksModel::data(const QModelIndex &index, int role) const
     case Qt::DisplayRole:
         if (bookmarkNode->type() == BookmarkNode::Separator) {
             switch (index.column()) {
-            case 0: return QString(50, 0xB7);
-            case 1: return QString();
+            case 0:
+                return QString(50, 0xB7);
+            case 1:
+                return QString();
             }
         }
 
         switch (index.column()) {
-        case 0: return bookmarkNode->title;
-        case 1: return bookmarkNode->url;
+        case 0:
+            return bookmarkNode->title;
+        case 1:
+            return bookmarkNode->url;
         }
         break;
     case BookmarksModel::UrlRole:
@@ -231,7 +237,7 @@ QModelIndex BookmarksModel::parent(const QModelIndex &index) const
         return QModelIndex();
 
     BookmarkNode *itemNode = node(index);
-    BookmarkNode *parentNode = (itemNode ? itemNode->parent() : 0);
+    BookmarkNode *parentNode = (itemNode ? itemNode->parent() : nullptr);
     if (!parentNode || parentNode == m_bookmarksManager->bookmarks())
         return QModelIndex();
 
@@ -263,13 +269,13 @@ Qt::ItemFlags BookmarksModel::flags(const QModelIndex &index) const
         flags |= Qt::ItemIsDropEnabled;
 
     if (node == m_bookmarksManager->menu()
-        || node == m_bookmarksManager->toolbar())
+            || node == m_bookmarksManager->toolbar())
         return flags;
 
     flags |= Qt::ItemIsDragEnabled;
 
     if ((index.column() == 0 && type != BookmarkNode::Separator)
-        || (index.column() == 1 && type == BookmarkNode::Bookmark))
+            || (index.column() == 1 && type == BookmarkNode::Bookmark))
         flags |= Qt::ItemIsEditable;
 
     return flags;
@@ -314,7 +320,7 @@ QMimeData *BookmarksModel::mimeData(const QModelIndexList &indexes) const
 }
 
 bool BookmarksModel::dropMimeData(const QMimeData *data,
-     Qt::DropAction action, int row, int column, const QModelIndex &parent)
+                                  Qt::DropAction action, int row, int column, const QModelIndex &parent)
 {
     if (action == Qt::IgnoreAction)
         return true;

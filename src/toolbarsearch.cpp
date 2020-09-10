@@ -84,7 +84,7 @@
 #include <QWebEngineSettings>
 #include <QNetworkAccessManager>
 
-OpenSearchManager *ToolbarSearch::s_openSearchManager = 0;
+OpenSearchManager *ToolbarSearch::s_openSearchManager = nullptr;
 
 /*
     ToolbarSearch is a search widget that also contains a small history
@@ -96,10 +96,10 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     , m_autosaver(new AutoSaver(this))
     , m_maxSavedSearches(10)
     , m_model(new QStandardItemModel(this))
-    , m_suggestionsItem(0)
-    , m_recentSearchesItem(0)
-    , m_suggestTimer(0)
-    , m_completer(0)
+    , m_suggestionsItem(nullptr)
+    , m_recentSearchesItem(nullptr)
+    , m_suggestTimer(nullptr)
+    , m_completer(nullptr)
 {
     connect(openSearchManager(), SIGNAL(currentEngineChanged()),
             this, SLOT(currentEngineChanged()));
@@ -255,15 +255,15 @@ void ToolbarSearch::searchNow()
 
 //    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
 //    if (!globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled)) {
-        QStringList newList = m_recentSearches;
-        if (newList.contains(searchText))
-            newList.removeAt(newList.indexOf(searchText));
-        newList.prepend(searchText);
-        if (newList.size() >= m_maxSavedSearches)
-            newList.removeLast();
+    QStringList newList = m_recentSearches;
+    if (newList.contains(searchText))
+        newList.removeAt(newList.indexOf(searchText));
+    newList.prepend(searchText);
+    if (newList.size() >= m_maxSavedSearches)
+        newList.removeLast();
 
-        m_recentSearches = newList;
-        m_autosaver->changeOccurred();
+    m_recentSearches = newList;
+    m_autosaver->changeOccurred();
 //    }
 
     QUrl searchUrl = engine->searchUrl(searchText);
@@ -316,33 +316,33 @@ void ToolbarSearch::showEnginesMenu()
             action->setChecked(true);
         }
     }
-/*
-    WebView *webView = BrowserMainWindow::parentWindow(this)->currentTab();
-    QList<WebPageLinkedResource> engines = webView->webPage()->linkedResources(QLatin1String("search"));
+    /*
+        WebView *webView = BrowserMainWindow::parentWindow(this)->currentTab();
+        QList<WebPageLinkedResource> engines = webView->webPage()->linkedResources(QLatin1String("search"));
 
-    if (!engines.empty())
-        menu.addSeparator();
+        if (!engines.empty())
+            menu.addSeparator();
 
-    for (int i = 0; i < engines.count(); ++i) {
-        WebPageLinkedResource engine = engines.at(i);
+        for (int i = 0; i < engines.count(); ++i) {
+            WebPageLinkedResource engine = engines.at(i);
 
-        QUrl url = engine.href;
-        QString title = engine.title;
-        QString mimetype = engine.type;
+            QUrl url = engine.href;
+            QString title = engine.title;
+            QString mimetype = engine.type;
 
-        if (mimetype != QLatin1String("application/opensearchdescription+xml"))
-            continue;
-        if (url.isEmpty())
-            continue;
+            if (mimetype != QLatin1String("application/opensearchdescription+xml"))
+                continue;
+            if (url.isEmpty())
+                continue;
 
-        if (title.isEmpty())
-            title = webView->title().isEmpty() ? url.host() : webView->title();
+            if (title.isEmpty())
+                title = webView->title().isEmpty() ? url.host() : webView->title();
 
-        QAction *action = menu.addAction(tr("Add '%1'").arg(title), this, SLOT(addEngineFromUrl()));
-        action->setData(url);
-        action->setIcon(webView->icon());
-    }
-*/
+            QAction *action = menu.addAction(tr("Add '%1'").arg(title), this, SLOT(addEngineFromUrl()));
+            action->setData(url);
+            action->setIcon(webView->icon());
+        }
+    */
     menu.addSeparator();
     if (BrowserMainWindow *window = BrowserMainWindow::parentWindow(this))
         menu.addAction(window->searchManagerAction());
@@ -377,10 +377,10 @@ void ToolbarSearch::addEngineFromUrl()
 void ToolbarSearch::setupList()
 {
     if (m_suggestions.isEmpty()
-        || (m_model->rowCount() > 0
-            && m_model->item(0) != m_suggestionsItem)) {
+            || (m_model->rowCount() > 0
+                && m_model->item(0) != m_suggestionsItem)) {
         m_model->clear();
-        m_suggestionsItem = 0;
+        m_suggestionsItem = nullptr;
     } else {
         m_model->removeRows(1, m_model->rowCount() - 1);
     }

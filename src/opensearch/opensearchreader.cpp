@@ -85,7 +85,7 @@ OpenSearchEngine *OpenSearchReader::read()
         readNext();
 
     if (name() != QLatin1String("OpenSearchDescription")
-        || namespaceUri() != QLatin1String("http://a9.com/-/spec/opensearch/1.1/")) {
+            || namespaceUri() != QLatin1String("http://a9.com/-/spec/opensearch/1.1/")) {
         raiseError(QObject::tr("The file is not an OpenSearch 1.1 file."));
         return engine;
     }
@@ -107,13 +107,13 @@ OpenSearchEngine *OpenSearchReader::read()
             QString method = attributes().value(QLatin1String("method")).toString();
 
             if (type == QLatin1String("application/x-suggestions+json")
-                && !engine->suggestionsUrlTemplate().isEmpty())
+                    && !engine->suggestionsUrlTemplate().isEmpty())
                 continue;
 
             if ((type.isEmpty()
-                || type == QLatin1String("text/html")
-                || type == QLatin1String("application/xhtml+xml"))
-                && !engine->searchUrlTemplate().isEmpty())
+                    || type == QLatin1String("text/html")
+                    || type == QLatin1String("application/xhtml+xml"))
+                    && !engine->searchUrlTemplate().isEmpty())
                 continue;
 
             if (url.isEmpty())
@@ -150,14 +150,14 @@ OpenSearchEngine *OpenSearchReader::read()
             }
 
         } else if (name() == QLatin1String("Image")) {
-             engine->setImageUrl(readElementText());
+            engine->setImageUrl(readElementText());
         }
 
         if (!engine->name().isEmpty()
-            && !engine->description().isEmpty()
-            && !engine->suggestionsUrlTemplate().isEmpty()
-            && !engine->searchUrlTemplate().isEmpty()
-            && !engine->imageUrl().isEmpty())
+                && !engine->description().isEmpty()
+                && !engine->suggestionsUrlTemplate().isEmpty()
+                && !engine->searchUrlTemplate().isEmpty()
+                && !engine->imageUrl().isEmpty())
             break;
     }
 

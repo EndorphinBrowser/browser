@@ -136,13 +136,27 @@ void SettingsDialog::loadFromSettings()
     int historyExpire = settings.value(QLatin1String("historyLimit")).toInt();
     int idx = 0;
     switch (historyExpire) {
-    case 1: idx = 0; break;
-    case 7: idx = 1; break;
-    case 14: idx = 2; break;
-    case 30: idx = 3; break;
-    case 365: idx = 4; break;
-    case -1: idx = 5; break;
-    case -2: idx = 6; break;
+    case 1:
+        idx = 0;
+        break;
+    case 7:
+        idx = 1;
+        break;
+    case 14:
+        idx = 2;
+        break;
+    case 30:
+        idx = 3;
+        break;
+    case 365:
+        idx = 4;
+        break;
+    case -1:
+        idx = 5;
+        break;
+    case -2:
+        idx = 6;
+        break;
     default:
         idx = 5;
     }
@@ -238,13 +252,27 @@ void SettingsDialog::saveToSettings()
     int historyExpire = expireHistory->currentIndex();
     int idx = -1;
     switch (historyExpire) {
-    case 0: idx = 1; break;
-    case 1: idx = 7; break;
-    case 2: idx = 14; break;
-    case 3: idx = 30; break;
-    case 4: idx = 365; break;
-    case 5: idx = -1; break;
-    case 6: idx = -2; break;
+    case 0:
+        idx = 1;
+        break;
+    case 1:
+        idx = 7;
+        break;
+    case 2:
+        idx = 14;
+        break;
+    case 3:
+        idx = 30;
+        break;
+    case 4:
+        idx = 365;
+        break;
+    case 5:
+        idx = -1;
+        break;
+    case 6:
+        idx = -2;
+        break;
     }
     settings.setValue(QLatin1String("historyLimit"), idx);
     settings.endGroup();

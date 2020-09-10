@@ -98,15 +98,15 @@ void SourceViewer::loadingFinished()
     connect(&page, &QWebEnginePage::loadFinished, &loop, &QEventLoop::quit);
     page.setContent(response, QString(), m_reply->request().url());
     loop.exec();
-/*
-    If original request was POST or a different problem is there, fall
-       back to modified version of QWebFrame.toHtml() 
+    /*
+        If original request was POST or a different problem is there, fall
+           back to modified version of QWebFrame.toHtml()
 
-    if (page.mainFrame()->toHtml() != m_source)
-        m_edit->setPlainText(m_source);
-    else
-*/
-        m_edit->setPlainText(QLatin1String(response));
+        if (page.mainFrame()->toHtml() != m_source)
+            m_edit->setPlainText(m_source);
+        else
+    */
+    m_edit->setPlainText(QLatin1String(response));
 
     m_reply->close();
 }

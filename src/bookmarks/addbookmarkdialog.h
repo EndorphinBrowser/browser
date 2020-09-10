@@ -73,7 +73,7 @@ class AddBookmarkProxyModel : public QSortFilterProxyModel
     Q_OBJECT
 
 public:
-    AddBookmarkProxyModel(QObject *parent = 0);
+    AddBookmarkProxyModel(QObject *parent = nullptr);
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
 protected:
@@ -88,7 +88,7 @@ class AddBookmarkDialog : public QDialog, public Ui_AddBookmarkDialog
     Q_OBJECT
 
 public:
-    AddBookmarkDialog(QWidget *parent = 0, BookmarksManager *bookmarksManager = 0);
+    AddBookmarkDialog(QWidget *parent = nullptr, BookmarksManager *bookmarksManager = nullptr);
 
     void setUrl(const QString &url);
     QString url() const;

@@ -109,13 +109,13 @@
 
 BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)
-    , m_navigationBar(0)
-    , m_navigationSplitter(0)
-    , m_toolbarSearch(0)
+    , m_navigationBar(nullptr)
+    , m_navigationSplitter(nullptr)
+    , m_toolbarSearch(nullptr)
 #if defined(Q_WS_MAC)
     , m_bookmarksToolbarFrame(0)
 #endif
-    , m_bookmarksToolbar(0)
+    , m_bookmarksToolbar(nullptr)
     , m_tabWidget(new TabWidget(this))
     , m_autoSaver(new AutoSaver(this))
 {
@@ -1004,7 +1004,7 @@ void BrowserMainWindow::setupToolBar()
     m_navigationBar->setObjectName(QLatin1String("NavigationToolBar"));
     addToolBar(m_navigationBar);
 
-    m_historyBackAction->setIcon(style()->standardIcon(QStyle::SP_ArrowBack, 0, this));
+    m_historyBackAction->setIcon(style()->standardIcon(QStyle::SP_ArrowBack, nullptr, this));
     m_historyBackMenu = new QMenu(this);
     m_historyBackAction->setMenu(m_historyBackMenu);
     connect(m_historyBackMenu, SIGNAL(aboutToShow()),
@@ -1013,7 +1013,7 @@ void BrowserMainWindow::setupToolBar()
             this, SLOT(openActionUrl(QAction *)));
     m_navigationBar->addAction(m_historyBackAction);
 
-    m_historyForwardAction->setIcon(style()->standardIcon(QStyle::SP_ArrowForward, 0, this));
+    m_historyForwardAction->setIcon(style()->standardIcon(QStyle::SP_ArrowForward, nullptr, this));
     m_historyForwardMenu = new QMenu(this);
     connect(m_historyForwardMenu, SIGNAL(aboutToShow()),
             this, SLOT(aboutToShowForwardMenu()));
@@ -1222,7 +1222,7 @@ void BrowserMainWindow::printRequested(QWebEnginePage *page)
     dialog.setWindowTitle(tr("Print Document"));
     if (dialog.exec() != QDialog::Accepted)
         return;
-    page->print(&printer, [](bool a){});
+    page->print(&printer, [](bool a) {});
 }
 
 void BrowserMainWindow::privateBrowsing()
@@ -1246,8 +1246,8 @@ void BrowserMainWindow::privateBrowsing()
                           .arg(title, text1, actions.join(QLatin1String("</li><li>")), text2);
 
         QMessageBox::StandardButton button = QMessageBox::question(this, tr("Private Browsing"), message,
-                                                                   QMessageBox::Ok | QMessageBox::Cancel,
-                                                                   QMessageBox::Ok);
+                                             QMessageBox::Ok | QMessageBox::Cancel,
+                                             QMessageBox::Ok);
         if (button == QMessageBox::Ok)
             BrowserApplication::setPrivate(true);
         else
@@ -1422,18 +1422,18 @@ void BrowserMainWindow::clearPrivateData()
 
 void BrowserMainWindow::toggleInspector(bool enable)
 {
-/*
-    QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::DeveloperExtrasEnabled, enable);
-    if (enable) {
-        int result = QMessageBox::question(this, tr("Web Inspector"),
-                                           tr("The web inspector will only work correctly for pages that were loaded after enabling.\n"
-                                              "Do you want to reload all pages?"),
-                                           QMessageBox::Yes | QMessageBox::No);
-        if (result == QMessageBox::Yes) {
-            m_tabWidget->reloadAllTabs();
+    /*
+        QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::DeveloperExtrasEnabled, enable);
+        if (enable) {
+            int result = QMessageBox::question(this, tr("Web Inspector"),
+                                               tr("The web inspector will only work correctly for pages that were loaded after enabling.\n"
+                                                  "Do you want to reload all pages?"),
+                                               QMessageBox::Yes | QMessageBox::No);
+            if (result == QMessageBox::Yes) {
+                m_tabWidget->reloadAllTabs();
+            }
         }
-    }
-    */
+        */
     QSettings settings;
     settings.beginGroup(QLatin1String("websettings"));
     settings.setValue(QLatin1String("enableInspector"), enable);

@@ -97,13 +97,13 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
         switch (role) {
         case Qt::DisplayRole:
             return engine->name();
-        break;
+            break;
         case Qt::DecorationRole: {
             QImage image = engine->image();
             if (image.isNull())
                 return BrowserApplication::icon(engine->imageUrl());
             return image;
-        break;
+            break;
         }
         case Qt::ToolTipRole:
             QString description = tr("<strong>Description:</strong> %1").arg(engine->description());
@@ -114,7 +114,7 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
             }
 
             return description;
-        break;
+            break;
         }
         break;
 

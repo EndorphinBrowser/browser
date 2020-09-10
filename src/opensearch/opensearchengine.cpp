@@ -85,10 +85,10 @@ OpenSearchEngine::OpenSearchEngine(QObject *parent)
     : QObject(parent)
     , m_searchMethod(QLatin1String("get"))
     , m_suggestionsMethod(QLatin1String("get"))
-    , m_networkAccessManager(0)
-    , m_suggestionsReply(0)
-    , m_scriptEngine(0)
-    , m_delegate(0)
+    , m_networkAccessManager(nullptr)
+    , m_suggestionsReply(nullptr)
+    , m_scriptEngine(nullptr)
+    , m_delegate(nullptr)
 {
     m_requestMethods.insert(QLatin1String("get"), QNetworkAccessManager::GetOperation);
     m_requestMethods.insert(QLatin1String("post"), QNetworkAccessManager::PostOperation);
@@ -473,7 +473,7 @@ void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
         m_suggestionsReply->disconnect(this);
         m_suggestionsReply->abort();
         m_suggestionsReply->deleteLater();
-        m_suggestionsReply = 0;
+        m_suggestionsReply = nullptr;
     }
 
     Q_ASSERT(m_requestMethods.contains(m_suggestionsMethod));
@@ -534,7 +534,7 @@ void OpenSearchEngine::suggestionsObtained()
 
     m_suggestionsReply->close();
     m_suggestionsReply->deleteLater();
-    m_suggestionsReply = 0;
+    m_suggestionsReply = nullptr;
 
     if (response.isEmpty())
         return;

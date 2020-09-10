@@ -39,7 +39,7 @@ signals:
     void sizeHintChanged();
 
 public:
-    SideWidget(QWidget *parent = 0);
+    SideWidget(QWidget *parent = nullptr);
 
 protected:
     bool event(QEvent *event);

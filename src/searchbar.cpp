@@ -27,8 +27,8 @@
 
 SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)
-    , m_object(0)
-    , m_widget(0)
+    , m_object(nullptr)
+    , m_widget(nullptr)
     , m_timeLine(new QTimeLine(150, this))
 {
     initializeSearchWidget();
@@ -61,9 +61,9 @@ void SearchBar::initializeSearchWidget()
     m_widget->setContentsMargins(0, 0, 0, 0);
     ui.setupUi(m_widget);
     ui.previousButton->setText(m_widget->layoutDirection()
-                == Qt::LeftToRight? QChar(9664): QChar(9654));
+                               == Qt::LeftToRight? QChar(9664): QChar(9654));
     ui.nextButton->setText(m_widget->layoutDirection()
-                == Qt::LeftToRight? QChar(9654): QChar(9664));
+                           == Qt::LeftToRight? QChar(9654): QChar(9664));
     ui.searchInfo->setText(QString());
     setMinimumWidth(m_widget->minimumWidth());
     setMaximumWidth(m_widget->maximumWidth());

@@ -90,8 +90,8 @@ bool AddBookmarkProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &s
 AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmarksManager)
     : QDialog(parent)
     , m_bookmarksManager(bookmarksManager)
-    , m_addedNode(0)
-    , m_proxyModel(0)
+    , m_addedNode(nullptr)
+    , m_proxyModel(nullptr)
     , m_addFolder(false)
 {
     setWindowFlags(Qt::Sheet);

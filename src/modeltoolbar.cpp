@@ -30,7 +30,7 @@
 
 ModelToolBar::ModelToolBar(QWidget *parent)
     : QToolBar(parent)
-    , m_model(0)
+    , m_model(nullptr)
 {
     if (isVisible())
         build();
@@ -40,7 +40,7 @@ ModelToolBar::ModelToolBar(QWidget *parent)
 
 ModelToolBar::ModelToolBar(const QString &title, QWidget *parent)
     : QToolBar(title, parent)
-    , m_model(0)
+    , m_model(nullptr)
 {
     if (isVisible())
         build();

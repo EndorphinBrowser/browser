@@ -83,7 +83,7 @@ signals:
     void downloadFinished();
 
 public:
-    DownloadItem(QNetworkReply *reply = 0, bool requestFileName = false, QWidget *parent = 0);
+    DownloadItem(QNetworkReply *reply = nullptr, bool requestFileName = false, QWidget *parent = nullptr);
     bool downloading() const;
     bool downloadedSuccessfully() const;
 
@@ -147,7 +147,7 @@ public:
         SuccessFullDownload
     };
 
-    DownloadManager(QWidget *parent = 0);
+    DownloadManager(QWidget *parent = nullptr);
     ~DownloadManager();
     int activeDownloads() const;
     bool allowQuit();
@@ -164,7 +164,9 @@ public:
 public slots:
     void download(const QNetworkRequest &request, bool requestFileName = false);
     inline void download(const QUrl &url, bool requestFileName = false)
-        { download(QNetworkRequest(url), requestFileName); }
+    {
+        download(QNetworkRequest(url), requestFileName);
+    }
     void handleUnsupportedContent(QNetworkReply *reply, bool requestFileName = false);
     void cleanup();
 
@@ -198,7 +200,7 @@ class DownloadModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    DownloadModel(DownloadManager *downloadManager, QObject *parent = 0);
+    DownloadModel(DownloadManager *downloadManager, QObject *parent = nullptr);
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());

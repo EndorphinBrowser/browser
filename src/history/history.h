@@ -93,7 +93,7 @@ public:
         MaxRole = TitleRole
     };
 
-    HistoryModel(HistoryManager *history, QObject *parent = 0);
+    HistoryModel(HistoryManager *history, QObject *parent = nullptr);
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
@@ -114,7 +114,7 @@ class HistoryFilterModel : public QAbstractProxyModel
     Q_OBJECT
 
 public:
-    HistoryFilterModel(QAbstractItemModel *sourceModel, QObject *parent = 0);
+    HistoryFilterModel(QAbstractItemModel *sourceModel, QObject *parent = nullptr);
 
     inline bool historyContains(const QString &url) const
         { load(); return m_historyHash.contains(url); }
@@ -192,7 +192,7 @@ class HistoryMenuModel : public QAbstractProxyModel
     Q_OBJECT
 
 public:
-    HistoryMenuModel(HistoryTreeModel *sourceModel, QObject *parent = 0);
+    HistoryMenuModel(HistoryTreeModel *sourceModel, QObject *parent = nullptr);
     int columnCount(const QModelIndex &parent) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QModelIndex mapFromSource(const QModelIndex & sourceIndex) const;
@@ -219,7 +219,7 @@ signals:
     void openUrl(const QUrl &url, const QString &title);
 
 public:
-    HistoryMenu(QWidget *parent = 0);
+    HistoryMenu(QWidget *parent = nullptr);
     void setInitialActions(QList<QAction*> actions);
 
 protected:
@@ -246,7 +246,7 @@ class HistoryTreeModel : public QAbstractProxyModel
     Q_OBJECT
 
 public:
-    HistoryTreeModel(QAbstractItemModel *sourceModel, QObject *parent = 0);
+    HistoryTreeModel(QAbstractItemModel *sourceModel, QObject *parent = nullptr);
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int columnCount(const QModelIndex &parent) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
@@ -284,7 +284,7 @@ signals:
     void openUrl(const QUrl &url, const QString &title);
 
 public:
-    HistoryDialog(QWidget *parent = 0, HistoryManager *history = 0);
+    HistoryDialog(QWidget *parent = nullptr, HistoryManager *history = nullptr);
 
 private slots:
     void customContextMenuRequested(const QPoint &pos);

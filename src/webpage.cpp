@@ -120,39 +120,39 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
 */
 bool WebPage::acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame)
 {
-/*
-    lastRequest = request;
-    lastRequestType = type;
-*/
+    /*
+        lastRequest = request;
+        lastRequestType = type;
+    */
     QString scheme = url.scheme();
     if (scheme == QLatin1String("mailto")
-        || scheme == QLatin1String("ftp")) {
+            || scheme == QLatin1String("ftp")) {
         BrowserApplication::instance()->askDesktopToOpenUrl(url);
         return false;
     }
-/*
-    if (type == QWebEnginePage::NavigationTypeFormResubmitted) {
-        QMessageBox::StandardButton button = QMessageBox::warning(view(), tr("Resending POST request"),
-                             tr("In order to display the site, the request along with all the data must be sent once again, "
-                                "which may lead to some unexpected behaviour of the site e.g. the same action might be "
-                                "performed once again. Do you want to continue anyway?"), QMessageBox::Yes | QMessageBox::No);
-        if (button != QMessageBox::Yes)
-            return false;
-    }
-*/
+    /*
+        if (type == QWebEnginePage::NavigationTypeFormResubmitted) {
+            QMessageBox::StandardButton button = QMessageBox::warning(view(), tr("Resending POST request"),
+                                 tr("In order to display the site, the request along with all the data must be sent once again, "
+                                    "which may lead to some unexpected behaviour of the site e.g. the same action might be "
+                                    "performed once again. Do you want to continue anyway?"), QMessageBox::Yes | QMessageBox::No);
+            if (button != QMessageBox::Yes)
+                return false;
+        }
+    */
     TabWidget::OpenUrlIn openIn =  isMainFrame ? TabWidget::CurrentTab : TabWidget::NewWindow;
     openIn = TabWidget::modifyWithUserBehavior(openIn);
 
     // handle the case where we want to do something different then
     // what QWebEnginePage would do
     if (openIn == TabWidget::NewSelectedTab
-        || openIn == TabWidget::NewNotSelectedTab
-        || (openIn == TabWidget::NewWindow)) {
+            || openIn == TabWidget::NewNotSelectedTab
+            || (openIn == TabWidget::NewWindow)) {
         if (WebView *webView = qobject_cast<WebView*>(view())) {
             TabWidget *tabWidget = webView->tabWidget();
             if (tabWidget) {
                 WebView *newView = tabWidget->getView(openIn, webView);
-                QWebEnginePage *page = 0;
+                QWebEnginePage *page = nullptr;
                 if (newView)
                     page = newView->page();
                 if (page)
@@ -176,7 +176,7 @@ void WebPage::loadSettings()
     QSettings settings;
     settings.beginGroup(QLatin1String("tabs"));
     m_openTargetBlankLinksIn = (TabWidget::OpenUrlIn)settings.value(QLatin1String("openTargetBlankLinksIn"),
-                                                                    TabWidget::NewSelectedTab).toInt();
+                               TabWidget::NewSelectedTab).toInt();
     settings.endGroup();
     s_userAgent = settings.value(QLatin1String("userAgent")).toString();
 }
@@ -192,7 +192,7 @@ QWebEnginePage *WebPage::createWindow(QWebEnginePage::WebWindowType type)
             return tabWidget->getView(openIn, webView)->page();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 // The chromium guys have documented many examples of incompatibilities that
@@ -205,22 +205,22 @@ QWebEnginePage *WebPage::createWindow(QWebEnginePage::WebWindowType type)
 static bool contentSniff(const QByteArray &data)
 {
     if (data.contains("<!doctype")
-        || data.contains("<script")
-        || data.contains("<html")
-        || data.contains("<!--")
-        || data.contains("<head")
-        || data.contains("<iframe")
-        || data.contains("<h1")
-        || data.contains("<div")
-        || data.contains("<font")
-        || data.contains("<table")
-        || data.contains("<a")
-        || data.contains("<style")
-        || data.contains("<title")
-        || data.contains("<b")
-        || data.contains("<body")
-        || data.contains("<br")
-        || data.contains("<p"))
+            || data.contains("<script")
+            || data.contains("<html")
+            || data.contains("<!--")
+            || data.contains("<head")
+            || data.contains("<iframe")
+            || data.contains("<h1")
+            || data.contains("<div")
+            || data.contains("<font")
+            || data.contains("<table")
+            || data.contains("<a")
+            || data.contains("<style")
+            || data.contains("<title")
+            || data.contains("<b")
+            || data.contains("<body")
+            || data.contains("<br")
+            || data.contains("<p"))
         return true;
     return false;
 }
@@ -275,7 +275,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
         return;
     QString title = tr("Error loading page: %1").arg(QString::fromUtf8(replyUrl.toEncoded()));
     QString html = QLatin1String(notFoundErrorFile.readAll());
-    QPixmap pixmap = qApp->style()->standardIcon(QStyle::SP_MessageBoxWarning, 0, view()).pixmap(QSize(32, 32));
+    QPixmap pixmap = qApp->style()->standardIcon(QStyle::SP_MessageBoxWarning, nullptr, view()).pixmap(QSize(32, 32));
     QBuffer imageBuffer;
     imageBuffer.open(QBuffer::ReadWrite);
     if (pixmap.save(&imageBuffer, "PNG")) {

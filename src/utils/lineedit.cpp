@@ -50,18 +50,18 @@ bool SideWidget::event(QEvent *event)
 
 LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
-    , m_leftLayout(0)
-    , m_rightLayout(0)
+    , m_leftLayout(nullptr)
+    , m_rightLayout(nullptr)
 {
     init();
 }
 
 LineEdit::LineEdit(const QString &contents, QWidget *parent)
     : QLineEdit(contents, parent)
-    , m_leftWidget(0)
-    , m_rightWidget(0)
-    , m_leftLayout(0)
-    , m_rightLayout(0)
+    , m_leftWidget(nullptr)
+    , m_rightWidget(nullptr)
+    , m_leftLayout(nullptr)
+    , m_rightLayout(nullptr)
 {
     init();
 }

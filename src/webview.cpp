@@ -176,12 +176,12 @@ WebView::WebView(QWidget *parent)
     m_zoomLevels << 30 << 50 << 67 << 80 << 90;
     m_zoomLevels << 100;
     m_zoomLevels << 110 << 120 << 133 << 150 << 170 << 200 << 240 << 300;
-/*
-    connect(m_page, SIGNAL(loadStarted()),
-            this, SLOT(hideAccessKeys()));
-    connect(m_page, SIGNAL(scrollRequested(int, int, const QRect &)),
-            this, SLOT(hideAccessKeys()));
-*/
+    /*
+        connect(m_page, SIGNAL(loadStarted()),
+                this, SLOT(hideAccessKeys()));
+        connect(m_page, SIGNAL(scrollRequested(int, int, const QRect &)),
+                this, SLOT(hideAccessKeys()));
+    */
     loadSettings();
 }
 
@@ -206,7 +206,7 @@ TabWidget *WebView::tabWidget() const
             return tw;
         widget = widget->parent();
     }
-    return 0;
+    return nullptr;
 }
 
 void WebView::contextMenuEvent(QContextMenuEvent *event)
@@ -259,30 +259,30 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
 
         connect(searchMenu, SIGNAL(triggered(QAction *)), this, SLOT(searchRequested(QAction *)));
     }
-/*
-    QWebElement element = r.element();
-    if (!element.isNull()
-        && element.tagName().toLower() == QLatin1String("input")
-        && element.attribute(QLatin1String("type"), QLatin1String("text")) == QLatin1String("text")) {
-        if (menu->isEmpty()) {
-            menu->addAction(pageAction(QWebEnginePage::Copy));
-        } else {
-            menu->addSeparator();
-        }
+    /*
+        QWebElement element = r.element();
+        if (!element.isNull()
+            && element.tagName().toLower() == QLatin1String("input")
+            && element.attribute(QLatin1String("type"), QLatin1String("text")) == QLatin1String("text")) {
+            if (menu->isEmpty()) {
+                menu->addAction(pageAction(QWebEnginePage::Copy));
+            } else {
+                menu->addSeparator();
+            }
 
-        QVariant variant;
-        variant.setValue(element);
-        menu->addAction(tr("Add to the toolbar search"), this, SLOT(addSearchEngine()))->setData(variant);
-    }
-*/
+            QVariant variant;
+            variant.setValue(element);
+            menu->addAction(tr("Add to the toolbar search"), this, SLOT(addSearchEngine()))->setData(variant);
+        }
+    */
     if (menu->isEmpty()) {
         delete menu;
         menu = page()->createStandardContextMenu();
     } else {
-/*
-        if (page()->settings()->testAttribute(QWebEngineSettings::DeveloperExtrasEnabled))
-            menu->addAction(pageAction(QWebEnginePage::InspectElement));
-*/
+        /*
+                if (page()->settings()->testAttribute(QWebEngineSettings::DeveloperExtrasEnabled))
+                    menu->addAction(pageAction(QWebEnginePage::InspectElement));
+        */
     }
 
     if (!menu->isEmpty()) {
@@ -315,13 +315,13 @@ void WebView::wheelEvent(QWheelEvent *event)
 
 void WebView::resizeEvent(QResizeEvent *event)
 {
-/*
-    int offset = event->size().height() - event->oldSize().height();
-    int currentValue = page()->mainFrame()->scrollBarValue(Qt::Vertical);
-    setUpdatesEnabled(false);
-    page()->mainFrame()->setScrollBarValue(Qt::Vertical, currentValue - offset);
-    setUpdatesEnabled(true);
-*/
+    /*
+        int offset = event->size().height() - event->oldSize().height();
+        int currentValue = page()->mainFrame()->scrollBarValue(Qt::Vertical);
+        setUpdatesEnabled(false);
+        page()->mainFrame()->setScrollBarValue(Qt::Vertical, currentValue - offset);
+        setUpdatesEnabled(true);
+    */
     QWebEngineView::resizeEvent(event);
 }
 
@@ -564,7 +564,7 @@ void WebView::loadUrl(const QUrl &url, const QString &title)
         QString scriptSource = QUrl::fromPercentEncoding(url.toString(Q_FLAGS(QUrl::TolerantMode|QUrl::RemoveScheme)).toLatin1());
         QEventLoop loop;
         QObject::connect(this, SIGNAL(notifyRanJavaScript()), &loop, SLOT(quit()));
-            page()->runJavaScript(scriptSource, [this](const QVariant &v)
+        page()->runJavaScript(scriptSource, [this](const QVariant &v)
         {
             this->ranJavaScript();
         });
@@ -652,8 +652,8 @@ void WebView::dropEvent(QDropEvent *event)
 {
     QWebEngineView::dropEvent(event);
     if (!event->isAccepted()
-        && event->source() != this
-        && event->possibleActions() & Qt::CopyAction) {
+            && event->source() != this
+            && event->possibleActions() & Qt::CopyAction) {
 
         QUrl url;
         if (!event->mimeData()->urls().isEmpty())
@@ -672,7 +672,7 @@ void WebView::mouseReleaseEvent(QMouseEvent *event)
     const bool isAccepted = event->isAccepted();
     m_page->event(event);
     if (!event->isAccepted()
-        && (BrowserApplication::instance()->eventMouseButtons() & Qt::MidButton)) {
+            && (BrowserApplication::instance()->eventMouseButtons() & Qt::MidButton)) {
         QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
         if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
             BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
@@ -729,21 +729,21 @@ void WebView::accessKeyShortcut()
 */
 void WebView::keyReleaseEvent(QKeyEvent *event)
 {
-/*
-    if (m_enableAccessKeys)
-        m_accessKeysPressed = event->key() == Qt::Key_Control;
-*/
+    /*
+        if (m_enableAccessKeys)
+            m_accessKeysPressed = event->key() == Qt::Key_Control;
+    */
     QWebEngineView::keyReleaseEvent(event);
 }
 
 void WebView::focusOutEvent(QFocusEvent *event)
 {
-/*
-    if (m_accessKeysPressed) {
-        hideAccessKeys();
-        m_accessKeysPressed = false;
-    }
-*/
+    /*
+        if (m_accessKeysPressed) {
+            hideAccessKeys();
+            m_accessKeysPressed = false;
+        }
+    */
     QWebEngineView::focusOutEvent(event);
 }
 

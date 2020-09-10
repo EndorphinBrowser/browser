@@ -110,7 +110,7 @@ void UserAgentMenu::addActionsFromFile(const QString &fileName)
     }
     if (xml.hasError()) {
         qDebug() << "Error reading custom user agents" << xml.errorString();
-         // ... do error handling
+        // ... do error handling
     }
 }
 
@@ -130,8 +130,8 @@ void UserAgentMenu::switchToOtherUserAgent()
 {
     bool ok;
     QString text = QInputDialog::getText(this, tr("Custom user agent"),
-                                          tr("User agent:"), QLineEdit::Normal,
-                                          WebPage::userAgent(), &ok, Qt::Sheet);
+                                         tr("User agent:"), QLineEdit::Normal,
+                                         WebPage::userAgent(), &ok, Qt::Sheet);
     if (ok) {
         WebPage::setUserAgent(text);
     }

@@ -28,7 +28,7 @@ class LocationBarSiteIcon : public QLabel
     Q_OBJECT
 
 public:
-    LocationBarSiteIcon(QWidget *parent = 0);
+    LocationBarSiteIcon(QWidget *parent = nullptr);
     void setWebView(WebView *webView);
 
 protected:

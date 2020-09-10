@@ -100,18 +100,18 @@
 
 TabWidget::TabWidget(QWidget *parent)
     : QTabWidget(parent)
-    , m_recentlyClosedTabsAction(0)
-    , m_newTabAction(0)
-    , m_closeTabAction(0)
-    , m_bookmarkTabsAction(0)
-    , m_nextTabAction(0)
-    , m_previousTabAction(0)
-    , m_recentlyClosedTabsMenu(0)
-    , m_lineEditCompleter(0)
-    , m_locationBars(0)
+    , m_recentlyClosedTabsAction(nullptr)
+    , m_newTabAction(nullptr)
+    , m_closeTabAction(nullptr)
+    , m_bookmarkTabsAction(nullptr)
+    , m_nextTabAction(nullptr)
+    , m_previousTabAction(nullptr)
+    , m_recentlyClosedTabsMenu(nullptr)
+    , m_lineEditCompleter(nullptr)
+    , m_locationBars(nullptr)
     , m_tabBar(new TabBar(this))
-    , addTabButton(0)
-    , closeTabButton(0)
+    , addTabButton(nullptr)
+    , closeTabButton(nullptr)
 {
     setElideMode(Qt::ElideRight);
 
@@ -187,7 +187,7 @@ TabWidget::TabWidget(QWidget *parent)
     m_locationBars = new QStackedWidget(this);
 
     connect(BrowserApplication::historyManager(), SIGNAL(historyCleared()),
-        this, SLOT(historyCleared()));
+            this, SLOT(historyCleared()));
 
     // Initialize Actions' labels
     retranslate();
@@ -336,7 +336,7 @@ WebView *TabWidget::webView(int index) const
     if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
         return webViewWithSearch->m_webView;
     }
-    return 0;
+    return nullptr;
 }
 
 WebViewSearch *TabWidget::webViewSearch(int index) const
@@ -345,7 +345,7 @@ WebViewSearch *TabWidget::webViewSearch(int index) const
     if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
         return webViewWithSearch->m_webViewSearch;
     }
-    return 0;
+    return nullptr;
 }
 
 int TabWidget::webViewIndex(WebView *webView) const
@@ -399,7 +399,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     connect(webView, SIGNAL(loadStarted()),
             this, SLOT(webViewLoadStarted()));
     connect(webView, SIGNAL(loadProgress(int)),
-                this, SLOT(webViewLoadProgress(int)));
+            this, SLOT(webViewLoadProgress(int)));
     connect(webView, SIGNAL(loadFinished(bool)),
             this, SLOT(webViewLoadFinished(bool)));
     connect(webView, SIGNAL(iconChanged()),
@@ -592,7 +592,7 @@ void TabWidget::closeTab(int index)
 
     QWidget *webViewWithSearch = widget(index);
     removeTab(index);
-    webViewWithSearch->setParent(0);
+    webViewWithSearch->setParent(nullptr);
     webViewWithSearch->deleteLater();
 
     emit tabsChanged();
@@ -605,7 +605,7 @@ void TabWidget::closeTab(int index)
 QLabel *TabWidget::animationLabel(int index, bool addMovie)
 {
     if (-1 == index)
-        return 0;
+        return nullptr;
     QTabBar::ButtonPosition side = m_tabBar->freeSide();
     QLabel *loadingAnimation = qobject_cast<QLabel*>(m_tabBar->tabButton(index, side));
     if (!loadingAnimation) {
@@ -617,7 +617,7 @@ QLabel *TabWidget::animationLabel(int index, bool addMovie)
         loadingAnimation->setMovie(movie);
         movie->start();
     }
-    m_tabBar->setTabButton(index, side, 0);
+    m_tabBar->setTabButton(index, side, nullptr);
     m_tabBar->setTabButton(index, side, loadingAnimation);
     return loadingAnimation;
 }
@@ -644,7 +644,7 @@ void TabWidget::webViewLoadProgress(int progress)
     int index = webViewIndex(webView);
 
     if (index != currentIndex()
-        || index < 0)
+            || index < 0)
         return;
 
     //double totalBytes = (double) webView->webPage()->totalBytes() / 1024;
@@ -690,7 +690,7 @@ void TabWidget::webViewIconChanged()
         QLabel *label = animationLabel(index, false);
         QMovie *movie = label->movie();
         delete movie;
-        label->setMovie(0);
+        label->setMovie(nullptr);
         label->setPixmap(icon.pixmap(16, 16));
 #endif
     }
@@ -811,7 +811,7 @@ QUrl TabWidget::guessUrlFromString(const QString &string)
     url = QUrl::fromUserInput(string);
 
     if (url.scheme() == QLatin1String("about")
-        && url.path() == QLatin1String("home"))
+            && url.path() == QLatin1String("home"))
         url = QUrl(QLatin1String("qrc:/startpage.html"));
 
     // QUrl::isValid() is too much tolerant.
@@ -871,7 +871,7 @@ void TabWidget::loadSettings()
         setCornerWidget(closeTabButton, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
         closeTabButton->setVisible(oneCloseButton);
     } else {
-        setCornerWidget(0, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
+        setCornerWidget(nullptr, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
     }
     m_tabBar->setTabsClosable(!oneCloseButton);
 }
@@ -905,7 +905,7 @@ TabWidget::OpenUrlIn TabWidget::modifyWithUserBehavior(OpenUrlIn tab) {
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
     qDebug() << __FUNCTION__ << "end" << modifiers << buttons << tab;
 #endif
-    BrowserApplication::instance()->setEventKeyboardModifiers(0);
+    BrowserApplication::instance()->setEventKeyboardModifiers(nullptr);
     BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
     return tab;
 }
@@ -936,45 +936,45 @@ void TabWidget::loadUrl(const QUrl &url, OpenUrlIn tab, const QString &title)
  */
 WebView *TabWidget::getView(OpenUrlIn tab, WebView *currentView)
 {
-    WebView *webView = 0;
+    WebView *webView = nullptr;
     switch (tab) {
-        case NewWindow: {
+    case NewWindow: {
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
-            qDebug() << __FUNCTION__ << "NewWindow";
+        qDebug() << __FUNCTION__ << "NewWindow";
 #endif
-            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->newMainWindow();
-            webView = newMainWindow->currentTab();
-            webView->setFocus();
-            break;
-        }
+        BrowserMainWindow *newMainWindow = BrowserApplication::instance()->newMainWindow();
+        webView = newMainWindow->currentTab();
+        webView->setFocus();
+        break;
+    }
 
-        case NewSelectedTab: {
+    case NewSelectedTab: {
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
-            qDebug() << __FUNCTION__ << "NewSelectedTab";
+        qDebug() << __FUNCTION__ << "NewSelectedTab";
 #endif
-            webView = makeNewTab(true);
-            webView->setFocus();
-            break;
-        }
+        webView = makeNewTab(true);
+        webView->setFocus();
+        break;
+    }
 
-        case NewNotSelectedTab: {
+    case NewNotSelectedTab: {
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
-            qDebug() << __FUNCTION__ << "NewNotSelectedTab";
+        qDebug() << __FUNCTION__ << "NewNotSelectedTab";
 #endif
-            webView = makeNewTab(false);
-            break;
-        }
+        webView = makeNewTab(false);
+        break;
+    }
 
-        case CurrentTab:
-        default:
+    case CurrentTab:
+    default:
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
-            qDebug() << __FUNCTION__ << "CurrentTab";
+        qDebug() << __FUNCTION__ << "CurrentTab";
 #endif
-            webView = currentView;
-            if (!webView)
-                return 0;
-            webView->setFocus();
-            break;
+        webView = currentView;
+        if (!webView)
+            return nullptr;
+        webView->setFocus();
+        break;
     }
     return webView;
 }
