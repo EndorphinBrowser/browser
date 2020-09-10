@@ -146,6 +146,8 @@ private:
     QList<int> m_zoomLevels;
     WebPage *m_page;
 
+    void onFeaturePermissionRequested(const QUrl &securityOrigin, QWebEnginePage::Feature);
+
     //bool m_enableAccessKeys;
     //bool checkForAccessKey(QKeyEvent *event);
     //void showAccessKeys();

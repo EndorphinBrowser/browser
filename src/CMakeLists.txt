@@ -61,6 +61,7 @@ set(Endorphin_SRCS
 	downloadmanager.cpp
 	modelmenu.cpp
 	modeltoolbar.cpp
+	permissionbar.cpp
 	plaintexteditsearch.cpp
 	searchbar.cpp
 	searchbutton.cpp
@@ -144,6 +145,7 @@ set(Endorphin_MOCS
 	downloadmanager.h
 	modelmenu.h
 	modeltoolbar.h
+	permissionbar.h
 	plaintexteditsearch.h
 	searchbar.h
 	searchbutton.h
