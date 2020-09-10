@@ -92,7 +92,7 @@
 #include <qstackedwidget.h>
 #include <qstyle.h>
 #include <qtoolbutton.h>
-#include <qwebhistory.h>
+#include <QWebEnginePage>
 
 #include <qdebug.h>
 
@@ -233,7 +233,7 @@ void TabWidget::moveTab(int fromIndex, int toIndex)
     m_locationBars->insertWidget(toIndex, lineEdit);
 }
 
-void TabWidget::addWebAction(QAction *action, QWebPage::WebAction webAction)
+void TabWidget::addWebAction(QAction *action, QWebEnginePage::WebAction webAction)
 {
     if (!action)
         return;
@@ -412,8 +412,8 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
             this, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
     connect(webView->page(), SIGNAL(windowCloseRequested()),
             this, SLOT(windowCloseRequested()));
-    connect(webView->page(), SIGNAL(printRequested(QWebFrame *)),
-            this, SIGNAL(printRequested(QWebFrame *)));
+    connect(webView->page(), SIGNAL(printRequested(QWebEnginePage *)),
+            this, SIGNAL(printRequested(QWebEnginePage *)));
     connect(webView->page(), SIGNAL(geometryChangeRequested(const QRect &)),
             this, SLOT(geometryChangeRequestedCheck(const QRect &)));
     connect(webView->page(), SIGNAL(menuBarVisibilityChangeRequested(bool)),
@@ -560,6 +560,7 @@ void TabWidget::closeTab(int index)
     WebView *tab = webView(index);
 
     if (tab && !tab->url().isEmpty()) {
+        /*
         if (tab->isModified()) {
             QMessageBox closeConfirmation(tab);
             closeConfirmation.setWindowFlags(Qt::Sheet);
@@ -573,6 +574,7 @@ void TabWidget::closeTab(int index)
             if (closeConfirmation.exec() == QMessageBox::No)
                 return;
         }
+        */
         hasFocus = tab->hasFocus();
 
         m_recentlyClosedTabsAction->setEnabled(true);
@@ -645,9 +647,10 @@ void TabWidget::webViewLoadProgress(int progress)
         || index < 0)
         return;
 
-    double totalBytes = (double) webView->webPage()->totalBytes() / 1024;
+    //double totalBytes = (double) webView->webPage()->totalBytes() / 1024;
 
-    QString message = tr("Loading %1% (%2 %3)...").arg(progress).arg(totalBytes, 0, 'f', 2).arg(QLatin1String("kB"));
+    //QString message = tr("Loading %1% (%2 %3)...").arg(progress).arg(totalBytes, 0, 'f', 2).arg(QLatin1String("kB"));
+    QString message = tr("Loading ...");
     emit showStatusBarMessage(message);
 }
 

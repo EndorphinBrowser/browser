@@ -67,7 +67,6 @@
 #include <qhash.h>
 #include <qtimer.h>
 #include <qurl.h>
-#include <qwebhistoryinterface.h>
 
 class HistoryEntry
 {
@@ -97,7 +96,7 @@ class AutoSaver;
 class HistoryModel;
 class HistoryFilterModel;
 class HistoryTreeModel;
-class HistoryManager : public QWebHistoryInterface
+class HistoryManager : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int daysToExpire READ daysToExpire WRITE setDaysToExpire)

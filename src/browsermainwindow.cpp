@@ -103,8 +103,7 @@
 #include <qsplitter.h>
 
 #include <qurl.h>
-#include <qwebframe.h>
-#include <qwebhistory.h>
+#include <QWebEngineHistory>
 
 #include <qdebug.h>
 
@@ -190,8 +189,8 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
             m_autoSaver, SLOT(changeOccurred()));
     connect(m_tabWidget, SIGNAL(geometryChangeRequested(const QRect &)),
             this, SLOT(geometryChangeRequested(const QRect &)));
-    connect(m_tabWidget, SIGNAL(printRequested(QWebFrame *)),
-            this, SLOT(printRequested(QWebFrame *)));
+    connect(m_tabWidget, SIGNAL(printRequested(QWebEnginePage *)),
+            this, SLOT(printRequested(QWebEnginePage *)));
     connect(m_tabWidget, SIGNAL(menuBarVisibilityChangeRequested(bool)),
             menuBar(), SLOT(setVisible(bool)));
     connect(m_tabWidget, SIGNAL(statusBarVisibilityChangeRequested(bool)),
@@ -552,28 +551,28 @@ void BrowserMainWindow::setupMenu()
     menuBar()->addMenu(m_editMenu);
     m_editUndoAction = new QAction(m_editMenu);
     m_editUndoAction->setShortcuts(QKeySequence::Undo);
-    m_tabWidget->addWebAction(m_editUndoAction, QWebPage::Undo);
+    m_tabWidget->addWebAction(m_editUndoAction, QWebEnginePage::Undo);
     m_editMenu->addAction(m_editUndoAction);
     m_editRedoAction = new QAction(m_editMenu);
     m_editRedoAction->setShortcuts(QKeySequence::Redo);
-    m_tabWidget->addWebAction(m_editRedoAction, QWebPage::Redo);
+    m_tabWidget->addWebAction(m_editRedoAction, QWebEnginePage::Redo);
     m_editMenu->addAction(m_editRedoAction);
     m_editMenu->addSeparator();
     m_editCutAction = new QAction(m_editMenu);
     m_editCutAction->setShortcuts(QKeySequence::Cut);
-    m_tabWidget->addWebAction(m_editCutAction, QWebPage::Cut);
+    m_tabWidget->addWebAction(m_editCutAction, QWebEnginePage::Cut);
     m_editMenu->addAction(m_editCutAction);
     m_editCopyAction = new QAction(m_editMenu);
     m_editCopyAction->setShortcuts(QKeySequence::Copy);
-    m_tabWidget->addWebAction(m_editCopyAction, QWebPage::Copy);
+    m_tabWidget->addWebAction(m_editCopyAction, QWebEnginePage::Copy);
     m_editMenu->addAction(m_editCopyAction);
     m_editPasteAction = new QAction(m_editMenu);
     m_editPasteAction->setShortcuts(QKeySequence::Paste);
-    m_tabWidget->addWebAction(m_editPasteAction, QWebPage::Paste);
+    m_tabWidget->addWebAction(m_editPasteAction, QWebEnginePage::Paste);
     m_editMenu->addAction(m_editPasteAction);
     m_editSelectAllAction = new QAction(m_editMenu);
     m_editSelectAllAction->setShortcuts(QKeySequence::SelectAll);
-    m_tabWidget->addWebAction(m_editSelectAllAction, QWebPage::SelectAll);
+    m_tabWidget->addWebAction(m_editSelectAllAction, QWebEnginePage::SelectAll);
     m_editMenu->addAction(m_editSelectAllAction);
     m_editMenu->addSeparator();
 
@@ -638,7 +637,7 @@ void BrowserMainWindow::setupMenu()
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_Period));
     shortcuts.append(Qt::Key_Escape);
     m_viewStopAction->setShortcuts(shortcuts);
-    m_tabWidget->addWebAction(m_viewStopAction, QWebPage::Stop);
+    m_tabWidget->addWebAction(m_viewStopAction, QWebEnginePage::Stop);
     m_viewMenu->addAction(m_viewStopAction);
 
     m_viewReloadAction = new QAction(m_viewMenu);
@@ -646,7 +645,7 @@ void BrowserMainWindow::setupMenu()
     shortcuts.append(QKeySequence(Qt::CTRL | Qt::Key_R));
     shortcuts.append(QKeySequence(Qt::Key_F5));
     m_viewReloadAction->setShortcuts(shortcuts);
-    m_tabWidget->addWebAction(m_viewReloadAction, QWebPage::Reload);
+    m_tabWidget->addWebAction(m_viewReloadAction, QWebEnginePage::Reload);
     m_viewMenu->addAction(m_viewReloadAction);
 
     m_viewZoomInAction = new QAction(m_viewMenu);
@@ -726,14 +725,14 @@ void BrowserMainWindow::setupMenu()
     QList<QAction*> historyActions;
 
     m_historyBackAction = new QAction(this);
-    m_tabWidget->addWebAction(m_historyBackAction, QWebPage::Back);
+    m_tabWidget->addWebAction(m_historyBackAction, QWebEnginePage::Back);
     m_historyBackAction->setShortcuts(QKeySequence::Back);
 #if !defined(Q_WS_X11)
     m_historyBackAction->setIconVisibleInMenu(false);
 #endif
 
     m_historyForwardAction = new QAction(this);
-    m_tabWidget->addWebAction(m_historyForwardAction, QWebPage::Forward);
+    m_tabWidget->addWebAction(m_historyForwardAction, QWebEnginePage::Forward);
     m_historyForwardAction->setShortcuts(QKeySequence::Forward);
 #if !defined(Q_WS_X11)
     m_historyForwardAction->setIconVisibleInMenu(false);
@@ -888,7 +887,7 @@ void BrowserMainWindow::aboutToShowTextEncodingMenu()
     }
     codecs.sort();
 
-    QString defaultTextEncoding = QWebSettings::globalSettings()->defaultTextEncoding();
+    QString defaultTextEncoding = QWebEngineSettings::globalSettings()->defaultTextEncoding();
     currentCodec = codecs.indexOf(defaultTextEncoding);
 
     QAction *defaultEncoding = m_viewTextEncodingMenu->addAction(tr("Default"));
@@ -914,9 +913,9 @@ void BrowserMainWindow::viewTextEncoding(QAction *action)
     Q_ASSERT(action);
     QString codec = action->data().toString();
     if (codec.isEmpty())
-        QWebSettings::globalSettings()->setDefaultTextEncoding(QString());
+        QWebEngineSettings::globalSettings()->setDefaultTextEncoding(QString());
     else
-        QWebSettings::globalSettings()->setDefaultTextEncoding(codec);
+        QWebEngineSettings::globalSettings()->setDefaultTextEncoding(codec);
 }
 
 void BrowserMainWindow::retranslate()
@@ -1213,17 +1212,17 @@ void BrowserMainWindow::filePrint()
 {
     if (!currentTab())
         return;
-    printRequested(currentTab()->page()->mainFrame());
+    printRequested(currentTab()->page());
 }
 
-void BrowserMainWindow::printRequested(QWebFrame *frame)
+void BrowserMainWindow::printRequested(QWebEnginePage *page)
 {
     QPrinter printer;
     QPrintDialog dialog(&printer, this);
     dialog.setWindowTitle(tr("Print Document"));
     if (dialog.exec() != QDialog::Accepted)
         return;
-    frame->print(&printer);
+    page->print(&printer, [](bool a){});
 }
 
 void BrowserMainWindow::privateBrowsing()
@@ -1381,11 +1380,24 @@ void BrowserMainWindow::viewPageSource()
         return;
 
     QString title = currentTab()->title();
-    QString markup = currentTab()->page()->mainFrame()->toHtml();
+    QEventLoop loop;
+    connect(this, SIGNAL(notifyGotHTML()), &loop, SLOT(quit()));
+    currentTab()->page()->toHtml([this](const QVariant &v)
+    {
+        QString tmp = v.toString();
+        this->gotHTML(tmp);
+    });
+    loop.exec();
     QUrl url = currentTab()->url();
     SourceViewer *viewer = new SourceViewer(markup, title, url);
     viewer->setAttribute(Qt::WA_DeleteOnClose);
     viewer->show();
+}
+
+void BrowserMainWindow::gotHTML(QString &value)
+{
+    markup = value;
+    emit notifyGotHTML();
 }
 
 void BrowserMainWindow::goHome()
@@ -1410,7 +1422,8 @@ void BrowserMainWindow::clearPrivateData()
 
 void BrowserMainWindow::toggleInspector(bool enable)
 {
-    QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, enable);
+/*
+    QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::DeveloperExtrasEnabled, enable);
     if (enable) {
         int result = QMessageBox::question(this, tr("Web Inspector"),
                                            tr("The web inspector will only work correctly for pages that were loaded after enabling.\n"
@@ -1420,6 +1433,7 @@ void BrowserMainWindow::toggleInspector(bool enable)
             m_tabWidget->reloadAllTabs();
         }
     }
+    */
     QSettings settings;
     settings.beginGroup(QLatin1String("websettings"));
     settings.setValue(QLatin1String("enableInspector"), enable);
@@ -1487,10 +1501,10 @@ void BrowserMainWindow::aboutToShowBackMenu()
     m_historyBackMenu->clear();
     if (!currentTab())
         return;
-    QWebHistory *history = currentTab()->history();
+    QWebEngineHistory *history = currentTab()->history();
     int historyCount = history->count();
     for (int i = history->backItems(historyCount).count() - 1; i >= 0; --i) {
-        QWebHistoryItem item = history->backItems(history->count()).at(i);
+        QWebEngineHistoryItem item = history->backItems(history->count()).at(i);
         QAction *action = new QAction(this);
         action->setData(-1*(historyCount - i - 1));
         QIcon icon = BrowserApplication::instance()->icon(item.url());
@@ -1505,10 +1519,10 @@ void BrowserMainWindow::aboutToShowForwardMenu()
     m_historyForwardMenu->clear();
     if (!currentTab())
         return;
-    QWebHistory *history = currentTab()->history();
+    QWebEngineHistory *history = currentTab()->history();
     int historyCount = history->count();
     for (int i = 0; i < history->forwardItems(history->count()).count(); ++i) {
-        QWebHistoryItem item = history->forwardItems(historyCount).at(i);
+        QWebEngineHistoryItem item = history->forwardItems(historyCount).at(i);
         QAction *action = new QAction(this);
         action->setData(historyCount - i);
         QIcon icon = BrowserApplication::instance()->icon(item.url());
@@ -1557,7 +1571,7 @@ void BrowserMainWindow::showWindow()
 void BrowserMainWindow::openActionUrl(QAction *action)
 {
     int offset = action->data().toInt();
-    QWebHistory *history = currentTab()->history();
+    QWebEngineHistory *history = currentTab()->history();
     if (offset < 0)
         history->goToItem(history->backItems(-1*offset).first()); // back
     else if (offset > 0)

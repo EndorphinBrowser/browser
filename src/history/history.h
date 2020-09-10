@@ -72,8 +72,6 @@
 #include <qtimer.h>
 #include <qurl.h>
 
-#include <qwebhistoryinterface.h>
-
 class HistoryManager;
 class HistoryModel : public QAbstractTableModel
 {

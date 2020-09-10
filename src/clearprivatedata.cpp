@@ -33,7 +33,7 @@
 #include <qlist.h>
 #include <qpushbutton.h>
 #include <qsettings.h>
-#include <qwebsettings.h>
+#include <QWebEngineSettings>
 
 ClearPrivateData::ClearPrivateData(QWidget *parent)
     : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint)
@@ -108,7 +108,7 @@ void ClearPrivateData::accept()
     }
 
     if (m_favIcons->isChecked()) {
-        QWebSettings::clearIconDatabase();
+        //QWebEngineSettings::clearIconDatabase();
     }
     QDialog::accept();
 }

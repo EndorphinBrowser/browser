@@ -83,8 +83,7 @@
 #include <qmessagebox.h>
 #include <qmimedata.h>
 
-#include <qwebhistoryinterface.h>
-#include <qwebsettings.h>
+#include <QWebEngineSettings>
 
 #include <qdebug.h>
 

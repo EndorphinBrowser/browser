@@ -25,7 +25,7 @@
 #include <historycompleter.h>
 #include <modeltest.h>
 
-#include <qwebsettings.h>
+#include <QWebEngineSettings>
 
 class tst_HistoryManager : public QObject
 {
@@ -213,10 +213,10 @@ void tst_HistoryManager::addHistoryEntry_private()
 {
     SubHistory history;
     history.setHistory(HistoryList());
-    QWebSettings *globalSettings = QWebSettings::globalSettings();
-    globalSettings->setAttribute(QWebSettings::PrivateBrowsingEnabled, true);
+    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
+    globalSettings->setAttribute(QWebEngineSettings::PrivateBrowsingEnabled, true);
     history.prependHistoryEntry(HistoryEntry());
-    globalSettings->setAttribute(QWebSettings::PrivateBrowsingEnabled, false);
+    globalSettings->setAttribute(QWebEngineSettings::PrivateBrowsingEnabled, false);
     QVERIFY(history.history().isEmpty());
 }
 

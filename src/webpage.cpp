@@ -35,15 +35,14 @@
 #include <qnetworkreply.h>
 #include <qnetworkrequest.h>
 #include <qsettings.h>
-#include <qwebframe.h>
 #include <QUiLoader>
 
-#include <qwebelement.h>
+#include <QWebEnginePage>
 
 QString WebPage::s_userAgent;
 
 WebPage::WebPage(QObject *parent)
-    : QWebPage(parent)
+    : QWebEnginePage(parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
 {
     connect(this, SIGNAL(unsupportedContent(QNetworkReply *)),
@@ -54,7 +53,7 @@ WebPage::WebPage(QObject *parent)
 WebPage::~WebPage()
 {
 }
-
+/*
 QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
 {
     QList<WebPageLinkedResource> resources;
@@ -85,7 +84,7 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
 
     return resources;
 }
-
+*/
 QString WebPage::userAgent()
 {
     return s_userAgent;
@@ -108,25 +107,31 @@ void WebPage::setUserAgent(const QString &userAgent)
 
 QString WebPage::userAgentForUrl(const QUrl &url) const
 {
+
     if (s_userAgent.isEmpty())
-        s_userAgent = QWebPage::userAgentForUrl(url);
+        //s_userAgent = QWebEnginePage::userAgentForUrl(url);
+        s_userAgent = "";
     return s_userAgent;
 }
 
+/*
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
                                       NavigationType type)
+*/
+bool WebPage::acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame)
 {
+/*
     lastRequest = request;
     lastRequestType = type;
-
-    QString scheme = request.url().scheme();
+*/
+    QString scheme = url.scheme();
     if (scheme == QLatin1String("mailto")
         || scheme == QLatin1String("ftp")) {
-        BrowserApplication::instance()->askDesktopToOpenUrl(request.url());
+        BrowserApplication::instance()->askDesktopToOpenUrl(url);
         return false;
     }
-
-    if (type == QWebPage::NavigationTypeFormResubmitted) {
+/*
+    if (type == QWebEnginePage::NavigationTypeFormResubmitted) {
         QMessageBox::StandardButton button = QMessageBox::warning(view(), tr("Resending POST request"),
                              tr("In order to display the site, the request along with all the data must be sent once again, "
                                 "which may lead to some unexpected behaviour of the site e.g. the same action might be "
@@ -134,33 +139,33 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
         if (button != QMessageBox::Yes)
             return false;
     }
-
-    TabWidget::OpenUrlIn openIn = frame ? TabWidget::CurrentTab : TabWidget::NewWindow;
+*/
+    TabWidget::OpenUrlIn openIn =  isMainFrame ? TabWidget::CurrentTab : TabWidget::NewWindow;
     openIn = TabWidget::modifyWithUserBehavior(openIn);
 
     // handle the case where we want to do something different then
-    // what qwebpage would do
+    // what QWebEnginePage would do
     if (openIn == TabWidget::NewSelectedTab
         || openIn == TabWidget::NewNotSelectedTab
-        || (frame && openIn == TabWidget::NewWindow)) {
+        || (openIn == TabWidget::NewWindow)) {
         if (WebView *webView = qobject_cast<WebView*>(view())) {
             TabWidget *tabWidget = webView->tabWidget();
             if (tabWidget) {
                 WebView *newView = tabWidget->getView(openIn, webView);
-                QWebPage *page = 0;
+                QWebEnginePage *page = 0;
                 if (newView)
                     page = newView->page();
-                if (page && page->mainFrame())
-                    page->mainFrame()->load(request);
+                if (page)
+                    page->load(url);
             }
         }
         return false;
     }
 
-    bool accepted = QWebPage::acceptNavigationRequest(frame, request, type);
-    if (accepted && frame == mainFrame()) {
-        m_requestedUrl = request.url();
-        emit aboutToLoadUrl(request.url());
+    bool accepted = QWebEnginePage::acceptNavigationRequest(url, type, isMainFrame);
+    if (accepted &&  isMainFrame) {
+        m_requestedUrl = url;
+        emit aboutToLoadUrl(url);
     }
 
     return accepted;
@@ -176,7 +181,7 @@ void WebPage::loadSettings()
     s_userAgent = settings.value(QLatin1String("userAgent")).toString();
 }
 
-QWebPage *WebPage::createWindow(QWebPage::WebWindowType type)
+QWebEnginePage *WebPage::createWindow(QWebEnginePage::WebWindowType type)
 {
     Q_UNUSED(type);
     if (WebView *webView = qobject_cast<WebView*>(view())) {
@@ -255,15 +260,11 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
     if (replyUrl.isEmpty() || replyUrl != m_requestedUrl)
         return;
 
-    QWebFrame *notFoundFrame = mainFrame();
-    if (!notFoundFrame)
-        return;
-
     if (reply->header(QNetworkRequest::ContentTypeHeader).toString().isEmpty()) {
         // do evil
         QByteArray data = reply->readAll();
         if (contentSniff(data)) {
-            notFoundFrame->setHtml(QLatin1String(data), replyUrl);
+            setHtml(QLatin1String(data), replyUrl);
             return;
         }
     }
@@ -287,8 +288,8 @@ void WebPage::handleUnsupportedContent(QNetworkReply *reply)
                     tr("Check the address for errors such as <b>ww</b>.example.com instead of <b>www</b>.example.com"),
                     tr("If the address is correct, try checking the network connection."),
                     tr("If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network."));
-    notFoundFrame->setHtml(html, replyUrl);
+    setHtml(html, replyUrl);
     // Don't put error pages to the history.
-    BrowserApplication::instance()->historyManager()->removeHistoryEntry(replyUrl, notFoundFrame->title());
+//    BrowserApplication::instance()->historyManager()->removeHistoryEntry(replyUrl, notFoundFrame->title());
 }
 

@@ -28,8 +28,7 @@
 #include <qplaintextedit.h>
 #include <qshortcut.h>
 #include <qsettings.h>
-#include <qwebframe.h>
-#include <qwebpage.h>
+#include <QWebEnginePage>
 #include <QNetworkAccessManager>
 
 #include "browserapplication.h"
@@ -93,15 +92,20 @@ SourceViewer::~SourceViewer()
 
 void SourceViewer::loadingFinished()
 {
-    QWebPage page;
+    QWebEnginePage page;
     QByteArray response = m_reply->readAll();
-    page.mainFrame()->setContent(response, QString(), m_reply->request().url());
+    QEventLoop loop;
+    connect(&page, &QWebEnginePage::loadFinished, &loop, &QEventLoop::quit);
+    page.setContent(response, QString(), m_reply->request().url());
+    loop.exec();
+/*
+    If original request was POST or a different problem is there, fall
+       back to modified version of QWebFrame.toHtml() 
 
-    /* If original request was POST or a different problem is there, fall
-       back to modified version of QWebFrame.toHtml() */
     if (page.mainFrame()->toHtml() != m_source)
         m_edit->setPlainText(m_source);
     else
+*/
         m_edit->setPlainText(QLatin1String(response));
 
     m_reply->close();

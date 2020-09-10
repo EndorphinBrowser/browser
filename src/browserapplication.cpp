@@ -59,6 +59,55 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 **
 ****************************************************************************/
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the examples of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:BSD$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** BSD License Usage
+** Alternatively, you may use this file under the terms of the BSD license
+** as follows:
+**
+** "Redistribution and use in source and binary forms, with or without
+** modification, are permitted provided that the following conditions are
+** met:
+**   * Redistributions of source code must retain the above copyright
+**     notice, this list of conditions and the following disclaimer.
+**   * Redistributions in binary form must reproduce the above copyright
+**     notice, this list of conditions and the following disclaimer in
+**     the documentation and/or other materials provided with the
+**     distribution.
+**   * Neither the name of The Qt Company Ltd nor the names of its
+**     contributors may be used to endorse or promote products derived
+**     from this software without specific prior written permission.
+**
+**
+** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+**
+** $QT_END_LICENSE$
+**
+****************************************************************************/
 
 #include "browserapplication.h"
 
@@ -79,7 +128,8 @@
 #include <qlocalsocket.h>
 #include <qmessagebox.h>
 #include <qsettings.h>
-#include <qwebsettings.h>
+#include <QWebEngineSettings>
+#include <QWebEngineProfile>
 
 #include <qdebug.h>
 
@@ -93,6 +143,42 @@ DownloadManager *BrowserApplication::s_downloadManager = 0;
 HistoryManager *BrowserApplication::s_historyManager = 0;
 BookmarksManager *BrowserApplication::s_bookmarksManager = 0;
 LanguageManager *BrowserApplication::s_languageManager = 0;
+
+
+static void setUserStyleSheet(QWebEngineProfile *profile, const QString &styleSheet, BrowserMainWindow *mainWindow = 0)
+{
+    Q_ASSERT(profile);
+    QString scriptName(QStringLiteral("userStyleSheet"));
+    QWebEngineScript script;
+    QList<QWebEngineScript> styleSheets = profile->scripts()->findScripts(scriptName);
+    if (!styleSheets.isEmpty())
+        script = styleSheets.first();
+    Q_FOREACH (const QWebEngineScript &s, styleSheets)
+        profile->scripts()->remove(s);
+
+    if (script.isNull()) {
+        script.setName(scriptName);
+        script.setInjectionPoint(QWebEngineScript::DocumentReady);
+        script.setRunsOnSubFrames(true);
+        script.setWorldId(QWebEngineScript::ApplicationWorld);
+    }
+    QString source = QString::fromLatin1("(function() {"\
+                                         "var css = document.getElementById(\"_qt_testBrowser_userStyleSheet\");"\
+                                         "if (css == undefined) {"\
+                                         "    css = document.createElement(\"style\");"\
+                                         "    css.type = \"text/css\";"\
+                                         "    css.id = \"_qt_testBrowser_userStyleSheet\";"\
+                                         "    document.head.appendChild(css);"\
+                                         "}"\
+                                         "css.innerText = \"%1\";"\
+                                         "})()").arg(styleSheet);
+    script.setSourceCode(source);
+    profile->scripts()->insert(script);
+    // run the script on the already loaded views
+    // this has to be deferred as it could mess with the storage initialization on startup
+    if (mainWindow)
+        QMetaObject::invokeMethod(mainWindow, "runScriptOnOpenViews", Qt::QueuedConnection, Q_ARG(QString, source));
+}
 
 BrowserApplication::BrowserApplication(int &argc, char **argv)
     : SingleApplication(argc, argv)
@@ -138,8 +224,8 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QDesktopServices::setUrlHandler(QLatin1String("http"), this, "openUrl");
 
     // Until QtWebkit defaults to 16
-    QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, 16);
-    QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFixedFontSize, 16);
+    QWebEngineSettings::globalSettings()->setFontSize(QWebEngineSettings::DefaultFontSize, 16);
+    QWebEngineSettings::globalSettings()->setFontSize(QWebEngineSettings::DefaultFixedFontSize, 16);
 
     QSettings settings;
     settings.beginGroup(QLatin1String("sessions"));
@@ -309,7 +395,7 @@ void BrowserApplication::postLaunch()
     QString directory = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
     if (directory.isEmpty())
         directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
-    QWebSettings::setIconDatabasePath(directory);
+    // QWebEngineSettings::setIconDatabasePath(directory);
 
     loadSettings();
 
@@ -353,36 +439,37 @@ void BrowserApplication::loadSettings()
     QSettings settings;
     settings.beginGroup(QLatin1String("websettings"));
 
-    QWebSettings *defaultSettings = QWebSettings::globalSettings();
-    QString standardFontFamily = defaultSettings->fontFamily(QWebSettings::StandardFont);
-    int standardFontSize = defaultSettings->fontSize(QWebSettings::DefaultFontSize);
+    QWebEngineSettings *defaultSettings = QWebEngineSettings::globalSettings();
+    QWebEngineProfile *defaultProfile = QWebEngineProfile::defaultProfile();
+    QString standardFontFamily = defaultSettings->fontFamily(QWebEngineSettings::StandardFont);
+    int standardFontSize = defaultSettings->fontSize(QWebEngineSettings::DefaultFontSize);
     QFont standardFont = QFont(standardFontFamily, standardFontSize);
     standardFont = settings.value(QLatin1String("standardFont"), standardFont).value<QFont>();
-    defaultSettings->setFontFamily(QWebSettings::StandardFont, standardFont.family());
-    defaultSettings->setFontSize(QWebSettings::DefaultFontSize, standardFont.pointSize());
+    defaultSettings->setFontFamily(QWebEngineSettings::StandardFont, standardFont.family());
+    defaultSettings->setFontSize(QWebEngineSettings::DefaultFontSize, standardFont.pointSize());
     int minimumFontSize = settings.value(QLatin1String("minimumFontSize"),
-                defaultSettings->fontSize(QWebSettings::MinimumFontSize)).toInt();
-    defaultSettings->setFontSize(QWebSettings::MinimumFontSize, minimumFontSize);
+                defaultSettings->fontSize(QWebEngineSettings::MinimumFontSize)).toInt();
+    defaultSettings->setFontSize(QWebEngineSettings::MinimumFontSize, minimumFontSize);
 
-    QString fixedFontFamily = defaultSettings->fontFamily(QWebSettings::FixedFont);
-    int fixedFontSize = defaultSettings->fontSize(QWebSettings::DefaultFixedFontSize);
+    QString fixedFontFamily = defaultSettings->fontFamily(QWebEngineSettings::FixedFont);
+    int fixedFontSize = defaultSettings->fontSize(QWebEngineSettings::DefaultFixedFontSize);
     QFont fixedFont = QFont(fixedFontFamily, fixedFontSize);
     fixedFont = settings.value(QLatin1String("fixedFont"), fixedFont).value<QFont>();
-    defaultSettings->setFontFamily(QWebSettings::FixedFont, fixedFont.family());
-    defaultSettings->setFontSize(QWebSettings::DefaultFixedFontSize, fixedFont.pointSize());
+    defaultSettings->setFontFamily(QWebEngineSettings::FixedFont, fixedFont.family());
+    defaultSettings->setFontSize(QWebEngineSettings::DefaultFixedFontSize, fixedFont.pointSize());
 
-    defaultSettings->setAttribute(QWebSettings::JavascriptCanOpenWindows, !(settings.value(QLatin1String("blockPopupWindows"), true).toBool()));
-    defaultSettings->setAttribute(QWebSettings::JavascriptEnabled, settings.value(QLatin1String("enableJavascript"), true).toBool());
-    defaultSettings->setAttribute(QWebSettings::AutoLoadImages, settings.value(QLatin1String("enableImages"), true).toBool());
-    defaultSettings->setAttribute(QWebSettings::LocalStorageEnabled, settings.value(QLatin1String("enableLocalStorage"), true).toBool());
-    defaultSettings->setAttribute(QWebSettings::DeveloperExtrasEnabled, settings.value(QLatin1String("enableInspector"), false).toBool());
-    defaultSettings->setAttribute(QWebSettings::DnsPrefetchEnabled, true);
+    defaultSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, !(settings.value(QLatin1String("blockPopupWindows"), true).toBool()));
+    defaultSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, settings.value(QLatin1String("enableJavascript"), true).toBool());
+    defaultSettings->setAttribute(QWebEngineSettings::AutoLoadImages, settings.value(QLatin1String("enableImages"), true).toBool());
+    defaultSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, settings.value(QLatin1String("enableLocalStorage"), true).toBool());
+    //defaultSettings->setAttribute(QWebEngineSettings::DeveloperExtrasEnabled, settings.value(QLatin1String("enableInspector"), false).toBool());
+    defaultSettings->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
 
-    QUrl url = settings.value(QLatin1String("userStyleSheet")).toUrl();
-    defaultSettings->setUserStyleSheetUrl(url);
+    QString css = settings.value(QLatin1String("userStyleSheet")).toString();
+    setUserStyleSheet(defaultProfile, css, mainWindow());
 
-    int maximumPagesInCache = settings.value(QLatin1String("maximumPagesInCache"), 3).toInt();
-    QWebSettings::globalSettings()->setMaximumPagesInCache(maximumPagesInCache);
+//    int maximumPagesInCache = settings.value(QLatin1String("maximumPagesInCache"), 3).toInt();
+//    QWebEngineSettings::globalSettings()->setMaximumPagesInCache(maximumPagesInCache);
 
     settings.endGroup();
 }
@@ -427,10 +514,11 @@ void BrowserApplication::saveSession()
     settings.setValue(QLatin1String("restoring"), false);
     settings.endGroup();
 
-    QWebSettings *globalSettings = QWebSettings::globalSettings();
-    if (globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled))
+/*
+    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
+    if (globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled))
         return;
-
+*/
     clean();
 
     settings.beginGroup(QLatin1String("sessions"));
@@ -610,6 +698,7 @@ LanguageManager *BrowserApplication::languageManager()
 }
 QIcon BrowserApplication::icon(const QUrl &url)
 {
+    /*
     QIcon icon = QWebSettings::iconForUrl(url);
     if (!icon.isNull())
         return icon.pixmap(16, 16);
@@ -622,6 +711,8 @@ QIcon BrowserApplication::icon(const QUrl &url)
         return pixmap;
     }
     return icon;
+    */
+    return QPixmap(":graphics/defaulticon.png");
 }
 
 QString BrowserApplication::installedDataDirectory()
@@ -647,24 +738,32 @@ QString BrowserApplication::dataFilePath(const QString &fileName)
 
 bool BrowserApplication::zoomTextOnly()
 {
-    return QWebSettings::globalSettings()->testAttribute(QWebSettings::ZoomTextOnly);
+    QSettings settings;
+    settings.beginGroup(QLatin1String("WebEngine"));
+    bool textOnly = settings.value(QLatin1String("zoomTextOnly")).toBool();
+    settings.endGroup();
+    return textOnly;
 }
 
 void BrowserApplication::setZoomTextOnly(bool textOnly)
 {
-    QWebSettings::globalSettings()->setAttribute(QWebSettings::ZoomTextOnly, textOnly);
+    QSettings settings;
+    settings.beginGroup(QLatin1String("WebEngine"));
+    settings.setValue(QLatin1String("zoomTextOnly"), textOnly);
+    settings.endGroup();
     emit instance()->zoomTextOnlyChanged(textOnly);
 }
 
 bool BrowserApplication::isPrivate()
 {
-    return QWebSettings::globalSettings()->testAttribute(QWebSettings::PrivateBrowsingEnabled);
+    //return QWebEngineSettings::globalSettings()->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled);
+    return false;
 }
 
 void BrowserApplication::setPrivate(bool isPrivate)
 {
-    QWebSettings::globalSettings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, isPrivate);
-    emit instance()->privacyChanged(isPrivate);
+    //QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::PrivateBrowsingEnabled, isPrivate);
+    //emit instance()->privacyChanged(isPrivate);
 }
 
 Qt::MouseButtons BrowserApplication::eventMouseButtons() const

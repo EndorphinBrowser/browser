@@ -23,12 +23,11 @@
 #include <qshortcut.h>
 #include <qtimeline.h>
 
-#include <qwebframe.h>
-#include <qwebview.h>
+#include <qwebengineview.h>
 
 #include <qdebug.h>
 
-WebViewSearch::WebViewSearch(QWebView *webView, QWidget *parent)
+WebViewSearch::WebViewSearch(QWebEngineView *webView, QWidget *parent)
     : SearchBar(parent)
 {
     setSearchObject(webView);
@@ -41,36 +40,38 @@ WebViewSearch::WebViewSearch(QWebView *webView, QWidget *parent)
 
 void WebViewSearch::findNext()
 {
-    find(QWebPage::FindWrapsAroundDocument);
+    find(nullptr);
 }
 
 void WebViewSearch::findPrevious()
 {
-    find(QWebPage::FindBackward | QWebPage::FindWrapsAroundDocument);
+    find(QWebEnginePage::FindBackward);
 }
 
 void WebViewSearch::highlightAll()
 {
-    webView()->findText(QString(), QWebPage::HighlightAllOccurrences);
+    webView()->findText(QString(), nullptr);
 
+/*
     if (ui.highlightAllButton->isChecked())
-        find(QWebPage::HighlightAllOccurrences);
+        find(QWebEnginePage::HighlightAllOccurrences);
+*/
 }
 
-void WebViewSearch::find(QWebPage::FindFlags flags)
+void WebViewSearch::find(QWebEnginePage::FindFlags flags)
 {
     QString searchString = ui.searchLineEdit->text();
     if (!searchObject() || searchString.isEmpty())
         return;
     QString infoString;
-    if (!webView()->findText(searchString, flags))
-        infoString = tr("Not Found");
+    //if (!webView()->findText(searchString, flags))
+        //infoString = tr("Not Found");
     ui.searchInfo->setText(infoString);
 }
 
-QWebView *WebViewSearch::webView() const
+QWebEngineView *WebViewSearch::webView() const
 {
-    return qobject_cast<QWebView*>(searchObject());
+    return qobject_cast<QWebEngineView*>(searchObject());
 }
 
 WebViewWithSearch::WebViewWithSearch(WebView *webView, QWidget *parent)

@@ -67,7 +67,7 @@
 
 class AutoSaver;
 class BookmarksToolBar;
-class QWebFrame;
+class QWebEnginePage;
 class TabWidget;
 class ToolbarSearch;
 class WebView;
@@ -164,8 +164,10 @@ private slots:
     void showWindow();
     void swapFocus();
 
-    void printRequested(QWebFrame *frame);
+    void printRequested(QWebEnginePage *page);
     void geometryChangeRequested(const QRect &geometry);
+
+    void gotHTML(QString &value);
 
 private:
     void retranslate();
@@ -264,7 +266,12 @@ private:
     bool m_menuBarVisible;
     bool m_statusBarVisible;
 
+    QString markup;
+
     friend class BrowserApplication;
+
+Q_SIGNALS:
+    void notifyGotHTML();
 };
 
 #endif // BROWSERMAINWINDOW_H

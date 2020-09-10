@@ -82,7 +82,7 @@
 #include <qtoolbutton.h>
 #include <qprocess.h>
 
-#include <qwebsettings.h>
+#include <QWebEngineSettings>
 
 #include <qdebug.h>
 

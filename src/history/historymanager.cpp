@@ -71,8 +71,7 @@
 #include <qfile.h>
 #include <qsettings.h>
 #include <qtemporaryfile.h>
-#include <qwebhistoryinterface.h>
-#include <qwebsettings.h>
+#include <QWebEngineSettings>
 
 #include <qdebug.h>
 
@@ -103,7 +102,7 @@ QString HistoryEntry::userTitle() const
 static const unsigned int HISTORY_VERSION = 23;
 
 HistoryManager::HistoryManager(QObject *parent)
-    : QWebHistoryInterface(parent)
+    : QObject(parent)
     , m_saveTimer(new AutoSaver(this))
     , m_daysToExpire(30)
     , m_historyModel(0)
@@ -122,9 +121,6 @@ HistoryManager::HistoryManager(QObject *parent)
     m_historyModel = new HistoryModel(this, this);
     m_historyFilterModel = new HistoryFilterModel(m_historyModel, this);
     m_historyTreeModel = new HistoryTreeModel(m_historyFilterModel, this);
-
-    // QWebHistoryInterface will delete the history manager
-    QWebHistoryInterface::setDefaultInterface(this);
 }
 
 HistoryManager::~HistoryManager()
@@ -220,9 +216,11 @@ void HistoryManager::checkForExpired()
 
 void HistoryManager::prependHistoryEntry(const HistoryEntry &item)
 {
-    QWebSettings *globalSettings = QWebSettings::globalSettings();
-    if (globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled))
+    /*
+    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
+    if (globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled))
         return;
+    */
 
     m_history.prepend(item);
     emit entryAdded(item);

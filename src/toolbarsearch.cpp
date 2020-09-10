@@ -81,7 +81,7 @@
 #include <qstandarditemmodel.h>
 #include <qtimer.h>
 #include <qurl.h>
-#include <qwebsettings.h>
+#include <QWebEngineSettings>
 #include <QNetworkAccessManager>
 
 OpenSearchManager *ToolbarSearch::s_openSearchManager = 0;
@@ -253,8 +253,8 @@ void ToolbarSearch::searchNow()
 
     QString searchText = text();
 
-    QWebSettings *globalSettings = QWebSettings::globalSettings();
-    if (!globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled)) {
+//    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
+//    if (!globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled)) {
         QStringList newList = m_recentSearches;
         if (newList.contains(searchText))
             newList.removeAt(newList.indexOf(searchText));
@@ -264,7 +264,7 @@ void ToolbarSearch::searchNow()
 
         m_recentSearches = newList;
         m_autosaver->changeOccurred();
-    }
+//    }
 
     QUrl searchUrl = engine->searchUrl(searchText);
     TabWidget::OpenUrlIn tab = TabWidget::CurrentTab;
@@ -316,7 +316,7 @@ void ToolbarSearch::showEnginesMenu()
             action->setChecked(true);
         }
     }
-
+/*
     WebView *webView = BrowserMainWindow::parentWindow(this)->currentTab();
     QList<WebPageLinkedResource> engines = webView->webPage()->linkedResources(QLatin1String("search"));
 
@@ -342,7 +342,7 @@ void ToolbarSearch::showEnginesMenu()
         action->setData(url);
         action->setIcon(webView->icon());
     }
-
+*/
     menu.addSeparator();
     if (BrowserMainWindow *window = BrowserMainWindow::parentWindow(this))
         menu.addAction(window->searchManagerAction());

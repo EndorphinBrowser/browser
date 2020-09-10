@@ -65,7 +65,7 @@
 
 #include <qtabwidget.h>
 
-#include <QtWebKitWidgets>
+#include <QtWebEngineWidgets>
 #include <qurl.h>
 
 QT_BEGIN_NAMESPACE
@@ -107,7 +107,7 @@ signals:
     void menuBarVisibilityChangeRequested(bool visible);
     void statusBarVisibilityChangeRequested(bool visible);
     void toolBarVisibilityChangeRequested(bool visible);
-    void printRequested(QWebFrame *frame);
+    void printRequested(QWebEnginePage *page);
 
 public:
     enum OpenUrlIn {
@@ -124,7 +124,7 @@ public:
     void loadSettings();
     TabBar *tabBar() { return m_tabBar; }
     void clear();
-    void addWebAction(QAction *action, QWebPage::WebAction webAction);
+    void addWebAction(QAction *action, QWebEnginePage::WebAction webAction);
 
     QAction *newTabAction() const;
     QAction *closeTabAction() const;

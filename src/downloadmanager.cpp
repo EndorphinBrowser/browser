@@ -81,7 +81,7 @@
 
 #include <qdebug.h>
 
-#include <qwebsettings.h>
+#include <QWebEngineSettings>
 
 //#define DOWNLOADMANAGER_DEBUG
 
@@ -640,9 +640,14 @@ void DownloadManager::updateRow(DownloadItem *item)
     downloadsView->setRowHeight(row, qMax(oldHeight, item->minimumSizeHint().height()));
 
     bool remove = false;
-    QWebSettings *globalSettings = QWebSettings::globalSettings();
+    /*
+    TODO: Fix for Private Browsing
+
+    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
     if (!item->downloading()
-        && globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled))
+        && globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled))
+    */
+    if (!item->downloading())
         remove = true;
 
     if (item->downloadedSuccessfully()

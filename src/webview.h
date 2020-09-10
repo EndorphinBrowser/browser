@@ -64,17 +64,17 @@
 #ifndef WEBVIEW_H
 #define WEBVIEW_H
 
-#include <qwebview.h>
+#include <qwebengineview.h>
 
 #include "tabwidget.h"
 
-#include <qwebelement.h>
 class QLabel;
 
 class BrowserMainWindow;
 class TabWidget;
 class WebPage;
-class WebView : public QWebView
+//class QWebElement;
+class WebView : public QWebEngineView
 {
     Q_OBJECT
 
@@ -93,9 +93,11 @@ public:
     QString lastStatusBarText() const;
     inline int progress() const { return m_progress; }
     TabWidget *tabWidget() const;
+    void ranJavaScript();
 
 signals:
     void search(const QUrl &searchUrl, TabWidget::OpenUrlIn openIn);
+    void notifyRanJavaScript();
 
 public slots:
     void zoomIn();
@@ -132,9 +134,9 @@ private slots:
     void copyImageLocationToClipboard();
     void bookmarkLink();
     void searchRequested(QAction *action);
-    void addSearchEngine();
-    void hideAccessKeys();
-    void accessKeyShortcut();
+//    void addSearchEngine();
+//    void hideAccessKeys();
+//    void accessKeyShortcut();
 
 private:
     QString m_statusBarText;
@@ -144,13 +146,13 @@ private:
     QList<int> m_zoomLevels;
     WebPage *m_page;
 
-    bool m_enableAccessKeys;
-    bool checkForAccessKey(QKeyEvent *event);
-    void showAccessKeys();
-    void makeAccessKeyLabel(const QChar &accessKey, const QWebElement &element);
-    QList<QLabel*> m_accessKeyLabels;
-    QHash<QChar, QWebElement> m_accessKeyNodes;
-    bool m_accessKeysPressed;
+    //bool m_enableAccessKeys;
+    //bool checkForAccessKey(QKeyEvent *event);
+    //void showAccessKeys();
+    //void makeAccessKeyLabel(const QChar &accessKey, const QWebElement &element);
+    //QList<QLabel*> m_accessKeyLabels;
+    //QHash<QChar, QWebElement> m_accessKeyNodes;
+    //bool m_accessKeysPressed;
 };
 
 #endif

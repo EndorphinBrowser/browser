@@ -20,7 +20,7 @@
 #ifndef WEBPAGE_H
 #define WEBPAGE_H
 
-#include "QWebPage"
+#include "QWebEnginePage"
 #include "tabwidget.h"
 
 #include <qlist.h>
@@ -38,7 +38,7 @@ public:
 class OpenSearchEngine;
 class QNetworkReply;
 
-class WebPage : public QWebPage
+class WebPage : public QWebEnginePage
 {
     Q_OBJECT
 
@@ -51,16 +51,19 @@ public:
 
     void loadSettings();
 
-    QList<WebPageLinkedResource> linkedResources(const QString &relation = QString());
+//    QList<WebPageLinkedResource> linkedResources(const QString &relation = QString());
 
     static QString userAgent();
     static void setUserAgent(const QString &userAgent);
 
 protected:
     QString userAgentForUrl(const QUrl &url) const;
+/*
     bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
                                  NavigationType type);
-    QWebPage *createWindow(QWebPage::WebWindowType type);
+*/
+    bool acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame);
+    QWebEnginePage *createWindow(QWebEnginePage::WebWindowType type);
 
 protected slots:
     void handleUnsupportedContent(QNetworkReply *reply);
@@ -72,7 +75,7 @@ protected:
 
 private:
     QNetworkRequest lastRequest;
-    QWebPage::NavigationType lastRequestType;
+    QWebEnginePage::NavigationType lastRequestType;
 
 };
 
