@@ -32,7 +32,7 @@ public:
 int main(int argc, char **argv)
 {
     QCoreApplication application(argc, argv);
-    QCoreApplication::setOrganizationDomain(QLatin1String("aarondewes.github.io/endorphin/"));
+    QCoreApplication::setOrganizationDomain(QLatin1String("EndorphinBrowser.github.io/"));
     QCoreApplication::setApplicationName(QLatin1String("Endorphin"));
 
     QStringList args = application.arguments();
