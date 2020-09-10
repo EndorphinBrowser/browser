@@ -27,9 +27,6 @@
 #include <qtextedit.h>
 #include <qtextstream.h>
 
-#include <qtwebkitversion.h>
-#include <qwebkitglobal.h>
-
 AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
 {
@@ -38,7 +35,6 @@ AboutDialog::AboutDialog(QWidget *parent)
     logo->setPixmap(qApp->windowIcon().pixmap(128, 128));
     name->setText(qApp->applicationName());
     version->setText(qApp->applicationVersion());
-    webkitVersion->setText(tr("WebKit version: %1").arg(qWebKitVersion()));
     connect(authorsButton, SIGNAL(clicked()),
             this, SLOT(authorsButtonClicked()));
     connect(licenseButton, SIGNAL(clicked()),
