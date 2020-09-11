@@ -65,7 +65,9 @@
 #include "addbookmarkdialog.h"
 #include "bookmarknode.h"
 #include "bookmarksmanager.h"
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#endif
 #include "xbelreader.h"
 #include "xbelwriter.h"
 
@@ -197,7 +199,9 @@ QVariant BookmarksModel::data(const QModelIndex &index, int role) const
         if (index.column() == 0) {
             if (bookmarkNode->type() == BookmarkNode::Folder)
                 return QApplication::style()->standardIcon(QStyle::SP_DirIcon);
+#ifndef NO_BROWSERAPPLICATION
             return BrowserApplication::instance()->icon(bookmarkNode->url);
+#endif
         }
     }
 

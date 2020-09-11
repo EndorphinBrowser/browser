@@ -1,0 +1,2 @@
+project(autotests)
+add_subdirectory(addbookmarkdialog)

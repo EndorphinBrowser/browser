@@ -1,10 +1,8 @@
 TEMPLATE = subdirs
 SUBDIRS  = \
-    adblock \
     addbookmarkdialog \
     autosaver \
     bookmarknode \
-    cookiejar \
     historyfiltermodel \
     historymanager \
     modeltoolbar \

@@ -66,7 +66,13 @@
 #include "bookmarknode.h"
 #include "bookmarksmanager.h"
 #include "bookmarksmodel.h"
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#else
+#ifdef FOR_AUTOTEST
+#include "tst_addbookmarkdialog.h"
+#endif
+#endif
 
 #include <qheaderview.h>
 #include <qtreeview.h>
@@ -98,7 +104,15 @@ AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmark
     setupUi(this);
 
     if (!m_bookmarksManager)
+#ifndef NO_BROWSERAPPLICATION
         m_bookmarksManager = BrowserApplication::bookmarksManager();
+#else
+    #ifdef FOR_AUTOTEST
+        m_bookmarksManager = tst_AddBookmarkDialog::bookmarksManager();
+    #else
+        #error "Nothing provides a bookmarksmanager"
+    #endif
+#endif
 
     m_proxyModel = new AddBookmarkProxyModel(this);
     BookmarksModel *model = m_bookmarksManager->bookmarksModel();

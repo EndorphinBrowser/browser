@@ -22,35 +22,21 @@
 #include "addbookmarkdialog.h"
 #include "bookmarksmanager.h"
 #include "bookmarknode.h"
-#include "browserapplication.h"
+#include "tst_addbookmarkdialog.h"
 
 #include <qpushbutton.h>
 #include <qabstractitemview.h>
 
-class tst_AddBookmarkDialog : public QObject
+BookmarksManager *tst_AddBookmarkDialog::s_bookmarksManager = nullptr;
+
+// Normally, Browserapplication is used, but this makes it possible
+// to speperate tests from browserapplication and only include everything the test needs.
+BookmarksManager *tst_AddBookmarkDialog::bookmarksManager()
 {
-    Q_OBJECT
-
-public slots:
-    void initTestCase();
-    void cleanupTestCase();
-    void init();
-    void cleanup();
-
-private slots:
-    void addbookmarkdialog_data();
-    void addbookmarkdialog();
-};
-
-// Subclass that exposes the protected functions.
-class SubAddBookmarkDialog : public AddBookmarkDialog
-{
-
-public:
-    SubAddBookmarkDialog(QWidget *parent, BookmarksManager *manager)
-        : AddBookmarkDialog(parent, manager) {}
-
-};
+    if (!s_bookmarksManager)
+        s_bookmarksManager = new BookmarksManager;
+    return s_bookmarksManager;
+}
 
 // This will be called before the first test function is executed.
 // It is only called once.
@@ -68,7 +54,7 @@ void tst_AddBookmarkDialog::cleanupTestCase()
 // This will be called before each test function is executed.
 void tst_AddBookmarkDialog::init()
 {
-    BookmarksManager *manager = BrowserApplication::bookmarksManager();
+    BookmarksManager *manager = bookmarksManager();
     BookmarkNode *root = manager->bookmarks();
     QList<BookmarkNode*> nodes = root->children();
     BookmarkNode *menu = nodes[0];
@@ -110,7 +96,7 @@ void tst_AddBookmarkDialog::addbookmarkdialog()
     QFETCH(int, toolbarCount);
     QFETCH(int, select);
 
-    BookmarksManager *manager = BrowserApplication::bookmarksManager();
+    BookmarksManager *manager = bookmarksManager();
     qRegisterMetaType<BookmarkNode*>("BookmarkNode *");
     QSignalSpy spy(manager, SIGNAL(entryAdded(BookmarkNode *)));
     BookmarkNode *menu = manager->menu();
@@ -148,5 +134,3 @@ void tst_AddBookmarkDialog::addbookmarkdialog()
 }
 
 QTEST_MAIN(tst_AddBookmarkDialog)
-#include "tst_addbookmarkdialog.moc"
-

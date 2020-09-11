@@ -19,13 +19,16 @@
 
 #include "modeltoolbar.h"
 
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#endif
 #include "modelmenu.h"
 
 #include <qevent.h>
 #include <qtoolbutton.h>
 #include <QDrag>
 #include <QMimeData>
+#include <QApplication>
 
 
 ModelToolBar::ModelToolBar(QWidget *parent)
@@ -150,8 +153,10 @@ bool ModelToolBar::eventFilter(QObject *object, QEvent *event)
 
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
 
+#ifndef NO_BROWSERAPPLICATION
         BrowserApplication::instance()->setEventMouseButtons(mouseEvent->button());
         BrowserApplication::instance()->setEventKeyboardModifiers(mouseEvent->modifiers());
+#endif
         QAction *action = button->defaultAction();
         Q_ASSERT(action);
         QModelIndex index = this->index(action);

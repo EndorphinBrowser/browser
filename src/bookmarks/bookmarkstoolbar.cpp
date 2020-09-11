@@ -25,7 +25,13 @@
 #include "bookmarksmanager.h"
 #include "bookmarksmenu.h"
 #include "bookmarksmodel.h"
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#else
+#ifdef FOR_AUTOTEST
+#include "tst_addbookmarkdialog.h"
+#endif
+#endif
 #include "modelmenu.h"
 
 #include <qevent.h>
@@ -35,7 +41,16 @@ BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
     , m_bookmarksModel(model)
 {
     setModel(model);
+
+#ifndef NO_BROWSERAPPLICATION
     setRootIndex(model->index(BrowserApplication::bookmarksManager()->toolbar()));
+#else
+    #ifdef FOR_AUTOTEST
+    setRootIndex(model->index(tst_AddBookmarkDialog::bookmarksManager()->toolbar()));
+    #else
+        #error "Nothing provides a bookmarksmanager"
+    #endif
+#endif
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),

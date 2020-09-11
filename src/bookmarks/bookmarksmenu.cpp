@@ -65,7 +65,13 @@
 #include "bookmarknode.h"
 #include "bookmarksmanager.h"
 #include "bookmarksmodel.h"
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#else
+#ifdef FOR_AUTOTEST
+#include "tst_addbookmarkdialog.h"
+#endif
+#endif
 
 BookmarksMenu::BookmarksMenu(QWidget *parent)
     : ModelMenu(parent)
@@ -147,7 +153,15 @@ BookmarksMenuBarMenu::BookmarksMenuBarMenu(QWidget *parent)
 
 bool BookmarksMenuBarMenu::prePopulated()
 {
+#ifndef NO_BROWSERAPPLICATION
     m_bookmarksManager = BrowserApplication::bookmarksManager();
+#else
+    #ifdef FOR_AUTOTEST
+    m_bookmarksManager = tst_AddBookmarkDialog::bookmarksManager();
+    #else
+        #error "Nothing provides a bookmarksmanager"
+    #endif
+#endif
     setModel(m_bookmarksManager->bookmarksModel());
     setRootIndex(m_bookmarksManager->bookmarksModel()->index(m_bookmarksManager->menu()));
     // initial actions
