@@ -1,2 +1,5 @@
 project(autotests)
 add_subdirectory(addbookmarkdialog)
+add_subdirectory(autosaver)
+add_subdirectory(bookmarknode)
+add_subdirectory(downloadmanager)

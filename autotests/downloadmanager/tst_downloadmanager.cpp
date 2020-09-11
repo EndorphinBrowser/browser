@@ -21,41 +21,11 @@
 #include <QtNetwork/QtNetwork>
 #include <QtGui/QtGui>
 #include "downloadmanager.h"
+#include "tst_downloadmanager.h"
 
-#define BIGFILE "http://10.0.0.3/~ben/distccKNOPPIX-1.3-2004-08-20-gcc-3.3.iso"
-#define BIGFILENAME "distccKNOPPIX-1.3-2004-08-20-gcc-3.3.iso"
-#define BIGFILENAME2 "distccKNOPPIX-1.3-2004-08-20-gcc-3.3-1.iso"
-
-class tst_DownloadManager : public QObject
-{
-    Q_OBJECT
-
-public slots:
-    void initTestCase();
-    void cleanupTestCase();
-    void init();
-    void cleanup();
-
-private slots:
-    void downloadmanager_data();
-    void downloadmanager();
-    void cleanupButton_data();
-    void cleanupButton();
-    void download_data();
-    void download();
-    void removePolicy_data();
-    void removePolicy();
-};
-
-// Subclass that exposes the protected functions.
-class SubDownloadManager : public DownloadManager
-{
-public:
-    SubDownloadManager(QWidget *parent = 0)
-     : DownloadManager(parent)
-        {}
-
-};
+#define BIGFILE "https://cdimage.debian.org/debian-cd/10.5.0/amd64/iso-cd/debian-10.5.0-amd64-netinst.iso"
+#define BIGFILENAME "debian-10.5.0-amd64-netinst.iso"
+#define BIGFILENAME2 "debian-10.5.0-amd64-netinst-1.iso"
 
 // This will be called before the first test function is executed.
 // It is only called once.
@@ -247,5 +217,3 @@ void tst_DownloadManager::removePolicy()
 }
 
 QTEST_MAIN(tst_DownloadManager)
-#include "tst_downloadmanager.moc"
-

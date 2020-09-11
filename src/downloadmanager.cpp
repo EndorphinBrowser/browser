@@ -64,7 +64,9 @@
 #include "downloadmanager.h"
 
 #include "autosaver.h"
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#endif
 
 #include <math.h>
 
@@ -161,7 +163,11 @@ void DownloadItem::getFileName()
     if (m_gettingFileName)
         return;
 
+#ifndef NO_BROWSERAPPLICATION
     QString downloadDirectory = BrowserApplication::downloadManager()->downloadDirectory();
+#else
+    QString downloadDirectory = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + '/';
+#endif
 
     QString defaultFileName = saveFileName(downloadDirectory);
     QString fileName = defaultFileName;
@@ -177,7 +183,9 @@ void DownloadItem::getFileName()
             return;
         }
         QFileInfo fileInfo = QFileInfo(fileName);
+#ifndef NO_BROWSERAPPLICATION
         BrowserApplication::downloadManager()->setDownloadDirectory(fileInfo.absoluteDir().absolutePath());
+#endif
         fileNameLabel->setText(fileInfo.fileName());
     }
     m_output.setFileName(fileName);

@@ -101,6 +101,7 @@ set(Endorphin_SRCS
 	opensearch/opensearchreader.cpp
 	opensearch/opensearchwriter.cpp
 	useragent/useragentmenu.cpp
+	utils/explorerstyle.cpp
 	utils/editlistview.cpp
 	utils/edittableview.cpp
 	utils/edittreeview.cpp

@@ -28,33 +28,7 @@
 
 #include <QtTest/QtTest>
 #include <bookmarknode.h>
-
-class tst_BookmarkNode : public QObject
-{
-    Q_OBJECT
-
-public slots:
-    void initTestCase();
-    void cleanupTestCase();
-    void init();
-    void cleanup();
-
-private slots:
-    void bookmarknode_data();
-    void bookmarknode();
-
-    void add_duplicate();
-    void add_to_bookmark();
-    void add_move();
-    void add_data();
-    void add();
-    void equal();
-    void remove();
-    void deleteNode();
-    void deleteChildren();
-    void type_data();
-    void type();
-};
+#include <tst_bookmarknode.h>
 
 // This will be called before the first test function is executed.
 // It is only called once.
@@ -269,4 +243,3 @@ void tst_BookmarkNode::type()
 }
 
 QTEST_MAIN(tst_BookmarkNode)
-#include "tst_bookmarknode.moc"
