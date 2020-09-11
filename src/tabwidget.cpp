@@ -812,7 +812,7 @@ QUrl TabWidget::guessUrlFromString(const QString &string)
 
     if (url.scheme() == QLatin1String("about")
             && url.path() == QLatin1String("home"))
-        url = QUrl(QLatin1String("qrc:/startpage.html"));
+        url = QUrl(QLatin1String("https://endorphinbrowser.github.io/newTab/0.13.0-preview1/"));
 
     // QUrl::isValid() is too much tolerant.
     // We actually want to check if the url conforms to the RFC, which QUrl::isValid() doesn't state.
