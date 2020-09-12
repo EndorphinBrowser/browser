@@ -278,12 +278,12 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     if (menu->isEmpty()) {
         delete menu;
         menu = page()->createStandardContextMenu();
-    } else {
-        /*
-                if (page()->settings()->testAttribute(QWebEngineSettings::DeveloperExtrasEnabled))
-                    menu->addAction(pageAction(QWebEnginePage::InspectElement));
-        */
     }
+
+    QAction *action = new QAction(menu);
+    action->setText("Inspect Element");
+    connect(action, &QAction::triggered, [this]() { emit devToolsRequested(page()); });
+    menu->addAction(action);
 
     if (!menu->isEmpty()) {
         if (BrowserMainWindow::parentWindow(tabWidget())->menuBar()->isHidden()) {

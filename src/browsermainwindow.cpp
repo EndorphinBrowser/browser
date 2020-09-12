@@ -74,6 +74,7 @@
 #include "bookmarkstoolbar.h"
 #include "browserapplication.h"
 #include "clearprivatedata.h"
+#include "devtoolswindow.h"
 #include "downloadmanager.h"
 #include "history.h"
 #include "languagemanager.h"
@@ -201,6 +202,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
             m_bookmarksToolbar, SLOT(setVisible(bool)));
     connect(m_tabWidget, SIGNAL(lastTabClosed()),
             this, SLOT(lastTabClosed()));
+    connect(m_tabWidget, &TabWidget::devToolsRequested, this, &BrowserMainWindow::handleDevToolsRequested);
 
     updateWindowTitle();
     loadDefaultState();
@@ -815,15 +817,6 @@ void BrowserMainWindow::setupMenu()
             this, SLOT(clearPrivateData()));
     m_toolsMenu->addAction(m_toolsClearPrivateDataAction);
 
-    m_toolsEnableInspectorAction = new QAction(m_toolsMenu);
-    connect(m_toolsEnableInspectorAction, SIGNAL(triggered(bool)),
-            this, SLOT(toggleInspector(bool)));
-    m_toolsEnableInspectorAction->setCheckable(true);
-    QSettings settings;
-    settings.beginGroup(QLatin1String("websettings"));
-    m_toolsEnableInspectorAction->setChecked(settings.value(QLatin1String("enableInspector"), false).toBool());
-    m_toolsMenu->addAction(m_toolsEnableInspectorAction);
-
     m_toolsSearchManagerAction = new QAction(m_toolsMenu);
     m_toolsSearchManagerAction->setMenuRole(QAction::NoRole);
     connect(m_toolsSearchManagerAction, SIGNAL(triggered()),
@@ -978,7 +971,6 @@ void BrowserMainWindow::retranslate()
     m_toolsWebSearchAction->setShortcut(QKeySequence(tr("Ctrl+K", "Web Search")));
     m_toolsClearPrivateDataAction->setText(tr("&Clear Private Data"));
     m_toolsClearPrivateDataAction->setShortcut(QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
-    m_toolsEnableInspectorAction->setText(tr("Enable Web &Inspector"));
     m_toolsPreferencesAction->setText(tr("Options..."));
     m_toolsPreferencesAction->setShortcut(tr("Ctrl+,"));
     m_toolsSearchManagerAction->setText(tr("Configure Search Engines..."));
@@ -1420,25 +1412,6 @@ void BrowserMainWindow::clearPrivateData()
     dialog.exec();
 }
 
-void BrowserMainWindow::toggleInspector(bool enable)
-{
-    /*
-        QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::DeveloperExtrasEnabled, enable);
-        if (enable) {
-            int result = QMessageBox::question(this, tr("Web Inspector"),
-                                               tr("The web inspector will only work correctly for pages that were loaded after enabling.\n"
-                                                  "Do you want to reload all pages?"),
-                                               QMessageBox::Yes | QMessageBox::No);
-            if (result == QMessageBox::Yes) {
-                m_tabWidget->reloadAllTabs();
-            }
-        }
-        */
-    QSettings settings;
-    settings.beginGroup(QLatin1String("websettings"));
-    settings.setValue(QLatin1String("enableInspector"), enable);
-}
-
 void BrowserMainWindow::swapFocus()
 {
     if (currentTab()->hasFocus()) {
@@ -1583,3 +1556,17 @@ void BrowserMainWindow::geometryChangeRequested(const QRect &geometry)
     setGeometry(geometry);
 }
 
+
+
+DevToolsWindow *BrowserMainWindow::createDevToolsWindow()
+{
+    auto devWindow = new DevToolsWindow(this);
+    devWindow->show();
+    return devWindow;
+}
+
+void BrowserMainWindow::handleDevToolsRequested(QWebEnginePage *source)
+{
+    source->setDevToolsPage(createDevToolsWindow()->page());
+    source->triggerAction(QWebEnginePage::InspectElement);
+}

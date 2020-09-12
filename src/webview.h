@@ -102,6 +102,7 @@ public:
 signals:
     void search(const QUrl &searchUrl, TabWidget::OpenUrlIn openIn);
     void notifyRanJavaScript();
+    void devToolsRequested(QWebEnginePage *source);
 
 public slots:
     void zoomIn();

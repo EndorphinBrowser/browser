@@ -108,6 +108,7 @@ signals:
     void statusBarVisibilityChangeRequested(bool visible);
     void toolBarVisibilityChangeRequested(bool visible);
     void printRequested(QWebEnginePage *page);
+    void devToolsRequested(QWebEnginePage *source);
 
 public:
     enum OpenUrlIn {

@@ -58,6 +58,7 @@ set(Endorphin_SRCS
 	browsermainwindow.cpp
 	clearprivatedata.cpp
 	clearbutton.cpp
+	devtoolswindow.cpp
 	downloadmanager.cpp
 	modelmenu.cpp
 	modeltoolbar.cpp

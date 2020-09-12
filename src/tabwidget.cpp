@@ -422,6 +422,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
             this, SLOT(statusBarVisibilityChangeRequestedCheck(bool)));
     connect(webView->page(), SIGNAL(toolBarVisibilityChangeRequested(bool)),
             this, SLOT(toolBarVisibilityChangeRequestedCheck(bool)));
+    connect(webView, &WebView::devToolsRequested, this, &TabWidget::devToolsRequested);
 
     WebViewWithSearch *webViewWithSearch = new WebViewWithSearch(webView, this);
     addTab(webViewWithSearch, tr("Untitled"));

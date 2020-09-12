@@ -76,6 +76,7 @@ class QFrame;
 class HistoryMenu;
 class BookmarksMenuBarMenu;
 class UserAgentMenu;
+class DevToolsWindow;
 
 /*!
     The MainWindow of the Browser Application.
@@ -103,6 +104,7 @@ public:
     QAction *searchManagerAction() const {
         return m_toolsSearchManagerAction;
     }
+    void handleDevToolsRequested(QWebEnginePage *source);
 
 public slots:
     void goHome();
@@ -151,7 +153,6 @@ private slots:
 
     void webSearch();
     void clearPrivateData();
-    void toggleInspector(bool enable);
     void aboutApplication();
     void downloadManager();
     void selectLineEdit();
@@ -177,6 +178,7 @@ private:
     void setupMenu();
     void setupToolBar();
     void updateStopReloadActionText(bool loading);
+    DevToolsWindow *createDevToolsWindow();
 
 private:
     QMenu *m_fileMenu;
@@ -235,7 +237,6 @@ private:
     QMenu *m_toolsMenu;
     QAction *m_toolsWebSearchAction;
     QAction *m_toolsClearPrivateDataAction;
-    QAction *m_toolsEnableInspectorAction;
     QAction *m_toolsPreferencesAction;
     QAction *m_toolsSearchManagerAction;
     UserAgentMenu *m_toolsUserAgentMenu;
