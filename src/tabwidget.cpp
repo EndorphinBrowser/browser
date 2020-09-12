@@ -250,17 +250,13 @@ void TabWidget::currentChanged(int index)
 
     WebView *oldWebView = this->webView(m_locationBars->currentIndex());
     if (oldWebView) {
-        disconnect(oldWebView, SIGNAL(statusBarMessage(const QString&)),
-                   this, SIGNAL(showStatusBarMessage(const QString&)));
-        disconnect(oldWebView->page(), SIGNAL(linkHovered(const QString&, const QString&, const QString&)),
+        disconnect(oldWebView->page(), SIGNAL(linkHovered(const QString&)),
                    this, SIGNAL(linkHovered(const QString&)));
         disconnect(oldWebView, SIGNAL(loadProgress(int)),
                    this, SIGNAL(loadProgress(int)));
     }
 
-    connect(webView, SIGNAL(statusBarMessage(const QString&)),
-            this, SIGNAL(showStatusBarMessage(const QString&)));
-    connect(webView->page(), SIGNAL(linkHovered(const QString&, const QString&, const QString&)),
+    connect(webView->page(), SIGNAL(linkHovered(const QString&)),
             this, SIGNAL(linkHovered(const QString&)));
     connect(webView, SIGNAL(loadProgress(int)),
             this, SIGNAL(loadProgress(int)));
@@ -402,7 +398,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
             this, SLOT(webViewLoadProgress(int)));
     connect(webView, SIGNAL(loadFinished(bool)),
             this, SLOT(webViewLoadFinished(bool)));
-    connect(webView, SIGNAL(iconChanged()),
+    connect(webView, SIGNAL(iconChanged(QIcon)),
             this, SLOT(webViewIconChanged()));
     connect(webView, SIGNAL(titleChanged(const QString &)),
             this, SLOT(webViewTitleChanged(const QString &)));
@@ -412,16 +408,10 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
             this, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
     connect(webView->page(), SIGNAL(windowCloseRequested()),
             this, SLOT(windowCloseRequested()));
-    connect(webView->page(), SIGNAL(printRequested(QWebEnginePage *)),
-            this, SIGNAL(printRequested(QWebEnginePage *)));
+    connect(webView->page(), SIGNAL(printRequested(Q)),
+            this, SIGNAL(printRequested(webView->page())));
     connect(webView->page(), SIGNAL(geometryChangeRequested(const QRect &)),
             this, SLOT(geometryChangeRequestedCheck(const QRect &)));
-    connect(webView->page(), SIGNAL(menuBarVisibilityChangeRequested(bool)),
-            this, SLOT(menuBarVisibilityChangeRequestedCheck(bool)));
-    connect(webView->page(), SIGNAL(statusBarVisibilityChangeRequested(bool)),
-            this, SLOT(statusBarVisibilityChangeRequestedCheck(bool)));
-    connect(webView->page(), SIGNAL(toolBarVisibilityChangeRequested(bool)),
-            this, SLOT(toolBarVisibilityChangeRequestedCheck(bool)));
     connect(webView, &WebView::devToolsRequested, this, &TabWidget::devToolsRequested);
 
     WebViewWithSearch *webViewWithSearch = new WebViewWithSearch(webView, this);
@@ -445,24 +435,6 @@ void TabWidget::geometryChangeRequestedCheck(const QRect &geometry)
 {
     if (count() == 1)
         emit geometryChangeRequested(geometry);
-}
-
-void TabWidget::menuBarVisibilityChangeRequestedCheck(bool visible)
-{
-    if (count() == 1)
-        emit menuBarVisibilityChangeRequested(visible);
-}
-
-void TabWidget::statusBarVisibilityChangeRequestedCheck(bool visible)
-{
-    if (count() == 1)
-        emit statusBarVisibilityChangeRequested(visible);
-}
-
-void TabWidget::toolBarVisibilityChangeRequestedCheck(bool visible)
-{
-    if (count() == 1)
-        emit toolBarVisibilityChangeRequested(visible);
 }
 
 void TabWidget::reloadAllTabs()

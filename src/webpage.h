@@ -65,9 +65,6 @@ protected:
     bool acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame);
     QWebEnginePage *createWindow(QWebEnginePage::WebWindowType type);
 
-protected slots:
-    void handleUnsupportedContent(QNetworkReply *reply);
-
 protected:
     static QString s_userAgent;
     TabWidget::OpenUrlIn m_openTargetBlankLinksIn;

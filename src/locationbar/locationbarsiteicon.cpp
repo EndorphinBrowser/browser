@@ -42,7 +42,7 @@ void LocationBarSiteIcon::setWebView(WebView *webView)
     m_webView = webView;
     connect(webView, SIGNAL(loadFinished(bool)),
             this, SLOT(webViewSiteIconChanged()));
-    connect(webView, SIGNAL(iconChanged()),
+    connect(webView, SIGNAL(iconChanged(QIcon)),
             this, SLOT(webViewSiteIconChanged()));
 }
 

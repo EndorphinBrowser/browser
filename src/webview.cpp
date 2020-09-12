@@ -157,8 +157,6 @@ WebView::WebView(QWidget *parent)
     setPage(m_page);
     connect(page(), &WebPage::featurePermissionRequested, this, &WebView::onFeaturePermissionRequested);
     QPalette p;
-    connect(page(), SIGNAL(statusBarMessage(const QString&)),
-            SLOT(setStatusBarText(const QString&)));
     connect(this, SIGNAL(loadProgress(int)),
             this, SLOT(setProgress(int)));
     connect(this, SIGNAL(loadFinished(bool)),

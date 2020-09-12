@@ -38,6 +38,8 @@
 #include <QUiLoader>
 
 #include <QWebEnginePage>
+#include <QPrintDialog>
+#include <QPrinter>
 
 QString WebPage::s_userAgent;
 
@@ -45,8 +47,6 @@ WebPage::WebPage(QObject *parent)
     : QWebEnginePage(parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
 {
-    connect(this, SIGNAL(unsupportedContent(QNetworkReply *)),
-            this, SLOT(handleUnsupportedContent(QNetworkReply *)));
     loadSettings();
 }
 
@@ -194,102 +194,3 @@ QWebEnginePage *WebPage::createWindow(QWebEnginePage::WebWindowType type)
     }
     return nullptr;
 }
-
-// The chromium guys have documented many examples of incompatibilities that
-// different browsers have when they mime sniff.
-// http://src.chromium.org/viewvc/chrome/trunk/src/net/base/mime_sniffer.cc
-//
-// All WebKit ports should share a common set of rules to sniff content.
-// By having this here we are yet another browser that has different behavior :(
-// But sadly QtWebKit does no sniffing at all so we are forced to do something.
-static bool contentSniff(const QByteArray &data)
-{
-    if (data.contains("<!doctype")
-            || data.contains("<script")
-            || data.contains("<html")
-            || data.contains("<!--")
-            || data.contains("<head")
-            || data.contains("<iframe")
-            || data.contains("<h1")
-            || data.contains("<div")
-            || data.contains("<font")
-            || data.contains("<table")
-            || data.contains("<a")
-            || data.contains("<style")
-            || data.contains("<title")
-            || data.contains("<b")
-            || data.contains("<body")
-            || data.contains("<br")
-            || data.contains("<p"))
-        return true;
-    return false;
-}
-
-void WebPage::handleUnsupportedContent(QNetworkReply *reply)
-{
-    if (!reply)
-        return;
-
-    QUrl replyUrl = reply->url();
-
-    if (replyUrl.scheme() == QLatin1String("abp"))
-        return;
-
-    switch (reply->error()) {
-    case QNetworkReply::NoError:
-        if (reply->header(QNetworkRequest::ContentTypeHeader).isValid()) {
-            BrowserApplication::downloadManager()->handleUnsupportedContent(reply);
-            return;
-        }
-        break;
-    case QNetworkReply::ProtocolUnknownError: {
-        QSettings settings;
-        settings.beginGroup(QLatin1String("WebView"));
-        QStringList externalSchemes = settings.value(QLatin1String("externalSchemes")).toStringList();
-        if (externalSchemes.contains(replyUrl.scheme())) {
-            QDesktopServices::openUrl(replyUrl);
-            return;
-        }
-        break;
-    }
-    default:
-        break;
-    }
-
-    // Find the frame that has the unsupported content
-    if (replyUrl.isEmpty() || replyUrl != m_requestedUrl)
-        return;
-
-    if (reply->header(QNetworkRequest::ContentTypeHeader).toString().isEmpty()) {
-        // do evil
-        QByteArray data = reply->readAll();
-        if (contentSniff(data)) {
-            setHtml(QLatin1String(data), replyUrl);
-            return;
-        }
-    }
-
-    // Generate translated not found error page with an image
-    QFile notFoundErrorFile(QLatin1String(":/notfound.html"));
-    if (!notFoundErrorFile.open(QIODevice::ReadOnly))
-        return;
-    QString title = tr("Error loading page: %1").arg(QString::fromUtf8(replyUrl.toEncoded()));
-    QString html = QLatin1String(notFoundErrorFile.readAll());
-    QPixmap pixmap = qApp->style()->standardIcon(QStyle::SP_MessageBoxWarning, nullptr, view()).pixmap(QSize(32, 32));
-    QBuffer imageBuffer;
-    imageBuffer.open(QBuffer::ReadWrite);
-    if (pixmap.save(&imageBuffer, "PNG")) {
-        html.replace(QLatin1String("IMAGE_BINARY_DATA_HERE"),
-                     QLatin1String(imageBuffer.buffer().toBase64()));
-    }
-    html = html.arg(title,
-                    reply->errorString(),
-                    tr("When connecting to: %1.").arg(QString::fromUtf8(replyUrl.toEncoded())),
-                    tr("Check the address for errors such as <b>ww</b>.example.com instead of <b>www</b>.example.com"),
-                    tr("If the address is correct, try checking the network connection."),
-                    tr("If your computer or network is protected by a firewall or proxy, make sure that the browser is permitted to access the network."));
-    setHtml(html, replyUrl);
-    // Don't put error pages to the history.
-//    BrowserApplication::instance()->historyManager()->removeHistoryEntry(replyUrl, notFoundFrame->title());
-}
-

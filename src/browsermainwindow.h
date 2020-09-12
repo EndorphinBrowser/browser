@@ -110,6 +110,7 @@ public slots:
     void goHome();
     void privacyChanged(bool isPrivate);
     void zoomTextOnlyChanged(bool textOnly);
+    void runScriptOnOpenViews(QString source);
 
 protected:
     void closeEvent(QCloseEvent *event);

@@ -192,14 +192,6 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
             this, SLOT(geometryChangeRequested(const QRect &)));
     connect(m_tabWidget, SIGNAL(printRequested(QWebEnginePage *)),
             this, SLOT(printRequested(QWebEnginePage *)));
-    connect(m_tabWidget, SIGNAL(menuBarVisibilityChangeRequested(bool)),
-            menuBar(), SLOT(setVisible(bool)));
-    connect(m_tabWidget, SIGNAL(statusBarVisibilityChangeRequested(bool)),
-            statusBar(), SLOT(setVisible(bool)));
-    connect(m_tabWidget, SIGNAL(toolBarVisibilityChangeRequested(bool)),
-            m_navigationBar, SLOT(setVisible(bool)));
-    connect(m_tabWidget, SIGNAL(toolBarVisibilityChangeRequested(bool)),
-            m_bookmarksToolbar, SLOT(setVisible(bool)));
     connect(m_tabWidget, SIGNAL(lastTabClosed()),
             this, SLOT(lastTabClosed()));
     connect(m_tabWidget, &TabWidget::devToolsRequested, this, &BrowserMainWindow::handleDevToolsRequested);
@@ -1569,4 +1561,10 @@ void BrowserMainWindow::handleDevToolsRequested(QWebEnginePage *source)
 {
     source->setDevToolsPage(createDevToolsWindow()->page());
     source->triggerAction(QWebEnginePage::InspectElement);
+}
+
+void BrowserMainWindow::runScriptOnOpenViews(QString source)
+{
+    for (int i =0; i < tabWidget()->count(); ++i)
+        tabWidget()->webView(i)->page()->runJavaScript(source);
 }
