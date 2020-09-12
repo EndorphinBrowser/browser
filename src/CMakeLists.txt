@@ -136,35 +136,6 @@ set(Endorphin_RSCS
 )
 QT5_ADD_RESOURCES(RSCS ${Endorphin_RSCS})
 
-set(Endorphin_MOCS
-	aboutdialog.h
-	acceptlanguagedialog.h
-	autosaver.h
-	browserapplication.h
-	browsermainwindow.h
-	clearprivatedata.h
-	clearbutton.h
-	downloadmanager.h
-	modelmenu.h
-	modeltoolbar.h
-	permissionbar.h
-	plaintexteditsearch.h
-	searchbar.h
-	searchbutton.h
-	searchlineedit.h
-	settings.h
-	sourcehighlighter.h
-	sourceviewer.h
-	tabbar.h
-	tabwidget.h
-	toolbarsearch.h
-	webactionmapper.h
-	webpage.h
-	webview.h
-	webviewsearch.h
-)
-QT5_WRAP_CPP(MOCS ${Endorphin_MOCS})
-
 # Translations
 qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/ast.ts)
 qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/ca.ts)
