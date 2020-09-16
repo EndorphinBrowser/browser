@@ -18,73 +18,15 @@
  */
 
 #include <QtTest/QtTest>
-#include "qtest_endorphin.h"
 
 #include <historymanager.h>
-#include <history.h>
+#include "history.h"
 #include <historycompleter.h>
 #include <modeltest.h>
 
 #include <QWebEngineSettings>
 
-class tst_HistoryManager : public QObject
-{
-    Q_OBJECT
-
-public slots:
-    void initTestCase();
-    void cleanupTestCase();
-    void init();
-    void cleanup();
-
-private slots:
-    void history_data();
-    void history();
-    void addHistoryEntry_data();
-    void addHistoryEntry();
-    void addHistoryEntry_private();
-    void addHistoryEntry_url();
-    void updateHistoryEntry_data();
-    void updateHistoryEntry();
-    void daysToExpire_data();
-    void daysToExpire();
-    void clear_data();
-    void clear();
-    void setHistory_data();
-    void setHistory();
-    void saveload_data();
-    void saveload();
-
-    // TODO move to their own tests
-    void big();
-
-    void historyDialog_data();
-    void historyDialog();
-
-private:
-    QList<HistoryEntry> bigHistory;
-};
-
-// Subclass that exposes the protected functions.
-class SubHistory : public HistoryManager
-{
-public:
-    SubHistory() : HistoryManager()
-    {
-        QWidget w;
-        setParent(&w);
-        if (QWebHistoryInterface::defaultInterface() == this)
-            QWebHistoryInterface::setDefaultInterface(0);
-        setParent(0);
-    }
-
-    ~SubHistory() {
-        setDaysToExpire(30);
-    }
-
-    void prependHistoryEntry(const HistoryEntry &item)
-        { HistoryManager::prependHistoryEntry(item); }
-};
+#include "tst_historymanager.h"
 
 // This will be called before the first test function is executed.
 // It is only called once.
@@ -207,17 +149,6 @@ void tst_HistoryManager::addHistoryEntry()
         history.prependHistoryEntry(items[i]);
     QCOMPARE(history.history().count(), expected.count());
     QCOMPARE(history.history(), expected);
-}
-
-void tst_HistoryManager::addHistoryEntry_private()
-{
-    SubHistory history;
-    history.setHistory(HistoryList());
-    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
-    globalSettings->setAttribute(QWebEngineSettings::PrivateBrowsingEnabled, true);
-    history.prependHistoryEntry(HistoryEntry());
-    globalSettings->setAttribute(QWebEngineSettings::PrivateBrowsingEnabled, false);
-    QVERIFY(history.history().isEmpty());
 }
 
 void tst_HistoryManager::addHistoryEntry_url()
@@ -428,8 +359,6 @@ void tst_HistoryManager::big()
 
     QCOMPARE(history.history().count(), bigHistory.count());
 
-    HistoryMenu menu;
-
     HistoryModel model(&history);
     ModelTest test(&model);
     QCOMPARE(model.rowCount(), bigHistory.count());
@@ -547,5 +476,3 @@ void tst_HistoryManager::historyDialog()
 }
 
 QTEST_MAIN(tst_HistoryManager)
-#include "tst_historymanager.moc"
-

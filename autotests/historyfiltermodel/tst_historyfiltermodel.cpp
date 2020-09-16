@@ -20,52 +20,8 @@
 #include <QtTest/QtTest>
 #include <history.h>
 #include <historymanager.h>
-
-class tst_HistoryFilterModel : public QObject
-{
-    Q_OBJECT
-
-public slots:
-    void initTestCase();
-    void cleanupTestCase();
-    void init();
-    void cleanup();
-
-private slots:
-    void historyfiltermodel_data();
-    void historyfiltermodel();
-
-    void historyContains_data();
-    void historyContains();
-
-    void setSourceModel();
-
-    void historyLocation_data();
-    void historyLocation();
-
-    void addRow_data();
-    void addRow();
-
-    void removeRows_data();
-    void removeRows();
-};
-
-// Subclass that exposes the protected functions.
-class SubHistoryFilterModel : public HistoryFilterModel
-{
-public:
-    SubHistoryFilterModel(QObject *parent = 0)
-        : HistoryFilterModel(0, parent)
-    {
-        history = new HistoryManager(this);
-        historyModel = new HistoryModel(history, this);
-        setSourceModel(historyModel);
-        history->setDaysToExpire(-1);
-    }
-
-    HistoryModel *historyModel;
-    HistoryManager *history;
-};
+#include <ui_history.h>
+#include "tst_historyfiltermodel.h"
 
 // This will be called before the first test function is executed.
 // It is only called once.
@@ -331,5 +287,3 @@ void tst_HistoryFilterModel::removeRows()
 }
 
 QTEST_MAIN(tst_HistoryFilterModel)
-#include "tst_historyfiltermodel.moc"
-

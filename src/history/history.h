@@ -273,7 +273,7 @@ private:
 
 };
 
-#ifndef NO_BROWSERAPPLICATION
+#ifndef NO_HISTORYDIALOG
 #include "ui_history.h"
 
 class HistoryDialog : public QDialog, public Ui_HistoryDialog
@@ -284,7 +284,11 @@ signals:
     void openUrl(const QUrl &url, const QString &title);
 
 public:
+#ifndef NO_BROWSERAPPLICATION
     HistoryDialog(QWidget *parent = nullptr, HistoryManager *history = nullptr);
+#else
+    HistoryDialog(QWidget *parent, HistoryManager *history);
+#endif
 
 private slots:
     void customContextMenuRequested(const QPoint &pos);

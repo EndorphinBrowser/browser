@@ -413,11 +413,16 @@ void HistoryMenu::setInitialActions(QList<QAction*> actions)
         addAction(m_initialActions.at(i));
 }
 
+#endif
+
+#ifndef NO_HISTORYDIALOG
 HistoryDialog::HistoryDialog(QWidget *parent, HistoryManager *setHistory) : QDialog(parent)
 {
     HistoryManager *history = setHistory;
+#ifndef NO_BROWSERAPPLICATION
     if (!history)
         history = BrowserApplication::historyManager();
+#endif
     setupUi(this);
     tree->setUniformRowHeights(true);
     tree->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -465,8 +470,10 @@ void HistoryDialog::open()
     QModelIndex index = tree->currentIndex();
     if (!index.parent().isValid())
         return;
+#ifndef NO_BROWSERAPPLICATION
     BrowserApplication::instance()->setEventMouseButtons(qApp->mouseButtons());
     BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
+#endif
     emit openUrl(index.data(HistoryModel::UrlRole).toUrl(),
                  index.data(HistoryModel::TitleRole).toString());
 }

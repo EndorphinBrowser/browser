@@ -19,6 +19,6 @@ QT5_WRAP_CPP(MOCS
 	tst_bookmarknode.h
 )
 
-add_executable(test-bookmarknode ${SRCS} ${UIS} ${MOCS})
+add_executable(test-bookmarknode ${SRCS} ${MOCS})
 qt5_use_modules(test-bookmarknode Core)
 qt5_use_modules(test-bookmarknode Test)

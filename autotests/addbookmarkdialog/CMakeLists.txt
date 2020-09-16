@@ -16,6 +16,7 @@ INCLUDE_DIRECTORIES(
 )
 add_definitions(-DNO_BROWSERAPPLICATION)
 add_definitions(-DFOR_AUTOTEST)
+add_definitions(-DNO_HISTORYDIALOG)
 set(SRCS
 	tst_addbookmarkdialog.cpp
 	../../src/bookmarks/addbookmarkdialog.cpp
