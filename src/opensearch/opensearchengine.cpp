@@ -28,7 +28,7 @@
 #include <qnetworkreply.h>
 #include <qregexp.h>
 #include <qstringlist.h>
-#include <QScriptEngine>
+#include <QJSEngine>
 #include <QUrlQuery>
 
 /*!
@@ -543,19 +543,20 @@ void OpenSearchEngine::suggestionsObtained()
         return;
 
     if (!m_scriptEngine)
-        m_scriptEngine = new QScriptEngine();
+        m_scriptEngine = new QJSEngine();
 
     // Evaluate the JSON response using QtScript.
-    if (!m_scriptEngine->canEvaluate(response))
+    if (m_scriptEngine->evaluate(response).isError())
         return;
 
-    QScriptValue responseParts = m_scriptEngine->evaluate(response);
+    QJSValue responseParts = m_scriptEngine->evaluate(response);
 
     if (!responseParts.property(1).isArray())
         return;
 
     QStringList suggestionsList;
-    qScriptValueToSequence(responseParts.property(1), suggestionsList);
+
+    suggestionsList = responseParts.property(1).toVariant().toStringList();
 
     emit suggestions(suggestionsList);
 }
