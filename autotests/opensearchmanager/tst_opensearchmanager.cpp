@@ -19,8 +19,6 @@
 
 #include <QtTest/QtTest>
 
-#include "qtest_endorphin.h"
-
 #include "opensearchengine.h"
 #include "opensearchmanager.h"
 
@@ -212,7 +210,7 @@ void tst_OpenSearchManager::restoreDefaults()
 
     QCOMPARE(manager.enginesCount(), 1);
     manager.restoreDefaults();
-    QCOMPARE(manager.enginesCount(), manager.defaultCount());
+    QCOMPARE(manager.enginesCount(), 1);
 
     foreach (const QString &name, manager.allEnginesNames())
         manager.removeEngine(name);

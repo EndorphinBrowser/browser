@@ -21,7 +21,7 @@
 #include <QtGui/QtGui>
 #include <QtWebKit/QtWebKit>
 #include <QtNetwork/QtNetwork>
-#include <QWebFrame>
+#include <QWebEnginePage>
 
 #include <webpage.h>
 #include "qtest_endorphin.h"
@@ -42,18 +42,18 @@ private slots:
 
     void loadSettings_data();
     void loadSettings();
-    void webPluginFactory_data();
-    void webPluginFactory();
-    void acceptNavigationRequest_data();
-    void acceptNavigationRequest();
-    void createPlugin_data();
-    void createPlugin();
+    //void webPluginFactory_data();
+    //void webPluginFactory();
+    //void acceptNavigationRequest_data();
+    //void acceptNavigationRequest();
+    //void createPlugin_data();
+    //void createPlugin();
     void createWindow_data();
     void createWindow();
     void handleUnsupportedContent();
-    void linkedResources();
-    void javaScriptObjects_data();
-    void javaScriptObjects();
+    //void linkedResources();
+    //void javaScriptObjects_data();
+    //void javaScriptObjects();
     void userAgent();
 };
 
@@ -67,13 +67,14 @@ public:
     void call_aboutToLoadUrl(QUrl const &url)
         { return SubWebPage::aboutToLoadUrl(url); }
 
+/*
     bool call_acceptNavigationRequest(QWebFrame *frame, QNetworkRequest const &request, NavigationType type)
         { return SubWebPage::acceptNavigationRequest(frame, request, type); }
 
     QObject *call_createPlugin(QString const &classId, QUrl const &url, QStringList const &paramNames, QStringList const &paramValues)
         { return SubWebPage::createPlugin(classId, url, paramNames, paramValues); }
-
-    QWebPage *call_createWindow(QWebPage::WebWindowType type)
+*/
+    QWebEnginePage *call_createWindow(QWebEnginePage::WebWindowType type)
         { return SubWebPage::createWindow(type); }
 };
 
@@ -113,11 +114,11 @@ void tst_WebPage::webpage()
 {
     SubWebPage page;
     page.loadSettings();
-    QVERIFY(page.webPluginFactory());
+    //QVERIFY(page.webPluginFactory());
     page.call_aboutToLoadUrl(QUrl());
-    QCOMPARE(page.call_acceptNavigationRequest((QWebFrame*)0, QNetworkRequest(), QWebPage::NavigationTypeLinkClicked), true);
-    QCOMPARE(page.call_createPlugin(QString(), QUrl(), QStringList(), QStringList()), (QObject*)0);
-    QCOMPARE(page.call_createWindow(QWebPage::WebBrowserWindow), (QWebPage*)0);
+    // QCOMPARE(page.call_acceptNavigationRequest((QWebFrame*)0, QNetworkRequest(), QWebEnginePage::NavigationTypeLinkClicked), true);
+    // QCOMPARE(page.call_createPlugin(QString(), QUrl(), QStringList(), QStringList()), (QObject*)0);
+    QCOMPARE(page.call_createWindow(QWebEnginePage::WebBrowserWindow), (QWebEnginePage*)0);
 }
 
 void tst_WebPage::loadSettings_data()
@@ -144,6 +145,7 @@ void tst_WebPage::loadSettings()
     QSKIP("Test is not implemented.");
 }
 
+/*
 // Q_DECLARE_METATYPE(WebPluginFactory*)
 void tst_WebPage::webPluginFactory_data()
 {
@@ -169,46 +171,49 @@ void tst_WebPage::webPluginFactory()
 #endif
     QSKIP("Test is not implemented.");
 }
-
-Q_DECLARE_METATYPE(QWebPage::WebWindowType)
-Q_DECLARE_METATYPE(QWebPage::NavigationType)
+*/
+Q_DECLARE_METATYPE(QWebEnginePage::WebWindowType)
+Q_DECLARE_METATYPE(QWebEnginePage::NavigationType)
 Q_DECLARE_METATYPE(Qt::MouseButton)
 Q_DECLARE_METATYPE(Qt::KeyboardModifier)
+/*
 void tst_WebPage::acceptNavigationRequest_data()
 {
     QTest::addColumn<Qt::MouseButton>("pressedButton");
     QTest::addColumn<Qt::KeyboardModifier>("pressedKeys");
     QTest::addColumn<bool>("validFrame");
     QTest::addColumn<QNetworkRequest>("request");
-    QTest::addColumn<QWebPage::NavigationType>("type");
+    QTest::addColumn<QWebEnginePage::NavigationType>("type");
     QTest::addColumn<bool>("acceptNavigationRequest");
     QTest::addColumn<int>("spyCount");
 
-    QTest::newRow("null-noframe") << Qt::NoButton << Qt::NoModifier << false << QNetworkRequest() << QWebPage::NavigationTypeLinkClicked << true << 0;
-    QTest::newRow("null-frame")   << Qt::NoButton << Qt::NoModifier << true << QNetworkRequest() << QWebPage::NavigationTypeLinkClicked << true << 1;
+    QTest::newRow("null-noframe") << Qt::NoButton << Qt::NoModifier << false << QNetworkRequest() << QWebEnginePage::NavigationTypeLinkClicked << true << 0;
+    QTest::newRow("null-frame")   << Qt::NoButton << Qt::NoModifier << true << QNetworkRequest() << QWebEnginePage::NavigationTypeLinkClicked << true << 1;
 
-    QTest::newRow("mailto-0") << Qt::NoButton << Qt::NoModifier << true << QNetworkRequest(QUrl("mailto:foo@bar.com")) << QWebPage::NavigationTypeLinkClicked << false << 0;
-    QTest::newRow("mailto-1") << Qt::NoButton << Qt::NoModifier << false << QNetworkRequest(QUrl("mailto:foo@bar.com")) << QWebPage::NavigationTypeLinkClicked << false << 0;
-    QTest::newRow("ftp-0") << Qt::NoButton << Qt::NoModifier << true << QNetworkRequest(QUrl("ftp:foo@bar.com")) << QWebPage::NavigationTypeLinkClicked << false << 0;
-    QTest::newRow("ftp-1") << Qt::NoButton << Qt::NoModifier << false << QNetworkRequest(QUrl("ftp:foo@bar.com")) << QWebPage::NavigationTypeLinkClicked << false << 0;
+    QTest::newRow("mailto-0") << Qt::NoButton << Qt::NoModifier << true << QNetworkRequest(QUrl("mailto:foo@bar.com")) << QWebEnginePage::NavigationTypeLinkClicked << false << 0;
+    QTest::newRow("mailto-1") << Qt::NoButton << Qt::NoModifier << false << QNetworkRequest(QUrl("mailto:foo@bar.com")) << QWebEnginePage::NavigationTypeLinkClicked << false << 0;
+    QTest::newRow("ftp-0") << Qt::NoButton << Qt::NoModifier << true << QNetworkRequest(QUrl("ftp:foo@bar.com")) << QWebEnginePage::NavigationTypeLinkClicked << false << 0;
+    QTest::newRow("ftp-1") << Qt::NoButton << Qt::NoModifier << false << QNetworkRequest(QUrl("ftp:foo@bar.com")) << QWebEnginePage::NavigationTypeLinkClicked << false << 0;
 
 
-    QTest::newRow("normal-0") << Qt::NoButton << Qt::NoModifier << false << QNetworkRequest(QUrl("http://www.foo.com")) << QWebPage::NavigationTypeLinkClicked << true << 0;
-    QTest::newRow("normal-1") << Qt::NoButton << Qt::NoModifier << true << QNetworkRequest(QUrl("http://www.foo.com")) << QWebPage::NavigationTypeLinkClicked << true << 1;
+    QTest::newRow("normal-0") << Qt::NoButton << Qt::NoModifier << false << QNetworkRequest(QUrl("http://www.foo.com")) << QWebEnginePage::NavigationTypeLinkClicked << true << 0;
+    QTest::newRow("normal-1") << Qt::NoButton << Qt::NoModifier << true << QNetworkRequest(QUrl("http://www.foo.com")) << QWebEnginePage::NavigationTypeLinkClicked << true << 1;
 
-    QTest::newRow("midclick-0") << Qt::MidButton << Qt::NoModifier << true << QNetworkRequest(QUrl("http://www.foo.com")) << QWebPage::NavigationTypeLinkClicked << false << 0;
-    QTest::newRow("midclick-1") << Qt::MidButton << Qt::ShiftModifier << true << QNetworkRequest(QUrl("http://www.foo.com")) << QWebPage::NavigationTypeLinkClicked << false << 0;
-    QTest::newRow("midclick-2") << Qt::MidButton << Qt::AltModifier << true << QNetworkRequest(QUrl("http://www.foo.com")) << QWebPage::NavigationTypeLinkClicked << false << 0;
+    QTest::newRow("midclick-0") << Qt::MidButton << Qt::NoModifier << true << QNetworkRequest(QUrl("http://www.foo.com")) << QWebEnginePage::NavigationTypeLinkClicked << false << 0;
+    QTest::newRow("midclick-1") << Qt::MidButton << Qt::ShiftModifier << true << QNetworkRequest(QUrl("http://www.foo.com")) << QWebEnginePage::NavigationTypeLinkClicked << false << 0;
+    QTest::newRow("midclick-2") << Qt::MidButton << Qt::AltModifier << true << QNetworkRequest(QUrl("http://www.foo.com")) << QWebEnginePage::NavigationTypeLinkClicked << false << 0;
 }
 
-// protected bool acceptNavigationRequest(QWebFrame *frame, QNetworkRequest const &request, NavigationType type)
+
+// WebKit: protected bool acceptNavigationRequest(QWebFrame *frame, QNetworkRequest const &request, NavigationType type)
+// WebEngine: protected bool acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame)
 void tst_WebPage::acceptNavigationRequest()
 {
     QFETCH(Qt::MouseButton, pressedButton);
     QFETCH(Qt::KeyboardModifier, pressedKeys);
     QFETCH(bool, validFrame);
     QFETCH(QNetworkRequest, request);
-    QFETCH(QWebPage::NavigationType, type);
+    QFETCH(QWebEnginePage::NavigationType, type);
     QFETCH(bool, acceptNavigationRequest);
     QFETCH(int, spyCount);
 
@@ -224,7 +229,8 @@ void tst_WebPage::acceptNavigationRequest()
     BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
     BrowserApplication::instance()->setEventKeyboardModifiers(Qt::NoModifier);
 }
-
+*/
+/*
 Q_DECLARE_METATYPE(QStringList)
 Q_DECLARE_METATYPE(QObject*)
 void tst_WebPage::createPlugin_data()
@@ -259,23 +265,23 @@ void tst_WebPage::createPlugin()
 #endif
     QSKIP("Test is not implemented.");
 }
-
-Q_DECLARE_METATYPE(QWebPage*)
+*/
+Q_DECLARE_METATYPE(QWebEnginePage*)
 void tst_WebPage::createWindow_data()
 {
 #if 0
-    QTest::addColumn<QWebPage::WebWindowType>("type");
-    QTest::addColumn<QWebPage*>("createWindow");
-    QTest::newRow("null") << QWebPage::WebWindowType() << QWebPage*();
+    QTest::addColumn<QWebEnginePage::WebWindowType>("type");
+    QTest::addColumn<QWebEnginePage*>("createWindow");
+    QTest::newRow("null") << QWebEnginePage::WebWindowType() << QWebEnginePage*();
 #endif
 }
 
-// protected QWebPage *createWindow(QWebPage::WebWindowType type)
+// protected QWebEnginePage *createWindow(QWebEnginePage::WebWindowType type)
 void tst_WebPage::createWindow()
 {
 #if 0
-    QFETCH(QWebPage::WebWindowType, type);
-    QFETCH(QWebPage*, createWindow);
+    QFETCH(QWebEnginePage::WebWindowType, type);
+    QFETCH(QWebEnginePage*, createWindow);
 
     SubWebPage page;
 
@@ -292,10 +298,11 @@ void tst_WebPage::handleUnsupportedContent()
 {
     SubWebPage page;
     QSignalSpy spy(&page, SIGNAL(loadFinished(bool)));
-    page.mainFrame()->load(QUrl("http://exampletesttesttesttesttesttes.com/test.html"));
+    page.load(QUrl("http://exampletesttesttesttesttesttes.com/test.html"));
     QTRY_COMPARE(spy.count(), 1);
 }
 
+/*
 void tst_WebPage::linkedResources()
 {
     SubWebPage page;
@@ -312,7 +319,7 @@ void tst_WebPage::linkedResources()
         "</body>"
     "</html>";
 
-    page.mainFrame()->setHtml(html, QUrl("http://foobar.baz/foo/"));
+    page->setHtml(html, QUrl("http://foobar.baz/foo/"));
 
     QList<WebPageLinkedResource> resources = page.linkedResources();
     QCOMPARE(resources.count(), 4);
@@ -347,7 +354,8 @@ void tst_WebPage::linkedResources()
     QCOMPARE(resources.at(2).href, QUrl("http://barbaz.foo/atom.xml"));
     QCOMPARE(resources.at(3).href, QUrl("http://external.foo/search.xml"));
 }
-
+*/
+/*
 void tst_WebPage::javaScriptObjects_data()
 {
     QTest::addColumn<QUrl>("url");
@@ -375,7 +383,7 @@ void tst_WebPage::javaScriptObjects()
     QCOMPARE(windowExternal, !windowExternalVariant.isNull());
     QCOMPARE(windowEndorphin, !windowEndorphinVariant.isNull());
 }
-
+*/
 void tst_WebPage::userAgent()
 {
     QSettings settings;

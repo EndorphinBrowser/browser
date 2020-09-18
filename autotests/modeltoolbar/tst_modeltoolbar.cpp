@@ -21,7 +21,6 @@
 #include <modeltoolbar.h>
 #include "qtry.h"
 
-#include "browserapplication.h"
 #include "modelmenu.h"
 
 #include <qaction.h>
@@ -273,11 +272,6 @@ void tst_ModelToolBar::activated()
 
         if (spy.count())
             QCOMPARE(spy.at(0).at(0).value<QModelIndex>(), bar.index(action));
-
-        if (action) {
-            QCOMPARE(BrowserApplication::instance()->eventMouseButtons(), Qt::MidButton);
-            QCOMPARE(BrowserApplication::instance()->eventKeyboardModifiers(), Qt::ShiftModifier);
-        }
 
         spy.clear();
 

@@ -122,7 +122,7 @@ void tst_TabWidget::tabwidget_data()
 void tst_TabWidget::tabwidget()
 {
     SubTabWidget widget;
-    widget.addWebAction((QAction*)0, QWebPage::Back);
+    widget.addWebAction((QAction*)0, QWebEnginePage::Back);
     widget.closeTab();
     QVERIFY(widget.closeTabAction());
     widget.currentWebView();
@@ -138,17 +138,17 @@ void tst_TabWidget::tabwidget()
     QVERIFY(widget.currentLocationBar());
 }
 
-Q_DECLARE_METATYPE(QWebPage::WebAction)
+Q_DECLARE_METATYPE(QWebEnginePage::WebAction)
 void tst_TabWidget::addWebAction_data()
 {
-    QTest::addColumn<QWebPage::WebAction>("webAction");
-    QTest::newRow("back") << QWebPage::Back;
+    QTest::addColumn<QWebEnginePage::WebAction>("webAction");
+    QTest::newRow("back") << QWebEnginePage::Back;
 }
 
-// public void addWebAction(QAction *action, QWebPage::WebAction webAction)
+// public void addWebAction(QAction *action, QWebEnginePage::WebAction webAction)
 void tst_TabWidget::addWebAction()
 {
-    QFETCH(QWebPage::WebAction, webAction);
+    QFETCH(QWebEnginePage::WebAction, webAction);
 
     SubTabWidget widget;
 
