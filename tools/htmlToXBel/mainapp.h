@@ -27,7 +27,7 @@ class QPushButton;
 
 class MainApp : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     MainApp(QObject *parent = nullptr);
     QString get(QString &input);

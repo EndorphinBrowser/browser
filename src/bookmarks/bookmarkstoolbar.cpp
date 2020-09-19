@@ -45,11 +45,11 @@ BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
 #ifndef NO_BROWSERAPPLICATION
     setRootIndex(model->index(BrowserApplication::bookmarksManager()->toolbar()));
 #else
-    #ifdef FOR_AUTOTEST
+#ifdef FOR_AUTOTEST
     setRootIndex(model->index(tst_AddBookmarkDialog::bookmarksManager()->toolbar()));
-    #else
-        #error "Nothing provides a bookmarksmanager"
-    #endif
+#else
+#error "Nothing provides a bookmarksmanager"
+#endif
 #endif
 
     setContextMenuPolicy(Qt::CustomContextMenu);

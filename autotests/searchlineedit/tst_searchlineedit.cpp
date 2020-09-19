@@ -38,7 +38,8 @@ private slots:
 // Subclass that exposes the protected functions.
 class SubSearchLineEdit : public SearchLineEdit
 {
-public:};
+public:
+};
 
 // This will be called before the first test function is executed.
 // It is only called once.

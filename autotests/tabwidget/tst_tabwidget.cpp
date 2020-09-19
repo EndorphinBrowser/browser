@@ -78,19 +78,29 @@ class SubTabWidget : public TabWidget
 {
 public:
     void call_linkHovered(QString const &link)
-        { return SubTabWidget::linkHovered(link); }
+    {
+        return SubTabWidget::linkHovered(link);
+    }
 
     void call_loadProgress(int progress)
-        { return SubTabWidget::loadProgress(progress); }
+    {
+        return SubTabWidget::loadProgress(progress);
+    }
 
     void call_setCurrentTitle(QString const &url)
-        { return SubTabWidget::setCurrentTitle(url); }
+    {
+        return SubTabWidget::setCurrentTitle(url);
+    }
 
     void call_showStatusBarMessage(QString const &message)
-        { return SubTabWidget::showStatusBarMessage(message); }
+    {
+        return SubTabWidget::showStatusBarMessage(message);
+    }
 
     void call_tabsChanged()
-        { return SubTabWidget::tabsChanged(); }
+    {
+        return SubTabWidget::tabsChanged();
+    }
 };
 
 // This will be called before the first test function is executed.

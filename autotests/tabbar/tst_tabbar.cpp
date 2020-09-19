@@ -48,40 +48,64 @@ class SubTabBar : public TabBar
 {
 public:
     void call_cloneTab(int index)
-        { return SubTabBar::cloneTab(index); }
+    {
+        return SubTabBar::cloneTab(index);
+    }
 
     void call_closeOtherTabs(int index)
-        { return SubTabBar::closeOtherTabs(index); }
+    {
+        return SubTabBar::closeOtherTabs(index);
+    }
 
     void call_closeTab(int index)
-        { return SubTabBar::closeTab(index); }
+    {
+        return SubTabBar::closeTab(index);
+    }
 
     void call_dragEnterEvent(QDragEnterEvent *event)
-        { return SubTabBar::dragEnterEvent(event); }
+    {
+        return SubTabBar::dragEnterEvent(event);
+    }
 
     void call_dropEvent(QDropEvent *event)
-        { return SubTabBar::dropEvent(event); }
+    {
+        return SubTabBar::dropEvent(event);
+    }
 
     void call_mouseMoveEvent(QMouseEvent *event)
-        { return SubTabBar::mouseMoveEvent(event); }
+    {
+        return SubTabBar::mouseMoveEvent(event);
+    }
 
     void call_mousePressEvent(QMouseEvent *event)
-        { return SubTabBar::mousePressEvent(event); }
+    {
+        return SubTabBar::mousePressEvent(event);
+    }
 
     void call_newTab()
-        { return SubTabBar::newTab(); }
+    {
+        return SubTabBar::newTab();
+    }
 
     void call_reloadAllTabs()
-        { return SubTabBar::reloadAllTabs(); }
+    {
+        return SubTabBar::reloadAllTabs();
+    }
 
     void call_reloadTab(int index)
-        { return SubTabBar::reloadTab(index); }
+    {
+        return SubTabBar::reloadTab(index);
+    }
 
     void call_tabLayoutChange()
-        { return SubTabBar::tabLayoutChange(); }
+    {
+        return SubTabBar::tabLayoutChange();
+    }
 
     QSize call_tabSizeHint(int index) const
-        { return SubTabBar::tabSizeHint(index); }
+    {
+        return SubTabBar::tabSizeHint(index);
+    }
 };
 
 // This will be called before the first test function is executed.

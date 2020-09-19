@@ -156,11 +156,11 @@ bool BookmarksMenuBarMenu::prePopulated()
 #ifndef NO_BROWSERAPPLICATION
     m_bookmarksManager = BrowserApplication::bookmarksManager();
 #else
-    #ifdef FOR_AUTOTEST
+#ifdef FOR_AUTOTEST
     m_bookmarksManager = tst_AddBookmarkDialog::bookmarksManager();
-    #else
-        #error "Nothing provides a bookmarksmanager"
-    #endif
+#else
+#error "Nothing provides a bookmarksmanager"
+#endif
 #endif
     setModel(m_bookmarksManager->bookmarksModel());
     setRootIndex(m_bookmarksManager->bookmarksModel()->index(m_bookmarksManager->menu()));

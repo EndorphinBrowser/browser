@@ -48,12 +48,14 @@ class SubAutoSaver : public AutoSaver
 public:
     SubAutoSaver(QObject *parent = 0) : AutoSaver(parent) {}
     void call_timerEvent(QTimerEvent *event)
-        { return SubAutoSaver::timerEvent(event); }
+    {
+        return SubAutoSaver::timerEvent(event);
+    }
 };
 
 class TestClass : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 
 signals:
     void saveCalled();

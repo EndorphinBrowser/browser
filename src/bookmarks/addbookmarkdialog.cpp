@@ -107,11 +107,11 @@ AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmark
 #ifndef NO_BROWSERAPPLICATION
         m_bookmarksManager = BrowserApplication::bookmarksManager();
 #else
-    #ifdef FOR_AUTOTEST
+#ifdef FOR_AUTOTEST
         m_bookmarksManager = tst_AddBookmarkDialog::bookmarksManager();
-    #else
-        #error "Nothing provides a bookmarksmanager"
-    #endif
+#else
+#error "Nothing provides a bookmarksmanager"
+#endif
 #endif
 
     m_proxyModel = new AddBookmarkProxyModel(this);

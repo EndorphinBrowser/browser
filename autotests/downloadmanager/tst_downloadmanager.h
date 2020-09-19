@@ -49,8 +49,8 @@ class SubDownloadManager : public DownloadManager
 {
 public:
     SubDownloadManager(QWidget *parent = 0)
-     : DownloadManager(parent)
-        {}
+        : DownloadManager(parent)
+    {}
 
 };
 

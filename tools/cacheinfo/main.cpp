@@ -24,7 +24,9 @@ class NetworkDiskCache : public QNetworkDiskCache
 {
 public:
     QNetworkCacheMetaData _fileMetaData(const QString &fileName)
-        { return fileMetaData(fileName); }
+    {
+        return fileMetaData(fileName);
+    }
 
 };
 
@@ -58,8 +60,8 @@ int main(int argc, char **argv)
     }
 
     if (!args.isEmpty()
-        && args.count() >= 1
-        && args.first() == QLatin1String("-o")) {
+            && args.count() >= 1
+            && args.first() == QLatin1String("-o")) {
         QUrl url = metaData.url();
         QIODevice *device = diskCache.data(url);
         if (!device) {

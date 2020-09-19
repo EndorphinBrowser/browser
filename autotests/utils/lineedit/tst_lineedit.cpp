@@ -52,7 +52,9 @@ class SubLineEdit : public LineEdit
 {
 public:
     void call_resizeEvent(QResizeEvent *event)
-        { return SubLineEdit::resizeEvent(event); }
+    {
+        return SubLineEdit::resizeEvent(event);
+    }
 };
 
 // This will be called before the first test function is executed.

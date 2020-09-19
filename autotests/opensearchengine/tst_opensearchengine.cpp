@@ -90,16 +90,24 @@ class SubOpenSearchEngine : public OpenSearchEngine
 {
 public:
     void call_imageChanged()
-        { return SubOpenSearchEngine::imageChanged(); }
+    {
+        return SubOpenSearchEngine::imageChanged();
+    }
 
     void call_loadImage() const
-        { return SubOpenSearchEngine::loadImage(); }
+    {
+        return SubOpenSearchEngine::loadImage();
+    }
 
     QString call_parseTemplate(QString const &searchTerm, QString const &searchTemplate) const
-        { return SubOpenSearchEngine::parseTemplate(searchTerm, searchTemplate); }
+    {
+        return SubOpenSearchEngine::parseTemplate(searchTerm, searchTemplate);
+    }
 
     void call_suggestions(QStringList const &suggestions)
-        { return SubOpenSearchEngine::suggestions(suggestions); }
+    {
+        return SubOpenSearchEngine::suggestions(suggestions);
+    }
 };
 
 class SuggestionsTestNetworkReply : public QNetworkReply
@@ -190,31 +198,31 @@ protected:
 
 class Delegate : public OpenSearchEngineDelegate
 {
-    public:
-        Delegate()
-            : OpenSearchEngineDelegate()
-            , callsCount(0)
-        {
-        }
+public:
+    Delegate()
+        : OpenSearchEngineDelegate()
+        , callsCount(0)
+    {
+    }
 
-        ~Delegate()
-        {
-        }
+    ~Delegate()
+    {
+    }
 
-        void performSearchRequest(const QNetworkRequest &request,
-                                  QNetworkAccessManager::Operation operation,
-                                  const QByteArray &data)
-        {
-            ++callsCount;
-            lastRequest = request;
-            lastOperation = operation;
-            lastData = data;
-        }
+    void performSearchRequest(const QNetworkRequest &request,
+                              QNetworkAccessManager::Operation operation,
+                              const QByteArray &data)
+    {
+        ++callsCount;
+        lastRequest = request;
+        lastOperation = operation;
+        lastData = data;
+    }
 
-        QNetworkRequest lastRequest;
-        QNetworkAccessManager::Operation lastOperation;
-        QByteArray lastData;
-        int callsCount;
+    QNetworkRequest lastRequest;
+    QNetworkAccessManager::Operation lastOperation;
+    QByteArray lastData;
+    int callsCount;
 };
 
 // This will be called before the first test function is executed.
@@ -456,14 +464,14 @@ void tst_OpenSearchEngine::operatorequal_data()
                           << Parameters() << Parameters()
                           << false;
     QTest::newRow("description") << QString() << QString("x") << QString() << QString() << QString()
-                          << Parameters() << Parameters()
-                          << false;
+                                 << Parameters() << Parameters()
+                                 << false;
     QTest::newRow("imageUrl") << QString() << QString() << QString("x") << QString() << QString()
-                          << Parameters() << Parameters()
-                          << false;
+                              << Parameters() << Parameters()
+                              << false;
     QTest::newRow("parameters") << QString() << QString() << QString() << QString() << QString()
-                          << (Parameters() << Parameter("a", "b")) << Parameters()
-                          << false;
+                                << (Parameters() << Parameter("a", "b")) << Parameters()
+                                << false;
 }
 
 // public bool operator==(OpenSearchEngine const &other) const
@@ -620,12 +628,12 @@ void tst_OpenSearchEngine::searchUrl_data()
     QTest::addColumn<QUrl>("searchUrl");
     QTest::newRow("null") << QString() << QString() << Parameters() << QUrl();
     QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
-                    << Parameters() << QUrl(QString("http://foobar.baz/?q=foo"));
+                         << Parameters() << QUrl(QString("http://foobar.baz/?q=foo"));
     QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
-                    << Parameters() << QUrl(QString("http://foobar.baz/?q="));
+                           << Parameters() << QUrl(QString("http://foobar.baz/?q="));
     QTest::newRow("parameters") << QString("baz") << QString("http://foobar.baz/?q={searchTerms}")
-                    << (Parameters() << Parameter("abc", "{searchTerms}") << Parameter("x", "yz"))
-                    << QUrl(QString("http://foobar.baz/?q=baz&abc=baz&x=yz"));
+                                << (Parameters() << Parameter("abc", "{searchTerms}") << Parameter("x", "yz"))
+                                << QUrl(QString("http://foobar.baz/?q=baz&abc=baz&x=yz"));
 }
 
 // public QUrl searchUrl(QString const &searchTerm) const
@@ -703,12 +711,12 @@ void tst_OpenSearchEngine::suggestionsUrl_data()
     QTest::addColumn<QUrl>("suggestionsUrl");
     QTest::newRow("null") << QString() << QString() << Parameters() << QUrl();
     QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
-                    << Parameters() << QUrl(QString("http://foobar.baz/?q=foo"));
+                         << Parameters() << QUrl(QString("http://foobar.baz/?q=foo"));
     QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
-                    << Parameters() << QUrl(QString("http://foobar.baz/?q="));
+                           << Parameters() << QUrl(QString("http://foobar.baz/?q="));
     QTest::newRow("parameters") << QString("baz") << QString("http://foobar.baz/?q={searchTerms}")
-                    << (Parameters() << Parameter("a", "bc"))
-                    << QUrl(QString("http://foobar.baz/?q=baz&a=bc"));
+                                << (Parameters() << Parameter("a", "bc"))
+                                << QUrl(QString("http://foobar.baz/?q=baz&a=bc"));
 }
 
 // public QUrl suggestionsUrl(QString const &searchTerm) const
@@ -760,25 +768,25 @@ void tst_OpenSearchEngine::parseTemplate_data()
     QTest::addColumn<bool>("valid");
     QTest::newRow("null") << QString() << QString() << QString() << false;
     QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
-                    << QString("http://foobar.baz/?q=foo") << true;
+                         << QString("http://foobar.baz/?q=foo") << true;
     QTest::newRow("allParameters") << QString("bar")
-                    << QString("http://foobar.baz/?st={searchTerms}&amp;c={count}"
-                               "&amp;si={startIndex}&amp;sp={startPage}&amp;l={language}"
-                               "&amp;ie={inputEncoding}&amp;oe={outputEncoding}")
-                    << QString("http://foobar.baz/?st=bar&amp;c=20&amp;si=0&amp;"
-                               "sp=0&amp;l=%1&amp;ie=UTF-8&amp;oe=UTF-8").arg(lang)
-                    << true;
+                                   << QString("http://foobar.baz/?st={searchTerms}&amp;c={count}"
+                                           "&amp;si={startIndex}&amp;sp={startPage}&amp;l={language}"
+                                           "&amp;ie={inputEncoding}&amp;oe={outputEncoding}")
+                                   << QString("http://foobar.baz/?st=bar&amp;c=20&amp;si=0&amp;"
+                                           "sp=0&amp;l=%1&amp;ie=UTF-8&amp;oe=UTF-8").arg(lang)
+                                   << true;
     QTest::newRow("tricky") << QString("{count}") << QString("http://foobar.baz/q={searchTerms}&amp;count={count}")
-                    << QString("http://foobar.baz/q=%7Bcount%7D&amp;count=20") << true;
+                            << QString("http://foobar.baz/q=%7Bcount%7D&amp;count=20") << true;
     QTest::newRow("multiple") << QString("abc") << QString("http://foobar.baz/?q={searchTerms}&amp;x={searchTerms}")
-                    << QString("http://foobar.baz/?q=abc&amp;x=abc") << true;
+                              << QString("http://foobar.baz/?q=abc&amp;x=abc") << true;
     QTest::newRow("referrer") << QString("foo")
-                    << QString("http://foobar.baz/?q={searchTerms}&amp;a={source}&amp;b={ref:source}&amp;c={referrer:source?}")
-                    << QString("http://foobar.baz/?q=foo&amp;a=tst_opensearchengine"
-                               "&amp;b=tst_opensearchengine&amp;c=tst_opensearchengine")
-                    << true;
+                              << QString("http://foobar.baz/?q={searchTerms}&amp;a={source}&amp;b={ref:source}&amp;c={referrer:source?}")
+                              << QString("http://foobar.baz/?q=foo&amp;a=tst_opensearchengine"
+                                         "&amp;b=tst_opensearchengine&amp;c=tst_opensearchengine")
+                              << true;
     QTest::newRow("inputEncoding") << QString("c++") << QString("http://foobar.baz/?q={searchTerms}")
-                    << QString("http://foobar.baz/?q=c%2B%2B") << true;
+                                   << QString("http://foobar.baz/?q=c%2B%2B") << true;
 }
 
 // protected QString parseTemplate(QString const &searchTerm, QString const &searchTemplate) const

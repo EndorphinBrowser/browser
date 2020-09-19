@@ -55,13 +55,20 @@ class SubModelToolBar : public ModelToolBar
 {
 public:
     void call_activated(QModelIndex const &index)
-        { return SubModelToolBar::activated(index); }
+    {
+        return SubModelToolBar::activated(index);
+    }
 
     void call_build()
-        { SubModelToolBar::build(); resize(sizeHint()); }
+    {
+        SubModelToolBar::build();
+        resize(sizeHint());
+    }
 
     ModelMenu *call_createMenu()
-        { return SubModelToolBar::createMenu(); }
+    {
+        return SubModelToolBar::createMenu();
+    }
 };
 
 class ColorModel : public QAbstractItemModel
@@ -101,10 +108,10 @@ public:
         switch (role) {
         case Qt::DisplayRole:
             return m_colours.at(index.row());
-        break;
+            break;
         default:
             return QVariant();
-        break;
+            break;
         }
     }
 

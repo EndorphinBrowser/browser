@@ -78,5 +78,7 @@ public:
     }
 
     void prependHistoryEntry(const HistoryEntry &item)
-        { HistoryManager::prependHistoryEntry(item); }
+    {
+        HistoryManager::prependHistoryEntry(item);
+    }
 };

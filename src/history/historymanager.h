@@ -73,8 +73,8 @@ class HistoryEntry
 public:
     HistoryEntry() {}
     HistoryEntry(const QString &u,
-                const QDateTime &d = QDateTime(), const QString &t = QString())
-            : url(u), title(t), dateTime(d) {}
+                 const QDateTime &d = QDateTime(), const QString &t = QString())
+        : url(u), title(t), dateTime(d) {}
 
     inline bool operator==(const HistoryEntry &other) const {
         return other.title == title
@@ -83,7 +83,9 @@ public:
 
     // history is sorted in reverse
     inline bool operator <(const HistoryEntry &other) const
-        { return dateTime > other.dateTime; }
+    {
+        return dateTime > other.dateTime;
+    }
 
     QString userTitle() const;
 
@@ -128,7 +130,7 @@ public:
     HistoryModel *historyModel() const;
     HistoryFilterModel *historyFilterModel() const;
     HistoryTreeModel *historyTreeModel() const;
-    
+
     QString dataFilePath(const QString &fileName);
 
 public slots:

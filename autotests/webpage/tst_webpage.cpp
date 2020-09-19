@@ -62,20 +62,26 @@ class SubWebPage : public WebPage
 {
 public:
     QString call_userAgentForUrl(const QUrl &url) const
-        { return SubWebPage::userAgentForUrl(url); }
+    {
+        return SubWebPage::userAgentForUrl(url);
+    }
 
     void call_aboutToLoadUrl(QUrl const &url)
-        { return SubWebPage::aboutToLoadUrl(url); }
+    {
+        return SubWebPage::aboutToLoadUrl(url);
+    }
 
-/*
-    bool call_acceptNavigationRequest(QWebFrame *frame, QNetworkRequest const &request, NavigationType type)
-        { return SubWebPage::acceptNavigationRequest(frame, request, type); }
+    /*
+        bool call_acceptNavigationRequest(QWebFrame *frame, QNetworkRequest const &request, NavigationType type)
+            { return SubWebPage::acceptNavigationRequest(frame, request, type); }
 
-    QObject *call_createPlugin(QString const &classId, QUrl const &url, QStringList const &paramNames, QStringList const &paramValues)
-        { return SubWebPage::createPlugin(classId, url, paramNames, paramValues); }
-*/
+        QObject *call_createPlugin(QString const &classId, QUrl const &url, QStringList const &paramNames, QStringList const &paramValues)
+            { return SubWebPage::createPlugin(classId, url, paramNames, paramValues); }
+    */
     QWebEnginePage *call_createWindow(QWebEnginePage::WebWindowType type)
-        { return SubWebPage::createWindow(type); }
+    {
+        return SubWebPage::createWindow(type);
+    }
 };
 
 // This will be called before the first test function is executed.

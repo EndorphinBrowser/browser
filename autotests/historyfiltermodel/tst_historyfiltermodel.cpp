@@ -68,8 +68,8 @@ HistoryList makeHistoryList(int count)
     for (int i = 0; i < count; ++i) {
         HistoryEntry item;
         QString url = QString("http://%1host-%2.com/")
-            .arg(qrand() % 2 ? "www." : "")
-            .arg(QString::number(i));
+                      .arg(qrand() % 2 ? "www." : "")
+                      .arg(QString::number(i));
         item.url = url;
         item.title = QString("title %1").arg(i);
         item.dateTime = dateTime;
@@ -186,8 +186,8 @@ void tst_HistoryFilterModel::addRow_data()
     list4.insert(1, list4.at(1));
     list4[1].dateTime = list4[1].dateTime.addSecs(1);
     QTest::newRow("many-0") << list4
-        << list4[0].url
-        << (EnabledList() << 0 << 0 << 2 << 2 << 4 << 5 << 6);
+                            << list4[0].url
+                            << (EnabledList() << 0 << 0 << 2 << 2 << 4 << 5 << 6);
 
     HistoryList list5 = makeHistoryList(3);
     // 0, 1, 2
@@ -200,8 +200,8 @@ void tst_HistoryFilterModel::addRow_data()
 
     // ?, 1, 2, 2, 4, 2
     QTest::newRow("many-1") << list5
-        << list5[1].url
-        << (EnabledList() << 0 << 1 << 0 << 0 << 4 << 0);
+                            << list5[1].url
+                            << (EnabledList() << 0 << 1 << 0 << 0 << 4 << 0);
 }
 
 void tst_HistoryFilterModel::addRow()
@@ -223,9 +223,9 @@ void tst_HistoryFilterModel::addRow()
         QCOMPARE(model.historyLocation(model.history->history().value(i).url), enabledList[i]);
 
         if (i > 0
-            && enabledList[i] != 0
-            && (enabledList[i-1] < enabledList[i]
-            || enabledList[i-1] == 0))
+                && enabledList[i] != 0
+                && (enabledList[i-1] < enabledList[i]
+                    || enabledList[i-1] == 0))
             ++currentRow;
         if (currentRow >= model.rowCount() || enabledList[i] == 0)
             continue;

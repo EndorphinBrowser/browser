@@ -59,7 +59,7 @@ int main(int argc, char **argv)
             inFile.open(QIODevice::ReadOnly);
         } else {
             qWarning() << "Usage: htmlToXBel"
-                        << "[stdin|htmlfile]" << "[stdout|-o outFile]";
+                       << "[stdin|htmlfile]" << "[stdout|-o outFile]";
             return 1;
         }
     }
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
     if (!setOutput)
         outFile.open(stdout, QIODevice::WriteOnly);
     if (inFile.openMode() == QIODevice::NotOpen
-        || outFile.openMode() == QIODevice::NotOpen) {
+            || outFile.openMode() == QIODevice::NotOpen) {
         qWarning() << "Unable to open streams";
         return 1;
     }

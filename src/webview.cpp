@@ -280,7 +280,9 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
 
     QAction *action = new QAction(menu);
     action->setText("Inspect Element");
-    connect(action, &QAction::triggered, [this]() { emit devToolsRequested(page()); });
+    connect(action, &QAction::triggered, [this]() {
+        emit devToolsRequested(page());
+    });
     menu->addAction(action);
 
     if (!menu->isEmpty()) {

@@ -118,22 +118,22 @@ void tst_HistoryManager::addHistoryEntry_data()
     HistoryList swap;
     swap << item2 << item1;
     QTest::newRow("2-2,1") << one << (HistoryList() << item2) << swap;
-/*
-    // move to test for the historyFilterModel
-    HistoryEntry item3("http://baz.com", QDateTime::currentDateTime().addDays(-1));
-    HistoryEntry item3n("http://baz.com", QDateTime::currentDateTime());
-    QTest::newRow("move-1") << (HistoryList() << item3 << item2 << item1)
-                             << (HistoryList() << item3)
-                             <<  (HistoryList() << item3 << item2 << item1);
+    /*
+        // move to test for the historyFilterModel
+        HistoryEntry item3("http://baz.com", QDateTime::currentDateTime().addDays(-1));
+        HistoryEntry item3n("http://baz.com", QDateTime::currentDateTime());
+        QTest::newRow("move-1") << (HistoryList() << item3 << item2 << item1)
+                                 << (HistoryList() << item3)
+                                 <<  (HistoryList() << item3 << item2 << item1);
 
-    QTest::newRow("move-2") << (HistoryList() << item3 << item2 << item1)
-                             << (HistoryList() << item2n)
-                             <<  (HistoryList() << item2n << item3 << item1);
+        QTest::newRow("move-2") << (HistoryList() << item3 << item2 << item1)
+                                 << (HistoryList() << item2n)
+                                 <<  (HistoryList() << item2n << item3 << item1);
 
-    QTest::newRow("move-3") << (HistoryList())
-                             << (HistoryList() << item1 << item2 << item3 << item2n << item3n)
-                             <<  (HistoryList() << item3n << item2n << item1);
-    */
+        QTest::newRow("move-3") << (HistoryList())
+                                 << (HistoryList() << item1 << item2 << item3 << item2n << item3n)
+                                 <<  (HistoryList() << item3n << item2n << item1);
+        */
 }
 
 // public void addHistoryEntry(HistoryEntry *item)
@@ -437,11 +437,11 @@ void tst_HistoryManager::historyDialog()
 
     QAbstractItemModel *model = dialog.tree->model();
     ModelTest test(model);
-/*
-    for (int i = 0; i < model->rowCount(); ++i)
-        if (model->rowCount(model->index(i, 0)) == 1)
-            qDebug() << i;
-*/
+    /*
+        for (int i = 0; i < model->rowCount(); ++i)
+            if (model->rowCount(model->index(i, 0)) == 1)
+                qDebug() << i;
+    */
     if (parentRow == -2)
         parentRow = model->rowCount() - 1;
     QModelIndex parent = model->index(parentRow, parentColumn);
