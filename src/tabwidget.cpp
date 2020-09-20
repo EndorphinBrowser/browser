@@ -408,7 +408,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
             this, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
     connect(webView->page(), SIGNAL(windowCloseRequested()),
             this, SLOT(windowCloseRequested()));
-    connect(webView->page(), SIGNAL(printRequested(Q)),
+    connect(webView->page(), SIGNAL(printRequested()),
             this, SIGNAL(printRequested(webView->page())));
     connect(webView->page(), SIGNAL(geometryChangeRequested(const QRect &)),
             this, SLOT(geometryChangeRequestedCheck(const QRect &)));
