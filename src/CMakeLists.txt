@@ -88,7 +88,7 @@ set(Endorphin_SRCS
     bookmarks/xbel/xbelreader.cpp
 	bookmarks/xbel/xbelwriter.cpp
 	history/history.cpp
-	history/historycompleter.cpp
+	locationcompleter.cpp
 	history/historymanager.cpp
 	locationbar/locationbar.cpp
 	locationbar/locationbarsiteicon.cpp

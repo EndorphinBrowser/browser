@@ -33,7 +33,7 @@ set(SRCS
 	../../src/searchbutton.cpp
 	../../src/searchlineedit.cpp
 	../../src/history/history.cpp
-	../../src/history/historycompleter.cpp
+	../../src/locationcompleter.cpp
 	../../src/history/historymanager.cpp
 	../../src/utils/edittreeview.cpp
 	../../src/utils/lineedit.cpp

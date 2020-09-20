@@ -18,8 +18,8 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef HISTORYCOMPLETER_H
-#define HISTORYCOMPLETER_H
+#ifndef LOCATIONCOMPLETER_H
+#define LOCATIONCOMPLETER_H
 
 #include "history.h"
 
@@ -81,13 +81,13 @@ private:
     bool m_isValid;
 };
 
-class HistoryCompleter : public QCompleter
+class LocationCompleter : public QCompleter
 {
     Q_OBJECT
 
 public:
-    HistoryCompleter(QObject *parent = nullptr);
-    HistoryCompleter(QAbstractItemModel *model, QObject *parent = nullptr);
+    LocationCompleter(QObject *parent = nullptr);
+    LocationCompleter(QAbstractItemModel *model, QObject *parent = nullptr);
 
     virtual QString pathFromIndex(const QModelIndex &index) const;
     virtual QStringList splitPath(const QString &path) const;

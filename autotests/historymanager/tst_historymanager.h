@@ -20,7 +20,7 @@
 #include <QtTest/QtTest>
 
 #include <historymanager.h>
-#include <historycompleter.h>
+#include <locationcompleter.h>
 #include <modeltest.h>
 
 #include <QWebEngineSettings>

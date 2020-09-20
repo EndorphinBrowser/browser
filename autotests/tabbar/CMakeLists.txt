@@ -76,7 +76,7 @@ set(Endorphin_SRCS
     ../../src/bookmarks/xbel/xbelreader.cpp
 	../../src/bookmarks/xbel/xbelwriter.cpp
 	../../src/history/history.cpp
-	../../src/history/historycompleter.cpp
+	../../src/locationcompleter.cpp
 	../../src/history/historymanager.cpp
 	../../src/locationbar/locationbar.cpp
 	../../src/locationbar/locationbarsiteicon.cpp

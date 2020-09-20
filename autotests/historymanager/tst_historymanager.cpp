@@ -21,7 +21,7 @@
 
 #include <historymanager.h>
 #include "history.h"
-#include <historycompleter.h>
+#include <locationcompleter.h>
 #include <modeltest.h>
 
 #include <QWebEngineSettings>

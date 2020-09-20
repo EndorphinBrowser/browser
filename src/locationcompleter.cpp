@@ -17,7 +17,7 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include "historycompleter.h"
+#include "locationcompleter.h"
 
 #include <qevent.h>
 #include <qfontmetrics.h>
@@ -117,7 +117,7 @@ void HistoryCompletionModel::setValid(bool b)
 
     m_isValid = b;
 
-    // tell the HistoryCompleter that we've changed
+    // tell the LocationCompleter that we've changed
     emit dataChanged(index(0, 0), index(0, rowCount() - 1));
 }
 
@@ -164,19 +164,19 @@ bool HistoryCompletionModel::lessThan(const QModelIndex &left, const QModelIndex
     return (frecency_r < frecency_l);
 }
 
-HistoryCompleter::HistoryCompleter(QObject *parent)
+LocationCompleter::LocationCompleter(QObject *parent)
     : QCompleter(parent)
 {
     init();
 }
 
-HistoryCompleter::HistoryCompleter(QAbstractItemModel *m, QObject *parent)
+LocationCompleter::LocationCompleter(QAbstractItemModel *m, QObject *parent)
     : QCompleter(m, parent)
 {
     init();
 }
 
-void HistoryCompleter::init()
+void LocationCompleter::init()
 {
     setPopup(new HistoryCompletionView());
 
@@ -192,14 +192,14 @@ void HistoryCompleter::init()
     connect(&m_filterTimer, SIGNAL(timeout()), this, SLOT(updateFilter()));
 }
 
-QString HistoryCompleter::pathFromIndex(const QModelIndex &index) const
+QString LocationCompleter::pathFromIndex(const QModelIndex &index) const
 {
     // we want to return the actual url from the history for the
     // data the QCompleter finally returns
     return model()->data(index, HistoryModel::UrlStringRole).toString();
 }
 
-QStringList HistoryCompleter::splitPath(const QString &path) const
+QStringList LocationCompleter::splitPath(const QString &path) const
 {
     if (path == m_searchString)
         return QStringList() << QLatin1String("a");
@@ -226,7 +226,7 @@ QStringList HistoryCompleter::splitPath(const QString &path) const
     return QStringList() << QLatin1String("a");
 }
 
-bool HistoryCompleter::eventFilter(QObject *obj, QEvent *event)
+bool LocationCompleter::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress && popup()->isVisible()) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
@@ -257,7 +257,7 @@ bool HistoryCompleter::eventFilter(QObject *obj, QEvent *event)
     return QCompleter::eventFilter(obj, event);
 }
 
-void HistoryCompleter::updateFilter()
+void LocationCompleter::updateFilter()
 {
     HistoryCompletionModel *completionModel = qobject_cast<HistoryCompletionModel*>(model());
     Q_ASSERT(completionModel);
