@@ -12,6 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Prepare for 20.10
+      run: sudo bash -c 'echo "Prompt=normal" >> /etc/update-manager/release-upgrades'
     - name: Update to 20.10
       run: sudo apt update && sudo apt upgrade && sudo do-release-upgrade
 
