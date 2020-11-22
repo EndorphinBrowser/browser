@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Update to 20.10
+      run: sudo apt update && sudo apt upgrade && sudo do-release-upgrade
+
     - name: Install dependencies
       run: sudo apt install -y qtwebengine5-dev libqt5webkit5-dev qtbase5-dev qtbase5-dev-tools qtscript5-dev qttools5-dev qt5-default
 
