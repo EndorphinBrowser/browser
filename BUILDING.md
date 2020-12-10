@@ -13,7 +13,7 @@ To install Qt 5.14, visit the [Download Page](https://www.qt.io/download) or use
 Now we will download the latest tree of Endorphin. Issue these commands:
 ```
 $ git clone git://github.com/EndorphinBrowser/browser.git
-$ cd endorphin-browser
+$ cd browser
 $ mkdir build && cd build
 $ cmake ..
 $ make -j$(nproc)
