@@ -39,7 +39,6 @@ set(SRCS
 )
 
 # From main browser 
-
 set(Endorphin_SRCS
 	../../src/aboutdialog.cpp
 	../../src/acceptlanguagedialog.cpp

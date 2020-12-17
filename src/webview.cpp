@@ -303,7 +303,7 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
 void WebView::wheelEvent(QWheelEvent *event)
 {
     if (event->modifiers() & Qt::ControlModifier) {
-        int numDegrees = event->delta() / 8;
+        int numDegrees = event->angleDelta().y() / 8;
         int numSteps = numDegrees / 15;
         m_currentZoom = m_currentZoom + numSteps * 10;
         applyZoom();

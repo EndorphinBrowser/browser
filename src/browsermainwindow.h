@@ -88,7 +88,7 @@ class BrowserMainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    BrowserMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = nullptr);
+    BrowserMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
     ~BrowserMainWindow();
     QSize sizeHint() const;
 

@@ -858,7 +858,7 @@ bool DownloadModel::removeRows(int row, int count, const QModelIndex &parent)
 Qt::ItemFlags DownloadModel::flags(const QModelIndex &index) const
 {
     if (index.row() < 0 || index.row() >= rowCount(index.parent()))
-        return 0;
+        return Qt::ItemFlags();
 
     Qt::ItemFlags defaultFlags = QAbstractItemModel::flags(index);
 

@@ -54,8 +54,8 @@ int main(int argc, char **argv)
     args.takeFirst();
     if (args.isEmpty()) {
         QTextStream stream(stdout);
-        stream << "endorphin-placesimport is a tool for importing browser history from Firefox 3 and up" << endl;
-        stream << "endorphin-placesinfo ~/.mozilla/firefox/[profile-dir]/places.sqlite" << endl;
+        stream << "endorphin-placesimport is a tool for importing browser history from Firefox 3 and up" << Qt::endl;
+        stream << "endorphin-placesinfo ~/.mozilla/firefox/[profile-dir]/places.sqlite" << Qt::endl;
         return 0;
     }
 

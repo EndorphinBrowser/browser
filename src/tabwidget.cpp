@@ -878,7 +878,7 @@ TabWidget::OpenUrlIn TabWidget::modifyWithUserBehavior(OpenUrlIn tab) {
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
     qDebug() << __FUNCTION__ << "end" << modifiers << buttons << tab;
 #endif
-    BrowserApplication::instance()->setEventKeyboardModifiers(nullptr);
+    BrowserApplication::instance()->setEventKeyboardModifiers(Qt::NoModifier);
     BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
     return tab;
 }

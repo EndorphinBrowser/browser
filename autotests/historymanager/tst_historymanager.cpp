@@ -220,7 +220,7 @@ void tst_HistoryManager::daysToExpire()
     SubHistory history;
 
     history.setHistory(list);
-    qSort(list.begin(), list.end());
+    std::sort(list.begin(), list.end());
     QCOMPARE(history.history(), list);
 
     history.setDaysToExpire(daysToExpire);

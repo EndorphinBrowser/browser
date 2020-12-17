@@ -34,7 +34,7 @@ class DevToolsWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    DevToolsWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = nullptr);
+    DevToolsWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
     ~DevToolsWindow();
     QWebEnginePage *page();
     QSize sizeHint() const;

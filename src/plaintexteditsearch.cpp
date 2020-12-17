@@ -31,7 +31,7 @@ PlainTextEditSearch::PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget 
 
 void PlainTextEditSearch::findNext()
 {
-    find(0);
+    find(QTextDocument::FindFlags());
 }
 
 void PlainTextEditSearch::findPrevious()

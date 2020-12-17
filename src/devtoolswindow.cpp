@@ -24,6 +24,7 @@
 #include <QWidget>
 #include <QWebEngineView>
 #include <QWebEnginePage>
+#include <QScreen>
 
 DevToolsWindow::DevToolsWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)
@@ -48,7 +49,7 @@ QWebEnginePage *DevToolsWindow::page()
 
 QSize DevToolsWindow::sizeHint() const
 {
-    QRect desktopRect = QApplication::desktop()->screenGeometry();
+    QRect desktopRect = qApp->primaryScreen()->geometry();
     QSize size = desktopRect.size() * 0.4;
     return size;
 }

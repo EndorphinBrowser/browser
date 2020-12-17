@@ -40,7 +40,7 @@ WebViewSearch::WebViewSearch(QWebEngineView *webView, QWidget *parent)
 
 void WebViewSearch::findNext()
 {
-    find(nullptr);
+    find(QWebEnginePage::FindFlags());
 }
 
 void WebViewSearch::findPrevious()
@@ -50,7 +50,7 @@ void WebViewSearch::findPrevious()
 
 void WebViewSearch::highlightAll()
 {
-    webView()->findText(QString(), nullptr);
+    webView()->findText(QString(), QWebEnginePage::FindFlags());
 
     /*
         if (ui.highlightAllButton->isChecked())

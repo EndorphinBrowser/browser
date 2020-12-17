@@ -17,7 +17,8 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <QtTest/QtTest>
+#include <QtTest>
+#include <QRandomGenerator>
 #include <history.h>
 #include <historymanager.h>
 #include <ui_history.h>
@@ -68,13 +69,13 @@ HistoryList makeHistoryList(int count)
     for (int i = 0; i < count; ++i) {
         HistoryEntry item;
         QString url = QString("http://%1host-%2.com/")
-                      .arg(qrand() % 2 ? "www." : "")
+                      .arg(QRandomGenerator::global()->generate() % 2 ? "www." : "")
                       .arg(QString::number(i));
         item.url = url;
         item.title = QString("title %1").arg(i);
         item.dateTime = dateTime;
         list.append(item);
-        dateTime = dateTime.addSecs(-1 * qrand() % (60 * 60));
+        dateTime = dateTime.addSecs(-1 * QRandomGenerator::global()->generate() % (60 * 60));
     }
     return list;
 }
@@ -240,8 +241,8 @@ void tst_HistoryFilterModel::addRow()
     }
 
     if (history.count() > 0)
-        for (int i = 0; i < qrand() % 15; ++i)
-            model.history->addHistoryEntry(history[qrand() % history.count()].url);
+        for (int i = 0; i < QRandomGenerator::global()->generate() % 15; ++i)
+            model.history->addHistoryEntry(history[QRandomGenerator::global()->generate() % history.count()].url);
     QStringList urls;
     for (int i = 0; i < model.rowCount(); ++i) {
         QModelIndex idx = model.index(i, 0);

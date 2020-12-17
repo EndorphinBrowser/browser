@@ -145,7 +145,7 @@ bool OpenSearchEngineModel::setData(const QModelIndex &index, const QVariant &va
         return false;
 
     QString engineName = m_manager->allEnginesNames().at(index.row());
-    QStringList keywords = value.toString().split(QRegExp(QLatin1String("[ ,]+")), QString::SkipEmptyParts);
+    QStringList keywords = value.toString().split(QRegExp(QLatin1String("[ ,]+")), Qt::SkipEmptyParts);
 
     m_manager->setKeywordsForEngine(m_manager->engine(engineName), keywords);
 

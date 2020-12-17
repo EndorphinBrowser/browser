@@ -75,9 +75,10 @@ void LocationBarSiteIcon::mouseMoveEvent(QMouseEvent *event)
         QList<QUrl> urls;
         urls.append(m_webView->url());
         mimeData->setUrls(urls);
-        const QPixmap *p = pixmap();
-        if (p)
-            drag->setPixmap(*p);
+        QPixmap p = pixmap(Qt::ReturnByValue);
+        if (!pixmap(Qt::ReturnByValue)) {} else {
+            drag->setPixmap(p);
+        }
         drag->setMimeData(mimeData);
         drag->exec();
     }
