@@ -26,11 +26,11 @@
  * SUCH DAMAGE.
  */
 
-#include <qtest.h>
-#include <qsignalspy.h>
+#include <QTest>
+#include <QSignalSpy>
 
 #include <languagemanager.h>
-#include <qlocale.h>
+#include <QLocale>
 
 class tst_LanguageManager : public QObject
 {

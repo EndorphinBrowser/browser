@@ -53,8 +53,4 @@ QT5_WRAP_CPP(MOCS
 )
 
 add_executable(test-addbookmarkdialog ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-addbookmarkdialog Core)
-qt5_use_modules(test-addbookmarkdialog Test)
-qt5_use_modules(test-addbookmarkdialog Widgets)
-qt5_use_modules(test-addbookmarkdialog WebEngine)
-qt5_use_modules(test-addbookmarkdialog WebEngineWidgets)
+target_link_libraries(test-addbookmarkdialog Qt5::Core Qt5::Test Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

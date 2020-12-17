@@ -31,9 +31,4 @@ set(SRCS
 )
 
 add_executable(test-searchlineedit ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-searchlineedit Core)
-qt5_use_modules(test-searchlineedit Test)
-qt5_use_modules(test-searchlineedit Widgets)
-qt5_use_modules(test-searchlineedit Gui)
-qt5_use_modules(test-searchlineedit WebEngine)
-qt5_use_modules(test-searchlineedit WebEngineWidgets)
+target_link_libraries(test-searchlineedit Qt5::Core Qt5::Test Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

@@ -36,10 +36,4 @@ set(SRCS
 )
 
 add_executable(test-opensearchmanager ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-opensearchmanager Core)
-qt5_use_modules(test-opensearchmanager Test)
-qt5_use_modules(test-opensearchmanager Widgets)
-qt5_use_modules(test-opensearchmanager Gui)
-qt5_use_modules(test-opensearchmanager Qml)
-qt5_use_modules(test-opensearchmanager WebEngine)
-qt5_use_modules(test-opensearchmanager WebEngineWidgets)
+target_link_libraries(test-opensearchmanager Qt5::Core Qt5::Test Qt5::Gui Qt5::Qml Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

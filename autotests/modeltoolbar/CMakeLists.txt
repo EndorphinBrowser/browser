@@ -29,9 +29,4 @@ set(SRCS
 )
 
 add_executable(test-modeltoolbar ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-modeltoolbar Core)
-qt5_use_modules(test-modeltoolbar Test)
-qt5_use_modules(test-modeltoolbar Widgets)
-qt5_use_modules(test-modeltoolbar Gui)
-qt5_use_modules(test-modeltoolbar WebEngine)
-qt5_use_modules(test-modeltoolbar WebEngineWidgets)
+target_link_libraries(test-modeltoolbar Qt5::Core Qt5::Test Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

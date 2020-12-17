@@ -32,10 +32,4 @@ set(SRCS
 )
 
 add_executable(test-opensearchengine ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-opensearchengine Core)
-qt5_use_modules(test-opensearchengine Test)
-qt5_use_modules(test-opensearchengine Widgets)
-qt5_use_modules(test-opensearchengine Gui)
-qt5_use_modules(test-opensearchengine Qml)
-qt5_use_modules(test-opensearchengine WebEngine)
-qt5_use_modules(test-opensearchengine WebEngineWidgets)
+target_link_libraries(test-opensearchengine Qt5::Core Qt5::Test Qt5::Gui Qt5::Qml Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

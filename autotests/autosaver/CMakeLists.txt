@@ -18,5 +18,4 @@ QT5_WRAP_CPP(MOCS
 )
 
 add_executable(test-autosaver ${SRCS} ${MOCS})
-qt5_use_modules(test-autosaver Core)
-qt5_use_modules(test-autosaver Test)
+target_link_libraries(test-autosaver Qt5::Core Qt5::Test)

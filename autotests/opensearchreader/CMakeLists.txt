@@ -36,10 +36,4 @@ set(SRCS
 )
 
 add_executable(test-opensearchreader ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-opensearchreader Core)
-qt5_use_modules(test-opensearchreader Test)
-qt5_use_modules(test-opensearchreader Widgets)
-qt5_use_modules(test-opensearchreader Gui)
-qt5_use_modules(test-opensearchreader Qml)
-qt5_use_modules(test-opensearchreader WebEngine)
-qt5_use_modules(test-opensearchreader WebEngineWidgets)
+target_link_libraries(test-opensearchreader Qt5::Core Qt5::Test Qt5::Gui Qt5::Qml Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

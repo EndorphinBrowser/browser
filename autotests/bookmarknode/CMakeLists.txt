@@ -20,5 +20,4 @@ QT5_WRAP_CPP(MOCS
 )
 
 add_executable(test-bookmarknode ${SRCS} ${MOCS})
-qt5_use_modules(test-bookmarknode Core)
-qt5_use_modules(test-bookmarknode Test)
+target_link_libraries(test-bookmarknode Qt5::Core Qt5::Test)

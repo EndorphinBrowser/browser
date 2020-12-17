@@ -51,9 +51,4 @@ QT5_WRAP_CPP(MOCS
 )
 
 add_executable(test-historyfiltermodel ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-historyfiltermodel Core)
-qt5_use_modules(test-historyfiltermodel Test)
-qt5_use_modules(test-historyfiltermodel Widgets)
-qt5_use_modules(test-historyfiltermodel Gui)
-qt5_use_modules(test-historyfiltermodel WebEngine)
-qt5_use_modules(test-historyfiltermodel WebEngineWidgets)
+target_link_libraries(test-historyfiltermodel Qt5::Core Qt5::Test Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

@@ -41,9 +41,4 @@ set(SRCS
 )
 
 add_executable(test-historymanager ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-historymanager Core)
-qt5_use_modules(test-historymanager Test)
-qt5_use_modules(test-historymanager Widgets)
-qt5_use_modules(test-historymanager Gui)
-qt5_use_modules(test-historymanager WebEngine)
-qt5_use_modules(test-historymanager WebEngineWidgets)
+target_link_libraries(test-historymanager Qt5::Core Qt5::Test Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

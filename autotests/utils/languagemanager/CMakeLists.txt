@@ -1,4 +1,4 @@
-project(test-editlistview)
+project(test-languagemanager)
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Test REQUIRED)
@@ -6,6 +6,7 @@ find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5WebEngine REQUIRED)
 find_package(Qt5WebEngineWidgets REQUIRED)
+find_package(Qt5UiTools REQUIRED)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -22,9 +23,9 @@ INCLUDE_DIRECTORIES(
 add_definitions(-DNO_BROWSERAPPLICATION)
 add_definitions(-DFOR_AUTOTEST)
 set(SRCS
-	tst_editlistview.cpp
-	../../../src/utils/editlistview.cpp
+	tst_languagemanager.cpp
+	../../../src/utils/languagemanager.cpp
 )
 
-add_executable(test-editlistview ${SRCS} ${UIS} ${MOCS})
-target_link_libraries(test-editlistview Qt5::Core Qt5::Test Qt5::Gui Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)
+add_executable(test-languagemanager ${SRCS} ${UIS} ${MOCS})
+target_link_libraries(test-languagemanager Qt5::Core Qt5::Test Qt5::Gui Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

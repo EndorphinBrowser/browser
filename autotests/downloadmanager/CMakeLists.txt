@@ -31,9 +31,4 @@ QT5_WRAP_CPP(MOCS
 )
 
 add_executable(test-downloadmanager ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-downloadmanager Core)
-qt5_use_modules(test-downloadmanager Test)
-qt5_use_modules(test-downloadmanager Widgets)
-qt5_use_modules(test-downloadmanager Gui)
-qt5_use_modules(test-downloadmanager WebEngine)
-qt5_use_modules(test-downloadmanager WebEngineWidgets)
+target_link_libraries(test-downloadmanager Qt5::Core Qt5::Test Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)

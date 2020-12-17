@@ -22,8 +22,4 @@ set(placesimport_SRCS
 )
 
 add_executable(endorphin-placesimport ${placesimport_SRCS} ${UIS} ${RSCS} ${TRS} ${MOCS})
-qt5_use_modules(endorphin-placesimport Core)
-qt5_use_modules(endorphin-placesimport Widgets)
-qt5_use_modules(endorphin-placesimport Sql)
-qt5_use_modules(endorphin-placesimport WebEngine)
-qt5_use_modules(endorphin-placesimport WebEngineWidgets)
+target_link_libraries(test-xbel Qt5::Core Qt5::Widgets Qt5::Sql Qt5::WebEngine Qt5::WebEngineWidgets)

@@ -27,9 +27,4 @@ set(SRCS
 )
 
 add_executable(test-edittreeview ${SRCS} ${UIS} ${MOCS})
-qt5_use_modules(test-edittreeview Core)
-qt5_use_modules(test-edittreeview Test)
-qt5_use_modules(test-edittreeview Widgets)
-qt5_use_modules(test-edittreeview Gui)
-qt5_use_modules(test-edittreeview WebEngine)
-qt5_use_modules(test-edittreeview WebEngineWidgets)
+target_link_libraries(test-edittreeview Qt5::Core Qt5::Test Qt5::Gui Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets)
