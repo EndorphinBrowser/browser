@@ -81,6 +81,6 @@ void AboutDialog::authorsButtonClicked()
 
 void AboutDialog::licenseButtonClicked()
 {
-    displayFile(QLatin1String(":LICENSE.GPL2"), tr("License"));
+    displayFile(QLatin1String(":LICENSE"), tr("License"));
 }
 
