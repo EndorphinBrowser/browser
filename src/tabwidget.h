@@ -148,6 +148,8 @@ public:
     static OpenUrlIn modifyWithUserBehavior(OpenUrlIn tab);
     WebView *getView(OpenUrlIn tab, WebView *currentView);
 
+    void setProfile(QWebEngineProfile *profile);
+
 protected:
     void changeEvent(QEvent *event);
 
@@ -184,6 +186,8 @@ private slots:
     void historyCleared();
 
 private:
+    void setupPage(QWebEnginePage* page);
+
     static QUrl guessUrlFromString(const QString &url);
     QLabel *animationLabel(int index, bool addMovie);
     void retranslate();
@@ -206,6 +210,7 @@ private:
     TabBar *m_tabBar;
     QToolButton *addTabButton;
     QToolButton *closeTabButton;
+    QWebEngineProfile *m_profile;
 };
 
 #endif // TABWIDGET_H

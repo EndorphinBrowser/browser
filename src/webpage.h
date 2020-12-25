@@ -23,8 +23,8 @@
 #include "QWebEnginePage"
 #include "tabwidget.h"
 
-#include <qlist.h>
-#include <qnetworkrequest.h>
+#include <QList>
+#include <QNetworkRequest>
 
 class WebPageLinkedResource
 {
@@ -46,7 +46,7 @@ signals:
     void aboutToLoadUrl(const QUrl &url);
 
 public:
-    WebPage(QObject *parent = nullptr);
+    WebPage(QWebEngineProfile *profile, QObject *parent = 0);
     ~WebPage();
 
     void loadSettings();

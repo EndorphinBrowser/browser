@@ -80,6 +80,7 @@ class WebView : public QWebEngineView
 
 public:
     WebView(QWidget *parent = nullptr);
+    void setPage(WebPage *page);
     WebPage *webPage() const {
         return m_page;
     }

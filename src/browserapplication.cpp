@@ -120,18 +120,18 @@
 #include "tabwidget.h"
 #include "webview.h"
 
-#include <qbuffer.h>
-#include <qdesktopservices.h>
-#include <qdir.h>
-#include <qevent.h>
-#include <qlibraryinfo.h>
-#include <qlocalsocket.h>
-#include <qmessagebox.h>
-#include <qsettings.h>
+#include <QBuffer>
+#include <QDesktopServices>
+#include <QDir>
+#include <QEvent>
+#include <QLibraryInfo>
+#include <QLocalSocket>
+#include <QMessageBox>
+#include <QSettings>
 #include <QWebEngineSettings>
 #include <QWebEngineProfile>
 
-#include <qdebug.h>
+#include <QDebug>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -183,6 +183,8 @@ static void setUserStyleSheet(QWebEngineProfile *profile, const QString &styleSh
 BrowserApplication::BrowserApplication(int &argc, char **argv)
     : SingleApplication(argc, argv)
     , quitting(false)
+    , m_privateProfile(0)
+    , m_privateBrowsing(false)
 {
     QCoreApplication::setOrganizationDomain(QLatin1String("EndorphinBrowser.github.io/"));
     QCoreApplication::setApplicationName(QLatin1String("Endorphin"));
@@ -514,11 +516,9 @@ void BrowserApplication::saveSession()
     settings.setValue(QLatin1String("restoring"), false);
     settings.endGroup();
 
-    /*
-        QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
-        if (globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled))
-            return;
-    */
+    if (m_privateBrowsing)
+        return;
+
     clean();
 
     settings.beginGroup(QLatin1String("sessions"));
@@ -756,14 +756,28 @@ void BrowserApplication::setZoomTextOnly(bool textOnly)
 
 bool BrowserApplication::isPrivate()
 {
-    //return QWebEngineSettings::globalSettings()->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled);
-    return false;
+    return m_privateBrowsing;
 }
 
-void BrowserApplication::setPrivate(bool isPrivate)
+
+void BrowserApplication::setPrivate(bool privateBrowsing)
 {
-    //QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::PrivateBrowsingEnabled, isPrivate);
-    //emit instance()->privacyChanged(isPrivate);
+    if (m_privateBrowsing == privateBrowsing)
+        return;
+    m_privateBrowsing = privateBrowsing;
+    if (privateBrowsing) {
+        if (!m_privateProfile)
+            m_privateProfile = new QWebEngineProfile(this);
+        Q_FOREACH (BrowserMainWindow* window, mainWindows()) {
+            window->tabWidget()->setProfile(m_privateProfile);
+        }
+    } else {
+        Q_FOREACH (BrowserMainWindow* window, mainWindows()) {
+            window->tabWidget()->setProfile(QWebEngineProfile::defaultProfile());
+            window->tabWidget()->clear();
+        }
+    }
+    emit privacyChanged(privateBrowsing);
 }
 
 Qt::MouseButtons BrowserApplication::eventMouseButtons() const

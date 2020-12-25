@@ -28,7 +28,7 @@ PrivacyIndicator::PrivacyIndicator(QWidget *parent)
     connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
             this, SLOT(setVisible(bool)));
     setCursor(Qt::ArrowCursor);
-    setVisible(BrowserApplication::isPrivate());
+    setVisible(BrowserApplication::instance()->isPrivate());
 }
 
 void PrivacyIndicator::mousePressEvent(QMouseEvent *event)

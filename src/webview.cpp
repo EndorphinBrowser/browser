@@ -146,41 +146,46 @@
 #include <QWebEngineContextMenuData>
 #include <QWebEngineCertificateError>
 
-WebView::WebView(QWidget *parent)
+WebView::WebView(QWidget* parent)
     : QWebEngineView(parent)
     , m_progress(0)
-    , m_currentZoom(100)
-    , m_page(new WebPage(this))
-//    , m_enableAccessKeys(true)
-//    , m_accessKeysPressed(false)
+    , m_page(0)
 {
-    setPage(m_page);
-    connect(page(), &WebPage::featurePermissionRequested, this, &WebView::onFeaturePermissionRequested);
-    QPalette p;
     connect(this, SIGNAL(loadProgress(int)),
             this, SLOT(setProgress(int)));
     connect(this, SIGNAL(loadFinished(bool)),
-            this, SLOT(loadFinished()));
-    connect(page(), SIGNAL(aboutToLoadUrl(const QUrl &)),
-            this, SIGNAL(urlChanged(const QUrl &)));
-    connect(page(), SIGNAL(downloadRequested(const QNetworkRequest &)),
-            this, SLOT(downloadRequested(const QNetworkRequest &)));
-    connect(BrowserApplication::instance(), SIGNAL(zoomTextOnlyChanged(bool)),
-            this, SLOT(applyZoom()));
-//    page()->setForwardUnsupportedContent(true);
-    setAcceptDrops(true);
+            this, SLOT(loadFinished(bool)));
+    connect(this, &QWebEngineView::renderProcessTerminated,
+            [=](QWebEnginePage::RenderProcessTerminationStatus termStatus, int statusCode) {
+        const char *status = "";
+        switch (termStatus) {
+        case QWebEnginePage::NormalTerminationStatus:
+            status = "(normal exit)";
+            break;
+        case QWebEnginePage::AbnormalTerminationStatus:
+            status = "(abnormal exit)";
+            break;
+        case QWebEnginePage::CrashedTerminationStatus:
+            status = "(crashed)";
+            break;
+        case QWebEnginePage::KilledTerminationStatus:
+            status = "(killed)";
+            break;
+        }
 
-    // the zoom values (in percent) are chosen to be like in Mozilla Firefox 3
-    m_zoomLevels << 30 << 50 << 67 << 80 << 90;
-    m_zoomLevels << 100;
-    m_zoomLevels << 110 << 120 << 133 << 150 << 170 << 200 << 240 << 300;
-    /*
-        connect(m_page, SIGNAL(loadStarted()),
-                this, SLOT(hideAccessKeys()));
-        connect(m_page, SIGNAL(scrollRequested(int, int, const QRect &)),
-                this, SLOT(hideAccessKeys()));
-    */
-    loadSettings();
+        qInfo() << "Render process exited with code" << statusCode << status;
+        QTimer::singleShot(0, [this] { reload(); });
+    });
+}
+
+void WebView::setPage(WebPage *_page)
+{
+    m_page = _page;
+    QWebEngineView::setPage(_page);
+    disconnect(page(), &QWebEnginePage::iconChanged, this, &WebView::iconChanged);
+    connect(page(), SIGNAL(iconChanged(QIcon)),
+            this, SLOT(onIconChanged(QIcon)));
+    connect(page(), &WebPage::featurePermissionRequested, this, &WebView::onFeaturePermissionRequested);
 }
 
 void WebView::loadSettings()
@@ -670,7 +675,7 @@ void WebView::dropEvent(QDropEvent *event)
 void WebView::mouseReleaseEvent(QMouseEvent *event)
 {
     const bool isAccepted = event->isAccepted();
-    m_page->event(event);
+    page()->event(event);
     if (!event->isAccepted()
             && (BrowserApplication::instance()->eventMouseButtons() & Qt::MidButton)) {
         QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
@@ -807,7 +812,7 @@ void WebView::showAccessKeys()
     for (char c = '0'; c <= '9'; ++c)
         unusedKeys << QLatin1Char(c);
 
-    QRect viewport = QRect(m_page->mainFrame()->scrollPosition(), m_page->viewportSize());
+    QRect viewport = QRect(page()->mainFrame()->scrollPosition(), page()->viewportSize());
     // Priority first goes to elements with accesskey attributes
     QList<QWebElement> alreadyLabeled;
     foreach (const QString &elementType, supportedElement) {
@@ -880,7 +885,7 @@ void WebView::makeAccessKeyLabel(const QChar &accessKey, const QWebElement &elem
     label->setAutoFillBackground(true);
     label->setFrameStyle(QFrame::Box | QFrame::Plain);
     QPoint point = element.geometry().center();
-    point -= m_page->mainFrame()->scrollPosition();
+    point -= page()->mainFrame()->scrollPosition();
     label->move(point);
     label->show();
     point.setX(point.x() - label->width() / 2);

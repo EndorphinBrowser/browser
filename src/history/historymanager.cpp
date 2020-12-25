@@ -64,6 +64,9 @@
 
 #include "autosaver.h"
 #include "history.h"
+#ifndef NO_BROWSERAPPLICATION
+#include "browserapplication.h"
+#endif
 
 #include <qbuffer.h>
 #include <qdesktopservices.h>
@@ -143,11 +146,18 @@ bool HistoryManager::historyContains(const QString &url) const
 
 void HistoryManager::addHistoryEntry(const QString &url)
 {
+#ifndef NO_BROWSERAPPLICATION
+    if (BrowserApplication::instance()->isPrivate())
+        return;
+#endif
+
     QUrl cleanUrl(url);
     cleanUrl.setPassword(QString());
     cleanUrl.setHost(cleanUrl.host().toLower());
-    HistoryEntry item(atomicString(cleanUrl.toString()), QDateTime::currentDateTime());
-    prependHistoryEntry(item);
+    if(!cleanUrl.toString().toLower().contains("endorphinbrowser.github.io/newTab/")) {
+        HistoryEntry item(atomicString(cleanUrl.toString()), QDateTime::currentDateTime());
+        prependHistoryEntry(item);
+    }
 }
 
 void HistoryManager::setHistory(const QList<HistoryEntry> &history, bool loadedAndSorted)

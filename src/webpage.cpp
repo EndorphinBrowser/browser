@@ -29,12 +29,12 @@
 #include "toolbarsearch.h"
 #include "webview.h"
 
-#include <qbuffer.h>
-#include <qdesktopservices.h>
-#include <qmessagebox.h>
-#include <qnetworkreply.h>
-#include <qnetworkrequest.h>
-#include <qsettings.h>
+#include <QBuffer>
+#include <QDesktopServices>
+#include <QMessageBox>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QSettings>
 #include <QUiLoader>
 
 #include <QWebEnginePage>
@@ -43,8 +43,8 @@
 
 QString WebPage::s_userAgent;
 
-WebPage::WebPage(QObject *parent)
-    : QWebEnginePage(parent)
+WebPage::WebPage(QWebEngineProfile *profile, QObject *parent)
+    : QWebEnginePage(profile, parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
 {
     loadSettings();

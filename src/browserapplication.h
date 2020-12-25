@@ -65,9 +65,9 @@
 
 #include "singleapplication.h"
 
-#include <qpointer.h>
-#include <qurl.h>
-#include <qdatetime.h>
+#include <QPointer>
+#include <QUrl>
+#include <QDateTime>
 
 class BookmarksManager;
 class BrowserMainWindow;
@@ -75,6 +75,7 @@ class DownloadManager;
 class HistoryManager;
 class LanguageManager;
 class QLocalSocket;
+class QWebEngineProfile;
 class BrowserApplication : public SingleApplication
 {
     Q_OBJECT
@@ -109,9 +110,6 @@ public:
 
     static bool zoomTextOnly();
 
-    static bool isPrivate();
-    static void setPrivate(bool isPrivate);
-
 #if defined(Q_WS_MAC)
     bool event(QEvent *event);
 #endif
@@ -127,6 +125,9 @@ public slots:
     static void setZoomTextOnly(bool textOnly);
 
     void askDesktopToOpenUrl(const QUrl &url);
+
+    bool isPrivate();
+    void setPrivate(bool isPrivate);
 
 private slots:
     void retranslate();
@@ -150,6 +151,8 @@ private:
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
     QByteArray m_lastSession;
     bool quitting;
+    QWebEngineProfile *m_privateProfile;
+    bool m_privateBrowsing;
 
     Qt::MouseButtons m_eventMouseButtons;
     Qt::KeyboardModifiers m_eventKeyboardModifiers;

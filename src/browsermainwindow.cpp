@@ -128,7 +128,7 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     setupMenu();
     setupToolBar();
 
-    m_filePrivateBrowsingAction->setChecked(BrowserApplication::isPrivate());
+    m_filePrivateBrowsingAction->setChecked(BrowserApplication::instance()->isPrivate());
 
     QWidget *centralWidget = new QWidget(this);
     BookmarksModel *boomarksModel = BrowserApplication::bookmarksManager()->bookmarksModel();
@@ -1211,7 +1211,7 @@ void BrowserMainWindow::printRequested(QWebEnginePage *page)
 
 void BrowserMainWindow::privateBrowsing()
 {
-    if (!BrowserApplication::isPrivate()) {
+    if (!BrowserApplication::instance()->isPrivate()) {
         QString title = tr("Are you sure you want to turn on private browsing?");
         QString text1 = tr("When private browsing is turned on, some actions concerning your privacy will be disabled:");
 
@@ -1233,11 +1233,11 @@ void BrowserMainWindow::privateBrowsing()
                                              QMessageBox::Ok | QMessageBox::Cancel,
                                              QMessageBox::Ok);
         if (button == QMessageBox::Ok)
-            BrowserApplication::setPrivate(true);
+            BrowserApplication::instance()->setPrivate(true);
         else
             m_filePrivateBrowsingAction->setChecked(false);
     } else {
-        BrowserApplication::setPrivate(false);
+        BrowserApplication::instance()->setPrivate(false);
     }
 }
 

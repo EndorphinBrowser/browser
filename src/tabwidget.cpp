@@ -81,20 +81,21 @@
 #include "webview.h"
 #include "webviewsearch.h"
 
-#include <qcompleter.h>
-#include <qdir.h>
-#include <qevent.h>
-#include <qlistview.h>
-#include <qmenu.h>
-#include <qmessagebox.h>
-#include <qmovie.h>
-#include <qsettings.h>
-#include <qstackedwidget.h>
-#include <qstyle.h>
-#include <qtoolbutton.h>
+#include <QCompleter>
+#include <QDir>
+#include <QEvent>
+#include <QListView>
+#include <QMenu>
+#include <QMessageBox>
+#include <QMovie>
+#include <QSettings>
+#include <QStackedWidget>
+#include <QStyle>
+#include <QToolButton>
 #include <QWebEnginePage>
+#include <QWebEngineProfile>
 
-#include <qdebug.h>
+#include <QDebug>
 
 //#define USERMODIFIEDBEHAVIOR_DEBUG
 
@@ -110,6 +111,7 @@ TabWidget::TabWidget(QWidget *parent)
     , m_lineEditCompleter(nullptr)
     , m_locationBars(nullptr)
     , m_tabBar(new TabBar(this))
+    , m_profile(QWebEngineProfile::defaultProfile())
     , addTabButton(nullptr)
     , closeTabButton(nullptr)
 {
@@ -254,12 +256,16 @@ void TabWidget::currentChanged(int index)
                    this, SIGNAL(linkHovered(const QString&)));
         disconnect(oldWebView, SIGNAL(loadProgress(int)),
                    this, SIGNAL(loadProgress(int)));
+        disconnect(oldWebView->page()->profile(), SIGNAL(downloadRequested(QWebEngineDownloadItem*)),
+                this, SLOT(downloadRequested(QWebEngineDownloadItem*)));
     }
 
     connect(webView->page(), SIGNAL(linkHovered(const QString&)),
             this, SIGNAL(linkHovered(const QString&)));
     connect(webView, SIGNAL(loadProgress(int)),
             this, SIGNAL(loadProgress(int)));
+    connect(webView->page()->profile(), SIGNAL(downloadRequested(QWebEngineDownloadItem*)),
+            this, SLOT(downloadRequested(QWebEngineDownloadItem*)));
 
     for (int i = 0; i < m_actions.count(); ++i) {
         WebActionMapper *mapper = m_actions[i];
@@ -391,6 +397,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
 
     // webview
     WebView *webView = new WebView;
+    webView->setPage(new WebPage(m_profile, webView));
     locationBar->setWebView(webView);
     connect(webView, SIGNAL(loadStarted()),
             this, SLOT(webViewLoadStarted()));
@@ -531,6 +538,14 @@ void TabWidget::closeTab(int index)
 
     bool hasFocus = false;
     WebView *tab = webView(index);
+    hasFocus = tab->hasFocus();
+
+    if (m_profile == QWebEngineProfile::defaultProfile()) {
+        m_recentlyClosedTabsAction->setEnabled(true);
+        m_recentlyClosedTabs.prepend(tab->url());
+        if (m_recentlyClosedTabs.size() >= TabWidget::m_recentlyClosedTabsSize)
+            m_recentlyClosedTabs.removeLast();
+    }
 
     if (tab && !tab->url().isEmpty()) {
         /*
@@ -573,6 +588,34 @@ void TabWidget::closeTab(int index)
         currentWebView()->setFocus();
     if (count() == 0)
         emit lastTabClosed();
+}
+
+void TabWidget::setProfile(QWebEngineProfile *profile)
+{
+    m_profile = profile;
+    for (int i = 0; i < count(); ++i) {
+        QWidget *tabWidget = widget(i);
+        if (WebView *tab = qobject_cast<WebView*>(tabWidget)) {
+            WebPage* webPage = new WebPage(m_profile, tab);
+            setupPage(webPage);
+            webPage->load(tab->page()->url());
+            tab->setPage(webPage);
+        }
+    }
+}
+
+void TabWidget::setupPage(QWebEnginePage* page)
+{
+    connect(page, SIGNAL(windowCloseRequested()),
+            this, SLOT(windowCloseRequested()));
+    connect(page, SIGNAL(geometryChangeRequested(QRect)),
+            this, SIGNAL(geometryChangeRequested(QRect)));
+
+    // webview actions
+    for (int i = 0; i < m_actions.count(); ++i) {
+        WebActionMapper *mapper = m_actions[i];
+        mapper->addChild(page->action(mapper->webAction()));
+    }
 }
 
 QLabel *TabWidget::animationLabel(int index, bool addMovie)
@@ -690,9 +733,12 @@ void TabWidget::webViewUrlChanged(const QUrl &url)
 {
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
-    if (-1 == index)
-        return;
-    m_tabBar->setTabData(index, url);
+    if (-1 != index) {
+        m_tabBar->setTabData(index, url);
+        HistoryManager *manager = BrowserApplication::historyManager();
+        if (url.isValid())
+            manager->addHistoryEntry(url.toString());
+    }
     emit tabsChanged();
 }
 
