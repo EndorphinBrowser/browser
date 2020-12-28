@@ -1,7 +1,0 @@
-cmake_minimum_required(VERSION 3.13)
-project(htmlToXBel)
-find_package(Qt5Core REQUIRED)
-find_package(Qt5WebEngine REQUIRED)
-find_package(Qt5WebEngineWidgets REQUIRED)
-add_executable(htmlToXBel main.cpp mainapp.cpp source.qrc)
-target_link_libraries(htmlToXBel Qt5::Core Qt5::WebEngine Qt5::WebEngineWidgets)
