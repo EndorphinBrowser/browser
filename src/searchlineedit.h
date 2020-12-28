@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009, Aaron Dewes
+ * Copyright (c) 2020, Aaron Dewes
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

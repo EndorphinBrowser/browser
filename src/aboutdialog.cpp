@@ -20,12 +20,12 @@
 
 #include "aboutdialog.h"
 
-#include <qdialogbuttonbox.h>
-#include <qfile.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qtextedit.h>
-#include <qtextstream.h>
+#include <QDialogButtonBox>
+#include <QFile>
+#include <QLabel>
+#include <QLayout>
+#include <QTextEdit>
+#include <QTextStream>
 
 AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)

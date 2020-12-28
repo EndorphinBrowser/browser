@@ -69,14 +69,14 @@
 #endif
 
 #include <qbuffer.h>
-#include <qdesktopservices.h>
-#include <qdir.h>
-#include <qfile.h>
-#include <qsettings.h>
+#include <QDesktopServices>
+#include <QDir>
+#include <QFile>
+#include <QSettings>
 #include <qtemporaryfile.h>
 #include <QWebEngineSettings>
 
-#include <qdebug.h>
+#include <QDebug>
 
 
 // Fix so we don't have to include browserapplication. Reduces the size.

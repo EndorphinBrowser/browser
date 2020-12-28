@@ -20,7 +20,7 @@
 #include <qtest.h>
 
 #include <lineedit.h>
-#include <qtoolbutton.h>
+#include <QToolButton>
 
 class tst_LineEdit : public QObject
 {

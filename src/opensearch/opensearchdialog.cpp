@@ -25,8 +25,8 @@
 #include "opensearchmanager.h"
 #include "toolbarsearch.h"
 
-#include <qfiledialog.h>
-#include <qmessagebox.h>
+#include <QFileDialog>
+#include <QMessageBox>
 
 OpenSearchDialog::OpenSearchDialog(QWidget *parent)
     : QDialog(parent)

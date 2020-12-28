@@ -257,7 +257,7 @@ void TabWidget::currentChanged(int index)
         disconnect(oldWebView, SIGNAL(loadProgress(int)),
                    this, SIGNAL(loadProgress(int)));
         disconnect(oldWebView->page()->profile(), SIGNAL(downloadRequested(QWebEngineDownloadItem*)),
-                this, SLOT(downloadRequested(QWebEngineDownloadItem*)));
+                   this, SLOT(downloadRequested(QWebEngineDownloadItem*)));
     }
 
     connect(webView->page(), SIGNAL(linkHovered(const QString&)),

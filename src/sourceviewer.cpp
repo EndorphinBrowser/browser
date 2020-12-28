@@ -20,14 +20,14 @@
 
 #include "sourceviewer.h"
 
-#include <qlayout.h>
-#include <qmenubar.h>
-#include <qnetworkcookie.h>
-#include <qnetworkreply.h>
-#include <qnetworkrequest.h>
-#include <qplaintextedit.h>
-#include <qshortcut.h>
-#include <qsettings.h>
+#include <QLayout>
+#include <QMenuBar>
+#include <QNetworkCookie>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QPlainTextEdit>
+#include <QShortCut>
+#include <QSettings>
 #include <QWebEnginePage>
 #include <QNetworkAccessManager>
 

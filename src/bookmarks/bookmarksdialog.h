@@ -63,13 +63,13 @@
 #ifndef BOOKMARKSDIALOG_H
 #define BOOKMARKSDIALOG_H
 
-#include <qdialog.h>
+#include <QDialog>
 #include "ui_bookmarksdialog.h"
 
 #include "tabwidget.h"
 
-#include <qabstractitemmodel.h>
-#include <qurl.h>
+#include <QAbstractItemModel>
+#include <QUrl>
 
 class TreeSortFilterProxyModel;
 class BookmarksManager;

@@ -22,11 +22,11 @@
 #ifndef OPENSEARCHMANAGER_H
 #define OPENSEARCHMANAGER_H
 
-#include <qobject.h>
+#include <QObject>
 
 #include <qhash.h>
 #include <qpixmap.h>
-#include <qurl.h>
+#include <QUrl>
 
 class QNetworkReply;
 class QNetworkRequest;

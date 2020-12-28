@@ -68,14 +68,14 @@
 #include "browserapplication.h"
 #endif
 
-#include <qabstractitemmodel.h>
-#include <qapplication.h>
-#include <qevent.h>
+#include <QAbstractItemModel>
+#include <QApplication>
+#include <QEvent>
 #include <QWidget>
 #include <QDrag>
 #include <QMimeData>
 
-#include <qdebug.h>
+#include <QDebug>
 
 ModelMenu::ModelMenu(QWidget *parent)
     : QMenu(parent)

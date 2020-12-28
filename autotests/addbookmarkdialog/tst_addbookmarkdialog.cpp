@@ -24,8 +24,8 @@
 #include "bookmarknode.h"
 #include "tst_addbookmarkdialog.h"
 
-#include <qpushbutton.h>
-#include <qabstractitemview.h>
+#include <QPushButton>
+#include <QAbstractItemView>
 
 BookmarksManager *tst_AddBookmarkDialog::s_bookmarksManager = nullptr;
 

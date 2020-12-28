@@ -64,17 +64,17 @@
 
 #include "tabwidget.h"
 
-#include <qaction.h>
-#include <qapplication.h>
-#include <qclipboard.h>
-#include <qevent.h>
-#include <qmenu.h>
-#include <qstyle.h>
-#include <qurl.h>
+#include <QAction>
+#include <QApplication>
+#include <QClipboard>
+#include <QEvent>
+#include <QMenu>
+#include <QStyle>
+#include <QUrl>
 #include <QMimeData>
 #include <QDrag>
 
-#include <qdebug.h>
+#include <QDebug>
 
 TabShortcut::TabShortcut(int tab, const QKeySequence &key, QWidget *parent)
     : QShortcut(key, parent)

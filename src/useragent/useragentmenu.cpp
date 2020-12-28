@@ -31,12 +31,12 @@
 
 #include "webpage.h"
 
-#include <qfile.h>
-#include <qinputdialog.h>
-#include <qsettings.h>
+#include <QFile>
+#include <QInputDialog>
+#include <QSettings>
 #include <qxmlstream.h>
 
-#include <qdebug.h>
+#include <QDebug>
 
 UserAgentMenu::UserAgentMenu(QWidget *parent)
     : QMenu(parent)

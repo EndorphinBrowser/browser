@@ -19,7 +19,6 @@
 
 #include <QtTest/QtTest>
 #include <QtGui/QtGui>
-#include <QtWebKit/QtWebKit>
 #include <QtNetwork/QtNetwork>
 #include <QWebEnginePage>
 

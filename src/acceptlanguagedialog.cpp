@@ -22,8 +22,8 @@
 #include "browserapplication.h"
 #include "languagemanager.h"
 
-#include <qlistview.h>
-#include <qsettings.h>
+#include <QListView>
+#include <QSettings>
 
 AcceptLanguageDialog::AcceptLanguageDialog(QWidget *parent, Qt::WindowFlags flags)
     : QDialog(parent, flags)

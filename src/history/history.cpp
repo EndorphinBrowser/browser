@@ -70,22 +70,22 @@
 #include "treesortfilterproxymodel.h"
 
 #include <qbuffer.h>
-#include <qclipboard.h>
-#include <qdesktopservices.h>
-#include <qheaderview.h>
-#include <qdir.h>
-#include <qfile.h>
+#include <QClipboard>
+#include <QDesktopServices>
+#include <QHeaderView>
+#include <QDir>
+#include <QFile>
 #include <qfileinfo.h>
-#include <qsettings.h>
-#include <qstyle.h>
+#include <QSettings>
+#include <QStyle>
 #include <qtemporaryfile.h>
-#include <qtextstream.h>
-#include <qmessagebox.h>
-#include <qmimedata.h>
+#include <QTextStream>
+#include <QMessageBox>
+#include <QMimeData>
 
 #include <QWebEngineSettings>
 
-#include <qdebug.h>
+#include <QDebug>
 
 HistoryModel::HistoryModel(HistoryManager *history, QObject *parent)
     : QAbstractTableModel(parent)

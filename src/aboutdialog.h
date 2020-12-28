@@ -20,7 +20,7 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
-#include <qdialog.h>
+#include <QDialog>
 #include "ui_aboutdialog.h"
 
 class AboutDialog : public QDialog, private Ui_AboutDialog

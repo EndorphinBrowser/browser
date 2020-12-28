@@ -19,7 +19,7 @@
 
 #include "sourcehighlighter.h"
 
-#include <qpalette.h>
+#include <QPalette>
 
 SourceHighlighter::SourceHighlighter(QTextDocument *document)
     : QSyntaxHighlighter(document)

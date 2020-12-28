@@ -19,13 +19,13 @@
 
 #include "webviewsearch.h"
 
-#include <qevent.h>
-#include <qshortcut.h>
-#include <qtimeline.h>
+#include <QEvent>
+#include <QShortCut>
+#include <QTimeLine>
 
-#include <qwebengineview.h>
+#include <QWebEngineView>
 
-#include <qdebug.h>
+#include <QDebug>
 
 WebViewSearch::WebViewSearch(QWebEngineView *webView, QWidget *parent)
     : SearchBar(parent)

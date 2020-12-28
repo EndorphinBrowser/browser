@@ -29,7 +29,7 @@
 #ifndef EDITLISTVIEW_H
 #define EDITLISTVIEW_H
 
-#include <qlistview.h>
+#include <QListView>
 
 class EditListView : public QListView
 {

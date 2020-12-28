@@ -20,7 +20,7 @@
 #include <qtest.h>
 
 #include <edittreeview.h>
-#include <qstandarditemmodel.h>
+#include <QStandardItemModel>
 
 class tst_EditTreeView : public QObject
 {

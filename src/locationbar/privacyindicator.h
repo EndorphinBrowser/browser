@@ -20,7 +20,7 @@
 #ifndef PRIVACYINDICATOR_H
 #define PRIVACYINDICATOR_H
 
-#include <qlabel.h>
+#include <QLabel>
 
 class PrivacyIndicator : public QLabel
 {

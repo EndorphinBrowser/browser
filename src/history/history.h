@@ -65,12 +65,12 @@
 
 #include "modelmenu.h"
 
-#include <qdatetime.h>
+#include <QDateTime>
 #include <qhash.h>
-#include <qobject.h>
-#include <qsortfilterproxymodel.h>
-#include <qtimer.h>
-#include <qurl.h>
+#include <QObject>
+#include <QSortFilterProxyModel>
+#include <QTimer>
+#include <QUrl>
 
 class HistoryManager;
 class HistoryModel : public QAbstractTableModel

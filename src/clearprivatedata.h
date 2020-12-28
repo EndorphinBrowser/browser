@@ -20,7 +20,7 @@
 #ifndef CLEARPRIVATEDATA_H
 #define CLEARPRIVATEDATA_H
 
-#include <qdialog.h>
+#include <QDialog>
 
 class QCheckBox;
 

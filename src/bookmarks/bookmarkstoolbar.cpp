@@ -34,7 +34,7 @@
 #endif
 #include "modelmenu.h"
 
-#include <qevent.h>
+#include <QEvent>
 
 BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
     : ModelToolBar(parent)

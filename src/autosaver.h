@@ -63,8 +63,8 @@
 #ifndef AUTOSAVER_H
 #define AUTOSAVER_H
 
-#include <qobject.h>
-#include <qbasictimer.h>
+#include <QObject>
+#include <QBasicTimer>
 #include <QElapsedTimer>
 
 /*

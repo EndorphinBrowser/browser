@@ -20,7 +20,7 @@
 #ifndef OPENSEARCHENGINEACTION_H
 #define OPENSEARCHENGINEACTION_H
 
-#include <qaction.h>
+#include <QAction>
 
 class OpenSearchEngine;
 class OpenSearchEngineAction : public QAction

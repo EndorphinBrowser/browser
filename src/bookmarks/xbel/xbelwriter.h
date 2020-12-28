@@ -64,7 +64,7 @@
 #define XBELWRITER_H
 
 #include <qxmlstream.h>
-#include <qdatetime.h>
+#include <QDateTime>
 
 class BookmarkNode;
 class XbelWriter : public QXmlStreamWriter

@@ -20,7 +20,7 @@
 #ifndef ACCEPTLANGUAGEDIALOG_H
 #define ACCEPTLANGUAGEDIALOG_H
 
-#include <qdialog.h>
+#include <QDialog>
 #include "ui_acceptlanguagedialog.h"
 
 #include <qstringlistmodel.h>

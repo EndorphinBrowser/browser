@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright (c) 2020, Aaron Dewes  <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -41,10 +41,10 @@
 
 #include <qlibrary.h>
 #include <qpixmapcache.h>
-#include <qmainwindow.h>
-#include <qtoolbar.h>
-#include <qpainter.h>
-#include <qmenubar.h>
+#include <QMainWindow>
+#include <QToolbar>
+#include <QPainter>
+#include <QMenuBar>
 #include <qstyleoption.h>
 
 #include <qt_windows.h>

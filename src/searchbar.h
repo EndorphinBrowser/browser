@@ -20,7 +20,7 @@
 #ifndef SEARCHBAR_H
 #define SEARCHBAR_H
 
-#include <qwidget.h>
+#include <QWidget>
 
 #include "ui_searchbanner.h"
 

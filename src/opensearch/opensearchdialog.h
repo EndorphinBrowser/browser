@@ -21,7 +21,7 @@
 #ifndef OPENSEARCHDIALOG_H
 #define OPENSEARCHDIALOG_H
 
-#include <qdialog.h>
+#include <QDialog>
 
 #include "ui_opensearchdialog.h"
 

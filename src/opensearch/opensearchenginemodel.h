@@ -22,7 +22,7 @@
 #ifndef OPENSEARCHENGINEMODEL_H
 #define OPENSEARCHENGINEMODEL_H
 
-#include <qabstractitemmodel.h>
+#include <QAbstractItemModel>
 
 class OpenSearchEngine;
 class OpenSearchManager;

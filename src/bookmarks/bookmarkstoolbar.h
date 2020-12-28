@@ -25,9 +25,9 @@
 
 #include "tabwidget.h"
 
-#include <qabstractitemmodel.h>
+#include <QAbstractItemModel>
 #include <qpoint.h>
-#include <qurl.h>
+#include <QUrl>
 
 class BookmarksModel;
 class BookmarksToolBar : public ModelToolBar

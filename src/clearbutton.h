@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright (c) 2020, Aaron Dewes  <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -29,7 +29,7 @@
 #ifndef CLEARBUTTON_H
 #define CLEARBUTTON_H
 
-#include <qabstractbutton.h>
+#include <QAbstractButton>
 
 class ClearButton : public QAbstractButton
 {

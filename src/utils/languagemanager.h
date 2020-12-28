@@ -30,7 +30,7 @@
 #ifndef LANGUAGEMANAGER_H
 #define LANGUAGEMANAGER_H
 
-#include <qobject.h>
+#include <QObject>
 
 #include <qstringlist.h>
 

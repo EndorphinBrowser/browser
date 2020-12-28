@@ -63,7 +63,7 @@
 #ifndef BOOKMARKSMODEL_H
 #define BOOKMARKSMODEL_H
 
-#include <qabstractitemmodel.h>
+#include <QAbstractItemModel>
 
 #include <qicon.h>
 

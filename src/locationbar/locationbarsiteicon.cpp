@@ -19,8 +19,8 @@
 
 #include "locationbarsiteicon.h"
 
-#include <qevent.h>
-#include <qurl.h>
+#include <QEvent>
+#include <QUrl>
 #include <QDrag>
 #include <QMimeData>
 

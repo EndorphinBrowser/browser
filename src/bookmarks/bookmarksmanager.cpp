@@ -71,20 +71,20 @@
 #include "xbelwriter.h"
 
 #include <qbuffer.h>
-#include <qdesktopservices.h>
-#include <qevent.h>
-#include <qfile.h>
-#include <qfiledialog.h>
-#include <qheaderview.h>
+#include <QDesktopServices>
+#include <QEvent>
+#include <QFile>
+#include <QFileDialog>
+#include <QHeaderView>
 #include <qicon.h>
-#include <qmessagebox.h>
-#include <qmimedata.h>
-#include <qtoolbutton.h>
-#include <qprocess.h>
+#include <QMessageBox>
+#include <QMimeData>
+#include <QToolButton>
+#include <QProcess>
 
 #include <QWebEngineSettings>
 
-#include <qdebug.h>
+#include <QDebug>
 
 #define BOOKMARKBAR QT_TRANSLATE_NOOP("BookmarksManager", "Bookmarks Bar")
 #define BOOKMARKMENU QT_TRANSLATE_NOOP("BookmarksManager", "Bookmarks Menu")

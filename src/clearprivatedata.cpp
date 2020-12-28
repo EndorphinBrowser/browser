@@ -26,13 +26,13 @@
 #include "toolbarsearch.h"
 
 #include <qabstractnetworkcache.h>
-#include <qcheckbox.h>
-#include <qdialogbuttonbox.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qlist.h>
-#include <qpushbutton.h>
-#include <qsettings.h>
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QLabel>
+#include <QLayout>
+#include <QList>
+#include <QPushButton>
+#include <QSettings>
 #include <QWebEngineSettings>
 
 ClearPrivateData::ClearPrivateData(QWidget *parent)

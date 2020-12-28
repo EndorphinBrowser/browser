@@ -62,7 +62,7 @@
 
 #include "webactionmapper.h"
 
-#include <qaction.h>
+#include <QAction>
 
 WebActionMapper::WebActionMapper(QAction *root, QWebEnginePage::WebAction webAction, QObject *parent)
     : QObject(parent)

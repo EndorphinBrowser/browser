@@ -67,10 +67,10 @@
 #include "ui_downloads.h"
 #include "ui_downloaditem.h"
 
-#include <qnetworkreply.h>
+#include <QNetworkReply>
 
-#include <qfile.h>
-#include <qdatetime.h>
+#include <QFile>
+#include <QDateTime>
 #include <QElapsedTimer>
 
 class DownloadItem : public QWidget, public Ui_DownloadItem

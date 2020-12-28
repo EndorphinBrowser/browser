@@ -66,7 +66,7 @@
 
 #include "ui_addbookmarkdialog.h"
 
-#include <qsortfilterproxymodel.h>
+#include <QSortFilterProxyModel>
 
 class AddBookmarkProxyModel : public QSortFilterProxyModel
 {

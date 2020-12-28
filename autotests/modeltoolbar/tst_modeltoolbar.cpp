@@ -23,9 +23,9 @@
 
 #include "modelmenu.h"
 
-#include <qaction.h>
+#include <QAction>
 #include <qcolor.h>
-#include <qstandarditemmodel.h>
+#include <QStandardItemModel>
 #include <qstringlistmodel.h>
 
 class tst_ModelToolBar : public QObject

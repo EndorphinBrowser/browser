@@ -25,7 +25,7 @@
 #include <qmap.h>
 #include <qnetworkaccessmanager.h>
 #include <qstring.h>
-#include <qurl.h>
+#include <QUrl>
 
 class QNetworkReply;
 class QJSEngine;

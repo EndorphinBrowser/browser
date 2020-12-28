@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008-2009, Aaron Dewes
+ * Copyright (c) 2020, Aaron Dewes
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -29,7 +29,7 @@
 #ifndef SINGLEAPPLICATION_H
 #define SINGLEAPPLICATION_H
 
-#include <qapplication.h>
+#include <QApplication>
 
 /*
     QApplication subclass that should be used when you only want one

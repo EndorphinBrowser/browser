@@ -20,7 +20,7 @@
 #ifndef LOCATIONBARSITEICON_H
 #define LOCATIONBARSITEICON_H
 
-#include <qlabel.h>
+#include <QLabel>
 
 class WebView;
 class LocationBarSiteIcon : public QLabel

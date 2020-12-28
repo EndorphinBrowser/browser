@@ -68,8 +68,8 @@
 #include "browserapplication.h"
 #include "treesortfilterproxymodel.h"
 
-#include <qheaderview.h>
-#include <qmenu.h>
+#include <QHeaderView>
+#include <QMenu>
 
 BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     : QDialog(parent)

@@ -24,12 +24,12 @@
 #include "opensearchenginedelegate.h"
 
 #include <qbuffer.h>
-#include <qfile.h>
+#include <QFile>
 #include <qlocale.h>
 #include <qnetworkaccessmanager.h>
-#include <qnetworkreply.h>
-#include <qnetworkrequest.h>
-#include <qtimer.h>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QTimer>
 
 typedef OpenSearchEngine::Parameters Parameters;
 typedef OpenSearchEngine::Parameter Parameter;

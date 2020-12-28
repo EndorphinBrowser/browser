@@ -64,8 +64,8 @@
 #ifndef MODELMENU_H
 #define MODELMENU_H
 
-#include <qmenu.h>
-#include <qabstractitemmodel.h>
+#include <QMenu>
+#include <QAbstractItemModel>
 
 // A QMenu that is dynamically populated from a QAbstractItemModel
 class ModelMenu : public QMenu

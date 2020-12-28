@@ -62,7 +62,7 @@
 
 #include "xbelreader.h"
 
-#include <qfile.h>
+#include <QFile>
 
 #include "bookmarknode.h"
 

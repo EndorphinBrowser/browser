@@ -67,8 +67,8 @@
 
 #include "tabwidget.h"
 
-#include <qabstractitemmodel.h>
-#include <qlist.h>
+#include <QAbstractItemModel>
+#include <QList>
 
 class BookmarksManager;
 

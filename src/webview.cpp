@@ -126,22 +126,22 @@
 #include "webpage.h"
 #include "permissionbar.h"
 
-#include <qclipboard.h>
-#include <qdebug.h>
-#include <qevent.h>
-#include <qmenubar.h>
-#include <qtimer.h>
+#include <QClipboard>
+#include <QDebug>
+#include <QEvent>
+#include <QMenuBar>
+#include <QTimer>
 
-#include <qinputdialog.h>
-#include <qlabel.h>
-#include <qmessagebox.h>
-#include <qsettings.h>
-#include <qtooltip.h>
+#include <QInputDialog>
+#include <QLabel>
+#include <QMessageBox>
+#include <QSettings>
+#include <QToolTip>
 
 #include <QMimeData>
 #include <QUrlQuery>
 
-#include <qdebug.h>
+#include <QDebug>
 
 #include <QWebEngineContextMenuData>
 #include <QWebEngineCertificateError>
@@ -156,7 +156,7 @@ WebView::WebView(QWidget* parent)
     connect(this, SIGNAL(loadFinished(bool)),
             this, SLOT(loadFinished(bool)));
     connect(this, &QWebEngineView::renderProcessTerminated,
-            [=](QWebEnginePage::RenderProcessTerminationStatus termStatus, int statusCode) {
+    [=](QWebEnginePage::RenderProcessTerminationStatus termStatus, int statusCode) {
         const char *status = "";
         switch (termStatus) {
         case QWebEnginePage::NormalTerminationStatus:

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright (c) 2020, Aaron Dewes  <aaron.dewes@web.de>
  * Copyright (c) 2009, Jakub Wieczorek <faw217@gmail.com>
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
 
 #include "edittableview.h"
 
-#include <qevent.h>
+#include <QEvent>
 
 EditTableView::EditTableView(QWidget *parent)
     : QTableView(parent)

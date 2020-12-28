@@ -20,7 +20,7 @@
 #ifndef DEVTOOLSWINDOW_H
 #define DEVTOOLSWINDOW_H
 
-#include <qmainwindow.h>
+#include <QMainWindow>
 #include <QWebEngineView>
 
 class QWebEnginePage;

@@ -27,12 +27,12 @@
 #include "webview.h"
 
 #include <qdrag.h>
-#include <qevent.h>
-#include <qpainter.h>
+#include <QEvent>
+#include <QPainter>
 #include <qstyleoption.h>
 #include <QMimeData>
 
-#include <qdebug.h>
+#include <QDebug>
 
 LocationBar::LocationBar(QWidget *parent)
     : LineEdit(parent)

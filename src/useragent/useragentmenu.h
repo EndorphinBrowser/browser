@@ -30,7 +30,7 @@
 #ifndef USERAGENTMENU_H
 #define USERAGENTMENU_H
 
-#include <qmenu.h>
+#include <QMenu>
 
 class UserAgentMenu : public QMenu
 {

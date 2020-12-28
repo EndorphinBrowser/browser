@@ -23,11 +23,11 @@
 
 #include "history.h"
 
-#include <qcompleter.h>
-#include <qregexp.h>
-#include <qsortfilterproxymodel.h>
-#include <qtableview.h>
-#include <qtimer.h>
+#include <QCompleter>
+#include <QRegExp>
+#include <QSortFilterProxyModel>
+#include <QTableView>
+#include <QTimer>
 
 class QResizeEvent;
 class HistoryCompletionView : public QTableView

@@ -20,11 +20,11 @@
 #ifndef WEBPAGE_H
 #define WEBPAGE_H
 
-#include "QWebEnginePage"
 #include "tabwidget.h"
 
 #include <QList>
 #include <QNetworkRequest>
+#include <QWebEnginePage>
 
 class WebPageLinkedResource
 {

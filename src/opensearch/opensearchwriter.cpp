@@ -21,7 +21,7 @@
 
 #include "opensearchengine.h"
 
-#include <qdebug.h>
+#include <QDebug>
 #include <qiodevice.h>
 
 /*!

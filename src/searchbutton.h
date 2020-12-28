@@ -20,7 +20,7 @@
 #ifndef SEARCHBUTTON_H
 #define SEARCHBUTTON_H
 
-#include <qabstractbutton.h>
+#include <QAbstractButton>
 
 class QCompleter;
 class SearchButton : public QAbstractButton

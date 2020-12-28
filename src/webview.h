@@ -64,7 +64,7 @@
 #ifndef WEBVIEW_H
 #define WEBVIEW_H
 
-#include <qwebengineview.h>
+#include <QWebEngineView>
 
 #include "tabwidget.h"
 

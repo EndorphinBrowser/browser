@@ -19,8 +19,8 @@
 
 #include "plaintexteditsearch.h"
 
-#include <qplaintextedit.h>
-#include <qtextcursor.h>
+#include <QPlainTextEdit>
+#include <QTextCursor>
 
 PlainTextEditSearch::PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget *parent)
     : SearchBar(parent)

@@ -19,11 +19,11 @@
 
 #include "searchbar.h"
 
-#include <qevent.h>
-#include <qtimeline.h>
-#include <qshortcut.h>
+#include <QEvent>
+#include <QTimeLine>
+#include <QShortCut>
 
-#include <qdebug.h>
+#include <QDebug>
 
 SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)

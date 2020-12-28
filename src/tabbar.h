@@ -63,7 +63,7 @@
 #ifndef TABBAR_H
 #define TABBAR_H
 
-#include <qtabbar.h>
+#include <QTabBar>
 
 #include "tabwidget.h"
 
@@ -122,7 +122,7 @@ private:
 };
 
 
-#include <qshortcut.h>
+#include <QShortCut>
 
 /*
      Shortcut to switch directly to a tab by index

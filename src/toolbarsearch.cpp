@@ -73,14 +73,14 @@
 #include "webpage.h"
 #include "webview.h"
 
-#include <qabstractitemview.h>
-#include <qcompleter.h>
-#include <qcoreapplication.h>
-#include <qmenu.h>
-#include <qsettings.h>
-#include <qstandarditemmodel.h>
-#include <qtimer.h>
-#include <qurl.h>
+#include <QAbstractItemView>
+#include <QCompleter>
+#include <QCoreApplication>
+#include <QMenu>
+#include <QSettings>
+#include <QStandardItemModel>
+#include <QTimer>
+#include <QUrl>
 #include <QWebEngineSettings>
 #include <QNetworkAccessManager>
 

@@ -28,15 +28,15 @@
 #include "opensearchreader.h"
 #include "opensearchwriter.h"
 
-#include <qdesktopservices.h>
-#include <qdir.h>
+#include <QDesktopServices>
+#include <QDir>
 #include <qdiriterator.h>
-#include <qfile.h>
-#include <qmessagebox.h>
-#include <qnetworkreply.h>
-#include <qnetworkrequest.h>
-#include <qregexp.h>
-#include <qsettings.h>
+#include <QFile>
+#include <QMessageBox>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QRegExp>
+#include <QSettings>
 #include <qstringlist.h>
 
 OpenSearchManager::OpenSearchManager(QObject *parent)

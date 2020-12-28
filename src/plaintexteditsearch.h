@@ -22,7 +22,7 @@
 
 #include "searchbar.h"
 
-#include <qtextdocument.h>
+#include <QTextDocument>
 
 class QPlainTextEdit;
 class PlainTextEditSearch : public SearchBar

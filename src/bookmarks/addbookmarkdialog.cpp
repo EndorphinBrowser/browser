@@ -74,7 +74,7 @@
 #endif
 #endif
 
-#include <qheaderview.h>
+#include <QHeaderView>
 #include <qtreeview.h>
 
 AddBookmarkProxyModel::AddBookmarkProxyModel(QObject *parent)

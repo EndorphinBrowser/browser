@@ -63,7 +63,7 @@
 #ifndef BOOKMARKNODE_H
 #define BOOKMARKNODE_H
 
-#include <qlist.h>
+#include <QList>
 #include <qstringlist.h>
 
 class BookmarkNode

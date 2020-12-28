@@ -70,18 +70,18 @@
 
 #include <math.h>
 
-#include <qdesktopservices.h>
-#include <qfiledialog.h>
-#include <qfileiconprovider.h>
-#include <qheaderview.h>
-#include <qmessagebox.h>
-#include <qmetaobject.h>
-#include <qmimedata.h>
-#include <qprocess.h>
-#include <qsettings.h>
+#include <QDesktopServices>
+#include <QFileDialog>
+#include <QFileIconProvider>
+#include <QHeaderView>
+#include <QMessageBox>
+#include <QMetaObject>
+#include <QMimeData>
+#include <QProcess>
+#include <QSettings>
 #include <qnetworkaccessmanager.h>
 
-#include <qdebug.h>
+#include <QDebug>
 
 #include <QWebEngineSettings>
 

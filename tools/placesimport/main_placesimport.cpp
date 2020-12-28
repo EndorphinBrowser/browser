@@ -18,14 +18,14 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <qdatetime.h>
-#include <qdebug.h>
-#include <qdir.h>
-#include <qfile.h>
+#include <QDateTime>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
 #include <QSqlDatabase>
 #include <qsqlerror.h>
 #include <qsqlquery.h>
-#include <qtextstream.h>
+#include <QTextStream>
 #include <qvariant.h>
 
 #include "singleapplication.h"

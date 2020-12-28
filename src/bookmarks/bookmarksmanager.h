@@ -20,7 +20,7 @@
 #ifndef BOOKMARKSMANAGER_H
 #define BOOKMARKSMANAGER_H
 
-#include <qobject.h>
+#include <QObject>
 
 #include <qundostack.h>
 

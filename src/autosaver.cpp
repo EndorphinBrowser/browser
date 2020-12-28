@@ -62,11 +62,11 @@
 
 #include "autosaver.h"
 
-#include <qdir.h>
-#include <qcoreapplication.h>
-#include <qmetaobject.h>
+#include <QDir>
+#include <QCoreApplication>
+#include <QMetaObject>
 
-#include <qdebug.h>
+#include <QDebug>
 
 #define AUTOSAVE_IN  1000 * 3  // seconds
 #define MAXWAIT      1000 * 15 // seconds

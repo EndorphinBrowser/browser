@@ -23,7 +23,7 @@
 #include "lineedit.h"
 
 #include <qpointer.h>
-#include <qurl.h>
+#include <QUrl>
 
 class WebView;
 class LocationBarSiteIcon;

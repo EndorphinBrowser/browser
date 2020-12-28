@@ -66,7 +66,7 @@
 #include <qtabwidget.h>
 
 #include <QtWebEngineWidgets>
-#include <qurl.h>
+#include <QUrl>
 
 QT_BEGIN_NAMESPACE
 class QCompleter;

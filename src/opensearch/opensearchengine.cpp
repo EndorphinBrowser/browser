@@ -22,11 +22,11 @@
 #include "opensearchenginedelegate.h"
 
 #include <qbuffer.h>
-#include <qcoreapplication.h>
+#include <QCoreApplication>
 #include <qlocale.h>
-#include <qnetworkrequest.h>
-#include <qnetworkreply.h>
-#include <qregexp.h>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QRegExp>
 #include <qstringlist.h>
 #include <QJSEngine>
 #include <QUrlQuery>

@@ -70,13 +70,13 @@
 #include "webpage.h"
 #include "webview.h"
 
-#include <qdesktopservices.h>
-#include <qfile.h>
-#include <qfontdialog.h>
-#include <qmetaobject.h>
-#include <qmessagebox.h>
-#include <qsettings.h>
-#include <qfiledialog.h>
+#include <QDesktopServices>
+#include <QFile>
+#include <QFontDialog>
+#include <QMetaObject>
+#include <QMessageBox>
+#include <QSettings>
+#include <QFileDialog>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

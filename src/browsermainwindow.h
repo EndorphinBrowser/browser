@@ -63,7 +63,7 @@
 #ifndef BROWSERMAINWINDOW_H
 #define BROWSERMAINWINDOW_H
 
-#include <qmainwindow.h>
+#include <QMainWindow>
 
 class AutoSaver;
 class BookmarksToolBar;

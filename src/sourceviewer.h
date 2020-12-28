@@ -20,7 +20,7 @@
 #ifndef SOURCEVIEWER_H
 #define SOURCEVIEWER_H
 
-#include <qdialog.h>
+#include <QDialog>
 
 class QVBoxLayout;
 class SourceHighlighter;

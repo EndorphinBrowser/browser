@@ -72,7 +72,7 @@
 #include "xbelwriter.h"
 
 #include <qbuffer.h>
-#include <qevent.h>
+#include <QEvent>
 #include <QMimeData>
 
 

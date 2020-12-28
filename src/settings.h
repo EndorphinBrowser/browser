@@ -63,7 +63,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include <qdialog.h>
+#include <QDialog>
 #include "ui_settings.h"
 
 class SettingsDialog : public QDialog, public Ui_Settings

@@ -29,18 +29,18 @@
 
 #include "languagemanager.h"
 
-#include <qapplication.h>
-#include <qdir.h>
+#include <QApplication>
+#include <QDir>
 #include <qdiriterator.h>
 #include <qfileinfo.h>
-#include <qinputdialog.h>
+#include <QInputDialog>
 #include <qlibraryinfo.h>
-#include <qmessagebox.h>
+#include <QMessageBox>
 #include <qlocale.h>
-#include <qsettings.h>
+#include <QSettings>
 #include <qtranslator.h>
 
-#include <qdebug.h>
+#include <QDebug>
 
 // #define LANGUAGEMANAGER_DEBUG
 

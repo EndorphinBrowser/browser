@@ -20,7 +20,7 @@
 #ifndef SOURCEHIGHLIGHTER_H
 #define SOURCEHIGHLIGHTER_H
 
-#include <qsyntaxhighlighter.h>
+#include <QSyntaxHighlighter>
 
 class SourceHighlighter : public QSyntaxHighlighter
 {

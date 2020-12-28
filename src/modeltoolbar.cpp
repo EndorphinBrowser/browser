@@ -24,8 +24,8 @@
 #endif
 #include "modelmenu.h"
 
-#include <qevent.h>
-#include <qtoolbutton.h>
+#include <QEvent>
+#include <QToolButton>
 #include <QDrag>
 #include <QMimeData>
 #include <QApplication>

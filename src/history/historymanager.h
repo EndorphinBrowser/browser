@@ -63,10 +63,10 @@
 #ifndef HISTORYMANAGER_H
 #define HISTORYMANAGER_H
 
-#include <qdatetime.h>
+#include <QDateTime>
 #include <qhash.h>
-#include <qtimer.h>
-#include <qurl.h>
+#include <QTimer>
+#include <QUrl>
 
 class HistoryEntry
 {

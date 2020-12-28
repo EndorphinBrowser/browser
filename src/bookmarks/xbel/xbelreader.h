@@ -64,7 +64,7 @@
 #define XBELREADER_H
 
 #include <qxmlstream.h>
-#include <qdatetime.h>
+#include <QDateTime>
 
 class BookmarkNode;
 class XmlEntityResolver : public QXmlStreamEntityResolver

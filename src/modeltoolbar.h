@@ -20,9 +20,9 @@
 #ifndef MODELTOOLBAR_H
 #define MODELTOOLBAR_H
 
-#include <qtoolbar.h>
+#include <QToolbar>
 
-#include <qabstractitemmodel.h>
+#include <QAbstractItemModel>
 
 Q_DECLARE_METATYPE(QModelIndex)
 

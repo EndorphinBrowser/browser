@@ -19,9 +19,9 @@
 
 #include "locationcompleter.h"
 
-#include <qevent.h>
-#include <qfontmetrics.h>
-#include <qheaderview.h>
+#include <QEvent>
+#include <QFontMetrics>
+#include <QHeaderView>
 
 HistoryCompletionView::HistoryCompletionView(QWidget *parent)
     : QTableView(parent)
