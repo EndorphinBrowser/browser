@@ -122,7 +122,7 @@ private:
 };
 
 
-#include <QShortCut>
+#include <QShortcut>
 
 /*
      Shortcut to switch directly to a tab by index

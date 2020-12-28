@@ -1,4 +1,5 @@
 project(endorphin-placesimport)
+include(GNUInstallDirs)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Sql REQUIRED)
@@ -23,3 +24,7 @@ set(placesimport_SRCS
 
 add_executable(endorphin-placesimport ${placesimport_SRCS} ${UIS} ${RSCS} ${TRS} ${MOCS})
 target_link_libraries(endorphin-placesimport Qt5::Core Qt5::Widgets Qt5::Sql Qt5::WebEngine Qt5::WebEngineWidgets)
+
+install(TARGETS endorphin-placesimport
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)

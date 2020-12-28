@@ -26,7 +26,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QPlainTextEdit>
-#include <QShortCut>
+#include <QShortcut>
 #include <QSettings>
 #include <QWebEnginePage>
 #include <QNetworkAccessManager>

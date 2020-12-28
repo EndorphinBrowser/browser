@@ -98,8 +98,8 @@
 #include <QTextCodec>
 #include <QMenuBar>
 #include <QMessageBox>
-#include <QStatus>
-#include <QToolbar>
+#include <QStatusBar>
+#include <QToolBar>
 #include <QInputDialog>
 #include <QSplitter>
 

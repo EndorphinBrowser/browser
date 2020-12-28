@@ -25,6 +25,7 @@
 #include "modelmenu.h"
 
 #include <QEvent>
+#include <QMouseEvent>
 #include <QToolButton>
 #include <QDrag>
 #include <QMimeData>

@@ -20,6 +20,7 @@
 #include "locationcompleter.h"
 
 #include <QEvent>
+#include <QMouseEvent>
 #include <QFontMetrics>
 #include <QHeaderView>
 

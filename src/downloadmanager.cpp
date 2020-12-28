@@ -80,6 +80,7 @@
 #include <QProcess>
 #include <QSettings>
 #include <qnetworkaccessmanager.h>
+#include <QMetaEnum>
 
 #include <QDebug>
 

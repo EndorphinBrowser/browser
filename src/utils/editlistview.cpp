@@ -29,6 +29,7 @@
 #include "editlistview.h"
 
 #include <QEvent>
+#include <QKeyEvent>
 
 EditListView::EditListView(QWidget *parent)
     : QListView(parent)

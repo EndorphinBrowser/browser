@@ -30,6 +30,7 @@
 #include "edittreeview.h"
 
 #include <QEvent>
+#include <QMouseEvent>
 
 EditTreeView::EditTreeView(QWidget *parent)
     : QTreeView(parent)

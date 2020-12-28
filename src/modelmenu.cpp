@@ -74,6 +74,8 @@
 #include <QWidget>
 #include <QDrag>
 #include <QMimeData>
+#include <QMouseEvent>
+#include <QDropEvent>
 
 #include <QDebug>
 

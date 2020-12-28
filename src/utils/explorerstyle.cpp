@@ -42,7 +42,7 @@
 #include <qlibrary.h>
 #include <qpixmapcache.h>
 #include <QMainWindow>
-#include <QToolbar>
+#include <QToolBar>
 #include <QPainter>
 #include <QMenuBar>
 #include <qstyleoption.h>

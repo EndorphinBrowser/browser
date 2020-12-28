@@ -29,6 +29,7 @@
 
 #include "edittableview.h"
 
+#include <QKeyEvent>
 #include <QEvent>
 
 EditTableView::EditTableView(QWidget *parent)

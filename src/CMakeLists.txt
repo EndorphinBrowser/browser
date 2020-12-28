@@ -1,6 +1,9 @@
 # Some common settings
 
 project(Endorphin)
+
+include(GNUInstallDirs)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -173,3 +176,20 @@ qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/zh_TW.ts)
 # Generate executable
 add_executable(endorphin ${Endorphin_SRCS} ${UIS} ${RSCS} ${TRS} ${MOCS} ${QM_FILES})
 target_link_libraries(endorphin Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::Qml Qt5::PrintSupport Qt5::WebEngine Qt5::WebEngineWidgets Qt5::UiTools)
+
+
+if(NOT QT_TRANSLATIONS_DIR)
+get_target_property(QT5_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
+execute_process( COMMAND ${QT5_QMAKE_EXECUTABLE} -query QT_INSTALL_TRANSLATIONS
+OUTPUT_VARIABLE qt_translations_dir OUTPUT_STRIP_TRAILING_WHITESPACE )
+file( TO_CMAKE_PATH "${qt_translations_dir}" qt_translations_dir)
+set( QT_TRANSLATIONS_DIR ${qt_translations_dir} CACHE PATH
+"The location of the Qt translations" FORCE)
+endif()
+
+install(FILES ${QM_FILES}
+DESTINATION  ${CMAKE_INSTALL_BINDIR}/endorphin_locale/)
+
+install(TARGETS endorphin
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)

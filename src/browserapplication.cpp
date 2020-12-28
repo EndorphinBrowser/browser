@@ -690,6 +690,7 @@ LanguageManager *BrowserApplication::languageManager()
         s_languageManager->addLocaleDirectory(dataFilePath(QLatin1String("locale")));
         s_languageManager->addLocaleDirectory(qApp->applicationDirPath() + QLatin1String("/src/.qm/locale"));
         s_languageManager->addLocaleDirectory(installedDataDirectory() + QLatin1String("/locale"));
+        s_languageManager->addLocaleDirectory(installedDataDirectory() + QLatin1String("/endorphin_locale"));
         s_languageManager->loadLanguageFromSettings();
         connect(s_languageManager, SIGNAL(languageChanged(const QString &)),
                 qApp, SLOT(retranslate()));

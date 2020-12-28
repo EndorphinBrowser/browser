@@ -21,7 +21,8 @@
 
 #include <QEvent>
 #include <QTimeLine>
-#include <QShortCut>
+#include <QShortcut>
+#include <QResizeEvent>
 
 #include <QDebug>
 

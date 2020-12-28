@@ -20,7 +20,7 @@
 #include "webviewsearch.h"
 
 #include <QEvent>
-#include <QShortCut>
+#include <QShortcut>
 #include <QTimeLine>
 
 #include <QWebEngineView>

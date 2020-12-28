@@ -20,7 +20,7 @@
 #ifndef MODELTOOLBAR_H
 #define MODELTOOLBAR_H
 
-#include <QToolbar>
+#include <QToolBar>
 
 #include <QAbstractItemModel>
 
