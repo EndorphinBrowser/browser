@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>405</width>
-    <height>36</height>
+    <width>493</width>
+    <height>40</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,7 +18,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
-    <number>-1</number>
+    <number>6</number>
    </property>
    <property name="leftMargin">
     <number>12</number>
@@ -47,11 +47,11 @@
    </item>
    <item>
     <widget class="QToolButton" name="highlightAllButton">
-     <property name="text">
-      <string>Highlight All</string>
-     </property>
      <property name="visible">
       <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Highlight All</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -60,6 +60,14 @@
    </item>
    <item>
     <widget class="QToolButton" name="previousButton">
+     <property name="styleSheet">
+      <string notr="true">border: none;
+background: lightgrey;
+padding: 0 5;
+height: 30px;
+border-radius: 2px;
+</string>
+     </property>
      <property name="text">
       <string notr="true">&lt;</string>
      </property>
@@ -67,16 +75,41 @@
    </item>
    <item>
     <widget class="QToolButton" name="nextButton">
+     <property name="styleSheet">
+      <string notr="true">border: none;
+background: lightgrey;
+padding: 0 5;
+height: 30px;
+border-radius: 2px;
+</string>
+     </property>
      <property name="text">
       <string notr="true">&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="SearchLineEdit" name="searchLineEdit"/>
+    <widget class="SearchLineEdit" name="searchLineEdit">
+     <property name="styleSheet">
+      <string notr="true">border: none;
+height: 30px;
+border-radius: 2px;
+</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QPushButton" name="doneButton">
+     <property name="styleSheet">
+      <string notr="true">border: none;
+background: lightgrey;
+padding: 0 20;
+height: 30px;
+border-radius: 2px;
+text-align: center;
+
+</string>
+     </property>
      <property name="text">
       <string>Done</string>
      </property>

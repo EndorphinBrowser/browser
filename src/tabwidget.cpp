@@ -372,13 +372,16 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     // line edit
     LocationBar *locationBar = new LocationBar;
     if (!m_lineEditCompleter) {
-        HistoryCompletionModel *completionModel = new HistoryCompletionModel(this);
+        LocationCompletionModel *completionModel = new LocationCompletionModel(this);
         completionModel->setSourceModel(BrowserApplication::historyManager()->historyFilterModel());
         m_lineEditCompleter = new LocationCompleter(completionModel, this);
         connect(m_lineEditCompleter, SIGNAL(activated(const QString &)),
                 this, SLOT(loadString(const QString &)));
         // Should this be in Qt by default?
         QAbstractItemView *popup = m_lineEditCompleter->popup();
+        popup->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        popup->verticalScrollBar()->hide();
+        popup->verticalScrollBar()->resize(0, 0);
         QListView *listView = qobject_cast<QListView*>(popup);
         if (listView) {
             // Urls are always LeftToRight

@@ -363,7 +363,7 @@ void tst_HistoryManager::big()
     ModelTest test(&model);
     QCOMPARE(model.rowCount(), bigHistory.count());
 
-    HistoryCompletionModel completionModel;
+    LocationCompletionModel completionModel;
     completionModel.setSourceModel(&model);
     ModelTest test2(&completionModel);
     QCOMPARE(completionModel.rowCount(), bigHistory.count());

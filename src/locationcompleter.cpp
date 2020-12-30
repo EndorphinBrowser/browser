@@ -23,8 +23,13 @@
 #include <QMouseEvent>
 #include <QFontMetrics>
 #include <QHeaderView>
+#include <QTcpSocket>
+#include <QByteArray>
 
-HistoryCompletionView::HistoryCompletionView(QWidget *parent)
+#include <QDebug>
+
+
+LocationCompletionView::LocationCompletionView(QWidget *parent)
     : QTableView(parent)
 {
     horizontalHeader()->hide();
@@ -43,7 +48,7 @@ HistoryCompletionView::HistoryCompletionView(QWidget *parent)
     setLayoutDirection(Qt::LeftToRight);
 }
 
-void HistoryCompletionView::resizeEvent(QResizeEvent *event)
+void LocationCompletionView::resizeEvent(QResizeEvent *event)
 {
     horizontalHeader()->resizeSection(0, 0.65 * width());
     horizontalHeader()->setStretchLastSection(true);
@@ -51,14 +56,14 @@ void HistoryCompletionView::resizeEvent(QResizeEvent *event)
     QTableView::resizeEvent(event);
 }
 
-int HistoryCompletionView::sizeHintForRow(int row) const
+int LocationCompletionView::sizeHintForRow(int row) const
 {
     Q_UNUSED(row)
     QFontMetrics metrics = fontMetrics();
     return metrics.height();
 }
 
-HistoryCompletionModel::HistoryCompletionModel(QObject *parent)
+LocationCompletionModel::LocationCompletionModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_searchMatcher(QString(), Qt::CaseInsensitive, QRegExp::FixedString)
     , m_wordMatcher(QString(), Qt::CaseInsensitive)
@@ -67,11 +72,11 @@ HistoryCompletionModel::HistoryCompletionModel(QObject *parent)
     setDynamicSortFilter(true);
 }
 
-QVariant HistoryCompletionModel::data(const QModelIndex &index, int role) const
+QVariant LocationCompletionModel::data(const QModelIndex &index, int role) const
 {
     // if we are valid, tell QCompleter that everything we have filtered matches
     // what the user typed; if not, nothing matches
-    if (role == HistoryCompletionRole && index.isValid()) {
+    if (role == LocationCompletionRole && index.isValid()) {
         if (isValid())
             return QLatin1String("a");
         else
@@ -90,12 +95,12 @@ QVariant HistoryCompletionModel::data(const QModelIndex &index, int role) const
     return QSortFilterProxyModel::data(index, role);
 }
 
-QString HistoryCompletionModel::searchString() const
+QString LocationCompletionModel::searchString() const
 {
     return m_searchString;
 }
 
-void HistoryCompletionModel::setSearchString(const QString &str)
+void LocationCompletionModel::setSearchString(const QString &str)
 {
     if (str == m_searchString)
         return;
@@ -106,12 +111,12 @@ void HistoryCompletionModel::setSearchString(const QString &str)
     invalidateFilter();
 }
 
-bool HistoryCompletionModel::isValid() const
+bool LocationCompletionModel::isValid() const
 {
     return m_isValid;
 }
 
-void HistoryCompletionModel::setValid(bool b)
+void LocationCompletionModel::setValid(bool b)
 {
     if (b == m_isValid)
         return;
@@ -122,7 +127,7 @@ void HistoryCompletionModel::setValid(bool b)
     emit dataChanged(index(0, 0), index(0, rowCount() - 1));
 }
 
-bool HistoryCompletionModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
+bool LocationCompletionModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
     // do a case-insensitive substring match against both the url and title;
     // we have also made sure that the user doesn't accidentally use regexp
@@ -141,7 +146,7 @@ bool HistoryCompletionModel::filterAcceptsRow(int source_row, const QModelIndex 
     return false;
 }
 
-bool HistoryCompletionModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+bool LocationCompletionModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
     // We give a bonus to hits that match on a word boundary so that e.g. "dot.kde.org"
     // is a better result for typing "dot" than "slashdot.org". However, we only look
@@ -179,10 +184,10 @@ LocationCompleter::LocationCompleter(QAbstractItemModel *m, QObject *parent)
 
 void LocationCompleter::init()
 {
-    setPopup(new HistoryCompletionView());
+    setPopup(new LocationCompletionView());
 
     // we want to complete against our own faked role
-    setCompletionRole(HistoryCompletionModel::HistoryCompletionRole);
+    setCompletionRole(LocationCompletionModel::LocationCompletionRole);
 
     // and since we fake our completion role, we can take
     // advantage of the sorted-model optimizations in QCompleter
@@ -215,7 +220,7 @@ QStringList LocationCompleter::splitPath(const QString &path) const
     // if the previous search results are not a superset of
     // the current search results, tell the model that it is not valid yet
     if (!path.startsWith(m_searchString)) {
-        HistoryCompletionModel *completionModel = qobject_cast<HistoryCompletionModel*>(model());
+        LocationCompletionModel *completionModel = qobject_cast<LocationCompletionModel*>(model());
         Q_ASSERT(completionModel);
         completionModel->setValid(false);
     }
@@ -260,10 +265,10 @@ bool LocationCompleter::eventFilter(QObject *obj, QEvent *event)
 
 void LocationCompleter::updateFilter()
 {
-    HistoryCompletionModel *completionModel = qobject_cast<HistoryCompletionModel*>(model());
+    LocationCompletionModel *completionModel = qobject_cast<LocationCompletionModel*>(model());
     Q_ASSERT(completionModel);
 
-    // tell the HistoryCompletionModel about the new search string
+    // tell the LocationCompletionModel about the new search string
     completionModel->setSearchString(m_searchString);
 
     // sort the model

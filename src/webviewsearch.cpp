@@ -31,9 +31,6 @@ WebViewSearch::WebViewSearch(QWebEngineView *webView, QWidget *parent)
     : SearchBar(parent)
 {
     setSearchObject(webView);
-    ui.highlightAllButton->setVisible(true);
-    connect(ui.highlightAllButton, SIGNAL(toggled(bool)),
-            this, SLOT(highlightAll()));
     connect(ui.searchLineEdit, SIGNAL(textEdited(const QString &)),
             this, SLOT(highlightAll()));
 }
@@ -48,24 +45,22 @@ void WebViewSearch::findPrevious()
     find(QWebEnginePage::FindBackward);
 }
 
-void WebViewSearch::highlightAll()
-{
-    webView()->findText(QString(), QWebEnginePage::FindFlags());
-
-    /*
-        if (ui.highlightAllButton->isChecked())
-            find(QWebEnginePage::HighlightAllOccurrences);
-    */
-}
-
 void WebViewSearch::find(QWebEnginePage::FindFlags flags)
 {
-    QString searchString = ui.searchLineEdit->text();
-    if (!searchObject() || searchString.isEmpty())
-        return;
+    if(!ui.searchLineEdit->text().isEmpty()) {
+        QString searchString = ui.searchLineEdit->text();
+        webView()->findText(searchString, flags, [this](bool found) {
+            handleSearchResult(found);
+        });
+    }
+}
+
+void WebViewSearch::handleSearchResult(bool found)
+{
     QString infoString;
-    //if (!webView()->findText(searchString, flags))
-    //infoString = tr("Not Found");
+    if (!found)
+        infoString = tr("Not Found");
+    
     ui.searchInfo->setText(infoString);
 }
 

@@ -55,6 +55,7 @@ set(Endorphin_SRCS
 	../../src/plaintexteditsearch.cpp
 	../../src/searchbar.cpp
 	../../src/searchbutton.cpp
+	../../src/locationcompleter.cpp
 	../../src/searchlineedit.cpp
 	../../src/settings.cpp
 	../../src/sourcehighlighter.cpp

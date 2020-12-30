@@ -38,11 +38,11 @@ public:
 public slots:
     void findNext();
     void findPrevious();
-    void highlightAll();
 
 private:
     void find(QWebEnginePage::FindFlags flags);
     QWebEngineView *webView() const;
+    void handleSearchResult(bool found);
 };
 
 #include "webview.h"

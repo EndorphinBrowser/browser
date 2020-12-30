@@ -131,8 +131,8 @@ private slots:
 
     void fileNew();
     void fileOpen();
-    void filePrintPreview();
-    void filePrint();
+    //void filePrintPreview();
+    //void filePrint();
     void privateBrowsing();
     void fileSaveAs();
     void editFind();
@@ -168,7 +168,7 @@ private slots:
     void showWindow();
     void swapFocus();
 
-    void printRequested(QWebEnginePage *page);
+    //void printRequested(QWebEnginePage *page);
     void geometryChangeRequested(const QRect &geometry);
 
     void gotHTML(QString &value);
@@ -189,8 +189,8 @@ private:
     QAction *m_fileSaveAsAction;
     QAction *m_fileImportBookmarksAction;
     QAction *m_fileExportBookmarksAction;
-    QAction *m_filePrintPreviewAction;
-    QAction *m_filePrintAction;
+    //QAction *m_filePrintPreviewAction;
+    //QAction *m_filePrintAction;
     QAction *m_filePrivateBrowsingAction;
     QAction *m_fileCloseWindow;
     QAction *m_fileQuit;

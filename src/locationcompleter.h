@@ -30,10 +30,10 @@
 #include <QTimer>
 
 class QResizeEvent;
-class HistoryCompletionView : public QTableView
+class LocationCompletionView : public QTableView
 {
 public:
-    HistoryCompletionView(QWidget *parent = nullptr);
+    LocationCompletionView(QWidget *parent = nullptr);
     int sizeHintForRow(int row) const;
 
 protected:
@@ -46,27 +46,29 @@ protected:
 // data. (QCompleter also does not allow post-facto sorting of the completion results,
 // the source model must already be completed.) To work around these limitations,
 // we create a custom subclass of QCompleter which abuses the QCompleter::pathFromIndex()
-// virtual override to tell the HistoryCompletionModel which string to look for,
-// _before_ the QCompleter tries to do matching. Since the HistoryCompletionModel does
+// virtual override to tell the LocationCompletionModel which string to look for,
+// _before_ the QCompleter tries to do matching. Since the LocationCompletionModel does
 // its own filtering, we just lie to the QCompleter and tell it everything matches. We then
 // abuse QCompleter::pathFromIndex() to return a url that does not start with what
 // the user typed -- but is what they were looking for.
 
-class HistoryCompletionModel : public QSortFilterProxyModel
+class LocationCompletionModel : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_PROPERTY(QString searchString READ searchString WRITE setSearchString)
 
 public:
-    HistoryCompletionModel(QObject *parent = nullptr);
+    LocationCompletionModel(QObject *parent = nullptr);
 
-    enum Roles { HistoryCompletionRole = HistoryFilterModel::MaxRole + 1 };
+    enum Roles { LocationCompletionRole = HistoryFilterModel::MaxRole + 1 };
 
     QString searchString() const;
     void setSearchString(const QString &str);
 
     bool isValid() const;
     void setValid(bool b);
+
+    bool couldBeURL(QString &url);
 
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
