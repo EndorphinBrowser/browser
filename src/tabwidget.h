@@ -150,6 +150,9 @@ public:
 
     void setProfile(QWebEngineProfile *profile);
 
+    void initScripts();
+    QWebEngineProfile* profile();
+
 protected:
     void changeEvent(QEvent *event);
 

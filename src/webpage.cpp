@@ -38,15 +38,67 @@
 #include <QUiLoader>
 
 #include <QWebEnginePage>
+#include <QWebChannel>
 #include <QPrintDialog>
 #include <QPrinter>
+#include <QFile>
+#include <QTextStream>
 
 QString WebPage::s_userAgent;
+
+Q_DECLARE_METATYPE(OpenSearchEngine*)
+JavaScriptEndorphinObject::JavaScriptEndorphinObject(QObject *parent)
+    : QObject(parent)
+{
+    static const char *translations[] = {
+        QT_TR_NOOP("Welcome to Endorphin!"),
+        QT_TR_NOOP("Endorphin Start"),
+        QT_TR_NOOP("Search!"),
+        QT_TR_NOOP("Search the web with"),
+        QT_TR_NOOP("Search results provided by"),
+        QT_TR_NOOP("About Endorphin")
+    };
+    Q_UNUSED(translations);
+
+    qRegisterMetaType<OpenSearchEngine*>("OpenSearchEngine*");
+}
+
+void JavaScriptEndorphinObject::AddSearchProvider(const QString &url)
+{
+    ToolbarSearch::openSearchManager()->addEngine(QUrl(url));
+}
+
+
+QString JavaScriptEndorphinObject::translate(const QString &string)
+{
+    QString translatedString = tr(string.toUtf8().constData());
+
+    // If the translation is the same as the original string
+    // it could not be translated.  In that case
+    // try to translate using the QApplication domain
+    if (translatedString != string)
+        return translatedString;
+    else
+        return qApp->tr(string.toUtf8().constData());
+}
+
+QObject *JavaScriptEndorphinObject::currentEngine() const
+{
+    return ToolbarSearch::openSearchManager()->currentEngine();
+}
+
+QString JavaScriptEndorphinObject::searchUrl(const QString &string) const
+{
+    return QString::fromUtf8(ToolbarSearch::openSearchManager()->currentEngine()->searchUrl(string).toEncoded());
+}
 
 WebPage::WebPage(QWebEngineProfile *profile, QObject *parent)
     : QWebEnginePage(profile, parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
 {
+    QWebChannel *channel = new QWebChannel(this);
+    channel->registerObject("endorphin", new JavaScriptEndorphinObject(this));
+    setWebChannel(channel);
     loadSettings();
 }
 

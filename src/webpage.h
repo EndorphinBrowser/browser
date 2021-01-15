@@ -26,6 +26,22 @@
 #include <QNetworkRequest>
 #include <QWebEnginePage>
 
+class JavaScriptEndorphinObject : public QObject
+{
+    Q_OBJECT
+
+    Q_PROPERTY(QObject *currentEngine READ currentEngine)
+
+public:
+    JavaScriptEndorphinObject(QObject *parent = 0);
+
+public slots:
+    QString translate(const QString &string);
+    QObject *currentEngine() const;
+    QString searchUrl(const QString &string) const;
+    void AddSearchProvider(const QString &url);
+};
+
 class WebPageLinkedResource
 {
 public:

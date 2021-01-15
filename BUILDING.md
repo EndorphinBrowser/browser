@@ -11,7 +11,7 @@ If you already have **Qt 5.15** or greater installed, you can skip this step. To
 ### Step 3: Download and compile the latest Endorphin.
 Now we will download the latest tree of Endorphin. Issue these commands:
 ```
-$ git clone https://gitlab.com/EndorphinBrowser/browser.git
+$ git clone https://gitlab.com/EndorphinBrowser/browser.git --recursive
 $ cd browser
 $ mkdir build && cd build
 $ cmake ..

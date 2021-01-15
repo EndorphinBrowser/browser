@@ -111,10 +111,11 @@ TabWidget::TabWidget(QWidget *parent)
     , m_lineEditCompleter(nullptr)
     , m_locationBars(nullptr)
     , m_tabBar(new TabBar(this))
-    , m_profile(QWebEngineProfile::defaultProfile())
+    , m_profile(nullptr)
     , addTabButton(nullptr)
     , closeTabButton(nullptr)
 {
+    m_profile = QWebEngineProfile::defaultProfile();
     setElideMode(Qt::ElideRight);
 
     new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_T), this, SLOT(openLastTab()));
@@ -194,8 +195,23 @@ TabWidget::TabWidget(QWidget *parent)
     // Initialize Actions' labels
     retranslate();
     loadSettings();
+    initScripts();
 }
 
+void TabWidget::initScripts() {
+    QFile file(":qwebchannel.js");
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+            qDebug() << "Couldn't read qwebchannel.js, window.external and window.endorphin won't be available";
+    QTextStream out(&file);
+
+    QWebEngineScript script;
+    script.setName("WebChannel loader");
+    script.setInjectionPoint(QWebEngineScript::Deferred);
+    script.setRunsOnSubFrames(true);
+    script.setWorldId(QWebEngineScript::MainWorld);
+    script.setSourceCode(out.readAll());
+    m_profile->scripts()->insert(script);
+}
 void TabWidget::historyCleared()
 {
     m_recentlyClosedTabs.clear();
