@@ -112,7 +112,7 @@ set(Endorphin_SRCS
 	utils/languagemanager.cpp
 	utils/lineedit.cpp
 	utils/singleapplication.cpp
- 	utils/squeezelabel.cpp
+	utils/squeezelabel.cpp
 	utils/treesortfilterproxymodel.cpp
 )
 
@@ -140,38 +140,43 @@ set(Endorphin_RSCS
 QT5_ADD_RESOURCES(RSCS ${Endorphin_RSCS})
 
 # Translations
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/ast.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/ca.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/cs_CZ.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/da_DK.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/de_DE.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/el_GR.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/es.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/es_CR.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/et_EE.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/fi_FI.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/fr_CA.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/fr_FR.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/gl.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/he_IL.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/hu_HU.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/it_IT.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/ja_JP.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/ko_KR.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/ms.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/nb_NO.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/nl.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/pl_PL.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/pt_PT.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/pt_BR.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/ru_RU.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/sk_SK.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/sr_RS.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/sr_RS@latin.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/tr_TR.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/uk.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/zh_CN.ts)
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/locale/zh_TW.ts)
+qt5_create_translation(QM_FILES
+${Endorphin_SRCS}
+${CMAKE_CURRENT_SOURCE_DIR}/locale/ast.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/ca.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/ast.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/ca.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/cs_CZ.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/da_DK.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/de_DE.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/el_GR.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/es.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/es_CR.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/et_EE.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/fi_FI.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/fr_CA.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/fr_FR.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/gl.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/he_IL.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/hu_HU.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/it_IT.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/ja_JP.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/ko_KR.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/ms.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/nb_NO.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/nl.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/pl_PL.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/pt_PT.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/pt_BR.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/ru_RU.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/sk_SK.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/sr_RS.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/sr_RS@latin.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/tr_TR.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/uk.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/zh_CN.ts
+${CMAKE_CURRENT_SOURCE_DIR}/locale/zh_TW.ts
+)
 
 # Generate executable
 add_executable(endorphin ${Endorphin_SRCS} ${UIS} ${RSCS} ${TRS} ${MOCS} ${QM_FILES})

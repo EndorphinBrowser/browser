@@ -464,7 +464,6 @@ void BrowserApplication::loadSettings()
     defaultSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, settings.value(QLatin1String("enableJavascript"), true).toBool());
     defaultSettings->setAttribute(QWebEngineSettings::AutoLoadImages, settings.value(QLatin1String("enableImages"), true).toBool());
     defaultSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, settings.value(QLatin1String("enableLocalStorage"), true).toBool());
-    //defaultSettings->setAttribute(QWebEngineSettings::DeveloperExtrasEnabled, settings.value(QLatin1String("enableInspector"), false).toBool());
     defaultSettings->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
 
     QString css = settings.value(QLatin1String("userStyleSheet")).toString();
