@@ -1,0 +1,105 @@
+
+set(ENDORPHIN_SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+
+
+set(ENDORPHIN_AUTOUIC_SEARCH_PATHS
+    ${ENDORPHIN_SRC_DIR}/
+    ${ENDORPHIN_SRC_DIR}/src
+    ${ENDORPHIN_SRC_DIR}/src/utils
+)
+set(ENDORPHIN_INCLUDE_DIRS
+    ${ENDORPHIN_SRC_DIR}
+    ${ENDORPHIN_SRC_DIR}/utils
+    ${ENDORPHIN_SRC_DIR}/bookmarks
+    ${ENDORPHIN_SRC_DIR}/bookmarks/xbel
+    ${ENDORPHIN_SRC_DIR}/data
+    ${ENDORPHIN_SRC_DIR}/history
+    ${ENDORPHIN_SRC_DIR}/htmls
+    ${ENDORPHIN_SRC_DIR}/locationbar
+    ${ENDORPHIN_SRC_DIR}/opensearch
+    ${ENDORPHIN_SRC_DIR}/useragent
+    ${ENDORPHIN_SRC_DIR}/utils
+)
+
+set(ENDORPHIN_SRCS
+    ${ENDORPHIN_SRC_DIR}/aboutdialog.cpp
+    ${ENDORPHIN_SRC_DIR}/acceptlanguagedialog.cpp
+    ${ENDORPHIN_SRC_DIR}/autosaver.cpp
+    ${ENDORPHIN_SRC_DIR}/browserapplication.cpp
+    ${ENDORPHIN_SRC_DIR}/browsermainwindow.cpp
+    ${ENDORPHIN_SRC_DIR}/clearprivatedata.cpp
+    ${ENDORPHIN_SRC_DIR}/clearbutton.cpp
+    ${ENDORPHIN_SRC_DIR}/devtoolswindow.cpp
+    ${ENDORPHIN_SRC_DIR}/downloadmanager.cpp
+    ${ENDORPHIN_SRC_DIR}/modelmenu.cpp
+    ${ENDORPHIN_SRC_DIR}/modeltoolbar.cpp
+    ${ENDORPHIN_SRC_DIR}/permissionbar.cpp
+    ${ENDORPHIN_SRC_DIR}/plaintexteditsearch.cpp
+    ${ENDORPHIN_SRC_DIR}/searchbar.cpp
+    ${ENDORPHIN_SRC_DIR}/searchbutton.cpp
+    ${ENDORPHIN_SRC_DIR}/searchlineedit.cpp
+    ${ENDORPHIN_SRC_DIR}/settings.cpp
+    ${ENDORPHIN_SRC_DIR}/sourcehighlighter.cpp
+    ${ENDORPHIN_SRC_DIR}/sourceviewer.cpp
+    ${ENDORPHIN_SRC_DIR}/tabbar.cpp
+    ${ENDORPHIN_SRC_DIR}/tabwidget.cpp
+    ${ENDORPHIN_SRC_DIR}/toolbarsearch.cpp
+    ${ENDORPHIN_SRC_DIR}/webactionmapper.cpp
+    ${ENDORPHIN_SRC_DIR}/webpage.cpp
+    ${ENDORPHIN_SRC_DIR}/webview.cpp
+    ${ENDORPHIN_SRC_DIR}/webviewsearch.cpp
+    ${ENDORPHIN_SRC_DIR}/bookmarks/addbookmarkdialog.cpp
+    ${ENDORPHIN_SRC_DIR}/bookmarks/bookmarksdialog.cpp
+    ${ENDORPHIN_SRC_DIR}/bookmarks/bookmarksmanager.cpp
+    ${ENDORPHIN_SRC_DIR}/bookmarks/bookmarksmenu.cpp
+    ${ENDORPHIN_SRC_DIR}/bookmarks/bookmarksmodel.cpp
+    ${ENDORPHIN_SRC_DIR}/bookmarks/bookmarkstoolbar.cpp
+    ${ENDORPHIN_SRC_DIR}/bookmarks/bookmarknode.cpp
+    ${ENDORPHIN_SRC_DIR}/bookmarks/xbel/xbelreader.cpp
+    ${ENDORPHIN_SRC_DIR}/bookmarks/xbel/xbelwriter.cpp
+    ${ENDORPHIN_SRC_DIR}/history/history.cpp
+    ${ENDORPHIN_SRC_DIR}/locationcompleter.cpp
+    ${ENDORPHIN_SRC_DIR}/history/historymanager.cpp
+    ${ENDORPHIN_SRC_DIR}/locationbar/locationbar.cpp
+    ${ENDORPHIN_SRC_DIR}/locationbar/locationbarsiteicon.cpp
+    ${ENDORPHIN_SRC_DIR}/locationbar/privacyindicator.cpp
+    ${ENDORPHIN_SRC_DIR}/opensearch/opensearchdialog.cpp
+    ${ENDORPHIN_SRC_DIR}/opensearch/opensearchengine.cpp
+    ${ENDORPHIN_SRC_DIR}/opensearch/opensearchenginedelegate.cpp
+    ${ENDORPHIN_SRC_DIR}/opensearch/opensearchengineaction.cpp
+    ${ENDORPHIN_SRC_DIR}/opensearch/opensearchenginemodel.cpp
+    ${ENDORPHIN_SRC_DIR}/opensearch/opensearchmanager.cpp
+    ${ENDORPHIN_SRC_DIR}/opensearch/opensearchreader.cpp
+    ${ENDORPHIN_SRC_DIR}/opensearch/opensearchwriter.cpp
+    ${ENDORPHIN_SRC_DIR}/useragent/useragentmenu.cpp
+    ${ENDORPHIN_SRC_DIR}/utils/explorerstyle.cpp
+    ${ENDORPHIN_SRC_DIR}/utils/editlistview.cpp
+    ${ENDORPHIN_SRC_DIR}/utils/edittableview.cpp
+    ${ENDORPHIN_SRC_DIR}/utils/edittreeview.cpp
+    ${ENDORPHIN_SRC_DIR}/utils/languagemanager.cpp
+    ${ENDORPHIN_SRC_DIR}/utils/lineedit.cpp
+    ${ENDORPHIN_SRC_DIR}/utils/singleapplication.cpp
+    ${ENDORPHIN_SRC_DIR}/utils/squeezelabel.cpp
+    ${ENDORPHIN_SRC_DIR}/utils/treesortfilterproxymodel.cpp
+)
+
+set(ENDORPHIN_UIS
+    ${ENDORPHIN_SRC_DIR}/aboutdialog.ui
+    ${ENDORPHIN_SRC_DIR}/acceptlanguagedialog.ui
+    ${ENDORPHIN_SRC_DIR}/downloaditem.ui
+    ${ENDORPHIN_SRC_DIR}/downloads.ui
+    ${ENDORPHIN_SRC_DIR}/searchbanner.ui
+    ${ENDORPHIN_SRC_DIR}/settings.ui
+    ${ENDORPHIN_SRC_DIR}/bookmarks/addbookmarkdialog.ui
+    ${ENDORPHIN_SRC_DIR}/bookmarks/bookmarksdialog.ui
+    ${ENDORPHIN_SRC_DIR}/history/history.ui
+    ${ENDORPHIN_SRC_DIR}/opensearch/opensearchdialog.ui
+)
+
+set(ENDORPHIN_RSCS
+    ${ENDORPHIN_SRC_DIR}/data/data.qrc
+    ${ENDORPHIN_SRC_DIR}/data/graphics/graphics.qrc
+    ${ENDORPHIN_SRC_DIR}/data/searchengines/searchengines.qrc
+    ${ENDORPHIN_SRC_DIR}/htmls/htmls.qrc
+    ${ENDORPHIN_SRC_DIR}/useragent/useragents.qrc
+)

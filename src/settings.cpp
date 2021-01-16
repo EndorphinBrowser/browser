@@ -164,7 +164,7 @@ void SettingsDialog::loadFromSettings()
     settings.endGroup();
 
     settings.beginGroup(QLatin1String("urlloading"));
-    bool search = settings.value(QLatin1String("searchEngineFallback"), false).toBool();
+    bool search = settings.value(QLatin1String("searchEngineFallback"), true).toBool();
     searchEngineFallback->setChecked(search);
     settings.endGroup();
 

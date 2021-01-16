@@ -42,7 +42,7 @@ static HistoryEntry formatEntry(QByteArray url, QByteArray title, qlonglong prda
 int main(int argc, char **argv)
 {
     SingleApplication application(argc, argv);
-    QCoreApplication::setOrganizationDomain(QLatin1String("EndorphinBrowser.github.io/"));
+    QCoreApplication::setOrganizationDomain(QLatin1String("EndorphinBrowser.gitlab.io/"));
     QCoreApplication::setApplicationName(QLatin1String("Endorphin"));
 
     if (application.sendMessage(QByteArray())) {

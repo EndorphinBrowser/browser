@@ -1,6 +1,7 @@
 project(Endorphin)
 cmake_minimum_required(VERSION 3.16)
 include(CTest)
+include(definitions.cmake)
 if(BUILD_TESTING)
     add_subdirectory(autotests)
 endif()

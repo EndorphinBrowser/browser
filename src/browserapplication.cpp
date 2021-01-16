@@ -186,7 +186,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     , m_privateProfile(0)
     , m_privateBrowsing(false)
 {
-    QCoreApplication::setOrganizationDomain(QLatin1String("EndorphinBrowser.github.io/"));
+    QCoreApplication::setOrganizationDomain(QLatin1String("EndorphinBrowser.gitlab.io/"));
     QCoreApplication::setApplicationName(QLatin1String("Endorphin"));
     QCoreApplication::setApplicationVersion(QLatin1String("0.12.1"
 #ifdef GITVERSION

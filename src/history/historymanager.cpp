@@ -154,7 +154,7 @@ void HistoryManager::addHistoryEntry(const QString &url)
     QUrl cleanUrl(url);
     cleanUrl.setPassword(QString());
     cleanUrl.setHost(cleanUrl.host().toLower());
-    if(!cleanUrl.toString().toLower().contains("endorphinbrowser.github.io/newTab/")) {
+    if(!cleanUrl.toString().toLower().contains("endorphinbrowser.gitlab.io/newTab/")) {
         HistoryEntry item(atomicString(cleanUrl.toString()), QDateTime::currentDateTime());
         prependHistoryEntry(item);
     }

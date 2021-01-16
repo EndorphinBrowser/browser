@@ -9,15 +9,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 INCLUDE_DIRECTORIES(
-${CMAKE_CURRENT_SOURCE_DIR}/bookmarks
-${CMAKE_CURRENT_SOURCE_DIR}/bookmarks/xbel
-${CMAKE_CURRENT_SOURCE_DIR}/data
-${CMAKE_CURRENT_SOURCE_DIR}/history
-${CMAKE_CURRENT_SOURCE_DIR}/htmls
-${CMAKE_CURRENT_SOURCE_DIR}/locationbar
-${CMAKE_CURRENT_SOURCE_DIR}/opensearch
-${CMAKE_CURRENT_SOURCE_DIR}/useragent
-${CMAKE_CURRENT_SOURCE_DIR}/utils
+    ${ENDORPHIN_INCLUDE_DIRS}
 )
 
 find_package(Qt5Widgets REQUIRED)
@@ -52,96 +44,13 @@ endif()
 
 add_definitions(-DGITVERSION=\"\\\"${GIT_REV}\\\"\")
 add_definitions(-DGITCHANGENUMBER=${GIT_CHANGENUMBER})
-# Add all files
-set(Endorphin_SRCS
-	aboutdialog.cpp
-	acceptlanguagedialog.cpp
-	autosaver.cpp
-	browserapplication.cpp
-	browsermainwindow.cpp
-	clearprivatedata.cpp
-	clearbutton.cpp
-	devtoolswindow.cpp
-	downloadmanager.cpp
-	modelmenu.cpp
-	modeltoolbar.cpp
-	permissionbar.cpp
-	plaintexteditsearch.cpp
-	searchbar.cpp
-	searchbutton.cpp
-	searchlineedit.cpp
-	settings.cpp
-	sourcehighlighter.cpp
-	sourceviewer.cpp
-	tabbar.cpp
-	tabwidget.cpp
-	toolbarsearch.cpp
-	webactionmapper.cpp
-	webpage.cpp
-	webview.cpp
-	webviewsearch.cpp
-	main.cpp
-	bookmarks/addbookmarkdialog.cpp
-	bookmarks/bookmarksdialog.cpp
-	bookmarks/bookmarksmanager.cpp
-	bookmarks/bookmarksmenu.cpp
-	bookmarks/bookmarksmodel.cpp
-	bookmarks/bookmarkstoolbar.cpp
-	bookmarks/bookmarknode.cpp
-    bookmarks/xbel/xbelreader.cpp
-	bookmarks/xbel/xbelwriter.cpp
-	history/history.cpp
-	locationcompleter.cpp
-	history/historymanager.cpp
-	locationbar/locationbar.cpp
-	locationbar/locationbarsiteicon.cpp
-	locationbar/privacyindicator.cpp
-	opensearch/opensearchdialog.cpp
-	opensearch/opensearchengine.cpp
-	opensearch/opensearchenginedelegate.cpp
-	opensearch/opensearchengineaction.cpp
-	opensearch/opensearchenginemodel.cpp
-	opensearch/opensearchmanager.cpp
-	opensearch/opensearchreader.cpp
-	opensearch/opensearchwriter.cpp
-	useragent/useragentmenu.cpp
-	utils/explorerstyle.cpp
-	utils/editlistview.cpp
-	utils/edittableview.cpp
-	utils/edittreeview.cpp
-	utils/languagemanager.cpp
-	utils/lineedit.cpp
-	utils/singleapplication.cpp
-	utils/squeezelabel.cpp
-	utils/treesortfilterproxymodel.cpp
-)
 
-set(Endorphin_UIS
-	aboutdialog.ui
-	acceptlanguagedialog.ui
-	downloaditem.ui
-	downloads.ui
-	searchbanner.ui
-	settings.ui
-	bookmarks/addbookmarkdialog.ui
-	bookmarks/bookmarksdialog.ui
-	history/history.ui
-	opensearch/opensearchdialog.ui
-)
-QT5_WRAP_UI(UIS ${Endorphin_UIS})
-
-set(Endorphin_RSCS
-	data/data.qrc
-	data/graphics/graphics.qrc
-	data/searchengines/searchengines.qrc
-	htmls/htmls.qrc
-	useragent/useragents.qrc
-)
-QT5_ADD_RESOURCES(RSCS ${Endorphin_RSCS})
+QT5_WRAP_UI(UIS ${ENDORPHIN_UIS})
+QT5_ADD_RESOURCES(RSCS ${ENDORPHIN_RSCS})
 
 # Translations
 qt5_create_translation(QM_FILES
-${Endorphin_SRCS}
+${ENDORPHIN_SRCS}
 ${CMAKE_CURRENT_SOURCE_DIR}/locale/ast.ts
 ${CMAKE_CURRENT_SOURCE_DIR}/locale/ca.ts
 ${CMAKE_CURRENT_SOURCE_DIR}/locale/ast.ts
@@ -179,7 +88,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/locale/zh_TW.ts
 )
 
 # Generate executable
-add_executable(endorphin ${Endorphin_SRCS} ${UIS} ${RSCS} ${TRS} ${MOCS} ${QM_FILES})
+add_executable(endorphin main.cpp ${ENDORPHIN_SRCS} ${UIS} ${RSCS} ${TRS} ${MOCS} ${QM_FILES})
 target_link_libraries(endorphin Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::Qml Qt5::PrintSupport Qt5::WebEngine Qt5::WebEngineWidgets Qt5::UiTools)
 
 
