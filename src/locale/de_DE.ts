@@ -569,6 +569,14 @@ Arora wirklich beenden?</translation>
         <comment>Page title and Browser name</comment>
         <translation>%1 - Endorphin</translation>
     </message>
+    <message>
+        <source>P&amp;rint Preview...</source>
+        <translation>&amp;Mit Vorschau drucken...</translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation>&amp;Drucken...</translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>

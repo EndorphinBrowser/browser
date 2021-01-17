@@ -435,7 +435,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     connect(webView->page(), SIGNAL(windowCloseRequested()),
             this, SLOT(windowCloseRequested()));
     connect(webView->page(), SIGNAL(printRequested()),
-            this, SIGNAL(printRequested(webView->page())));
+            this, SIGNAL(printRequested()));
     connect(webView->page(), SIGNAL(geometryChangeRequested(const QRect &)),
             this, SLOT(geometryChangeRequestedCheck(const QRect &)));
     connect(webView, &WebView::devToolsRequested, this, &TabWidget::devToolsRequested);

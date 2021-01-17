@@ -77,6 +77,7 @@ class HistoryMenu;
 class BookmarksMenuBarMenu;
 class UserAgentMenu;
 class DevToolsWindow;
+class QPrinter;
 
 /*!
     The MainWindow of the Browser Application.
@@ -111,6 +112,7 @@ public slots:
     void privacyChanged(bool isPrivate);
     void zoomTextOnlyChanged(bool textOnly);
     void runScriptOnOpenViews(QString source);
+    void printDocument(QPrinter *printer);
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -131,8 +133,8 @@ private slots:
 
     void fileNew();
     void fileOpen();
-    //void filePrintPreview();
-    //void filePrint();
+    void filePrintPreview();
+    void filePrint();
     void privateBrowsing();
     void fileSaveAs();
     void editFind();
@@ -168,7 +170,7 @@ private slots:
     void showWindow();
     void swapFocus();
 
-    //void printRequested(QWebEnginePage *page);
+    void printRequested();
     void geometryChangeRequested(const QRect &geometry);
 
     void gotHTML(QString &value);
@@ -189,8 +191,8 @@ private:
     QAction *m_fileSaveAsAction;
     QAction *m_fileImportBookmarksAction;
     QAction *m_fileExportBookmarksAction;
-    //QAction *m_filePrintPreviewAction;
-    //QAction *m_filePrintAction;
+    QAction *m_filePrintPreviewAction;
+    QAction *m_filePrintAction;
     QAction *m_filePrivateBrowsingAction;
     QAction *m_fileCloseWindow;
     QAction *m_fileQuit;

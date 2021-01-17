@@ -263,442 +263,452 @@ Do you want to quit anyway?</source>
 <context>
     <name>BrowserMainWindow</name>
     <message>
-        <location filename="../browsermainwindow.cpp" line="861"/>
+        <location filename="../browsermainwindow.cpp" line="857"/>
         <source>Hide Toolbar</source>
         <translation>도구 바 숨기기</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="861"/>
+        <location filename="../browsermainwindow.cpp" line="857"/>
         <source>Show Toolbar</source>
         <translation>도구 바 보이기</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="862"/>
+        <location filename="../browsermainwindow.cpp" line="858"/>
         <source>Hide Bookmarks Bar</source>
         <translation>북마크 바 숨기기</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="862"/>
+        <location filename="../browsermainwindow.cpp" line="858"/>
         <source>Show Bookmarks Bar</source>
         <translation>북마크 바 보이기</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="863"/>
+        <location filename="../browsermainwindow.cpp" line="859"/>
         <source>Hide Status Bar</source>
         <translation>상태 바 숨기기</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="863"/>
+        <location filename="../browsermainwindow.cpp" line="859"/>
         <source>Show Status Bar</source>
         <translation>상태 바 보이기</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="882"/>
+        <location filename="../browsermainwindow.cpp" line="878"/>
         <source>Default</source>
         <translation>기본값</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="912"/>
+        <location filename="../browsermainwindow.cpp" line="908"/>
         <source>&amp;File</source>
         <translation>파일 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="913"/>
+        <location filename="../browsermainwindow.cpp" line="909"/>
         <source>&amp;New Window</source>
         <translation>새 창 열기 (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="914"/>
+        <location filename="../browsermainwindow.cpp" line="910"/>
         <source>&amp;Open File...</source>
         <translation>파일 열기 (&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="915"/>
+        <location filename="../browsermainwindow.cpp" line="911"/>
         <source>Open &amp;Location...</source>
         <translation>경로 열기 (&amp;L)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="916"/>
+        <location filename="../browsermainwindow.cpp" line="912"/>
         <source>&amp;Save As...</source>
         <translation>새 이름으로 저장 (&amp;S)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="917"/>
+        <location filename="../browsermainwindow.cpp" line="913"/>
         <source>&amp;Import Bookmarks...</source>
         <translation>북마크 목록 가져오기 (&amp;I)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="918"/>
+        <location filename="../browsermainwindow.cpp" line="914"/>
         <source>&amp;Export Bookmarks...</source>
         <translation>북마크 목록 내보내기 (&amp;E)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="921"/>
+        <location filename="../browsermainwindow.cpp" line="915"/>
+        <source>P&amp;rint Preview...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="916"/>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../browsermainwindow.cpp" line="917"/>
         <source>Private &amp;Browsing...</source>
         <translation>개인정보 보호 브라우징 (&amp;B)...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="922"/>
+        <location filename="../browsermainwindow.cpp" line="918"/>
         <source>Close Window</source>
         <translation>창 닫기</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="923"/>
+        <location filename="../browsermainwindow.cpp" line="919"/>
         <source>&amp;Quit</source>
         <translation>종료 (&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="925"/>
+        <location filename="../browsermainwindow.cpp" line="921"/>
         <source>&amp;Edit</source>
         <translation>편집 (&amp;E)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="926"/>
+        <location filename="../browsermainwindow.cpp" line="922"/>
         <source>&amp;Undo</source>
         <translation>되돌리기 (&amp;U)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="927"/>
+        <location filename="../browsermainwindow.cpp" line="923"/>
         <source>&amp;Redo</source>
         <translation>다시하기 (&amp;R)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="928"/>
+        <location filename="../browsermainwindow.cpp" line="924"/>
         <source>Cu&amp;t</source>
         <translation>잘라내기 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="929"/>
+        <location filename="../browsermainwindow.cpp" line="925"/>
         <source>&amp;Copy</source>
         <translation>복사 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="930"/>
+        <location filename="../browsermainwindow.cpp" line="926"/>
         <source>&amp;Paste</source>
         <translation>붙여넣기 (&amp;P)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="931"/>
+        <location filename="../browsermainwindow.cpp" line="927"/>
         <source>Select &amp;All</source>
         <translation>모두 선택 (&amp;A)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="932"/>
+        <location filename="../browsermainwindow.cpp" line="928"/>
         <source>&amp;Find</source>
         <translation>찾기 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="933"/>
+        <location filename="../browsermainwindow.cpp" line="929"/>
         <source>Find Nex&amp;t</source>
         <translation>다음 항목 찾기 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="934"/>
+        <location filename="../browsermainwindow.cpp" line="930"/>
         <source>Find P&amp;revious</source>
         <translation>이전 항목 찾기 (&amp;R)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="936"/>
+        <location filename="../browsermainwindow.cpp" line="932"/>
         <source>&amp;View</source>
         <translation>보기 (&amp;V)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="937"/>
+        <location filename="../browsermainwindow.cpp" line="933"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="938"/>
+        <location filename="../browsermainwindow.cpp" line="934"/>
         <source>Alt+Ctrl+B</source>
         <translation>Alt+Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="939"/>
+        <location filename="../browsermainwindow.cpp" line="935"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="940"/>
+        <location filename="../browsermainwindow.cpp" line="936"/>
         <source>Show Menu Bar</source>
         <translation>메뉴 바 보이기</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="941"/>
+        <location filename="../browsermainwindow.cpp" line="937"/>
         <source>&amp;Reload Page</source>
         <translation>페이지 새로 고침 (&amp;R)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="942"/>
+        <location filename="../browsermainwindow.cpp" line="938"/>
         <source>&amp;Stop</source>
         <translation>중지 (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="943"/>
+        <location filename="../browsermainwindow.cpp" line="939"/>
         <source>Zoom &amp;In</source>
         <translation>확대 (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="944"/>
+        <location filename="../browsermainwindow.cpp" line="940"/>
         <source>Zoom &amp;Normal</source>
         <translation>기본 배율로 (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="945"/>
+        <location filename="../browsermainwindow.cpp" line="941"/>
         <source>Zoom &amp;Out</source>
         <translation>축소 (&amp;O)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="946"/>
+        <location filename="../browsermainwindow.cpp" line="942"/>
         <source>Zoom &amp;Text Only</source>
         <translation>글자만 확대 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="947"/>
+        <location filename="../browsermainwindow.cpp" line="943"/>
         <source>Page S&amp;ource</source>
         <translation>페이지 소스 (&amp;O)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="948"/>
+        <location filename="../browsermainwindow.cpp" line="944"/>
         <source>Ctrl+Alt+U</source>
         <translation>Ctrl+Alt+U</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="949"/>
+        <location filename="../browsermainwindow.cpp" line="945"/>
         <source>&amp;Full Screen</source>
         <translation>전체 화면 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="950"/>
+        <location filename="../browsermainwindow.cpp" line="946"/>
         <source>Text Encoding</source>
         <translation>문자 인코딩</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="952"/>
+        <location filename="../browsermainwindow.cpp" line="948"/>
         <source>Hi&amp;story</source>
         <translation>기록 (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="953"/>
+        <location filename="../browsermainwindow.cpp" line="949"/>
         <source>Back</source>
         <translation>뒤로</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="954"/>
+        <location filename="../browsermainwindow.cpp" line="950"/>
         <source>Forward</source>
         <translation>앞으로</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="955"/>
+        <location filename="../browsermainwindow.cpp" line="951"/>
         <source>Home</source>
         <translation>홈</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="956"/>
+        <location filename="../browsermainwindow.cpp" line="952"/>
         <source>Restore Last Session</source>
         <translation>마지막 세션 복원</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="958"/>
-        <location filename="../browsermainwindow.cpp" line="982"/>
+        <location filename="../browsermainwindow.cpp" line="954"/>
+        <location filename="../browsermainwindow.cpp" line="978"/>
         <source>&amp;Bookmarks</source>
         <translation>북마크 목록 (&amp;B)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="959"/>
+        <location filename="../browsermainwindow.cpp" line="955"/>
         <source>Show All Bookmarks...</source>
         <translation>모든 북마크 목록 보기...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="960"/>
+        <location filename="../browsermainwindow.cpp" line="956"/>
         <source>Add Bookmark...</source>
         <translation>북마크 추가...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="961"/>
+        <location filename="../browsermainwindow.cpp" line="957"/>
         <source>Add Folder...</source>
         <translation>폴더 추가...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="963"/>
+        <location filename="../browsermainwindow.cpp" line="959"/>
         <source>&amp;Window</source>
         <translation>창 (&amp;W)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="965"/>
+        <location filename="../browsermainwindow.cpp" line="961"/>
         <source>&amp;Tools</source>
         <translation>도구 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="966"/>
+        <location filename="../browsermainwindow.cpp" line="962"/>
         <source>Web &amp;Search</source>
         <translation>웹 검색 (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="967"/>
+        <location filename="../browsermainwindow.cpp" line="963"/>
         <source>Ctrl+K</source>
         <comment>Web Search</comment>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="968"/>
+        <location filename="../browsermainwindow.cpp" line="964"/>
         <source>&amp;Clear Private Data</source>
         <translation>개인정보 데이터 지우기 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="969"/>
+        <location filename="../browsermainwindow.cpp" line="965"/>
         <source>Ctrl+Shift+Delete</source>
         <comment>Clear Private Data</comment>
         <translation>Ctrl+Shift+Delete</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1154"/>
+        <location filename="../browsermainwindow.cpp" line="1150"/>
         <source>%1 - Endorphin</source>
         <comment>Page title and Browser name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="970"/>
+        <location filename="../browsermainwindow.cpp" line="966"/>
         <source>Options...</source>
         <translation>옵션...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="971"/>
+        <location filename="../browsermainwindow.cpp" line="967"/>
         <source>Ctrl+,</source>
         <translation>Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="972"/>
+        <location filename="../browsermainwindow.cpp" line="968"/>
         <source>Configure Search Engines...</source>
         <translation>검색 엔진 설정...</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="973"/>
+        <location filename="../browsermainwindow.cpp" line="969"/>
         <source>User Agent</source>
         <translation>사용자 에이전트</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="975"/>
+        <location filename="../browsermainwindow.cpp" line="971"/>
         <source>&amp;Help</source>
         <translation>도움말 (&amp;H)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="976"/>
+        <location filename="../browsermainwindow.cpp" line="972"/>
         <source>Switch application language </source>
         <translation>응용 프로그램 언어 변경 </translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="977"/>
+        <location filename="../browsermainwindow.cpp" line="973"/>
         <source>About &amp;Qt</source>
         <translation>Qt 에 대하여 (&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="978"/>
+        <location filename="../browsermainwindow.cpp" line="974"/>
         <source>About &amp;%1</source>
         <comment>About Browser</comment>
         <translation>&amp;%1에 대하여</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="981"/>
+        <location filename="../browsermainwindow.cpp" line="977"/>
         <source>Navigation</source>
         <translation>탐색</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="984"/>
+        <location filename="../browsermainwindow.cpp" line="980"/>
         <source>Reload / Stop</source>
         <translation>새로 고침 / 중지</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1180"/>
+        <location filename="../browsermainwindow.cpp" line="1176"/>
         <source>Open Web Resource</source>
         <translation>웹 리소스 열기</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1181"/>
+        <location filename="../browsermainwindow.cpp" line="1177"/>
         <source>Web Resources (*.html *.htm *.svg *.png *.gif *.svgz);;All files (*.*)</source>
         <translation>웹 리소스 (*.html *.htm *.svg *.png *.gif *.svgz);;모든 파일 (*.*)</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1221"/>
+        <location filename="../browsermainwindow.cpp" line="1241"/>
         <source>Are you sure you want to turn on private browsing?</source>
         <translation>개인정보 보호 브라우징으로 전환할까요?</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1222"/>
+        <location filename="../browsermainwindow.cpp" line="1242"/>
         <source>When private browsing is turned on, some actions concerning your privacy will be disabled:</source>
         <translation>개인정보 보호 브라우징으로 전환하게 되면 개인정보를 침해할 수 있는 일부 기능은 비활성화됩니다.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1225"/>
+        <location filename="../browsermainwindow.cpp" line="1245"/>
         <source>Webpages are not added to the history.</source>
         <translation>웹 페이지가 기록에 추가되지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1226"/>
+        <location filename="../browsermainwindow.cpp" line="1246"/>
         <source>Items are automatically removed from the Downloads window.</source>
         <translation>다운로드 목록 창의 항목은 자동으로 제거됩니다.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1227"/>
+        <location filename="../browsermainwindow.cpp" line="1247"/>
         <source>Site icons won&apos;t be stored.</source>
         <translation>사이트 아이콘이 저장되지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1228"/>
+        <location filename="../browsermainwindow.cpp" line="1248"/>
         <source>Session won&apos;t be saved.</source>
         <translation>세션이 저장되지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1229"/>
+        <location filename="../browsermainwindow.cpp" line="1249"/>
         <source>Searches are not added to the pop-up menu in the search box.</source>
         <translation>검색 상자 안에서 이루어진 검색은 팝업 메뉴에 추가되지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1230"/>
+        <location filename="../browsermainwindow.cpp" line="1250"/>
         <source>No new network cache is written to disk.</source>
         <translation>디스크에 새로운 네트워크 캐시를 저장하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1232"/>
+        <location filename="../browsermainwindow.cpp" line="1252"/>
         <source>Until you close the window, you can still click the Back and Forward buttons to return to the webpages you have opened.</source>
         <translation>창을 닫을 때까지 열었던 페이지는 &quot;뒤로&quot; &quot;앞으로&quot; 버튼을 클릭하면 언제든지 접근할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1238"/>
+        <location filename="../browsermainwindow.cpp" line="1258"/>
         <source>Private Browsing</source>
         <translation>개인정보 보호 브라우징</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1278"/>
+        <location filename="../browsermainwindow.cpp" line="1298"/>
         <source>Are you sure you want to close the window?  There are %1 tabs open</source>
         <translation>모든 탭을 닫고 종료하시겠습니까? 지금 %1 개의 탭이 열려 있습니다.</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1441"/>
+        <location filename="../browsermainwindow.cpp" line="1461"/>
         <source>Stop loading the current page</source>
         <translation>이 페이지를 불러오는 것을 중단합니다</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1442"/>
+        <location filename="../browsermainwindow.cpp" line="1462"/>
         <source>Stop</source>
         <translation>중지</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1444"/>
+        <location filename="../browsermainwindow.cpp" line="1464"/>
         <source>Reload the current page</source>
         <translation>이 페이지를 새로 고칩니다</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1445"/>
+        <location filename="../browsermainwindow.cpp" line="1465"/>
         <source>Reload</source>
         <translation>새로 고침</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1512"/>
+        <location filename="../browsermainwindow.cpp" line="1532"/>
         <source>Downloads</source>
         <translation>다운로드 목록</translation>
     </message>
     <message>
-        <location filename="../browsermainwindow.cpp" line="1512"/>
+        <location filename="../browsermainwindow.cpp" line="1532"/>
         <source>Ctrl+Y</source>
         <comment>Download Manager</comment>
         <translation>Ctrl+Y</translation>

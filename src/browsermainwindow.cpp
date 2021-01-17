@@ -91,11 +91,9 @@
 #include <QDesktopWidget>
 #include <QEvent>
 #include <QFileDialog>
-/*
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <QPrinter>
-*/
 #include <QSettings>
 #include <QTextCodec>
 #include <QMenuBar>
@@ -192,8 +190,8 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
             m_autoSaver, SLOT(changeOccurred()));
     connect(m_tabWidget, SIGNAL(geometryChangeRequested(const QRect &)),
             this, SLOT(geometryChangeRequested(const QRect &)));
-    /*connect(m_tabWidget, SIGNAL(printRequested(QWebEnginePage *)),
-            this, SLOT(printRequested(QWebEnginePage *))); */
+    connect(m_tabWidget, SIGNAL(printRequested()),
+            this, SLOT(printRequested()));
     connect(m_tabWidget, SIGNAL(lastTabClosed()),
             this, SLOT(lastTabClosed()));
     connect(m_tabWidget, &TabWidget::devToolsRequested, this, &BrowserMainWindow::handleDevToolsRequested);
@@ -499,8 +497,6 @@ void BrowserMainWindow::setupMenu()
     m_fileMenu->addAction(m_fileExportBookmarksAction);
     m_fileMenu->addSeparator();
 
-//TODO: Fix and enable again
-/*
     m_filePrintPreviewAction= new QAction(m_fileMenu);
     connect(m_filePrintPreviewAction, SIGNAL(triggered()),
             this, SLOT(filePrintPreview()));
@@ -512,7 +508,7 @@ void BrowserMainWindow::setupMenu()
             this, SLOT(filePrint()));
     m_fileMenu->addAction(m_filePrintAction);
     m_fileMenu->addSeparator();
-*/
+
     m_filePrivateBrowsingAction = new QAction(m_fileMenu);
     connect(m_filePrivateBrowsingAction, SIGNAL(triggered()),
             this, SLOT(privateBrowsing()));
@@ -537,8 +533,8 @@ void BrowserMainWindow::setupMenu()
 #if defined(Q_WS_X11)
     m_fileNewWindowAction->setIcon(QIcon::fromTheme(QLatin1String("window-new")));
     m_fileOpenFileAction->setIcon(QIcon::fromTheme(QLatin1String("document-open")));
-    /*m_filePrintPreviewAction->setIcon(QIcon::fromTheme(QLatin1String("document-print-preview")));
-    m_filePrintAction->setIcon(QIcon::fromTheme(QLatin1String("document-print")));*/
+    m_filePrintPreviewAction->setIcon(QIcon::fromTheme(QLatin1String("document-print-preview")));
+    m_filePrintAction->setIcon(QIcon::fromTheme(QLatin1String("document-print")));
     m_fileSaveAsAction->setIcon(QIcon::fromTheme(QLatin1String("document-save-as")));
     m_fileCloseWindow->setIcon(QIcon::fromTheme(QLatin1String("window-close")));
     m_fileQuit->setIcon(QIcon::fromTheme(QLatin1String("application-exit")));
@@ -916,8 +912,8 @@ void BrowserMainWindow::retranslate()
     m_fileSaveAsAction->setText(tr("&Save As..."));
     m_fileImportBookmarksAction->setText(tr("&Import Bookmarks..."));
     m_fileExportBookmarksAction->setText(tr("&Export Bookmarks..."));
-    /*m_filePrintPreviewAction->setText(tr("P&rint Preview..."));
-    m_filePrintAction->setText(tr("&Print..."));*/
+    m_filePrintPreviewAction->setText(tr("P&rint Preview..."));
+    m_filePrintAction->setText(tr("&Print..."));
     m_filePrivateBrowsingAction->setText(tr("Private &Browsing..."));
     m_fileCloseWindow->setText(tr("Close Window"));
     m_fileQuit->setText(tr("&Quit"));
@@ -1186,14 +1182,15 @@ void BrowserMainWindow::fileOpen()
     tabWidget()->loadUrl(QUrl::fromLocalFile(file));
 }
 
-/*
 void BrowserMainWindow::filePrintPreview()
 {
     if (!currentTab())
         return;
-    QPrintPreviewDialog dialog(this);
-    connect(&dialog, SIGNAL(paintRequested(QPrinter *)),
-            currentTab(), SLOT(print(QPrinter *)));
+
+    QPrinter printer;
+    QPrintPreviewDialog dialog(&printer, currentTab()->page()->view());
+    connect(&dialog, &QPrintPreviewDialog::paintRequested,
+            this, &BrowserMainWindow::printDocument);
     dialog.exec();
 }
 
@@ -1201,19 +1198,42 @@ void BrowserMainWindow::filePrint()
 {
     if (!currentTab())
         return;
-    printRequested(currentTab()->page());
+    printRequested();
 }
 
-void BrowserMainWindow::printRequested(QWebEnginePage *page)
+void BrowserMainWindow::printRequested()
 {
-    QPrinter printer;
-    QPrintDialog dialog(&printer, this);
-    dialog.setWindowTitle(tr("Print Document"));
+    if (!currentTab())
+        return;
+    QPrinter printer(QPrinter::HighResolution);
+    QPrintDialog dialog(&printer, currentTab()->page()->view());
     if (dialog.exec() != QDialog::Accepted)
         return;
-    page->print(&printer, [](bool a) {});
+    printDocument(&printer);
 }
-*/
+
+void BrowserMainWindow::printDocument(QPrinter *printer)
+{
+    if (!currentTab())
+        return;
+    QEventLoop loop;
+    bool result;
+    auto printPreview = [&](bool success) { result = success; loop.quit(); };
+    currentTab()->page()->print(printer, std::move(printPreview));
+    loop.exec();
+    if (!result) {
+        QPainter painter;
+        if (painter.begin(printer)) {
+            QFont font = painter.font();
+            font.setPixelSize(20);
+            painter.setFont(font);
+            painter.drawText(QPointF(10,25),
+                             QStringLiteral("Could not generate print preview."));
+
+            painter.end();
+        }
+    }
+}
 
 void BrowserMainWindow::privateBrowsing()
 {

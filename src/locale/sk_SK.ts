@@ -566,6 +566,14 @@ Chcete ich všetky uzavrieť?</translation>
         <comment>Page title and Browser name</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>P&amp;rint Preview...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>

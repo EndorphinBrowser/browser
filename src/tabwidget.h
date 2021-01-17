@@ -104,7 +104,7 @@ signals:
     void linkHovered(const QString &link);
     void loadProgress(int progress);
     void geometryChangeRequested(const QRect &geometry);
-    void printRequested(QWebEnginePage *page);
+    void printRequested();
     void devToolsRequested(QWebEnginePage *source);
 
 public:
