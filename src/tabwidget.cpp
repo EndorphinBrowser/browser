@@ -68,6 +68,7 @@
 #include "bookmarksmodel.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
+#include "downloadmanager.h"
 #include "history.h"
 #include "locationcompleter.h"
 #include "historymanager.h"
@@ -80,6 +81,7 @@
 #include "webpage.h"
 #include "webview.h"
 #include "webviewsearch.h"
+#include "savepagedialog.h"
 
 #include <QCompleter>
 #include <QDir>
@@ -94,6 +96,7 @@
 #include <QToolButton>
 #include <QWebEnginePage>
 #include <QWebEngineProfile>
+#include <QWebEngineDownloadItem>
 
 #include <QDebug>
 
@@ -1116,3 +1119,19 @@ void TabWidget::createTab(const QByteArray &historyState, TabWidget::OpenUrlIn t
     }
 }
 
+void TabWidget::downloadRequested(QWebEngineDownloadItem *download)
+{
+    if (download->savePageFormat() != QWebEngineDownloadItem::UnknownSaveFormat) {
+        QString file = QDir::cleanPath(download->downloadDirectory() + QDir::separator() + download->downloadFileName());
+        SavePageDialog dlg(this, download->savePageFormat(), file);
+        if (dlg.exec() != SavePageDialog::Accepted)
+            return;
+        download->setSavePageFormat(dlg.pageFormat());
+        QFileInfo *info = new QFileInfo(dlg.filePath());
+        download->setDownloadFileName(info->fileName());
+        download->setDownloadDirectory(info->absolutePath());
+    }
+
+    BrowserApplication::downloadManager()->download(download);
+    download->accept();
+}

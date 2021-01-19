@@ -642,19 +642,19 @@ Você quer sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Erro ao abrir o arquivo de saída: %1</translation>
+        <translation type="vanished">Erro ao abrir o arquivo de saída: %1</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
-        <translation>Erro ao salvar: %1</translation>
+        <translation type="vanished">Erro ao salvar: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
-        <translation>Erro na rede: %1</translation>
+        <translation type="vanished">Erro na rede: %1</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%1 de %2 (%3/seg) - %4</translation>
+        <translation type="vanished">%1 de %2 (%3/seg) - %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -662,11 +662,39 @@ Você quer sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation>O diretório de download (%1) não pôde ser criado.</translation>
+        <translation type="vanished">O diretório de download (%1) não pôde ser criado.</translation>
     </message>
     <message>
-        <source>%1 of %2 - Download Complete</source>
+        <source>seconds</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>- %4 %5 remaining</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">bytes</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">MB</translation>
     </message>
 </context>
 <context>
@@ -927,6 +955,13 @@ Você deseja sair de qualquer maneira?</translation>
     </message>
     <message>
         <source>lock your mouse</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SavePageDialog</name>
+    <message>
+        <source>Save Page As</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

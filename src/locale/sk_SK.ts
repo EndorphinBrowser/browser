@@ -640,11 +640,11 @@ Chcete ich všetky uzavrieť?</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
-        <translation>Chyba pri ukladaní: %1</translation>
+        <translation type="vanished">Chyba pri ukladaní: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
-        <translation>Chyba siete: %1</translation>
+        <translation type="vanished">Chyba siete: %1</translation>
     </message>
     <message>
         <source>?</source>
@@ -652,19 +652,39 @@ Chcete ich všetky uzavrieť?</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Chyba pri otváraní výstupného súboru: %1</translation>
+        <translation type="vanished">Chyba pri otváraní výstupného súboru: %1</translation>
     </message>
     <message>
-        <source>%1 of %2 (%3/sec) - %4</source>
+        <source>seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <source>minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 of %2 - Download Complete</source>
+        <source>- %4 %5 remaining</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">bajtov</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">KiB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">MiB</translation>
     </message>
 </context>
 <context>
@@ -676,6 +696,18 @@ Chcete ich všetky uzavrieť?</translation>
             <numerusform>%n preberania</numerusform>
             <numerusform>%n preberaní</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished">bajtov</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="unfinished">KiB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MiB</translation>
     </message>
     <message>
         <source>There are %1 downloads in progress
@@ -697,18 +729,6 @@ Do you want to quit anyway?</source>
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>bytes</source>
-        <translation type="unfinished">bajtov</translation>
-    </message>
-    <message>
-        <source>kB</source>
-        <translation type="unfinished">KiB</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation type="unfinished">MiB</translation>
     </message>
     <message>
         <source>GB</source>
@@ -928,6 +948,13 @@ Do you want to quit anyway?</source>
     </message>
     <message>
         <source>lock your mouse</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SavePageDialog</name>
+    <message>
+        <source>Save Page As</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -768,12 +768,12 @@ Do you want to quit anyway?</source>
 <context>
     <name>DownloadDialog</name>
     <message>
-        <location filename="../downloadmanager.cpp" line="617"/>
+        <location filename="../downloadmanager.cpp" line="495"/>
         <source>Downloads</source>
         <translation>다운로드 목록</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="615"/>
+        <location filename="../downloadmanager.cpp" line="493"/>
         <source>Downloading %1</source>
         <translation>%1 다운로드 중</translation>
     </message>
@@ -781,98 +781,129 @@ Do you want to quit anyway?</source>
 <context>
     <name>DownloadItem</name>
     <message>
-        <location filename="../downloadmanager.cpp" line="177"/>
+        <location filename="../downloadmanager.cpp" line="203"/>
         <source>Save File</source>
         <translation>파일 저장</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="182"/>
+        <location filename="../downloadmanager.cpp" line="207"/>
         <source>Download canceled: %1</source>
         <translation>다운로드 취소됨: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="200"/>
-        <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation>다운로드할 디렉토리 (%1) 을(를) 만들 수 없었습니다.</translation>
+        <location filename="../downloadmanager.cpp" line="285"/>
+        <source>seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadmanager.cpp" line="288"/>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadmanager.cpp" line="300"/>
+        <source>- %4 %5 remaining</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../downloadmanager.cpp" line="303"/>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadmanager.cpp" line="310"/>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">바이트</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">KB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">MB</translation>
+    </message>
+    <message>
+        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <translation type="vanished">다운로드할 디렉토리 (%1) 을(를) 만들 수 없었습니다.</translation>
+    </message>
+    <message>
         <source>Error opening output file: %1</source>
-        <translation>출력 파일 열기 오류: %1</translation>
+        <translation type="vanished">출력 파일 열기 오류: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="312"/>
         <source>Error saving: %1</source>
-        <translation>저장 오류: %1</translation>
+        <translation type="vanished">저장 오류: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="328"/>
         <source>Network Error: %1</source>
-        <translation>네트워크 오류: %1</translation>
+        <translation type="vanished">네트워크 오류: %1</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="425"/>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%2 중 %1 (%3/초) - %4</translation>
+        <translation type="vanished">%2 중 %1 (%3/초) - %4</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="427"/>
+        <location filename="../downloadmanager.cpp" line="305"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="434"/>
         <source>%1 of %2 - Download Complete</source>
-        <translation>%2 중 %1 (%3/초) - 다운로드를 완료하였습니다.</translation>
+        <translation type="vanished">%2 중 %1 (%3/초) - 다운로드를 완료하였습니다.</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="../downloadmanager.cpp" line="521"/>
+        <location filename="../downloadmanager.cpp" line="422"/>
         <source>There are %1 downloads in progress
 Do you want to quit anyway?</source>
         <translation>지금 %1 개의 다운로드 항목이 완료되지 않았습니다.
 다운로드를 중지하고 종료하시겠습니까?</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="765"/>
+        <location filename="../downloadmanager.cpp" line="634"/>
         <source>%n Download(s)</source>
         <translation>
             <numerusform>%n 개의 다운로드 항목</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="787"/>
+        <location filename="../downloadmanager.cpp" line="656"/>
         <source>%n minutes remaining</source>
         <translation>
             <numerusform>%n 분 남음</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloadmanager.cpp" line="791"/>
+        <location filename="../downloadmanager.cpp" line="660"/>
         <source>%n seconds remaining</source>
         <translation>
             <numerusform>%n 초 남음</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="804"/>
+        <location filename="../downloadmanager.cpp" line="673"/>
         <source>bytes</source>
         <translation>바이트</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="807"/>
+        <location filename="../downloadmanager.cpp" line="676"/>
         <source>kB</source>
         <translation>KB</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="810"/>
+        <location filename="../downloadmanager.cpp" line="679"/>
         <source>MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../downloadmanager.cpp" line="813"/>
+        <location filename="../downloadmanager.cpp" line="682"/>
         <source>GB</source>
         <translation>GB</translation>
     </message>
@@ -1137,6 +1168,14 @@ Do you want to quit anyway?</source>
     </message>
 </context>
 <context>
+    <name>SavePageDialog</name>
+    <message>
+        <location filename="../savepagedialog.cpp" line="91"/>
+        <source>Save Page As</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchLineEdit</name>
     <message>
         <location filename="../searchlineedit.cpp" line="56"/>
@@ -1226,72 +1265,72 @@ Do you want to quit anyway?</source>
 <context>
     <name>TabWidget</name>
     <message>
-        <location filename="../tabwidget.cpp" line="444"/>
+        <location filename="../tabwidget.cpp" line="447"/>
         <source>Untitled</source>
         <translation>제목 없음</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="479"/>
+        <location filename="../tabwidget.cpp" line="482"/>
         <source>Saved Tabs</source>
         <translation>저장된 탭 목록</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="673"/>
+        <location filename="../tabwidget.cpp" line="676"/>
         <source>Loading...</source>
         <translation>불러오는 중...</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="688"/>
+        <location filename="../tabwidget.cpp" line="691"/>
         <source>Loading ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="713"/>
+        <location filename="../tabwidget.cpp" line="716"/>
         <source>Finished loading</source>
         <translation>불러오기 성공</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="715"/>
+        <location filename="../tabwidget.cpp" line="718"/>
         <source>Failed to load</source>
         <translation>불러오기 실패</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="798"/>
+        <location filename="../tabwidget.cpp" line="801"/>
         <source>Show Next Tab</source>
         <translation>다음 탭 보기</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="802"/>
+        <location filename="../tabwidget.cpp" line="805"/>
         <source>Ctrl-]</source>
         <translation>Ctrl-]</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="806"/>
+        <location filename="../tabwidget.cpp" line="809"/>
         <source>Show Previous Tab</source>
         <translation>기존 탭 보기</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="810"/>
+        <location filename="../tabwidget.cpp" line="813"/>
         <source>Ctrl-[</source>
         <translation>Ctrl-[</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="814"/>
+        <location filename="../tabwidget.cpp" line="817"/>
         <source>Recently Closed Tabs</source>
         <translation>이전에 닫은 탭 보기</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="815"/>
+        <location filename="../tabwidget.cpp" line="818"/>
         <source>New &amp;Tab</source>
         <translation>새 탭 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="816"/>
+        <location filename="../tabwidget.cpp" line="819"/>
         <source>&amp;Close Tab</source>
         <translation>탭 닫기 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../tabwidget.cpp" line="817"/>
+        <location filename="../tabwidget.cpp" line="820"/>
         <source>Bookmark All Tabs</source>
         <translation>모든 탭 북마크</translation>
     </message>
@@ -1345,62 +1384,62 @@ Do you want to quit anyway?</source>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../webview.cpp" line="220"/>
+        <location filename="../webview.cpp" line="217"/>
         <source>Open in New &amp;Window</source>
         <translation>새 창에서 열기 (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="222"/>
+        <location filename="../webview.cpp" line="219"/>
         <source>Open in New &amp;Tab</source>
         <translation>새 탭에서 열기 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="225"/>
+        <location filename="../webview.cpp" line="222"/>
         <source>Save Lin&amp;k</source>
         <translation>링크 저장 (&amp;K)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="226"/>
+        <location filename="../webview.cpp" line="223"/>
         <source>&amp;Bookmark This Link</source>
         <translation>이 링크를 북마크 (&amp;B)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="230"/>
+        <location filename="../webview.cpp" line="227"/>
         <source>&amp;Copy Link Location</source>
         <translation>링크 주소 복사 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="236"/>
+        <location filename="../webview.cpp" line="233"/>
         <source>Open Image in New &amp;Window</source>
         <translation>새 창에 이미지 열기 (&amp;W)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="238"/>
+        <location filename="../webview.cpp" line="235"/>
         <source>Open Image in New &amp;Tab</source>
         <translation>새 탭에 이미지 열기 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="241"/>
+        <location filename="../webview.cpp" line="238"/>
         <source>&amp;Save Image</source>
         <translation>이미지 저장 (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="242"/>
+        <location filename="../webview.cpp" line="239"/>
         <source>&amp;Copy Image</source>
         <translation>이미지 복사 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="243"/>
+        <location filename="../webview.cpp" line="240"/>
         <source>C&amp;opy Image Location</source>
         <translation>이미지 주소 복사 (&amp;O)</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="252"/>
+        <location filename="../webview.cpp" line="249"/>
         <source>Search with...</source>
         <translation>이 부분을 검색...</translation>
     </message>
     <message>
-        <location filename="../webview.cpp" line="581"/>
+        <location filename="../webview.cpp" line="578"/>
         <source>Loading...</source>
         <translation>불러오는 중...</translation>
     </message>
@@ -1408,7 +1447,7 @@ Do you want to quit anyway?</source>
 <context>
     <name>WebViewSearch</name>
     <message>
-        <location filename="../webviewsearch.cpp" line="62"/>
+        <location filename="../webviewsearch.cpp" line="60"/>
         <source>Not Found</source>
         <translation>찾을 수 없음</translation>
     </message>

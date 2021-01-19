@@ -643,15 +643,15 @@ Arora wirklich beenden?</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%1 von %2 (%3/Sek) - %4</translation>
+        <translation type="vanished">%1 von %2 (%3/Sek) - %4</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
-        <translation>Fehler beim Speichern: %1</translation>
+        <translation type="vanished">Fehler beim Speichern: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
-        <translation>Netzwerk-Fehler: %1</translation>
+        <translation type="vanished">Netzwerk-Fehler: %1</translation>
     </message>
     <message>
         <source>?</source>
@@ -659,15 +659,47 @@ Arora wirklich beenden?</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Fehler beim Öffnen der Ausgabedatei: %1</translation>
+        <translation type="vanished">Fehler beim Öffnen der Ausgabedatei: %1</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation>Download Verzeichnis (%1) konnte nicht erstellt werden.</translation>
+        <translation type="vanished">Download Verzeichnis (%1) konnte nicht erstellt werden.</translation>
     </message>
     <message>
         <source>%1 of %2 - Download Complete</source>
-        <translation>%1 von %2 - Downloads abgeschlossen</translation>
+        <translation type="vanished">%1 von %2 - Downloads abgeschlossen</translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>- %4 %5 remaining</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">bytes</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">MB</translation>
     </message>
 </context>
 <context>
@@ -929,6 +961,13 @@ Trotzdem beenden?</translation>
     <message>
         <source>lock your mouse</source>
         <translation>Deine Maus sperren</translation>
+    </message>
+</context>
+<context>
+    <name>SavePageDialog</name>
+    <message>
+        <source>Save Page As</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -31,8 +31,6 @@ WebViewSearch::WebViewSearch(QWebEngineView *webView, QWidget *parent)
     : SearchBar(parent)
 {
     setSearchObject(webView);
-    connect(ui.searchLineEdit, SIGNAL(textEdited(const QString &)),
-            this, SLOT(highlightAll()));
 }
 
 void WebViewSearch::findNext()

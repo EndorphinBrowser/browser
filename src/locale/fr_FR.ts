@@ -642,11 +642,11 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
-        <translation>Erreur à l&apos;enregistrement: %1</translation>
+        <translation type="vanished">Erreur à l&apos;enregistrement: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
-        <translation>Erreur réseau: %1</translation>
+        <translation type="vanished">Erreur réseau: %1</translation>
     </message>
     <message>
         <source>?</source>
@@ -654,19 +654,47 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Erreur à l&apos;ouverture du fichier:&#x202f;&#x202f; %1</translation>
+        <translation type="vanished">Erreur à l&apos;ouverture du fichier:&#x202f;&#x202f; %1</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%1 de %2 (%3/sec) - %4</translation>
+        <translation type="vanished">%1 de %2 (%3/sec) - %4</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation>Le dossier de téléchargement (%1) n&apos;a pas pu être créé.</translation>
+        <translation type="vanished">Le dossier de téléchargement (%1) n&apos;a pas pu être créé.</translation>
     </message>
     <message>
-        <source>%1 of %2 - Download Complete</source>
+        <source>seconds</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>- %4 %5 remaining</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">octets</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">ko</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">Mo</translation>
     </message>
 </context>
 <context>
@@ -927,6 +955,13 @@ Voulez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>lock your mouse</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SavePageDialog</name>
+    <message>
+        <source>Save Page As</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

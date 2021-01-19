@@ -70,8 +70,10 @@
 #include <QNetworkReply>
 
 #include <QFile>
+#include <QFileInfo>
 #include <QDateTime>
 #include <QElapsedTimer>
+#include <QWebEngineDownloadItem>
 
 class DownloadItem : public QWidget, public Ui_DownloadItem
 {
@@ -79,52 +81,40 @@ class DownloadItem : public QWidget, public Ui_DownloadItem
 
 signals:
     void statusChanged();
-    void progress(qint64 bytesReceived = 0, qint64 bytesTotal = 0);
     void downloadFinished();
 
 public:
-    DownloadItem(QNetworkReply *reply = nullptr, bool requestFileName = false, QWidget *parent = nullptr);
+    DownloadItem(QWebEngineDownloadItem *download, QWidget *parent = 0);
     bool downloading() const;
     bool downloadedSuccessfully() const;
 
-    qint64 bytesTotal() const;
-    qint64 bytesReceived() const;
-    double remainingTime() const;
-    double currentSpeed() const;
+    void init();
+    bool getFileName(bool promptForFileName = false);
 
-    QUrl m_url;
-
-    QFile m_output;
-    QNetworkReply *m_reply;
+    QFileInfo m_file;
 
 private slots:
     void stop();
     void tryAgain();
     void open();
 
-    void downloadReadyRead();
-    void error(QNetworkReply::NetworkError code);
-    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
-    void metaDataChanged();
+    void downloadProgress();
     void finished();
 
 private:
-    void getFileName();
-    void init();
+    friend class DownloadManager;
     void updateInfoLabel();
 
-    QString saveFileName(const QString &directory) const;
-
-    bool m_requestFileName;
+    QUrl m_url;
     qint64 m_bytesReceived;
     QElapsedTimer m_downloadTime;
-    bool m_startedSaving;
-    bool m_finishedDownloading;
-    bool m_gettingFileName;
-    bool m_canceledFileSelect;
+    bool m_stopped;
     QTime m_lastProgressTime;
 
+    QScopedPointer<QWebEngineDownloadItem> m_download;
     friend class DownloadManager;
+
+    static QString dataString(qint64 size);
 };
 
 class AutoSaver;
@@ -162,12 +152,7 @@ public:
     QString downloadDirectory();
 
 public slots:
-    void download(const QNetworkRequest &request, bool requestFileName = false);
-    inline void download(const QUrl &url, bool requestFileName = false)
-    {
-        download(QNetworkRequest(url), requestFileName);
-    }
-    void handleUnsupportedContent(QNetworkReply *reply, bool requestFileName = false);
+    void download(QWebEngineDownloadItem *download);
     void cleanup();
 
 private slots:
@@ -185,7 +170,6 @@ private:
 
     AutoSaver *m_autoSaver;
     DownloadModel *m_model;
-    QNetworkAccessManager *m_manager;
     QFileIconProvider *m_iconProvider;
     QList<DownloadItem*> m_downloads;
     RemovePolicy m_removePolicy;

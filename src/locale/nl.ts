@@ -642,11 +642,11 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
-        <translation>Fout bij opslaan: %1</translation>
+        <translation type="vanished">Fout bij opslaan: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
-        <translation>Netwerkfout: %1</translation>
+        <translation type="vanished">Netwerkfout: %1</translation>
     </message>
     <message>
         <source>?</source>
@@ -654,19 +654,47 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Fout bij het openen van het outputbestand: %1</translation>
+        <translation type="vanished">Fout bij het openen van het outputbestand: %1</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%1 van %2 (%3/sec) - %4</translation>
+        <translation type="vanished">%1 van %2 (%3/sec) - %4</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation>Downloadmap (%1) kon niet worden gemaakt.</translation>
+        <translation type="vanished">Downloadmap (%1) kon niet worden gemaakt.</translation>
     </message>
     <message>
-        <source>%1 of %2 - Download Complete</source>
+        <source>seconds</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>- %4 %5 remaining</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">bytes</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">MB</translation>
     </message>
 </context>
 <context>
@@ -927,6 +955,13 @@ Wilt u toch afsluiten?</translation>
     </message>
     <message>
         <source>lock your mouse</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SavePageDialog</name>
+    <message>
+        <source>Save Page As</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

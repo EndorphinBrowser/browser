@@ -82,7 +82,7 @@ class WebView;
 class WebActionMapper;
 class WebViewSearch;
 class QToolButton;
-
+class QWebEngineDownloadItem;
 /*!
     TabWidget that contains WebViews and a stack widget of associated line edits.
 
@@ -187,6 +187,7 @@ private slots:
     void moveTab(int fromIndex, int toIndex);
     void geometryChangeRequestedCheck(const QRect &geometry);
     void historyCleared();
+    void downloadRequested(QWebEngineDownloadItem *download);
 
 private:
     void setupPage(QWebEnginePage* page);
@@ -208,12 +209,12 @@ private:
     QList<QByteArray> m_recentlyClosedTabsHistory;
     QList<WebActionMapper*> m_actions;
 
+    QWebEngineProfile *m_profile;
     QCompleter *m_lineEditCompleter;
     QStackedWidget *m_locationBars;
     TabBar *m_tabBar;
     QToolButton *addTabButton;
     QToolButton *closeTabButton;
-    QWebEngineProfile *m_profile;
 };
 
 #endif // TABWIDGET_H

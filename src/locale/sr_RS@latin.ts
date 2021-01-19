@@ -642,19 +642,19 @@ Svejedno napustiti?</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Greška pri otvaranju izlaznog fajla: %1</translation>
+        <translation type="vanished">Greška pri otvaranju izlaznog fajla: %1</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
-        <translation>Greška pri čuvanju: %1</translation>
+        <translation type="vanished">Greška pri čuvanju: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
-        <translation>Greška na mreži: %1</translation>
+        <translation type="vanished">Greška na mreži: %1</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%1 od %2 (%3/sek) - %4</translation>
+        <translation type="vanished">%1 od %2 (%3/sek) - %4</translation>
     </message>
     <message>
         <source>?</source>
@@ -662,11 +662,39 @@ Svejedno napustiti?</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation>Fascikla za preuzimanja (%1) ne može biti napravljena.</translation>
+        <translation type="vanished">Fascikla za preuzimanja (%1) ne može biti napravljena.</translation>
     </message>
     <message>
-        <source>%1 of %2 - Download Complete</source>
+        <source>seconds</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>- %4 %5 remaining</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">bajtova</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">MB</translation>
     </message>
 </context>
 <context>
@@ -931,6 +959,13 @@ Svejedno napustiti?</translation>
     </message>
     <message>
         <source>lock your mouse</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SavePageDialog</name>
+    <message>
+        <source>Save Page As</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

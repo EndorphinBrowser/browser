@@ -1125,7 +1125,7 @@ void BrowserMainWindow::selectLineEdit()
 
 void BrowserMainWindow::fileSaveAs()
 {
-    BrowserApplication::downloadManager()->download(currentTab()->url(), true);
+    currentTab()->page()->download(currentTab()->url(), "");
 }
 
 void BrowserMainWindow::preferences()

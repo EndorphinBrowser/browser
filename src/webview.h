@@ -127,9 +127,9 @@ private:
 
 private slots:
     void setProgress(int progress);
-    void loadFinished();
+    void loadFinished(bool success);
     void setStatusBarText(const QString &string);
-    void downloadRequested(const QNetworkRequest &request);
+    void downloadRequested(QWebEngineDownloadItem *download);
     void openActionUrlInNewTab();
     void openActionUrlInNewWindow();
     void downloadLinkToDisk();

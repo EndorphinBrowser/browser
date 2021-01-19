@@ -642,15 +642,15 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Çıktı dosyası açılırken hata oluştu: %1</translation>
+        <translation type="vanished">Çıktı dosyası açılırken hata oluştu: %1</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
-        <translation>Kaydederken hata oluştu: %1</translation>
+        <translation type="vanished">Kaydederken hata oluştu: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
-        <translation>Ağ Hatası: %1</translation>
+        <translation type="vanished">Ağ Hatası: %1</translation>
     </message>
     <message>
         <source>?</source>
@@ -658,15 +658,43 @@ Yinede çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%1 / %2 (%3/sn) - %4</translation>
+        <translation type="vanished">%1 / %2 (%3/sn) - %4</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation>İndirilenler klasörü (%1) oluşturulamadı.</translation>
+        <translation type="vanished">İndirilenler klasörü (%1) oluşturulamadı.</translation>
     </message>
     <message>
-        <source>%1 of %2 - Download Complete</source>
+        <source>seconds</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>- %4 %5 remaining</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">bytes</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">MB</translation>
     </message>
 </context>
 <context>
@@ -923,6 +951,13 @@ Yine de çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>lock your mouse</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SavePageDialog</name>
+    <message>
+        <source>Save Page As</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

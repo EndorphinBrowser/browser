@@ -35,6 +35,7 @@ set(ENDORPHIN_SRCS
     ${ENDORPHIN_SRC_DIR}/modeltoolbar.cpp
     ${ENDORPHIN_SRC_DIR}/permissionbar.cpp
     ${ENDORPHIN_SRC_DIR}/plaintexteditsearch.cpp
+    ${ENDORPHIN_SRC_DIR}/savepagedialog.cpp
     ${ENDORPHIN_SRC_DIR}/searchbar.cpp
     ${ENDORPHIN_SRC_DIR}/searchbutton.cpp
     ${ENDORPHIN_SRC_DIR}/searchlineedit.cpp
@@ -88,6 +89,7 @@ set(ENDORPHIN_UIS
     ${ENDORPHIN_SRC_DIR}/acceptlanguagedialog.ui
     ${ENDORPHIN_SRC_DIR}/downloaditem.ui
     ${ENDORPHIN_SRC_DIR}/downloads.ui
+    ${ENDORPHIN_SRC_DIR}/savepagedialog.ui
     ${ENDORPHIN_SRC_DIR}/searchbanner.ui
     ${ENDORPHIN_SRC_DIR}/settings.ui
     ${ENDORPHIN_SRC_DIR}/bookmarks/addbookmarkdialog.ui

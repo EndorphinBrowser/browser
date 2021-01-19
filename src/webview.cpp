@@ -182,9 +182,6 @@ void WebView::setPage(WebPage *_page)
 {
     m_page = _page;
     QWebEngineView::setPage(_page);
-    disconnect(page(), &QWebEnginePage::iconChanged, this, &WebView::iconChanged);
-    connect(page(), SIGNAL(iconChanged(QIcon)),
-            this, SLOT(onIconChanged(QIcon)));
     connect(page(), &WebPage::featurePermissionRequested, this, &WebView::onFeaturePermissionRequested);
 }
 
@@ -554,7 +551,7 @@ void WebView::resetZoom()
     applyZoom();
 }
 
-void WebView::loadFinished()
+void WebView::loadFinished(bool success)
 {
     if (100 != m_progress) {
         qWarning() << "Received finished signal while progress is still:" << progress()
@@ -692,9 +689,9 @@ void WebView::setStatusBarText(const QString &string)
     m_statusBarText = string;
 }
 
-void WebView::downloadRequested(const QNetworkRequest &request)
+void WebView::downloadRequested(QWebEngineDownloadItem *download)
 {
-    BrowserApplication::downloadManager()->download(request);
+    BrowserApplication::downloadManager()->download(download);
 }
 
 void WebView::keyPressEvent(QKeyEvent *event)

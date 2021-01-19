@@ -642,31 +642,55 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Hiba a kimeneti fájl megnyitásánál: %1</translation>
+        <translation type="vanished">Hiba a kimeneti fájl megnyitásánál: %1</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
-        <translation>Hiba a mentésnél: %1</translation>
+        <translation type="vanished">Hiba a mentésnél: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
-        <translation>Hálózati hiba: %1</translation>
+        <translation type="vanished">Hálózati hiba: %1</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%1 / %2 (%3/mp) - %4</translation>
+        <translation type="vanished">%1 / %2 (%3/mp) - %4</translation>
     </message>
     <message>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <source>Download directory (%1) couldn&apos;t be created.</source>
+        <source>seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 of %2 - Download Complete</source>
+        <source>minutes</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>- %4 %5 remaining</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">bájt</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">MB</translation>
     </message>
 </context>
 <context>
@@ -923,6 +947,13 @@ Biztosan ki akar lépni?</translation>
     </message>
     <message>
         <source>lock your mouse</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SavePageDialog</name>
+    <message>
+        <source>Save Page As</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

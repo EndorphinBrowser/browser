@@ -642,11 +642,11 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source>Error saving: %1</source>
-        <translation>Błąd przy zapisie: %1</translation>
+        <translation type="vanished">Błąd przy zapisie: %1</translation>
     </message>
     <message>
         <source>Network Error: %1</source>
-        <translation>Błąd sieci: %1</translation>
+        <translation type="vanished">Błąd sieci: %1</translation>
     </message>
     <message>
         <source>?</source>
@@ -654,19 +654,47 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source>Error opening output file: %1</source>
-        <translation>Błąd w trakcie otwierania pliku docelowego: %1</translation>
+        <translation type="vanished">Błąd w trakcie otwierania pliku docelowego: %1</translation>
     </message>
     <message>
         <source>%1 of %2 (%3/sec) - %4</source>
-        <translation>%1 z %2 (%3/sek) - %4</translation>
+        <translation type="vanished">%1 z %2 (%3/sek) - %4</translation>
     </message>
     <message>
         <source>Download directory (%1) couldn&apos;t be created.</source>
-        <translation>Katalog docelowy (%1) nie mógł zostać stworzony.</translation>
+        <translation type="vanished">Katalog docelowy (%1) nie mógł zostać stworzony.</translation>
     </message>
     <message>
-        <source>%1 of %2 - Download Complete</source>
+        <source>seconds</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>- %4 %5 remaining</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3/sec) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 - Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes</source>
+        <translation type="obsolete">bajtów</translation>
+    </message>
+    <message>
+        <source>kB</source>
+        <translation type="obsolete">kB</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="obsolete">MB</translation>
     </message>
 </context>
 <context>
@@ -931,6 +959,13 @@ Czy mimo to chcesz zakończyć?</translation>
     </message>
     <message>
         <source>lock your mouse</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SavePageDialog</name>
+    <message>
+        <source>Save Page As</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
