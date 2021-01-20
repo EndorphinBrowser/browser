@@ -7,18 +7,14 @@ The first official Endorphin release. Contains many new features, a new engine, 
 
 ### Fixed issues
 - endorphin-placesimport sometimes resulted in an "Invalid cross-device link" error.
-- Trying to access any web page resulted in an "invalid certificate" error (WebKit version only)
 
 ### Behind the scene
-- Add alternative CMake build system:
-        This is not final yet, and currently only works on Linux.
-        When it is finished, it will replace qmake.
-        CMake currently reduces the size of endorphin-placesimport from about 2 MB to about 250 KB.
+- Port to CMake
+- Update the Engine from WebKit to WebEngine
 
 ### Other
-- Remove ClickToFlash:
-        Flash will reach its end-of-life soon, and shouldn't be used at all, so this feature was removed.
-- Remove usage of some deprecated QT features
+- Remove ClickToFlash: Flash is no longer supported
+- Prepare for Qt6
 
 ## 0.12.1
 

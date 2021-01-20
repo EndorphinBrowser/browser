@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020-2021 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ public slots:
     QString translate(const QString &string);
     QObject *currentEngine() const;
     QString searchUrl(const QString &string) const;
-    void AddSearchProvider(const QString &url);
+    void addSearchProvider(const QString &url);
 };
 
 class WebPageLinkedResource

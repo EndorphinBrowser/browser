@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020-2021 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -63,7 +63,7 @@ JavaScriptEndorphinObject::JavaScriptEndorphinObject(QObject *parent)
     qRegisterMetaType<OpenSearchEngine*>("OpenSearchEngine*");
 }
 
-void JavaScriptEndorphinObject::AddSearchProvider(const QString &url)
+void JavaScriptEndorphinObject::addSearchProvider(const QString &url)
 {
     ToolbarSearch::openSearchManager()->addEngine(QUrl(url));
 }

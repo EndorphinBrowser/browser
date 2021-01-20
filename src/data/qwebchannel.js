@@ -465,4 +465,11 @@ if (typeof module === 'object') {
 
 new QWebChannel(qt.webChannelTransport, function (channel) {
     window.endorphin = channel.objects.endorphin;
+    const links = document.getElementsByTagName("link");
+    for(link of links) {
+        if(link.rel == "search") {
+            window.endorphin.addSearchProvider(link.href);
+        }
+    }
 });
+
