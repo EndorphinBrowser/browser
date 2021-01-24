@@ -63,7 +63,8 @@
 #ifndef XBELREADER_H
 #define XBELREADER_H
 
-#include <qxmlstream.h>
+#include <QXmlStreamReader>
+#include <QXmlStreamEntityResolver>
 #include <QDateTime>
 
 class BookmarkNode;

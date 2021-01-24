@@ -110,7 +110,7 @@ AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmark
 #ifdef FOR_AUTOTEST
         m_bookmarksManager = tst_AddBookmarkDialog::bookmarksManager();
 #else
-#error "Nothing provides a bookmarksmanager"
+#error "No bookmarksmanager provided! Build this either with BrowserApplication included or for autotests"
 #endif
 #endif
 
