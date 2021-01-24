@@ -35,7 +35,6 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSettings>
-#include <QUiLoader>
 
 #include <QWebEnginePage>
 #include <QWebChannel>

@@ -23,9 +23,6 @@ find_package(Qt5UiTools REQUIRED)
 find_package(Qt5LinguistTools REQUIRED)
 find_package(Qt5Qml REQUIRED)
 
-if(NOT Qt5UiTools_FOUND)
-	add_definitions(-DQT_NO_UITOOLS)
-endif()
 set(EXECUTABLE_OUTPUT_PATH ../)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -89,7 +86,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/locale/zh_TW.ts
 
 # Generate executable
 add_executable(endorphin main.cpp ${ENDORPHIN_SRCS} ${UIS} ${RSCS} ${TRS} ${MOCS} ${QM_FILES})
-target_link_libraries(endorphin Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::Qml Qt5::PrintSupport Qt5::WebEngine Qt5::WebEngineWidgets Qt5::UiTools)
+target_link_libraries(endorphin Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::Qml Qt5::PrintSupport Qt5::WebEngine Qt5::WebEngineWidgets)
 
 
 if(NOT QT_TRANSLATIONS_DIR)
