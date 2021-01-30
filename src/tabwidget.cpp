@@ -209,7 +209,7 @@ void TabWidget::initScripts() {
 
     QWebEngineScript script;
     script.setName("WebChannel loader");
-    script.setInjectionPoint(QWebEngineScript::Deferred);
+    script.setInjectionPoint(QWebEngineScript::DocumentCreation);
     script.setRunsOnSubFrames(true);
     script.setWorldId(QWebEngineScript::MainWorld);
     script.setSourceCode(out.readAll());

@@ -26,6 +26,7 @@
 #include <QNetworkRequest>
 #include <QWebEnginePage>
 
+class WebPage;
 class JavaScriptEndorphinObject : public QObject
 {
     Q_OBJECT
@@ -33,13 +34,20 @@ class JavaScriptEndorphinObject : public QObject
     Q_PROPERTY(QObject *currentEngine READ currentEngine)
 
 public:
-    JavaScriptEndorphinObject(QObject *parent = 0);
+    JavaScriptEndorphinObject(QObject *parent = nullptr, WebPage *page = nullptr);
 
 public slots:
     QString translate(const QString &string);
     QObject *currentEngine() const;
     QString searchUrl(const QString &string) const;
     void addSearchProvider(const QString &url);
+    QString getSetting(const QString &name, const QString &group);
+    int setSetting(const QString &name, const QString &group, const int &value);
+    int setSetting(const QString &name, const QString &group, const QString &value);
+    int setSetting(const QString &name, const QString &group, const bool value);
+
+private:
+    WebPage *m_page;
 };
 
 class WebPageLinkedResource

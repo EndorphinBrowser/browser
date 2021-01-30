@@ -90,6 +90,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(downloadDirectoryButton, SIGNAL(clicked()), this, SLOT(chooseDownloadDirectory()));
     connect(externalDownloadBrowse, SIGNAL(clicked()), this, SLOT(chooseDownloadProgram()));
     connect(styleSheetBrowseButton, SIGNAL(clicked()), this, SLOT(chooseStyleSheet()));
+    connect(newSettings, SIGNAL(clicked()), this, SLOT(openModernSettings()));
 
     loadDefaults();
     loadFromSettings();
@@ -401,4 +402,10 @@ void SettingsDialog::chooseStyleSheet()
     QUrl url = QUrl::fromEncoded(userStyleSheet->text().toUtf8());
     QString fileName = QFileDialog::getOpenFileName(this, tr("Choose CSS File"), url.toLocalFile());
     userStyleSheet->setText(QString::fromUtf8(QUrl::fromLocalFile(fileName).toEncoded()));
+}
+
+void SettingsDialog::openModernSettings() {
+    BrowserMainWindow *mw = static_cast<BrowserMainWindow*>(parent());
+    mw->tabWidget()->loadUrl(QUrl("qrc:/settings.html"), TabWidget::NewSelectedTab, "Settings");
+    close();
 }

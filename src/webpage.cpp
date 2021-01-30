@@ -46,8 +46,9 @@
 QString WebPage::s_userAgent;
 
 Q_DECLARE_METATYPE(OpenSearchEngine*)
-JavaScriptEndorphinObject::JavaScriptEndorphinObject(QObject *parent)
+JavaScriptEndorphinObject::JavaScriptEndorphinObject(QObject *parent, WebPage *page)
     : QObject(parent)
+    , m_page(page)
 {
     static const char *translations[] = {
         QT_TR_NOOP("Welcome to Endorphin!"),
@@ -67,6 +68,48 @@ void JavaScriptEndorphinObject::addSearchProvider(const QString &url)
     ToolbarSearch::openSearchManager()->addEngine(QUrl(url));
 }
 
+QString JavaScriptEndorphinObject::getSetting(const QString &name, const QString &group)
+{
+    if (m_page->url().toString() != "qrc:/settings.html")
+        return nullptr;
+    QSettings settings;
+    settings.beginGroup(group);
+    return settings.value(name).toString();
+    settings.endGroup();
+}
+
+int JavaScriptEndorphinObject::setSetting(const QString &name, const QString &group, const QString &value)
+{
+    if (m_page->url().toString() != "qrc:/settings.html")
+        return 1;
+    QSettings settings;
+    settings.beginGroup(group);
+    settings.setValue(name, value);
+    settings.endGroup();
+    return 0;
+}
+
+int JavaScriptEndorphinObject::setSetting(const QString &name, const QString &group, const int &value)
+{
+    if (m_page->url().toString() != "qrc:/settings.html")
+        return 1;
+    QSettings settings;
+    settings.beginGroup(group);
+    settings.setValue(name, value);
+    settings.endGroup();
+    return 0;
+}
+
+int JavaScriptEndorphinObject::setSetting(const QString &name, const QString &group, const bool value)
+{
+    if (m_page->url().toString() != "qrc:/settings.html")
+        return 1;
+    QSettings settings;
+    settings.beginGroup(group);
+    settings.setValue(name, value);
+    settings.endGroup();
+    return 0;
+}
 
 QString JavaScriptEndorphinObject::translate(const QString &string)
 {
@@ -96,7 +139,7 @@ WebPage::WebPage(QWebEngineProfile *profile, QObject *parent)
     , m_openTargetBlankLinksIn(TabWidget::NewWindow)
 {
     QWebChannel *channel = new QWebChannel(this);
-    channel->registerObject("endorphin", new JavaScriptEndorphinObject(this));
+    channel->registerObject("endorphin", new JavaScriptEndorphinObject(this, this));
     setWebChannel(channel);
     loadSettings();
 }

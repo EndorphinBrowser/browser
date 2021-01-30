@@ -69,7 +69,7 @@
 #include "historymanager.h"
 #include "treesortfilterproxymodel.h"
 
-#include <qbuffer.h>
+#include <QBuffer>
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QHeaderView>
@@ -78,7 +78,7 @@
 #include <qfileinfo.h>
 #include <QSettings>
 #include <QStyle>
-#include <qtemporaryfile.h>
+#include <QTemporaryFile>
 #include <QTextStream>
 #include <QMessageBox>
 #include <QMimeData>

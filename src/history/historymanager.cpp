@@ -68,12 +68,12 @@
 #include "browserapplication.h"
 #endif
 
-#include <qbuffer.h>
+#include <QBuffer>
 #include <QDesktopServices>
 #include <QDir>
 #include <QFile>
 #include <QSettings>
-#include <qtemporaryfile.h>
+#include <QTemporaryFile>
 #include <QWebEngineSettings>
 
 #include <QDebug>

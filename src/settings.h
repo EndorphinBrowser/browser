@@ -88,6 +88,7 @@ private slots:
     void chooseAcceptLanguage();
 
     void chooseStyleSheet();
+    void openModernSettings();
 
 private:
     QFont m_standardFont;

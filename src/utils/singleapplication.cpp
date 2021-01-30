@@ -29,8 +29,8 @@
 #include "singleapplication.h"
 
 #include <QDir>
-#include <qlocalserver.h>
-#include <qlocalsocket.h>
+#include <QLocalServer>
+#include <QLocalSocket>
 #include <QTextStream>
 #include <QFile>
 

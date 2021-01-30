@@ -2,5 +2,6 @@
 <qresource>
     <file>dirlist.html</file>
     <file>notfound.html</file>
+    <file>settings.html</file>
 </qresource>
 </RCC>
