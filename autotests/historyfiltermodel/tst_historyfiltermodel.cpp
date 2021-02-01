@@ -21,8 +21,52 @@
 #include <QRandomGenerator>
 #include <history.h>
 #include <historymanager.h>
-#include <ui_history.h>
-#include "tst_historyfiltermodel.h"
+
+class tst_HistoryFilterModel : public QObject
+{
+    Q_OBJECT
+
+public slots:
+    void initTestCase();
+    void cleanupTestCase();
+    void init();
+    void cleanup();
+
+private slots:
+    void historyfiltermodel_data();
+    void historyfiltermodel();
+
+    void historyContains_data();
+    void historyContains();
+
+    void setSourceModel();
+
+    void historyLocation_data();
+    void historyLocation();
+
+    void addRow_data();
+    void addRow();
+
+    void removeRows_data();
+    void removeRows();
+};
+
+// Subclass that exposes the protected functions.
+class SubHistoryFilterModel : public HistoryFilterModel
+{
+public:
+    SubHistoryFilterModel(QObject *parent = 0)
+        : HistoryFilterModel(0, parent)
+    {
+        history = new HistoryManager(this);
+        historyModel = new HistoryModel(history, this);
+        setSourceModel(historyModel);
+        history->setDaysToExpire(-1);
+    }
+
+    HistoryModel *historyModel;
+    HistoryManager *history;
+};
 
 // This will be called before the first test function is executed.
 // It is only called once.
@@ -70,7 +114,7 @@ HistoryList makeHistoryList(int count)
         HistoryEntry item;
         QString url = QString("http://%1host-%2.com/")
                       .arg(QRandomGenerator::global()->generate() % 2 ? "www." : "")
-                      .arg(QString::number(i));
+            .arg(QString::number(i));
         item.url = url;
         item.title = QString("title %1").arg(i);
         item.dateTime = dateTime;
@@ -187,8 +231,8 @@ void tst_HistoryFilterModel::addRow_data()
     list4.insert(1, list4.at(1));
     list4[1].dateTime = list4[1].dateTime.addSecs(1);
     QTest::newRow("many-0") << list4
-                            << list4[0].url
-                            << (EnabledList() << 0 << 0 << 2 << 2 << 4 << 5 << 6);
+        << list4[0].url
+        << (EnabledList() << 0 << 0 << 2 << 2 << 4 << 5 << 6);
 
     HistoryList list5 = makeHistoryList(3);
     // 0, 1, 2
@@ -201,8 +245,8 @@ void tst_HistoryFilterModel::addRow_data()
 
     // ?, 1, 2, 2, 4, 2
     QTest::newRow("many-1") << list5
-                            << list5[1].url
-                            << (EnabledList() << 0 << 1 << 0 << 0 << 4 << 0);
+        << list5[1].url
+        << (EnabledList() << 0 << 1 << 0 << 0 << 4 << 0);
 }
 
 void tst_HistoryFilterModel::addRow()
@@ -224,9 +268,9 @@ void tst_HistoryFilterModel::addRow()
         QCOMPARE(model.historyLocation(model.history->history().value(i).url), enabledList[i]);
 
         if (i > 0
-                && enabledList[i] != 0
-                && (enabledList[i-1] < enabledList[i]
-                    || enabledList[i-1] == 0))
+            && enabledList[i] != 0
+            && (enabledList[i-1] < enabledList[i]
+            || enabledList[i-1] == 0))
             ++currentRow;
         if (currentRow >= model.rowCount() || enabledList[i] == 0)
             continue;
@@ -288,3 +332,5 @@ void tst_HistoryFilterModel::removeRows()
 }
 
 QTEST_MAIN(tst_HistoryFilterModel)
+#include "tst_historyfiltermodel.moc"
+

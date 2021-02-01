@@ -18,15 +18,71 @@
  */
 
 #include <QtTest/QtTest>
+#include "qtest_endorphin.h"
 
-#include <historymanager.h>
+#include "historymanager.h"
 #include "history.h"
-#include <locationcompleter.h>
+#include "locationcompleter.h"
 #include <modeltest.h>
 
 #include <QWebEngineSettings>
 
-#include "tst_historymanager.h"
+class tst_HistoryManager : public QObject
+{
+    Q_OBJECT
+
+public slots:
+    void initTestCase();
+    void cleanupTestCase();
+    void init();
+    void cleanup();
+
+private slots:
+    void history_data();
+    void history();
+    void addHistoryEntry_data();
+    void addHistoryEntry();
+    //void addHistoryEntry_private();
+    void addHistoryEntry_url();
+    void updateHistoryEntry_data();
+    void updateHistoryEntry();
+    void daysToExpire_data();
+    void daysToExpire();
+    void clear_data();
+    void clear();
+    void setHistory_data();
+    void setHistory();
+    void saveload_data();
+    void saveload();
+
+    // TODO move to their own tests
+    void big();
+
+    void historyDialog_data();
+    void historyDialog();
+
+private:
+    QList<HistoryEntry> bigHistory;
+};
+
+// Subclass that exposes the protected functions.
+class SubHistory : public HistoryManager
+{
+public:
+    SubHistory() : HistoryManager()
+    {
+        QWidget w;
+        setParent(&w);
+        setParent(0);
+    }
+
+    ~SubHistory() {
+        setDaysToExpire(30);
+    }
+
+    void prependHistoryEntry(const HistoryEntry &item)
+        { HistoryManager::prependHistoryEntry(item); }
+};
 
 // This will be called before the first test function is executed.
 // It is only called once.
@@ -118,22 +174,22 @@ void tst_HistoryManager::addHistoryEntry_data()
     HistoryList swap;
     swap << item2 << item1;
     QTest::newRow("2-2,1") << one << (HistoryList() << item2) << swap;
-    /*
-        // move to test for the historyFilterModel
-        HistoryEntry item3("http://baz.com", QDateTime::currentDateTime().addDays(-1));
-        HistoryEntry item3n("http://baz.com", QDateTime::currentDateTime());
-        QTest::newRow("move-1") << (HistoryList() << item3 << item2 << item1)
-                                 << (HistoryList() << item3)
-                                 <<  (HistoryList() << item3 << item2 << item1);
+/*
+    // move to test for the historyFilterModel
+    HistoryEntry item3("http://baz.com", QDateTime::currentDateTime().addDays(-1));
+    HistoryEntry item3n("http://baz.com", QDateTime::currentDateTime());
+    QTest::newRow("move-1") << (HistoryList() << item3 << item2 << item1)
+                             << (HistoryList() << item3)
+                             <<  (HistoryList() << item3 << item2 << item1);
 
-        QTest::newRow("move-2") << (HistoryList() << item3 << item2 << item1)
-                                 << (HistoryList() << item2n)
-                                 <<  (HistoryList() << item2n << item3 << item1);
+    QTest::newRow("move-2") << (HistoryList() << item3 << item2 << item1)
+                             << (HistoryList() << item2n)
+                             <<  (HistoryList() << item2n << item3 << item1);
 
-        QTest::newRow("move-3") << (HistoryList())
-                                 << (HistoryList() << item1 << item2 << item3 << item2n << item3n)
-                                 <<  (HistoryList() << item3n << item2n << item1);
-        */
+    QTest::newRow("move-3") << (HistoryList())
+                             << (HistoryList() << item1 << item2 << item3 << item2n << item3n)
+                             <<  (HistoryList() << item3n << item2n << item1);
+    */
 }
 
 // public void addHistoryEntry(HistoryEntry *item)
@@ -150,7 +206,18 @@ void tst_HistoryManager::addHistoryEntry()
     QCOMPARE(history.history().count(), expected.count());
     QCOMPARE(history.history(), expected);
 }
-
+/*
+void tst_HistoryManager::addHistoryEntry_private()
+{
+    SubHistory history;
+    history.setHistory(HistoryList());
+    QWebSettings *globalSettings = QWebSettings::globalSettings();
+    globalSettings->setAttribute(QWebSettings::PrivateBrowsingEnabled, true);
+    history.prependHistoryEntry(HistoryEntry());
+    globalSettings->setAttribute(QWebSettings::PrivateBrowsingEnabled, false);
+    QVERIFY(history.history().isEmpty());
+}
+*/
 void tst_HistoryManager::addHistoryEntry_url()
 {
     SubHistory history;
@@ -359,6 +426,8 @@ void tst_HistoryManager::big()
 
     QCOMPARE(history.history().count(), bigHistory.count());
 
+    HistoryMenu menu;
+
     HistoryModel model(&history);
     ModelTest test(&model);
     QCOMPARE(model.rowCount(), bigHistory.count());
@@ -437,11 +506,11 @@ void tst_HistoryManager::historyDialog()
 
     QAbstractItemModel *model = dialog.tree->model();
     ModelTest test(model);
-    /*
-        for (int i = 0; i < model->rowCount(); ++i)
-            if (model->rowCount(model->index(i, 0)) == 1)
-                qDebug() << i;
-    */
+/*
+    for (int i = 0; i < model->rowCount(); ++i)
+        if (model->rowCount(model->index(i, 0)) == 1)
+            qDebug() << i;
+*/
     if (parentRow == -2)
         parentRow = model->rowCount() - 1;
     QModelIndex parent = model->index(parentRow, parentColumn);
@@ -476,3 +545,5 @@ void tst_HistoryManager::historyDialog()
 }
 
 QTEST_MAIN(tst_HistoryManager)
+#include "tst_historymanager.moc"
+

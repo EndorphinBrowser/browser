@@ -22,7 +22,7 @@ set(placesimport_SRCS
 	../../src/utils/treesortfilterproxymodel.cpp
 )
 
-add_executable(endorphin-placesimport ${placesimport_SRCS} ${UIS} ${RSCS} ${TRS} ${MOCS})
+add_executable(endorphin-placesimport ${placesimport_SRCS})
 target_link_libraries(endorphin-placesimport Qt5::Core Qt5::Widgets Qt5::Sql Qt5::WebEngine Qt5::WebEngineWidgets)
 
 install(TARGETS endorphin-placesimport

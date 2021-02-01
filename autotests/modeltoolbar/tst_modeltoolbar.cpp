@@ -21,12 +21,13 @@
 #include <modeltoolbar.h>
 #include "qtry.h"
 
+#include "browserapplication.h"
 #include "modelmenu.h"
 
 #include <QAction>
-#include <qcolor.h>
+#include <QColor>
 #include <QStandardItemModel>
-#include <qstringlistmodel.h>
+#include <QStringListModel>
 
 class tst_ModelToolBar : public QObject
 {
@@ -108,10 +109,10 @@ public:
         switch (role) {
         case Qt::DisplayRole:
             return m_colours.at(index.row());
-            break;
+        break;
         default:
             return QVariant();
-            break;
+        break;
         }
     }
 

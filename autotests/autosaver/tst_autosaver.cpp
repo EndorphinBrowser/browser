@@ -19,7 +19,60 @@
 
 #include <QtTest/QtTest>
 #include <autosaver.h>
-#include "tst_autosaver.h"
+
+class tst_AutoSaver : public QObject
+{
+    Q_OBJECT
+
+public slots:
+    void initTestCase();
+    void cleanupTestCase();
+    void init();
+    void cleanup();
+
+    void save();
+
+private slots:
+    void AutoSaver_data();
+    void AutoSaver();
+    void changeOccurred_data();
+    void changeOccurred();
+    void deleted();
+};
+
+// Subclass that exposes the protected functions.
+class SubAutoSaver : public AutoSaver
+{
+public:
+    SubAutoSaver(QObject *parent = 0) : AutoSaver(parent) {}
+    void call_timerEvent(QTimerEvent *event)
+        { return SubAutoSaver::timerEvent(event); }
+};
+
+class TestClass : public QObject
+{
+Q_OBJECT
+
+signals:
+    void saveCalled();
+
+public:
+    TestClass(QObject *parent = 0) : QObject(parent), AutoSaver(new SubAutoSaver(this))
+    {
+    }
+
+    ~TestClass()
+    {
+        AutoSaver->saveIfNeccessary();
+    }
+
+    SubAutoSaver *AutoSaver;
+
+public slots:
+    void save() {
+        emit saveCalled();
+    }
+};
 
 // This will be called before the first test function is executed.
 // It is only called once.
@@ -97,3 +150,5 @@ void tst_AutoSaver::deleted()
 }
 
 QTEST_MAIN(tst_AutoSaver)
+#include "tst_autosaver.moc"
+

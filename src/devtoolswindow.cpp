@@ -19,12 +19,11 @@
 
 #include "devtoolswindow.h"
 #include <QApplication>
-#include <QDesktopWidget>
-#include <QVBoxLayout>
 #include <QWidget>
 #include <QWebEngineView>
 #include <QWebEnginePage>
 #include <QScreen>
+#include <QWebEngineProfile>
 
 DevToolsWindow::DevToolsWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)

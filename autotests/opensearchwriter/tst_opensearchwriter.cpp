@@ -74,19 +74,19 @@ void tst_OpenSearchWriter::write_data()
     QTest::addColumn<QString>("fileName");
 
     QTest::newRow("testfile1") << QString("Foo Bar") << QString("Bar Foo") << QString("http://foobar.barfoo/search") << QString()
-                               << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()
-                               << QString() << QString("get") << QString(":/testfile1.xml");
+            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()
+            << QString() << QString("get") << QString(":/testfile1.xml");
 
     QTest::newRow("testfile2") << QString("Endorphin!") << QString("a cross platform web browser built using Qt and WebKit")
-                               << QString("http://foobar.barfoo/search") << QString("http://foobar.barfoo/suggest") << QString()
-                               << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()
-                               << QString("get") << QString("post") << QString(":/testfile2.xml");
+            << QString("http://foobar.barfoo/search") << QString("http://foobar.barfoo/suggest") << QString()
+            << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()
+            << QString("get") << QString("post") << QString(":/testfile2.xml");
 
     QTest::newRow("testile3") << QString("Foo Bar") << QString("Bar Foo") << QString("http://foobar.barfoo/search")
-                              << QString("http://foobar.barfoo/suggest") << QString()
-                              << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter("q", "{searchTerms}") << OpenSearchEngine::Parameter("a", "foo"))
-                              << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter("q", "{searchTerms}"))
-                              << QString("post") << QString("foo") << QString(":/testfile3.xml");
+            << QString("http://foobar.barfoo/suggest") << QString()
+            << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter("q", "{searchTerms}") << OpenSearchEngine::Parameter("a", "foo"))
+            << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter("q", "{searchTerms}"))
+            << QString("post") << QString("foo") << QString(":/testfile3.xml");
 }
 
 void tst_OpenSearchWriter::write()

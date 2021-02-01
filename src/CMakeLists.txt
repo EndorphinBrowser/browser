@@ -4,30 +4,10 @@ project(Endorphin)
 
 include(GNUInstallDirs)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
-
-INCLUDE_DIRECTORIES(
-    ${ENDORPHIN_INCLUDE_DIRS}
-)
-
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Gui REQUIRED)
-find_package(Qt5WebEngine REQUIRED)
-find_package(Qt5Network REQUIRED)
-find_package(Qt5WebEngineWidgets REQUIRED)
-find_package(Qt5PrintSupport REQUIRED)
-find_package(Qt5UiTools REQUIRED)
-find_package(Qt5LinguistTools REQUIRED)
-find_package(Qt5Qml REQUIRED)
-
 set(EXECUTABLE_OUTPUT_PATH ../)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+find_package(Qt5Widgets REQUIRED)
 
 # Get git information
-
 execute_process(COMMAND git log -n1 --pretty=format:%h
                 OUTPUT_VARIABLE GIT_REV
                 ERROR_QUIET)
@@ -41,9 +21,6 @@ endif()
 
 add_definitions(-DGITVERSION=\"\\\"${GIT_REV}\\\"\")
 add_definitions(-DGITCHANGENUMBER=${GIT_CHANGENUMBER})
-
-QT5_WRAP_UI(UIS ${ENDORPHIN_UIS})
-QT5_ADD_RESOURCES(RSCS ${ENDORPHIN_RSCS})
 
 # Translations
 qt5_create_translation(QM_FILES
@@ -85,8 +62,8 @@ ${CMAKE_CURRENT_SOURCE_DIR}/locale/zh_TW.ts
 )
 
 # Generate executable
-add_executable(endorphin main.cpp ${ENDORPHIN_SRCS} ${UIS} ${RSCS} ${TRS} ${MOCS} ${QM_FILES})
-target_link_libraries(endorphin Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::Qml Qt5::PrintSupport Qt5::WebEngine Qt5::WebEngineWidgets)
+add_executable(endorphin main.cpp ${TRS})
+target_link_libraries(endorphin Qt5::Widgets endorphin-base)
 
 
 if(NOT QT_TRANSLATIONS_DIR)
