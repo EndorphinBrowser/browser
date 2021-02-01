@@ -3,5 +3,7 @@
     <file>dirlist.html</file>
     <file>notfound.html</file>
     <file>settings.html</file>
+    <file>startpage.html</file>
+    <file>startpage.css</file>
 </qresource>
 </RCC>

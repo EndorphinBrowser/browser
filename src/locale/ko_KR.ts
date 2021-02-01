@@ -1186,17 +1186,17 @@ Do you want to quit anyway?</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../settings.cpp" line="353"/>
+        <location filename="../settings.cpp" line="354"/>
         <source>Choose Directory</source>
         <translation>디렉토리 선택</translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="359"/>
+        <location filename="../settings.cpp" line="360"/>
         <source>Choose Program</source>
         <translation>프로그램 선택</translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="402"/>
+        <location filename="../settings.cpp" line="403"/>
         <source>Choose CSS File</source>
         <translation>CSS 파일 선택</translation>
     </message>

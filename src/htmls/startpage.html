@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Tab</title>
+    <link rel="stylesheet" href="index.css">
+    <script>
+        async function update()
+        {
+            const providedBy = await window?.endorphin?.translate('Search results provided by') ?? 'Search results provided by';
+            const engine = window?.endorphin?.currentEngine?.name ?? "Google";
+            const aboutText = await window?.endorphin?.translate('About Endorphin') ?? "About Endorphin";
+            const searchWith = await window?.endorphin?.translate('Search the web with') ?? "Search the web with";
+            document.title = await window?.endorphin?.translate('Welcome to Endorphin!') ?? 'Welcome to Endorphin!';
+            document.getElementById('headerTitle').innerHTML = await window?.endorphin?.translate('Endorphin Start') ?? 'Endorphin Start';
+            document.getElementById('searchButton').value = await window?.endorphin?.translate('Search!') ?? 'Search!';
+            document.getElementById('footer').innerHTML = `${providedBy} ${engine} | <a href="http://EndorphinBrowser.gitlab.io/">${aboutText}</a>`;
+            document.getElementById('lineEdit').placeholder = `${searchWith} ${engine}`;
+        }
+
+        function formSubmitted()
+        {
+            var string = lineEdit.value;
+
+            if (string.length == 0)
+                return;
+
+            var url = window?.endorphin?.searchUrl(string) ?? 'http://www.google.com/search?q=' + string;
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body onload="document.forms[0].lineEdit.select(); update();">
+    <div id="header">
+        <h1 id="headerTitle"></h1>
+        <img src="/endorphin.svg" alt="Endorphin Logo">
+    </div>
+    <div id="search">
+        <form action="javascript:formSubmitted();">
+            <fieldset>
+                <input id="lineEdit" name="lineEdit" type="text">
+                <input id="searchButton" type="submit">
+            </fieldset>
+        </form>
+    </div>
+    <div id="footer"></div>
+</body>
+</html>
+
