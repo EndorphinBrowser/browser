@@ -60,9 +60,11 @@
    </item>
    <item>
     <widget class="QToolButton" name="previousButton">
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
      <property name="styleSheet">
       <string notr="true">border: none;
-background: lightgrey;
 padding: 0 5;
 height: 30px;
 border-radius: 2px;
@@ -75,9 +77,11 @@ border-radius: 2px;
    </item>
    <item>
     <widget class="QToolButton" name="nextButton">
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
      <property name="styleSheet">
       <string notr="true">border: none;
-background: lightgrey;
 padding: 0 5;
 height: 30px;
 border-radius: 2px;
@@ -100,9 +104,11 @@ border-radius: 2px;
    </item>
    <item>
     <widget class="QPushButton" name="doneButton">
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
      <property name="styleSheet">
       <string notr="true">border: none;
-background: lightgrey;
 padding: 0 20;
 height: 30px;
 border-radius: 2px;
