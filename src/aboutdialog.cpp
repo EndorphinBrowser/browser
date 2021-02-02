@@ -32,7 +32,6 @@ AboutDialog::AboutDialog(QWidget *parent)
 {
     setupUi(this);
     setWindowTitle(tr("About %1").arg(qApp->applicationName()));
-    logo->setPixmap(qApp->windowIcon().pixmap(128, 128));
     name->setText(qApp->applicationName());
     version->setText(qApp->applicationVersion());
     connect(authorsButton, SIGNAL(clicked()),
@@ -70,7 +69,7 @@ void AboutDialog::displayFile(const QString &fileName, const QString &title)
     dialog.setLayout(&layout);
     dialog.setWindowTitle(title);
     dialog.setWindowFlags(Qt::Sheet);
-    dialog.resize(600, 350);
+    dialog.resize(650, 400);
     dialog.exec();
 }
 
