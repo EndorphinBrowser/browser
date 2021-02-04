@@ -63,13 +63,14 @@
 #include "xbelreader.h"
 
 #include <QFile>
+#include <QDebug>
 
 #include "bookmarknode.h"
 
 QString XmlEntityResolver::resolveUndeclaredEntity(const QString &entity)
 {
-    if (entity == QLatin1String("nbsp"))
-        return QLatin1String(" ");
+    if (entity == QString("nbsp"))
+        return QString(" ");
 
     return QString();
 }
@@ -103,9 +104,9 @@ BookmarkNode *XbelReader::read(QIODevice *device)
     while (!atEnd()) {
         readNext();
         if (isStartElement()) {
-            QString version = attributes().value(QLatin1String("version")).toString();
-            if (name() == QLatin1String("xbel")
-                    && (version.isEmpty() || version == QLatin1String("1.0"))) {
+            QString version = attributes().value(QString("version")).toString();
+            if (name().toString() == QString("xbel")
+                    && (version.isEmpty() || version == QString("1.0"))) {
                 readXBEL(root);
             } else {
                 raiseError(QObject::tr("The file is not an XBEL version 1.0 file."));
@@ -117,7 +118,7 @@ BookmarkNode *XbelReader::read(QIODevice *device)
 
 void XbelReader::readXBEL(BookmarkNode *parent)
 {
-    Q_ASSERT(isStartElement() && name() == QLatin1String("xbel"));
+    Q_ASSERT(isStartElement() && name() == QString("xbel"));
 
     while (!atEnd()) {
         readNext();
@@ -125,11 +126,11 @@ void XbelReader::readXBEL(BookmarkNode *parent)
             break;
 
         if (isStartElement()) {
-            if (name() == QLatin1String("folder"))
+            if (name().toString() == "folder")
                 readFolder(parent);
-            else if (name() == QLatin1String("bookmark"))
+            else if (name().toString() == "bookmark")
                 readBookmarkNode(parent);
-            else if (name() == QLatin1String("separator"))
+            else if (name().toString() == "separator")
                 readSeparator(parent);
             else
                 skipUnknownElement();
@@ -139,7 +140,7 @@ void XbelReader::readXBEL(BookmarkNode *parent)
 
 void XbelReader::readFolder(BookmarkNode *parent)
 {
-    Q_ASSERT(isStartElement() && name() == QLatin1String("folder"));
+    Q_ASSERT(isStartElement() && name().toString() == "folder");
 
     BookmarkNode *folder = new BookmarkNode(BookmarkNode::Folder, parent);
     folder->expanded = (attributes().value(QLatin1String("folded")) == QLatin1String("no"));
@@ -151,15 +152,15 @@ void XbelReader::readFolder(BookmarkNode *parent)
             break;
 
         if (isStartElement()) {
-            if (name() == QLatin1String("title"))
+            if (name().toString() == QString("title"))
                 readTitle(folder);
-            else if (name() == QLatin1String("desc"))
+            else if (name().toString() == QString("desc"))
                 readDescription(folder);
-            else if (name() == QLatin1String("folder"))
+            else if (name().toString() == QString("folder"))
                 readFolder(folder);
-            else if (name() == QLatin1String("bookmark"))
+            else if (name().toString() == QString("bookmark"))
                 readBookmarkNode(folder);
-            else if (name() == QLatin1String("separator"))
+            else if (name().toString() == QString("separator"))
                 readSeparator(folder);
             else
                 skipUnknownElement();
@@ -169,13 +170,13 @@ void XbelReader::readFolder(BookmarkNode *parent)
 
 void XbelReader::readTitle(BookmarkNode *parent)
 {
-    Q_ASSERT(isStartElement() && name() == QLatin1String("title"));
+    Q_ASSERT(isStartElement() && name().toString() == QString("title"));
     parent->title = readElementText();
 }
 
 void XbelReader::readDescription(BookmarkNode *parent)
 {
-    Q_ASSERT(isStartElement() && name() == QLatin1String("desc"));
+    Q_ASSERT(isStartElement() && name().toString() == QString("desc"));
     parent->desc = readElementText();
 }
 
@@ -188,7 +189,7 @@ void XbelReader::readSeparator(BookmarkNode *parent)
 
 void XbelReader::readBookmarkNode(BookmarkNode *parent)
 {
-    Q_ASSERT(isStartElement() && name() == QLatin1String("bookmark"));
+    Q_ASSERT(isStartElement() && name().toString() == QString("bookmark"));
     BookmarkNode *bookmark = new BookmarkNode(BookmarkNode::Bookmark, parent);
     bookmark->url = attributes().value(QLatin1String("href")).toString();
     while (!atEnd()) {
@@ -197,9 +198,9 @@ void XbelReader::readBookmarkNode(BookmarkNode *parent)
             break;
 
         if (isStartElement()) {
-            if (name() == QLatin1String("title"))
+            if (name().toString() == QString("title"))
                 readTitle(bookmark);
-            else if (name() == QLatin1String("desc"))
+            else if (name().toString() == QString("desc"))
                 readDescription(bookmark);
             else
                 skipUnknownElement();

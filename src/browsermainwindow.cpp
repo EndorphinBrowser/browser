@@ -102,6 +102,7 @@
 #include <QToolBar>
 #include <QInputDialog>
 #include <QSplitter>
+#include <QCloseEvent>
 
 #include <QUrl>
 #include <QWebEngineHistory>

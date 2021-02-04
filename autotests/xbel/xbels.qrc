@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>all.xbel</file>
+    <file>frank.xbel</file>
+    <file>bad.xbel</file>
+</qresource>
+</RCC>

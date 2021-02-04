@@ -209,12 +209,13 @@ private:
     QList<QByteArray> m_recentlyClosedTabsHistory;
     QList<WebActionMapper*> m_actions;
 
-    QWebEngineProfile *m_profile;
     QCompleter *m_lineEditCompleter;
     QStackedWidget *m_locationBars;
     TabBar *m_tabBar;
     QToolButton *addTabButton;
     QToolButton *closeTabButton;
+
+    QWebEngineProfile *m_profile;
 };
 
 #endif // TABWIDGET_H

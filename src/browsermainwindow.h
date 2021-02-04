@@ -78,6 +78,7 @@ class BookmarksMenuBarMenu;
 class UserAgentMenu;
 class DevToolsWindow;
 class QPrinter;
+class QCloseEvent;
 
 /*!
     The MainWindow of the Browser Application.

@@ -105,9 +105,9 @@ void tst_Xbel::read_data()
     QTest::addColumn<QString>("fileName");
     QTest::addColumn<QXmlStreamReader::Error>("error");
     QTest::newRow("null") << QString() << QXmlStreamReader::NoError;
-    QTest::newRow("frank") << QString("frank.xbel") << QXmlStreamReader::NoError;
-    QTest::newRow("frank") << QString("all.xbel") << QXmlStreamReader::NoError;
-    QTest::newRow("bad") << QString("bad.xbel") << QXmlStreamReader::CustomError;
+    QTest::newRow("frank") << QString(":/frank.xbel") << QXmlStreamReader::NoError;
+    QTest::newRow("frank") << QString(":/all.xbel") << QXmlStreamReader::NoError;
+    QTest::newRow("bad") << QString(":/bad.xbel") << QXmlStreamReader::CustomError;
 }
 
 // public BookmarkNode *read(QString const &fileName)
@@ -127,7 +127,7 @@ void tst_Xbel::read()
 void tst_Xbel::readProperly()
 {
     SubXbelReader reader;
-    BookmarkNode *root = reader.read("all.xbel");
+    BookmarkNode *root = reader.read(":/all.xbel");
     QCOMPARE(reader.error(), QXmlStreamReader::NoError);
     QList<BookmarkNode*>children = root->children();
     QCOMPARE(children.count(), 4);
@@ -212,8 +212,8 @@ void tst_Xbel::xbelwriter()
 void tst_Xbel::write_data()
 {
     QTest::addColumn<QString>("readFileName");
-    QTest::newRow("frank") << QString("frank.xbel");
-    QTest::newRow("all") << QString("all.xbel");
+    QTest::newRow("frank") << QString(":/frank.xbel");
+    QTest::newRow("all") << QString(":/all.xbel");
 }
 
 // public BookmarkNode *read(QString const &fileName)
