@@ -26,10 +26,10 @@
 #include "searchlineedit.h"
 #include "webview.h"
 
-#include <qdrag.h>
+#include <QDrag>
 #include <QEvent>
 #include <QPainter>
-#include <qstyleoption.h>
+#include <QStyleOption>
 #include <QMimeData>
 
 #include <QDebug>

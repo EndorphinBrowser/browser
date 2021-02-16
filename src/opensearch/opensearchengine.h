@@ -37,24 +37,38 @@ class OpenSearchEngine : public QObject
 
 signals:
     void imageChanged();
+    void nameChanged();
     void suggestions(const QStringList &suggestions);
+    void descriptionChanged();
+    void searchUrlTemplateChanged();
+    void searchUrlChanged();
+    void providesSuggestionsChanged();
+    void suggestionsUrlTemplateChanged();
+    void suggestionsUrlChanged();
+    void searchParametersChanged();
+    void suggestionsParametersChanged();
+    void searchMethodChanged();
+    void suggestionsMethodChanged();
+    void imageUrlChanged();
+    void validChanged();
+    void networkAccessManagerChanged();
 
 public:
     typedef QPair<QString, QString> Parameter;
     typedef QList<Parameter> Parameters;
 
-    Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(QString description READ description WRITE setDescription)
-    Q_PROPERTY(QString searchUrlTemplate READ searchUrlTemplate WRITE setSearchUrlTemplate)
-    Q_PROPERTY(Parameters searchParameters READ searchParameters WRITE setSearchParameters)
-    Q_PROPERTY(QString searchMethod READ searchMethod WRITE setSearchMethod)
-    Q_PROPERTY(QString suggestionsUrlTemplate READ suggestionsUrlTemplate WRITE setSuggestionsUrlTemplate)
-    Q_PROPERTY(Parameters suggestionsParameters READ suggestionsParameters WRITE setSuggestionsParameters)
-    Q_PROPERTY(QString suggestionsMethod READ suggestionsMethod WRITE setSuggestionsMethod)
-    Q_PROPERTY(bool providesSuggestions READ providesSuggestions)
-    Q_PROPERTY(QString imageUrl READ imageUrl WRITE setImageUrl)
-    Q_PROPERTY(bool valid READ isValid)
-    Q_PROPERTY(QNetworkAccessManager *networkAccessManager READ networkAccessManager WRITE setNetworkAccessManager)
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
+    Q_PROPERTY(QString searchUrlTemplate READ searchUrlTemplate WRITE setSearchUrlTemplate NOTIFY searchUrlTemplateChanged)
+    Q_PROPERTY(Parameters searchParameters READ searchParameters WRITE setSearchParameters NOTIFY searchParametersChanged)
+    Q_PROPERTY(QString searchMethod READ searchMethod WRITE setSearchMethod NOTIFY searchMethodChanged)
+    Q_PROPERTY(QString suggestionsUrlTemplate READ suggestionsUrlTemplate WRITE setSuggestionsUrlTemplate  NOTIFY suggestionsUrlTemplateChanged)
+    Q_PROPERTY(Parameters suggestionsParameters READ suggestionsParameters WRITE setSuggestionsParameters NOTIFY suggestionsParametersChanged)
+    Q_PROPERTY(QString suggestionsMethod READ suggestionsMethod WRITE setSuggestionsMethod NOTIFY suggestionsMethodChanged)
+    Q_PROPERTY(bool providesSuggestions READ providesSuggestions  NOTIFY providesSuggestionsChanged)
+    Q_PROPERTY(QString imageUrl READ imageUrl WRITE setImageUrl  NOTIFY imageUrlChanged)
+    Q_PROPERTY(bool valid READ isValid NOTIFY validChanged)
+    Q_PROPERTY(QNetworkAccessManager *networkAccessManager READ networkAccessManager WRITE setNetworkAccessManager NOTIFY networkAccessManagerChanged)
 
     OpenSearchEngine(QObject *parent = nullptr);
     ~OpenSearchEngine();

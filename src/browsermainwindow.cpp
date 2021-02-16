@@ -80,7 +80,6 @@
 #include "languagemanager.h"
 #include "opensearchdialog.h"
 #include "settings.h"
-#include "sourceviewer.h"
 #include "tabbar.h"
 #include "tabwidget.h"
 #include "toolbarsearch.h"
@@ -230,6 +229,7 @@ BrowserMainWindow::~BrowserMainWindow()
 
 void BrowserMainWindow::keyPressEvent(QKeyEvent *event)
 {
+    QSettings settings;
     switch (event->key()) {
     case Qt::Key_HomePage:
         m_historyHomeAction->trigger();
@@ -240,8 +240,12 @@ void BrowserMainWindow::keyPressEvent(QKeyEvent *event)
         event->accept();
         break;
     case Qt::Key_Search:
-        m_toolsWebSearchAction->trigger();
-        event->accept();
+        settings.beginGroup(QLatin1String("appearance"));
+        if(settings.value(QLatin1String("urlBarType"), 0).toInt() == 0) {
+            m_toolsWebSearchAction->trigger();
+            event->accept();
+        }
+        settings.endGroup();
         break;
     case Qt::Key_OpenUrl:
         m_fileOpenLocationAction->trigger();
@@ -298,7 +302,7 @@ static const qint32 BrowserMainWindowMagic = 0xba;
 
 QByteArray BrowserMainWindow::saveState(bool withTabs) const
 {
-    int version = 3;
+    int version = 4;
     QByteArray data;
     QDataStream stream(&data, QIODevice::WriteOnly);
 
@@ -314,7 +318,6 @@ QByteArray BrowserMainWindow::saveState(bool withTabs) const
         stream << tabWidget()->saveState();
     else
         stream << QByteArray();
-    stream << m_navigationSplitter->saveState();
     stream << m_tabWidget->tabBar()->showTabBarWhenOneTab();
 
     stream << qint32(toolBarArea(m_navigationBar));
@@ -365,7 +368,6 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     stream >> showBookmarksBarDEAD;
     stream >> showStatusbar;
     stream >> tabState;
-    stream >> splitterState;
     stream >> showTabBarWhenOneTab;
     stream >> navigationBarLocation;
     stream >> bookmarkBarLocation;
@@ -398,8 +400,6 @@ bool BrowserMainWindow::restoreState(const QByteArray &state)
     m_menuBarVisible = showMenuBar;
 
     statusBar()->setVisible(showStatusbar);
-
-    m_navigationSplitter->restoreState(splitterState);
 
     tabWidget()->restoreState(tabState);
 
@@ -800,10 +800,15 @@ void BrowserMainWindow::setupMenu()
     m_toolsMenu = new QMenu(menuBar());
     menuBar()->addMenu(m_toolsMenu);
 
-    m_toolsWebSearchAction = new QAction(m_toolsMenu);
-    connect(m_toolsWebSearchAction, SIGNAL(triggered()),
-            this, SLOT(webSearch()));
-    m_toolsMenu->addAction(m_toolsWebSearchAction);
+    QSettings settings;
+    settings.beginGroup(QLatin1String("appearance"));
+    if(settings.value(QLatin1String("urlBarType"), 0).toInt() == 0) {
+        m_toolsWebSearchAction = new QAction(m_toolsMenu);
+        connect(m_toolsWebSearchAction, SIGNAL(triggered()),
+                this, SLOT(webSearch()));
+        m_toolsMenu->addAction(m_toolsWebSearchAction);
+    }
+    settings.endGroup();
 
     m_toolsClearPrivateDataAction = new QAction(m_toolsMenu);
     connect(m_toolsClearPrivateDataAction, SIGNAL(triggered()),
@@ -960,8 +965,13 @@ void BrowserMainWindow::retranslate()
     m_windowMenu->setTitle(tr("&Window"));
 
     m_toolsMenu->setTitle(tr("&Tools"));
-    m_toolsWebSearchAction->setText(tr("Web &Search"));
-    m_toolsWebSearchAction->setShortcut(QKeySequence(tr("Ctrl+K", "Web Search")));
+    QSettings settings;
+    settings.beginGroup(QLatin1String("appearance"));
+    if(settings.value(QLatin1String("urlBarType"), 0).toInt() == 0) {
+        m_toolsWebSearchAction->setText(tr("Web &Search"));
+        m_toolsWebSearchAction->setShortcut(QKeySequence(tr("Ctrl+K", "Web Search")));
+    }
+    settings.endGroup();
     m_toolsClearPrivateDataAction->setText(tr("&Clear Private Data"));
     m_toolsClearPrivateDataAction->setShortcut(QKeySequence(tr("Ctrl+Shift+Delete", "Clear Private Data")));
     m_toolsPreferencesAction->setText(tr("Options..."));
@@ -1011,21 +1021,27 @@ void BrowserMainWindow::setupToolBar()
     m_stopReloadAction->setIcon(m_reloadIcon);
     m_navigationBar->addAction(m_stopReloadAction);
 
-    m_navigationSplitter = new QSplitter(m_navigationBar);
-    m_navigationSplitter->addWidget(m_tabWidget->locationBarStack());
-
-    m_toolbarSearch = new ToolbarSearch(m_navigationBar);
-    m_navigationSplitter->addWidget(m_toolbarSearch);
-    connect(m_toolbarSearch, SIGNAL(search(const QUrl&, TabWidget::OpenUrlIn)),
-            m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
-    m_navigationSplitter->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+    QSettings settings;
+    settings.beginGroup(QLatin1String("appearance"));
+    if(settings.value(QLatin1String("urlBarType"), 0).toInt() == 0) {
+        m_navigationSplitter = new QSplitter(m_navigationBar);
+        m_navigationSplitter->addWidget(m_tabWidget->locationBarStack());
+        m_toolbarSearch = new ToolbarSearch(m_navigationBar);
+        m_navigationSplitter->addWidget(m_toolbarSearch);
+        connect(m_toolbarSearch, SIGNAL(search(const QUrl&, TabWidget::OpenUrlIn)),
+                m_tabWidget, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
+        m_navigationSplitter->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+        m_navigationSplitter->setCollapsible(0, false);
+        m_navigationBar->addWidget(m_navigationSplitter);
+        int splitterWidth = m_navigationSplitter->width();
+        QList<int> sizes;
+        sizes << (int)((double)splitterWidth * .80) << (int)((double)splitterWidth * .20);
+        m_navigationSplitter->setSizes(sizes);
+    } else {
+        m_navigationBar->addWidget(m_tabWidget->locationBarStack());
+    }
+    settings.endGroup();
     m_tabWidget->locationBarStack()->setMinimumWidth(120);
-    m_navigationSplitter->setCollapsible(0, false);
-    m_navigationBar->addWidget(m_navigationSplitter);
-    int splitterWidth = m_navigationSplitter->width();
-    QList<int> sizes;
-    sizes << (int)((double)splitterWidth * .80) << (int)((double)splitterWidth * .20);
-    m_navigationSplitter->setSizes(sizes);
 }
 
 void BrowserMainWindow::showBookmarksDialog()
@@ -1400,9 +1416,9 @@ void BrowserMainWindow::viewPageSource()
     });
     loop.exec();
     QUrl url = currentTab()->url();
-    SourceViewer *viewer = new SourceViewer(markup, title, url);
-    viewer->setAttribute(Qt::WA_DeleteOnClose);
-    viewer->show();
+    if(!url.toString().startsWith("view-source:")) {
+        tabWidget()->loadUrl(QUrl("view-source:" + url.toString()), TabWidget::NewSelectedTab);
+    }
 }
 
 void BrowserMainWindow::gotHTML(QString &value)

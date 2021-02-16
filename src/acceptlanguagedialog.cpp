@@ -53,13 +53,13 @@ QStringList AcceptLanguageDialog::expand(const QLocale::Language language)
         QString languageString;
         if (countries.count() == 1) {
             languageString = QString(QLatin1String("%1 [%2]"))
-                             .arg(QLocale::languageToString(language))
-                             .arg(QLocale(language).name().split(QLatin1Char('_')).at(0));
+                             .arg(QLocale::languageToString(language),
+                                  QLocale(language).name().split(QLatin1Char('_')).at(0));
         } else {
             languageString = QString(QLatin1String("%1/%2 [%3]"))
-                             .arg(QLocale::languageToString(language))
-                             .arg(QLocale::countryToString(countries.at(j)))
-                             .arg(QLocale(language, countries.at(j)).name().split(QLatin1Char('_')).join(QLatin1String("-")).toLower());
+                             .arg(QLocale::languageToString(language),
+                                  QLocale::countryToString(countries.at(j)),
+                                  QLocale(language, countries.at(j)).name().split(QLatin1Char('_')).join(QLatin1String("-")).toLower());
 
         }
         if (!allLanguages.contains(languageString))
@@ -125,7 +125,7 @@ QByteArray AcceptLanguageDialog::httpString(const QStringList &list)
         if (processed.isEmpty()) {
             processed << tag;
         } else {
-            processed << QString(QLatin1String("%1; %2")).arg(tag).arg(QString::number(qvalue, 'f', 1));
+            processed << QString(QLatin1String("%1; %2")).arg(tag, QString::number(qvalue, 'f', 1));
         }
         if (qvalue > .1)
             qvalue -= .1;

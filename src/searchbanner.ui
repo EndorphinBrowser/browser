@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>493</width>
-    <height>40</height>
+    <width>405</width>
+    <height>36</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,7 +18,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
-    <number>6</number>
+    <number>-1</number>
    </property>
    <property name="leftMargin">
     <number>12</number>
@@ -47,11 +47,11 @@
    </item>
    <item>
     <widget class="QToolButton" name="highlightAllButton">
-     <property name="visible">
-      <bool>false</bool>
-     </property>
      <property name="text">
       <string>Highlight All</string>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -60,16 +60,6 @@
    </item>
    <item>
     <widget class="QToolButton" name="previousButton">
-     <property name="autoFillBackground">
-      <bool>true</bool>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: none;
-padding: 0 5;
-height: 30px;
-border-radius: 2px;
-</string>
-     </property>
      <property name="text">
       <string notr="true">&lt;</string>
      </property>
@@ -77,45 +67,16 @@ border-radius: 2px;
    </item>
    <item>
     <widget class="QToolButton" name="nextButton">
-     <property name="autoFillBackground">
-      <bool>true</bool>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: none;
-padding: 0 5;
-height: 30px;
-border-radius: 2px;
-</string>
-     </property>
      <property name="text">
       <string notr="true">&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="SearchLineEdit" name="searchLineEdit">
-     <property name="styleSheet">
-      <string notr="true">border: none;
-height: 30px;
-border-radius: 2px;
-</string>
-     </property>
-    </widget>
+    <widget class="SearchLineEdit" name="searchLineEdit"/>
    </item>
    <item>
     <widget class="QPushButton" name="doneButton">
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: none;
-padding: 0 20;
-height: 30px;
-border-radius: 2px;
-text-align: center;
-
-</string>
-     </property>
      <property name="text">
       <string>Done</string>
      </property>

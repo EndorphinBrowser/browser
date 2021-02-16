@@ -799,4 +799,3 @@ void BrowserApplication::setEventKeyboardModifiers(Qt::KeyboardModifiers modifie
 {
     m_eventKeyboardModifiers = modifiers;
 }
-

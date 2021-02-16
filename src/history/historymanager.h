@@ -101,7 +101,7 @@ class HistoryTreeModel;
 class HistoryManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int daysToExpire READ daysToExpire WRITE setDaysToExpire)
+    Q_PROPERTY(int daysToExpire READ daysToExpire WRITE setDaysToExpire NOTIFY daysToExpireChanged)
 
 signals:
     void historyCleared();
@@ -122,6 +122,7 @@ public:
 
     int daysToExpire() const;
     void setDaysToExpire(int limit);
+    void daysToExpireChanged();
 
     QList<HistoryEntry> history() const;
     void setHistory(const QList<HistoryEntry> &history, bool loadedAndSorted = false);

@@ -25,7 +25,6 @@
 #include "historymanager.h"
 #include "toolbarsearch.h"
 
-#include <qabstractnetworkcache.h>
 #include <QCheckBox>
 #include <QDialogButtonBox>
 #include <QLabel>
@@ -58,10 +57,6 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
     m_searchHistory->setChecked(settings.value(QLatin1String("searchHistory"), true).toBool());
     layout->addWidget(m_searchHistory);
 
-    m_favIcons = new QCheckBox(tr("Website &Icons"));
-    m_favIcons->setChecked(settings.value(QLatin1String("favIcons"), true).toBool());
-    layout->addWidget(m_favIcons);
-
     settings.endGroup();
 
     QPushButton *acceptButton = new QPushButton(tr("Clear &Private Data"));
@@ -87,7 +82,6 @@ void ClearPrivateData::accept()
     settings.setValue(QLatin1String("downloadHistory"), m_downloadHistory->isChecked());
     settings.setValue(QLatin1String("searchHistory"), m_searchHistory->isChecked());
     settings.setValue(QLatin1String("cache"), m_cache->isChecked());
-    settings.setValue(QLatin1String("favIcons"), m_favIcons->isChecked());
 
     settings.endGroup();
 
@@ -105,10 +99,6 @@ void ClearPrivateData::accept()
         for (int i = 0; i < mainWindows.count(); ++i) {
             mainWindows.at(i)->toolbarSearch()->setText(QString());
         }
-    }
-
-    if (m_favIcons->isChecked()) {
-        //QWebEngineSettings::clearIconDatabase();
     }
     QDialog::accept();
 }

@@ -151,7 +151,6 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
         delete m_sysTranslator;
         m_appTranslator = nullptr;
         m_sysTranslator = nullptr;
-        emit languageChanged(currentLanguage());
         return true;
     }
 
@@ -189,7 +188,6 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
     qApp->installTranslator(newSysTranslator);
     m_appTranslator = newAppTranslator;
     m_sysTranslator = newSysTranslator;
-    emit languageChanged(currentLanguage());
     return true;
 }
 
@@ -250,11 +248,11 @@ void LanguageManager::chooseNewLanguage()
     foreach (const QString &name, m_languages) {
         QLocale locale(name);
         QString string = QString(QLatin1String("%1, %2 (%3) %4"))
-                         .arg(QLocale::languageToString(locale.language()))
-                         .arg(QLocale::countryToString(locale.country()))
-                         .arg(name)
-                         // this is for pretty RTL support
-                         .arg(QChar(0x200E)); // LRM = 0x200E
+                         .arg(QLocale::languageToString(locale.language()),
+                           QLocale::countryToString(locale.country()),
+                           name,
+                           // this is for pretty RTL support
+                           QChar(0x200E)); // LRM = 0x200E
         if (name == current)
             defaultItem = items.count();
         items << string;

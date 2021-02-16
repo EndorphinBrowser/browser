@@ -22,4 +22,4 @@ INCLUDE_DIRECTORIES(
 )
 
 add_library(endorphin-base STATIC ${ENDORPHIN_SRCS} ${BASE_UIS} ${BASE_RSCS} ${BASE_MOCS})
-target_link_libraries(endorphin-base Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::Qml Qt5::PrintSupport Qt5::WebEngine Qt5::WebEngineWidgets)
+target_link_libraries(endorphin-base xbel Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::Qml Qt5::PrintSupport Qt5::WebEngine Qt5::WebEngineWidgets)

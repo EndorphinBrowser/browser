@@ -64,7 +64,6 @@
 #include "toolbarsearch.h"
 
 #include "autosaver.h"
-#include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "opensearchengine.h"
 #include "opensearchengineaction.h"

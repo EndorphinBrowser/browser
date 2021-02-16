@@ -20,7 +20,6 @@
 
 #include "opensearchdialog.h"
 
-#include "browserapplication.h"
 #include "opensearchenginemodel.h"
 #include "opensearchmanager.h"
 #include "toolbarsearch.h"

@@ -196,6 +196,20 @@ void SettingsDialog::loadFromSettings()
     if (minimumFontSize != 0)
         minimumFontSizeSpinBox->setValue(minimumFontSize);
     settings.endGroup();
+    // UI Appearance
+    settings.beginGroup(QLatin1String("appearance"));
+    urlBarType->setCurrentIndex(settings.value(QLatin1String("urlBarType"), 0).toInt());
+    settings.endGroup();
+    if(urlBarType->currentIndex() == 1) {
+        // Required so URL bar accepts search terms
+        settings.beginGroup(QLatin1String("urlloading"));
+        settings.setValue(QLatin1String("searchEngineFallback"), true);
+        searchEngineFallback->setChecked(true);
+        searchEngineFallback->setEnabled(false);
+    } else {
+        searchEngineFallback->setEnabled(true);
+    }
+    settings.endGroup();
 
     // Network
     settings.beginGroup(QLatin1String("network"));
@@ -302,6 +316,21 @@ void SettingsDialog::saveToSettings()
     else
         settings.setValue(QLatin1String("minimumFontSize"), 0);
     settings.endGroup();
+    // UI Appearance
+    settings.beginGroup(QLatin1String("appearance"));
+    settings.setValue(QLatin1String("urlBarType"), urlBarType->currentIndex());
+    settings.endGroup();
+    if(urlBarType->currentIndex() == 1) {
+        // Required so URL bar accepts search terms
+        settings.beginGroup(QLatin1String("urlloading"));
+        settings.setValue(QLatin1String("searchEngineFallback"), true);
+        searchEngineFallback->setChecked(true);
+        searchEngineFallback->setEnabled(false);
+    } else {
+        searchEngineFallback->setEnabled(true);
+    }
+    settings.endGroup();
+
 
     // Network
     settings.beginGroup(QLatin1String("network"));

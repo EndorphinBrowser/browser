@@ -127,8 +127,7 @@ QT_END_NAMESPACE
 class DownloadManager : public QDialog, public Ui_DownloadDialog
 {
     Q_OBJECT
-    Q_PROPERTY(RemovePolicy removePolicy READ removePolicy WRITE setRemovePolicy)
-    Q_ENUMS(RemovePolicy)
+    Q_PROPERTY(RemovePolicy removePolicy READ removePolicy WRITE setRemovePolicy NOTIFY removePolicyChanged)
 
 public:
     enum RemovePolicy {
@@ -136,6 +135,7 @@ public:
         Exit,
         SuccessFullDownload
     };
+    Q_ENUM(RemovePolicy)
 
     DownloadManager(QWidget *parent = nullptr);
     ~DownloadManager();
@@ -144,6 +144,7 @@ public:
 
     RemovePolicy removePolicy() const;
     void setRemovePolicy(RemovePolicy policy);
+    void removePolicyChanged(){};
 
     static QString timeString(double timeRemaining);
     static QString dataString(qint64 size);

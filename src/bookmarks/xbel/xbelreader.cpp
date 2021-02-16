@@ -63,7 +63,6 @@
 #include "xbelreader.h"
 
 #include <QFile>
-#include <QDebug>
 
 #include "bookmarknode.h"
 

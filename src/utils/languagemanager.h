@@ -38,7 +38,7 @@ class QTranslator;
 class LanguageManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString currentLanguage READ currentLanguage WRITE setCurrentLanguage)
+    Q_PROPERTY(QString currentLanguage READ currentLanguage WRITE setCurrentLanguage NOTIFY languageChanged)
 
 signals:
     void languageChanged(const QString &language);

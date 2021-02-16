@@ -31,7 +31,10 @@ class JavaScriptEndorphinObject : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QObject *currentEngine READ currentEngine)
+    Q_PROPERTY(QObject *currentEngine READ currentEngine NOTIFY currentEngineChanged)
+
+signals:
+    void currentEngineChanged();
 
 public:
     JavaScriptEndorphinObject(QObject *parent = nullptr, WebPage *page = nullptr);

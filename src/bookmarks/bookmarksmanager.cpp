@@ -65,7 +65,6 @@
 #include "autosaver.h"
 #include "bookmarknode.h"
 #include "bookmarksmodel.h"
-#include "browserapplication.h"
 #include "history.h"
 #include "xbelreader.h"
 #include "xbelwriter.h"

@@ -55,7 +55,7 @@ protected:
 class LocationCompletionModel : public QSortFilterProxyModel
 {
     Q_OBJECT
-    Q_PROPERTY(QString searchString READ searchString WRITE setSearchString)
+    Q_PROPERTY(QString searchString READ searchString WRITE setSearchString NOTIFY searchStringChanged)
 
 public:
     LocationCompletionModel(QObject *parent = nullptr);
@@ -64,6 +64,7 @@ public:
 
     QString searchString() const;
     void setSearchString(const QString &str);
+    void searchStringChanged();
 
     bool isValid() const;
     void setValid(bool b);

@@ -34,7 +34,6 @@ src/clearprivatedata.cpp
 src/acceptlanguagedialog.cpp
 src/settings.cpp
 src/browserapplication.cpp
-src/sourcehighlighter.cpp
 src/webview.cpp
 src/webpage.cpp
 src/locationcompleter.cpp
@@ -51,7 +50,6 @@ src/bookmarks/xbel/xbelwriter.cpp
 src/bookmarks/bookmarksmodel.cpp
 src/bookmarks/bookmarksmenu.cpp
 src/tabbar.cpp
-src/sourceviewer.cpp
 src/permissionbar.cpp
 src/devtoolswindow.cpp
 src/aboutdialog.cpp

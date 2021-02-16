@@ -59,6 +59,32 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 **
 ****************************************************************************/
+/*
+** The URL validation regex is licensed under the following license:
+**
+** Copyright (c) 2010-2018 Diego Perini (http://www.iport.it)
+**
+** Permission is hereby granted, free of charge, to any person
+** obtaining a copy of this software and associated documentation
+** files (the "Software"), to deal in the Software without
+** restriction, including without limitation the rights to use,
+** copy, modify, merge, publish, distribute, sublicense, and/or sell
+** copies of the Software, and to permit persons to whom the
+** Software is furnished to do so, subject to the following
+** conditions:
+**
+** The above copyright notice and this permission notice shall be
+** included in all copies or substantial portions of the Software.
+**
+** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+** EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+** OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+** NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+** HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+** WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+** FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+** OTHER DEALINGS IN THE SOFTWARE.
+*/
 
 #include "tabwidget.h"
 
@@ -97,6 +123,7 @@
 #include <QWebEnginePage>
 #include <QWebEngineProfile>
 #include <QWebEngineDownloadItem>
+#include <QRegularExpression>
 
 #include <QDebug>
 
@@ -114,9 +141,9 @@ TabWidget::TabWidget(QWidget *parent)
     , m_lineEditCompleter(nullptr)
     , m_locationBars(nullptr)
     , m_tabBar(new TabBar(this))
-    , m_profile(nullptr)
     , addTabButton(nullptr)
     , closeTabButton(nullptr)
+    , m_profile(nullptr)
 {
     m_profile = QWebEngineProfile::defaultProfile();
     setElideMode(Qt::ElideRight);
@@ -182,7 +209,6 @@ TabWidget::TabWidget(QWidget *parent)
     addTabButton->setDefaultAction(m_newTabAction);
     addTabButton->setAutoRaise(true);
     addTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    addTabButton->setIconSize(QSize(50, 100));
 #endif
 
     connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
@@ -862,7 +888,7 @@ QUrl TabWidget::guessUrlFromString(const QString &string)
 
     QSettings settings;
     settings.beginGroup(QLatin1String("urlloading"));
-    bool search = settings.value(QLatin1String("searchEngineFallback"), false).toBool();
+    bool search = settings.value(QLatin1String("searchEngineFallback"), true).toBool();
 
     if (search) {
         url = ToolbarSearch::openSearchManager()->currentEngine()->searchUrl(string.trimmed());

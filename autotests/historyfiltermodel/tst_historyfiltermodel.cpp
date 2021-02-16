@@ -285,7 +285,7 @@ void tst_HistoryFilterModel::addRow()
     }
 
     if (history.count() > 0)
-        for (int i = 0; i < QRandomGenerator::global()->generate() % 15; ++i)
+        for (uint i = 0; i < QRandomGenerator::global()->generate() % 15; ++i)
             model.history->addHistoryEntry(history[QRandomGenerator::global()->generate() % history.count()].url);
     QStringList urls;
     for (int i = 0; i < model.rowCount(); ++i) {
