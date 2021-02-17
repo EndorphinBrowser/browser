@@ -105,10 +105,11 @@
 
 #include <QUrl>
 #include <QWebEngineHistory>
+#include <QWebEngineProfile>
 
 #include <QDebug>
 
-BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
+BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags, QWebEngineProfile *profile)
     : QMainWindow(parent, flags)
     , m_navigationBar(nullptr)
     , m_navigationSplitter(nullptr)
@@ -117,8 +118,9 @@ BrowserMainWindow::BrowserMainWindow(QWidget *parent, Qt::WindowFlags flags)
     , m_bookmarksToolbarFrame(0)
 #endif
     , m_bookmarksToolbar(nullptr)
-    , m_tabWidget(new TabWidget(this))
+    , m_tabWidget(new TabWidget(this, profile))
     , m_autoSaver(new AutoSaver(this))
+    , m_profile(profile)
 {
     setAttribute(Qt::WA_DeleteOnClose, true);
     statusBar()->setSizeGripEnabled(true);

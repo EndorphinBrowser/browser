@@ -64,6 +64,7 @@
 #define BROWSERMAINWINDOW_H
 
 #include <QMainWindow>
+#include <QWebEngineProfile>
 
 class AutoSaver;
 class BookmarksToolBar;
@@ -90,7 +91,7 @@ class BrowserMainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    BrowserMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+    BrowserMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(), QWebEngineProfile *profile = QWebEngineProfile::defaultProfile());
     ~BrowserMainWindow();
     QSize sizeHint() const;
 
@@ -274,6 +275,8 @@ private:
     bool m_statusBarVisible;
 
     QString markup;
+
+    QWebEngineProfile *m_profile;
 
     friend class BrowserApplication;
 

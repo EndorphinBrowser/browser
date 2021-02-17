@@ -117,7 +117,7 @@ public:
         NewTab = NewNotSelectedTab
     };
 
-    TabWidget(QWidget *parent = nullptr);
+    TabWidget(QWidget *parent = nullptr, QWebEngineProfile *profile = QWebEngineProfile::defaultProfile());
 
     void loadSettings();
     TabBar *tabBar() {

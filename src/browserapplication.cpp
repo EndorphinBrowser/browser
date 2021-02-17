@@ -263,7 +263,7 @@ BrowserApplication::~BrowserApplication()
 void BrowserApplication::lastWindowClosed()
 {
     clean();
-    BrowserMainWindow *mw = new BrowserMainWindow;
+    BrowserMainWindow *mw = new BrowserMainWindow(nullptr, nullptr, QWebEngineProfile::defaultProfile());
     mw->goHome();
     m_mainWindows.prepend(mw);
 }
@@ -636,7 +636,7 @@ BrowserMainWindow *BrowserApplication::newMainWindow()
 {
     if (!m_mainWindows.isEmpty())
         mainWindow()->m_autoSaver->saveIfNeccessary();
-    BrowserMainWindow *browser = new BrowserMainWindow();
+    BrowserMainWindow *browser = new BrowserMainWindow(nullptr, nullptr, QWebEngineProfile::defaultProfile());
     m_mainWindows.prepend(browser);
     connect(this, SIGNAL(privacyChanged(bool)),
             browser, SLOT(privacyChanged(bool)));

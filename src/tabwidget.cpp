@@ -129,7 +129,7 @@
 
 //#define USERMODIFIEDBEHAVIOR_DEBUG
 
-TabWidget::TabWidget(QWidget *parent)
+TabWidget::TabWidget(QWidget *parent, QWebEngineProfile *profile)
     : QTabWidget(parent)
     , m_recentlyClosedTabsAction(nullptr)
     , m_newTabAction(nullptr)
@@ -143,9 +143,8 @@ TabWidget::TabWidget(QWidget *parent)
     , m_tabBar(new TabBar(this))
     , addTabButton(nullptr)
     , closeTabButton(nullptr)
-    , m_profile(nullptr)
+    , m_profile(profile)
 {
-    m_profile = QWebEngineProfile::defaultProfile();
     setElideMode(Qt::ElideRight);
 
     new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_T), this, SLOT(openLastTab()));
