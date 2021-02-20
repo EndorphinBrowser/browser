@@ -345,3 +345,12 @@ void TabBar::updateVisibility()
     updateViewToolBarAction();
 }
 
+void TabBar::wheelEvent(QWheelEvent *event)
+{
+    int index = currentIndex();
+    if (index != -1) {
+        index += event->angleDelta().y() > 0 ? -1 : 1;
+        if (index >= 0 && index < count())
+            setCurrentIndex(index);
+    }
+}

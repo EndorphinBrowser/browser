@@ -90,6 +90,7 @@ public:
     void setShowTabBarWhenOneTab(bool enabled);
     QAction *viewTabBarAction() const;
     QTabBar::ButtonPosition freeSide();
+    void wheelEvent(QWheelEvent *event) override;
 
 protected:
     void mouseDoubleClickEvent(QMouseEvent *event);
