@@ -21,13 +21,10 @@
 
 #include "browserapplication.h"
 
-#include <QIcon>
-
 PrivacyIndicator::PrivacyIndicator(QWidget *parent)
     : QLabel(parent)
 {
-    QIcon icon = QIcon::fromTheme("view-private");
-    setPixmap(icon.pixmap(icon.actualSize(QSize(16, 16))));
+    setPixmap(QPixmap(QLatin1String(":graphics/private.png")));
     connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
             this, SLOT(setVisible(bool)));
     setCursor(Qt::ArrowCursor);
