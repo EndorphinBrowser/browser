@@ -38,7 +38,7 @@ class ClearButton : public QAbstractButton
 public:
     ClearButton(QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void textChanged(const QString &text);
 
 protected:

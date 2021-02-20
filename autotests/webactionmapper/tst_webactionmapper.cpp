@@ -32,13 +32,13 @@ class tst_WebActionMapper : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void webactionmapper_data();
     void webactionmapper();
     void addChild();

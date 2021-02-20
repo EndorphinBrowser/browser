@@ -39,7 +39,7 @@ class OpenSearchManager : public QObject
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void changed();
     void currentEngineChanged();
 
@@ -73,7 +73,7 @@ public:
     void removeEngine(const QString &name);
     void restoreDefaults();
 
-public slots:
+public Q_SLOTS:
     void save();
 
 protected:
@@ -86,7 +86,7 @@ protected:
 private:
     bool confirmAddition(OpenSearchEngine *engine);
 
-protected slots:
+protected Q_SLOTS:
     void engineFromUrlAvailable();
 
 private:

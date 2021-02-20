@@ -73,7 +73,7 @@ class BookmarksModel : public QAbstractItemModel
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void entryAdded(BookmarkNode *item);
     void entryRemoved(BookmarkNode *parent, int row, BookmarkNode *item);
     void entryChanged(BookmarkNode *item);

@@ -134,6 +134,6 @@ void SavePageDialog::setFilePath(const QString &filePath)
 void SavePageDialog::ensureFileSuffix(QWebEngineDownloadItem::SavePageFormat format)
 {
     QFileInfo fi(filePath());
-    setFilePath(fi.absolutePath() + QLatin1Char('/') + fi.completeBaseName()
+    setFilePath(fi.absolutePath() + QChar('/') + fi.completeBaseName()
                 + suffixOfFormat(format));
 }

@@ -37,7 +37,7 @@ public:
     void setSearchObject(QObject *object);
     QObject *searchObject() const;
 
-public slots:
+public Q_SLOTS:
     void animateHide();
     void clear();
     void showFind();
@@ -48,7 +48,7 @@ protected:
     void resizeEvent(QResizeEvent *event);
     Ui_SearchBanner ui;
 
-private slots:
+private Q_SLOTS:
     void frameChanged(int frame);
 
 private:

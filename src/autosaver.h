@@ -82,7 +82,7 @@ public:
     ~AutoSaver();
     void saveIfNeccessary();
 
-public slots:
+public Q_SLOTS:
     void changeOccurred();
 
 protected:

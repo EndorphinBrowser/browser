@@ -30,7 +30,7 @@ class AboutDialog : public QDialog, private Ui_AboutDialog
 public:
     AboutDialog(QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void authorsButtonClicked();
     void licenseButtonClicked();
 

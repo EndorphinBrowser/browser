@@ -30,7 +30,7 @@ class OpenSearchEngineAction : public QAction
 public:
     OpenSearchEngineAction(OpenSearchEngine *engine, QObject *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void imageChanged();
 
 private:

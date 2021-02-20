@@ -186,9 +186,9 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     , m_privateProfile(0)
     , m_privateBrowsing(false)
 {
-    QCoreApplication::setOrganizationDomain(QLatin1String("EndorphinBrowser.gitlab.io/"));
-    QCoreApplication::setApplicationName(QLatin1String("Endorphin"));
-    QCoreApplication::setApplicationVersion(QLatin1String("0.12.1"
+    QCoreApplication::setOrganizationDomain(QStringLiteral("EndorphinBrowser.gitlab.io/"));
+    QCoreApplication::setApplicationName(QStringLiteral("Endorphin"));
+    QCoreApplication::setApplicationVersion(QStringLiteral("0.12.1"
 #ifdef GITVERSION
                                             " (Git: " GITCHANGENUMBER " " GITVERSION ")"
 #endif
@@ -204,7 +204,7 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
         sendMessage(message.toUtf8());
     }
     // If we could connect to another Endorphin then exit
-    QString message = QString(QLatin1String("endorphin://getwinid"));
+    QString message = QString(QStringLiteral("endorphin://getwinid"));
     if (sendMessage(message.toUtf8(), 500))
         return;
 
@@ -223,25 +223,25 @@ BrowserApplication::BrowserApplication(int &argc, char **argv)
     QApplication::setQuitOnLastWindowClosed(true);
 #endif
 
-    QDesktopServices::setUrlHandler(QLatin1String("http"), this, "openUrl");
+    QDesktopServices::setUrlHandler(QStringLiteral("http"), this, "openUrl");
 
-    // Until QtWebkit defaults to 16
+    // Until QtWebEngine defaults to 16
     QWebEngineSettings::globalSettings()->setFontSize(QWebEngineSettings::DefaultFontSize, 16);
     QWebEngineSettings::globalSettings()->setFontSize(QWebEngineSettings::DefaultFixedFontSize, 16);
 
     QSettings settings;
-    settings.beginGroup(QLatin1String("sessions"));
-    m_lastSession = settings.value(QLatin1String("lastSession")).toByteArray();
+    settings.beginGroup(QStringLiteral("sessions"));
+    m_lastSession = settings.value(QStringLiteral("lastSession")).toByteArray();
     settings.endGroup();
 
 #if defined(Q_WS_MAC)
-    connect(this, SIGNAL(lastWindowClosed()),
-            this, SLOT(lastWindowClosed()));
+    connect(this, &BrowserApplication::lastWindowClosed,
+            this, &BrowserApplication::lastWindowClosed);
 #endif
 
     // setting this in the postLaunch actually takes a lot more time
     // because the event has to be propagated to everyone.
-    setWindowIcon(QIcon(QLatin1String(":128x128/endorphin.png")));
+    setWindowIcon(QIcon(QStringLiteral(":128x128/endorphin.png")));
 
 #ifndef AUTOTESTS
     QTimer::singleShot(0, this, SLOT(postLaunch()));
@@ -302,10 +302,10 @@ void BrowserApplication::messageReceived(QLocalSocket *socket)
         return;
 
     // Got a normal url
-    if (!message.startsWith(QLatin1String("endorphin://"))) {
+    if (!message.startsWith(QStringLiteral("endorphin://"))) {
         QSettings settings;
-        settings.beginGroup(QLatin1String("tabs"));
-        TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
+        settings.beginGroup(QStringLiteral("tabs"));
+        TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QStringLiteral("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
         settings.endGroup();
         if (QUrl(message) == m_lastAskedUrl
                 && m_lastAskedUrlDateTime.addSecs(10) > QDateTime::currentDateTime()) {
@@ -315,9 +315,9 @@ void BrowserApplication::messageReceived(QLocalSocket *socket)
         mainWindow()->tabWidget()->loadString(message, tab);
         return;
     } else {
-        if (message.startsWith(QLatin1String("endorphin://getwinid"))) {
+        if (message.startsWith(QStringLiteral("endorphin://getwinid"))) {
 #ifdef Q_OS_WIN
-            QString winid = QString(QLatin1String("%1")).arg((qlonglong)mainWindow()->winId());
+            QString winid = QString(QStringLiteral("%1")).arg((qlonglong)mainWindow()->winId());
 #else
             mainWindow()->show();
             mainWindow()->setFocus();
@@ -329,13 +329,13 @@ void BrowserApplication::messageReceived(QLocalSocket *socket)
 #ifdef BROWSERAPPLICATION_DEBUG
             qDebug() << "BrowserApplication::" << __FUNCTION__ << "sending win id" << winid << mainWindow()->winId();
 #endif
-            QString message = QLatin1String("endorphin://winid/") + winid;
+            QString message = QStringLiteral("endorphin://winid/") + winid;
             socket->write(message.toUtf8());
             socket->waitForBytesWritten();
             return;
         }
 
-        if (message.startsWith(QLatin1String("endorphin://winid"))) {
+        if (message.startsWith(QStringLiteral("endorphin://winid"))) {
             QString winid = message.mid(21);
 #ifdef BROWSERAPPLICATION_DEBUG
             qDebug() << "BrowserApplication::" << __FUNCTION__ << "got win id:" << winid;
@@ -347,8 +347,8 @@ void BrowserApplication::messageReceived(QLocalSocket *socket)
             return;
         }
         QSettings settings;
-        settings.beginGroup(QLatin1String("tabs"));
-        TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
+        settings.beginGroup(QStringLiteral("tabs"));
+        TabWidget::OpenUrlIn tab = TabWidget::OpenUrlIn(settings.value(QStringLiteral("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
         settings.endGroup();
         if (QUrl(message) == m_lastAskedUrl
                 && m_lastAskedUrlDateTime.addSecs(10) > QDateTime::currentDateTime()) {
@@ -365,7 +365,7 @@ void BrowserApplication::quitBrowser()
     if (s_downloadManager && !downloadManager()->allowQuit())
         return;
 
-    if (QSettings().value(QLatin1String("tabs/confirmClosingMultipleTabs"), true).toBool()) {
+    if (QSettings().value(QStringLiteral("tabs/confirmClosingMultipleTabs"), true).toBool()) {
         clean();
         int tabCount = 0;
         for (int i = 0; i < m_mainWindows.count(); ++i) {
@@ -396,7 +396,7 @@ void BrowserApplication::postLaunch()
 {
     QString directory = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
     if (directory.isEmpty())
-        directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
+        directory = QDir::homePath() + QStringLiteral("/.") + QCoreApplication::applicationName();
     // QWebEngineSettings::setIconDatabasePath(directory);
 
     loadSettings();
@@ -404,8 +404,8 @@ void BrowserApplication::postLaunch()
     // newMainWindow() needs to be called in main() for this to happen
     if (m_mainWindows.count() > 0) {
         QSettings settings;
-        settings.beginGroup(QLatin1String("MainWindow"));
-        int startup = settings.value(QLatin1String("startupBehavior")).toInt();
+        settings.beginGroup(QStringLiteral("MainWindow"));
+        int startup = settings.value(QStringLiteral("startupBehavior")).toInt();
         QStringList args = QCoreApplication::arguments();
 
         if (args.count() > 1) {
@@ -439,37 +439,37 @@ void BrowserApplication::postLaunch()
 void BrowserApplication::loadSettings()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("websettings"));
+    settings.beginGroup(QStringLiteral("websettings"));
 
     QWebEngineSettings *defaultSettings = QWebEngineSettings::globalSettings();
     QWebEngineProfile *defaultProfile = QWebEngineProfile::defaultProfile();
     QString standardFontFamily = defaultSettings->fontFamily(QWebEngineSettings::StandardFont);
     int standardFontSize = defaultSettings->fontSize(QWebEngineSettings::DefaultFontSize);
     QFont standardFont = QFont(standardFontFamily, standardFontSize);
-    standardFont = settings.value(QLatin1String("standardFont"), standardFont).value<QFont>();
+    standardFont = settings.value(QStringLiteral("standardFont"), standardFont).value<QFont>();
     defaultSettings->setFontFamily(QWebEngineSettings::StandardFont, standardFont.family());
     defaultSettings->setFontSize(QWebEngineSettings::DefaultFontSize, standardFont.pointSize());
-    int minimumFontSize = settings.value(QLatin1String("minimumFontSize"),
+    int minimumFontSize = settings.value(QStringLiteral("minimumFontSize"),
                                          defaultSettings->fontSize(QWebEngineSettings::MinimumFontSize)).toInt();
     defaultSettings->setFontSize(QWebEngineSettings::MinimumFontSize, minimumFontSize);
 
     QString fixedFontFamily = defaultSettings->fontFamily(QWebEngineSettings::FixedFont);
     int fixedFontSize = defaultSettings->fontSize(QWebEngineSettings::DefaultFixedFontSize);
     QFont fixedFont = QFont(fixedFontFamily, fixedFontSize);
-    fixedFont = settings.value(QLatin1String("fixedFont"), fixedFont).value<QFont>();
+    fixedFont = settings.value(QStringLiteral("fixedFont"), fixedFont).value<QFont>();
     defaultSettings->setFontFamily(QWebEngineSettings::FixedFont, fixedFont.family());
     defaultSettings->setFontSize(QWebEngineSettings::DefaultFixedFontSize, fixedFont.pointSize());
 
-    defaultSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, !(settings.value(QLatin1String("blockPopupWindows"), true).toBool()));
-    defaultSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, settings.value(QLatin1String("enableJavascript"), true).toBool());
-    defaultSettings->setAttribute(QWebEngineSettings::AutoLoadImages, settings.value(QLatin1String("enableImages"), true).toBool());
-    defaultSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, settings.value(QLatin1String("enableLocalStorage"), true).toBool());
+    defaultSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, !(settings.value(QStringLiteral("blockPopupWindows"), true).toBool()));
+    defaultSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, settings.value(QStringLiteral("enableJavascript"), true).toBool());
+    defaultSettings->setAttribute(QWebEngineSettings::AutoLoadImages, settings.value(QStringLiteral("enableImages"), true).toBool());
+    defaultSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, settings.value(QStringLiteral("enableLocalStorage"), true).toBool());
     defaultSettings->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
 
-    QString css = settings.value(QLatin1String("userStyleSheet")).toString();
+    QString css = settings.value(QStringLiteral("userStyleSheet")).toString();
     setUserStyleSheet(defaultProfile, css, mainWindow());
 
-//    int maximumPagesInCache = settings.value(QLatin1String("maximumPagesInCache"), 3).toInt();
+//    int maximumPagesInCache = settings.value(QStringLiteral("maximumPagesInCache"), 3).toInt();
 //    QWebEngineSettings::globalSettings()->setMaximumPagesInCache(maximumPagesInCache);
 
     settings.endGroup();
@@ -511,8 +511,8 @@ void BrowserApplication::saveSession()
     if (quitting)
         return;
     QSettings settings;
-    settings.beginGroup(QLatin1String("MainWindow"));
-    settings.setValue(QLatin1String("restoring"), false);
+    settings.beginGroup(QStringLiteral("MainWindow"));
+    settings.setValue(QStringLiteral("restoring"), false);
     settings.endGroup();
 
     if (m_privateBrowsing)
@@ -520,7 +520,7 @@ void BrowserApplication::saveSession()
 
     clean();
 
-    settings.beginGroup(QLatin1String("sessions"));
+    settings.beginGroup(QStringLiteral("sessions"));
 
     int version = 2;
 
@@ -535,7 +535,7 @@ void BrowserApplication::saveSession()
     stream << qint32(m_mainWindows.count());
     for (int i = 0; i < m_mainWindows.count(); ++i)
         stream << m_mainWindows.at(i)->saveState();
-    settings.setValue(QLatin1String("lastSession"), data);
+    settings.setValue(QStringLiteral("lastSession"), data);
     settings.endGroup();
 }
 
@@ -548,8 +548,8 @@ bool BrowserApplication::restoreLastSession()
 {
     {
         QSettings settings;
-        settings.beginGroup(QLatin1String("MainWindow"));
-        if (settings.value(QLatin1String("restoring"), false).toBool()) {
+        settings.beginGroup(QStringLiteral("MainWindow"));
+        if (settings.value(QStringLiteral("restoring"), false).toBool()) {
             QMessageBox::StandardButton result = QMessageBox::question(nullptr, tr("Restore failed"),
                                                  tr("Endorphin crashed while trying to restore this session.  Should I try again?"), QMessageBox::Yes | QMessageBox::No);
             if (result == QMessageBox::No)
@@ -557,7 +557,7 @@ bool BrowserApplication::restoreLastSession()
         }
         // saveSession will be called by an AutoSaver timer from the set tabs
         // and in saveSession we will reset this flag back to false
-        settings.setValue(QLatin1String("restoring"), true);
+        settings.setValue(QStringLiteral("restoring"), true);
     }
     int version = 2;
     QList<QByteArray> windows;
@@ -638,8 +638,8 @@ BrowserMainWindow *BrowserApplication::newMainWindow()
         mainWindow()->m_autoSaver->saveIfNeccessary();
     BrowserMainWindow *browser = new BrowserMainWindow(nullptr, nullptr, QWebEngineProfile::defaultProfile());
     m_mainWindows.prepend(browser);
-    connect(this, SIGNAL(privacyChanged(bool)),
-            browser, SLOT(privacyChanged(bool)));
+    connect(this, &BrowserApplication::privacyChanged,
+            this, &BrowserApplication::privacyChanged);
     browser->show();
     return browser;
 }
@@ -686,13 +686,13 @@ LanguageManager *BrowserApplication::languageManager()
 {
     if (!s_languageManager) {
         s_languageManager = new LanguageManager();
-        s_languageManager->addLocaleDirectory(dataFilePath(QLatin1String("locale")));
-        s_languageManager->addLocaleDirectory(qApp->applicationDirPath() + QLatin1String("/src/.qm/locale"));
-        s_languageManager->addLocaleDirectory(installedDataDirectory() + QLatin1String("/locale"));
-        s_languageManager->addLocaleDirectory(installedDataDirectory() + QLatin1String("/endorphin_locale"));
+        s_languageManager->addLocaleDirectory(dataFilePath(QStringLiteral("locale")));
+        s_languageManager->addLocaleDirectory(qApp->applicationDirPath() + QStringLiteral("/src/.qm/locale"));
+        s_languageManager->addLocaleDirectory(installedDataDirectory() + QStringLiteral("/locale"));
+        s_languageManager->addLocaleDirectory(installedDataDirectory() + QStringLiteral("/endorphin_locale"));
         s_languageManager->loadLanguageFromSettings();
-        connect(s_languageManager, SIGNAL(languageChanged(const QString &)),
-                qApp, SLOT(retranslate()));
+        connect(s_languageManager, &LanguageManager::languageChanged,
+                BrowserApplication::instance(), &BrowserApplication::retranslate);
     }
     return s_languageManager;
 }
@@ -714,7 +714,7 @@ QIcon BrowserApplication::icon(const QUrl &url)
 QString BrowserApplication::installedDataDirectory()
 {
 #if defined(Q_WS_X11)
-    return QLatin1String(PKGDATADIR);
+    return QString(PKGDATADIR);
 #else
     return qApp->applicationDirPath();
 #endif
@@ -724,19 +724,19 @@ QString BrowserApplication::dataFilePath(const QString &fileName)
 {
     QString directory = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/data/Endorphin";
     if (directory.isEmpty())
-        directory = QDir::homePath() + QLatin1String("/.") + QCoreApplication::applicationName();
+        directory = QDir::homePath() + QStringLiteral("/.") + QCoreApplication::applicationName();
     if (!QFile::exists(directory)) {
         QDir dir;
         dir.mkpath(directory);
     }
-    return directory + QLatin1String("/") + fileName;
+    return directory + QStringLiteral("/") + fileName;
 }
 
 bool BrowserApplication::zoomTextOnly()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("WebEngine"));
-    bool textOnly = settings.value(QLatin1String("zoomTextOnly")).toBool();
+    settings.beginGroup(QStringLiteral("WebEngine"));
+    bool textOnly = settings.value(QStringLiteral("zoomTextOnly")).toBool();
     settings.endGroup();
     return textOnly;
 }
@@ -744,10 +744,10 @@ bool BrowserApplication::zoomTextOnly()
 void BrowserApplication::setZoomTextOnly(bool textOnly)
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("WebEngine"));
-    settings.setValue(QLatin1String("zoomTextOnly"), textOnly);
+    settings.beginGroup(QStringLiteral("WebEngine"));
+    settings.setValue(QStringLiteral("zoomTextOnly"), textOnly);
     settings.endGroup();
-    emit instance()->zoomTextOnlyChanged(textOnly);
+    Q_EMIT instance()->zoomTextOnlyChanged(textOnly);
 }
 
 bool BrowserApplication::isPrivate()
@@ -773,7 +773,7 @@ void BrowserApplication::setPrivate(bool privateBrowsing)
             window->tabWidget()->clear();
         }
     }
-    emit privacyChanged(privateBrowsing);
+    Q_EMIT privacyChanged(privateBrowsing);
 }
 
 Qt::MouseButtons BrowserApplication::eventMouseButtons() const

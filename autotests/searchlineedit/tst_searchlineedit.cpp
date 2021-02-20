@@ -24,13 +24,13 @@ class tst_SearchLineEdit : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void searchlineedit_data();
     void searchlineedit();
 };

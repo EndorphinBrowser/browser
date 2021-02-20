@@ -26,13 +26,13 @@ class tst_TabBar : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void tabbar_data();
     void tabbar();
 
@@ -160,7 +160,7 @@ void tst_TabBar::showTabBarWhenOneTab()
     bar.setShowTabBarWhenOneTab(showTabBarWhenOneTab);
     QAction *action = bar.viewTabBarAction();
     QVERIFY(action);
-    QCOMPARE(action->text(), (showTabBarWhenOneTab ? QString("Hide Tab Bar") : QString("Show Tab Bar")));
+    QCOMPARE(action->text(), (showTabBarWhenOneTab ? QStringLiteral("Hide Tab Bar") : QStringLiteral("Show Tab Bar")));
     QCOMPARE(bar.showTabBarWhenOneTab(), showTabBarWhenOneTab);
 
     bar.addTab("one");
@@ -170,14 +170,14 @@ void tst_TabBar::showTabBarWhenOneTab()
     bar.addTab("two");
     QCOMPARE(bar.count(), 2);
     QCOMPARE(bar.isVisible(), true);
-    QCOMPARE(action->text(), QString("Hide Tab Bar"));
+    QCOMPARE(action->text(), QStringLiteral("Hide Tab Bar"));
     QCOMPARE(action->isEnabled(), false);
 
     bar.removeTab(0);
     QCOMPARE(bar.count(), 1);
     QCOMPARE(bar.isVisible(), showTabBarWhenOneTab);
     QCOMPARE(action->isEnabled(), true);
-    QCOMPARE(action->text(), (showTabBarWhenOneTab ? QString("Hide Tab Bar") : QString("Show Tab Bar")));
+    QCOMPARE(action->text(), (showTabBarWhenOneTab ? QStringLiteral("Hide Tab Bar") : QStringLiteral("Show Tab Bar")));
 }
 
 void tst_TabBar::tabSizeHint_data()

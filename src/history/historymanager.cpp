@@ -87,7 +87,7 @@ QString  HistoryManager::dataFilePath(const QString &fileName)
         QDir dir;
         dir.mkpath(directory);
     }
-    return directory + QLatin1String("/") + fileName;
+    return directory + QStringLiteral("/") + fileName;
 }
 
 QString HistoryEntry::userTitle() const
@@ -162,7 +162,7 @@ void HistoryManager::addHistoryEntry(const QString &url)
 
 void HistoryManager::setHistory(const QList<HistoryEntry> &history, bool loadedAndSorted)
 {
-    emit historyGoingToChange();
+    Q_EMIT historyGoingToChange();
     m_history = history;
 
     // verify that it is sorted by date
@@ -177,7 +177,7 @@ void HistoryManager::setHistory(const QList<HistoryEntry> &history, bool loadedA
         m_lastSavedUrl.clear();
         m_saveTimer->changeOccurred();
     }
-    emit historyReset();
+    Q_EMIT historyReset();
 }
 
 HistoryModel *HistoryManager::historyModel() const
@@ -217,7 +217,7 @@ void HistoryManager::checkForExpired()
         HistoryEntry item = m_history.takeLast();
         // remove from saved file also
         m_lastSavedUrl.clear();
-        emit entryRemoved(item);
+        Q_EMIT entryRemoved(item);
     }
 
     if (nextTimeout > 0)
@@ -233,7 +233,7 @@ void HistoryManager::prependHistoryEntry(const HistoryEntry &item)
     */
 
     m_history.prepend(item);
-    emit entryAdded(item);
+    Q_EMIT entryAdded(item);
     if (m_history.count() == 1)
         checkForExpired();
 }
@@ -246,7 +246,7 @@ void HistoryManager::updateHistoryEntry(const QUrl &url, const QString &title)
             m_saveTimer->changeOccurred();
             if (m_lastSavedUrl.isEmpty())
                 m_lastSavedUrl = m_history.at(i).url;
-            emit entryUpdated(i);
+            Q_EMIT entryUpdated(i);
             break;
         }
     }
@@ -256,7 +256,7 @@ void HistoryManager::removeHistoryEntry(const HistoryEntry &item)
 {
     m_lastSavedUrl.clear();
     m_history.removeOne(item);
-    emit entryRemoved(item);
+    Q_EMIT entryRemoved(item);
 }
 
 void HistoryManager::removeHistoryEntry(const QUrl &url, const QString &title)
@@ -286,29 +286,29 @@ void HistoryManager::setDaysToExpire(int limit)
 
 void HistoryManager::clear()
 {
-    emit historyGoingToChange();
+    Q_EMIT historyGoingToChange();
     m_history.clear();
     m_atomicStringHash.clear();
     m_lastSavedUrl.clear();
     m_saveTimer->changeOccurred();
     m_saveTimer->saveIfNeccessary();
-    emit historyReset();
-    emit historyCleared();
+    Q_EMIT historyReset();
+    Q_EMIT historyCleared();
 }
 
 void HistoryManager::loadSettings()
 {
     // load settings
     QSettings settings;
-    settings.beginGroup(QLatin1String("history"));
-    m_daysToExpire = settings.value(QLatin1String("historyLimit"), 30).toInt();
+    settings.beginGroup(QStringLiteral("history"));
+    m_daysToExpire = settings.value(QStringLiteral("historyLimit"), 30).toInt();
 }
 
 void HistoryManager::load()
 {
     loadSettings();
 
-    QFile historyFile(HistoryManager::dataFilePath(QLatin1String("history")));
+    QFile historyFile(HistoryManager::dataFilePath(QStringLiteral("history")));
 
     if (!historyFile.exists())
         return;
@@ -382,8 +382,8 @@ QString HistoryManager::atomicString(const QString &string) {
 void HistoryManager::save()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("history"));
-    settings.setValue(QLatin1String("historyLimit"), m_daysToExpire);
+    settings.beginGroup(QStringLiteral("history"));
+    settings.setValue(QStringLiteral("historyLimit"), m_daysToExpire);
 
     bool saveAll = m_lastSavedUrl.isEmpty();
     int first = m_history.count() - 1;
@@ -399,7 +399,7 @@ void HistoryManager::save()
     if (first == m_history.count() - 1)
         saveAll = true;
 
-    QFile historyFile(HistoryManager::dataFilePath(QLatin1String("history")));
+    QFile historyFile(HistoryManager::dataFilePath(QStringLiteral("history")));
 
     // When saving everything use a temporary file to prevent possible data loss.
     QTemporaryFile tempFile;

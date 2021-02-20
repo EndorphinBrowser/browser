@@ -72,7 +72,7 @@ public:
     QWebEngineDownloadItem::SavePageFormat pageFormat() const;
     QString filePath() const;
 
-private slots:
+private Q_SLOTS:
     void on_chooseFilePathButton_clicked();
     void on_formatComboBox_currentIndexChanged(int idx);
 

@@ -79,7 +79,7 @@ class DownloadItem : public QWidget, public Ui_DownloadItem
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void statusChanged();
     void downloadFinished();
 
@@ -93,7 +93,7 @@ public:
 
     QFileInfo m_file;
 
-private slots:
+private Q_SLOTS:
     void stop();
     void tryAgain();
     void open();
@@ -152,11 +152,11 @@ public:
     void setDownloadDirectory(const QString &directory);
     QString downloadDirectory();
 
-public slots:
+public Q_SLOTS:
     void download(QWebEngineDownloadItem *download);
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void save() const;
     void updateRow(DownloadItem *item);
     void updateRow();

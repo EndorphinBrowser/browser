@@ -43,18 +43,18 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
     layout->addWidget(new QLabel(tr("Clear the following items:")));
 
     QSettings settings;
-    settings.beginGroup(QLatin1String("clearprivatedata"));
+    settings.beginGroup(QStringLiteral("clearprivatedata"));
 
     m_browsingHistory = new QCheckBox(tr("&Browsing History"));
-    m_browsingHistory->setChecked(settings.value(QLatin1String("browsingHistory"), true).toBool());
+    m_browsingHistory->setChecked(settings.value(QStringLiteral("browsingHistory"), true).toBool());
     layout->addWidget(m_browsingHistory);
 
     m_downloadHistory = new QCheckBox(tr("&Download History"));
-    m_downloadHistory->setChecked(settings.value(QLatin1String("downloadHistory"), true).toBool());
+    m_downloadHistory->setChecked(settings.value(QStringLiteral("downloadHistory"), true).toBool());
     layout->addWidget(m_downloadHistory);
 
     m_searchHistory = new QCheckBox(tr("&Search History"));
-    m_searchHistory->setChecked(settings.value(QLatin1String("searchHistory"), true).toBool());
+    m_searchHistory->setChecked(settings.value(QStringLiteral("searchHistory"), true).toBool());
     layout->addWidget(m_searchHistory);
 
     settings.endGroup();
@@ -76,12 +76,12 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
 void ClearPrivateData::accept()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("clearprivatedata"));
+    settings.beginGroup(QStringLiteral("clearprivatedata"));
 
-    settings.setValue(QLatin1String("browsingHistory"), m_browsingHistory->isChecked());
-    settings.setValue(QLatin1String("downloadHistory"), m_downloadHistory->isChecked());
-    settings.setValue(QLatin1String("searchHistory"), m_searchHistory->isChecked());
-    settings.setValue(QLatin1String("cache"), m_cache->isChecked());
+    settings.setValue(QStringLiteral("browsingHistory"), m_browsingHistory->isChecked());
+    settings.setValue(QStringLiteral("downloadHistory"), m_downloadHistory->isChecked());
+    settings.setValue(QStringLiteral("searchHistory"), m_searchHistory->isChecked());
+    settings.setValue(QStringLiteral("cache"), m_cache->isChecked());
 
     settings.endGroup();
 

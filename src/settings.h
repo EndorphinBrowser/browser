@@ -74,7 +74,7 @@ public:
     SettingsDialog(QWidget *parent = nullptr);
     void accept();
 
-private slots:
+private Q_SLOTS:
     void loadDefaults();
     void loadFromSettings();
     void saveToSettings();

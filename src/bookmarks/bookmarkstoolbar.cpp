@@ -100,7 +100,7 @@ void BookmarksToolBar::bookmarkActivated(const QModelIndex &index)
 {
     Q_ASSERT(index.isValid());
 
-    emit openUrl(
+    Q_EMIT openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
         index.data(Qt::DisplayRole).toString());
 }
@@ -109,7 +109,7 @@ void BookmarksToolBar::openBookmark()
 {
     QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
-    emit openUrl(
+    Q_EMIT openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
         index.data(Qt::DisplayRole).toString());
 }
@@ -118,7 +118,7 @@ void BookmarksToolBar::openBookmarkInCurrentTab()
 {
     QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
-    emit openUrl(
+    Q_EMIT openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
         TabWidget::CurrentTab,
         index.data(Qt::DisplayRole).toString());
@@ -128,7 +128,7 @@ void BookmarksToolBar::openBookmarkInNewTab()
 {
     QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
-    emit openUrl(
+    Q_EMIT openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
         TabWidget::NewTab,
         index.data(Qt::DisplayRole).toString());

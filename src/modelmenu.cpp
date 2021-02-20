@@ -242,7 +242,7 @@ QAction *ModelMenu::makeAction(const QIcon &icon, const QString &text, QObject *
 {
     QFontMetrics fm(font());
     if (-1 == m_maxWidth)
-        m_maxWidth = fm.horizontalAdvance(QLatin1Char('m')) * 30;
+        m_maxWidth = fm.horizontalAdvance(QChar('m')) * 30;
     QString smallText = fm.elidedText(text, Qt::ElideMiddle, m_maxWidth);
     return new QAction(icon, smallText, parent);
 }
@@ -251,7 +251,7 @@ void ModelMenu::actionTriggered(QAction *action)
 {
     QModelIndex idx = index(action);
     if (idx.isValid())
-        emit activated(idx);
+        Q_EMIT activated(idx);
 }
 
 QModelIndex ModelMenu::index(QAction *action)
@@ -273,7 +273,7 @@ void ModelMenu::dragEnterEvent(QDragEnterEvent *event)
     }
 
     QStringList mimeTypes = m_model->mimeTypes();
-    foreach (const QString &mimeType, mimeTypes) {
+    Q_FOREACH (const QString &mimeType, mimeTypes) {
         if (event->mimeData()->hasFormat(mimeType))
             event->acceptProposedAction();
     }

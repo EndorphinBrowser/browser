@@ -93,7 +93,7 @@ class TabWidget : public QTabWidget
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     // tab widget signals
     void tabsChanged();
     void lastTabClosed();
@@ -156,7 +156,7 @@ public:
 protected:
     void changeEvent(QEvent *event);
 
-public slots:
+public Q_SLOTS:
     void loadString(const QString &string, OpenUrlIn tab = CurrentTab);
     void loadUrlFromUser(const QUrl &url, const QString &title = QString());
     void loadUrl(const QUrl &url, TabWidget::OpenUrlIn tab = CurrentTab, const QString &title = QString());
@@ -171,7 +171,7 @@ public slots:
     void previousTab();
     void bookmarkTabs();
 
-private slots:
+private Q_SLOTS:
     void currentChanged(int index);
     void openLastTab();
     void aboutToShowRecentTabsMenu();

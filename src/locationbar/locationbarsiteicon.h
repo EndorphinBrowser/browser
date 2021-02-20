@@ -35,7 +35,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
 
-private slots:
+private Q_SLOTS:
     void webViewSiteIconChanged();
 
 private:

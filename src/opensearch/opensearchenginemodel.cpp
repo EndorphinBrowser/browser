@@ -55,7 +55,7 @@ bool OpenSearchEngineModel::removeRows(int row, int count, const QModelIndex &pa
     for (int i = row; i <= lastRow; ++i)
         m_manager->removeEngine(nameList.at(i));
 
-    // removeEngine emits changed
+    // removeEngine Q_EMITs changed
     //endRemoveRows();
 
     return true;
@@ -109,7 +109,7 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
             QString description = tr("<strong>Description:</strong> %1").arg(engine->description());
 
             if (engine->providesSuggestions()) {
-                description += QLatin1String("<br />");
+                description += QStringLiteral("<br />");
                 description += tr("<strong>Provides contextual suggestions</strong>");
             }
 
@@ -122,7 +122,7 @@ QVariant OpenSearchEngineModel::data(const QModelIndex &index, int role) const
         switch (role) {
         case Qt::EditRole:
         case Qt::DisplayRole:
-            return QStringList(m_manager->keywordsForEngine(engine)).join(QLatin1String(","));
+            return QStringList(m_manager->keywordsForEngine(engine)).join(QStringLiteral(","));
         case Qt::ToolTipRole:
             return tr("Comma-separated list of keywords that may be entered in the location bar"
                       "followed by search terms to search with this engine");
@@ -145,7 +145,7 @@ bool OpenSearchEngineModel::setData(const QModelIndex &index, const QVariant &va
         return false;
 
     QString engineName = m_manager->allEnginesNames().at(index.row());
-    QStringList keywords = value.toString().split(QRegExp(QLatin1String("[ ,]+")), Qt::SkipEmptyParts);
+    QStringList keywords = value.toString().split(QRegExp(QStringLiteral("[ ,]+")), Qt::SkipEmptyParts);
 
     m_manager->setKeywordsForEngine(m_manager->engine(engineName), keywords);
 

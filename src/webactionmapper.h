@@ -86,7 +86,7 @@ public:
     void addChild(QAction *action);
     void updateCurrent(QWebEnginePage *currentParent);
 
-private slots:
+private Q_SLOTS:
     void rootTriggered();
     void childChanged();
     void rootDestroyed();

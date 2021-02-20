@@ -103,7 +103,7 @@ class HistoryManager : public QObject
     Q_OBJECT
     Q_PROPERTY(int daysToExpire READ daysToExpire WRITE setDaysToExpire NOTIFY daysToExpireChanged)
 
-signals:
+Q_SIGNALS:
     void historyCleared();
     void historyGoingToChange();
     void historyReset();
@@ -134,11 +134,11 @@ public:
 
     QString dataFilePath(const QString &fileName);
 
-public slots:
+public Q_SLOTS:
     void clear();
     void loadSettings();
 
-private slots:
+private Q_SLOTS:
     void save();
     void checkForExpired();
 

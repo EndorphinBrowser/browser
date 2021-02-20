@@ -66,10 +66,10 @@ public:
     PermissionBar(QWidget*);
     void requestPermission(const QUrl &, QWebEnginePage::Feature feature);
 
-signals:
+Q_SIGNALS:
     void featurePermissionProvided(const QUrl &securityOrigin, QWebEnginePage::Feature, QWebEnginePage::PermissionPolicy);
 
-private slots:
+private Q_SLOTS:
     void permissionDenied();
     void permissionGranted();
     void permissionUnknown();

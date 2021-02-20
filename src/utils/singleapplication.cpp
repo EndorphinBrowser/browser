@@ -70,7 +70,7 @@ bool SingleApplication::sendMessage(const QByteArray &message, int waitMsecsForR
     if (success) {
         socket.waitForReadyRead(waitMsecsForReply);
         if (socket.bytesAvailable() > 0)
-            emit messageReceived(&socket);
+            Q_EMIT messageReceived(&socket);
     }
     return success;
 }
@@ -88,7 +88,7 @@ bool SingleApplication::startSingleServer()
         if (QAbstractSocket::AddressInUseError == m_localServer->serverError()) {
             // cleanup from a segfaulted server
 #ifdef Q_OS_UNIX
-            QString fullServerName = QDir::tempPath() + QLatin1String("/") + serverName();
+            QString fullServerName = QDir::tempPath() + QStringLiteral("/") + serverName();
             if (QFile::exists(fullServerName))
                 QFile::remove(fullServerName);
 #endif
@@ -130,7 +130,7 @@ void SingleApplication::newConnection()
     if (!socket)
         return;
     socket->waitForReadyRead();
-    emit messageReceived(socket);
+    Q_EMIT messageReceived(socket);
     delete socket;
 }
 
@@ -139,10 +139,10 @@ QString SingleApplication::serverName() const
     QString serverName = QCoreApplication::applicationName();
     Q_ASSERT(!serverName.isEmpty());
 #ifdef Q_WS_QWS
-    serverName += QLatin1String("_qws");
+    serverName += QStringLiteral("_qws");
 #endif
 #ifndef Q_OS_WIN
-    serverName += QString(QLatin1String("_%1_%2")).arg(getuid()).arg(getgid());
+    serverName += QString(QStringLiteral("_%1_%2")).arg(getuid()).arg(getgid());
 #else
     static QString login;
     if (login.isEmpty()) {

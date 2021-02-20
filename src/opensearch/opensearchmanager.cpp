@@ -67,8 +67,8 @@ void OpenSearchManager::setCurrentEngineName(const QString &name)
         return;
 
     m_current = name;
-    emit currentEngineChanged();
-    emit changed();
+    Q_EMIT currentEngineChanged();
+    Q_EMIT changed();
 }
 
 OpenSearchEngine *OpenSearchManager::currentEngine() const
@@ -151,7 +151,7 @@ bool OpenSearchManager::addEngine(OpenSearchEngine *engine)
 
     m_engines[engine->name()] = engine;
 
-    emit changed();
+    Q_EMIT changed();
 
     return true;
 }
@@ -165,7 +165,7 @@ void OpenSearchManager::removeEngine(const QString &name)
         return;
 
     OpenSearchEngine *engine = m_engines[name];
-    foreach (const QString &keyword, m_keywords.keys(engine))
+    Q_FOREACH (const QString &keyword, m_keywords.keys(engine))
         m_keywords.remove(keyword);
     engine->deleteLater();
 
@@ -178,7 +178,7 @@ void OpenSearchManager::removeEngine(const QString &name)
     if (name == m_current)
         setCurrentEngineName(m_engines.keys().at(0));
 
-    emit changed();
+    Q_EMIT changed();
 }
 
 QString OpenSearchManager::generateEngineFileName(const QString &engineName) const
@@ -188,7 +188,7 @@ QString OpenSearchManager::generateEngineFileName(const QString &engineName) con
     // Strip special characters from the name.
     for (int i = 0; i < engineName.count(); ++i) {
         if (engineName.at(i).isSpace()) {
-            fileName.append(QLatin1Char('_'));
+            fileName.append(QChar('_'));
             continue;
         }
 
@@ -196,7 +196,7 @@ QString OpenSearchManager::generateEngineFileName(const QString &engineName) con
             fileName.append(engineName.at(i));
     }
 
-    fileName.append(QLatin1String(".xml"));
+    fileName.append(QStringLiteral(".xml"));
 
     return fileName;
 }
@@ -210,7 +210,7 @@ void OpenSearchManager::saveDirectory(const QString &dirName)
 
     OpenSearchWriter writer;
 
-    foreach (OpenSearchEngine *engine, m_engines.values()) {
+    Q_FOREACH (OpenSearchEngine *engine, m_engines.values()) {
         QString name = generateEngineFileName(engine->name());
         QString fileName = dir.filePath(name);
 
@@ -227,17 +227,17 @@ void OpenSearchManager::save()
     saveDirectory(enginesDirectory());
 
     QSettings settings;
-    settings.beginGroup(QLatin1String("openSearch"));
-    settings.setValue(QLatin1String("engine"), m_current);
+    settings.beginGroup(QStringLiteral("openSearch"));
+    settings.setValue(QStringLiteral("engine"), m_current);
 
-    settings.beginWriteArray(QLatin1String("keywords"), m_keywords.count());
+    settings.beginWriteArray(QStringLiteral("keywords"), m_keywords.count());
     QHash<QString, OpenSearchEngine*>::const_iterator i = m_keywords.constBegin();
     QHash<QString, OpenSearchEngine*>::const_iterator end = m_keywords.constEnd();
     int j = 0;
     for (; i != end; ++i) {
         settings.setArrayIndex(j++);
-        settings.setValue(QLatin1String("keyword"), i.key());
-        settings.setValue(QLatin1String("engine"), i.value()->name());
+        settings.setValue(QStringLiteral("keyword"), i.key());
+        settings.setValue(QStringLiteral("engine"), i.value()->name());
     }
     settings.endArray();
 
@@ -249,7 +249,7 @@ bool OpenSearchManager::loadDirectory(const QString &dirName)
     if (!QFile::exists(dirName))
         return false;
 
-    QDirIterator iterator(dirName, QStringList() << QLatin1String("*.xml"));
+    QDirIterator iterator(dirName, QStringList() << QStringLiteral("*.xml"));
 
     if (!iterator.hasNext())
         return false;
@@ -267,18 +267,18 @@ bool OpenSearchManager::loadDirectory(const QString &dirName)
 void OpenSearchManager::load()
 {
     if (!loadDirectory(enginesDirectory()))
-        loadDirectory(QLatin1String(":/searchengines"));
+        loadDirectory(QStringLiteral(":/searchengines"));
 
     // get current engine
     QSettings settings;
-    settings.beginGroup(QLatin1String("openSearch"));
-    m_current = settings.value(QLatin1String("engine"), QLatin1String("Google")).toString();
+    settings.beginGroup(QStringLiteral("openSearch"));
+    m_current = settings.value(QStringLiteral("engine"), QStringLiteral("Google")).toString();
 
-    int size = settings.beginReadArray(QLatin1String("keywords"));
+    int size = settings.beginReadArray(QStringLiteral("keywords"));
     for (int i = 0; i < size; ++i) {
         settings.setArrayIndex(i);
-        QString keyword = settings.value(QLatin1String("keyword")).toString();
-        QString engineName = settings.value(QLatin1String("engine")).toString();
+        QString keyword = settings.value(QStringLiteral("keyword")).toString();
+        QString engineName = settings.value(QStringLiteral("engine")).toString();
         m_keywords.insert(keyword, engine(engineName));
     }
     settings.endArray();
@@ -288,18 +288,18 @@ void OpenSearchManager::load()
     if (!m_engines.contains(m_current) && m_engines.count() > 0)
         m_current = m_engines.keys().at(0);
 
-    emit currentEngineChanged();
+    Q_EMIT currentEngineChanged();
 }
 
 void OpenSearchManager::restoreDefaults()
 {
-    loadDirectory(QLatin1String(":/searchengines"));
+    loadDirectory(QStringLiteral(":/searchengines"));
 }
 
 QString OpenSearchManager::enginesDirectory() const
 {
     QDir directory(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/data/Endorphin");
-    return directory.filePath(QLatin1String("searchengines"));
+    return directory.filePath(QStringLiteral("searchengines"));
 }
 
 bool OpenSearchManager::confirmAddition(OpenSearchEngine *engine)
@@ -358,7 +358,7 @@ void OpenSearchManager::engineFromUrlAvailable()
 
 QUrl OpenSearchManager::convertKeywordSearchToUrl(const QString &string)
 {
-    int i = string.indexOf(QLatin1Char(' '));
+    int i = string.indexOf(QChar(' '));
     if (i <= 0)
         return QUrl();
 
@@ -392,7 +392,7 @@ void OpenSearchManager::setEngineForKeyword(const QString &keyword, OpenSearchEn
     else
         m_keywords.insert(keyword, engine);
 
-    emit changed();
+    Q_EMIT changed();
 }
 
 QStringList OpenSearchManager::keywordsForEngine(OpenSearchEngine *engine) const
@@ -405,15 +405,15 @@ void OpenSearchManager::setKeywordsForEngine(OpenSearchEngine *engine, const QSt
     if (!engine)
         return;
 
-    foreach (const QString &keyword, keywordsForEngine(engine))
+    Q_FOREACH (const QString &keyword, keywordsForEngine(engine))
         m_keywords.remove(keyword);
 
-    foreach (const QString &keyword, keywords) {
+    Q_FOREACH (const QString &keyword, keywords) {
         if (keyword.isEmpty())
             continue;
 
         m_keywords.insert(keyword, engine);
     }
 
-    emit changed();
+    Q_EMIT changed();
 }

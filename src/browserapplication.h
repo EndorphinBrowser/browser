@@ -114,7 +114,7 @@ public:
     bool event(QEvent *event);
 #endif
 
-public slots:
+public Q_SLOTS:
     BrowserMainWindow *newMainWindow();
     bool restoreLastSession();
 #if defined(Q_WS_MAC)
@@ -129,13 +129,13 @@ public slots:
     bool isPrivate();
     void setPrivate(bool isPrivate);
 
-private slots:
+private Q_SLOTS:
     void retranslate();
     void messageReceived(QLocalSocket *socket);
     void postLaunch();
     void openUrl(const QUrl &url);
 
-signals:
+Q_SIGNALS:
     void zoomTextOnlyChanged(bool textOnly);
     void privacyChanged(bool isPrivate);
 

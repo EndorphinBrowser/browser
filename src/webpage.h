@@ -33,13 +33,13 @@ class JavaScriptEndorphinObject : public QObject
 
     Q_PROPERTY(QObject *currentEngine READ currentEngine NOTIFY currentEngineChanged)
 
-signals:
+Q_SIGNALS:
     void currentEngineChanged();
 
 public:
     JavaScriptEndorphinObject(QObject *parent = nullptr, WebPage *page = nullptr);
 
-public slots:
+public Q_SLOTS:
     QString translate(const QString &string);
     QObject *currentEngine() const;
     QString searchUrl(const QString &string) const;
@@ -69,7 +69,7 @@ class WebPage : public QWebEnginePage
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void aboutToLoadUrl(const QUrl &url);
 
 public:

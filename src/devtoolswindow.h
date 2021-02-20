@@ -39,7 +39,7 @@ public:
     QWebEnginePage *page();
     QSize sizeHint() const;
 
-private slots:
+private Q_SLOTS:
     void geometryChangeRequested(const QRect &geometry);
 
 private:

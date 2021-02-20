@@ -121,7 +121,7 @@ void BookmarksModel::entryRemoved(BookmarkNode *parent, int row, BookmarkNode *i
 void BookmarksModel::entryChanged(BookmarkNode *item)
 {
     QModelIndex idx = index(item);
-    emit dataChanged(idx, idx);
+    Q_EMIT dataChanged(idx, idx);
 }
 
 bool BookmarksModel::removeRows(int row, int count, const QModelIndex &parent)
@@ -290,13 +290,13 @@ Qt::DropActions BookmarksModel::supportedDropActions() const
     return Qt::CopyAction | Qt::MoveAction;
 }
 
-#define MIMETYPE QLatin1String("application/bookmarks.xbel")
+#define MIMETYPE QStringLiteral("application/bookmarks.xbel")
 
 QStringList BookmarksModel::mimeTypes() const
 {
     QStringList types;
     types << MIMETYPE;
-    types << QLatin1String("text/uri-list");
+    types << QStringLiteral("text/uri-list");
     return types;
 }
 
@@ -306,7 +306,7 @@ QMimeData *BookmarksModel::mimeData(const QModelIndexList &indexes) const
     QByteArray data;
     QDataStream stream(&data, QIODevice::WriteOnly);
     QList<QUrl> urls;
-    foreach (const QModelIndex &index, indexes) {
+    Q_FOREACH (const QModelIndex &index, indexes) {
         if (index.column() != 0 || !index.isValid())
             continue;
         QByteArray encodedData;
@@ -356,7 +356,7 @@ bool BookmarksModel::dropMimeData(const QMimeData *data,
         return false;
 
     QUndoStack *undoStack = m_bookmarksManager->undoRedoStack();
-    undoStack->beginMacro(QLatin1String("Move Bookmarks"));
+    undoStack->beginMacro(QStringLiteral("Move Bookmarks"));
 
     while (!stream.atEnd()) {
         QByteArray encodedData;

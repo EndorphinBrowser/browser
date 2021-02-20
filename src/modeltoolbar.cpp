@@ -162,7 +162,7 @@ bool ModelToolBar::eventFilter(QObject *object, QEvent *event)
         Q_ASSERT(action);
         QModelIndex index = this->index(action);
         Q_ASSERT(this->index(action).isValid());
-        emit activated(index);
+        Q_EMIT activated(index);
     } else if (event->type() == QEvent::MouseButtonPress) {
         Q_ASSERT(static_cast<QToolButton*>(object));
 
@@ -183,7 +183,7 @@ void ModelToolBar::dragEnterEvent(QDragEnterEvent *event)
     }
 
     QStringList mimeTypes = m_model->mimeTypes();
-    foreach (const QString &mimeType, mimeTypes) {
+    Q_FOREACH (const QString &mimeType, mimeTypes) {
         if (event->mimeData()->hasFormat(mimeType))
             event->acceptProposedAction();
     }

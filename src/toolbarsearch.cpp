@@ -192,20 +192,20 @@ ToolbarSearch::~ToolbarSearch()
 void ToolbarSearch::save()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("toolbarsearch"));
-    settings.setValue(QLatin1String("recentSearches"), m_recentSearches);
-    settings.setValue(QLatin1String("maximumSaved"), m_maxSavedSearches);
+    settings.beginGroup(QStringLiteral("toolbarsearch"));
+    settings.setValue(QStringLiteral("recentSearches"), m_recentSearches);
+    settings.setValue(QStringLiteral("maximumSaved"), m_maxSavedSearches);
     settings.endGroup();
 }
 
 void ToolbarSearch::load()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("toolbarsearch"));
-    m_recentSearches = settings.value(QLatin1String("recentSearches")).toStringList();
-    m_maxSavedSearches = settings.value(QLatin1String("maximumSaved"), m_maxSavedSearches).toInt();
+    settings.beginGroup(QStringLiteral("toolbarsearch"));
+    m_recentSearches = settings.value(QStringLiteral("recentSearches")).toStringList();
+    m_maxSavedSearches = settings.value(QStringLiteral("maximumSaved"), m_maxSavedSearches).toInt();
 
-    m_suggestionsEnabled = settings.value(QLatin1String("useSuggestions"), true).toBool();
+    m_suggestionsEnabled = settings.value(QStringLiteral("useSuggestions"), true).toBool();
     if (m_suggestionsEnabled) {
         connect(this, SIGNAL(textEdited(const QString &)),
                 this, SLOT(textEdited(const QString &)));
@@ -269,7 +269,7 @@ void ToolbarSearch::searchNow()
     TabWidget::OpenUrlIn tab = TabWidget::CurrentTab;
     if (qApp->keyboardModifiers() == Qt::AltModifier)
         tab = TabWidget::NewSelectedTab;
-    emit search(searchUrl, tab);
+    Q_EMIT search(searchUrl, tab);
 }
 
 void ToolbarSearch::newSuggestions(const QStringList &suggestions)
@@ -317,7 +317,7 @@ void ToolbarSearch::showEnginesMenu()
     }
     /*
         WebView *webView = BrowserMainWindow::parentWindow(this)->currentTab();
-        QList<WebPageLinkedResource> engines = webView->webPage()->linkedResources(QLatin1String("search"));
+        QList<WebPageLinkedResource> engines = webView->webPage()->linkedResources(QStringLiteral("search"));
 
         if (!engines.empty())
             menu.addSeparator();
@@ -329,7 +329,7 @@ void ToolbarSearch::showEnginesMenu()
             QString title = engine.title;
             QString mimetype = engine.type;
 
-            if (mimetype != QLatin1String("application/opensearchdescription+xml"))
+            if (mimetype != QStringLiteral("application/opensearchdescription+xml"))
                 continue;
             if (url.isEmpty())
                 continue;

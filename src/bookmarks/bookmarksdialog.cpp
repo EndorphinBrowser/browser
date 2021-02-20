@@ -98,7 +98,7 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     tree->setExpanded(m_proxyModel->index(0, 0), true);
     tree->setAlternatingRowColors(true);
     QFontMetrics fm(font());
-    int header = fm.horizontalAdvance(QLatin1Char('m')) * 40;
+    int header = fm.horizontalAdvance(QChar('m')) * 40;
     tree->header()->resizeSection(0, header);
     tree->header()->setStretchLastSection(true);
     connect(tree, SIGNAL(activated(const QModelIndex&)),
@@ -180,7 +180,7 @@ void BookmarksDialog::openBookmark(TabWidget::OpenUrlIn tab)
     const BookmarkNode *node = m_bookmarksModel->node(sourceIndex);
     if (!index.parent().isValid() || !node || node->type() == BookmarkNode::Folder)
         return;
-    emit openUrl(
+    Q_EMIT openUrl(
         index.sibling(index.row(), 1).data(BookmarksModel::UrlRole).toUrl(),
         tab,
         index.sibling(index.row(), 0).data(Qt::DisplayRole).toString());

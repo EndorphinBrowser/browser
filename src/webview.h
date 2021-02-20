@@ -100,12 +100,12 @@ public:
     TabWidget *tabWidget() const;
     void ranJavaScript();
 
-signals:
+Q_SIGNALS:
     void search(const QUrl &searchUrl, TabWidget::OpenUrlIn openIn);
     void notifyRanJavaScript();
     void devToolsRequested(QWebEnginePage *source);
 
-public slots:
+public Q_SLOTS:
     void zoomIn();
     void zoomOut();
     void resetZoom();
@@ -125,7 +125,7 @@ protected:
 private:
     int levelForZoom(int zoom);
 
-private slots:
+private Q_SLOTS:
     void setProgress(int progress);
     void loadFinished(bool success);
     void setStatusBarText(const QString &string);

@@ -84,8 +84,8 @@ OpenSearchEngine *OpenSearchReader::read()
     while (!isStartElement() && !atEnd())
         readNext();
 
-    if (name() != QLatin1String("OpenSearchDescription")
-            || namespaceUri() != QLatin1String("http://a9.com/-/spec/opensearch/1.1/")) {
+    if (name() != QStringLiteral("OpenSearchDescription")
+            || namespaceUri() != QStringLiteral("http://a9.com/-/spec/opensearch/1.1/")) {
         raiseError(QObject::tr("The file is not an OpenSearch 1.1 file."));
         return engine;
     }
@@ -96,23 +96,23 @@ OpenSearchEngine *OpenSearchReader::read()
         if (!isStartElement())
             continue;
 
-        if (name() == QLatin1String("ShortName")) {
+        if (name() == QStringLiteral("ShortName")) {
             engine->setName(readElementText());
-        } else if (name() == QLatin1String("Description")) {
+        } else if (name() == QStringLiteral("Description")) {
             engine->setDescription(readElementText());
-        } else if (name() == QLatin1String("Url")) {
+        } else if (name() == QStringLiteral("Url")) {
 
-            QString type = attributes().value(QLatin1String("type")).toString();
-            QString url = attributes().value(QLatin1String("template")).toString();
-            QString method = attributes().value(QLatin1String("method")).toString();
+            QString type = attributes().value(QStringLiteral("type")).toString();
+            QString url = attributes().value(QStringLiteral("template")).toString();
+            QString method = attributes().value(QStringLiteral("method")).toString();
 
-            if (type == QLatin1String("application/x-suggestions+json")
+            if (type == QStringLiteral("application/x-suggestions+json")
                     && !engine->suggestionsUrlTemplate().isEmpty())
                 continue;
 
             if ((type.isEmpty()
-                    || type == QLatin1String("text/html")
-                    || type == QLatin1String("application/xhtml+xml"))
+                    || type == QStringLiteral("text/html")
+                    || type == QStringLiteral("application/xhtml+xml"))
                     && !engine->searchUrlTemplate().isEmpty())
                 continue;
 
@@ -123,14 +123,14 @@ OpenSearchEngine *OpenSearchReader::read()
 
             readNext();
 
-            while (!(isEndElement() && name() == QLatin1String("Url"))) {
-                if (!isStartElement() || (name() != QLatin1String("Param") && name() != QLatin1String("Parameter"))) {
+            while (!(isEndElement() && name() == QStringLiteral("Url"))) {
+                if (!isStartElement() || (name() != QStringLiteral("Param") && name() != QStringLiteral("Parameter"))) {
                     readNext();
                     continue;
                 }
 
-                QString key = attributes().value(QLatin1String("name")).toString();
-                QString value = attributes().value(QLatin1String("value")).toString();
+                QString key = attributes().value(QStringLiteral("name")).toString();
+                QString value = attributes().value(QStringLiteral("value")).toString();
 
                 if (!key.isEmpty() && !value.isEmpty())
                     parameters.append(OpenSearchEngine::Parameter(key, value));
@@ -139,17 +139,17 @@ OpenSearchEngine *OpenSearchReader::read()
                     readNext();
             }
 
-            if (type == QLatin1String("application/x-suggestions+json")) {
+            if (type == QStringLiteral("application/x-suggestions+json")) {
                 engine->setSuggestionsUrlTemplate(url);
                 engine->setSuggestionsParameters(parameters);
                 engine->setSuggestionsMethod(method);
-            } else if (type.isEmpty() || type == QLatin1String("text/html") || type == QLatin1String("application/xhtml+xml")) {
+            } else if (type.isEmpty() || type == QStringLiteral("text/html") || type == QStringLiteral("application/xhtml+xml")) {
                 engine->setSearchUrlTemplate(url);
                 engine->setSearchParameters(parameters);
                 engine->setSearchMethod(method);
             }
 
-        } else if (name() == QLatin1String("Image")) {
+        } else if (name() == QStringLiteral("Image")) {
             engine->setImageUrl(readElementText());
         }
 

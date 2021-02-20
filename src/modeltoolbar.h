@@ -32,7 +32,7 @@ class ModelToolBar : public QToolBar
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void activated(const QModelIndex &index);
 
 public:
@@ -58,7 +58,7 @@ protected:
     void dropEvent(QDropEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
 
-protected slots:
+protected Q_SLOTS:
     void build();
 
 private:

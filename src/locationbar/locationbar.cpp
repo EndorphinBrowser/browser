@@ -87,14 +87,14 @@ void LocationBar::webViewUrlChanged(const QUrl &url)
 {
     if (hasFocus())
         return;
-    if(!url.toString().startsWith(QString("qrc:/"))) {
+    if(!url.toString().startsWith(QStringLiteral("qrc:/"))) {
         setText(QString::fromUtf8(url.toEncoded()));
     } else {
         QUrl newurl = QUrl(url.toString());
         QString url_tmp = newurl.toString().mid(5);
-        newurl = QUrl(QLatin1String("endorphin://") + url_tmp);
+        newurl = QUrl(QStringLiteral("endorphin://") + url_tmp);
         QString urlstr = newurl.toString();
-        if(urlstr.endsWith(QLatin1String(".html"))) {
+        if(urlstr.endsWith(QStringLiteral(".html"))) {
             urlstr.chop(5);
             newurl = QUrl(urlstr);
         }
@@ -108,7 +108,7 @@ void LocationBar::paintEvent(QPaintEvent *event)
     QPalette p = palette();
     QColor defaultBaseColor = QApplication::palette().color(QPalette::Base);
     QColor backgroundColor = defaultBaseColor;
-    if (m_webView && m_webView->url().scheme() == QLatin1String("https")
+    if (m_webView && m_webView->url().scheme() == QStringLiteral("https")
             && p.color(QPalette::Text).value() < 128) {
         QColor lightYellow(248, 248, 210);
         backgroundColor = lightYellow;
@@ -177,15 +177,15 @@ void LocationBar::keyPressEvent(QKeyEvent *event)
 
     QString currentText = text().trimmed();
     if ((event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
-            && !currentText.startsWith(QLatin1String("http://"), Qt::CaseInsensitive)) {
+            && !currentText.startsWith(QStringLiteral("http://"), Qt::CaseInsensitive)) {
         QString append;
         if (event->modifiers() == Qt::ControlModifier)
-            append = QLatin1String(".com");
+            append = QStringLiteral(".com");
         else if (event->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier))
-            append = QLatin1String(".org");
+            append = QStringLiteral(".org");
         else if (event->modifiers() == Qt::ShiftModifier)
-            append = QLatin1String(".net");
-        QUrl url(QLatin1String("http://") + currentText);
+            append = QStringLiteral(".net");
+        QUrl url(QStringLiteral("http://") + currentText);
         QString host = url.host();
         if (!host.endsWith(append, Qt::CaseInsensitive)) {
             host += append;

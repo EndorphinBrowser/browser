@@ -40,7 +40,7 @@ class LanguageManager : public QObject
     Q_OBJECT
     Q_PROPERTY(QString currentLanguage READ currentLanguage WRITE setCurrentLanguage NOTIFY languageChanged)
 
-signals:
+Q_SIGNALS:
     void languageChanged(const QString &language);
 
 public:
@@ -55,7 +55,7 @@ public:
     QStringList languages() const;
     bool isLanguageAvailable(const QString &language) const;
 
-public slots:
+public Q_SLOTS:
     void loadLanguageFromSettings();
     void chooseNewLanguage();
 

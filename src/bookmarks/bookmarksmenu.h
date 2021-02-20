@@ -77,7 +77,7 @@ class BookmarksMenu : public ModelMenu
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void openUrl(const QUrl &url, const QString &title);
     void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
@@ -88,7 +88,7 @@ protected:
     void postPopulated();
     ModelMenu *createBaseMenu();
 
-private slots:
+private Q_SLOTS:
     void openAll();
     void activated(const QModelIndex &index);
 

@@ -34,7 +34,7 @@ class BookmarksToolBar : public ModelToolBar
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void openUrl(const QUrl &url, const QString &title);
     void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
@@ -44,10 +44,10 @@ public:
 protected:
     virtual ModelMenu *createMenu();
 
-private slots:
+private Q_SLOTS:
     void contextMenuRequested(const QPoint &position);
 
-protected slots:
+protected Q_SLOTS:
     void openBookmark();
     void openBookmarkInCurrentTab();
     void openBookmarkInNewTab();

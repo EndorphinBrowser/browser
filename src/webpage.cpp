@@ -154,13 +154,13 @@ QList<WebPageLinkedResource> WebPage::linkedResources(const QString &relation)
 
     QUrl baseUrl = mainFrame()->baseUrl();
 
-    QWebElementCollection linkElements = mainFrame()->findAllElements(QLatin1String("html > head > link"));
+    QWebElementCollection linkElements = mainFrame()->findAllElements(QStringLiteral("html > head > link"));
 
-    foreach (const QWebElement &linkElement, linkElements) {
-        QString rel = linkElement.attribute(QLatin1String("rel"));
-        QString href = linkElement.attribute(QLatin1String("href"));
-        QString type = linkElement.attribute(QLatin1String("type"));
-        QString title = linkElement.attribute(QLatin1String("title"));
+    Q_FOREACH (const QWebElement &linkElement, linkElements) {
+        QString rel = linkElement.attribute(QStringLiteral("rel"));
+        QString href = linkElement.attribute(QStringLiteral("href"));
+        QString type = linkElement.attribute(QStringLiteral("type"));
+        QString title = linkElement.attribute(QStringLiteral("title"));
 
         if (href.isEmpty() || type.isEmpty())
             continue;
@@ -191,9 +191,9 @@ void WebPage::setUserAgent(const QString &userAgent)
 
     QSettings settings;
     if (userAgent.isEmpty()) {
-        settings.remove(QLatin1String("userAgent"));
+        settings.remove(QStringLiteral("userAgent"));
     } else {
-        settings.setValue(QLatin1String("userAgent"), userAgent);
+        settings.setValue(QStringLiteral("userAgent"), userAgent);
     }
 
     s_userAgent = userAgent;
@@ -219,8 +219,8 @@ bool WebPage::acceptNavigationRequest(const QUrl &url, QWebEnginePage::Navigatio
         lastRequestType = type;
     */
     QString scheme = url.scheme();
-    if (scheme == QLatin1String("mailto")
-            || scheme == QLatin1String("ftp")) {
+    if (scheme == QStringLiteral("mailto")
+            || scheme == QStringLiteral("ftp")) {
         BrowserApplication::instance()->askDesktopToOpenUrl(url);
         return false;
     }
@@ -259,7 +259,7 @@ bool WebPage::acceptNavigationRequest(const QUrl &url, QWebEnginePage::Navigatio
     bool accepted = QWebEnginePage::acceptNavigationRequest(url, type, isMainFrame);
     if (accepted &&  isMainFrame) {
         m_requestedUrl = url;
-        emit aboutToLoadUrl(url);
+        Q_EMIT aboutToLoadUrl(url);
     }
 
     return accepted;
@@ -268,11 +268,11 @@ bool WebPage::acceptNavigationRequest(const QUrl &url, QWebEnginePage::Navigatio
 void WebPage::loadSettings()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("tabs"));
-    m_openTargetBlankLinksIn = (TabWidget::OpenUrlIn)settings.value(QLatin1String("openTargetBlankLinksIn"),
+    settings.beginGroup(QStringLiteral("tabs"));
+    m_openTargetBlankLinksIn = (TabWidget::OpenUrlIn)settings.value(QStringLiteral("openTargetBlankLinksIn"),
                                TabWidget::NewSelectedTab).toInt();
     settings.endGroup();
-    s_userAgent = settings.value(QLatin1String("userAgent")).toString();
+    s_userAgent = settings.value(QStringLiteral("userAgent")).toString();
 }
 
 QWebEnginePage *WebPage::createWindow(QWebEnginePage::WebWindowType type)

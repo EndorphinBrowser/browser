@@ -79,7 +79,7 @@ class ToolbarSearch : public SearchLineEdit
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void search(const QUrl &url, TabWidget::OpenUrlIn tab);
 
 public:
@@ -87,11 +87,11 @@ public:
     ~ToolbarSearch();
     static OpenSearchManager *openSearchManager();
 
-public slots:
+public Q_SLOTS:
     void clear();
     void searchNow();
 
-private slots:
+private Q_SLOTS:
     void currentEngineChanged();
     void save();
     void textEdited(const QString &);

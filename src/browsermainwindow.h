@@ -109,7 +109,7 @@ public:
     }
     void handleDevToolsRequested(QWebEnginePage *source);
 
-public slots:
+public Q_SLOTS:
     void goHome();
     void privacyChanged(bool isPrivate);
     void zoomTextOnlyChanged(bool textOnly);
@@ -122,7 +122,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void changeEvent(QEvent *event);
 
-private slots:
+private Q_SLOTS:
     void save();
 
     void lastTabClosed();

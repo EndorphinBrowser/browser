@@ -31,13 +31,13 @@ class tst_AddBookmarkDialog : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void addbookmarkdialog_data();
     void addbookmarkdialog();
 };

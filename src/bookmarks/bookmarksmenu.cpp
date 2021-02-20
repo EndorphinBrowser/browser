@@ -92,7 +92,7 @@ ModelMenu *BookmarksMenu::createBaseMenu()
 
 void BookmarksMenu::activated(const QModelIndex &index)
 {
-    emit openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
+    Q_EMIT openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
                  index.data(Qt::DisplayRole).toString());
 }
 
@@ -139,7 +139,7 @@ void BookmarksMenu::openAll()
 
         TabWidget::OpenUrlIn tab;
         tab = (i == 0) ? TabWidget::CurrentTab : TabWidget::NewTab;
-        emit openUrl(child.data(BookmarksModel::UrlRole).toUrl(),
+        Q_EMIT openUrl(child.data(BookmarksModel::UrlRole).toUrl(),
                      tab,
                      child.data(Qt::DisplayRole).toString());
     }

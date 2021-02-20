@@ -81,7 +81,7 @@ ExplorerStyle::ExplorerStyle()
     : QWindowsVistaStyle()
 {
 #ifdef Q_OS_WIN
-    QLibrary themeLib(QLatin1String("uxtheme"));
+    QLibrary themeLib(QStringLiteral("uxtheme"));
     themeLib.load();
     if (themeLib.isLoaded()) {  //resolve uxtheme functions
         pIsAppThemed =          (PtrIsAppThemed)themeLib.resolve("IsAppThemed");
@@ -95,8 +95,8 @@ ExplorerStyle::ExplorerStyle()
 void drawRebarBackground(const QRect &rect,  QPainter *painter) {
     if (rect.isEmpty())
         return;
-    QString cacheKey = QLatin1String("q_rebar_") + QString::number(rect.size().width())
-                       + QLatin1Char('x') + QString::number(rect.size().height());
+    QString cacheKey = QStringLiteral("q_rebar_") + QString::number(rect.size().width())
+                       + QChar('x') + QString::number(rect.size().height());
     QPixmap pixmap;
     if (!QPixmapCache::find(cacheKey, pixmap)) {
         pixmap = QPixmap(rect.size());
@@ -135,7 +135,7 @@ void ExplorerStyle::drawPrimitive(PrimitiveElement element, const QStyleOption *
 
                 //We need the bounding rect for all toolbars
                 QList<QToolBar*> toolbars = qFindChildren<QToolBar*>(window);
-                foreach (const QToolBar *tb, toolbars) {
+                Q_FOREACH (const QToolBar *tb, toolbars) {
                     if (!tb->isFloating()) {
                         QRect rect(tb->mapToParent(tb->rect().topLeft()), tb->rect().size());
                         if (window->toolBarArea(const_cast<QToolBar*>(tb)) == Qt::TopToolBarArea)

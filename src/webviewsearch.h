@@ -35,7 +35,7 @@ class WebViewSearch : public SearchBar
 public:
     WebViewSearch(QWebEngineView *webView, QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void findNext();
     void findPrevious();
 

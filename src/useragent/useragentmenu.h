@@ -39,7 +39,7 @@ class UserAgentMenu : public QMenu
 public:
     UserAgentMenu(QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void populateMenu();
     void changeUserAgent();
     void switchToDefaultUserAgent();

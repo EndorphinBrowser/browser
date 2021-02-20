@@ -30,13 +30,13 @@ class tst_TabWidget : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void tabwidget_data();
     void tabwidget();
     void addWebAction_data();
@@ -507,7 +507,7 @@ void tst_TabWidget::recentlyClosedTabsAction()
 void tst_TabWidget::linkHovered_data()
 {
     QTest::addColumn<QString>("link");
-    QTest::newRow("null") << QString("foo");
+    QTest::newRow("null") << QStringLiteral("foo");
 }
 
 // protected void linkHovered(QString const &link)
@@ -573,7 +573,7 @@ void tst_TabWidget::loadProgress(int)
 void tst_TabWidget::setCurrentTitle_data()
 {
     QTest::addColumn<QString>("url");
-    QTest::newRow("null") << QString("foo");
+    QTest::newRow("null") << QStringLiteral("foo");
 }
 
 // protected void setCurrentTitle(QString const &url)
@@ -606,7 +606,7 @@ void tst_TabWidget::setCurrentTitle(const QString &)
 void tst_TabWidget::showStatusBarMessage_data()
 {
     QTest::addColumn<QString>("message");
-    QTest::newRow("null") << QString("foo");
+    QTest::newRow("null") << QStringLiteral("foo");
 }
 
 // protected void showStatusBarMessage(QString const &message)

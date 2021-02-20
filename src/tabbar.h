@@ -74,7 +74,7 @@ class TabBar : public QTabBar
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void newTab();
     void cloneTab(int index);
     void closeTab(int index);
@@ -102,7 +102,7 @@ protected:
     void tabInserted(int position);
     void tabRemoved(int position);
 
-private slots:
+private Q_SLOTS:
     void selectTabAction();
     void cloneTab();
     void closeTab();

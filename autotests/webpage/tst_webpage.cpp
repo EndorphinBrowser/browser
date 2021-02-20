@@ -29,13 +29,13 @@ class tst_WebPage : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void webpage_data();
     void webpage();
 
@@ -89,8 +89,8 @@ void tst_WebPage::initTestCase()
 {
     QCoreApplication::setApplicationName("tst_webpage");
 
-    QDesktopServices::setUrlHandler(QLatin1String("mailto"), this, "openUrl");
-    QDesktopServices::setUrlHandler(QLatin1String("ftp"), this, "openUrl");
+    QDesktopServices::setUrlHandler(QStringLiteral("mailto"), this, "openUrl");
+    QDesktopServices::setUrlHandler(QStringLiteral("ftp"), this, "openUrl");
 }
 
 // This will be called after the last test function is executed.
@@ -329,20 +329,20 @@ void tst_WebPage::linkedResources()
     QList<WebPageLinkedResource> resources = page.linkedResources();
     QCOMPARE(resources.count(), 4);
 
-    QCOMPARE(resources.at(0).rel, QString("stylesheet"));
-    QCOMPARE(resources.at(0).type, QString("text/css"));
+    QCOMPARE(resources.at(0).rel, QStringLiteral("stylesheet"));
+    QCOMPARE(resources.at(0).type, QStringLiteral("text/css"));
     QCOMPARE(resources.at(0).href, QUrl("http://foobar.baz/foo/styles/common.css"));
     QCOMPARE(resources.at(0).title, QString());
 
-    QCOMPARE(resources.at(1).rel, QString("alternate"));
-    QCOMPARE(resources.at(1).type, QString("application/rss+xml"));
+    QCOMPARE(resources.at(1).rel, QStringLiteral("alternate"));
+    QCOMPARE(resources.at(1).type, QStringLiteral("application/rss+xml"));
     QCOMPARE(resources.at(1).href, QUrl("http://foobar.baz/foo/rss.xml"));
 
     QCOMPARE(resources.at(2).href, QUrl("http://foobar.baz/atom.xml"));
-    QCOMPARE(resources.at(2).title, QString("Feed"));
+    QCOMPARE(resources.at(2).title, QStringLiteral("Feed"));
 
-    QCOMPARE(resources.at(3).rel, QString("search"));
-    QCOMPARE(resources.at(3).type, QString("application/opensearchdescription+xml"));
+    QCOMPARE(resources.at(3).rel, QStringLiteral("search"));
+    QCOMPARE(resources.at(3).type, QStringLiteral("application/opensearchdescription+xml"));
     QCOMPARE(resources.at(3).href, QUrl("http://external.foo/search.xml"));
 
     QString js = "var base = document.createElement('base');"
@@ -382,8 +382,8 @@ void tst_WebPage::javaScriptObjects()
     page.mainFrame()->load(url);
     QTRY_COMPARE(spy.count(), 1);
 
-    QVariant windowExternalVariant = page.mainFrame()->evaluateJavaScript(QLatin1String("window.external"));
-    QVariant windowEndorphinVariant = page.mainFrame()->evaluateJavaScript(QLatin1String("window.endorphin"));
+    QVariant windowExternalVariant = page.mainFrame()->evaluateJavaScript(QStringLiteral("window.external"));
+    QVariant windowEndorphinVariant = page.mainFrame()->evaluateJavaScript(QStringLiteral("window.endorphin"));
 
     QCOMPARE(windowExternal, !windowExternalVariant.isNull());
     QCOMPARE(windowEndorphin, !windowEndorphinVariant.isNull());
@@ -401,7 +401,7 @@ void tst_WebPage::userAgent()
     page.loadSettings();
     QString customUserAgent = page.call_userAgentForUrl(QUrl());
     QVERIFY(!customUserAgent.isEmpty());
-    QCOMPARE(customUserAgent, QString("ben"));
+    QCOMPARE(customUserAgent, QStringLiteral("ben"));
 }
 
 

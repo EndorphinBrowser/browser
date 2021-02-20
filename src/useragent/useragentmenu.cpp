@@ -54,11 +54,11 @@ void UserAgentMenu::populateMenu()
     defaultUserAgent->setCheckable(true);
     connect(defaultUserAgent, SIGNAL(triggered()), this, SLOT(switchToDefaultUserAgent()));
     QSettings settings;
-    defaultUserAgent->setChecked(settings.value(QLatin1String("userAgent")).toString().isEmpty());
+    defaultUserAgent->setChecked(settings.value(QStringLiteral("userAgent")).toString().isEmpty());
     addAction(defaultUserAgent);
 
     // Add default extra user agents
-    addActionsFromFile(QLatin1String(":/useragents/useragents.xml"));
+    addActionsFromFile(QStringLiteral(":/useragents/useragents.xml"));
 
     // Add other action
     addSeparator();
@@ -70,7 +70,7 @@ void UserAgentMenu::populateMenu()
 
     bool usingCustomUserAgent = true;
     QActionGroup *actionGroup = new QActionGroup(this);
-    foreach (QAction *action, actions()) {
+    Q_FOREACH (QAction *action, actions()) {
         actionGroup->addAction(action);
         if (action->isChecked()) {
             usingCustomUserAgent = false;
@@ -89,14 +89,14 @@ void UserAgentMenu::addActionsFromFile(const QString &fileName)
     QXmlStreamReader xml(&file);
     while (!xml.atEnd()) {
         xml.readNext();
-        if (xml.isStartElement() && xml.name() == QLatin1String("separator")) {
+        if (xml.isStartElement() && xml.name() == QStringLiteral("separator")) {
             addSeparator();
             continue;
         }
-        if (xml.isStartElement() && xml.name() == QLatin1String("useragent")) {
+        if (xml.isStartElement() && xml.name() == QStringLiteral("useragent")) {
             QXmlStreamAttributes attributes = xml.attributes();
-            QString title = attributes.value(QLatin1String("description")).toString();
-            QString userAgent = attributes.value(QLatin1String("useragent")).toString();
+            QString title = attributes.value(QStringLiteral("description")).toString();
+            QString userAgent = attributes.value(QStringLiteral("useragent")).toString();
 
             QAction *action = new QAction(this);
             action->setText(title);

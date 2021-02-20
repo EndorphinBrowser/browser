@@ -72,7 +72,7 @@ class ModelMenu : public QMenu
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void activated(const QModelIndex &index);
 
 public:
@@ -119,7 +119,7 @@ protected:
 #endif
     void mouseMoveEvent(QMouseEvent *event);
 
-private slots:
+private Q_SLOTS:
     void aboutToShow();
     void actionTriggered(QAction *action);
 

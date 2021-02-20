@@ -190,8 +190,8 @@ void WebView::loadSettings()
 {
     /*
     QSettings settings;
-    settings.beginGroup(QLatin1String("WebView"));
-    m_enableAccessKeys = settings.value(QLatin1String("enableAccessKeys"), m_enableAccessKeys).toBool();
+    settings.beginGroup(QStringLiteral("WebView"));
+    m_enableAccessKeys = settings.value(QStringLiteral("enableAccessKeys"), m_enableAccessKeys).toBool();
 
     if (!m_enableAccessKeys)
         hideAccessKeys();
@@ -263,8 +263,8 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     /*
         QWebElement element = r.element();
         if (!element.isNull()
-            && element.tagName().toLower() == QLatin1String("input")
-            && element.attribute(QLatin1String("type"), QLatin1String("text")) == QLatin1String("text")) {
+            && element.tagName().toLower() == QStringLiteral("input")
+            && element.attribute(QStringLiteral("type"), QStringLiteral("text")) == QStringLiteral("text")) {
             if (menu->isEmpty()) {
                 menu->addAction(pageAction(QWebEnginePage::Copy));
             } else {
@@ -284,7 +284,7 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     QAction *action = new QAction(menu);
     action->setText("Inspect Element");
     connect(action, &QAction::triggered, [this]() {
-        emit devToolsRequested(page());
+        Q_EMIT devToolsRequested(page());
     });
     menu->addAction(action);
 
@@ -396,7 +396,7 @@ void WebView::searchRequested(QAction *action)
 
     if (index.canConvert<QString>()) {
         OpenSearchEngine *engine = ToolbarSearch::openSearchManager()->engine(index.toString());
-        emit search(engine->searchUrl(searchText), TabWidget::NewSelectedTab);
+        Q_EMIT search(engine->searchUrl(searchText), TabWidget::NewSelectedTab);
     }
 }
 /*
@@ -411,55 +411,55 @@ void WebView::addSearchEngine()
         return;
 
     QWebElement element = qvariant_cast<QWebElement>(variant);
-    QString elementName = element.attribute(QLatin1String("name"));
+    QString elementName = element.attribute(QStringLiteral("name"));
     QWebElement formElement = element;
-    while (formElement.tagName().toLower() != QLatin1String("form"))
+    while (formElement.tagName().toLower() != QStringLiteral("form"))
         formElement = formElement.parent();
 
-    if (formElement.isNull() || formElement.attribute(QLatin1String("action")).isEmpty())
+    if (formElement.isNull() || formElement.attribute(QStringLiteral("action")).isEmpty())
         return;
 
-    QString method = formElement.attribute(QLatin1String("method"), QLatin1String("get")).toLower();
-    if (method != QLatin1String("get")) {
+    QString method = formElement.attribute(QStringLiteral("method"), QStringLiteral("get")).toLower();
+    if (method != QStringLiteral("get")) {
         QMessageBox::warning(this, tr("Method not supported"),
                              tr("%1 method is not supported.").arg(method.toUpper()));
         return;
     }
 
-    QUrl searchUrl(page()->mainFrame()->baseUrl().resolved(QUrl(formElement.attribute(QLatin1String("action")))));
+    QUrl searchUrl(page()->mainFrame()->baseUrl().resolved(QUrl(formElement.attribute(QStringLiteral("action")))));
     QMap<QString, QString> searchEngines;
-    QWebElementCollection inputFields = formElement.findAll(QLatin1String("input"));
+    QWebElementCollection inputFields = formElement.findAll(QStringLiteral("input"));
     QUrlQuery query(searchUrl.query());
 
-    foreach (QWebElement inputField, inputFields) {
-        QString type = inputField.attribute(QLatin1String("type"), QLatin1String("text"));
-        QString name = inputField.attribute(QLatin1String("name"));
-        QString value = inputField.evaluateJavaScript(QLatin1String("this.value")).toString();
+    Q_FOREACH (QWebElement inputField, inputFields) {
+        QString type = inputField.attribute(QStringLiteral("type"), QStringLiteral("text"));
+        QString name = inputField.attribute(QStringLiteral("name"));
+        QString value = inputField.evaluateJavaScript(QStringLiteral("this.value")).toString();
 
-        if (type == QLatin1String("submit")) {
+        if (type == QStringLiteral("submit")) {
             searchEngines.insert(value, name);
-        } else if (type == QLatin1String("text")) {
+        } else if (type == QStringLiteral("text")) {
             if (inputField == element)
-                value = QLatin1String("{searchTerms}");
+                value = QStringLiteral("{searchTerms}");
 
             query.addQueryItem(name, value);
-        } else if (type == QLatin1String("checkbox") || type == QLatin1String("radio")) {
-            if (inputField.evaluateJavaScript(QLatin1String("this.checked")).toBool()) {
+        } else if (type == QStringLiteral("checkbox") || type == QStringLiteral("radio")) {
+            if (inputField.evaluateJavaScript(QStringLiteral("this.checked")).toBool()) {
                 query.addQueryItem(name, value);
             }
-        } else if (type == QLatin1String("hidden")) {
+        } else if (type == QStringLiteral("hidden")) {
             query.addQueryItem(name, value);
         }
     }
 
-    QWebElementCollection selectFields = formElement.findAll(QLatin1String("select"));
-    foreach (QWebElement selectField, selectFields) {
-        QString name = selectField.attribute(QLatin1String("name"));
-        int selectedIndex = selectField.evaluateJavaScript(QLatin1String("this.selectedIndex")).toInt();
+    QWebElementCollection selectFields = formElement.findAll(QStringLiteral("select"));
+    Q_FOREACH (QWebElement selectField, selectFields) {
+        QString name = selectField.attribute(QStringLiteral("name"));
+        int selectedIndex = selectField.evaluateJavaScript(QStringLiteral("this.selectedIndex")).toInt();
         if (selectedIndex == -1)
             continue;
 
-        QWebElementCollection options = selectField.findAll(QLatin1String("option"));
+        QWebElementCollection options = selectField.findAll(QStringLiteral("option"));
         QString value = options.at(selectedIndex).toPlainText();
         query.addQueryItem(name, value);
     }
@@ -477,7 +477,7 @@ void WebView::addSearchEngine()
     searchUrl.setQuery(query);
 
     QString engineName;
-    QWebElementCollection labels = formElement.findAll(QString(QLatin1String("label[for=\"%1\"]")).arg(elementName));
+    QWebElementCollection labels = formElement.findAll(QString(QStringLiteral("label[for=\"%1\"]")).arg(elementName));
     if (labels.count() > 0)
         engineName = labels.at(0).toPlainText();
 
@@ -563,7 +563,7 @@ void WebView::loadFinished(bool success)
 
 void WebView::loadUrl(const QUrl &url, const QString &title)
 {
-    if (url.scheme() == QLatin1String("javascript")) {
+    if (url.scheme() == QStringLiteral("javascript")) {
         QString scriptSource = QUrl::fromPercentEncoding(url.toString(Q_FLAGS(QUrl::TolerantMode|QUrl::RemoveScheme)).toLatin1());
         QEventLoop loop;
         QObject::connect(this, SIGNAL(notifyRanJavaScript()), &loop, SLOT(quit()));
@@ -576,17 +576,17 @@ void WebView::loadUrl(const QUrl &url, const QString &title)
     }
     m_initialUrl = url;
     if (!title.isEmpty())
-        emit titleChanged(tr("Loading..."));
+        Q_EMIT titleChanged(tr("Loading..."));
     else
-        emit titleChanged(title);
+        Q_EMIT titleChanged(title);
     QUrl oldurl = QUrl(url.toString());
     QUrl newurl = QUrl(url.toString());
-    if(newurl.toString().startsWith(QLatin1String("endorphin://"))) {
+    if(newurl.toString().startsWith(QStringLiteral("endorphin://"))) {
         QString url_tmp = newurl.toString().mid(12);
-        newurl = QUrl(QLatin1String("qrc:/") + url_tmp);
+        newurl = QUrl(QStringLiteral("qrc:/") + url_tmp);
         QString urlstr = newurl.toString();
-        if(!urlstr.endsWith(QLatin1String(".html"))) {
-            newurl = QUrl(urlstr + QLatin1String(".html"));
+        if(!urlstr.endsWith(QStringLiteral(".html"))) {
+            newurl = QUrl(urlstr + QStringLiteral(".html"));
         }
     }
     load(newurl);
@@ -594,7 +594,7 @@ void WebView::loadUrl(const QUrl &url, const QString &title)
 
 void WebView::ranJavaScript()
 {
-    emit notifyRanJavaScript();
+    Q_EMIT notifyRanJavaScript();
 }
 
 QString WebView::lastStatusBarText() const
@@ -796,32 +796,32 @@ void WebView::hideAccessKeys()
 void WebView::showAccessKeys()
 {
     QStringList supportedElement;
-    supportedElement << QLatin1String("input")
-                     << QLatin1String("a")
-                     << QLatin1String("area")
-                     << QLatin1String("button")
-                     << QLatin1String("label")
-                     << QLatin1String("legend")
-                     << QLatin1String("textarea");
+    supportedElement << QStringLiteral("input")
+                     << QStringLiteral("a")
+                     << QStringLiteral("area")
+                     << QStringLiteral("button")
+                     << QStringLiteral("label")
+                     << QStringLiteral("legend")
+                     << QStringLiteral("textarea");
 
     QList<QChar> unusedKeys;
     for (char c = 'A'; c <= 'Z'; ++c)
-        unusedKeys << QLatin1Char(c);
+        unusedKeys << QChar(c);
     for (char c = '0'; c <= '9'; ++c)
-        unusedKeys << QLatin1Char(c);
+        unusedKeys << QChar(c);
 
     QRect viewport = QRect(page()->mainFrame()->scrollPosition(), page()->viewportSize());
     // Priority first goes to elements with accesskey attributes
     QList<QWebElement> alreadyLabeled;
-    foreach (const QString &elementType, supportedElement) {
+    Q_FOREACH (const QString &elementType, supportedElement) {
         QList<QWebElement> result = page()->mainFrame()->findAllElements(elementType).toList();
-        foreach (const QWebElement &element, result) {
+        Q_FOREACH (const QWebElement &element, result) {
             const QRect geometry = element.geometry();
             if (geometry.size().isEmpty()
                 || !viewport.contains(geometry.topLeft())) {
                 continue;
             }
-            QString accessKeyAttribute = element.attribute(QLatin1String("accesskey")).toUpper();
+            QString accessKeyAttribute = element.attribute(QStringLiteral("accesskey")).toUpper();
             if (accessKeyAttribute.isEmpty())
                 continue;
             QChar accessKey;
@@ -842,9 +842,9 @@ void WebView::showAccessKeys()
 
     // Pick an access key first from the letters in the text and then from the
     // list of unused access keys
-    foreach (const QString &elementType, supportedElement) {
+    Q_FOREACH (const QString &elementType, supportedElement) {
         QWebElementCollection result = page()->mainFrame()->findAllElements(elementType);
-        foreach (const QWebElement &element, result) {
+        Q_FOREACH (const QWebElement &element, result) {
             const QRect geometry = element.geometry();
             if (unusedKeys.isEmpty()
                 || alreadyLabeled.contains(element)
@@ -872,7 +872,7 @@ void WebView::showAccessKeys()
 void WebView::makeAccessKeyLabel(const QChar &accessKey, const QWebElement &element)
 {
     QLabel *label = new QLabel(this);
-    label->setText(QString(QLatin1String("<qt><b>%1</b>")).arg(accessKey));
+    label->setText(QString(QStringLiteral("<qt><b>%1</b>")).arg(accessKey));
 
     QPalette p = QToolTip::palette();
     QColor color(Qt::yellow);

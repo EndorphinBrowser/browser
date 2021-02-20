@@ -41,7 +41,7 @@ class SingleApplication : public QApplication
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void messageReceived(QLocalSocket *socket);
 
 public:
@@ -51,7 +51,7 @@ public:
     bool startSingleServer();
     bool isRunning() const;
 
-private slots:
+private Q_SLOTS:
     void newConnection();
 
 private:

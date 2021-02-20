@@ -79,14 +79,14 @@ class BookmarksDialog : public QDialog, public Ui_BookmarksDialog
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
     BookmarksDialog(QWidget *parent = nullptr, BookmarksManager *manager = nullptr);
     ~BookmarksDialog();
 
-private slots:
+private Q_SLOTS:
     void customContextMenuRequested(const QPoint &pos);
     void openBookmark(TabWidget::OpenUrlIn tab);
     void openBookmark();

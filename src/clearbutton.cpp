@@ -41,9 +41,9 @@ ClearButton::ClearButton(QWidget *parent)
 
     // First check for a style icon, current KDE provides one
     if (m_styleImage.isNull()) {
-        QLatin1String iconName = (layoutDirection() == Qt::RightToLeft)
-                                 ? QLatin1String("edit-clear-locationbar-ltr")
-                                 : QLatin1String("edit-clear-locationbar-rtl");
+        QString iconName = (layoutDirection() == Qt::RightToLeft)
+                                 ? QStringLiteral("edit-clear-locationbar-ltr")
+                                 : QStringLiteral("edit-clear-locationbar-rtl");
         QIcon icon = QIcon::fromTheme(iconName);
         if (!icon.isNull())
             m_styleImage = icon.pixmap(16, 16).toImage();

@@ -31,7 +31,7 @@ class ClearPrivateData : public QDialog
 public:
     ClearPrivateData(QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void accept();
 
 private:

@@ -26,13 +26,13 @@ class tst_OpenSearchReader : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void read_data();
     void read();
 };
@@ -74,38 +74,38 @@ void tst_OpenSearchReader::read_data()
     QTest::addColumn<QString>("searchMethod");
     QTest::addColumn<QString>("suggestionsMethod");
 
-    QTest::newRow("null") << QString(":/doesNotExist") << false << QString() << QString() << QString() << QString()
-            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QString("get") << QString("get");
+    QTest::newRow("null") << QStringLiteral(":/doesNotExist") << false << QString() << QString() << QString() << QString()
+            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QStringLiteral("get") << QStringLiteral("get");
 
-    QTest::newRow("testfile1") << QString(":/testfile1.xml") << true << QString("Wikipedia (en)")
-            << QString("Full text search in the English Wikipedia") << QString("http://en.wikipedia.org/bar")
-            << QString("http://en.wikipedia.org/foo") << QString("http://en.wikipedia.org/favicon.ico")
-            << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QString("post") << QString("get");
+    QTest::newRow("testfile1") << QStringLiteral(":/testfile1.xml") << true << QStringLiteral("Wikipedia (en)")
+            << QStringLiteral("Full text search in the English Wikipedia") << QStringLiteral("http://en.wikipedia.org/bar")
+            << QStringLiteral("http://en.wikipedia.org/foo") << QStringLiteral("http://en.wikipedia.org/favicon.ico")
+            << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QStringLiteral("post") << QStringLiteral("get");
 
-    QTest::newRow("testfile2") << QString(":/testfile2.xml") << false << QString("Wikipedia (en)")
-            << QString() << QString() << QString("http://en.wikipedia.org/foo") << QString("http://en.wikipedia.org/favicon.ico")
-            << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QString("get") << QString("get");
+    QTest::newRow("testfile2") << QStringLiteral(":/testfile2.xml") << false << QStringLiteral("Wikipedia (en)")
+            << QString() << QString() << QStringLiteral("http://en.wikipedia.org/foo") << QStringLiteral("http://en.wikipedia.org/favicon.ico")
+            << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QStringLiteral("get") << QStringLiteral("get");
 
-    QTest::newRow("testfile3") << QString(":/testfile3.xml") << true << QString("GitHub") << QString("Search GitHub")
-            << QString("http://github.com/search") << QString("http://github.com/suggestions") << QString()
-            << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter(QString("q"), QString("{searchTerms}"))
-                                               << OpenSearchEngine::Parameter(QString("b"), QString("foo")))
-            << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter(QString("bar"), QString("baz")))
-            << QString("get") << QString("post");
+    QTest::newRow("testfile3") << QStringLiteral(":/testfile3.xml") << true << QStringLiteral("GitHub") << QStringLiteral("Search GitHub")
+            << QStringLiteral("http://github.com/search") << QStringLiteral("http://github.com/suggestions") << QString()
+            << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter(QStringLiteral("q"), QStringLiteral("{searchTerms}"))
+                                               << OpenSearchEngine::Parameter(QStringLiteral("b"), QStringLiteral("foo")))
+            << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter(QStringLiteral("bar"), QStringLiteral("baz")))
+            << QStringLiteral("get") << QStringLiteral("post");
 
-    QTest::newRow("testfile4") << QString(":/testfile4.xml") << true << QString("Google") << QString("Google Web Search")
-            << QString("http://www.google.com/search?bar") << QString("http://suggestqueries.google.com/complete/foo")
-            << QString("http://www.google.com/favicon.ico") << OpenSearchEngine::Parameters()
-            << OpenSearchEngine::Parameters() << QString("get") << QString("get");
+    QTest::newRow("testfile4") << QStringLiteral(":/testfile4.xml") << true << QStringLiteral("Google") << QStringLiteral("Google Web Search")
+            << QStringLiteral("http://www.google.com/search?bar") << QStringLiteral("http://suggestqueries.google.com/complete/foo")
+            << QStringLiteral("http://www.google.com/favicon.ico") << OpenSearchEngine::Parameters()
+            << OpenSearchEngine::Parameters() << QStringLiteral("get") << QStringLiteral("get");
 
-    QTest::newRow("testfile5") << QString(":/testfile5.xml") << false << QString() << QString() << QString() << QString()
-            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QString("get") << QString("get");
+    QTest::newRow("testfile5") << QStringLiteral(":/testfile5.xml") << false << QString() << QString() << QString() << QString()
+            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters() << QStringLiteral("get") << QStringLiteral("get");
 
-    QTest::newRow("testfile6") << QString(":/testfile6.xml") << false << QString() << QString() << QString() << QString()
-            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()  << QString("get") << QString("get");
+    QTest::newRow("testfile6") << QStringLiteral(":/testfile6.xml") << false << QString() << QString() << QString() << QString()
+            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()  << QStringLiteral("get") << QStringLiteral("get");
 
-    QTest::newRow("testfile7") << QString(":/testfile7.xml") << false << QString() << QString() << QString() << QString()
-            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()  << QString("get") << QString("get");
+    QTest::newRow("testfile7") << QStringLiteral(":/testfile7.xml") << false << QString() << QString() << QString() << QString()
+            << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()  << QStringLiteral("get") << QStringLiteral("get");
 }
 
 void tst_OpenSearchReader::read()

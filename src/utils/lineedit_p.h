@@ -35,7 +35,7 @@ class SideWidget : public QWidget
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void sizeHintChanged();
 
 public:

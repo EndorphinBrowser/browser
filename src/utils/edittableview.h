@@ -40,7 +40,7 @@ public:
     EditTableView(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event);
 
-public slots:
+public Q_SLOTS:
     void removeSelected();
     void removeAll();
 };

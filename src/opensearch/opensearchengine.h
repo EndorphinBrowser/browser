@@ -35,7 +35,7 @@ class OpenSearchEngine : public QObject
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void imageChanged();
     void nameChanged();
     void suggestions(const QStringList &suggestions);
@@ -118,7 +118,7 @@ public:
     bool operator==(const OpenSearchEngine &other) const;
     bool operator<(const OpenSearchEngine &other) const;
 
-public slots:
+public Q_SLOTS:
     void requestSuggestions(const QString &searchTerm);
     void requestSearchResults(const QString &searchTerm);
 
@@ -126,7 +126,7 @@ protected:
     static QString parseTemplate(const QString &searchTerm, const QString &searchTemplate);
     void loadImage() const;
 
-private slots:
+private Q_SLOTS:
     void imageObtained();
     void suggestionsObtained();
 

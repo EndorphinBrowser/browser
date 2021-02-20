@@ -24,15 +24,16 @@
 
 #include <QListView>
 #include <QSettings>
+#include <QPushButton>
 
 AcceptLanguageDialog::AcceptLanguageDialog(QWidget *parent, Qt::WindowFlags flags)
     : QDialog(parent, flags)
 {
     setupUi(this);
-    connect(addButton, SIGNAL(clicked()), this, SLOT(addLanguage()));
-    connect(removeButton, SIGNAL(clicked()), this, SLOT(removeLanguage()));
-    connect(moveUpButton, SIGNAL(clicked()), this, SLOT(moveLanguageUp()));
-    connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveLanguageDown()));
+    connect(addButton, &QPushButton::clicked, this, &AcceptLanguageDialog::addLanguage);
+    connect(removeButton, &QPushButton::clicked, this, &AcceptLanguageDialog::removeLanguage);
+    connect(moveUpButton, &QPushButton::clicked, this, &AcceptLanguageDialog::moveLanguageUp);
+    connect(moveDownButton, &QPushButton::clicked, this, &AcceptLanguageDialog::moveLanguageDown);
     listView->setModel(&m_model);
     connect(listView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
             this, SLOT(currentChanged(const QModelIndex &, const QModelIndex &)));
@@ -52,14 +53,14 @@ QStringList AcceptLanguageDialog::expand(const QLocale::Language language)
     for (int j = 0; j < countries.size(); ++j) {
         QString languageString;
         if (countries.count() == 1) {
-            languageString = QString(QLatin1String("%1 [%2]"))
+            languageString = QString(QStringLiteral("%1 [%2]"))
                              .arg(QLocale::languageToString(language),
-                                  QLocale(language).name().split(QLatin1Char('_')).at(0));
+                                  QLocale(language).name().split(QChar('_')).at(0));
         } else {
-            languageString = QString(QLatin1String("%1/%2 [%3]"))
+            languageString = QString(QStringLiteral("%1/%2 [%3]"))
                              .arg(QLocale::languageToString(language),
                                   QLocale::countryToString(countries.at(j)),
-                                  QLocale(language, countries.at(j)).name().split(QLatin1Char('_')).join(QLatin1String("-")).toLower());
+                                  QLocale(language, countries.at(j)).name().replace('_', "-").toLower());
 
         }
         if (!allLanguages.contains(languageString))
@@ -94,19 +95,19 @@ void AcceptLanguageDialog::accept()
 void AcceptLanguageDialog::load()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("network"));
-    m_model.setStringList(settings.value(QLatin1String("acceptLanguages"), defaultAcceptList()).toStringList());
+    settings.beginGroup(QStringLiteral("network"));
+    m_model.setStringList(settings.value(QStringLiteral("acceptLanguages"), defaultAcceptList()).toStringList());
 }
 
 void AcceptLanguageDialog::save()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("network"));
+    settings.beginGroup(QStringLiteral("network"));
     QStringList result = m_model.stringList();
     if (result == defaultAcceptList() || result.isEmpty())
-        settings.remove(QLatin1String("acceptLanguages"));
+        settings.remove(QStringLiteral("acceptLanguages"));
     else
-        settings.setValue(QLatin1String("acceptLanguages"), result);
+        settings.setValue(QStringLiteral("acceptLanguages"), result);
 }
 
 /*
@@ -118,19 +119,19 @@ QByteArray AcceptLanguageDialog::httpString(const QStringList &list)
 {
     QStringList processed;
     qreal qvalue = 1.0;
-    foreach (const QString &string, list) {
-        int leftBracket = string.indexOf(QLatin1Char('['));
-        int rightBracket = string.indexOf(QLatin1Char(']'));
+    Q_FOREACH (const QString &string, list) {
+        int leftBracket = string.indexOf(QChar('['));
+        int rightBracket = string.indexOf(QChar(']'));
         QString tag = string.mid(leftBracket + 1, rightBracket - leftBracket - 1);
         if (processed.isEmpty()) {
             processed << tag;
         } else {
-            processed << QString(QLatin1String("%1; %2")).arg(tag, QString::number(qvalue, 'f', 1));
+            processed << QString(QStringLiteral("%1; %2")).arg(tag, QString::number(qvalue, 'f', 1));
         }
         if (qvalue > .1)
             qvalue -= .1;
     }
-    return processed.join(QLatin1String(", ")).toLatin1();
+    return processed.join(QStringLiteral(", ")).toLatin1();
 }
 
 void AcceptLanguageDialog::moveLanguageUp()

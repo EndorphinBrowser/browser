@@ -102,12 +102,12 @@ void SettingsDialog::loadDefaults()
     QString standardFontFamily = defaultSettings->fontFamily(QWebEngineSettings::StandardFont);
     int standardFontSize = defaultSettings->fontSize(QWebEngineSettings::DefaultFontSize);
     m_standardFont = QFont(standardFontFamily, standardFontSize);
-    standardLabel->setText(QString(QLatin1String("%1 %2")).arg(m_standardFont.family()).arg(m_standardFont.pointSize()));
+    standardLabel->setText(QString(QStringLiteral("%1 %2")).arg(m_standardFont.family()).arg(m_standardFont.pointSize()));
 
     QString fixedFontFamily = defaultSettings->fontFamily(QWebEngineSettings::FixedFont);
     int fixedFontSize = defaultSettings->fontSize(QWebEngineSettings::DefaultFixedFontSize);
     m_fixedFont = QFont(fixedFontFamily, fixedFontSize);
-    fixedLabel->setText(QString(QLatin1String("%1 %2")).arg(m_fixedFont.family()).arg(m_fixedFont.pointSize()));
+    fixedLabel->setText(QString(QStringLiteral("%1 %2")).arg(m_fixedFont.family()).arg(m_fixedFont.pointSize()));
 
     downloadsLocation->setText(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation));
 
@@ -123,18 +123,18 @@ void SettingsDialog::loadDefaults()
 void SettingsDialog::loadFromSettings()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("Settings"));
-    tabWidget->setCurrentIndex(settings.value(QLatin1String("currentTab"), 0).toInt());
+    settings.beginGroup(QStringLiteral("Settings"));
+    tabWidget->setCurrentIndex(settings.value(QStringLiteral("currentTab"), 0).toInt());
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("MainWindow"));
-    QString defaultHome = QLatin1String("about:home");
-    homeLineEdit->setText(settings.value(QLatin1String("home"), defaultHome).toString());
-    startupBehavior->setCurrentIndex(settings.value(QLatin1String("startupBehavior"), 0).toInt());
+    settings.beginGroup(QStringLiteral("MainWindow"));
+    QString defaultHome = QStringLiteral("about:home");
+    homeLineEdit->setText(settings.value(QStringLiteral("home"), defaultHome).toString());
+    startupBehavior->setCurrentIndex(settings.value(QStringLiteral("startupBehavior"), 0).toInt());
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("history"));
-    int historyExpire = settings.value(QLatin1String("historyLimit")).toInt();
+    settings.beginGroup(QStringLiteral("history"));
+    int historyExpire = settings.value(QStringLiteral("historyLimit")).toInt();
     int idx = 0;
     switch (historyExpire) {
     case 1:
@@ -164,46 +164,46 @@ void SettingsDialog::loadFromSettings()
     expireHistory->setCurrentIndex(idx);
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("urlloading"));
-    bool search = settings.value(QLatin1String("searchEngineFallback"), true).toBool();
+    settings.beginGroup(QStringLiteral("urlloading"));
+    bool search = settings.value(QStringLiteral("searchEngineFallback"), true).toBool();
     searchEngineFallback->setChecked(search);
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("downloadmanager"));
-    bool alwaysPromptForFileName = settings.value(QLatin1String("alwaysPromptForFileName"), false).toBool();
+    settings.beginGroup(QStringLiteral("downloadmanager"));
+    bool alwaysPromptForFileName = settings.value(QStringLiteral("alwaysPromptForFileName"), false).toBool();
     downloadAsk->setChecked(alwaysPromptForFileName);
-    QString downloadDirectory = settings.value(QLatin1String("downloadDirectory"), downloadsLocation->text()).toString();
+    QString downloadDirectory = settings.value(QStringLiteral("downloadDirectory"), downloadsLocation->text()).toString();
     downloadsLocation->setText(downloadDirectory);
-    externalDownloadButton->setChecked(settings.value(QLatin1String("external"), false).toBool());
-    externalDownloadPath->setText(settings.value(QLatin1String("externalPath")).toString());
+    externalDownloadButton->setChecked(settings.value(QStringLiteral("external"), false).toBool());
+    externalDownloadPath->setText(settings.value(QStringLiteral("externalPath")).toString());
     settings.endGroup();
 
     // Appearance
-    settings.beginGroup(QLatin1String("websettings"));
-    m_fixedFont = settings.value(QLatin1String("fixedFont"), m_fixedFont).value<QFont>();
-    m_standardFont = settings.value(QLatin1String("standardFont"), m_standardFont).value<QFont>();
+    settings.beginGroup(QStringLiteral("websettings"));
+    m_fixedFont = settings.value(QStringLiteral("fixedFont"), m_fixedFont).value<QFont>();
+    m_standardFont = settings.value(QStringLiteral("standardFont"), m_standardFont).value<QFont>();
 
-    standardLabel->setText(QString(QLatin1String("%1 %2")).arg(m_standardFont.family()).arg(m_standardFont.pointSize()));
-    fixedLabel->setText(QString(QLatin1String("%1 %2")).arg(m_fixedFont.family()).arg(m_fixedFont.pointSize()));
+    standardLabel->setText(QString(QStringLiteral("%1 %2")).arg(m_standardFont.family()).arg(m_standardFont.pointSize()));
+    fixedLabel->setText(QString(QStringLiteral("%1 %2")).arg(m_fixedFont.family()).arg(m_fixedFont.pointSize()));
 
-    blockPopupWindows->setChecked(settings.value(QLatin1String("blockPopupWindows"), blockPopupWindows->isChecked()).toBool());
-    enableJavascript->setChecked(settings.value(QLatin1String("enableJavascript"), enableJavascript->isChecked()).toBool());
-    enableImages->setChecked(settings.value(QLatin1String("enableImages"), enableImages->isChecked()).toBool());
-    enableLocalStorage->setChecked(settings.value(QLatin1String("enableLocalStorage"), enableLocalStorage->isChecked()).toBool());
-    userStyleSheet->setText(QString::fromUtf8(settings.value(QLatin1String("userStyleSheet")).toUrl().toEncoded()));
-    int minimumFontSize = settings.value(QLatin1String("minimumFontSize"), 0).toInt();
+    blockPopupWindows->setChecked(settings.value(QStringLiteral("blockPopupWindows"), blockPopupWindows->isChecked()).toBool());
+    enableJavascript->setChecked(settings.value(QStringLiteral("enableJavascript"), enableJavascript->isChecked()).toBool());
+    enableImages->setChecked(settings.value(QStringLiteral("enableImages"), enableImages->isChecked()).toBool());
+    enableLocalStorage->setChecked(settings.value(QStringLiteral("enableLocalStorage"), enableLocalStorage->isChecked()).toBool());
+    userStyleSheet->setText(QString::fromUtf8(settings.value(QStringLiteral("userStyleSheet")).toUrl().toEncoded()));
+    int minimumFontSize = settings.value(QStringLiteral("minimumFontSize"), 0).toInt();
     minimFontSizeCheckBox->setChecked(minimumFontSize != 0);
     if (minimumFontSize != 0)
         minimumFontSizeSpinBox->setValue(minimumFontSize);
     settings.endGroup();
     // UI Appearance
-    settings.beginGroup(QLatin1String("appearance"));
-    urlBarType->setCurrentIndex(settings.value(QLatin1String("urlBarType"), 0).toInt());
+    settings.beginGroup(QStringLiteral("appearance"));
+    urlBarType->setCurrentIndex(settings.value(QStringLiteral("urlBarType"), 0).toInt());
     settings.endGroup();
     if(urlBarType->currentIndex() == 1) {
         // Required so URL bar accepts search terms
-        settings.beginGroup(QLatin1String("urlloading"));
-        settings.setValue(QLatin1String("searchEngineFallback"), true);
+        settings.beginGroup(QStringLiteral("urlloading"));
+        settings.setValue(QStringLiteral("searchEngineFallback"), true);
         searchEngineFallback->setChecked(true);
         searchEngineFallback->setEnabled(false);
     } else {
@@ -212,58 +212,58 @@ void SettingsDialog::loadFromSettings()
     settings.endGroup();
 
     // Network
-    settings.beginGroup(QLatin1String("network"));
-    m_cacheEnabled = settings.value(QLatin1String("cacheEnabled"), true).toBool();
+    settings.beginGroup(QStringLiteral("network"));
+    m_cacheEnabled = settings.value(QStringLiteral("cacheEnabled"), true).toBool();
     networkCache->setChecked(m_cacheEnabled);
-    networkCacheMaximumSizeSpinBox->setValue(settings.value(QLatin1String("maximumCacheSize"), 50).toInt());
+    networkCacheMaximumSizeSpinBox->setValue(settings.value(QStringLiteral("maximumCacheSize"), 50).toInt());
     settings.endGroup();
 
     // Proxy
-    settings.beginGroup(QLatin1String("proxy"));
-    proxySupport->setChecked(settings.value(QLatin1String("enabled"), false).toBool());
-    proxyType->setCurrentIndex(settings.value(QLatin1String("type"), 0).toInt());
-    proxyHostName->setText(settings.value(QLatin1String("hostName")).toString());
-    proxyPort->setValue(settings.value(QLatin1String("port"), 1080).toInt());
-    proxyUserName->setText(settings.value(QLatin1String("userName")).toString());
-    proxyPassword->setText(settings.value(QLatin1String("password")).toString());
+    settings.beginGroup(QStringLiteral("proxy"));
+    proxySupport->setChecked(settings.value(QStringLiteral("enabled"), false).toBool());
+    proxyType->setCurrentIndex(settings.value(QStringLiteral("type"), 0).toInt());
+    proxyHostName->setText(settings.value(QStringLiteral("hostName")).toString());
+    proxyPort->setValue(settings.value(QStringLiteral("port"), 1080).toInt());
+    proxyUserName->setText(settings.value(QStringLiteral("userName")).toString());
+    proxyPassword->setText(settings.value(QStringLiteral("password")).toString());
     settings.endGroup();
 
     // Tabs
-    settings.beginGroup(QLatin1String("tabs"));
-    selectTabsWhenCreated->setChecked(settings.value(QLatin1String("selectNewTabs"), false).toBool());
-    confirmClosingMultipleTabs->setChecked(settings.value(QLatin1String("confirmClosingMultipleTabs"), true).toBool());
-    oneCloseButton->setChecked(settings.value(QLatin1String("oneCloseButton"),false).toBool());
-    quitAsLastTabClosed->setChecked(settings.value(QLatin1String("quitAsLastTabClosed"), true).toBool());
-    openTargetBlankLinksIn->setCurrentIndex(settings.value(QLatin1String("openTargetBlankLinksIn"), TabWidget::NewSelectedTab).toInt());
-    openLinksFromAppsIn->setCurrentIndex(settings.value(QLatin1String("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
+    settings.beginGroup(QStringLiteral("tabs"));
+    selectTabsWhenCreated->setChecked(settings.value(QStringLiteral("selectNewTabs"), false).toBool());
+    confirmClosingMultipleTabs->setChecked(settings.value(QStringLiteral("confirmClosingMultipleTabs"), true).toBool());
+    oneCloseButton->setChecked(settings.value(QStringLiteral("oneCloseButton"),false).toBool());
+    quitAsLastTabClosed->setChecked(settings.value(QStringLiteral("quitAsLastTabClosed"), true).toBool());
+    openTargetBlankLinksIn->setCurrentIndex(settings.value(QStringLiteral("openTargetBlankLinksIn"), TabWidget::NewSelectedTab).toInt());
+    openLinksFromAppsIn->setCurrentIndex(settings.value(QStringLiteral("openLinksFromAppsIn"), TabWidget::NewSelectedTab).toInt());
     settings.endGroup();
 
     // Accessibility
-    settings.beginGroup(QLatin1String("WebView"));
-    enableAccessKeys->setChecked(settings.value(QLatin1String("enableAccessKeys"), true).toBool());
+    settings.beginGroup(QStringLiteral("WebView"));
+    enableAccessKeys->setChecked(settings.value(QStringLiteral("enableAccessKeys"), true).toBool());
     settings.endGroup();
 }
 
 void SettingsDialog::saveToSettings()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("Settings"));
-    settings.setValue(QLatin1String("currentTab"), tabWidget->currentIndex());
+    settings.beginGroup(QStringLiteral("Settings"));
+    settings.setValue(QStringLiteral("currentTab"), tabWidget->currentIndex());
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("MainWindow"));
-    settings.setValue(QLatin1String("home"), homeLineEdit->text());
-    settings.setValue(QLatin1String("startupBehavior"), startupBehavior->currentIndex());
+    settings.beginGroup(QStringLiteral("MainWindow"));
+    settings.setValue(QStringLiteral("home"), homeLineEdit->text());
+    settings.setValue(QStringLiteral("startupBehavior"), startupBehavior->currentIndex());
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("downloadmanager"));
-    settings.setValue(QLatin1String("alwaysPromptForFileName"), downloadAsk->isChecked());
-    settings.setValue(QLatin1String("downloadDirectory"), downloadsLocation->text());
-    settings.setValue(QLatin1String("external"), externalDownloadButton->isChecked());
-    settings.setValue(QLatin1String("externalPath"), externalDownloadPath->text());
+    settings.beginGroup(QStringLiteral("downloadmanager"));
+    settings.setValue(QStringLiteral("alwaysPromptForFileName"), downloadAsk->isChecked());
+    settings.setValue(QStringLiteral("downloadDirectory"), downloadsLocation->text());
+    settings.setValue(QStringLiteral("external"), externalDownloadButton->isChecked());
+    settings.setValue(QStringLiteral("externalPath"), externalDownloadPath->text());
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("history"));
+    settings.beginGroup(QStringLiteral("history"));
     int historyExpire = expireHistory->currentIndex();
     int idx = -1;
     switch (historyExpire) {
@@ -289,41 +289,41 @@ void SettingsDialog::saveToSettings()
         idx = -2;
         break;
     }
-    settings.setValue(QLatin1String("historyLimit"), idx);
+    settings.setValue(QStringLiteral("historyLimit"), idx);
     settings.endGroup();
 
-    settings.beginGroup(QLatin1String("urlloading"));
-    settings.setValue(QLatin1String("searchEngineFallback"), searchEngineFallback->isChecked());
+    settings.beginGroup(QStringLiteral("urlloading"));
+    settings.setValue(QStringLiteral("searchEngineFallback"), searchEngineFallback->isChecked());
     settings.endGroup();
 
     // Appearance
-    settings.beginGroup(QLatin1String("websettings"));
-    settings.setValue(QLatin1String("fixedFont"), m_fixedFont);
-    settings.setValue(QLatin1String("standardFont"), m_standardFont);
+    settings.beginGroup(QStringLiteral("websettings"));
+    settings.setValue(QStringLiteral("fixedFont"), m_fixedFont);
+    settings.setValue(QStringLiteral("standardFont"), m_standardFont);
 
-    settings.setValue(QLatin1String("blockPopupWindows"), blockPopupWindows->isChecked());
-    settings.setValue(QLatin1String("enableJavascript"), enableJavascript->isChecked());
-    settings.setValue(QLatin1String("enableImages"), enableImages->isChecked());
-    settings.setValue(QLatin1String("enableLocalStorage"), enableLocalStorage->isChecked());
+    settings.setValue(QStringLiteral("blockPopupWindows"), blockPopupWindows->isChecked());
+    settings.setValue(QStringLiteral("enableJavascript"), enableJavascript->isChecked());
+    settings.setValue(QStringLiteral("enableImages"), enableImages->isChecked());
+    settings.setValue(QStringLiteral("enableLocalStorage"), enableLocalStorage->isChecked());
     QString userStyleSheetString = userStyleSheet->text();
     if (QFile::exists(userStyleSheetString))
-        settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromLocalFile(userStyleSheetString));
+        settings.setValue(QStringLiteral("userStyleSheet"), QUrl::fromLocalFile(userStyleSheetString));
     else
-        settings.setValue(QLatin1String("userStyleSheet"), QUrl::fromEncoded(userStyleSheetString.toUtf8()));
+        settings.setValue(QStringLiteral("userStyleSheet"), QUrl::fromEncoded(userStyleSheetString.toUtf8()));
 
     if (minimFontSizeCheckBox->isChecked())
-        settings.setValue(QLatin1String("minimumFontSize"), minimumFontSizeSpinBox->value());
+        settings.setValue(QStringLiteral("minimumFontSize"), minimumFontSizeSpinBox->value());
     else
-        settings.setValue(QLatin1String("minimumFontSize"), 0);
+        settings.setValue(QStringLiteral("minimumFontSize"), 0);
     settings.endGroup();
     // UI Appearance
-    settings.beginGroup(QLatin1String("appearance"));
-    settings.setValue(QLatin1String("urlBarType"), urlBarType->currentIndex());
+    settings.beginGroup(QStringLiteral("appearance"));
+    settings.setValue(QStringLiteral("urlBarType"), urlBarType->currentIndex());
     settings.endGroup();
     if(urlBarType->currentIndex() == 1) {
         // Required so URL bar accepts search terms
-        settings.beginGroup(QLatin1String("urlloading"));
-        settings.setValue(QLatin1String("searchEngineFallback"), true);
+        settings.beginGroup(QStringLiteral("urlloading"));
+        settings.setValue(QStringLiteral("searchEngineFallback"), true);
         searchEngineFallback->setChecked(true);
         searchEngineFallback->setEnabled(false);
     } else {
@@ -333,41 +333,41 @@ void SettingsDialog::saveToSettings()
 
 
     // Network
-    settings.beginGroup(QLatin1String("network"));
-    settings.setValue(QLatin1String("cacheEnabled"), networkCache->isChecked());
-    settings.setValue(QLatin1String("maximumCacheSize"), networkCacheMaximumSizeSpinBox->value());
+    settings.beginGroup(QStringLiteral("network"));
+    settings.setValue(QStringLiteral("cacheEnabled"), networkCache->isChecked());
+    settings.setValue(QStringLiteral("maximumCacheSize"), networkCacheMaximumSizeSpinBox->value());
     settings.endGroup();
 
     // proxy
-    settings.beginGroup(QLatin1String("proxy"));
-    settings.setValue(QLatin1String("enabled"), proxySupport->isChecked());
-    settings.setValue(QLatin1String("type"), proxyType->currentIndex());
-    settings.setValue(QLatin1String("hostName"), proxyHostName->text());
-    settings.setValue(QLatin1String("port"), proxyPort->text());
-    settings.setValue(QLatin1String("userName"), proxyUserName->text());
-    settings.setValue(QLatin1String("password"), proxyPassword->text());
+    settings.beginGroup(QStringLiteral("proxy"));
+    settings.setValue(QStringLiteral("enabled"), proxySupport->isChecked());
+    settings.setValue(QStringLiteral("type"), proxyType->currentIndex());
+    settings.setValue(QStringLiteral("hostName"), proxyHostName->text());
+    settings.setValue(QStringLiteral("port"), proxyPort->text());
+    settings.setValue(QStringLiteral("userName"), proxyUserName->text());
+    settings.setValue(QStringLiteral("password"), proxyPassword->text());
     settings.endGroup();
 
     // Tabs
-    settings.beginGroup(QLatin1String("tabs"));
-    settings.setValue(QLatin1String("selectNewTabs"), selectTabsWhenCreated->isChecked());
-    settings.setValue(QLatin1String("confirmClosingMultipleTabs"), confirmClosingMultipleTabs->isChecked());
-    settings.setValue(QLatin1String("oneCloseButton"), oneCloseButton->isChecked());
-    settings.setValue(QLatin1String("quitAsLastTabClosed"), quitAsLastTabClosed->isChecked());
-    settings.setValue(QLatin1String("openTargetBlankLinksIn"), openTargetBlankLinksIn->currentIndex());
-    settings.setValue(QLatin1String("openLinksFromAppsIn"), openLinksFromAppsIn->currentIndex());
+    settings.beginGroup(QStringLiteral("tabs"));
+    settings.setValue(QStringLiteral("selectNewTabs"), selectTabsWhenCreated->isChecked());
+    settings.setValue(QStringLiteral("confirmClosingMultipleTabs"), confirmClosingMultipleTabs->isChecked());
+    settings.setValue(QStringLiteral("oneCloseButton"), oneCloseButton->isChecked());
+    settings.setValue(QStringLiteral("quitAsLastTabClosed"), quitAsLastTabClosed->isChecked());
+    settings.setValue(QStringLiteral("openTargetBlankLinksIn"), openTargetBlankLinksIn->currentIndex());
+    settings.setValue(QStringLiteral("openLinksFromAppsIn"), openLinksFromAppsIn->currentIndex());
     settings.endGroup();
 
     // Accessibility
-    settings.beginGroup(QLatin1String("WebView"));
-    settings.setValue(QLatin1String("enableAccessKeys"), enableAccessKeys->isChecked());
+    settings.beginGroup(QStringLiteral("WebView"));
+    settings.setValue(QStringLiteral("enableAccessKeys"), enableAccessKeys->isChecked());
     settings.endGroup();
 
     BrowserApplication::instance()->loadSettings();
     BrowserApplication::historyManager()->loadSettings();
 
     QList<BrowserMainWindow*> list = BrowserApplication::instance()->mainWindows();
-    foreach (BrowserMainWindow *mainWindow, list) {
+    Q_FOREACH (BrowserMainWindow *mainWindow, list) {
         mainWindow->tabWidget()->loadSettings();
     }
 }
@@ -387,8 +387,8 @@ void SettingsDialog::chooseDownloadDirectory()
 void SettingsDialog::chooseDownloadProgram()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Choose Program"), externalDownloadPath->text());
-    if (fileName.contains(QLatin1Char(' ')))
-        fileName = QString(QLatin1String("\"%1\"")).arg(fileName);
+    if (fileName.contains(QChar(' ')))
+        fileName = QString(QStringLiteral("\"%1\"")).arg(fileName);
     externalDownloadPath->setText(fileName);
 }
 
@@ -398,7 +398,7 @@ void SettingsDialog::chooseFont()
     QFont font = QFontDialog::getFont(&ok, m_standardFont, this);
     if (ok) {
         m_standardFont = font;
-        standardLabel->setText(QString(QLatin1String("%1 %2")).arg(font.family()).arg(font.pointSize()));
+        standardLabel->setText(QString(QStringLiteral("%1 %2")).arg(font.family()).arg(font.pointSize()));
     }
 }
 
@@ -408,7 +408,7 @@ void SettingsDialog::chooseFixedFont()
     QFont font = QFontDialog::getFont(&ok, m_fixedFont, this);
     if (ok) {
         m_fixedFont = font;
-        fixedLabel->setText(QString(QLatin1String("%1 %2")).arg(font.family()).arg(font.pointSize()));
+        fixedLabel->setText(QString(QStringLiteral("%1 %2")).arg(font.family()).arg(font.pointSize()));
     }
 }
 

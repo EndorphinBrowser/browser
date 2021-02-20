@@ -42,8 +42,8 @@ static HistoryEntry formatEntry(QByteArray url, QByteArray title, qlonglong prda
 int main(int argc, char **argv)
 {
     SingleApplication application(argc, argv);
-    QCoreApplication::setOrganizationDomain(QLatin1String("EndorphinBrowser.gitlab.io/"));
-    QCoreApplication::setApplicationName(QLatin1String("Endorphin"));
+    QCoreApplication::setOrganizationDomain(QStringLiteral("EndorphinBrowser.gitlab.io/"));
+    QCoreApplication::setApplicationName(QStringLiteral("Endorphin"));
 
     if (application.sendMessage(QByteArray())) {
         qWarning() << "To prevent the loss of any history please exit Endorphin while this is tool is being run";

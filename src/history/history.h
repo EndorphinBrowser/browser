@@ -77,7 +77,7 @@ class HistoryModel : public QAbstractTableModel
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void historyReset();
     void historyGoingToChange();
     void entryAdded();
@@ -141,7 +141,7 @@ public:
 
     void recalculateFrecencies();
 
-private slots:
+private Q_SLOTS:
     void sourceReset();
     void sourceDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
     void sourceRowsInserted(const QModelIndex &parent, int start, int end);
@@ -218,7 +218,7 @@ class HistoryMenu : public ModelMenu
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void openUrl(const QUrl &url, const QString &title);
 
 public:
@@ -229,7 +229,7 @@ protected:
     bool prePopulated();
     void postPopulated();
 
-private slots:
+private Q_SLOTS:
     void activated(const QModelIndex &index);
     void showHistoryDialog();
     void clearHistoryDialog();
@@ -264,7 +264,7 @@ public:
 
     void setSourceModel(QAbstractItemModel *sourceModel);
 
-private slots:
+private Q_SLOTS:
     void sourceReset();
     void sourceRowsInserted(const QModelIndex &parent, int start, int end);
     void sourceRowsRemoved(const QModelIndex &parent, int start, int end);
@@ -283,7 +283,7 @@ class HistoryDialog : public QDialog, public Ui_HistoryDialog
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void openUrl(const QUrl &url, const QString &title);
 
 public:
@@ -293,7 +293,7 @@ public:
     HistoryDialog(QWidget *parent, HistoryManager *history);
 #endif
 
-private slots:
+private Q_SLOTS:
     void customContextMenuRequested(const QPoint &pos);
     void open();
     void copy();

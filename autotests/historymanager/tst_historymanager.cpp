@@ -31,13 +31,13 @@ class tst_HistoryManager : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void history_data();
     void history();
     void addHistoryEntry_data();
@@ -234,8 +234,8 @@ void tst_HistoryManager::updateHistoryEntry_data()
     QTest::addColumn<QString>("title");
 
     QTest::newRow("null") << HistoryList() << QUrl() << QString();
-    QTest::newRow("one") << (HistoryList() << HistoryEntry()) << QUrl() << QString("foo");
-    QTest::newRow("two") << (HistoryList() << HistoryEntry() << HistoryEntry("http://foo.com")) << QUrl() << QString("foo");
+    QTest::newRow("one") << (HistoryList() << HistoryEntry()) << QUrl() << QStringLiteral("foo");
+    QTest::newRow("two") << (HistoryList() << HistoryEntry() << HistoryEntry("http://foo.com")) << QUrl() << QStringLiteral("foo");
 }
 
 // public void updateHistoryEntry(QUrl const &url, QString const title)

@@ -123,15 +123,15 @@ void PermissionBar::requestPermission(const QUrl &securityOrigin, QWebEnginePage
 
 void PermissionBar::permissionDenied()
 {
-    emit featurePermissionProvided(m_securityOrigin, m_feature, QWebEnginePage::PermissionDeniedByUser);
+    Q_EMIT featurePermissionProvided(m_securityOrigin, m_feature, QWebEnginePage::PermissionDeniedByUser);
 }
 
 void PermissionBar::permissionGranted()
 {
-    emit featurePermissionProvided(m_securityOrigin, m_feature, QWebEnginePage::PermissionGrantedByUser);
+    Q_EMIT featurePermissionProvided(m_securityOrigin, m_feature, QWebEnginePage::PermissionGrantedByUser);
 }
 
 void PermissionBar::permissionUnknown()
 {
-    emit featurePermissionProvided(m_securityOrigin, m_feature, QWebEnginePage::PermissionUnknown);
+    Q_EMIT featurePermissionProvided(m_securityOrigin, m_feature, QWebEnginePage::PermissionUnknown);
 }

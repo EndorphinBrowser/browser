@@ -98,7 +98,7 @@ public:
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
-private slots:
+private Q_SLOTS:
     void updateFilter();
 
 private:

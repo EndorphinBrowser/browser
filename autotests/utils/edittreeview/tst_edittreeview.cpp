@@ -26,13 +26,13 @@ class tst_EditTreeView : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void edittreeview_data();
     void edittreeview();
 
@@ -56,7 +56,7 @@ public:
         for (int i = 0; i < 4; ++i) {
             QStandardItem *item = 0;
             for (int j = 0; j < 4; ++j) {
-                item = new QStandardItem(QString("item %0").arg(j));
+                item = new QStandardItem(QStringLiteral("item %0").arg(j));
                 parentItem->appendRow(item);
             }
             parentItem = item;

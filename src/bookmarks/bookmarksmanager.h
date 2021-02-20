@@ -33,7 +33,7 @@ class BookmarksManager : public QObject
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void entryAdded(BookmarkNode *item);
     void entryRemoved(BookmarkNode *parent, int row, BookmarkNode *item);
     void entryChanged(BookmarkNode *item);
@@ -58,11 +58,11 @@ public:
         return &m_commands;
     }
 
-public slots:
+public Q_SLOTS:
     void importBookmarks();
     void exportBookmarks();
 
-private slots:
+private Q_SLOTS:
     void save() const;
 
 private:

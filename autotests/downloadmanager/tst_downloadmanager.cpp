@@ -30,13 +30,13 @@ class tst_DownloadManager : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void downloadmanager_data();
     void downloadmanager();
     void cleanupButton_data();

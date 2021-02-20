@@ -49,7 +49,7 @@ class LineEdit : public QLineEdit
     Q_OBJECT
     Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText NOTIFY inactiveTextChanged)
 
-signals:
+Q_SIGNALS:
     void inactiveTextChanged();
 
 public:
@@ -75,7 +75,7 @@ protected:
     void resizeEvent(QResizeEvent *event);
     bool event(QEvent *event);
 
-protected slots:
+protected Q_SLOTS:
     void updateTextMargins();
 
 private:

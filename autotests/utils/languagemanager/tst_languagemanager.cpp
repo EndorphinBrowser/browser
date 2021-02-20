@@ -36,13 +36,13 @@ class tst_LanguageManager : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void languagemanager_data();
     void languagemanager();
 
@@ -59,7 +59,7 @@ class SubLanguageManager : public LanguageManager
 {
 public:
     SubLanguageManager() : LanguageManager() {
-        addLocaleDirectory(qApp->applicationDirPath() + QLatin1String("/.qm/locale"));
+        addLocaleDirectory(qApp->applicationDirPath() + QStringLiteral("/.qm/locale"));
     }
 
 };
@@ -168,7 +168,7 @@ void tst_LanguageManager::setCurrentLanguage_data()
     QTest::addColumn<QString>("language");
     QTest::addColumn<bool>("success");
     QTest::addColumn<QString>("result");
-    QTest::newRow("null-foo") << QString("foo") << false << fallbackLanguage;
+    QTest::newRow("null-foo") << QStringLiteral("foo") << false << fallbackLanguage;
     QTest::newRow("null-null") << QString() << false << fallbackLanguage;
 
     QString validLanguage = manager.languages().value(0);
@@ -187,7 +187,7 @@ void tst_LanguageManager::setCurrentLanguage()
 
     SubLanguageManager manager;
     QString initialLanguage = manager.currentLanguage();
-    QSignalSpy spy(&manager, SIGNAL(languageChanged(const QString &)));
+    QSignalSpy spy(&manager, &LanguageManager::languageChanged);
 
     TestWidget widget;
     widget.retranslate = false;

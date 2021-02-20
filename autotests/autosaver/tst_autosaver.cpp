@@ -24,7 +24,7 @@ class tst_AutoSaver : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
@@ -32,7 +32,7 @@ public slots:
 
     void save();
 
-private slots:
+private Q_SLOTS:
     void AutoSaver_data();
     void AutoSaver();
     void changeOccurred_data();
@@ -53,7 +53,7 @@ class TestClass : public QObject
 {
 Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void saveCalled();
 
 public:
@@ -68,9 +68,9 @@ public:
 
     SubAutoSaver *AutoSaver;
 
-public slots:
+public Q_SLOTS:
     void save() {
-        emit saveCalled();
+        Q_EMIT saveCalled();
     }
 };
 

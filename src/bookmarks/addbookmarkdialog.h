@@ -104,7 +104,7 @@ public:
 
     BookmarkNode *addedNode() const;
 
-private slots:
+private Q_SLOTS:
     void accept();
 
 private:

@@ -32,7 +32,7 @@ class PlainTextEditSearch : public SearchBar
 public:
     PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void findNext();
     void findPrevious();
 

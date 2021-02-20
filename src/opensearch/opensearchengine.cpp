@@ -83,15 +83,15 @@
 */
 OpenSearchEngine::OpenSearchEngine(QObject *parent)
     : QObject(parent)
-    , m_searchMethod(QLatin1String("get"))
-    , m_suggestionsMethod(QLatin1String("get"))
+    , m_searchMethod(QStringLiteral("get"))
+    , m_suggestionsMethod(QStringLiteral("get"))
     , m_networkAccessManager(nullptr)
     , m_suggestionsReply(nullptr)
     , m_scriptEngine(nullptr)
     , m_delegate(nullptr)
 {
-    m_requestMethods.insert(QLatin1String("get"), QNetworkAccessManager::GetOperation);
-    m_requestMethods.insert(QLatin1String("post"), QNetworkAccessManager::PostOperation);
+    m_requestMethods.insert(QStringLiteral("get"), QNetworkAccessManager::GetOperation);
+    m_requestMethods.insert(QStringLiteral("post"), QNetworkAccessManager::PostOperation);
 }
 
 /*!
@@ -107,17 +107,17 @@ QString OpenSearchEngine::parseTemplate(const QString &searchTerm, const QString
 {
     QString language = QLocale().name();
     // Simple conversion to RFC 3066.
-    language = language.replace(QLatin1Char('_'), QLatin1Char('-'));
+    language = language.replace(QChar('_'), QChar('-'));
 
     QString result = searchTemplate;
-    result.replace(QLatin1String("{count}"), QLatin1String("20"));
-    result.replace(QLatin1String("{startIndex}"), QLatin1String("0"));
-    result.replace(QLatin1String("{startPage}"), QLatin1String("0"));
-    result.replace(QLatin1String("{language}"), language);
-    result.replace(QLatin1String("{inputEncoding}"), QLatin1String("UTF-8"));
-    result.replace(QLatin1String("{outputEncoding}"), QLatin1String("UTF-8"));
-    result.replace(QRegExp(QLatin1String("\\{([^\\}]*:|)source\\??\\}")), QCoreApplication::applicationName());
-    result.replace(QLatin1String("{searchTerms}"), QLatin1String(QUrl::toPercentEncoding(searchTerm)));
+    result.replace(QStringLiteral("{count}"), QStringLiteral("20"));
+    result.replace(QStringLiteral("{startIndex}"), QStringLiteral("0"));
+    result.replace(QStringLiteral("{startPage}"), QStringLiteral("0"));
+    result.replace(QStringLiteral("{language}"), language);
+    result.replace(QStringLiteral("{inputEncoding}"), QStringLiteral("UTF-8"));
+    result.replace(QStringLiteral("{outputEncoding}"), QStringLiteral("UTF-8"));
+    result.replace(QRegExp(QStringLiteral("\\{([^\\}]*:|)source\\??\\}")), QCoreApplication::applicationName());
+    result.replace(QStringLiteral("{searchTerms}"), QString(QUrl::toPercentEncoding(searchTerm)));
 
     return result;
 }
@@ -208,7 +208,7 @@ QUrl OpenSearchEngine::searchUrl(const QString &searchTerm) const
     QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_searchUrlTemplate).toUtf8());
     QUrlQuery query(retVal.query());
 
-    if (m_searchMethod != QLatin1String("post")) {
+    if (m_searchMethod != QStringLiteral("post")) {
         Parameters::const_iterator end = m_searchParameters.constEnd();
         Parameters::const_iterator i = m_searchParameters.constBegin();
         for (; i != end; ++i)
@@ -262,7 +262,7 @@ QUrl OpenSearchEngine::suggestionsUrl(const QString &searchTerm) const
     QUrl retVal = QUrl::fromEncoded(parseTemplate(searchTerm, m_suggestionsUrlTemplate).toUtf8());
     QUrlQuery query(retVal.query());
 
-    if (m_suggestionsMethod != QLatin1String("post")) {
+    if (m_suggestionsMethod != QStringLiteral("post")) {
         Parameters::const_iterator end = m_suggestionsParameters.constEnd();
         Parameters::const_iterator i = m_suggestionsParameters.constBegin();
         for (; i != end; ++i)
@@ -390,7 +390,7 @@ void OpenSearchEngine::imageObtained()
         return;
 
     m_image.loadFromData(response);
-    emit imageChanged();
+    Q_EMIT imageChanged();
 }
 
 /*!
@@ -415,13 +415,13 @@ void OpenSearchEngine::setImage(const QImage &image)
         QBuffer imageBuffer;
         imageBuffer.open(QBuffer::ReadWrite);
         if (image.save(&imageBuffer, "PNG")) {
-            m_imageUrl = QString(QLatin1String("data:image/png;base64,%1"))
-                         .arg(QLatin1String(imageBuffer.buffer().toBase64()));
+            m_imageUrl = QString(QStringLiteral("data:image/png;base64,%1"))
+                         .arg(QString(imageBuffer.buffer().toBase64()));
         }
     }
 
     m_image = image;
-    emit imageChanged();
+    Q_EMIT imageChanged();
 }
 
 /*!
@@ -452,7 +452,7 @@ bool OpenSearchEngine::operator<(const OpenSearchEngine &other) const
 /*!
     Requests contextual suggestions on the search engine, for a given \a searchTerm.
 
-    If succeeded, suggestions() signal will be emitted once the suggestions are received.
+    If succeeded, suggestions() signal will be Q_EMITted once the suggestions are received.
 
     \note To be able to request suggestions, you need to provide a network access manager,
           which will be used for network operations.
@@ -477,16 +477,16 @@ void OpenSearchEngine::requestSuggestions(const QString &searchTerm)
     }
 
     Q_ASSERT(m_requestMethods.contains(m_suggestionsMethod));
-    if (m_suggestionsMethod == QLatin1String("get")) {
+    if (m_suggestionsMethod == QStringLiteral("get")) {
         m_suggestionsReply = m_networkAccessManager->get(QNetworkRequest(suggestionsUrl(searchTerm)));
     } else {
         QStringList parameters;
         Parameters::const_iterator end = m_suggestionsParameters.constEnd();
         Parameters::const_iterator i = m_suggestionsParameters.constBegin();
         for (; i != end; ++i)
-            parameters.append(i->first + QLatin1String("=") + i->second);
+            parameters.append(i->first + QStringLiteral("=") + i->second);
 
-        QByteArray data = parameters.join(QLatin1String("&")).toUtf8();
+        QByteArray data = parameters.join(QStringLiteral("&")).toUtf8();
         m_suggestionsReply = m_networkAccessManager->post(QNetworkRequest(suggestionsUrl(searchTerm)), data);
     }
 
@@ -519,9 +519,9 @@ void OpenSearchEngine::requestSearchResults(const QString &searchTerm)
         Parameters::const_iterator end = m_searchParameters.constEnd();
         Parameters::const_iterator i = m_searchParameters.constBegin();
         for (; i != end; ++i)
-            parameters.append(i->first + QLatin1String("=") + i->second);
+            parameters.append(i->first + QStringLiteral("=") + i->second);
 
-        data = parameters.join(QLatin1String("&")).toUtf8();
+        data = parameters.join(QStringLiteral("&")).toUtf8();
     }
 
     m_delegate->performSearchRequest(request, operation, data);
@@ -539,7 +539,7 @@ void OpenSearchEngine::suggestionsObtained()
     if (response.isEmpty())
         return;
 
-    if (!response.startsWith(QLatin1Char('[')) || !response.endsWith(QLatin1Char(']')))
+    if (!response.startsWith(QChar('[')) || !response.endsWith(QChar(']')))
         return;
 
     if (!m_scriptEngine)
@@ -558,7 +558,7 @@ void OpenSearchEngine::suggestionsObtained()
 
     suggestionsList = responseParts.property(1).toVariant().toStringList();
 
-    emit suggestions(suggestionsList);
+    Q_EMIT suggestions(suggestionsList);
 }
 
 /*!
@@ -598,7 +598,7 @@ void OpenSearchEngine::setDelegate(OpenSearchEngineDelegate *delegate)
 /*!
     \fn void OpenSearchEngine::imageChanged()
 
-    This signal is emitted whenever the image of the engine changes.
+    This signal is Q_EMITted whenever the image of the engine changes.
 
     \sa image(), imageUrl()
 */
@@ -606,7 +606,7 @@ void OpenSearchEngine::setDelegate(OpenSearchEngineDelegate *delegate)
 /*!
     \fn void OpenSearchEngine::suggestions(const QStringList &suggestions)
 
-    This signal is emitted whenever new contextual suggestions have been provided
+    This signal is Q_EMITted whenever new contextual suggestions have been provided
     by the search engine. To request suggestions, use requestSuggestions().
     The suggestion set is specified by \a suggestions.
 

@@ -26,13 +26,13 @@ class tst_OpenSearchWriter : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void write_data();
     void write();
 };
@@ -73,20 +73,20 @@ void tst_OpenSearchWriter::write_data()
     QTest::addColumn<QString>("suggestionsMethod");
     QTest::addColumn<QString>("fileName");
 
-    QTest::newRow("testfile1") << QString("Foo Bar") << QString("Bar Foo") << QString("http://foobar.barfoo/search") << QString()
+    QTest::newRow("testfile1") << QStringLiteral("Foo Bar") << QStringLiteral("Bar Foo") << QStringLiteral("http://foobar.barfoo/search") << QString()
             << QString() << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()
-            << QString() << QString("get") << QString(":/testfile1.xml");
+            << QString() << QStringLiteral("get") << QStringLiteral(":/testfile1.xml");
 
-    QTest::newRow("testfile2") << QString("Endorphin!") << QString("a cross platform web browser built using Qt and WebKit")
-            << QString("http://foobar.barfoo/search") << QString("http://foobar.barfoo/suggest") << QString()
+    QTest::newRow("testfile2") << QStringLiteral("Endorphin!") << QStringLiteral("a cross platform web browser built using Qt and WebKit")
+            << QStringLiteral("http://foobar.barfoo/search") << QStringLiteral("http://foobar.barfoo/suggest") << QString()
             << OpenSearchEngine::Parameters() << OpenSearchEngine::Parameters()
-            << QString("get") << QString("post") << QString(":/testfile2.xml");
+            << QStringLiteral("get") << QStringLiteral("post") << QStringLiteral(":/testfile2.xml");
 
-    QTest::newRow("testile3") << QString("Foo Bar") << QString("Bar Foo") << QString("http://foobar.barfoo/search")
-            << QString("http://foobar.barfoo/suggest") << QString()
+    QTest::newRow("testile3") << QStringLiteral("Foo Bar") << QStringLiteral("Bar Foo") << QStringLiteral("http://foobar.barfoo/search")
+            << QStringLiteral("http://foobar.barfoo/suggest") << QString()
             << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter("q", "{searchTerms}") << OpenSearchEngine::Parameter("a", "foo"))
             << (OpenSearchEngine::Parameters() << OpenSearchEngine::Parameter("q", "{searchTerms}"))
-            << QString("post") << QString("foo") << QString(":/testfile3.xml");
+            << QStringLiteral("post") << QStringLiteral("foo") << QStringLiteral(":/testfile3.xml");
 }
 
 void tst_OpenSearchWriter::write()

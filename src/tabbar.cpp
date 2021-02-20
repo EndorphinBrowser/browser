@@ -99,7 +99,7 @@ TabBar::TabBar(QWidget *parent)
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(contextMenuRequested(const QPoint &)));
 
-    QString alt = QLatin1String("Ctrl+%1");
+    QString alt = QStringLiteral("Ctrl+%1");
     for (int i = 0; i < 9; ++i) {
         int key = i + 1;
         TabShortcut *tabShortCut = new TabShortcut(i, alt.arg(key), this);
@@ -199,7 +199,7 @@ void TabBar::cloneTab()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         int index = action->data().toInt();
-        emit cloneTab(index);
+        Q_EMIT cloneTab(index);
     }
 }
 
@@ -207,7 +207,7 @@ void TabBar::closeTab()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         int index = action->data().toInt();
-        emit closeTab(index);
+        Q_EMIT closeTab(index);
     }
 }
 
@@ -215,7 +215,7 @@ void TabBar::closeOtherTabs()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         int index = action->data().toInt();
-        emit closeOtherTabs(index);
+        Q_EMIT closeOtherTabs(index);
     }
 }
 
@@ -223,7 +223,7 @@ void TabBar::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton
             && tabAt(event->pos()) == -1) {
-        emit newTab();
+        Q_EMIT newTab();
         return;
     }
     QTabBar::mouseDoubleClickEvent(event);
@@ -234,12 +234,12 @@ void TabBar::mouseReleaseEvent(QMouseEvent *event)
     if (event->button() == Qt::MidButton) {
         int index = tabAt(event->pos());
         if (index != -1) {
-            emit closeTab(index);
+            Q_EMIT closeTab(index);
             return;
         } else {
             QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
             if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty())
-                emit loadUrl(url, TabWidget::NewTab);
+                Q_EMIT loadUrl(url, TabWidget::NewTab);
         }
     }
 
@@ -269,7 +269,7 @@ void TabBar::mouseMoveEvent(QMouseEvent *event)
             urls.append(url);
             mimeData->setUrls(urls);
             mimeData->setText(tabText(index));
-            mimeData->setData(QLatin1String("action"), "tab-reordering");
+            mimeData->setData(QStringLiteral("action"), "tab-reordering");
             drag->setMimeData(mimeData);
             drag->exec();
         }
@@ -300,9 +300,9 @@ void TabBar::dropEvent(QDropEvent *event)
         int index = tabAt(event->pos());
         if (-1 != index) {
             setCurrentIndex(index);
-            emit loadUrl(url, TabWidget::CurrentTab);
+            Q_EMIT loadUrl(url, TabWidget::CurrentTab);
         } else {
-            emit loadUrl(url, TabWidget::NewSelectedTab);
+            Q_EMIT loadUrl(url, TabWidget::NewSelectedTab);
         }
     }
 
@@ -313,14 +313,14 @@ QSize TabBar::tabSizeHint(int index) const
 {
     QSize sizeHint = QTabBar::tabSizeHint(index);
     QFontMetrics fm = fontMetrics();
-    return sizeHint.boundedTo(QSize(fm.horizontalAdvance(QLatin1Char('M')) * 18, sizeHint.height()));
+    return sizeHint.boundedTo(QSize(fm.horizontalAdvance(QChar('M')) * 18, sizeHint.height()));
 }
 
 void TabBar::reloadTab()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         int index = action->data().toInt();
-        emit reloadTab(index);
+        Q_EMIT reloadTab(index);
     }
 }
 

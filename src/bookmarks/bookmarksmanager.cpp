@@ -123,14 +123,14 @@ void BookmarksManager::load()
     m_loaded = true;
 
     QString dir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/data/Endorphin";
-    QString bookmarkFile = dir + QLatin1String("/bookmarks.xbel");
+    QString bookmarkFile = dir + QStringLiteral("/bookmarks.xbel");
     if (!QFile::exists(bookmarkFile))
-        bookmarkFile = QLatin1String(":defaultbookmarks.xbel");
+        bookmarkFile = QStringLiteral(":defaultbookmarks.xbel");
 
     XbelReader reader;
     m_bookmarkRootNode = reader.read(bookmarkFile);
     if (reader.error() != QXmlStreamReader::NoError) {
-        QMessageBox::warning(nullptr, QLatin1String("Loading Bookmark"),
+        QMessageBox::warning(nullptr, QStringLiteral("Loading Bookmark"),
                              tr("Error when loading bookmarks on line %1, column %2:\n"
                                 "%3").arg(reader.lineNumber()).arg(reader.columnNumber()).arg(reader.errorString()));
     }
@@ -141,7 +141,7 @@ void BookmarksManager::load()
         if (node->type() == BookmarkNode::Folder) {
             // Automatically convert
             if ((node->title == tr("Toolbar Bookmarks")
-                    || node->title == QLatin1String(BOOKMARKBAR)) && !m_toolbar) {
+                    || node->title == QString(BOOKMARKBAR)) && !m_toolbar) {
                 node->title = tr(BOOKMARKBAR);
 
                 m_toolbar = node;
@@ -149,7 +149,7 @@ void BookmarksManager::load()
 
             // Automatically convert
             if ((node->title == tr("Menu")
-                    || node->title == QLatin1String(BOOKMARKMENU)) && !m_menu) {
+                    || node->title == QString(BOOKMARKMENU)) && !m_menu) {
                 node->title = tr(BOOKMARKMENU);
                 m_menu = node;
             }
@@ -184,10 +184,10 @@ void BookmarksManager::save() const
 
     XbelWriter writer;
     QString dir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/data/Endorphin";
-    QString bookmarkFile = dir + QLatin1String("/bookmarks.xbel");
+    QString bookmarkFile = dir + QStringLiteral("/bookmarks.xbel");
     // Save root folder titles in English (i.e. not localized)
-    m_menu->title = QLatin1String(BOOKMARKMENU);
-    m_toolbar->title = QLatin1String(BOOKMARKBAR);
+    m_menu->title = QString(BOOKMARKMENU);
+    m_toolbar->title = QString(BOOKMARKBAR);
     if (!writer.write(bookmarkFile, m_bookmarkRootNode))
         qWarning() << "BookmarkManager: error saving to" << bookmarkFile;
     // Restore localized titles
@@ -278,18 +278,18 @@ BookmarksModel *BookmarksManager::bookmarksModel()
 void BookmarksManager::importBookmarks()
 {
     QStringList supportedFormats;
-    supportedFormats << tr("XBEL bookmarks").append(QLatin1String("(*.xbel *.xml)"));
-    supportedFormats << tr("HTML Netscape bookmarks").append(QLatin1String("(*.html)"));
+    supportedFormats << tr("XBEL bookmarks").append(QStringLiteral("(*.xbel *.xml)"));
+    supportedFormats << tr("HTML Netscape bookmarks").append(QStringLiteral("(*.html)"));
 
     QString fileName = QFileDialog::getOpenFileName(nullptr, tr("Open File"),
-                       QString(), supportedFormats.join(QLatin1String(";;")));
+                       QString(), supportedFormats.join(QStringLiteral(";;")));
     if (fileName.isEmpty())
         return;
 
     XbelReader reader;
     BookmarkNode *importRootNode = nullptr;
-    if (fileName.endsWith(QLatin1String(".html"))) {
-        QString program = QLatin1String("htmlToXBel");
+    if (fileName.endsWith(QStringLiteral(".html"))) {
+        QString program = QStringLiteral("htmlToXBel");
         QStringList arguments;
         arguments << fileName;
         QProcess process;
@@ -311,7 +311,7 @@ void BookmarksManager::importBookmarks()
         importRootNode = reader.read(fileName);
     }
     if (reader.error() != QXmlStreamReader::NoError) {
-        QMessageBox::warning(nullptr, QLatin1String("Loading Bookmark"),
+        QMessageBox::warning(nullptr, QStringLiteral("Loading Bookmark"),
                              tr("Error when loading bookmarks on line %1, column %2:\n"
                                 "%3").arg(reader.lineNumber()).arg(reader.columnNumber()).arg(reader.errorString()));
         delete importRootNode;
@@ -327,7 +327,7 @@ void BookmarksManager::exportBookmarks()
 {
     QString fileName = QFileDialog::getSaveFileName(nullptr, tr("Save File"),
                        tr("%1 Bookmarks.xbel").arg(QCoreApplication::applicationName()),
-                       tr("XBEL bookmarks").append(QLatin1String("(*.xbel *.xml)")));
+                       tr("XBEL bookmarks").append(QStringLiteral("(*.xbel *.xml)")));
     if (fileName.isEmpty())
         return;
 
@@ -356,14 +356,14 @@ RemoveBookmarksCommand::~RemoveBookmarksCommand()
 void RemoveBookmarksCommand::undo()
 {
     m_parent->add(m_node, m_row);
-    emit m_bookmarkManagaer->entryAdded(m_node);
+    Q_EMIT m_bookmarkManagaer->entryAdded(m_node);
     m_done = false;
 }
 
 void RemoveBookmarksCommand::redo()
 {
     m_parent->remove(m_node);
-    emit m_bookmarkManagaer->entryRemoved(m_parent, m_row, m_node);
+    Q_EMIT m_bookmarkManagaer->entryRemoved(m_parent, m_row, m_node);
     m_done = true;
 }
 
@@ -398,7 +398,7 @@ void ChangeBookmarkCommand::undo()
         m_node->title = m_oldValue;
     else
         m_node->url = m_oldValue;
-    emit m_bookmarkManagaer->entryChanged(m_node);
+    Q_EMIT m_bookmarkManagaer->entryChanged(m_node);
 }
 
 void ChangeBookmarkCommand::redo()
@@ -407,6 +407,6 @@ void ChangeBookmarkCommand::redo()
         m_node->title = m_newValue;
     else
         m_node->url = m_newValue;
-    emit m_bookmarkManagaer->entryChanged(m_node);
+    Q_EMIT m_bookmarkManagaer->entryChanged(m_node);
 }
 

@@ -78,9 +78,9 @@ QVariant LocationCompletionModel::data(const QModelIndex &index, int role) const
     // what the user typed; if not, nothing matches
     if (role == LocationCompletionRole && index.isValid()) {
         if (isValid())
-            return QLatin1String("a");
+            return QStringLiteral("a");
         else
-            return QLatin1String("b");
+            return QStringLiteral("b");
     }
 
     if (role == Qt::FontRole && index.column() == 1) {
@@ -107,7 +107,7 @@ void LocationCompletionModel::setSearchString(const QString &str)
 
     m_searchString = str;
     m_searchMatcher.setPattern(str);
-    m_wordMatcher.setPattern(QLatin1String("\\b") + QRegExp::escape(str));
+    m_wordMatcher.setPattern(QStringLiteral("\\b") + QRegExp::escape(str));
     invalidateFilter();
 }
 
@@ -124,7 +124,7 @@ void LocationCompletionModel::setValid(bool b)
     m_isValid = b;
 
     // tell the LocationCompleter that we've changed
-    emit dataChanged(index(0, 0), index(0, rowCount() - 1));
+    Q_EMIT dataChanged(index(0, 0), index(0, rowCount() - 1));
 }
 
 bool LocationCompletionModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
@@ -208,7 +208,7 @@ QString LocationCompleter::pathFromIndex(const QModelIndex &index) const
 QStringList LocationCompleter::splitPath(const QString &path) const
 {
     if (path == m_searchString)
-        return QStringList() << QLatin1String("a");
+        return QStringList() << QStringLiteral("a");
 
     // queue an update to our search string
     // We will wait a bit so that if the user is quickly typing,
@@ -229,7 +229,7 @@ QStringList LocationCompleter::splitPath(const QString &path) const
 
     // the actual filtering is done by the HistoryCompletionModel; we just
     // return a short dummy here so that QCompleter thinks we match everything
-    return QStringList() << QLatin1String("a");
+    return QStringList() << QStringLiteral("a");
 }
 
 bool LocationCompleter::eventFilter(QObject *obj, QEvent *event)

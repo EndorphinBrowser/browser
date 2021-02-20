@@ -38,13 +38,13 @@ class tst_OpenSearchEngine : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void opensearchengine_data();
     void opensearchengine();
 
@@ -154,7 +154,7 @@ public:
     {
     }
 
-private slots:
+private Q_SLOTS:
     void sendSuggestions()
     {
         // Publish result
@@ -163,10 +163,10 @@ private slots:
         setAttribute(QNetworkRequest::HttpStatusCodeAttribute, 200);
         setAttribute(QNetworkRequest::HttpReasonPhraseAttribute, QByteArray("Ok"));
 
-        emit metaDataChanged();
-        emit readyRead();
-        emit downloadProgress(expectedResult.size(), expectedResult.size());
-        emit finished();
+        Q_EMIT metaDataChanged();
+        Q_EMIT readyRead();
+        Q_EMIT downloadProgress(expectedResult.size(), expectedResult.size());
+        Q_EMIT finished();
     }
 
 private:
@@ -293,7 +293,7 @@ void tst_OpenSearchEngine::description_data()
 {
     QTest::addColumn<QString>("description");
     QTest::newRow("null") << QString();
-    QTest::newRow("foo") << QString("foo");
+    QTest::newRow("foo") << QStringLiteral("foo");
 }
 
 // public QString description() const
@@ -332,7 +332,7 @@ void tst_OpenSearchEngine::image()
     QPixmap image(1, 1);
     image.fill();
     image.save(&imageBuffer, "PNG");
-    QString imageUrl = QString("data:image/png;base64,").append(imageBuffer.buffer().toBase64());
+    QString imageUrl = QStringLiteral("data:image/png;base64,").append(imageBuffer.buffer().toBase64());
     engine.setImageUrl(imageUrl);
     QCOMPARE(engine.image(), QImage());
 
@@ -354,7 +354,7 @@ void tst_OpenSearchEngine::imageUrl_data()
 {
     QTest::addColumn<QString>("imageUrl");
     QTest::newRow("null") << QString();
-    QTest::newRow("foo") << QString("foo");
+    QTest::newRow("foo") << QStringLiteral("foo");
 }
 
 // public QString imageUrl() const
@@ -383,9 +383,9 @@ void tst_OpenSearchEngine::isValid_data()
     QTest::addColumn<QString>("searchUrlTemplate");
     QTest::addColumn<bool>("isValid");
     QTest::newRow("false-0") << QString() << QString() << false;
-    QTest::newRow("false-1") << QString() << QString("x") << false;
-    QTest::newRow("false-2") << QString("x") << QString() << false;
-    QTest::newRow("true") << QString("x") << QString("y") << true;
+    QTest::newRow("false-1") << QString() << QStringLiteral("x") << false;
+    QTest::newRow("false-2") << QStringLiteral("x") << QString() << false;
+    QTest::newRow("true") << QStringLiteral("x") << QStringLiteral("y") << true;
 }
 
 // public bool isValid() const
@@ -412,7 +412,7 @@ void tst_OpenSearchEngine::name_data()
 {
     QTest::addColumn<QString>("name");
     QTest::newRow("null") << QString();
-    QTest::newRow("foo") << QString("foo");
+    QTest::newRow("foo") << QStringLiteral("foo");
 }
 
 // public QString name() const
@@ -460,13 +460,13 @@ void tst_OpenSearchEngine::operatorequal_data()
     QTest::newRow("null") << QString() << QString() << QString() << QString() << QString()
                           << Parameters() << Parameters()
                           << true;
-    QTest::newRow("name") << QString("x") << QString() << QString() << QString() << QString()
+    QTest::newRow("name") << QStringLiteral("x") << QString() << QString() << QString() << QString()
                           << Parameters() << Parameters()
                           << false;
-    QTest::newRow("description") << QString() << QString("x") << QString() << QString() << QString()
+    QTest::newRow("description") << QString() << QStringLiteral("x") << QString() << QString() << QString()
                           << Parameters() << Parameters()
                           << false;
-    QTest::newRow("imageUrl") << QString() << QString() << QString("x") << QString() << QString()
+    QTest::newRow("imageUrl") << QString() << QString() << QStringLiteral("x") << QString() << QString()
                           << Parameters() << Parameters()
                           << false;
     QTest::newRow("parameters") << QString() << QString() << QString() << QString() << QString()
@@ -504,7 +504,7 @@ void tst_OpenSearchEngine::providesSuggestions_data()
     QTest::addColumn<QString>("suggestionsUrlTemplate");
     QTest::addColumn<bool>("providesSuggestions");
     QTest::newRow("false") << QString() << false;
-    QTest::newRow("true") << QString("foo") << true;
+    QTest::newRow("true") << QStringLiteral("foo") << true;
 }
 
 // public bool providesSuggestions() const
@@ -531,9 +531,9 @@ void tst_OpenSearchEngine::requestSuggestions_data()
     QTest::addColumn<QString>("method");
     QTest::addColumn<QNetworkAccessManager::Operation>("lastOperation");
     QTest::newRow("null") << QString() << QString() << QNetworkAccessManager::GetOperation;
-    QTest::newRow("foo") << QString("foo") << QString("get") << QNetworkAccessManager::GetOperation;
-    QTest::newRow("bar") << QString("bar") << QString("post") << QNetworkAccessManager::PostOperation;
-    QTest::newRow("baz") << QString("baz") << QString("put") << QNetworkAccessManager::GetOperation;
+    QTest::newRow("foo") << QStringLiteral("foo") << QStringLiteral("get") << QNetworkAccessManager::GetOperation;
+    QTest::newRow("bar") << QStringLiteral("bar") << QStringLiteral("post") << QNetworkAccessManager::PostOperation;
+    QTest::newRow("baz") << QStringLiteral("baz") << QStringLiteral("put") << QNetworkAccessManager::GetOperation;
 }
 
 Q_DECLARE_METATYPE(QNetworkAccessManager::Operation)
@@ -627,13 +627,13 @@ void tst_OpenSearchEngine::searchUrl_data()
     QTest::addColumn<Parameters>("parameters");
     QTest::addColumn<QUrl>("searchUrl");
     QTest::newRow("null") << QString() << QString() << Parameters() << QUrl();
-    QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
-                    << Parameters() << QUrl(QString("http://foobar.baz/?q=foo"));
-    QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
-                    << Parameters() << QUrl(QString("http://foobar.baz/?q="));
-    QTest::newRow("parameters") << QString("baz") << QString("http://foobar.baz/?q={searchTerms}")
+    QTest::newRow("foo") << QStringLiteral("foo") << QStringLiteral("http://foobar.baz/?q={searchTerms}")
+                    << Parameters() << QUrl(QStringLiteral("http://foobar.baz/?q=foo"));
+    QTest::newRow("empty") << QString() << QStringLiteral("http://foobar.baz/?q={searchTerms}")
+                    << Parameters() << QUrl(QStringLiteral("http://foobar.baz/?q="));
+    QTest::newRow("parameters") << QStringLiteral("baz") << QStringLiteral("http://foobar.baz/?q={searchTerms}")
                     << (Parameters() << Parameter("abc", "{searchTerms}") << Parameter("x", "yz"))
-                    << QUrl(QString("http://foobar.baz/?q=baz&abc=baz&x=yz"));
+                    << QUrl(QStringLiteral("http://foobar.baz/?q=baz&abc=baz&x=yz"));
 }
 
 // public QUrl searchUrl(QString const &searchTerm) const
@@ -655,7 +655,7 @@ void tst_OpenSearchEngine::searchUrlTemplate_data()
 {
     QTest::addColumn<QString>("searchUrlTemplate");
     QTest::newRow("null") << QString();
-    QTest::newRow("foo") << QString("foo");
+    QTest::newRow("foo") << QStringLiteral("foo");
 }
 
 // public QString searchUrlTemplate() const
@@ -710,13 +710,13 @@ void tst_OpenSearchEngine::suggestionsUrl_data()
     QTest::addColumn<Parameters>("parameters");
     QTest::addColumn<QUrl>("suggestionsUrl");
     QTest::newRow("null") << QString() << QString() << Parameters() << QUrl();
-    QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
-                    << Parameters() << QUrl(QString("http://foobar.baz/?q=foo"));
-    QTest::newRow("empty") << QString() << QString("http://foobar.baz/?q={searchTerms}")
-                    << Parameters() << QUrl(QString("http://foobar.baz/?q="));
-    QTest::newRow("parameters") << QString("baz") << QString("http://foobar.baz/?q={searchTerms}")
+    QTest::newRow("foo") << QStringLiteral("foo") << QStringLiteral("http://foobar.baz/?q={searchTerms}")
+                    << Parameters() << QUrl(QStringLiteral("http://foobar.baz/?q=foo"));
+    QTest::newRow("empty") << QString() << QStringLiteral("http://foobar.baz/?q={searchTerms}")
+                    << Parameters() << QUrl(QStringLiteral("http://foobar.baz/?q="));
+    QTest::newRow("parameters") << QStringLiteral("baz") << QStringLiteral("http://foobar.baz/?q={searchTerms}")
                     << (Parameters() << Parameter("a", "bc"))
-                    << QUrl(QString("http://foobar.baz/?q=baz&a=bc"));
+                    << QUrl(QStringLiteral("http://foobar.baz/?q=baz&a=bc"));
 }
 
 // public QUrl suggestionsUrl(QString const &searchTerm) const
@@ -738,7 +738,7 @@ void tst_OpenSearchEngine::suggestionsUrlTemplate_data()
 {
     QTest::addColumn<QString>("suggestionsUrlTemplate");
     QTest::newRow("null") << QString();
-    QTest::newRow("foo") << QString("foo");
+    QTest::newRow("foo") << QStringLiteral("foo");
 }
 
 // public QString suggestionsUrlTemplate() const
@@ -760,33 +760,33 @@ void tst_OpenSearchEngine::suggestionsUrlTemplate()
 
 void tst_OpenSearchEngine::parseTemplate_data()
 {
-    QString lang = QLocale().name().replace(QLatin1Char('_'), QLatin1Char('-'));
+    QString lang = QLocale().name().replace(QChar('_'), QChar('-'));
 
     QTest::addColumn<QString>("searchTerm");
     QTest::addColumn<QString>("searchTemplate");
     QTest::addColumn<QString>("parseTemplate");
     QTest::addColumn<bool>("valid");
     QTest::newRow("null") << QString() << QString() << QString() << false;
-    QTest::newRow("foo") << QString("foo") << QString("http://foobar.baz/?q={searchTerms}")
-                    << QString("http://foobar.baz/?q=foo") << true;
-    QTest::newRow("allParameters") << QString("bar")
-                    << QString("http://foobar.baz/?st={searchTerms}&amp;c={count}"
+    QTest::newRow("foo") << QStringLiteral("foo") << QStringLiteral("http://foobar.baz/?q={searchTerms}")
+                    << QStringLiteral("http://foobar.baz/?q=foo") << true;
+    QTest::newRow("allParameters") << QStringLiteral("bar")
+                    << QStringLiteral("http://foobar.baz/?st={searchTerms}&amp;c={count}"
                                "&amp;si={startIndex}&amp;sp={startPage}&amp;l={language}"
                                "&amp;ie={inputEncoding}&amp;oe={outputEncoding}")
-                    << QString("http://foobar.baz/?st=bar&amp;c=20&amp;si=0&amp;"
+                    << QStringLiteral("http://foobar.baz/?st=bar&amp;c=20&amp;si=0&amp;"
                                "sp=0&amp;l=%1&amp;ie=UTF-8&amp;oe=UTF-8").arg(lang)
                     << true;
-    QTest::newRow("tricky") << QString("{count}") << QString("http://foobar.baz/q={searchTerms}&amp;count={count}")
-                    << QString("http://foobar.baz/q=%7Bcount%7D&amp;count=20") << true;
-    QTest::newRow("multiple") << QString("abc") << QString("http://foobar.baz/?q={searchTerms}&amp;x={searchTerms}")
-                    << QString("http://foobar.baz/?q=abc&amp;x=abc") << true;
-    QTest::newRow("referrer") << QString("foo")
-                    << QString("http://foobar.baz/?q={searchTerms}&amp;a={source}&amp;b={ref:source}&amp;c={referrer:source?}")
-                    << QString("http://foobar.baz/?q=foo&amp;a=tst_opensearchengine"
+    QTest::newRow("tricky") << QStringLiteral("{count}") << QStringLiteral("http://foobar.baz/q={searchTerms}&amp;count={count}")
+                    << QStringLiteral("http://foobar.baz/q=%7Bcount%7D&amp;count=20") << true;
+    QTest::newRow("multiple") << QStringLiteral("abc") << QStringLiteral("http://foobar.baz/?q={searchTerms}&amp;x={searchTerms}")
+                    << QStringLiteral("http://foobar.baz/?q=abc&amp;x=abc") << true;
+    QTest::newRow("referrer") << QStringLiteral("foo")
+                    << QStringLiteral("http://foobar.baz/?q={searchTerms}&amp;a={source}&amp;b={ref:source}&amp;c={referrer:source?}")
+                    << QStringLiteral("http://foobar.baz/?q=foo&amp;a=tst_opensearchengine"
                                "&amp;b=tst_opensearchengine&amp;c=tst_opensearchengine")
                     << true;
-    QTest::newRow("inputEncoding") << QString("c++") << QString("http://foobar.baz/?q={searchTerms}")
-                    << QString("http://foobar.baz/?q=c%2B%2B") << true;
+    QTest::newRow("inputEncoding") << QStringLiteral("c++") << QStringLiteral("http://foobar.baz/?q={searchTerms}")
+                    << QStringLiteral("http://foobar.baz/?q=c%2B%2B") << true;
 }
 
 // protected QString parseTemplate(QString const &searchTerm, QString const &searchTemplate) const
@@ -808,8 +808,8 @@ void tst_OpenSearchEngine::languageCodes_data()
     QTest::addColumn<QString>("languageCode");
     QTest::addColumn<QString>("url");
 
-    QTest::newRow("es") << QString("es") << QString("http://foobar.baz/?l=es-ES");
-    QTest::newRow("pt_BR") << QString("pt_BR") << QString("http://foobar.baz/?l=pt-BR");
+    QTest::newRow("es") << QStringLiteral("es") << QStringLiteral("http://foobar.baz/?l=es-ES");
+    QTest::newRow("pt_BR") << QStringLiteral("pt_BR") << QStringLiteral("http://foobar.baz/?l=pt-BR");
 }
 
 void tst_OpenSearchEngine::languageCodes()
@@ -820,66 +820,66 @@ void tst_OpenSearchEngine::languageCodes()
     QLocale::setDefault(QLocale(languageCode));
 
     SubOpenSearchEngine engine;
-    QCOMPARE(engine.call_parseTemplate(QString("foo"), QString("http://foobar.baz/?l={language}")), url);
+    QCOMPARE(engine.call_parseTemplate(QStringLiteral("foo"), QStringLiteral("http://foobar.baz/?l={language}")), url);
 }
 
 void tst_OpenSearchEngine::requestMethods()
 {
     SubOpenSearchEngine engine;
 
-    QCOMPARE(engine.searchMethod(), QString("get"));
-    QCOMPARE(engine.suggestionsMethod(), QString("get"));
+    QCOMPARE(engine.searchMethod(), QStringLiteral("get"));
+    QCOMPARE(engine.suggestionsMethod(), QStringLiteral("get"));
 
     engine.setSearchMethod("post");
-    QCOMPARE(engine.searchMethod(), QString("post"));
-    QCOMPARE(engine.suggestionsMethod(), QString("get"));
+    QCOMPARE(engine.searchMethod(), QStringLiteral("post"));
+    QCOMPARE(engine.suggestionsMethod(), QStringLiteral("get"));
 
     engine.setSearchMethod("get");
-    QCOMPARE(engine.searchMethod(), QString("get"));
-    QCOMPARE(engine.suggestionsMethod(), QString("get"));
+    QCOMPARE(engine.searchMethod(), QStringLiteral("get"));
+    QCOMPARE(engine.suggestionsMethod(), QStringLiteral("get"));
 
     engine.setSuggestionsMethod("PoSt");
-    QCOMPARE(engine.searchMethod(), QString("get"));
-    QCOMPARE(engine.suggestionsMethod(), QString("post"));
+    QCOMPARE(engine.searchMethod(), QStringLiteral("get"));
+    QCOMPARE(engine.suggestionsMethod(), QStringLiteral("post"));
 
     engine.setSearchMethod("foo");
-    QCOMPARE(engine.searchMethod(), QString("get"));
-    QCOMPARE(engine.suggestionsMethod(), QString("post"));
+    QCOMPARE(engine.searchMethod(), QStringLiteral("get"));
+    QCOMPARE(engine.suggestionsMethod(), QStringLiteral("post"));
 
     engine.setSuggestionsMethod("bar");
-    QCOMPARE(engine.searchMethod(), QString("get"));
-    QCOMPARE(engine.suggestionsMethod(), QString("post"));
+    QCOMPARE(engine.searchMethod(), QStringLiteral("get"));
+    QCOMPARE(engine.suggestionsMethod(), QStringLiteral("post"));
 }
 
 void tst_OpenSearchEngine::delegate()
 {
     SubOpenSearchEngine engine;
-    engine.setName(QString("foo"));
-    engine.setDescription(QString("bar"));
-    engine.setSearchUrlTemplate(QString("http://foobar.baz/?q={searchTerms}"));
+    engine.setName(QStringLiteral("foo"));
+    engine.setDescription(QStringLiteral("bar"));
+    engine.setSearchUrlTemplate(QStringLiteral("http://foobar.baz/?q={searchTerms}"));
 
     QCOMPARE(engine.delegate(), (Delegate*)0);
     engine.setDelegate(0);
     QCOMPARE(engine.delegate(), (Delegate*)0);
-    engine.requestSearchResults(QString("baz"));
+    engine.requestSearchResults(QStringLiteral("baz"));
 
     Delegate delegate;
     engine.setDelegate(&delegate);
     QCOMPARE(engine.delegate(), &delegate);
-    engine.requestSearchResults(QString("baz"));
+    engine.requestSearchResults(QStringLiteral("baz"));
 
     QCOMPARE(delegate.callsCount, 1);
     QCOMPARE(delegate.lastOperation, QNetworkAccessManager::GetOperation);
     QCOMPARE(delegate.lastData, QByteArray());
-    QNetworkRequest request(QUrl(engine.call_parseTemplate(QString("baz"), engine.searchUrlTemplate())));
+    QNetworkRequest request(QUrl(engine.call_parseTemplate(QStringLiteral("baz"), engine.searchUrlTemplate())));
     QCOMPARE(delegate.lastRequest, request);
 
     QUrlQuery urlQuery(delegate.lastRequest.url().query());
     QVERIFY(urlQuery.hasQueryItem("q"));
-    QCOMPARE(urlQuery.queryItemValue("q"), QString("baz"));
+    QCOMPARE(urlQuery.queryItemValue("q"), QStringLiteral("baz"));
 
     engine.setSearchParameters(Parameters() << Parameter("a", "b") << Parameter("b", "c"));
-    engine.requestSearchResults(QString("baz"));
+    engine.requestSearchResults(QStringLiteral("baz"));
 
     QCOMPARE(delegate.callsCount, 2);
     QCOMPARE(delegate.lastOperation, QNetworkAccessManager::GetOperation);
@@ -887,26 +887,26 @@ void tst_OpenSearchEngine::delegate()
 
     QUrlQuery q2(delegate.lastRequest.url().query());
     QVERIFY(q2.hasQueryItem("a"));
-    QCOMPARE(q2.queryItemValue("a"), QString("b"));
+    QCOMPARE(q2.queryItemValue("a"), QStringLiteral("b"));
     QVERIFY(q2.hasQueryItem("b"));
-    QCOMPARE(q2.queryItemValue("b"), QString("c"));
+    QCOMPARE(q2.queryItemValue("b"), QStringLiteral("c"));
     QVERIFY(q2.hasQueryItem("q"));
-    QCOMPARE(q2.queryItemValue("q"), QString("baz"));
+    QCOMPARE(q2.queryItemValue("q"), QStringLiteral("baz"));
 
-    QUrl url(engine.call_parseTemplate(QString("baz"), engine.searchUrlTemplate()));
+    QUrl url(engine.call_parseTemplate(QStringLiteral("baz"), engine.searchUrlTemplate()));
     QCOMPARE(delegate.lastRequest.url().toString(QUrl::RemoveQuery), url.toString(QUrl::RemoveQuery));
 
-    engine.setSearchMethod(QString("post"));
-    engine.requestSearchResults(QString("baz"));
+    engine.setSearchMethod(QStringLiteral("post"));
+    engine.requestSearchResults(QStringLiteral("baz"));
 
     QCOMPARE(delegate.callsCount, 3);
     QCOMPARE(delegate.lastOperation, QNetworkAccessManager::PostOperation);
-    request = QNetworkRequest(QUrl(engine.call_parseTemplate(QString("baz"), engine.searchUrlTemplate())));
+    request = QNetworkRequest(QUrl(engine.call_parseTemplate(QStringLiteral("baz"), engine.searchUrlTemplate())));
     QCOMPARE(delegate.lastRequest, request);
 
     QUrlQuery q3(delegate.lastRequest.url().query());
     QVERIFY(q3.hasQueryItem("q"));
-    QCOMPARE(q3.queryItemValue("q"), QString("baz"));
+    QCOMPARE(q3.queryItemValue("q"), QStringLiteral("baz"));
 
     QVERIFY(!delegate.lastData.isEmpty());
     QStringList query = QString(delegate.lastData).split('&');

@@ -123,7 +123,7 @@ void HistoryModel::entryAdded()
 void HistoryModel::entryUpdated(int offset)
 {
     QModelIndex idx = index(offset, 0);
-    emit dataChanged(idx, idx);
+    Q_EMIT dataChanged(idx, idx);
 }
 
 QVariant HistoryModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -329,7 +329,7 @@ QMimeData *HistoryMenuModel::mimeData(const QModelIndexList &indexes) const
 {
     QMimeData *mimeData = new QMimeData;
     QList<QUrl> urls;
-    foreach (const QModelIndex &idx, indexes) {
+    Q_FOREACH (const QModelIndex &idx, indexes) {
         QUrl url = idx.data(HistoryModel::UrlRole).toUrl();
         urls.append(url);
     }
@@ -351,7 +351,7 @@ HistoryMenu::HistoryMenu(QWidget *parent)
 
 void HistoryMenu::activated(const QModelIndex &index)
 {
-    emit openUrl(index.data(HistoryModel::UrlRole).toUrl(),
+    Q_EMIT openUrl(index.data(HistoryModel::UrlRole).toUrl(),
                  index.data(HistoryModel::TitleRole).toString());
 }
 
@@ -441,7 +441,7 @@ HistoryDialog::HistoryDialog(QWidget *parent, HistoryManager *setHistory) : QDia
     tree->setExpanded(proxyModel->index(0, 0), true);
     tree->setAlternatingRowColors(true);
     QFontMetrics fm(font());
-    int header = fm.horizontalAdvance(QLatin1Char('m')) * 40;
+    int header = fm.horizontalAdvance(QChar('m')) * 40;
     tree->header()->resizeSection(0, header);
     tree->header()->setStretchLastSection(true);
     connect(tree, SIGNAL(activated(const QModelIndex&)),
@@ -474,7 +474,7 @@ void HistoryDialog::open()
     BrowserApplication::instance()->setEventMouseButtons(qApp->mouseButtons());
     BrowserApplication::instance()->setEventKeyboardModifiers(qApp->keyboardModifiers());
 #endif
-    emit openUrl(index.data(HistoryModel::UrlRole).toUrl(),
+    Q_EMIT openUrl(index.data(HistoryModel::UrlRole).toUrl(),
                  index.data(HistoryModel::TitleRole).toString());
 }
 
@@ -560,7 +560,7 @@ void HistoryFilterModel::setSourceModel(QAbstractItemModel *newSourceModel)
 
 void HistoryFilterModel::sourceDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight)
 {
-    emit dataChanged(mapFromSource(topLeft), mapFromSource(bottomRight));
+    Q_EMIT dataChanged(mapFromSource(topLeft), mapFromSource(bottomRight));
 }
 
 QVariant HistoryFilterModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -761,7 +761,7 @@ QVariant HistoryTreeModel::data(const QModelIndex &index, int role) const
                 QDate date = idx.data(HistoryModel::DateRole).toDate();
                 if (date == QDate::currentDate())
                     return tr("Earlier Today");
-                return date.toString(QLatin1String("dddd, MMMM d, yyyy"));
+                return date.toString(QStringLiteral("dddd, MMMM d, yyyy"));
             }
             if (index.column() == 1) {
                 return tr("%n item(s)", "", rowCount(index.sibling(index.row(), 0)));

@@ -35,7 +35,7 @@ public:
     static QByteArray httpString(const QStringList &list);
     static QStringList defaultAcceptList();
 
-private slots:
+private Q_SLOTS:
     void load();
     void save();
 

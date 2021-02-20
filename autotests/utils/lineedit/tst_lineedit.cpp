@@ -26,13 +26,13 @@ class tst_LineEdit : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void lineedit_data();
     void lineedit();
 
@@ -184,7 +184,7 @@ void tst_LineEdit::textMargin()
 void tst_LineEdit::inactiveText_data()
 {
     QTest::addColumn<QString>("inactiveText");
-    QTest::newRow("foo") << QString("foo");
+    QTest::newRow("foo") << QStringLiteral("foo");
 }
 
 // public QString inactiveText() const

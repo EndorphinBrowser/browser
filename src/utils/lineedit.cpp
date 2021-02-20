@@ -44,7 +44,7 @@ SideWidget::SideWidget(QWidget *parent)
 bool SideWidget::event(QEvent *event)
 {
     if (event->type() == QEvent::LayoutRequest)
-        emit sizeHintChanged();
+        Q_EMIT sizeHintChanged();
     return QWidget::event(event);
 }
 
