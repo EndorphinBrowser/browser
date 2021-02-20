@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef ACCEPTLANGUAGEDIALOG_H
 #define ACCEPTLANGUAGEDIALOG_H
 
-#include <qdialog.h>
+#include <QDialog>
 #include "ui_acceptlanguagedialog.h"
 
 #include <qstringlistmodel.h>
@@ -30,12 +30,12 @@ class AcceptLanguageDialog : public QDialog, public Ui_AcceptLanguage
     Q_OBJECT
 
 public:
-    AcceptLanguageDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    AcceptLanguageDialog(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
     void accept();
     static QByteArray httpString(const QStringList &list);
     static QStringList defaultAcceptList();
 
-private slots:
+private Q_SLOTS:
     void load();
     void save();
 

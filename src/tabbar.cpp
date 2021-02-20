@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,17 +64,17 @@
 
 #include "tabwidget.h"
 
-#include <qaction.h>
-#include <qapplication.h>
-#include <qclipboard.h>
-#include <qevent.h>
-#include <qmenu.h>
-#include <qstyle.h>
-#include <qurl.h>
+#include <QAction>
+#include <QApplication>
+#include <QClipboard>
+#include <QEvent>
+#include <QMenu>
+#include <QStyle>
+#include <QUrl>
 #include <QMimeData>
 #include <QDrag>
 
-#include <qdebug.h>
+#include <QDebug>
 
 TabShortcut::TabShortcut(int tab, const QKeySequence &key, QWidget *parent)
     : QShortcut(key, parent)
@@ -89,7 +89,7 @@ int TabShortcut::tab()
 
 TabBar::TabBar(QWidget *parent)
     : QTabBar(parent)
-    , m_viewTabBarAction(0)
+    , m_viewTabBarAction(nullptr)
     , m_showTabBarWhenOneTab(true)
 {
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -99,7 +99,7 @@ TabBar::TabBar(QWidget *parent)
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(contextMenuRequested(const QPoint &)));
 
-    QString alt = QLatin1String("Ctrl+%1");
+    QString alt = QStringLiteral("Ctrl+%1");
     for (int i = 0; i < 9; ++i) {
         int key = i + 1;
         TabShortcut *tabShortCut = new TabShortcut(i, alt.arg(key), this);
@@ -132,7 +132,7 @@ QAction *TabBar::viewTabBarAction() const
 
 QTabBar::ButtonPosition TabBar::freeSide()
 {
-    QTabBar::ButtonPosition side = (QTabBar::ButtonPosition)style()->styleHint(QStyle::SH_TabBar_CloseButtonPosition, 0, this);
+    QTabBar::ButtonPosition side = (QTabBar::ButtonPosition)style()->styleHint(QStyle::SH_TabBar_CloseButtonPosition, nullptr, this);
     side = (side == QTabBar::LeftSide) ? QTabBar::RightSide : QTabBar::LeftSide;
     return side;
 }
@@ -199,7 +199,7 @@ void TabBar::cloneTab()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         int index = action->data().toInt();
-        emit cloneTab(index);
+        Q_EMIT cloneTab(index);
     }
 }
 
@@ -207,7 +207,7 @@ void TabBar::closeTab()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         int index = action->data().toInt();
-        emit closeTab(index);
+        Q_EMIT closeTab(index);
     }
 }
 
@@ -215,15 +215,15 @@ void TabBar::closeOtherTabs()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         int index = action->data().toInt();
-        emit closeOtherTabs(index);
+        Q_EMIT closeOtherTabs(index);
     }
 }
 
 void TabBar::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton
-        && tabAt(event->pos()) == -1) {
-        emit newTab();
+            && tabAt(event->pos()) == -1) {
+        Q_EMIT newTab();
         return;
     }
     QTabBar::mouseDoubleClickEvent(event);
@@ -234,12 +234,12 @@ void TabBar::mouseReleaseEvent(QMouseEvent *event)
     if (event->button() == Qt::MidButton) {
         int index = tabAt(event->pos());
         if (index != -1) {
-            emit closeTab(index);
+            Q_EMIT closeTab(index);
             return;
         } else {
             QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
             if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty())
-                emit loadUrl(url, TabWidget::NewTab);
+                Q_EMIT loadUrl(url, TabWidget::NewTab);
         }
     }
 
@@ -259,8 +259,8 @@ void TabBar::mouseMoveEvent(QMouseEvent *event)
         int diffX = event->pos().x() - m_dragStartPos.x();
         int diffY = event->pos().y() - m_dragStartPos.y();
         if ((event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()
-            && diffX < 3 && diffX > -3
-            && diffY < -10) {
+                && diffX < 3 && diffX > -3
+                && diffY < -10) {
             QDrag *drag = new QDrag(this);
             QMimeData *mimeData = new QMimeData;
             QList<QUrl> urls;
@@ -269,7 +269,7 @@ void TabBar::mouseMoveEvent(QMouseEvent *event)
             urls.append(url);
             mimeData->setUrls(urls);
             mimeData->setText(tabText(index));
-            mimeData->setData(QLatin1String("action"), "tab-reordering");
+            mimeData->setData(QStringLiteral("action"), "tab-reordering");
             drag->setMimeData(mimeData);
             drag->exec();
         }
@@ -300,9 +300,9 @@ void TabBar::dropEvent(QDropEvent *event)
         int index = tabAt(event->pos());
         if (-1 != index) {
             setCurrentIndex(index);
-            emit loadUrl(url, TabWidget::CurrentTab);
+            Q_EMIT loadUrl(url, TabWidget::CurrentTab);
         } else {
-            emit loadUrl(url, TabWidget::NewSelectedTab);
+            Q_EMIT loadUrl(url, TabWidget::NewSelectedTab);
         }
     }
 
@@ -313,14 +313,14 @@ QSize TabBar::tabSizeHint(int index) const
 {
     QSize sizeHint = QTabBar::tabSizeHint(index);
     QFontMetrics fm = fontMetrics();
-    return sizeHint.boundedTo(QSize(fm.horizontalAdvance(QLatin1Char('M')) * 18, sizeHint.height()));
+    return sizeHint.boundedTo(QSize(fm.horizontalAdvance(QChar('M')) * 18, sizeHint.height()));
 }
 
 void TabBar::reloadTab()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         int index = action->data().toInt();
-        emit reloadTab(index);
+        Q_EMIT reloadTab(index);
     }
 }
 
@@ -345,3 +345,12 @@ void TabBar::updateVisibility()
     updateViewToolBarAction();
 }
 
+void TabBar::wheelEvent(QWheelEvent *event)
+{
+    int index = currentIndex();
+    if (index != -1) {
+        index += event->angleDelta().y() > 0 ? -1 : 1;
+        if (index >= 0 && index < count())
+            setCurrentIndex(index);
+    }
+}

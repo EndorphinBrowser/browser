@@ -22,6 +22,7 @@
 ****************************************************************************/
 
 #include <QtGui/QtGui>
+#include <QMetaType>
 
 #include "modeltest.h"
 
@@ -34,44 +35,28 @@ ModelTest::ModelTest(QAbstractItemModel *_model, QObject *parent) : QObject(pare
 {
     Q_ASSERT(model);
 
-    connect(model, SIGNAL(columnsAboutToBeInserted(const QModelIndex &, int, int)),
-            this, SLOT(runAllTests()));
-    connect(model, SIGNAL(columnsAboutToBeRemoved(const QModelIndex &, int, int)),
-            this, SLOT(runAllTests()));
-    connect(model, SIGNAL(columnsInserted(const QModelIndex &, int, int)),
-            this, SLOT(runAllTests()));
-    connect(model, SIGNAL(columnsRemoved(const QModelIndex &, int, int)),
-            this, SLOT(runAllTests()));
-    connect(model, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),
-            this, SLOT(runAllTests()));
-    connect(model, SIGNAL(headerDataChanged(Qt::Orientation, int, int)),
-            this, SLOT(runAllTests()));
-    connect(model, SIGNAL(layoutAboutToBeChanged ()), this, SLOT(runAllTests()));
-    connect(model, SIGNAL(layoutChanged ()), this, SLOT(runAllTests()));
-    connect(model, SIGNAL(modelReset ()), this, SLOT(runAllTests()));
-    connect(model, SIGNAL(rowsAboutToBeInserted(const QModelIndex &, int, int)),
-            this, SLOT(runAllTests()));
-    connect(model, SIGNAL(rowsAboutToBeRemoved(const QModelIndex &, int, int)),
-            this, SLOT(runAllTests()));
-    connect(model, SIGNAL(rowsInserted(const QModelIndex &, int, int)),
-            this, SLOT(runAllTests()));
-    connect(model, SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-            this, SLOT(runAllTests()));
+    connect(model, &QAbstractItemModel::columnsAboutToBeInserted, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::columnsAboutToBeRemoved, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::columnsInserted, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::columnsRemoved, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::dataChanged, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::headerDataChanged, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::layoutAboutToBeChanged, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::layoutChanged, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::modelReset, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::rowsAboutToBeInserted, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::rowsAboutToBeRemoved, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::rowsInserted, this, &ModelTest::runAllTests);
+    connect(model, &QAbstractItemModel::rowsRemoved, this, &ModelTest::runAllTests);
 
     // Special checks for inserting/removing
-    connect(model, SIGNAL(layoutAboutToBeChanged()),
-            this, SLOT(layoutAboutToBeChanged()));
-    connect(model, SIGNAL(layoutChanged()),
-            this, SLOT(layoutChanged()));
+    connect(model, &QAbstractItemModel::layoutAboutToBeChanged, this, &ModelTest::layoutAboutToBeChanged);
+    connect(model, &QAbstractItemModel::layoutChanged, this, &ModelTest::layoutChanged);
 
-    connect(model, SIGNAL(rowsAboutToBeInserted(const QModelIndex &, int, int)),
-            this, SLOT(rowsAboutToBeInserted(const QModelIndex &, int, int)));
-    connect(model, SIGNAL(rowsAboutToBeRemoved(const QModelIndex &, int, int)),
-            this, SLOT(rowsAboutToBeRemoved(const QModelIndex &, int, int)));
-    connect(model, SIGNAL(rowsInserted(const QModelIndex &, int, int)),
-            this, SLOT(rowsInserted(const QModelIndex &, int, int)));
-    connect(model, SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-            this, SLOT(rowsRemoved(const QModelIndex &, int, int)));
+    connect(model, &QAbstractItemModel::rowsAboutToBeInserted, this, &ModelTest::rowsAboutToBeInserted);
+    connect(model, &QAbstractItemModel::rowsAboutToBeRemoved, this, &ModelTest::rowsAboutToBeRemoved);
+    connect(model, &QAbstractItemModel::rowsInserted, this, &ModelTest::rowsInserted);
+    connect(model, &QAbstractItemModel::rowsRemoved, this, &ModelTest::rowsRemoved);
 
     runAllTests();
 }
@@ -384,50 +369,50 @@ void ModelTest::data()
     Q_ASSERT(model->index(0, 0).isValid());
 
     // shouldn't be able to set data on an invalid index
-    Q_ASSERT(model->setData(QModelIndex(), QLatin1String("foo"), Qt::DisplayRole) == false);
+    Q_ASSERT(model->setData(QModelIndex(), QStringLiteral("foo"), Qt::DisplayRole) == false);
 
     // General Purpose roles that should return a QString
     QVariant variant = model->data(model->index(0, 0), Qt::ToolTipRole);
     if (variant.isValid()) {
-        Q_ASSERT(qVariantCanConvert<QString>(variant));
+        Q_ASSERT(variant.canConvert(QMetaType::QString));
     }
     variant = model->data(model->index(0, 0), Qt::StatusTipRole);
     if (variant.isValid()) {
-        Q_ASSERT(qVariantCanConvert<QString>(variant));
+        Q_ASSERT(variant.canConvert(QMetaType::QString));
     }
     variant = model->data(model->index(0, 0), Qt::WhatsThisRole);
     if (variant.isValid()) {
-        Q_ASSERT(qVariantCanConvert<QString>(variant));
+        Q_ASSERT(variant.canConvert(QMetaType::QString));
     }
 
     // General Purpose roles that should return a QSize
     variant = model->data(model->index(0, 0), Qt::SizeHintRole);
     if (variant.isValid()) {
-        Q_ASSERT(qVariantCanConvert<QSize>(variant));
+        Q_ASSERT(variant.canConvert(QMetaType::QSize));
     }
 
     // General Purpose roles that should return a QFont
     QVariant fontVariant = model->data(model->index(0, 0), Qt::FontRole);
     if (fontVariant.isValid()) {
-        Q_ASSERT(qVariantCanConvert<QFont>(fontVariant));
+        Q_ASSERT(fontVariant.canConvert(QMetaType::QFont));
     }
 
     // Check that the alignment is one we know about
     QVariant textAlignmentVariant = model->data(model->index(0, 0), Qt::TextAlignmentRole);
     if (textAlignmentVariant.isValid()) {
         int alignment = textAlignmentVariant.toInt();
-       Q_ASSERT(alignment == (alignment & (Qt::AlignHorizontal_Mask | Qt::AlignVertical_Mask)));
+        Q_ASSERT(alignment == (alignment & (Qt::AlignHorizontal_Mask | Qt::AlignVertical_Mask)));
     }
 
     // General Purpose roles that should return a QColor
     QVariant colorVariant = model->data(model->index(0, 0), Qt::BackgroundColorRole);
     if (colorVariant.isValid()) {
-        Q_ASSERT(qVariantCanConvert<QColor>(colorVariant));
+        Q_ASSERT(colorVariant.canConvert(QMetaType::QColor));
     }
 
     colorVariant = model->data(model->index(0, 0), Qt::TextColorRole);
     if (colorVariant.isValid()) {
-        Q_ASSERT(qVariantCanConvert<QColor>(colorVariant));
+        Q_ASSERT(colorVariant.canConvert(QMetaType::QColor));
     }
 
     // Check that the "check state" is one we know about.

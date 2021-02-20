@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -25,17 +25,32 @@
 #include "bookmarksmanager.h"
 #include "bookmarksmenu.h"
 #include "bookmarksmodel.h"
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#else
+#ifdef FOR_AUTOTEST
+#include "tst_addbookmarkdialog.h"
+#endif
+#endif
 #include "modelmenu.h"
 
-#include <qevent.h>
+#include <QEvent>
 
 BookmarksToolBar::BookmarksToolBar(BookmarksModel *model, QWidget *parent)
     : ModelToolBar(parent)
     , m_bookmarksModel(model)
 {
     setModel(model);
+
+#ifndef NO_BROWSERAPPLICATION
     setRootIndex(model->index(BrowserApplication::bookmarksManager()->toolbar()));
+#else
+#ifdef FOR_AUTOTEST
+    setRootIndex(model->index(tst_AddBookmarkDialog::bookmarksManager()->toolbar()));
+#else
+#error "Nothing provides a bookmarksmanager"
+#endif
+#endif
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
@@ -57,7 +72,7 @@ void BookmarksToolBar::contextMenuRequested(const QPoint &position)
         QVariant variant = action->data();
         Q_ASSERT(variant.canConvert<QModelIndex>());
 
-        QAction *menuAction = 0;
+        QAction *menuAction = nullptr;
 
         if (!action->menu()) {
             menuAction = menu.addAction(tr("Open"), this, SLOT(openBookmarkInCurrentTab()));
@@ -85,7 +100,7 @@ void BookmarksToolBar::bookmarkActivated(const QModelIndex &index)
 {
     Q_ASSERT(index.isValid());
 
-    emit openUrl(
+    Q_EMIT openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
         index.data(Qt::DisplayRole).toString());
 }
@@ -94,7 +109,7 @@ void BookmarksToolBar::openBookmark()
 {
     QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
-    emit openUrl(
+    Q_EMIT openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
         index.data(Qt::DisplayRole).toString());
 }
@@ -103,7 +118,7 @@ void BookmarksToolBar::openBookmarkInCurrentTab()
 {
     QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
-    emit openUrl(
+    Q_EMIT openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
         TabWidget::CurrentTab,
         index.data(Qt::DisplayRole).toString());
@@ -113,7 +128,7 @@ void BookmarksToolBar::openBookmarkInNewTab()
 {
     QModelIndex index = ModelToolBar::index(qobject_cast<QAction*>(sender()));
 
-    emit openUrl(
+    Q_EMIT openUrl(
         index.data(BookmarksModel::UrlRole).toUrl(),
         TabWidget::NewTab,
         index.data(Qt::DisplayRole).toString());

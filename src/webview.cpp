@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
  * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
@@ -62,86 +62,140 @@
 **
 ****************************************************************************/
 
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the examples of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:BSD$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** BSD License Usage
+** Alternatively, you may use this file under the terms of the BSD license
+** as follows:
+**
+** "Redistribution and use in source and binary forms, with or without
+** modification, are permitted provided that the following conditions are
+** met:
+**   * Redistributions of source code must retain the above copyright
+**     notice, this list of conditions and the following disclaimer.
+**   * Redistributions in binary form must reproduce the above copyright
+**     notice, this list of conditions and the following disclaimer in
+**     the documentation and/or other materials provided with the
+**     distribution.
+**   * Neither the name of The Qt Company Ltd nor the names of its
+**     contributors may be used to endorse or promote products derived
+**     from this software without specific prior written permission.
+**
+**
+** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+**
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
 #include "webview.h"
 
-#include "adblockdialog.h"
-#include "adblockmanager.h"
-#include "adblockpage.h"
-#include "autofillmanager.h"
 #include "addbookmarkdialog.h"
 #include "bookmarksmanager.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
 #include "downloadmanager.h"
+#include "locationbar.h"
 #include "opensearchengine.h"
 #include "opensearchengineaction.h"
 #include "opensearchmanager.h"
 #include "toolbarsearch.h"
 #include "webpage.h"
+#include "permissionbar.h"
 
-#include <qclipboard.h>
-#include <qdebug.h>
-#include <qevent.h>
-#include <qmenubar.h>
-#include <qtimer.h>
-#include <qwebframe.h>
+#include <QClipboard>
+#include <QDebug>
+#include <QEvent>
+#include <QMenuBar>
+#include <QTimer>
 
-#include <qinputdialog.h>
-#include <qlabel.h>
-#include <qmessagebox.h>
-#include <qsettings.h>
-#include <qtooltip.h>
-#include <qwebelement.h>
+#include <QInputDialog>
+#include <QLabel>
+#include <QMessageBox>
+#include <QSettings>
+#include <QToolTip>
 
 #include <QMimeData>
 #include <QUrlQuery>
 
-#include <qdebug.h>
+#include <QDebug>
 
-WebView::WebView(QWidget *parent)
-    : QWebView(parent)
+#include <QWebEngineContextMenuData>
+#include <QWebEngineCertificateError>
+
+WebView::WebView(QWidget* parent)
+    : QWebEngineView(parent)
     , m_progress(0)
-    , m_currentZoom(100)
-    , m_page(new WebPage(this))
-    , m_enableAccessKeys(true)
-    , m_accessKeysPressed(false)
+    , m_page(0)
 {
-    setPage(m_page);
-    QPalette p;
-    connect(page(), SIGNAL(statusBarMessage(const QString&)),
-            SLOT(setStatusBarText(const QString&)));
     connect(this, SIGNAL(loadProgress(int)),
             this, SLOT(setProgress(int)));
     connect(this, SIGNAL(loadFinished(bool)),
-            this, SLOT(loadFinished()));
-    connect(page(), SIGNAL(aboutToLoadUrl(const QUrl &)),
-            this, SIGNAL(urlChanged(const QUrl &)));
-    connect(page(), SIGNAL(downloadRequested(const QNetworkRequest &)),
-            this, SLOT(downloadRequested(const QNetworkRequest &)));
-    connect(BrowserApplication::instance(), SIGNAL(zoomTextOnlyChanged(bool)),
-            this, SLOT(applyZoom()));
-    page()->setForwardUnsupportedContent(true);
-    setAcceptDrops(true);
+            this, SLOT(loadFinished(bool)));
+    connect(this, &QWebEngineView::renderProcessTerminated,
+    [=](QWebEnginePage::RenderProcessTerminationStatus termStatus, int statusCode) {
+        const char *status = "";
+        switch (termStatus) {
+        case QWebEnginePage::NormalTerminationStatus:
+            status = "(normal exit)";
+            break;
+        case QWebEnginePage::AbnormalTerminationStatus:
+            status = "(abnormal exit)";
+            break;
+        case QWebEnginePage::CrashedTerminationStatus:
+            status = "(crashed)";
+            break;
+        case QWebEnginePage::KilledTerminationStatus:
+            status = "(killed)";
+            break;
+        }
 
-    // the zoom values (in percent) are chosen to be like in Mozilla Firefox 3
-    m_zoomLevels << 30 << 50 << 67 << 80 << 90;
-    m_zoomLevels << 100;
-    m_zoomLevels << 110 << 120 << 133 << 150 << 170 << 200 << 240 << 300;
-    connect(m_page, SIGNAL(loadStarted()),
-            this, SLOT(hideAccessKeys()));
-    connect(m_page, SIGNAL(scrollRequested(int, int, const QRect &)),
-            this, SLOT(hideAccessKeys()));
-    loadSettings();
+        qInfo() << "Render process exited with code" << statusCode << status;
+        QTimer::singleShot(0, [this] { reload(); });
+    });
+}
+
+void WebView::setPage(WebPage *_page)
+{
+    m_page = _page;
+    QWebEngineView::setPage(_page);
+    connect(page(), &WebPage::featurePermissionRequested, this, &WebView::onFeaturePermissionRequested);
 }
 
 void WebView::loadSettings()
 {
+    /*
     QSettings settings;
-    settings.beginGroup(QLatin1String("WebView"));
-    m_enableAccessKeys = settings.value(QLatin1String("enableAccessKeys"), m_enableAccessKeys).toBool();
+    settings.beginGroup(QStringLiteral("WebView"));
+    m_enableAccessKeys = settings.value(QStringLiteral("enableAccessKeys"), m_enableAccessKeys).toBool();
 
     if (!m_enableAccessKeys)
         hideAccessKeys();
+    */
     m_page->loadSettings();
 }
 
@@ -153,47 +207,43 @@ TabWidget *WebView::tabWidget() const
             return tw;
         widget = widget->parent();
     }
-    return 0;
+    return nullptr;
 }
 
 void WebView::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = new QMenu(this);
 
-    QWebHitTestResult r = page()->mainFrame()->hitTestContent(event->pos());
-
-    if (!r.linkUrl().isEmpty()) {
+    if (!page()->contextMenuData().linkUrl().isEmpty()) {
         QAction *newWindowAction = menu->addAction(tr("Open in New &Window"), this, SLOT(openActionUrlInNewWindow()));
-        newWindowAction->setData(r.linkUrl());
+        newWindowAction->setData(page()->contextMenuData().linkUrl());
         QAction *newTabAction = menu->addAction(tr("Open in New &Tab"), this, SLOT(openActionUrlInNewTab()));
-        newTabAction->setData(r.linkUrl());
+        newTabAction->setData(page()->contextMenuData().linkUrl());
         menu->addSeparator();
         menu->addAction(tr("Save Lin&k"), this, SLOT(downloadLinkToDisk()));
-        menu->addAction(tr("&Bookmark This Link"), this, SLOT(bookmarkLink()))->setData(r.linkUrl());
+        menu->addAction(tr("&Bookmark This Link"), this, SLOT(bookmarkLink()))->setData(page()->contextMenuData().linkUrl());
         menu->addSeparator();
         if (!page()->selectedText().isEmpty())
-            menu->addAction(pageAction(QWebPage::Copy));
+            menu->addAction(pageAction(QWebEnginePage::Copy));
         menu->addAction(tr("&Copy Link Location"), this, SLOT(copyLinkToClipboard()));
     }
 
-    if (!r.imageUrl().isEmpty()) {
+    if (page()->contextMenuData().mediaType() == QWebEngineContextMenuData::MediaTypeImage) {
         if (!menu->isEmpty())
             menu->addSeparator();
         QAction *newWindowAction = menu->addAction(tr("Open Image in New &Window"), this, SLOT(openActionUrlInNewWindow()));
-        newWindowAction->setData(r.imageUrl());
+        newWindowAction->setData(page()->contextMenuData().mediaUrl());
         QAction *newTabAction = menu->addAction(tr("Open Image in New &Tab"), this, SLOT(openActionUrlInNewTab()));
-        newTabAction->setData(r.imageUrl());
+        newTabAction->setData(page()->contextMenuData().mediaUrl());
         menu->addSeparator();
         menu->addAction(tr("&Save Image"), this, SLOT(downloadImageToDisk()));
         menu->addAction(tr("&Copy Image"), this, SLOT(copyImageToClipboard()));
-        menu->addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(r.imageUrl().toString());
-        menu->addSeparator();
-        menu->addAction(tr("Block Image"), this, SLOT(blockImage()))->setData(r.imageUrl().toString());
+        menu->addAction(tr("C&opy Image Location"), this, SLOT(copyImageLocationToClipboard()))->setData(page()->contextMenuData().mediaUrl().toString());
     }
 
     if (!page()->selectedText().isEmpty()) {
         if (menu->isEmpty()) {
-            menu->addAction(pageAction(QWebPage::Copy));
+            menu->addAction(pageAction(QWebEnginePage::Copy));
         } else {
             menu->addSeparator();
         }
@@ -210,29 +260,33 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
 
         connect(searchMenu, SIGNAL(triggered(QAction *)), this, SLOT(searchRequested(QAction *)));
     }
+    /*
+        QWebElement element = r.element();
+        if (!element.isNull()
+            && element.tagName().toLower() == QStringLiteral("input")
+            && element.attribute(QStringLiteral("type"), QStringLiteral("text")) == QStringLiteral("text")) {
+            if (menu->isEmpty()) {
+                menu->addAction(pageAction(QWebEnginePage::Copy));
+            } else {
+                menu->addSeparator();
+            }
 
-    QWebElement element = r.element();
-    if (!element.isNull()
-        && element.tagName().toLower() == QLatin1String("input")
-        && element.attribute(QLatin1String("type"), QLatin1String("text")) == QLatin1String("text")) {
-        if (menu->isEmpty()) {
-            menu->addAction(pageAction(QWebPage::Copy));
-        } else {
-            menu->addSeparator();
+            QVariant variant;
+            variant.setValue(element);
+            menu->addAction(tr("Add to the toolbar search"), this, SLOT(addSearchEngine()))->setData(variant);
         }
-
-        QVariant variant;
-        variant.setValue(element);
-        menu->addAction(tr("Add to the toolbar search"), this, SLOT(addSearchEngine()))->setData(variant);
-    }
-
+    */
     if (menu->isEmpty()) {
         delete menu;
         menu = page()->createStandardContextMenu();
-    } else {
-        if (page()->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled))
-            menu->addAction(pageAction(QWebPage::InspectElement));
     }
+
+    QAction *action = new QAction(menu);
+    action->setText("Inspect Element");
+    connect(action, &QAction::triggered, [this]() {
+        Q_EMIT devToolsRequested(page());
+    });
+    menu->addAction(action);
 
     if (!menu->isEmpty()) {
         if (BrowserMainWindow::parentWindow(tabWidget())->menuBar()->isHidden()) {
@@ -246,90 +300,79 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     }
     delete menu;
 
-    QWebView::contextMenuEvent(event);
+    QWebEngineView::contextMenuEvent(event);
 }
 
 void WebView::wheelEvent(QWheelEvent *event)
 {
     if (event->modifiers() & Qt::ControlModifier) {
-        int numDegrees = event->delta() / 8;
+        int numDegrees = event->angleDelta().y() / 8;
         int numSteps = numDegrees / 15;
         m_currentZoom = m_currentZoom + numSteps * 10;
         applyZoom();
         event->accept();
         return;
     }
-    QWebView::wheelEvent(event);
+    QWebEngineView::wheelEvent(event);
 }
 
 void WebView::resizeEvent(QResizeEvent *event)
 {
-    int offset = event->size().height() - event->oldSize().height();
-    int currentValue = page()->mainFrame()->scrollBarValue(Qt::Vertical);
-    setUpdatesEnabled(false);
-    page()->mainFrame()->setScrollBarValue(Qt::Vertical, currentValue - offset);
-    setUpdatesEnabled(true);
-    QWebView::resizeEvent(event);
+    /*
+        int offset = event->size().height() - event->oldSize().height();
+        int currentValue = page()->mainFrame()->scrollBarValue(Qt::Vertical);
+        setUpdatesEnabled(false);
+        page()->mainFrame()->setScrollBarValue(Qt::Vertical, currentValue - offset);
+        setUpdatesEnabled(true);
+    */
+    QWebEngineView::resizeEvent(event);
 }
 
 void WebView::downloadLinkToDisk()
 {
-    pageAction(QWebPage::DownloadLinkToDisk)->trigger();
+    pageAction(QWebEnginePage::DownloadLinkToDisk)->trigger();
 }
 
 void WebView::copyLinkToClipboard()
 {
-    pageAction(QWebPage::CopyLinkToClipboard)->trigger();
+    pageAction(QWebEnginePage::CopyLinkToClipboard)->trigger();
 }
 
 void WebView::openActionUrlInNewTab()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
-        QWebPage *page = tabWidget()->getView(TabWidget::NewNotSelectedTab, this)->page();
-        QNetworkRequest request(action->data().toUrl());
-        request.setRawHeader("Referer", url().toEncoded());
-        page->mainFrame()->load(request);
+        QWebEnginePage *page = tabWidget()->getView(TabWidget::NewNotSelectedTab, this)->page();
+        page->load(action->data().toUrl());
     }
 }
 
 void WebView::openActionUrlInNewWindow()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
-        QWebPage *page = tabWidget()->getView(TabWidget::NewWindow, this)->page();
-        QNetworkRequest request(action->data().toUrl());
-        request.setRawHeader("Referer", url().toEncoded());
-        page->mainFrame()->load(request);
+        QWebEnginePage *page = tabWidget()->getView(TabWidget::NewWindow, this)->page();
+        page->load(action->data().toUrl());
     }
 }
 
 void WebView::openImageInNewWindow()
 {
-    pageAction(QWebPage::OpenImageInNewWindow)->trigger();
+    //pageAction(QWebEnginePage::OpenImageInNewWindow)->trigger();
 }
 
 void WebView::downloadImageToDisk()
 {
-    pageAction(QWebPage::DownloadImageToDisk)->trigger();
+    pageAction(QWebEnginePage::DownloadImageToDisk)->trigger();
 }
 
 void WebView::copyImageToClipboard()
 {
-    pageAction(QWebPage::CopyImageToClipboard)->trigger();
+    pageAction(QWebEnginePage::CopyImageToClipboard)->trigger();
 }
 
 void WebView::copyImageLocationToClipboard()
 {
     if (QAction *action = qobject_cast<QAction*>(sender())) {
         BrowserApplication::clipboard()->setText(action->data().toString());
-    }
-}
-
-void WebView::blockImage()
-{
-    if (QAction *action = qobject_cast<QAction*>(sender())) {
-        QString imageUrl = action->data().toString();
-        AdBlockDialog *dialog = AdBlockManager::instance()->showDialog();
-        dialog->addCustomRule(imageUrl);
     }
 }
 
@@ -353,10 +396,10 @@ void WebView::searchRequested(QAction *action)
 
     if (index.canConvert<QString>()) {
         OpenSearchEngine *engine = ToolbarSearch::openSearchManager()->engine(index.toString());
-        emit search(engine->searchUrl(searchText), TabWidget::NewSelectedTab);
+        Q_EMIT search(engine->searchUrl(searchText), TabWidget::NewSelectedTab);
     }
 }
-
+/*
 void WebView::addSearchEngine()
 {
     QAction *action = qobject_cast<QAction*>(sender());
@@ -368,55 +411,55 @@ void WebView::addSearchEngine()
         return;
 
     QWebElement element = qvariant_cast<QWebElement>(variant);
-    QString elementName = element.attribute(QLatin1String("name"));
+    QString elementName = element.attribute(QStringLiteral("name"));
     QWebElement formElement = element;
-    while (formElement.tagName().toLower() != QLatin1String("form"))
+    while (formElement.tagName().toLower() != QStringLiteral("form"))
         formElement = formElement.parent();
 
-    if (formElement.isNull() || formElement.attribute(QLatin1String("action")).isEmpty())
+    if (formElement.isNull() || formElement.attribute(QStringLiteral("action")).isEmpty())
         return;
 
-    QString method = formElement.attribute(QLatin1String("method"), QLatin1String("get")).toLower();
-    if (method != QLatin1String("get")) {
+    QString method = formElement.attribute(QStringLiteral("method"), QStringLiteral("get")).toLower();
+    if (method != QStringLiteral("get")) {
         QMessageBox::warning(this, tr("Method not supported"),
                              tr("%1 method is not supported.").arg(method.toUpper()));
         return;
     }
 
-    QUrl searchUrl(page()->mainFrame()->baseUrl().resolved(QUrl(formElement.attribute(QLatin1String("action")))));
+    QUrl searchUrl(page()->mainFrame()->baseUrl().resolved(QUrl(formElement.attribute(QStringLiteral("action")))));
     QMap<QString, QString> searchEngines;
-    QWebElementCollection inputFields = formElement.findAll(QLatin1String("input"));
+    QWebElementCollection inputFields = formElement.findAll(QStringLiteral("input"));
     QUrlQuery query(searchUrl.query());
 
-    foreach (QWebElement inputField, inputFields) {
-        QString type = inputField.attribute(QLatin1String("type"), QLatin1String("text"));
-        QString name = inputField.attribute(QLatin1String("name"));
-        QString value = inputField.evaluateJavaScript(QLatin1String("this.value")).toString();
+    Q_FOREACH (QWebElement inputField, inputFields) {
+        QString type = inputField.attribute(QStringLiteral("type"), QStringLiteral("text"));
+        QString name = inputField.attribute(QStringLiteral("name"));
+        QString value = inputField.evaluateJavaScript(QStringLiteral("this.value")).toString();
 
-        if (type == QLatin1String("submit")) {
+        if (type == QStringLiteral("submit")) {
             searchEngines.insert(value, name);
-        } else if (type == QLatin1String("text")) {
+        } else if (type == QStringLiteral("text")) {
             if (inputField == element)
-                value = QLatin1String("{searchTerms}");
+                value = QStringLiteral("{searchTerms}");
 
             query.addQueryItem(name, value);
-        } else if (type == QLatin1String("checkbox") || type == QLatin1String("radio")) {
-            if (inputField.evaluateJavaScript(QLatin1String("this.checked")).toBool()) {
+        } else if (type == QStringLiteral("checkbox") || type == QStringLiteral("radio")) {
+            if (inputField.evaluateJavaScript(QStringLiteral("this.checked")).toBool()) {
                 query.addQueryItem(name, value);
             }
-        } else if (type == QLatin1String("hidden")) {
+        } else if (type == QStringLiteral("hidden")) {
             query.addQueryItem(name, value);
         }
     }
 
-    QWebElementCollection selectFields = formElement.findAll(QLatin1String("select"));
-    foreach (QWebElement selectField, selectFields) {
-        QString name = selectField.attribute(QLatin1String("name"));
-        int selectedIndex = selectField.evaluateJavaScript(QLatin1String("this.selectedIndex")).toInt();
+    QWebElementCollection selectFields = formElement.findAll(QStringLiteral("select"));
+    Q_FOREACH (QWebElement selectField, selectFields) {
+        QString name = selectField.attribute(QStringLiteral("name"));
+        int selectedIndex = selectField.evaluateJavaScript(QStringLiteral("this.selectedIndex")).toInt();
         if (selectedIndex == -1)
             continue;
 
-        QWebElementCollection options = selectField.findAll(QLatin1String("option"));
+        QWebElementCollection options = selectField.findAll(QStringLiteral("option"));
         QString value = options.at(selectedIndex).toPlainText();
         query.addQueryItem(name, value);
     }
@@ -434,7 +477,7 @@ void WebView::addSearchEngine()
     searchUrl.setQuery(query);
 
     QString engineName;
-    QWebElementCollection labels = formElement.findAll(QString(QLatin1String("label[for=\"%1\"]")).arg(elementName));
+    QWebElementCollection labels = formElement.findAll(QString(QStringLiteral("label[for=\"%1\"]")).arg(elementName));
     if (labels.count() > 0)
         engineName = labels.at(0).toPlainText();
 
@@ -451,7 +494,7 @@ void WebView::addSearchEngine()
 
     ToolbarSearch::openSearchManager()->addEngine(engine);
 }
-
+*/
 void WebView::setProgress(int progress)
 {
     m_progress = progress;
@@ -509,40 +552,49 @@ void WebView::resetZoom()
     applyZoom();
 }
 
-void WebView::loadFinished()
+void WebView::loadFinished(bool success)
 {
     if (100 != m_progress) {
         qWarning() << "Received finished signal while progress is still:" << progress()
                    << "Url:" << url();
     }
     m_progress = 0;
-    AdBlockManager::instance()->page()->applyRulesToPage(page());
-    BrowserApplication::instance()->autoFillManager()->fill(page());
 }
 
 void WebView::loadUrl(const QUrl &url, const QString &title)
 {
-    if (url.scheme() == QLatin1String("javascript")) {
+    if (url.scheme() == QStringLiteral("javascript")) {
         QString scriptSource = QUrl::fromPercentEncoding(url.toString(Q_FLAGS(QUrl::TolerantMode|QUrl::RemoveScheme)).toLatin1());
-        QVariant result = page()->mainFrame()->evaluateJavaScript(scriptSource);
+        QEventLoop loop;
+        QObject::connect(this, SIGNAL(notifyRanJavaScript()), &loop, SLOT(quit()));
+        page()->runJavaScript(scriptSource, [this](const QVariant &v)
+        {
+            this->ranJavaScript();
+        });
+        loop.exec();
         return;
     }
     m_initialUrl = url;
     if (!title.isEmpty())
-        emit titleChanged(tr("Loading..."));
+        Q_EMIT titleChanged(tr("Loading..."));
     else
-        emit titleChanged(title);
+        Q_EMIT titleChanged(title);
     QUrl oldurl = QUrl(url.toString());
     QUrl newurl = QUrl(url.toString());
-    if(newurl.toString().startsWith(QLatin1String("endorphin://"))) {
+    if(newurl.toString().startsWith(QStringLiteral("endorphin://"))) {
         QString url_tmp = newurl.toString().mid(12);
-        newurl = QUrl(QLatin1String("qrc:/") + url_tmp);
+        newurl = QUrl(QStringLiteral("qrc:/") + url_tmp);
         QString urlstr = newurl.toString();
-        if(!urlstr.endsWith(QLatin1String(".html"))) {
-            newurl = QUrl(urlstr + QLatin1String(".html"));
+        if(!urlstr.endsWith(QStringLiteral(".html"))) {
+            newurl = QUrl(urlstr + QStringLiteral(".html"));
         }
     }
     load(newurl);
+}
+
+void WebView::ranJavaScript()
+{
+    Q_EMIT notifyRanJavaScript();
 }
 
 QString WebView::lastStatusBarText() const
@@ -552,7 +604,7 @@ QString WebView::lastStatusBarText() const
 
 QUrl WebView::url() const
 {
-    QUrl url = QWebView::url();
+    QUrl url = QWebEngineView::url();
     if (!url.isEmpty())
         return url;
 
@@ -563,7 +615,7 @@ void WebView::mousePressEvent(QMouseEvent *event)
 {
     BrowserApplication::instance()->setEventMouseButtons(event->buttons());
     BrowserApplication::instance()->setEventKeyboardModifiers(event->modifiers());
-
+    LocationBar::resetFirstSelectAll();
     switch (event->button()) {
     case Qt::XButton1:
         pageAction(WebPage::Back)->trigger();
@@ -572,7 +624,7 @@ void WebView::mousePressEvent(QMouseEvent *event)
         pageAction(WebPage::Forward)->trigger();
         break;
     default:
-        QWebView::mousePressEvent(event);
+        QWebEngineView::mousePressEvent(event);
         break;
     }
 }
@@ -595,16 +647,16 @@ void WebView::dragMoveEvent(QDragMoveEvent *event)
         }
     }
     if (!event->isAccepted()) {
-        QWebView::dragMoveEvent(event);
+        QWebEngineView::dragMoveEvent(event);
     }
 }
 
 void WebView::dropEvent(QDropEvent *event)
 {
-    QWebView::dropEvent(event);
+    QWebEngineView::dropEvent(event);
     if (!event->isAccepted()
-        && event->source() != this
-        && event->possibleActions() & Qt::CopyAction) {
+            && event->source() != this
+            && event->possibleActions() & Qt::CopyAction) {
 
         QUrl url;
         if (!event->mimeData()->urls().isEmpty())
@@ -621,9 +673,9 @@ void WebView::dropEvent(QDropEvent *event)
 void WebView::mouseReleaseEvent(QMouseEvent *event)
 {
     const bool isAccepted = event->isAccepted();
-    m_page->event(event);
+    page()->event(event);
     if (!event->isAccepted()
-        && (BrowserApplication::instance()->eventMouseButtons() & Qt::MidButton)) {
+            && (BrowserApplication::instance()->eventMouseButtons() & Qt::MidButton)) {
         QUrl url(QApplication::clipboard()->text(QClipboard::Selection));
         if (!url.isEmpty() && url.isValid() && !url.scheme().isEmpty()) {
             BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
@@ -638,13 +690,14 @@ void WebView::setStatusBarText(const QString &string)
     m_statusBarText = string;
 }
 
-void WebView::downloadRequested(const QNetworkRequest &request)
+void WebView::downloadRequested(QWebEngineDownloadItem *download)
 {
-    BrowserApplication::downloadManager()->download(request);
+    BrowserApplication::downloadManager()->download(download);
 }
 
 void WebView::keyPressEvent(QKeyEvent *event)
 {
+    /*
     if (m_enableAccessKeys) {
         m_accessKeysPressed = (event->modifiers() == Qt::ControlModifier
                                && event->key() == Qt::Key_Control);
@@ -659,9 +712,10 @@ void WebView::keyPressEvent(QKeyEvent *event)
             QTimer::singleShot(300, this, SLOT(accessKeyShortcut()));
         }
     }
-    QWebView::keyPressEvent(event);
+    */
+    QWebEngineView::keyPressEvent(event);
 }
-
+/*
 void WebView::accessKeyShortcut()
 {
     if (!hasFocus()
@@ -675,23 +729,28 @@ void WebView::accessKeyShortcut()
     }
     m_accessKeysPressed = false;
 }
-
+*/
 void WebView::keyReleaseEvent(QKeyEvent *event)
 {
-    if (m_enableAccessKeys)
-        m_accessKeysPressed = event->key() == Qt::Key_Control;
-    QWebView::keyReleaseEvent(event);
+    /*
+        if (m_enableAccessKeys)
+            m_accessKeysPressed = event->key() == Qt::Key_Control;
+    */
+    QWebEngineView::keyReleaseEvent(event);
 }
 
 void WebView::focusOutEvent(QFocusEvent *event)
 {
-    if (m_accessKeysPressed) {
-        hideAccessKeys();
-        m_accessKeysPressed = false;
-    }
-    QWebView::focusOutEvent(event);
+    /*
+        if (m_accessKeysPressed) {
+            hideAccessKeys();
+            m_accessKeysPressed = false;
+        }
+    */
+    QWebEngineView::focusOutEvent(event);
 }
 
+/*
 bool WebView::checkForAccessKey(QKeyEvent *event)
 {
     if (m_accessKeyLabels.isEmpty())
@@ -737,32 +796,32 @@ void WebView::hideAccessKeys()
 void WebView::showAccessKeys()
 {
     QStringList supportedElement;
-    supportedElement << QLatin1String("input")
-                     << QLatin1String("a")
-                     << QLatin1String("area")
-                     << QLatin1String("button")
-                     << QLatin1String("label")
-                     << QLatin1String("legend")
-                     << QLatin1String("textarea");
+    supportedElement << QStringLiteral("input")
+                     << QStringLiteral("a")
+                     << QStringLiteral("area")
+                     << QStringLiteral("button")
+                     << QStringLiteral("label")
+                     << QStringLiteral("legend")
+                     << QStringLiteral("textarea");
 
     QList<QChar> unusedKeys;
     for (char c = 'A'; c <= 'Z'; ++c)
-        unusedKeys << QLatin1Char(c);
+        unusedKeys << QChar(c);
     for (char c = '0'; c <= '9'; ++c)
-        unusedKeys << QLatin1Char(c);
+        unusedKeys << QChar(c);
 
-    QRect viewport = QRect(m_page->mainFrame()->scrollPosition(), m_page->viewportSize());
+    QRect viewport = QRect(page()->mainFrame()->scrollPosition(), page()->viewportSize());
     // Priority first goes to elements with accesskey attributes
     QList<QWebElement> alreadyLabeled;
-    foreach (const QString &elementType, supportedElement) {
+    Q_FOREACH (const QString &elementType, supportedElement) {
         QList<QWebElement> result = page()->mainFrame()->findAllElements(elementType).toList();
-        foreach (const QWebElement &element, result) {
+        Q_FOREACH (const QWebElement &element, result) {
             const QRect geometry = element.geometry();
             if (geometry.size().isEmpty()
                 || !viewport.contains(geometry.topLeft())) {
                 continue;
             }
-            QString accessKeyAttribute = element.attribute(QLatin1String("accesskey")).toUpper();
+            QString accessKeyAttribute = element.attribute(QStringLiteral("accesskey")).toUpper();
             if (accessKeyAttribute.isEmpty())
                 continue;
             QChar accessKey;
@@ -783,9 +842,9 @@ void WebView::showAccessKeys()
 
     // Pick an access key first from the letters in the text and then from the
     // list of unused access keys
-    foreach (const QString &elementType, supportedElement) {
+    Q_FOREACH (const QString &elementType, supportedElement) {
         QWebElementCollection result = page()->mainFrame()->findAllElements(elementType);
-        foreach (const QWebElement &element, result) {
+        Q_FOREACH (const QWebElement &element, result) {
             const QRect geometry = element.geometry();
             if (unusedKeys.isEmpty()
                 || alreadyLabeled.contains(element)
@@ -813,7 +872,7 @@ void WebView::showAccessKeys()
 void WebView::makeAccessKeyLabel(const QChar &accessKey, const QWebElement &element)
 {
     QLabel *label = new QLabel(this);
-    label->setText(QString(QLatin1String("<qt><b>%1</b>")).arg(accessKey));
+    label->setText(QString(QStringLiteral("<qt><b>%1</b>")).arg(accessKey));
 
     QPalette p = QToolTip::palette();
     QColor color(Qt::yellow);
@@ -824,11 +883,23 @@ void WebView::makeAccessKeyLabel(const QChar &accessKey, const QWebElement &elem
     label->setAutoFillBackground(true);
     label->setFrameStyle(QFrame::Box | QFrame::Plain);
     QPoint point = element.geometry().center();
-    point -= m_page->mainFrame()->scrollPosition();
+    point -= page()->mainFrame()->scrollPosition();
     label->move(point);
     label->show();
     point.setX(point.x() - label->width() / 2);
     label->move(point);
     m_accessKeyLabels.append(label);
     m_accessKeyNodes[accessKey] = element;
+}
+*/
+
+void WebView::onFeaturePermissionRequested(const QUrl &securityOrigin, QWebEnginePage::Feature feature)
+{
+    PermissionBar *permissionBar = new PermissionBar(this);
+    connect(permissionBar, &PermissionBar::featurePermissionProvided, page(), &QWebEnginePage::setFeaturePermission);
+
+    // Discard the bar on new loads (if we navigate away or reload).
+    connect(page(), &QWebEnginePage::loadStarted, permissionBar, &QObject::deleteLater);
+
+    permissionBar->requestPermission(securityOrigin, feature);
 }

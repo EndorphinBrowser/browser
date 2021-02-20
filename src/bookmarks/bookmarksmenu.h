@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,8 +67,8 @@
 
 #include "tabwidget.h"
 
-#include <qabstractitemmodel.h>
-#include <qlist.h>
+#include <QAbstractItemModel>
+#include <QList>
 
 class BookmarksManager;
 
@@ -77,18 +77,18 @@ class BookmarksMenu : public ModelMenu
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void openUrl(const QUrl &url, const QString &title);
     void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
-    BookmarksMenu(QWidget *parent = 0);
+    BookmarksMenu(QWidget *parent = nullptr);
 
 protected:
     void postPopulated();
     ModelMenu *createBaseMenu();
 
-private slots:
+private Q_SLOTS:
     void openAll();
     void activated(const QModelIndex &index);
 
@@ -100,7 +100,7 @@ class BookmarksMenuBarMenu : public BookmarksMenu
     Q_OBJECT
 
 public:
-    BookmarksMenuBarMenu(QWidget *parent = 0);
+    BookmarksMenuBarMenu(QWidget *parent = nullptr);
     void setInitialActions(QList<QAction*> actions);
 
 protected:

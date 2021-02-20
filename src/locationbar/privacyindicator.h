@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2010 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,14 +20,14 @@
 #ifndef PRIVACYINDICATOR_H
 #define PRIVACYINDICATOR_H
 
-#include <qlabel.h>
+#include <QLabel>
 
 class PrivacyIndicator : public QLabel
 {
     Q_OBJECT
 
 public:
-    PrivacyIndicator(QWidget *parent = 0);
+    PrivacyIndicator(QWidget *parent = nullptr);
 
 protected:
     void mousePressEvent(QMouseEvent *event);

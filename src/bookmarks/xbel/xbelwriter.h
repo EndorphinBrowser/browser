@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,8 +63,8 @@
 #ifndef XBELWRITER_H
 #define XBELWRITER_H
 
-#include <qxmlstream.h>
-#include <qdatetime.h>
+#include <QXmlStreamWriter>
+#include <QDateTime>
 
 class BookmarkNode;
 class XbelWriter : public QXmlStreamWriter

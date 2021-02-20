@@ -1,6 +1,6 @@
 /*
  * Copyright 2008-2009 Benjamin K. Stuhl <bks24@cornell.edu>
- * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,14 +18,14 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <qdatetime.h>
-#include <qdebug.h>
-#include <qdir.h>
-#include <qfile.h>
+#include <QDateTime>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
 #include <QSqlDatabase>
 #include <qsqlerror.h>
 #include <qsqlquery.h>
-#include <qtextstream.h>
+#include <QTextStream>
 #include <qvariant.h>
 
 #include "singleapplication.h"
@@ -42,8 +42,8 @@ static HistoryEntry formatEntry(QByteArray url, QByteArray title, qlonglong prda
 int main(int argc, char **argv)
 {
     SingleApplication application(argc, argv);
-    QCoreApplication::setOrganizationDomain(QLatin1String("aarondewes.github.io/endorphin/"));
-    QCoreApplication::setApplicationName(QLatin1String("Endorphin"));
+    QCoreApplication::setOrganizationDomain(QStringLiteral("EndorphinBrowser.gitlab.io/"));
+    QCoreApplication::setApplicationName(QStringLiteral("Endorphin"));
 
     if (application.sendMessage(QByteArray())) {
         qWarning() << "To prevent the loss of any history please exit Endorphin while this is tool is being run";
@@ -54,8 +54,8 @@ int main(int argc, char **argv)
     args.takeFirst();
     if (args.isEmpty()) {
         QTextStream stream(stdout);
-        stream << "endorphin-placesimport is a tool for importing browser history from Firefox 3 and up" << endl;
-        stream << "endorphin-placesinfo ~/.mozilla/firefox/[profile-dir]/places.sqlite" << endl;
+        stream << "endorphin-placesimport is a tool for importing browser history from Firefox 3 and up" << Qt::endl;
+        stream << "endorphin-placesinfo ~/.mozilla/firefox/[profile-dir]/places.sqlite" << Qt::endl;
         return 0;
     }
 

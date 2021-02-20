@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008 - 2009, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -9,7 +9,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Aaron Dewes nor the names of its contributors
+ * 3. Neither the name of Endorphin nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -29,7 +29,7 @@
 #ifndef LINEEDIT_H
 #define LINEEDIT_H
 
-#include <qlineedit.h>
+#include <QLineEdit>
 
 class QHBoxLayout;
 
@@ -47,7 +47,10 @@ class SideWidget;
 class LineEdit : public QLineEdit
 {
     Q_OBJECT
-    Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText)
+    Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText NOTIFY inactiveTextChanged)
+
+Q_SIGNALS:
+    void inactiveTextChanged();
 
 public:
     enum WidgetPosition {
@@ -55,8 +58,8 @@ public:
         RightSide
     };
 
-    LineEdit(QWidget *parent = 0);
-    LineEdit(const QString &contents, QWidget *parent = 0);
+    LineEdit(QWidget *parent = nullptr);
+    LineEdit(const QString &contents, QWidget *parent = nullptr);
 
     void addWidget(QWidget *widget, WidgetPosition position);
     void removeWidget(QWidget *widget);
@@ -72,7 +75,7 @@ protected:
     void resizeEvent(QResizeEvent *event);
     bool event(QEvent *event);
 
-protected slots:
+protected Q_SLOTS:
     void updateTextMargins();
 
 private:

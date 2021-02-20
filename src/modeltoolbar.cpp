@@ -19,18 +19,22 @@
 
 #include "modeltoolbar.h"
 
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#endif
 #include "modelmenu.h"
 
-#include <qevent.h>
-#include <qtoolbutton.h>
+#include <QEvent>
+#include <QMouseEvent>
+#include <QToolButton>
 #include <QDrag>
 #include <QMimeData>
+#include <QApplication>
 
 
 ModelToolBar::ModelToolBar(QWidget *parent)
     : QToolBar(parent)
-    , m_model(0)
+    , m_model(nullptr)
 {
     if (isVisible())
         build();
@@ -40,7 +44,7 @@ ModelToolBar::ModelToolBar(QWidget *parent)
 
 ModelToolBar::ModelToolBar(const QString &title, QWidget *parent)
     : QToolBar(title, parent)
-    , m_model(0)
+    , m_model(nullptr)
 {
     if (isVisible())
         build();
@@ -150,13 +154,15 @@ bool ModelToolBar::eventFilter(QObject *object, QEvent *event)
 
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
 
+#ifndef NO_BROWSERAPPLICATION
         BrowserApplication::instance()->setEventMouseButtons(mouseEvent->button());
         BrowserApplication::instance()->setEventKeyboardModifiers(mouseEvent->modifiers());
+#endif
         QAction *action = button->defaultAction();
         Q_ASSERT(action);
         QModelIndex index = this->index(action);
         Q_ASSERT(this->index(action).isValid());
-        emit activated(index);
+        Q_EMIT activated(index);
     } else if (event->type() == QEvent::MouseButtonPress) {
         Q_ASSERT(static_cast<QToolButton*>(object));
 
@@ -177,7 +183,7 @@ void ModelToolBar::dragEnterEvent(QDragEnterEvent *event)
     }
 
     QStringList mimeTypes = m_model->mimeTypes();
-    foreach (const QString &mimeType, mimeTypes) {
+    Q_FOREACH (const QString &mimeType, mimeTypes) {
         if (event->mimeData()->hasFormat(mimeType))
             event->acceptProposedAction();
     }

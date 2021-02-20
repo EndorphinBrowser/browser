@@ -22,7 +22,7 @@
 #ifndef OPENSEARCHENGINEMODEL_H
 #define OPENSEARCHENGINEMODEL_H
 
-#include <qabstractitemmodel.h>
+#include <QAbstractItemModel>
 
 class OpenSearchEngine;
 class OpenSearchManager;
@@ -32,7 +32,7 @@ class OpenSearchEngineModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent = 0);
+    OpenSearchEngineModel(OpenSearchManager *manager, QObject *parent = nullptr);
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
@@ -41,7 +41,7 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
-protected slots:
+protected Q_SLOTS:
     void enginesChanged();
 
 private:

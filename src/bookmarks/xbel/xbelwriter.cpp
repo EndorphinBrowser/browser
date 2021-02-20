@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,7 +62,7 @@
 
 #include "xbelwriter.h"
 
-#include <qfile.h>
+#include <QFile>
 
 #include "bookmarknode.h"
 
@@ -84,9 +84,9 @@ bool XbelWriter::write(QIODevice *device, const BookmarkNode *root)
     setDevice(device);
 
     writeStartDocument();
-    writeDTD(QLatin1String("<!DOCTYPE xbel>"));
-    writeStartElement(QLatin1String("xbel"));
-    writeAttribute(QLatin1String("version"), QLatin1String("1.0"));
+    writeDTD(QStringLiteral("<!DOCTYPE xbel>"));
+    writeStartElement(QStringLiteral("xbel"));
+    writeAttribute(QStringLiteral("version"), QStringLiteral("1.0"));
     if (root->type() == BookmarkNode::Root) {
         for (int i = 0; i < root->children().count(); ++i)
             writeItem(root->children().at(i));
@@ -102,24 +102,24 @@ void XbelWriter::writeItem(const BookmarkNode *parent)
 {
     switch (parent->type()) {
     case BookmarkNode::Folder:
-        writeStartElement(QLatin1String("folder"));
-        writeAttribute(QLatin1String("folded"), parent->expanded ? QLatin1String("no") : QLatin1String("yes"));
-        writeTextElement(QLatin1String("title"), parent->title);
+        writeStartElement(QStringLiteral("folder"));
+        writeAttribute(QStringLiteral("folded"), parent->expanded ? QStringLiteral("no") : QStringLiteral("yes"));
+        writeTextElement(QStringLiteral("title"), parent->title);
         for (int i = 0; i < parent->children().count(); ++i)
             writeItem(parent->children().at(i));
         writeEndElement();
         break;
     case BookmarkNode::Bookmark:
-        writeStartElement(QLatin1String("bookmark"));
+        writeStartElement(QStringLiteral("bookmark"));
         if (!parent->url.isEmpty())
-            writeAttribute(QLatin1String("href"), parent->url);
-        writeTextElement(QLatin1String("title"), parent->title);
+            writeAttribute(QStringLiteral("href"), parent->url);
+        writeTextElement(QStringLiteral("title"), parent->title);
         if (!parent->desc.isEmpty())
-            writeAttribute(QLatin1String("desc"), parent->desc);
+            writeAttribute(QStringLiteral("desc"), parent->desc);
         writeEndElement();
         break;
     case BookmarkNode::Separator:
-        writeEmptyElement(QLatin1String("separator"));
+        writeEmptyElement(QStringLiteral("separator"));
         break;
     default:
         break;

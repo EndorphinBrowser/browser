@@ -1,0 +1,3 @@
+[submodule "tools/htmlToXBel"]
+	path = tools/htmlToXBel
+	url = https://gitlab.com/EndorphinBrowser/tools/htmlToXBel.git

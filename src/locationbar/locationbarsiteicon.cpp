@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
 
 #include "locationbarsiteicon.h"
 
-#include <qevent.h>
-#include <qurl.h>
+#include <QEvent>
+#include <QUrl>
 #include <QDrag>
 #include <QMimeData>
 
@@ -29,7 +29,7 @@
 
 LocationBarSiteIcon::LocationBarSiteIcon(QWidget *parent)
     : QLabel(parent)
-    , m_webView(0)
+    , m_webView(nullptr)
 {
     resize(QSize(16, 16));
     webViewSiteIconChanged();
@@ -42,7 +42,7 @@ void LocationBarSiteIcon::setWebView(WebView *webView)
     m_webView = webView;
     connect(webView, SIGNAL(loadFinished(bool)),
             this, SLOT(webViewSiteIconChanged()));
-    connect(webView, SIGNAL(iconChanged()),
+    connect(webView, SIGNAL(iconChanged(QIcon)),
             this, SLOT(webViewSiteIconChanged()));
 }
 
@@ -64,8 +64,8 @@ void LocationBarSiteIcon::mousePressEvent(QMouseEvent *event)
 void LocationBarSiteIcon::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() == Qt::LeftButton
-        && (event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()
-        && m_webView) {
+            && (event->pos() - m_dragStartPos).manhattanLength() > QApplication::startDragDistance()
+            && m_webView) {
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
         QString title = m_webView->title();
@@ -75,9 +75,10 @@ void LocationBarSiteIcon::mouseMoveEvent(QMouseEvent *event)
         QList<QUrl> urls;
         urls.append(m_webView->url());
         mimeData->setUrls(urls);
-        const QPixmap *p = pixmap();
-        if (p)
-            drag->setPixmap(*p);
+        QPixmap p = pixmap(Qt::ReturnByValue);
+        if (!pixmap(Qt::ReturnByValue)) {} else {
+            drag->setPixmap(p);
+        }
         drag->setMimeData(mimeData);
         drag->exec();
     }

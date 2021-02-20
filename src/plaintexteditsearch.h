@@ -22,7 +22,7 @@
 
 #include "searchbar.h"
 
-#include <qtextdocument.h>
+#include <QTextDocument>
 
 class QPlainTextEdit;
 class PlainTextEditSearch : public SearchBar
@@ -30,9 +30,9 @@ class PlainTextEditSearch : public SearchBar
     Q_OBJECT
 
 public:
-    PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget *parent = 0);
+    PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void findNext();
     void findPrevious();
 

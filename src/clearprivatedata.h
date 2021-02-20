@@ -20,7 +20,7 @@
 #ifndef CLEARPRIVATEDATA_H
 #define CLEARPRIVATEDATA_H
 
-#include <qdialog.h>
+#include <QDialog>
 
 class QCheckBox;
 
@@ -29,9 +29,9 @@ class ClearPrivateData : public QDialog
     Q_OBJECT
 
 public:
-    ClearPrivateData(QWidget *parent = 0);
+    ClearPrivateData(QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void accept();
 
 private:

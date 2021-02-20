@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,11 +62,11 @@
 
 #include "autosaver.h"
 
-#include <qdir.h>
-#include <qcoreapplication.h>
-#include <qmetaobject.h>
+#include <QDir>
+#include <QCoreApplication>
+#include <QMetaObject>
 
-#include <qdebug.h>
+#include <QDebug>
 
 #define AUTOSAVE_IN  1000 * 3  // seconds
 #define MAXWAIT      1000 * 15 // seconds

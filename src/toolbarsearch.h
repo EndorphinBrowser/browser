@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -79,19 +79,19 @@ class ToolbarSearch : public SearchLineEdit
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void search(const QUrl &url, TabWidget::OpenUrlIn tab);
 
 public:
-    ToolbarSearch(QWidget *parent = 0);
+    ToolbarSearch(QWidget *parent = nullptr);
     ~ToolbarSearch();
     static OpenSearchManager *openSearchManager();
 
-public slots:
+public Q_SLOTS:
     void clear();
     void searchNow();
 
-private slots:
+private Q_SLOTS:
     void currentEngineChanged();
     void save();
     void textEdited(const QString &);

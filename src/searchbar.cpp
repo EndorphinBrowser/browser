@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,16 +19,17 @@
 
 #include "searchbar.h"
 
-#include <qevent.h>
-#include <qtimeline.h>
-#include <qshortcut.h>
+#include <QEvent>
+#include <QTimeLine>
+#include <QShortcut>
+#include <QResizeEvent>
 
-#include <qdebug.h>
+#include <QDebug>
 
 SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)
-    , m_object(0)
-    , m_widget(0)
+    , m_object(nullptr)
+    , m_widget(nullptr)
     , m_timeLine(new QTimeLine(150, this))
 {
     initializeSearchWidget();
@@ -61,9 +62,9 @@ void SearchBar::initializeSearchWidget()
     m_widget->setContentsMargins(0, 0, 0, 0);
     ui.setupUi(m_widget);
     ui.previousButton->setText(m_widget->layoutDirection()
-                == Qt::LeftToRight? QChar(9664): QChar(9654));
+                               == Qt::LeftToRight? QChar(9664): QChar(9654));
     ui.nextButton->setText(m_widget->layoutDirection()
-                == Qt::LeftToRight? QChar(9654): QChar(9664));
+                           == Qt::LeftToRight? QChar(9654): QChar(9664));
     ui.searchInfo->setText(QString());
     setMinimumWidth(m_widget->minimumWidth());
     setMaximumWidth(m_widget->maximumWidth());

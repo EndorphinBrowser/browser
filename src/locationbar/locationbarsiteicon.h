@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef LOCATIONBARSITEICON_H
 #define LOCATIONBARSITEICON_H
 
-#include <qlabel.h>
+#include <QLabel>
 
 class WebView;
 class LocationBarSiteIcon : public QLabel
@@ -28,14 +28,14 @@ class LocationBarSiteIcon : public QLabel
     Q_OBJECT
 
 public:
-    LocationBarSiteIcon(QWidget *parent = 0);
+    LocationBarSiteIcon(QWidget *parent = nullptr);
     void setWebView(WebView *webView);
 
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
 
-private slots:
+private Q_SLOTS:
     void webViewSiteIconChanged();
 
 private:

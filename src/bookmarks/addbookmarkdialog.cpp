@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -66,9 +66,15 @@
 #include "bookmarknode.h"
 #include "bookmarksmanager.h"
 #include "bookmarksmodel.h"
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#else
+#ifdef FOR_AUTOTEST
+#include "tst_addbookmarkdialog.h"
+#endif
+#endif
 
-#include <qheaderview.h>
+#include <QHeaderView>
 #include <qtreeview.h>
 
 AddBookmarkProxyModel::AddBookmarkProxyModel(QObject *parent)
@@ -90,15 +96,23 @@ bool AddBookmarkProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &s
 AddBookmarkDialog::AddBookmarkDialog(QWidget *parent, BookmarksManager *bookmarksManager)
     : QDialog(parent)
     , m_bookmarksManager(bookmarksManager)
-    , m_addedNode(0)
-    , m_proxyModel(0)
+    , m_addedNode(nullptr)
+    , m_proxyModel(nullptr)
     , m_addFolder(false)
 {
     setWindowFlags(Qt::Sheet);
     setupUi(this);
 
     if (!m_bookmarksManager)
+#ifndef NO_BROWSERAPPLICATION
         m_bookmarksManager = BrowserApplication::bookmarksManager();
+#else
+#ifdef FOR_AUTOTEST
+        m_bookmarksManager = tst_AddBookmarkDialog::bookmarksManager();
+#else
+#error "No bookmarksmanager provided! Build this either with BrowserApplication included or for autotests"
+#endif
+#endif
 
     m_proxyModel = new AddBookmarkProxyModel(this);
     BookmarksModel *model = m_bookmarksManager->bookmarksModel();

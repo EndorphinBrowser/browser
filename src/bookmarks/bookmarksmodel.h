@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@
 #ifndef BOOKMARKSMODEL_H
 #define BOOKMARKSMODEL_H
 
-#include <qabstractitemmodel.h>
+#include <QAbstractItemModel>
 
 #include <qicon.h>
 
@@ -73,7 +73,7 @@ class BookmarksModel : public QAbstractItemModel
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void entryAdded(BookmarkNode *item);
     void entryRemoved(BookmarkNode *parent, int row, BookmarkNode *item);
     void entryChanged(BookmarkNode *item);
@@ -86,7 +86,7 @@ public:
         SeparatorRole = Qt::UserRole + 4
     };
 
-    BookmarksModel(BookmarksManager *bookmarkManager, QObject *parent = 0);
+    BookmarksModel(BookmarksManager *bookmarkManager, QObject *parent = nullptr);
     inline BookmarksManager *bookmarksManager() const {
         return m_bookmarksManager;
     }

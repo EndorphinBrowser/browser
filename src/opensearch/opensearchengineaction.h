@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef OPENSEARCHENGINEACTION_H
 #define OPENSEARCHENGINEACTION_H
 
-#include <qaction.h>
+#include <QAction>
 
 class OpenSearchEngine;
 class OpenSearchEngineAction : public QAction
@@ -28,9 +28,9 @@ class OpenSearchEngineAction : public QAction
     Q_OBJECT
 
 public:
-    OpenSearchEngineAction(OpenSearchEngine *engine, QObject *parent = 0);
+    OpenSearchEngineAction(OpenSearchEngine *engine, QObject *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void imageChanged();
 
 private:

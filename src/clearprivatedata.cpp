@@ -21,21 +21,18 @@
 
 #include "browserapplication.h"
 #include "browsermainwindow.h"
-#include "cookiejar.h"
 #include "downloadmanager.h"
 #include "historymanager.h"
-#include "networkaccessmanager.h"
 #include "toolbarsearch.h"
 
-#include <qabstractnetworkcache.h>
-#include <qcheckbox.h>
-#include <qdialogbuttonbox.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qlist.h>
-#include <qpushbutton.h>
-#include <qsettings.h>
-#include <qwebsettings.h>
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QLabel>
+#include <QLayout>
+#include <QList>
+#include <QPushButton>
+#include <QSettings>
+#include <QWebEngineSettings>
 
 ClearPrivateData::ClearPrivateData(QWidget *parent)
     : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint)
@@ -46,35 +43,19 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
     layout->addWidget(new QLabel(tr("Clear the following items:")));
 
     QSettings settings;
-    settings.beginGroup(QLatin1String("clearprivatedata"));
+    settings.beginGroup(QStringLiteral("clearprivatedata"));
 
     m_browsingHistory = new QCheckBox(tr("&Browsing History"));
-    m_browsingHistory->setChecked(settings.value(QLatin1String("browsingHistory"), true).toBool());
+    m_browsingHistory->setChecked(settings.value(QStringLiteral("browsingHistory"), true).toBool());
     layout->addWidget(m_browsingHistory);
 
     m_downloadHistory = new QCheckBox(tr("&Download History"));
-    m_downloadHistory->setChecked(settings.value(QLatin1String("downloadHistory"), true).toBool());
+    m_downloadHistory->setChecked(settings.value(QStringLiteral("downloadHistory"), true).toBool());
     layout->addWidget(m_downloadHistory);
 
     m_searchHistory = new QCheckBox(tr("&Search History"));
-    m_searchHistory->setChecked(settings.value(QLatin1String("searchHistory"), true).toBool());
+    m_searchHistory->setChecked(settings.value(QStringLiteral("searchHistory"), true).toBool());
     layout->addWidget(m_searchHistory);
-
-    m_cookies = new QCheckBox(tr("&Cookies"));
-    m_cookies->setChecked(settings.value(QLatin1String("cookies"), true).toBool());
-    layout->addWidget(m_cookies);
-
-    m_cache = new QCheckBox(tr("C&ached Web Pages"));
-    if (BrowserApplication::networkAccessManager()->cache()) {
-        m_cache->setChecked(settings.value(QLatin1String("cache"), true).toBool());
-    } else {
-        m_cache->setEnabled(false);
-    }
-    layout->addWidget(m_cache);
-
-    m_favIcons = new QCheckBox(tr("Website &Icons"));
-    m_favIcons->setChecked(settings.value(QLatin1String("favIcons"), true).toBool());
-    layout->addWidget(m_favIcons);
 
     settings.endGroup();
 
@@ -95,14 +76,12 @@ ClearPrivateData::ClearPrivateData(QWidget *parent)
 void ClearPrivateData::accept()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("clearprivatedata"));
+    settings.beginGroup(QStringLiteral("clearprivatedata"));
 
-    settings.setValue(QLatin1String("browsingHistory"), m_browsingHistory->isChecked());
-    settings.setValue(QLatin1String("downloadHistory"), m_downloadHistory->isChecked());
-    settings.setValue(QLatin1String("searchHistory"), m_searchHistory->isChecked());
-    settings.setValue(QLatin1String("cookies"), m_cookies->isChecked());
-    settings.setValue(QLatin1String("cache"), m_cache->isChecked());
-    settings.setValue(QLatin1String("favIcons"), m_favIcons->isChecked());
+    settings.setValue(QStringLiteral("browsingHistory"), m_browsingHistory->isChecked());
+    settings.setValue(QStringLiteral("downloadHistory"), m_downloadHistory->isChecked());
+    settings.setValue(QStringLiteral("searchHistory"), m_searchHistory->isChecked());
+    settings.setValue(QStringLiteral("cache"), m_cache->isChecked());
 
     settings.endGroup();
 
@@ -120,18 +99,6 @@ void ClearPrivateData::accept()
         for (int i = 0; i < mainWindows.count(); ++i) {
             mainWindows.at(i)->toolbarSearch()->setText(QString());
         }
-    }
-
-    if (m_cookies->isChecked()) {
-        BrowserApplication::cookieJar()->clear();
-    }
-
-    if (m_cache->isChecked() && BrowserApplication::networkAccessManager()->cache()) {
-        BrowserApplication::networkAccessManager()->cache()->clear();
-    }
-
-    if (m_favIcons->isChecked()) {
-        QWebSettings::clearIconDatabase();
     }
     QDialog::accept();
 }

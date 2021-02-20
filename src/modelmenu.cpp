@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -68,14 +68,16 @@
 #include "browserapplication.h"
 #endif
 
-#include <qabstractitemmodel.h>
-#include <qapplication.h>
-#include <qevent.h>
+#include <QAbstractItemModel>
+#include <QApplication>
+#include <QEvent>
 #include <QWidget>
 #include <QDrag>
 #include <QMimeData>
+#include <QMouseEvent>
+#include <QDropEvent>
 
-#include <qdebug.h>
+#include <QDebug>
 
 ModelMenu::ModelMenu(QWidget *parent)
     : QMenu(parent)
@@ -84,7 +86,7 @@ ModelMenu::ModelMenu(QWidget *parent)
     , m_maxWidth(-1)
     , m_statusBarTextRole(0)
     , m_separatorRole(0)
-    , m_model(0)
+    , m_model(nullptr)
 {
     setAcceptDrops(true);
 
@@ -214,7 +216,7 @@ void ModelMenu::createMenu(const QModelIndex &parent, int max, QMenu *parentMenu
             createMenu(idx, -1, menu);
         } else {
             if (m_separatorRole != 0
-                && idx.data(m_separatorRole).toBool())
+                    && idx.data(m_separatorRole).toBool())
                 addSeparator();
             else
                 menu->addAction(makeAction(idx));
@@ -240,7 +242,7 @@ QAction *ModelMenu::makeAction(const QIcon &icon, const QString &text, QObject *
 {
     QFontMetrics fm(font());
     if (-1 == m_maxWidth)
-        m_maxWidth = fm.horizontalAdvance(QLatin1Char('m')) * 30;
+        m_maxWidth = fm.horizontalAdvance(QChar('m')) * 30;
     QString smallText = fm.elidedText(text, Qt::ElideMiddle, m_maxWidth);
     return new QAction(icon, smallText, parent);
 }
@@ -249,7 +251,7 @@ void ModelMenu::actionTriggered(QAction *action)
 {
     QModelIndex idx = index(action);
     if (idx.isValid())
-        emit activated(idx);
+        Q_EMIT activated(idx);
 }
 
 QModelIndex ModelMenu::index(QAction *action)
@@ -271,7 +273,7 @@ void ModelMenu::dragEnterEvent(QDragEnterEvent *event)
     }
 
     QStringList mimeTypes = m_model->mimeTypes();
-    foreach (const QString &mimeType, mimeTypes) {
+    Q_FOREACH (const QString &mimeType, mimeTypes) {
         if (event->mimeData()->hasFormat(mimeType))
             event->acceptProposedAction();
     }

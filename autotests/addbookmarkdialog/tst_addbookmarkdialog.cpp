@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,20 +24,20 @@
 #include "bookmarknode.h"
 #include "browserapplication.h"
 
-#include <qpushbutton.h>
-#include <qabstractitemview.h>
+#include <QPushButton>
+#include <QAbstractItemView>
 
 class tst_AddBookmarkDialog : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void addbookmarkdialog_data();
     void addbookmarkdialog();
 };

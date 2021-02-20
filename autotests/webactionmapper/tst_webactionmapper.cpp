@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #include <QtTest/QtTest>
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>
-#include <QtWebKit/QtWebKit>
+#include <QWebEnginePage>
 #include <QAction>
 
 #include <webactionmapper.h>
@@ -32,13 +32,13 @@ class tst_WebActionMapper : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void webactionmapper_data();
     void webactionmapper();
     void addChild();
@@ -56,7 +56,7 @@ private slots:
 class SubWebActionMapper : public WebActionMapper
 {
 public:
-    SubWebActionMapper(QAction *root, QWebPage::WebAction webAction, QObject *parent)
+    SubWebActionMapper(QAction *root, QWebEnginePage::WebAction webAction, QObject *parent)
         : WebActionMapper(root, webAction, parent) {}
 
 };
@@ -89,17 +89,17 @@ void tst_WebActionMapper::webactionmapper_data()
 
 void tst_WebActionMapper::webactionmapper()
 {
-    SubWebActionMapper mapper(0, QWebPage::Stop, 0);
+    SubWebActionMapper mapper(0, QWebEnginePage::Stop, 0);
     mapper.addChild(0);
     mapper.updateCurrent(0);
-    QCOMPARE(mapper.webAction(), QWebPage::Stop);
+    QCOMPARE(mapper.webAction(), QWebEnginePage::Stop);
 }
 
 // public void addChild(QAction *action)
 void tst_WebActionMapper::addChild()
 {
     QAction *root = new QAction(this);
-    SubWebActionMapper mapper(root, QWebPage::Stop, 0);
+    SubWebActionMapper mapper(root, QWebEnginePage::Stop, 0);
     QVERIFY(!root->isEnabled());
 
     QAction *child = new QAction(this);
@@ -119,7 +119,7 @@ void tst_WebActionMapper::updateCurrent_data()
 void tst_WebActionMapper::updateCurrent()
 {
     QAction *root = new QAction(this);
-    SubWebActionMapper mapper(root, QWebPage::Stop, 0);
+    SubWebActionMapper mapper(root, QWebEnginePage::Stop, 0);
     QVERIFY(!root->isEnabled());
 
     WebView webView;
@@ -138,7 +138,7 @@ void tst_WebActionMapper::updateCurrent()
 void tst_WebActionMapper::triggerRoot()
 {
     QAction *root = new QAction(this);
-    SubWebActionMapper mapper(root, QWebPage::Reload, 0);
+    SubWebActionMapper mapper(root, QWebEnginePage::Reload, 0);
 
     WebView webView;
     QAction *childAction = webView.page()->action(mapper.webAction());
@@ -155,7 +155,7 @@ void tst_WebActionMapper::triggerRoot()
 void tst_WebActionMapper::destroyRoot()
 {
     QAction *root = new QAction(this);
-    SubWebActionMapper mapper(root, QWebPage::Reload, 0);
+    SubWebActionMapper mapper(root, QWebEnginePage::Reload, 0);
 
     WebView webView;
     QAction *childAction = webView.page()->action(mapper.webAction());
@@ -174,7 +174,7 @@ void tst_WebActionMapper::destroyRoot()
 void tst_WebActionMapper::destroyCurrent()
 {
     QAction *root = new QAction(this);
-    SubWebActionMapper mapper(root, QWebPage::Reload, 0);
+    SubWebActionMapper mapper(root, QWebEnginePage::Reload, 0);
 
     WebView *webView = new WebView;
     QAction *childAction = webView->page()->action(mapper.webAction());
@@ -197,7 +197,7 @@ void tst_WebActionMapper::childChanged()
 {
     QFETCH(bool, isCurrent);
     QAction *root = new QAction(this);
-    SubWebActionMapper mapper(root, QWebPage::Reload, 0);
+    SubWebActionMapper mapper(root, QWebEnginePage::Reload, 0);
 
     WebView webView;
     QAction *childAction = webView.page()->action(mapper.webAction());

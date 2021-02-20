@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020-2021 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +20,38 @@
 #ifndef WEBPAGE_H
 #define WEBPAGE_H
 
-#include "webpageproxy.h"
 #include "tabwidget.h"
 
-#include <qlist.h>
-#include <qnetworkrequest.h>
+#include <QList>
+#include <QNetworkRequest>
+#include <QWebEnginePage>
+
+class WebPage;
+class JavaScriptEndorphinObject : public QObject
+{
+    Q_OBJECT
+
+    Q_PROPERTY(QObject *currentEngine READ currentEngine NOTIFY currentEngineChanged)
+
+Q_SIGNALS:
+    void currentEngineChanged();
+
+public:
+    JavaScriptEndorphinObject(QObject *parent = nullptr, WebPage *page = nullptr);
+
+public Q_SLOTS:
+    QString translate(const QString &string);
+    QObject *currentEngine() const;
+    QString searchUrl(const QString &string) const;
+    void addSearchProvider(const QString &url);
+    QString getSetting(const QString &name, const QString &group);
+    int setSetting(const QString &name, const QString &group, const int &value);
+    int setSetting(const QString &name, const QString &group, const QString &value);
+    int setSetting(const QString &name, const QString &group, const bool value);
+
+private:
+    WebPage *m_page;
+};
 
 class WebPageLinkedResource
 {
@@ -37,80 +64,42 @@ public:
 
 class OpenSearchEngine;
 class QNetworkReply;
-class WebPluginFactory;
-// See https://developer.mozilla.org/en/adding_search_engines_from_web_pages
-class JavaScriptExternalObject : public QObject
+
+class WebPage : public QWebEnginePage
 {
     Q_OBJECT
 
-public:
-    JavaScriptExternalObject(QObject *parent = 0);
-
-public slots:
-    void AddSearchProvider(const QString &url);
-};
-
-class JavaScriptEndorphinObject : public QObject
-{
-    Q_OBJECT
-
-    Q_PROPERTY(QObject *currentEngine READ currentEngine)
-
-public:
-    JavaScriptEndorphinObject(QObject *parent = 0);
-
-public slots:
-    QString translate(const QString &string);
-    QObject *currentEngine() const;
-    QString searchUrl(const QString &string) const;
-    QString getSetting(const QString &string);
-    int setSetting(const QString &string, const int &value);
-    int setSetting(const QString &string, const QString &value);
-
-};
-
-class WebPage : public WebPageProxy
-{
-    Q_OBJECT
-
-signals:
+Q_SIGNALS:
     void aboutToLoadUrl(const QUrl &url);
 
 public:
-    WebPage(QObject *parent = 0);
+    WebPage(QWebEngineProfile *profile, QObject *parent = 0);
     ~WebPage();
 
     void loadSettings();
 
-    static WebPluginFactory *webPluginFactory();
-    QList<WebPageLinkedResource> linkedResources(const QString &relation = QString());
+//    QList<WebPageLinkedResource> linkedResources(const QString &relation = QString());
 
     static QString userAgent();
     static void setUserAgent(const QString &userAgent);
 
 protected:
     QString userAgentForUrl(const QUrl &url) const;
-    bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
-                                 NavigationType type);
-    QObject *createPlugin(const QString &classId, const QUrl &url, const QStringList &paramNames, const QStringList &paramValues);
-    QWebPage *createWindow(QWebPage::WebWindowType type);
-
-protected slots:
-    void handleUnsupportedContent(QNetworkReply *reply);
-    void addExternalBinding(QWebFrame *frame = 0);
+    /*
+        bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request,
+                                     NavigationType type);
+    */
+    bool acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame);
+    QWebEnginePage *createWindow(QWebEnginePage::WebWindowType type);
 
 protected:
-    void populateNetworkRequest(QNetworkRequest &request);
     static QString s_userAgent;
-    static WebPluginFactory *s_webPluginFactory;
     TabWidget::OpenUrlIn m_openTargetBlankLinksIn;
     QUrl m_requestedUrl;
-    JavaScriptExternalObject *m_javaScriptExternalObject;
-    JavaScriptEndorphinObject *m_javaScriptEndorphinObject;
 
 private:
     QNetworkRequest lastRequest;
-    QWebPage::NavigationType lastRequestType;
+    QWebEnginePage::NavigationType lastRequestType;
 
 };
 

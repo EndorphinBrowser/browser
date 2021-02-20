@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,8 +63,8 @@
 #ifndef AUTOSAVER_H
 #define AUTOSAVER_H
 
-#include <qobject.h>
-#include <qbasictimer.h>
+#include <QObject>
+#include <QBasicTimer>
 #include <QElapsedTimer>
 
 /*
@@ -82,7 +82,7 @@ public:
     ~AutoSaver();
     void saveIfNeccessary();
 
-public slots:
+public Q_SLOTS:
     void changeOccurred();
 
 protected:

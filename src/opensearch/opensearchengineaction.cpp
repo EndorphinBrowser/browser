@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #include "opensearchengineaction.h"
 
 #include "browserapplication.h"
-#include "networkaccessmanager.h"
+#include <qnetworkaccessmanager.h>
 #include "opensearchengine.h"
 
 OpenSearchEngineAction::OpenSearchEngineAction(OpenSearchEngine *engine, QObject *parent)
@@ -28,7 +28,7 @@ OpenSearchEngineAction::OpenSearchEngineAction(OpenSearchEngine *engine, QObject
     , m_engine(engine)
 {
     if (!engine->networkAccessManager())
-        engine->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+        engine->setNetworkAccessManager(new QNetworkAccessManager());
 
     setText(engine->name());
     imageChanged();

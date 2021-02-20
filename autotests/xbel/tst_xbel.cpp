@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,13 +27,13 @@ class tst_Xbel : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void xbelreader_data();
     void xbelreader();
 
@@ -105,9 +105,9 @@ void tst_Xbel::read_data()
     QTest::addColumn<QString>("fileName");
     QTest::addColumn<QXmlStreamReader::Error>("error");
     QTest::newRow("null") << QString() << QXmlStreamReader::NoError;
-    QTest::newRow("frank") << QString("frank.xbel") << QXmlStreamReader::NoError;
-    QTest::newRow("frank") << QString("all.xbel") << QXmlStreamReader::NoError;
-    QTest::newRow("bad") << QString("bad.xbel") << QXmlStreamReader::CustomError;
+    QTest::newRow("frank") << QStringLiteral(":/frank.xbel") << QXmlStreamReader::NoError;
+    QTest::newRow("frank") << QStringLiteral(":/all.xbel") << QXmlStreamReader::NoError;
+    QTest::newRow("bad") << QStringLiteral(":/bad.xbel") << QXmlStreamReader::CustomError;
 }
 
 // public BookmarkNode *read(QString const &fileName)
@@ -127,7 +127,7 @@ void tst_Xbel::read()
 void tst_Xbel::readProperly()
 {
     SubXbelReader reader;
-    BookmarkNode *root = reader.read("all.xbel");
+    BookmarkNode *root = reader.read(":/all.xbel");
     QCOMPARE(reader.error(), QXmlStreamReader::NoError);
     QList<BookmarkNode*>children = root->children();
     QCOMPARE(children.count(), 4);
@@ -145,30 +145,30 @@ void tst_Xbel::readProperly()
     QCOMPARE(children[1]->type(), BookmarkNode::Folder);
 
     QCOMPARE(children[2]->children().count(), 3);
-    QCOMPARE(children[2]->title, QString("Folder Title"));
+    QCOMPARE(children[2]->title, QStringLiteral("Folder Title"));
     QCOMPARE(children[2]->url, QString());
     QCOMPARE(children[2]->expanded, false);
     QCOMPARE(children[2]->type(), BookmarkNode::Folder);
     {
         children = children[2]->children();
         QCOMPARE(children[0]->children().count(), 0);
-        QCOMPARE(children[0]->title, QString("Title"));
-        QCOMPARE(children[0]->url, QString("http://www.foo.com/"));
+        QCOMPARE(children[0]->title, QStringLiteral("Title"));
+        QCOMPARE(children[0]->url, QStringLiteral("http://www.foo.com/"));
         QCOMPARE(children[0]->expanded, false);
         QCOMPARE(children[0]->type(), BookmarkNode::Bookmark);
 
         QCOMPARE(children[1]->children().count(), 0);
-        QCOMPARE(children[1]->title, QString("Title 2"));
-        QCOMPARE(children[1]->url, QString("http://www.bar.com/"));
+        QCOMPARE(children[1]->title, QStringLiteral("Title 2"));
+        QCOMPARE(children[1]->url, QStringLiteral("http://www.bar.com/"));
         QCOMPARE(children[1]->expanded, false);
         QCOMPARE(children[1]->type(), BookmarkNode::Bookmark);
 
-        QCOMPARE(children[2]->title, QString("Title 3"));
+        QCOMPARE(children[2]->title, QStringLiteral("Title 3"));
     }
 
     children = root->children();
     QCOMPARE(children[3]->children().count(), 3);
-    QCOMPARE(children[3]->title, QString("Has SubFolder"));
+    QCOMPARE(children[3]->title, QStringLiteral("Has SubFolder"));
     QCOMPARE(children[3]->url, QString());
     QCOMPARE(children[3]->expanded, true);
     QCOMPARE(children[3]->type(), BookmarkNode::Folder);
@@ -181,7 +181,7 @@ void tst_Xbel::readProperly()
         QCOMPARE(children[0]->type(), BookmarkNode::Separator);
 
         QCOMPARE(children[1]->children().count(), 3);
-        QCOMPARE(children[1]->title, QString("SubFolder"));
+        QCOMPARE(children[1]->title, QStringLiteral("SubFolder"));
         QCOMPARE(children[1]->url, QString());
         QCOMPARE(children[1]->expanded, true);
         QCOMPARE(children[1]->type(), BookmarkNode::Folder);
@@ -212,8 +212,8 @@ void tst_Xbel::xbelwriter()
 void tst_Xbel::write_data()
 {
     QTest::addColumn<QString>("readFileName");
-    QTest::newRow("frank") << QString("frank.xbel");
-    QTest::newRow("all") << QString("all.xbel");
+    QTest::newRow("frank") << QStringLiteral(":/frank.xbel");
+    QTest::newRow("all") << QStringLiteral(":/all.xbel");
 }
 
 // public BookmarkNode *read(QString const &fileName)

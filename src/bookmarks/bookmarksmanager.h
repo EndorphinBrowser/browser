@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef BOOKMARKSMANAGER_H
 #define BOOKMARKSMANAGER_H
 
-#include <qobject.h>
+#include <QObject>
 
 #include <qundostack.h>
 
@@ -33,13 +33,13 @@ class BookmarksManager : public QObject
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void entryAdded(BookmarkNode *item);
     void entryRemoved(BookmarkNode *parent, int row, BookmarkNode *item);
     void entryChanged(BookmarkNode *item);
 
 public:
-    BookmarksManager(QObject *parent = 0);
+    BookmarksManager(QObject *parent = nullptr);
     ~BookmarksManager();
 
     void addBookmark(BookmarkNode *parent, BookmarkNode *node, int row = -1);
@@ -58,11 +58,11 @@ public:
         return &m_commands;
     }
 
-public slots:
+public Q_SLOTS:
     void importBookmarks();
     void exportBookmarks();
 
-private slots:
+private Q_SLOTS:
     void save() const;
 
 private:

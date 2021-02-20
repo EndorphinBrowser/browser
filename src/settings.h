@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include <qdialog.h>
+#include <QDialog>
 #include "ui_settings.h"
 
 class SettingsDialog : public QDialog, public Ui_Settings
@@ -71,17 +71,15 @@ class SettingsDialog : public QDialog, public Ui_Settings
     Q_OBJECT
 
 public:
-    SettingsDialog(QWidget *parent = 0);
+    SettingsDialog(QWidget *parent = nullptr);
     void accept();
 
-private slots:
+private Q_SLOTS:
     void loadDefaults();
     void loadFromSettings();
     void saveToSettings();
 
     void setHomeToCurrentPage();
-    void showCookies();
-    void showExceptions();
 
     void chooseDownloadDirectory();
     void chooseDownloadProgram();
@@ -90,7 +88,7 @@ private slots:
     void chooseAcceptLanguage();
 
     void chooseStyleSheet();
-    void editAutoFillUser();
+    void openModernSettings();
 
 private:
     QFont m_standardFont;

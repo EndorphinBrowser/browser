@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -9,7 +9,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Aaron Dewes nor the names of its contributors
+ * 3. Neither the name of Endorphin nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -29,7 +29,7 @@
 #ifndef SQUEEZELABEL_H
 #define SQUEEZELABEL_H
 
-#include <qlabel.h>
+#include <QLabel>
 
 /*
     A label that will squeeze the set text to fit within the size of the
@@ -40,7 +40,7 @@ class SqueezeLabel : public QLabel
     Q_OBJECT
 
 public:
-    SqueezeLabel(QWidget *parent = 0);
+    SqueezeLabel(QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *event);

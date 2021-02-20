@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,13 +63,13 @@
 #ifndef BOOKMARKSDIALOG_H
 #define BOOKMARKSDIALOG_H
 
-#include <qdialog.h>
+#include <QDialog>
 #include "ui_bookmarksdialog.h"
 
 #include "tabwidget.h"
 
-#include <qabstractitemmodel.h>
-#include <qurl.h>
+#include <QAbstractItemModel>
+#include <QUrl>
 
 class TreeSortFilterProxyModel;
 class BookmarksManager;
@@ -79,14 +79,14 @@ class BookmarksDialog : public QDialog, public Ui_BookmarksDialog
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
-    BookmarksDialog(QWidget *parent = 0, BookmarksManager *manager = 0);
+    BookmarksDialog(QWidget *parent = nullptr, BookmarksManager *manager = nullptr);
     ~BookmarksDialog();
 
-private slots:
+private Q_SLOTS:
     void customContextMenuRequested(const QPoint &pos);
     void openBookmark(TabWidget::OpenUrlIn tab);
     void openBookmark();

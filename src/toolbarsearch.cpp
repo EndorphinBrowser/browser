@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -64,9 +64,7 @@
 #include "toolbarsearch.h"
 
 #include "autosaver.h"
-#include "browserapplication.h"
 #include "browsermainwindow.h"
-#include "networkaccessmanager.h"
 #include "opensearchengine.h"
 #include "opensearchengineaction.h"
 #include "opensearchmanager.h"
@@ -74,17 +72,18 @@
 #include "webpage.h"
 #include "webview.h"
 
-#include <qabstractitemview.h>
-#include <qcompleter.h>
-#include <qcoreapplication.h>
-#include <qmenu.h>
-#include <qsettings.h>
-#include <qstandarditemmodel.h>
-#include <qtimer.h>
-#include <qurl.h>
-#include <qwebsettings.h>
+#include <QAbstractItemView>
+#include <QCompleter>
+#include <QCoreApplication>
+#include <QMenu>
+#include <QSettings>
+#include <QStandardItemModel>
+#include <QTimer>
+#include <QUrl>
+#include <QWebEngineSettings>
+#include <QNetworkAccessManager>
 
-OpenSearchManager *ToolbarSearch::s_openSearchManager = 0;
+OpenSearchManager *ToolbarSearch::s_openSearchManager = nullptr;
 
 /*
     ToolbarSearch is a search widget that also contains a small history
@@ -96,10 +95,10 @@ ToolbarSearch::ToolbarSearch(QWidget *parent)
     , m_autosaver(new AutoSaver(this))
     , m_maxSavedSearches(10)
     , m_model(new QStandardItemModel(this))
-    , m_suggestionsItem(0)
-    , m_recentSearchesItem(0)
-    , m_suggestTimer(0)
-    , m_completer(0)
+    , m_suggestionsItem(nullptr)
+    , m_recentSearchesItem(nullptr)
+    , m_suggestTimer(nullptr)
+    , m_completer(nullptr)
 {
     connect(openSearchManager(), SIGNAL(currentEngineChanged()),
             this, SLOT(currentEngineChanged()));
@@ -193,20 +192,20 @@ ToolbarSearch::~ToolbarSearch()
 void ToolbarSearch::save()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("toolbarsearch"));
-    settings.setValue(QLatin1String("recentSearches"), m_recentSearches);
-    settings.setValue(QLatin1String("maximumSaved"), m_maxSavedSearches);
+    settings.beginGroup(QStringLiteral("toolbarsearch"));
+    settings.setValue(QStringLiteral("recentSearches"), m_recentSearches);
+    settings.setValue(QStringLiteral("maximumSaved"), m_maxSavedSearches);
     settings.endGroup();
 }
 
 void ToolbarSearch::load()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("toolbarsearch"));
-    m_recentSearches = settings.value(QLatin1String("recentSearches")).toStringList();
-    m_maxSavedSearches = settings.value(QLatin1String("maximumSaved"), m_maxSavedSearches).toInt();
+    settings.beginGroup(QStringLiteral("toolbarsearch"));
+    m_recentSearches = settings.value(QStringLiteral("recentSearches")).toStringList();
+    m_maxSavedSearches = settings.value(QStringLiteral("maximumSaved"), m_maxSavedSearches).toInt();
 
-    m_suggestionsEnabled = settings.value(QLatin1String("useSuggestions"), true).toBool();
+    m_suggestionsEnabled = settings.value(QStringLiteral("useSuggestions"), true).toBool();
     if (m_suggestionsEnabled) {
         connect(this, SIGNAL(textEdited(const QString &)),
                 this, SLOT(textEdited(const QString &)));
@@ -239,7 +238,7 @@ void ToolbarSearch::getSuggestions()
         return;
 
     if (!engine->networkAccessManager())
-        engine->setNetworkAccessManager(BrowserApplication::networkAccessManager());
+        engine->setNetworkAccessManager(new QNetworkAccessManager());
 
     engine->requestSuggestions(text());
 }
@@ -253,24 +252,24 @@ void ToolbarSearch::searchNow()
 
     QString searchText = text();
 
-    QWebSettings *globalSettings = QWebSettings::globalSettings();
-    if (!globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled)) {
-        QStringList newList = m_recentSearches;
-        if (newList.contains(searchText))
-            newList.removeAt(newList.indexOf(searchText));
-        newList.prepend(searchText);
-        if (newList.size() >= m_maxSavedSearches)
-            newList.removeLast();
+//    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
+//    if (!globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled)) {
+    QStringList newList = m_recentSearches;
+    if (newList.contains(searchText))
+        newList.removeAt(newList.indexOf(searchText));
+    newList.prepend(searchText);
+    if (newList.size() >= m_maxSavedSearches)
+        newList.removeLast();
 
-        m_recentSearches = newList;
-        m_autosaver->changeOccurred();
-    }
+    m_recentSearches = newList;
+    m_autosaver->changeOccurred();
+//    }
 
     QUrl searchUrl = engine->searchUrl(searchText);
     TabWidget::OpenUrlIn tab = TabWidget::CurrentTab;
     if (qApp->keyboardModifiers() == Qt::AltModifier)
         tab = TabWidget::NewSelectedTab;
-    emit search(searchUrl, tab);
+    Q_EMIT search(searchUrl, tab);
 }
 
 void ToolbarSearch::newSuggestions(const QStringList &suggestions)
@@ -316,33 +315,33 @@ void ToolbarSearch::showEnginesMenu()
             action->setChecked(true);
         }
     }
+    /*
+        WebView *webView = BrowserMainWindow::parentWindow(this)->currentTab();
+        QList<WebPageLinkedResource> engines = webView->webPage()->linkedResources(QStringLiteral("search"));
 
-    WebView *webView = BrowserMainWindow::parentWindow(this)->currentTab();
-    QList<WebPageLinkedResource> engines = webView->webPage()->linkedResources(QLatin1String("search"));
+        if (!engines.empty())
+            menu.addSeparator();
 
-    if (!engines.empty())
-        menu.addSeparator();
+        for (int i = 0; i < engines.count(); ++i) {
+            WebPageLinkedResource engine = engines.at(i);
 
-    for (int i = 0; i < engines.count(); ++i) {
-        WebPageLinkedResource engine = engines.at(i);
+            QUrl url = engine.href;
+            QString title = engine.title;
+            QString mimetype = engine.type;
 
-        QUrl url = engine.href;
-        QString title = engine.title;
-        QString mimetype = engine.type;
+            if (mimetype != QStringLiteral("application/opensearchdescription+xml"))
+                continue;
+            if (url.isEmpty())
+                continue;
 
-        if (mimetype != QLatin1String("application/opensearchdescription+xml"))
-            continue;
-        if (url.isEmpty())
-            continue;
+            if (title.isEmpty())
+                title = webView->title().isEmpty() ? url.host() : webView->title();
 
-        if (title.isEmpty())
-            title = webView->title().isEmpty() ? url.host() : webView->title();
-
-        QAction *action = menu.addAction(tr("Add '%1'").arg(title), this, SLOT(addEngineFromUrl()));
-        action->setData(url);
-        action->setIcon(webView->icon());
-    }
-
+            QAction *action = menu.addAction(tr("Add '%1'").arg(title), this, SLOT(addEngineFromUrl()));
+            action->setData(url);
+            action->setIcon(webView->icon());
+        }
+    */
     menu.addSeparator();
     if (BrowserMainWindow *window = BrowserMainWindow::parentWindow(this))
         menu.addAction(window->searchManagerAction());
@@ -377,10 +376,10 @@ void ToolbarSearch::addEngineFromUrl()
 void ToolbarSearch::setupList()
 {
     if (m_suggestions.isEmpty()
-        || (m_model->rowCount() > 0
-            && m_model->item(0) != m_suggestionsItem)) {
+            || (m_model->rowCount() > 0
+                && m_model->item(0) != m_suggestionsItem)) {
         m_model->clear();
-        m_suggestionsItem = 0;
+        m_suggestionsItem = nullptr;
     } else {
         m_model->removeRows(1, m_model->rowCount() - 1);
     }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -9,7 +9,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Aaron Dewes nor the names of its contributors
+ * 3. Neither the name of Endorphin nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -28,7 +28,7 @@
 
 #include "clearbutton.h"
 
-#include <qpainter.h>
+#include <QPainter>
 
 ClearButton::ClearButton(QWidget *parent)
     : QAbstractButton(parent)
@@ -41,9 +41,9 @@ ClearButton::ClearButton(QWidget *parent)
 
     // First check for a style icon, current KDE provides one
     if (m_styleImage.isNull()) {
-        QLatin1String iconName = (layoutDirection() == Qt::RightToLeft)
-            ? QLatin1String("edit-clear-locationbar-ltr")
-            : QLatin1String("edit-clear-locationbar-rtl");
+        QString iconName = (layoutDirection() == Qt::RightToLeft)
+                                 ? QStringLiteral("edit-clear-locationbar-ltr")
+                                 : QStringLiteral("edit-clear-locationbar-rtl");
         QIcon icon = QIcon::fromTheme(iconName);
         if (!icon.isNull())
             m_styleImage = icon.pixmap(16, 16).toImage();

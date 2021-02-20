@@ -1,6 +1,6 @@
 /*
  * Copyright 2008-2009 Diego Iastrubni, elcuco, at, kde.org
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -10,7 +10,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Aaron Dewes nor the names of its contributors
+ * 3. Neither the name of Endorphin nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -29,25 +29,25 @@
 
 #include "languagemanager.h"
 
-#include <qapplication.h>
-#include <qdir.h>
+#include <QApplication>
+#include <QDir>
 #include <qdiriterator.h>
 #include <qfileinfo.h>
-#include <qinputdialog.h>
+#include <QInputDialog>
 #include <qlibraryinfo.h>
-#include <qmessagebox.h>
+#include <QMessageBox>
 #include <qlocale.h>
-#include <qsettings.h>
+#include <QSettings>
 #include <qtranslator.h>
 
-#include <qdebug.h>
+#include <QDebug>
 
 // #define LANGUAGEMANAGER_DEBUG
 
 LanguageManager::LanguageManager(QObject *parent)
     : QObject(parent)
-    , m_sysTranslator(0)
-    , m_appTranslator(0)
+    , m_sysTranslator(nullptr)
+    , m_appTranslator(nullptr)
     , m_loaded(false)
 {
 #ifdef LANGUAGEMANAGER_DEBUG
@@ -89,8 +89,8 @@ bool LanguageManager::isLanguageAvailable(const QString &language) const
 
     // optimization so we don't have to load all the languages
     if (!m_loaded) {
-        foreach (const QString &dir, m_localeDirectories) {
-            QString file = dir + QLatin1Char('/') + language + QLatin1String(".qm");
+        Q_FOREACH (const QString &dir, m_localeDirectories) {
+            QString file = dir + QChar('/') + language + QStringLiteral(".qm");
             if (QFile::exists(file))
                 return true;
         }
@@ -110,9 +110,9 @@ QString LanguageManager::convertStringToLanguageFile(const QString &string) cons
 #endif
     loadAvailableLanguages();
     if (m_languages.contains(string))
-       return string;
+        return string;
     QLocale locale(string);
-    QString fallback = locale.name().split(QLatin1Char('_')).value(0);
+    QString fallback = locale.name().split(QChar('_')).value(0);
     if (!string.contains(fallback))
         return QString();
 #ifdef LANGUAGEMANAGER_DEBUG
@@ -122,8 +122,8 @@ QString LanguageManager::convertStringToLanguageFile(const QString &string) cons
         return fallback;
 
     // See if any language file matches the country
-    foreach (const QString &language, m_languages) {
-        QString country = QLocale(language).name().split(QLatin1Char('_')).value(0);
+    Q_FOREACH (const QString &language, m_languages) {
+        QString country = QLocale(language).name().split(QChar('_')).value(0);
         if (country == fallback)
             return language;
     }
@@ -137,21 +137,20 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
     qDebug() << "LanguageManager::" << __FUNCTION__ << language;
 #endif
     if (m_currentLanguage == language
-        || !isLanguageAvailable(language))
+            || !isLanguageAvailable(language))
         return false;
 
     m_currentLanguage = language;
 
     QSettings settings;
-    settings.beginGroup(QLatin1String("LanguageManager"));
-    settings.setValue(QLatin1String("language"), m_currentLanguage);
+    settings.beginGroup(QStringLiteral("LanguageManager"));
+    settings.setValue(QStringLiteral("language"), m_currentLanguage);
 
     if (m_currentLanguage.isEmpty()) {
         delete m_appTranslator;
         delete m_sysTranslator;
-        m_appTranslator = 0;
-        m_sysTranslator = 0;
-        emit languageChanged(currentLanguage());
+        m_appTranslator = nullptr;
+        m_sysTranslator = nullptr;
         return true;
     }
 
@@ -159,17 +158,17 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
     QString resourceDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
     QString languageFile = convertStringToLanguageFile(m_currentLanguage);
     bool loaded = false;
-    foreach (const QString &dir, m_localeDirectories) {
+    Q_FOREACH (const QString &dir, m_localeDirectories) {
         loaded = newAppTranslator->load(languageFile, dir);
         if (loaded)
             break;
     }
 
     QTranslator *newSysTranslator = new QTranslator(this);
-    QString translatorFileName = QLatin1String("qt_") + languageFile;
+    QString translatorFileName = QStringLiteral("qt_") + languageFile;
     if (!newSysTranslator->load(translatorFileName, resourceDir)) {
         delete newSysTranslator;
-        newSysTranslator = 0;
+        newSysTranslator = nullptr;
     }
 
     if (!loaded) {
@@ -189,7 +188,6 @@ bool LanguageManager::setCurrentLanguage(const QString &language)
     qApp->installTranslator(newSysTranslator);
     m_appTranslator = newAppTranslator;
     m_sysTranslator = newSysTranslator;
-    emit languageChanged(currentLanguage());
     return true;
 }
 
@@ -209,9 +207,9 @@ void LanguageManager::loadLanguageFromSettings()
 #endif
 
     QSettings settings;
-    settings.beginGroup(QLatin1String("LanguageManager"));
-    if (settings.contains(QLatin1String("language"))) {
-        QString selectedLanguage = settings.value(QLatin1String("language")).toString();
+    settings.beginGroup(QStringLiteral("LanguageManager"));
+    if (settings.contains(QStringLiteral("language"))) {
+        QString selectedLanguage = settings.value(QStringLiteral("language")).toString();
 #ifdef LANGUAGEMANAGER_DEBUG
         qDebug() << "LanguageManager::" << __FUNCTION__ << "Loading language from settings" << selectedLanguage;
 #endif
@@ -221,7 +219,7 @@ void LanguageManager::loadLanguageFromSettings()
 #ifdef LANGUAGEMANAGER_DEBUG
             qDebug() << "LanguageManager::" << __FUNCTION__ << "Failed to load language";
 #endif
-            settings.remove(QLatin1String("language"));
+            settings.remove(QStringLiteral("language"));
         }
     } else if (!currentLanguage().isEmpty()) {
         setCurrentLanguage(currentLanguage());
@@ -236,9 +234,9 @@ void LanguageManager::chooseNewLanguage()
     loadAvailableLanguages();
     if (m_languages.isEmpty()) {
         QMessageBox messageBox;
-        QLatin1String separator = QLatin1String(", ");
+        QString separator = QStringLiteral(", ");
         messageBox.setText(tr("No translation files are installed at %1.")
-            .arg(m_localeDirectories.join(separator)));
+                           .arg(m_localeDirectories.join(separator)));
         messageBox.setStandardButtons(QMessageBox::Ok);
         messageBox.exec();
         return;
@@ -247,29 +245,29 @@ void LanguageManager::chooseNewLanguage()
     QStringList items;
     int defaultItem = -1;
     QString current = currentLanguage();
-    foreach (const QString &name, m_languages) {
+    Q_FOREACH (const QString &name, m_languages) {
         QLocale locale(name);
-        QString string = QString(QLatin1String("%1, %2 (%3) %4"))
-            .arg(QLocale::languageToString(locale.language()))
-            .arg(QLocale::countryToString(locale.country()))
-            .arg(name)
-            // this is for pretty RTL support
-            .arg(QChar(0x200E)); // LRM = 0x200E
+        QString string = QString(QStringLiteral("%1, %2 (%3) %4"))
+                         .arg(QLocale::languageToString(locale.language()),
+                           QLocale::countryToString(locale.country()),
+                           name,
+                           // this is for pretty RTL support
+                           QChar(0x200E)); // LRM = 0x200E
         if (name == current)
             defaultItem = items.count();
         items << string;
     }
-    items << QLatin1String("English (en_US)");
+    items << QStringLiteral("English (en_US)");
     if (defaultItem == -1)
         defaultItem = items.count() - 1;
 
     bool ok;
-    QString item = QInputDialog::getItem(0,
-        tr("Choose language"),
-        tr("<p>You can run with a different language than<br>"
-        "the operating system default.</p>"
-        "<p>Please choose the language which should be used</p>"),
-        items, defaultItem, false, &ok);
+    QString item = QInputDialog::getItem(nullptr,
+                                         tr("Choose language"),
+                                         tr("<p>You can run with a different language than<br>"
+                                            "the operating system default.</p>"
+                                            "<p>Please choose the language which should be used</p>"),
+                                         items, defaultItem, false, &ok);
     if (!ok)
         return;
 
@@ -289,11 +287,11 @@ void LanguageManager::loadAvailableLanguages() const
     qDebug() << "LanguageManager::" << __FUNCTION__;
 #endif
 
-    foreach (const QString &dir, m_localeDirectories) {
+    Q_FOREACH (const QString &dir, m_localeDirectories) {
         QDirIterator it(dir);
         while (it.hasNext()) {
             QString fileName = it.next();
-            if (!fileName.endsWith(QLatin1String(".qm")))
+            if (!fileName.endsWith(QStringLiteral(".qm")))
                 continue;
             const QFileInfo info = it.fileInfo();
             QString language = info.completeBaseName();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,10 +22,10 @@
 
 #include "searchbar.h"
 
-#include <qwebpage.h>
+#include <QWebEnginePage>
 
 QT_BEGIN_NAMESPACE
-class QWebView;
+class QWebEngineView;
 QT_END_NAMESPACE
 
 class WebViewSearch : public SearchBar
@@ -33,16 +33,16 @@ class WebViewSearch : public SearchBar
     Q_OBJECT
 
 public:
-    WebViewSearch(QWebView *webView, QWidget *parent = 0);
+    WebViewSearch(QWebEngineView *webView, QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void findNext();
     void findPrevious();
-    void highlightAll();
 
 private:
-    void find(QWebPage::FindFlags flags);
-    QWebView *webView() const;
+    void find(QWebEnginePage::FindFlags flags);
+    QWebEngineView *webView() const;
+    void handleSearchResult(bool found);
 };
 
 #include "webview.h"
@@ -52,7 +52,7 @@ class WebViewWithSearch : public QWidget
     Q_OBJECT
 
 public:
-    WebViewWithSearch(WebView *webView, QWidget *parent = 0);
+    WebViewWithSearch(WebView *webView, QWidget *parent = nullptr);
     WebView *m_webView;
     WebViewSearch *m_webViewSearch;
 };

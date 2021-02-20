@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008-2009, Aaron Dewes
+ * Copyright (c) 2020, Aaron Dewes
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -9,7 +9,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Aaron Dewes nor the names of its contributors
+ * 3. Neither the name of Endorphin nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -28,11 +28,11 @@
 
 #include "singleapplication.h"
 
-#include <qdir.h>
-#include <qlocalserver.h>
-#include <qlocalsocket.h>
-#include <qtextstream.h>
-#include <qfile.h>
+#include <QDir>
+#include <QLocalServer>
+#include <QLocalSocket>
+#include <QTextStream>
+#include <QFile>
 
 #ifndef Q_OS_WIN
 #include <unistd.h>
@@ -44,7 +44,7 @@
 
 SingleApplication::SingleApplication(int &argc, char **argv)
     : QApplication(argc, argv)
-    , m_localServer(0)
+    , m_localServer(nullptr)
 {
 }
 
@@ -70,7 +70,7 @@ bool SingleApplication::sendMessage(const QByteArray &message, int waitMsecsForR
     if (success) {
         socket.waitForReadyRead(waitMsecsForReply);
         if (socket.bytesAvailable() > 0)
-            emit messageReceived(&socket);
+            Q_EMIT messageReceived(&socket);
     }
     return success;
 }
@@ -88,7 +88,7 @@ bool SingleApplication::startSingleServer()
         if (QAbstractSocket::AddressInUseError == m_localServer->serverError()) {
             // cleanup from a segfaulted server
 #ifdef Q_OS_UNIX
-            QString fullServerName = QDir::tempPath() + QLatin1String("/") + serverName();
+            QString fullServerName = QDir::tempPath() + QStringLiteral("/") + serverName();
             if (QFile::exists(fullServerName))
                 QFile::remove(fullServerName);
 #endif
@@ -114,14 +114,14 @@ bool SingleApplication::startSingleServer()
 
     if (!success) {
         delete m_localServer;
-        m_localServer = 0;
+        m_localServer = nullptr;
     }
     return success;
 }
 
 bool SingleApplication::isRunning() const
 {
-    return (0 != m_localServer);
+    return (nullptr != m_localServer);
 }
 
 void SingleApplication::newConnection()
@@ -130,7 +130,7 @@ void SingleApplication::newConnection()
     if (!socket)
         return;
     socket->waitForReadyRead();
-    emit messageReceived(socket);
+    Q_EMIT messageReceived(socket);
     delete socket;
 }
 
@@ -139,10 +139,10 @@ QString SingleApplication::serverName() const
     QString serverName = QCoreApplication::applicationName();
     Q_ASSERT(!serverName.isEmpty());
 #ifdef Q_WS_QWS
-    serverName += QLatin1String("_qws");
+    serverName += QStringLiteral("_qws");
 #endif
 #ifndef Q_OS_WIN
-    serverName += QString(QLatin1String("_%1_%2")).arg(getuid()).arg(getgid());
+    serverName += QString(QStringLiteral("_%1_%2")).arg(getuid()).arg(getgid());
 #else
     static QString login;
     if (login.isEmpty()) {

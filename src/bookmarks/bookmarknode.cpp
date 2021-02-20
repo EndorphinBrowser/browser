@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2014 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,9 +63,9 @@
 #include "bookmarknode.h"
 
 BookmarkNode::BookmarkNode(BookmarkNode::Type type, BookmarkNode *parent) :
-     expanded(false)
-   , m_parent(parent)
-   , m_type(type)
+    expanded(false)
+    , m_parent(parent)
+    , m_type(type)
 {
     if (parent)
         parent->add(this);
@@ -77,18 +77,18 @@ BookmarkNode::~BookmarkNode()
         m_parent->remove(this);
     for (int i = m_children.count() -1; i >= 0; --i)
         delete m_children[i];
-    m_parent = 0;
+    m_parent = nullptr;
     m_type = BookmarkNode::Root;
 }
 
 bool BookmarkNode::operator==(const BookmarkNode &other) const
 {
     if (url != other.url
-        || title != other.title
-        || desc != other.desc
-        || expanded != other.expanded
-        || m_type != other.m_type
-        || m_children.count() != other.m_children.count())
+            || title != other.title
+            || desc != other.desc
+            || expanded != other.expanded
+            || m_type != other.m_type
+            || m_children.count() != other.m_children.count())
         return false;
 
     for (int i = 0; i < m_children.count(); ++i)
@@ -136,7 +136,7 @@ void BookmarkNode::remove(BookmarkNode *child)
 {
     if (!child)
         return;
-    child->m_parent = 0;
+    child->m_parent = nullptr;
     m_children.removeAll(child);
 }
 

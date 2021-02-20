@@ -9,7 +9,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Aaron Dewes nor the names of its contributors
+ * 3. Neither the name of Endorphin nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -29,17 +29,17 @@
 #ifndef EDITLISTVIEW_H
 #define EDITLISTVIEW_H
 
-#include <qlistview.h>
+#include <QListView>
 
 class EditListView : public QListView
 {
     Q_OBJECT
 
 public:
-    EditListView(QWidget *parent = 0);
+    EditListView(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event);
 
-public slots:
+public Q_SLOTS:
     void removeSelected();
     void removeAll();
 };

@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include "lineedit.h"
 
 #include <qpointer.h>
-#include <qurl.h>
+#include <QUrl>
 
 class WebView;
 class LocationBarSiteIcon;
@@ -33,22 +33,28 @@ class LocationBar : public LineEdit
     Q_OBJECT
 
 public:
-    LocationBar(QWidget *parent = 0);
+    LocationBar(QWidget *parent = nullptr);
     void setWebView(WebView *webView);
     WebView *webView() const;
+    static void resetFirstSelectAll();
 
 protected:
     void paintEvent(QPaintEvent *event);
     void focusOutEvent(QFocusEvent *event);
+    void mouseReleaseEvent (QMouseEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
     void keyPressEvent(QKeyEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 
-private slots:
+private Q_SLOTS:
     void webViewUrlChanged(const QUrl &url);
 
 private:
+    /**
+     * Guard to imitate Chrome select all on first click
+     */
+    static bool s_firstSelectAll;
     QPointer<WebView> m_webView;
 
     LocationBarSiteIcon *m_siteIcon;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
-#include <qdialog.h>
+#include <QDialog>
 #include "ui_aboutdialog.h"
 
 class AboutDialog : public QDialog, private Ui_AboutDialog
@@ -28,9 +28,9 @@ class AboutDialog : public QDialog, private Ui_AboutDialog
     Q_OBJECT
 
 public:
-    AboutDialog(QWidget *parent = 0);
+    AboutDialog(QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void authorsButtonClicked();
     void licenseButtonClicked();
 

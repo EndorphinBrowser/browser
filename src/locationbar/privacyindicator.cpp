@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2010 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ PrivacyIndicator::PrivacyIndicator(QWidget *parent)
     connect(BrowserApplication::instance(), SIGNAL(privacyChanged(bool)),
             this, SLOT(setVisible(bool)));
     setCursor(Qt::ArrowCursor);
-    setVisible(BrowserApplication::isPrivate());
+    setVisible(BrowserApplication::instance()->isPrivate());
 }
 
 void PrivacyIndicator::mousePressEvent(QMouseEvent *event)

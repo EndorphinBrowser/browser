@@ -1,6 +1,6 @@
 /*
  * Copyright 2008-2009 Diego Iastrubni, elcuco, at, kde.org
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -10,7 +10,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Aaron Dewes nor the names of its contributors
+ * 3. Neither the name of Endorphin nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -30,7 +30,7 @@
 #ifndef LANGUAGEMANAGER_H
 #define LANGUAGEMANAGER_H
 
-#include <qobject.h>
+#include <QObject>
 
 #include <qstringlist.h>
 
@@ -38,13 +38,13 @@ class QTranslator;
 class LanguageManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString currentLanguage READ currentLanguage WRITE setCurrentLanguage)
+    Q_PROPERTY(QString currentLanguage READ currentLanguage WRITE setCurrentLanguage NOTIFY languageChanged)
 
-signals:
+Q_SIGNALS:
     void languageChanged(const QString &language);
 
 public:
-    LanguageManager(QObject *parent = 0);
+    LanguageManager(QObject *parent = nullptr);
 
     void addLocaleDirectory(const QString &directory);
     QStringList localeDirectories() const;
@@ -55,7 +55,7 @@ public:
     QStringList languages() const;
     bool isLanguageAvailable(const QString &language) const;
 
-public slots:
+public Q_SLOTS:
     void loadLanguageFromSettings();
     void chooseNewLanguage();
 

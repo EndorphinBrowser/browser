@@ -1,0 +1,101 @@
+
+set(ENDORPHIN_SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+
+set(ENDORPHIN_INCLUDE_DIRS
+    ${ENDORPHIN_SRC_DIR}
+    src/utils
+    src/bookmarks
+    src/bookmarks/xbel
+    src/data
+    src/history
+    src/htmls
+    src/locationbar
+    src/opensearch
+    src/useragent
+    src/utils
+)
+
+set(ENDORPHIN_AUTOUIC_SEARCH_PATHS
+    ${ENDORPHIN_INCLUDE_DIRS}
+)
+
+set(ENDORPHIN_SRCS
+    src/aboutdialog.cpp
+    src/acceptlanguagedialog.cpp
+    src/autosaver.cpp
+    src/browserapplication.cpp
+    src/browsermainwindow.cpp
+    src/clearprivatedata.cpp
+    src/clearbutton.cpp
+    src/devtoolswindow.cpp
+    src/downloadmanager.cpp
+    src/modelmenu.cpp
+    src/modeltoolbar.cpp
+    src/permissionbar.cpp
+    src/plaintexteditsearch.cpp
+    src/savepagedialog.cpp
+    src/searchbar.cpp
+    src/searchbutton.cpp
+    src/searchlineedit.cpp
+    src/settings.cpp
+    src/tabbar.cpp
+    src/tabwidget.cpp
+    src/toolbarsearch.cpp
+    src/webactionmapper.cpp
+    src/webpage.cpp
+    src/webview.cpp
+    src/webviewsearch.cpp
+    src/bookmarks/addbookmarkdialog.cpp
+    src/bookmarks/bookmarksdialog.cpp
+    src/bookmarks/bookmarksmanager.cpp
+    src/bookmarks/bookmarksmenu.cpp
+    src/bookmarks/bookmarksmodel.cpp
+    src/bookmarks/bookmarkstoolbar.cpp
+    src/bookmarks/bookmarknode.cpp
+    src/history/history.cpp
+    src/locationcompleter.cpp
+    src/history/historymanager.cpp
+    src/locationbar/locationbar.cpp
+    src/locationbar/locationbarsiteicon.cpp
+    src/locationbar/privacyindicator.cpp
+    src/opensearch/opensearchdialog.cpp
+    src/opensearch/opensearchengine.cpp
+    src/opensearch/opensearchenginedelegate.cpp
+    src/opensearch/opensearchengineaction.cpp
+    src/opensearch/opensearchenginemodel.cpp
+    src/opensearch/opensearchmanager.cpp
+    src/opensearch/opensearchreader.cpp
+    src/opensearch/opensearchwriter.cpp
+    src/useragent/useragentmenu.cpp
+    src/utils/explorerstyle.cpp
+    src/utils/editlistview.cpp
+    src/utils/edittableview.cpp
+    src/utils/edittreeview.cpp
+    src/utils/languagemanager.cpp
+    src/utils/lineedit.cpp
+    src/utils/singleapplication.cpp
+    src/utils/squeezelabel.cpp
+    src/utils/treesortfilterproxymodel.cpp
+)
+
+set(ENDORPHIN_UIS
+    src/aboutdialog.ui
+    src/acceptlanguagedialog.ui
+    src/downloaditem.ui
+    src/downloads.ui
+    src/savepagedialog.ui
+    src/searchbanner.ui
+    src/settings.ui
+    src/bookmarks/addbookmarkdialog.ui
+    src/bookmarks/bookmarksdialog.ui
+    src/history/history.ui
+    src/opensearch/opensearchdialog.ui
+)
+
+set(ENDORPHIN_RSCS
+    src/data/data.qrc
+    src/data/graphics/graphics.qrc
+    src/data/searchengines/searchengines.qrc
+    src/htmls/htmls.qrc
+    src/useragent/useragents.qrc
+)

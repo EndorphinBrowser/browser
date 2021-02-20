@@ -22,11 +22,11 @@
 #ifndef OPENSEARCHMANAGER_H
 #define OPENSEARCHMANAGER_H
 
-#include <qobject.h>
+#include <QObject>
 
 #include <qhash.h>
 #include <qpixmap.h>
-#include <qurl.h>
+#include <QUrl>
 
 class QNetworkReply;
 class QNetworkRequest;
@@ -39,12 +39,12 @@ class OpenSearchManager : public QObject
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void changed();
     void currentEngineChanged();
 
 public:
-    OpenSearchManager(QObject *parent = 0);
+    OpenSearchManager(QObject *parent = nullptr);
     ~OpenSearchManager();
 
     QStringList allEnginesNames() const;
@@ -73,7 +73,7 @@ public:
     void removeEngine(const QString &name);
     void restoreDefaults();
 
-public slots:
+public Q_SLOTS:
     void save();
 
 protected:
@@ -86,7 +86,7 @@ protected:
 private:
     bool confirmAddition(OpenSearchEngine *engine);
 
-protected slots:
+protected Q_SLOTS:
     void engineFromUrlAvailable();
 
 private:

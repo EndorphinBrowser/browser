@@ -20,9 +20,9 @@
 #ifndef MODELTOOLBAR_H
 #define MODELTOOLBAR_H
 
-#include <qtoolbar.h>
+#include <QToolBar>
 
-#include <qabstractitemmodel.h>
+#include <QAbstractItemModel>
 
 Q_DECLARE_METATYPE(QModelIndex)
 
@@ -32,12 +32,12 @@ class ModelToolBar : public QToolBar
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void activated(const QModelIndex &index);
 
 public:
-    ModelToolBar(QWidget *parent = 0);
-    ModelToolBar(const QString &title, QWidget *parent = 0);
+    ModelToolBar(QWidget *parent = nullptr);
+    ModelToolBar(const QString &title, QWidget *parent = nullptr);
 
     void setModel(QAbstractItemModel *model);
     QAbstractItemModel *model() const;
@@ -58,7 +58,7 @@ protected:
     void dropEvent(QDropEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
 
-protected slots:
+protected Q_SLOTS:
     void build();
 
 private:

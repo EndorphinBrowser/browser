@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,58 +19,52 @@
 
 #include "webviewsearch.h"
 
-#include <qevent.h>
-#include <qshortcut.h>
-#include <qtimeline.h>
+#include <QEvent>
+#include <QShortcut>
+#include <QTimeLine>
 
-#include <qwebframe.h>
-#include <qwebview.h>
+#include <QWebEngineView>
 
-#include <qdebug.h>
+#include <QDebug>
 
-WebViewSearch::WebViewSearch(QWebView *webView, QWidget *parent)
+WebViewSearch::WebViewSearch(QWebEngineView *webView, QWidget *parent)
     : SearchBar(parent)
 {
     setSearchObject(webView);
-    ui.highlightAllButton->setVisible(true);
-    connect(ui.highlightAllButton, SIGNAL(toggled(bool)),
-            this, SLOT(highlightAll()));
-    connect(ui.searchLineEdit, SIGNAL(textEdited(const QString &)),
-            this, SLOT(highlightAll()));
 }
 
 void WebViewSearch::findNext()
 {
-    find(QWebPage::FindWrapsAroundDocument);
+    find(QWebEnginePage::FindFlags());
 }
 
 void WebViewSearch::findPrevious()
 {
-    find(QWebPage::FindBackward | QWebPage::FindWrapsAroundDocument);
+    find(QWebEnginePage::FindBackward);
 }
 
-void WebViewSearch::highlightAll()
+void WebViewSearch::find(QWebEnginePage::FindFlags flags)
 {
-    webView()->findText(QString(), QWebPage::HighlightAllOccurrences);
-
-    if (ui.highlightAllButton->isChecked())
-        find(QWebPage::HighlightAllOccurrences);
+    if(!ui.searchLineEdit->text().isEmpty()) {
+        QString searchString = ui.searchLineEdit->text();
+        webView()->findText(searchString, flags, [this](bool found) {
+            handleSearchResult(found);
+        });
+    }
 }
 
-void WebViewSearch::find(QWebPage::FindFlags flags)
+void WebViewSearch::handleSearchResult(bool found)
 {
-    QString searchString = ui.searchLineEdit->text();
-    if (!searchObject() || searchString.isEmpty())
-        return;
     QString infoString;
-    if (!webView()->findText(searchString, flags))
+    if (!found)
         infoString = tr("Not Found");
+    
     ui.searchInfo->setText(infoString);
 }
 
-QWebView *WebViewSearch::webView() const
+QWebEngineView *WebViewSearch::webView() const
 {
-    return qobject_cast<QWebView*>(searchObject());
+    return qobject_cast<QWebEngineView*>(searchObject());
 }
 
 WebViewWithSearch::WebViewWithSearch(WebView *webView, QWidget *parent)

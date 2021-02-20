@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2014 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,29 +20,29 @@
 #include <QtTest/QtTest>
 #include "qtest_endorphin.h"
 
-#include <historymanager.h>
-#include <history.h>
-#include <historycompleter.h>
+#include "historymanager.h"
+#include "history.h"
+#include "locationcompleter.h"
 #include <modeltest.h>
 
-#include <qwebsettings.h>
+#include <QWebEngineSettings>
 
 class tst_HistoryManager : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void history_data();
     void history();
     void addHistoryEntry_data();
     void addHistoryEntry();
-    void addHistoryEntry_private();
+    //void addHistoryEntry_private();
     void addHistoryEntry_url();
     void updateHistoryEntry_data();
     void updateHistoryEntry();
@@ -73,8 +73,6 @@ public:
     {
         QWidget w;
         setParent(&w);
-        if (QWebHistoryInterface::defaultInterface() == this)
-            QWebHistoryInterface::setDefaultInterface(0);
         setParent(0);
     }
 
@@ -208,7 +206,7 @@ void tst_HistoryManager::addHistoryEntry()
     QCOMPARE(history.history().count(), expected.count());
     QCOMPARE(history.history(), expected);
 }
-
+/*
 void tst_HistoryManager::addHistoryEntry_private()
 {
     SubHistory history;
@@ -219,7 +217,7 @@ void tst_HistoryManager::addHistoryEntry_private()
     globalSettings->setAttribute(QWebSettings::PrivateBrowsingEnabled, false);
     QVERIFY(history.history().isEmpty());
 }
-
+*/
 void tst_HistoryManager::addHistoryEntry_url()
 {
     SubHistory history;
@@ -236,8 +234,8 @@ void tst_HistoryManager::updateHistoryEntry_data()
     QTest::addColumn<QString>("title");
 
     QTest::newRow("null") << HistoryList() << QUrl() << QString();
-    QTest::newRow("one") << (HistoryList() << HistoryEntry()) << QUrl() << QString("foo");
-    QTest::newRow("two") << (HistoryList() << HistoryEntry() << HistoryEntry("http://foo.com")) << QUrl() << QString("foo");
+    QTest::newRow("one") << (HistoryList() << HistoryEntry()) << QUrl() << QStringLiteral("foo");
+    QTest::newRow("two") << (HistoryList() << HistoryEntry() << HistoryEntry("http://foo.com")) << QUrl() << QStringLiteral("foo");
 }
 
 // public void updateHistoryEntry(QUrl const &url, QString const title)
@@ -289,7 +287,7 @@ void tst_HistoryManager::daysToExpire()
     SubHistory history;
 
     history.setHistory(list);
-    qSort(list.begin(), list.end());
+    std::sort(list.begin(), list.end());
     QCOMPARE(history.history(), list);
 
     history.setDaysToExpire(daysToExpire);
@@ -434,7 +432,7 @@ void tst_HistoryManager::big()
     ModelTest test(&model);
     QCOMPARE(model.rowCount(), bigHistory.count());
 
-    HistoryCompletionModel completionModel;
+    LocationCompletionModel completionModel;
     completionModel.setSourceModel(&model);
     ModelTest test2(&completionModel);
     QCOMPARE(completionModel.rowCount(), bigHistory.count());

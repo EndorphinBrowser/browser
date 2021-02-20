@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2010, William C. Witt
- * Copyright (c) 2010, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright (c) 2010, Aaron Dewes <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -31,12 +31,12 @@
 
 #include "webpage.h"
 
-#include <qfile.h>
-#include <qinputdialog.h>
-#include <qsettings.h>
+#include <QFile>
+#include <QInputDialog>
+#include <QSettings>
 #include <qxmlstream.h>
 
-#include <qdebug.h>
+#include <QDebug>
 
 UserAgentMenu::UserAgentMenu(QWidget *parent)
     : QMenu(parent)
@@ -54,11 +54,11 @@ void UserAgentMenu::populateMenu()
     defaultUserAgent->setCheckable(true);
     connect(defaultUserAgent, SIGNAL(triggered()), this, SLOT(switchToDefaultUserAgent()));
     QSettings settings;
-    defaultUserAgent->setChecked(settings.value(QLatin1String("userAgent")).toString().isEmpty());
+    defaultUserAgent->setChecked(settings.value(QStringLiteral("userAgent")).toString().isEmpty());
     addAction(defaultUserAgent);
 
     // Add default extra user agents
-    addActionsFromFile(QLatin1String(":/useragents/useragents.xml"));
+    addActionsFromFile(QStringLiteral(":/useragents/useragents.xml"));
 
     // Add other action
     addSeparator();
@@ -70,7 +70,7 @@ void UserAgentMenu::populateMenu()
 
     bool usingCustomUserAgent = true;
     QActionGroup *actionGroup = new QActionGroup(this);
-    foreach (QAction *action, actions()) {
+    Q_FOREACH (QAction *action, actions()) {
         actionGroup->addAction(action);
         if (action->isChecked()) {
             usingCustomUserAgent = false;
@@ -89,14 +89,14 @@ void UserAgentMenu::addActionsFromFile(const QString &fileName)
     QXmlStreamReader xml(&file);
     while (!xml.atEnd()) {
         xml.readNext();
-        if (xml.isStartElement() && xml.name() == QLatin1String("separator")) {
+        if (xml.isStartElement() && xml.name() == QStringLiteral("separator")) {
             addSeparator();
             continue;
         }
-        if (xml.isStartElement() && xml.name() == QLatin1String("useragent")) {
+        if (xml.isStartElement() && xml.name() == QStringLiteral("useragent")) {
             QXmlStreamAttributes attributes = xml.attributes();
-            QString title = attributes.value(QLatin1String("description")).toString();
-            QString userAgent = attributes.value(QLatin1String("useragent")).toString();
+            QString title = attributes.value(QStringLiteral("description")).toString();
+            QString userAgent = attributes.value(QStringLiteral("useragent")).toString();
 
             QAction *action = new QAction(this);
             action->setText(title);
@@ -110,7 +110,7 @@ void UserAgentMenu::addActionsFromFile(const QString &fileName)
     }
     if (xml.hasError()) {
         qDebug() << "Error reading custom user agents" << xml.errorString();
-         // ... do error handling
+        // ... do error handling
     }
 }
 
@@ -130,8 +130,8 @@ void UserAgentMenu::switchToOtherUserAgent()
 {
     bool ok;
     QString text = QInputDialog::getText(this, tr("Custom user agent"),
-                                          tr("User agent:"), QLineEdit::Normal,
-                                          WebPage::userAgent(), &ok, Qt::Sheet);
+                                         tr("User agent:"), QLineEdit::Normal,
+                                         WebPage::userAgent(), &ok, Qt::Sheet);
     if (ok) {
         WebPage::setUserAgent(text);
     }

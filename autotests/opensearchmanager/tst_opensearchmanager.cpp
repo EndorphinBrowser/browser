@@ -28,13 +28,13 @@ class tst_OpenSearchManager : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void addRemoveEngine_data();
     void addRemoveEngine();
     void setCurrentEngine_data();
@@ -68,7 +68,7 @@ void tst_OpenSearchManager::initTestCase()
     QCoreApplication::setApplicationName("opensearchtest");
 
     SubOpenSearchManager manager;
-    foreach (const QString &name, manager.allEnginesNames())
+    Q_FOREACH (const QString &name, manager.allEnginesNames())
         manager.removeEngine(name);
     QCOMPARE(manager.enginesCount(), 1);
 }
@@ -92,7 +92,7 @@ void tst_OpenSearchManager::init()
 void tst_OpenSearchManager::cleanup()
 {
     SubOpenSearchManager manager;
-    foreach (const QString &name, manager.allEnginesNames())
+    Q_FOREACH (const QString &name, manager.allEnginesNames())
         manager.removeEngine(name);
     QCOMPARE(manager.enginesCount(), 1);
 }
@@ -214,7 +214,7 @@ void tst_OpenSearchManager::restoreDefaults()
     manager.restoreDefaults();
     QCOMPARE(manager.enginesCount(), manager.defaultCount());
 
-    foreach (const QString &name, manager.allEnginesNames())
+    Q_FOREACH (const QString &name, manager.allEnginesNames())
         manager.removeEngine(name);
 
     // Never let the manager have no engines.

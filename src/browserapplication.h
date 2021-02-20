@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,19 +65,17 @@
 
 #include "singleapplication.h"
 
-#include <qpointer.h>
-#include <qurl.h>
-#include <qdatetime.h>
+#include <QPointer>
+#include <QUrl>
+#include <QDateTime>
 
-class AutoFillManager;
 class BookmarksManager;
 class BrowserMainWindow;
-class CookieJar;
 class DownloadManager;
 class HistoryManager;
-class NetworkAccessManager;
 class LanguageManager;
 class QLocalSocket;
+class QWebEngineProfile;
 class BrowserApplication : public SingleApplication
 {
     Q_OBJECT
@@ -98,12 +96,9 @@ public:
     bool canRestoreSession() const;
 
     static HistoryManager *historyManager();
-    static CookieJar *cookieJar();
     static DownloadManager *downloadManager();
-    static NetworkAccessManager *networkAccessManager();
     static BookmarksManager *bookmarksManager();
     static LanguageManager *languageManager();
-    static AutoFillManager *autoFillManager();
 
     static QString installedDataDirectory();
     static QString dataFilePath(const QString &fileName);
@@ -115,14 +110,11 @@ public:
 
     static bool zoomTextOnly();
 
-    static bool isPrivate();
-    static void setPrivate(bool isPrivate);
-
 #if defined(Q_WS_MAC)
     bool event(QEvent *event);
 #endif
 
-public slots:
+public Q_SLOTS:
     BrowserMainWindow *newMainWindow();
     bool restoreLastSession();
 #if defined(Q_WS_MAC)
@@ -134,13 +126,16 @@ public slots:
 
     void askDesktopToOpenUrl(const QUrl &url);
 
-private slots:
+    bool isPrivate();
+    void setPrivate(bool isPrivate);
+
+private Q_SLOTS:
     void retranslate();
     void messageReceived(QLocalSocket *socket);
     void postLaunch();
     void openUrl(const QUrl &url);
 
-signals:
+Q_SIGNALS:
     void zoomTextOnlyChanged(bool textOnly);
     void privacyChanged(bool isPrivate);
 
@@ -150,14 +145,14 @@ private:
 
     static HistoryManager *s_historyManager;
     static DownloadManager *s_downloadManager;
-    static NetworkAccessManager *s_networkAccessManager;
     static BookmarksManager *s_bookmarksManager;
     static LanguageManager *s_languageManager;
-    static AutoFillManager *s_autoFillManager;
 
     QList<QPointer<BrowserMainWindow> > m_mainWindows;
     QByteArray m_lastSession;
     bool quitting;
+    QWebEngineProfile *m_privateProfile;
+    bool m_privateBrowsing;
 
     Qt::MouseButtons m_eventMouseButtons;
     Qt::KeyboardModifiers m_eventKeyboardModifiers;

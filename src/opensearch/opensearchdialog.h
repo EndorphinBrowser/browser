@@ -21,7 +21,7 @@
 #ifndef OPENSEARCHDIALOG_H
 #define OPENSEARCHDIALOG_H
 
-#include <qdialog.h>
+#include <QDialog>
 
 #include "ui_opensearchdialog.h"
 
@@ -32,9 +32,9 @@ class OpenSearchDialog : public QDialog, public Ui_OpenSearchDialog
     Q_OBJECT
 
 public:
-    OpenSearchDialog(QWidget *parent = 0);
+    OpenSearchDialog(QWidget *parent = nullptr);
 
-protected slots:
+protected Q_SLOTS:
     void addButtonClicked();
     void deleteButtonClicked();
     void restoreButtonClicked();

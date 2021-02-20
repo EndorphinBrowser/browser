@@ -1,32 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <link rel="stylesheet" href="qrc:/startpage.css">
+    <title>New Tab</title>
+    <link rel="stylesheet" href="startpage.css">
     <script>
-        //<![CDATA[
-        function update()
+        async function update()
         {
-            var searchEngine = window.endorphin.currentEngine;
-
-            document.title = window.endorphin.translate('Welcome to Endorphin!');
-            document.getElementById('headerTitle').innerHTML = window.endorphin.translate('Endorphin Start');
-            document.getElementById('searchButton').value = window.endorphin.translate('Search!');
-            document.getElementById('footer').innerHTML = window.endorphin.translate('Search results provided by') + ' '
-                                                          + searchEngine.name + ' | ' + '<a href="http://aarondewes.github.io/endorphin/">'
-                                                          + window.endorphin.translate('About Endorphin') + '</a>';
-            document.getElementById('lineEdit').placeholder = window.endorphin.translate('Search the Web with') + ' ' + searchEngine.name;
-
-            // Try to change the direction of the page:
-            //   This string is defined in QApplication
-            //   src/gui/kernel/qapplication.cpp#qt_detectRTLLanguage()
-            //   it should contain LTR or RTL
-
-            var newDir = window.endorphin.translate('QT_LAYOUT_DIRECTION');
-            newDir = newDir.toLowerCase();
-            if ((newDir != 'ltr') && (newDir != 'rtl'))
-                newDir = 'ltr';
-            document.getElementsByTagName('body')[0].setAttribute('dir', newDir);
+            const providedBy = await window?.endorphin?.translate('Search results provided by') ?? 'Search results provided by';
+            const engine = window?.endorphin?.currentEngine?.name ?? "Google";
+            const aboutText = await window?.endorphin?.translate('About Endorphin') ?? "About Endorphin";
+            const searchWith = await window?.endorphin?.translate('Search the web with') ?? "Search the web with";
+            document.title = await window?.endorphin?.translate('Welcome to Endorphin!') ?? 'Welcome to Endorphin!';
+            document.getElementById('headerTitle').innerHTML = await window?.endorphin?.translate('Endorphin Start') ?? 'Endorphin Start';
+            document.getElementById('searchButton').value = await window?.endorphin?.translate('Search!') ?? 'Search!';
+            document.getElementById('footer').innerHTML = `${providedBy} ${engine} | <a href="http://EndorphinBrowser.gitlab.io/">${aboutText}</a>`;
+            document.getElementById('lineEdit').placeholder = `${searchWith} ${engine}`;
         }
 
         function formSubmitted()
@@ -36,16 +24,15 @@
             if (string.length == 0)
                 return;
 
-            var url = window.endorphin.searchUrl(string);
+            var url = window?.endorphin?.searchUrl(string) ?? 'http://www.google.com/search?q=' + string;
             window.location.href = url;
         }
-        //]]>
     </script>
 </head>
 <body onload="document.forms[0].lineEdit.select(); update();">
     <div id="header">
         <h1 id="headerTitle"></h1>
-        <img src="qrc:/endorphin.svg" alt="Endorphin">
+        <img src="/endorphin.svg" alt="Endorphin Logo">
     </div>
     <div id="search">
         <form action="javascript:formSubmitted();">
@@ -58,3 +45,4 @@
     <div id="footer"></div>
 </body>
 </html>
+

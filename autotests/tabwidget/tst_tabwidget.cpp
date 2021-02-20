@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,13 +30,13 @@ class tst_TabWidget : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void tabwidget_data();
     void tabwidget();
     void addWebAction_data();
@@ -78,19 +78,29 @@ class SubTabWidget : public TabWidget
 {
 public:
     void call_linkHovered(QString const &link)
-        { return SubTabWidget::linkHovered(link); }
+    {
+        return SubTabWidget::linkHovered(link);
+    }
 
     void call_loadProgress(int progress)
-        { return SubTabWidget::loadProgress(progress); }
+    {
+        return SubTabWidget::loadProgress(progress);
+    }
 
     void call_setCurrentTitle(QString const &url)
-        { return SubTabWidget::setCurrentTitle(url); }
+    {
+        return SubTabWidget::setCurrentTitle(url);
+    }
 
     void call_showStatusBarMessage(QString const &message)
-        { return SubTabWidget::showStatusBarMessage(message); }
+    {
+        return SubTabWidget::showStatusBarMessage(message);
+    }
 
     void call_tabsChanged()
-        { return SubTabWidget::tabsChanged(); }
+    {
+        return SubTabWidget::tabsChanged();
+    }
 };
 
 // This will be called before the first test function is executed.
@@ -122,7 +132,7 @@ void tst_TabWidget::tabwidget_data()
 void tst_TabWidget::tabwidget()
 {
     SubTabWidget widget;
-    widget.addWebAction((QAction*)0, QWebPage::Back);
+    widget.addWebAction((QAction*)0, QWebEnginePage::Back);
     widget.closeTab();
     QVERIFY(widget.closeTabAction());
     widget.currentWebView();
@@ -138,17 +148,17 @@ void tst_TabWidget::tabwidget()
     QVERIFY(widget.currentLocationBar());
 }
 
-Q_DECLARE_METATYPE(QWebPage::WebAction)
+Q_DECLARE_METATYPE(QWebEnginePage::WebAction)
 void tst_TabWidget::addWebAction_data()
 {
-    QTest::addColumn<QWebPage::WebAction>("webAction");
-    QTest::newRow("back") << QWebPage::Back;
+    QTest::addColumn<QWebEnginePage::WebAction>("webAction");
+    QTest::newRow("back") << QWebEnginePage::Back;
 }
 
-// public void addWebAction(QAction *action, QWebPage::WebAction webAction)
+// public void addWebAction(QAction *action, QWebEnginePage::WebAction webAction)
 void tst_TabWidget::addWebAction()
 {
-    QFETCH(QWebPage::WebAction, webAction);
+    QFETCH(QWebEnginePage::WebAction, webAction);
 
     SubTabWidget widget;
 
@@ -497,7 +507,7 @@ void tst_TabWidget::recentlyClosedTabsAction()
 void tst_TabWidget::linkHovered_data()
 {
     QTest::addColumn<QString>("link");
-    QTest::newRow("null") << QString("foo");
+    QTest::newRow("null") << QStringLiteral("foo");
 }
 
 // protected void linkHovered(QString const &link)
@@ -563,7 +573,7 @@ void tst_TabWidget::loadProgress(int)
 void tst_TabWidget::setCurrentTitle_data()
 {
     QTest::addColumn<QString>("url");
-    QTest::newRow("null") << QString("foo");
+    QTest::newRow("null") << QStringLiteral("foo");
 }
 
 // protected void setCurrentTitle(QString const &url)
@@ -596,7 +606,7 @@ void tst_TabWidget::setCurrentTitle(const QString &)
 void tst_TabWidget::showStatusBarMessage_data()
 {
     QTest::addColumn<QString>("message");
-    QTest::newRow("null") << QString("foo");
+    QTest::newRow("null") << QStringLiteral("foo");
 }
 
 // protected void showStatusBarMessage(QString const &message)

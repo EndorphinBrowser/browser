@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -64,19 +64,19 @@
 #ifndef MODELMENU_H
 #define MODELMENU_H
 
-#include <qmenu.h>
-#include <qabstractitemmodel.h>
+#include <QMenu>
+#include <QAbstractItemModel>
 
 // A QMenu that is dynamically populated from a QAbstractItemModel
 class ModelMenu : public QMenu
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void activated(const QModelIndex &index);
 
 public:
-    ModelMenu(QWidget *parent = 0);
+    ModelMenu(QWidget *parent = nullptr);
 
     void setModel(QAbstractItemModel *model);
     QAbstractItemModel *model() const;
@@ -108,7 +108,7 @@ protected:
     virtual ModelMenu *createBaseMenu();
 
     // put all of the children of parent into menu up to max
-    void createMenu(const QModelIndex &parent, int max, QMenu *parentMenu = 0, QMenu *menu = 0);
+    void createMenu(const QModelIndex &parent, int max, QMenu *parentMenu = nullptr, QMenu *menu = nullptr);
 
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
@@ -119,7 +119,7 @@ protected:
 #endif
     void mouseMoveEvent(QMouseEvent *event);
 
-private slots:
+private Q_SLOTS:
     void aboutToShow();
     void actionTriggered(QAction *action);
 

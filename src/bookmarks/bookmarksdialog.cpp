@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,14 +68,14 @@
 #include "browserapplication.h"
 #include "treesortfilterproxymodel.h"
 
-#include <qheaderview.h>
-#include <qmenu.h>
+#include <QHeaderView>
+#include <QMenu>
 
 BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     : QDialog(parent)
-    , m_bookmarksManager(0)
-    , m_bookmarksModel(0)
-    , m_proxyModel(0)
+    , m_bookmarksManager(nullptr)
+    , m_bookmarksModel(nullptr)
+    , m_proxyModel(nullptr)
 {
     m_bookmarksManager = manager;
     if (!m_bookmarksManager)
@@ -98,7 +98,7 @@ BookmarksDialog::BookmarksDialog(QWidget *parent, BookmarksManager *manager)
     tree->setExpanded(m_proxyModel->index(0, 0), true);
     tree->setAlternatingRowColors(true);
     QFontMetrics fm(font());
-    int header = fm.horizontalAdvance(QLatin1Char('m')) * 40;
+    int header = fm.horizontalAdvance(QChar('m')) * 40;
     tree->header()->resizeSection(0, header);
     tree->header()->setStretchLastSection(true);
     connect(tree, SIGNAL(activated(const QModelIndex&)),
@@ -180,10 +180,10 @@ void BookmarksDialog::openBookmark(TabWidget::OpenUrlIn tab)
     const BookmarkNode *node = m_bookmarksModel->node(sourceIndex);
     if (!index.parent().isValid() || !node || node->type() == BookmarkNode::Folder)
         return;
-    emit openUrl(
-          index.sibling(index.row(), 1).data(BookmarksModel::UrlRole).toUrl(),
-          tab,
-          index.sibling(index.row(), 0).data(Qt::DisplayRole).toString());
+    Q_EMIT openUrl(
+        index.sibling(index.row(), 1).data(BookmarksModel::UrlRole).toUrl(),
+        tab,
+        index.sibling(index.row(), 0).data(Qt::DisplayRole).toString());
 }
 
 void BookmarksDialog::openBookmark()

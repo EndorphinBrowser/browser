@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2010, William C. Witt
- * Copyright (c) 2010, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright (c) 2010, Aaron Dewes <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -30,16 +30,16 @@
 #ifndef USERAGENTMENU_H
 #define USERAGENTMENU_H
 
-#include <qmenu.h>
+#include <QMenu>
 
 class UserAgentMenu : public QMenu
 {
     Q_OBJECT
 
 public:
-    UserAgentMenu(QWidget *parent = 0);
+    UserAgentMenu(QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void populateMenu();
     void changeUserAgent();
     void switchToDefaultUserAgent();

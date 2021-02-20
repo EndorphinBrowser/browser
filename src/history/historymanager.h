@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,19 +63,18 @@
 #ifndef HISTORYMANAGER_H
 #define HISTORYMANAGER_H
 
-#include <qdatetime.h>
+#include <QDateTime>
 #include <qhash.h>
-#include <qtimer.h>
-#include <qurl.h>
-#include <qwebhistoryinterface.h>
+#include <QTimer>
+#include <QUrl>
 
 class HistoryEntry
 {
 public:
     HistoryEntry() {}
     HistoryEntry(const QString &u,
-                const QDateTime &d = QDateTime(), const QString &t = QString())
-            : url(u), title(t), dateTime(d) {}
+                 const QDateTime &d = QDateTime(), const QString &t = QString())
+        : url(u), title(t), dateTime(d) {}
 
     inline bool operator==(const HistoryEntry &other) const {
         return other.title == title
@@ -84,7 +83,9 @@ public:
 
     // history is sorted in reverse
     inline bool operator <(const HistoryEntry &other) const
-        { return dateTime > other.dateTime; }
+    {
+        return dateTime > other.dateTime;
+    }
 
     QString userTitle() const;
 
@@ -97,12 +98,12 @@ class AutoSaver;
 class HistoryModel;
 class HistoryFilterModel;
 class HistoryTreeModel;
-class HistoryManager : public QWebHistoryInterface
+class HistoryManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int daysToExpire READ daysToExpire WRITE setDaysToExpire)
+    Q_PROPERTY(int daysToExpire READ daysToExpire WRITE setDaysToExpire NOTIFY daysToExpireChanged)
 
-signals:
+Q_SIGNALS:
     void historyCleared();
     void historyGoingToChange();
     void historyReset();
@@ -111,7 +112,7 @@ signals:
     void entryUpdated(int offset);
 
 public:
-    HistoryManager(QObject *parent = 0);
+    HistoryManager(QObject *parent = nullptr);
     ~HistoryManager();
 
     bool historyContains(const QString &url) const;
@@ -121,6 +122,7 @@ public:
 
     int daysToExpire() const;
     void setDaysToExpire(int limit);
+    void daysToExpireChanged();
 
     QList<HistoryEntry> history() const;
     void setHistory(const QList<HistoryEntry> &history, bool loadedAndSorted = false);
@@ -129,14 +131,14 @@ public:
     HistoryModel *historyModel() const;
     HistoryFilterModel *historyFilterModel() const;
     HistoryTreeModel *historyTreeModel() const;
-    
+
     QString dataFilePath(const QString &fileName);
 
-public slots:
+public Q_SLOTS:
     void clear();
     void loadSettings();
 
-private slots:
+private Q_SLOTS:
     void save();
     void checkForExpired();
 

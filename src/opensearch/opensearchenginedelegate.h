@@ -21,7 +21,7 @@
 #define OPENSEARCHENGINEDELEGATE_H
 
 #include <qnetworkaccessmanager.h>
-#include <qnetworkrequest.h>
+#include <QNetworkRequest>
 
 class OpenSearchEngineDelegate
 {

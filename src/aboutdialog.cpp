@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2008 Matvey Kozhev <sikon@ubuntu.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,29 +20,25 @@
 
 #include "aboutdialog.h"
 
-#include <qdialogbuttonbox.h>
-#include <qfile.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qtextedit.h>
-#include <qtextstream.h>
-
-#include <qtwebkitversion.h>
-#include <qwebkitglobal.h>
+#include <QDialogButtonBox>
+#include <QFile>
+#include <QLabel>
+#include <QLayout>
+#include <QTextEdit>
+#include <QTextStream>
+#include <QPushButton>
 
 AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
 {
     setupUi(this);
     setWindowTitle(tr("About %1").arg(qApp->applicationName()));
-    logo->setPixmap(qApp->windowIcon().pixmap(128, 128));
     name->setText(qApp->applicationName());
     version->setText(qApp->applicationVersion());
-    webkitVersion->setText(tr("WebKit version: %1").arg(qWebKitVersion()));
-    connect(authorsButton, SIGNAL(clicked()),
-            this, SLOT(authorsButtonClicked()));
-    connect(licenseButton, SIGNAL(clicked()),
-            this, SLOT(licenseButtonClicked()));
+    connect(authorsButton, &QPushButton::clicked,
+            this, &AboutDialog::authorsButtonClicked);
+    connect(licenseButton, &QPushButton::clicked,
+            this, &AboutDialog::licenseButtonClicked);
 }
 
 void AboutDialog::displayFile(const QString &fileName, const QString &title)
@@ -62,10 +58,10 @@ void AboutDialog::displayFile(const QString &fileName, const QString &title)
     stream.setCodec("UTF-8");
     QString text = stream.readAll();
     // this is done to force the content of the text editor to be LTR, and monospaced.
-    textEdit.setHtml(QString(QLatin1String("<pre>%1</pre>")).arg(text));
+    textEdit.setHtml(QString(QStringLiteral("<pre>%1</pre>")).arg(text));
 
     textEdit.setReadOnly(true);
-    connect(&buttonBox, SIGNAL(rejected()), &dialog, SLOT(close()));
+    connect(&buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::close);
     buttonBox.setCenterButtons(true);
     layout.addWidget(&textEdit);
     layout.addWidget(&buttonBox);
@@ -74,17 +70,17 @@ void AboutDialog::displayFile(const QString &fileName, const QString &title)
     dialog.setLayout(&layout);
     dialog.setWindowTitle(title);
     dialog.setWindowFlags(Qt::Sheet);
-    dialog.resize(600, 350);
+    dialog.resize(650, 400);
     dialog.exec();
 }
 
 void AboutDialog::authorsButtonClicked()
 {
-    displayFile(QLatin1String(":AUTHORS"), tr("Authors"));
+    displayFile(QStringLiteral(":AUTHORS"), tr("Authors"));
 }
 
 void AboutDialog::licenseButtonClicked()
 {
-    displayFile(QLatin1String(":LICENSE.GPL2"), tr("License"));
+    displayFile(QStringLiteral(":LICENSE"), tr("License"));
 }
 

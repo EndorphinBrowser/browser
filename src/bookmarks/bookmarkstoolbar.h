@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -25,29 +25,29 @@
 
 #include "tabwidget.h"
 
-#include <qabstractitemmodel.h>
+#include <QAbstractItemModel>
 #include <qpoint.h>
-#include <qurl.h>
+#include <QUrl>
 
 class BookmarksModel;
 class BookmarksToolBar : public ModelToolBar
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void openUrl(const QUrl &url, const QString &title);
     void openUrl(const QUrl &url, TabWidget::OpenUrlIn tab, const QString &title);
 
 public:
-    BookmarksToolBar(BookmarksModel *model, QWidget *parent = 0);
+    BookmarksToolBar(BookmarksModel *model, QWidget *parent = nullptr);
 
 protected:
     virtual ModelMenu *createMenu();
 
-private slots:
+private Q_SLOTS:
     void contextMenuRequested(const QPoint &position);
 
-protected slots:
+protected Q_SLOTS:
     void openBookmark();
     void openBookmarkInCurrentTab();
     void openBookmarkInNewTab();

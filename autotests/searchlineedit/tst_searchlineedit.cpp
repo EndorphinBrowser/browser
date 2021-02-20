@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,13 +24,13 @@ class tst_SearchLineEdit : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void searchlineedit_data();
     void searchlineedit();
 };
@@ -38,7 +38,8 @@ private slots:
 // Subclass that exposes the protected functions.
 class SubSearchLineEdit : public SearchLineEdit
 {
-public:};
+public:
+};
 
 // This will be called before the first test function is executed.
 // It is only called once.

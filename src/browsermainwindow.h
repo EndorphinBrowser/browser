@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,11 +63,12 @@
 #ifndef BROWSERMAINWINDOW_H
 #define BROWSERMAINWINDOW_H
 
-#include <qmainwindow.h>
+#include <QMainWindow>
+#include <QWebEngineProfile>
 
 class AutoSaver;
 class BookmarksToolBar;
-class QWebFrame;
+class QWebEnginePage;
 class TabWidget;
 class ToolbarSearch;
 class WebView;
@@ -76,6 +77,9 @@ class QFrame;
 class HistoryMenu;
 class BookmarksMenuBarMenu;
 class UserAgentMenu;
+class DevToolsWindow;
+class QPrinter;
+class QCloseEvent;
 
 /*!
     The MainWindow of the Browser Application.
@@ -87,7 +91,7 @@ class BrowserMainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    BrowserMainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    BrowserMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(), QWebEngineProfile *profile = QWebEngineProfile::defaultProfile());
     ~BrowserMainWindow();
     QSize sizeHint() const;
 
@@ -100,12 +104,17 @@ public:
     QByteArray saveState(bool withTabs = true) const;
     bool restoreState(const QByteArray &state);
     QAction *showMenuBarAction() const;
-    QAction *searchManagerAction() const { return m_toolsSearchManagerAction; }
+    QAction *searchManagerAction() const {
+        return m_toolsSearchManagerAction;
+    }
+    void handleDevToolsRequested(QWebEnginePage *source);
 
-public slots:
+public Q_SLOTS:
     void goHome();
     void privacyChanged(bool isPrivate);
     void zoomTextOnlyChanged(bool textOnly);
+    void runScriptOnOpenViews(QString source);
+    void printDocument(QPrinter *printer);
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -113,7 +122,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void changeEvent(QEvent *event);
 
-private slots:
+private Q_SLOTS:
     void save();
 
     void lastTabClosed();
@@ -149,7 +158,6 @@ private slots:
 
     void webSearch();
     void clearPrivateData();
-    void toggleInspector(bool enable);
     void aboutApplication();
     void downloadManager();
     void selectLineEdit();
@@ -164,8 +172,10 @@ private slots:
     void showWindow();
     void swapFocus();
 
-    void printRequested(QWebFrame *frame);
+    void printRequested();
     void geometryChangeRequested(const QRect &geometry);
+
+    void gotHTML(QString &value);
 
 private:
     void retranslate();
@@ -173,6 +183,7 @@ private:
     void setupMenu();
     void setupToolBar();
     void updateStopReloadActionText(bool loading);
+    DevToolsWindow *createDevToolsWindow();
 
 private:
     QMenu *m_fileMenu;
@@ -231,11 +242,9 @@ private:
     QMenu *m_toolsMenu;
     QAction *m_toolsWebSearchAction;
     QAction *m_toolsClearPrivateDataAction;
-    QAction *m_toolsEnableInspectorAction;
     QAction *m_toolsPreferencesAction;
     QAction *m_toolsSearchManagerAction;
     UserAgentMenu *m_toolsUserAgentMenu;
-    QAction *m_adBlockDialogAction;
 
     QMenu *m_helpMenu;
     QAction *m_helpChangeLanguageAction;
@@ -265,7 +274,14 @@ private:
     bool m_menuBarVisible;
     bool m_statusBarVisible;
 
+    QString markup;
+
+    QWebEngineProfile *m_profile;
+
     friend class BrowserApplication;
+
+Q_SIGNALS:
+    void notifyGotHTML();
 };
 
 #endif // BROWSERMAINWINDOW_H

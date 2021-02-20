@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2014 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,8 +63,8 @@
 #ifndef BOOKMARKNODE_H
 #define BOOKMARKNODE_H
 
-#include <qlist.h>
-#include <qstringlist.h>
+#include <QList>
+#include <QStringList>
 
 class BookmarkNode
 {
@@ -76,7 +76,7 @@ public:
         Separator
     };
 
-    BookmarkNode(Type type = Root, BookmarkNode *parent = 0);
+    BookmarkNode(Type type = Root, BookmarkNode *parent = nullptr);
     ~BookmarkNode();
     bool operator==(const BookmarkNode &other) const;
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -9,7 +9,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Aaron Dewes nor the names of its contributors
+ * 3. Neither the name of Endorphin nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -41,10 +41,10 @@
 
 #include <qlibrary.h>
 #include <qpixmapcache.h>
-#include <qmainwindow.h>
-#include <qtoolbar.h>
-#include <qpainter.h>
-#include <qmenubar.h>
+#include <QMainWindow>
+#include <QToolBar>
+#include <QPainter>
+#include <QMenuBar>
 #include <qstyleoption.h>
 
 #include <qt_windows.h>
@@ -56,7 +56,7 @@
 
 typedef HANDLE (WINAPI *PtrOpenThemeData)(HWND hwnd, LPCWSTR pszClassList);
 typedef HRESULT (WINAPI *PtrDrawThemeBackground)(HANDLE hTheme, HDC hdc, int iPartId, int iStateId,
-                                                 const RECT *pRect, OPTIONAL const RECT *pClipRect);
+        const RECT *pRect, OPTIONAL const RECT *pClipRect);
 typedef bool (WINAPI *PtrIsAppThemed)();
 
 static PtrDrawThemeBackground pDrawThemeBackground = 0;
@@ -81,7 +81,7 @@ ExplorerStyle::ExplorerStyle()
     : QWindowsVistaStyle()
 {
 #ifdef Q_OS_WIN
-    QLibrary themeLib(QLatin1String("uxtheme"));
+    QLibrary themeLib(QStringLiteral("uxtheme"));
     themeLib.load();
     if (themeLib.isLoaded()) {  //resolve uxtheme functions
         pIsAppThemed =          (PtrIsAppThemed)themeLib.resolve("IsAppThemed");
@@ -95,8 +95,8 @@ ExplorerStyle::ExplorerStyle()
 void drawRebarBackground(const QRect &rect,  QPainter *painter) {
     if (rect.isEmpty())
         return;
-    QString cacheKey = QLatin1String("q_rebar_") + QString::number(rect.size().width())
-                        + QLatin1Char('x') + QString::number(rect.size().height());
+    QString cacheKey = QStringLiteral("q_rebar_") + QString::number(rect.size().width())
+                       + QChar('x') + QString::number(rect.size().height());
     QPixmap pixmap;
     if (!QPixmapCache::find(cacheKey, pixmap)) {
         pixmap = QPixmap(rect.size());
@@ -116,7 +116,7 @@ void drawRebarBackground(const QRect &rect,  QPainter *painter) {
 }
 
 void ExplorerStyle::drawPrimitive(PrimitiveElement element, const QStyleOption *option,
-                                    QPainter *painter, const QWidget *widget) const
+                                  QPainter *painter, const QWidget *widget) const
 {
     QRect rect = option->rect;
     switch (element) {
@@ -135,7 +135,7 @@ void ExplorerStyle::drawPrimitive(PrimitiveElement element, const QStyleOption *
 
                 //We need the bounding rect for all toolbars
                 QList<QToolBar*> toolbars = qFindChildren<QToolBar*>(window);
-                foreach (const QToolBar *tb, toolbars) {
+                Q_FOREACH (const QToolBar *tb, toolbars) {
                     if (!tb->isFloating()) {
                         QRect rect(tb->mapToParent(tb->rect().topLeft()), tb->rect().size());
                         if (window->toolBarArea(const_cast<QToolBar*>(tb)) == Qt::TopToolBarArea)
@@ -179,7 +179,7 @@ void ExplorerStyle::drawPrimitive(PrimitiveElement element, const QStyleOption *
 }
 
 void ExplorerStyle::drawControl(ControlElement element, const QStyleOption *option,
-                                  QPainter *painter, const QWidget *widget) const
+                                QPainter *painter, const QWidget *widget) const
 {
     QColor shadow = option->palette.dark().color();
     shadow.setAlpha(120);
@@ -233,7 +233,7 @@ void ExplorerStyle::drawControl(ControlElement element, const QStyleOption *opti
                 adjustedToolBar.palette.setBrush(QPalette::All, QPalette::Dark, shadow);
                 QWindowsXPStyle::drawControl(element, &adjustedToolBar, painter, widget);
             }
-        break;
+            break;
         } //fall through
 
     default:
@@ -246,7 +246,7 @@ void ExplorerStyle::drawControl(ControlElement element, const QStyleOption *opti
 }
 
 void ExplorerStyle::drawComplexControl(ComplexControl control, const QStyleOptionComplex *option,
-                                         QPainter *painter, const QWidget *widget) const
+                                       QPainter *painter, const QWidget *widget) const
 {
     if (vista)
         QWindowsVistaStyle::drawComplexControl(control, option, painter, widget);
@@ -255,7 +255,7 @@ void ExplorerStyle::drawComplexControl(ComplexControl control, const QStyleOptio
 }
 
 QSize ExplorerStyle::sizeFromContents(ContentsType type, const QStyleOption *option,
-                                        const QSize &size, const QWidget *widget) const
+                                      const QSize &size, const QWidget *widget) const
 {
     if (vista)
         return QWindowsVistaStyle::sizeFromContents(type, option, size, widget);
@@ -272,7 +272,7 @@ QRect ExplorerStyle::subElementRect(SubElement element, const QStyleOption *opti
 }
 
 QRect ExplorerStyle::subControlRect(ComplexControl control, const QStyleOptionComplex *option,
-                                      SubControl subControl, const QWidget *widget) const
+                                    SubControl subControl, const QWidget *widget) const
 {
     if (vista)
         return QWindowsVistaStyle::subControlRect(control, option, subControl, widget);
@@ -281,7 +281,7 @@ QRect ExplorerStyle::subControlRect(ComplexControl control, const QStyleOptionCo
 }
 
 QStyle::SubControl ExplorerStyle::hitTestComplexControl(ComplexControl control, const QStyleOptionComplex *option,
-                                                          const QPoint &pos, const QWidget *widget) const
+        const QPoint &pos, const QWidget *widget) const
 {
     if (vista)
         return QWindowsVistaStyle::hitTestComplexControl(control, option, pos, widget);

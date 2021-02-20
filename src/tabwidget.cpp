@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -7,7 +7,7 @@
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the iQ_WS_X11mplied warranty of
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
@@ -59,6 +59,32 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 **
 ****************************************************************************/
+/*
+** The URL validation regex is licensed under the following license:
+**
+** Copyright (c) 2010-2018 Diego Perini (http://www.iport.it)
+**
+** Permission is hereby granted, free of charge, to any person
+** obtaining a copy of this software and associated documentation
+** files (the "Software"), to deal in the Software without
+** restriction, including without limitation the rights to use,
+** copy, modify, merge, publish, distribute, sublicense, and/or sell
+** copies of the Software, and to permit persons to whom the
+** Software is furnished to do so, subject to the following
+** conditions:
+**
+** The above copyright notice and this permission notice shall be
+** included in all copies or substantial portions of the Software.
+**
+** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+** EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+** OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+** NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+** HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+** WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+** FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+** OTHER DEALINGS IN THE SOFTWARE.
+*/
 
 #include "tabwidget.h"
 
@@ -68,8 +94,9 @@
 #include "bookmarksmodel.h"
 #include "browserapplication.h"
 #include "browsermainwindow.h"
+#include "downloadmanager.h"
 #include "history.h"
-#include "historycompleter.h"
+#include "locationcompleter.h"
 #include "historymanager.h"
 #include "locationbar.h"
 #include "opensearchengine.h"
@@ -80,38 +107,43 @@
 #include "webpage.h"
 #include "webview.h"
 #include "webviewsearch.h"
+#include "savepagedialog.h"
 
-#include <qcompleter.h>
-#include <qdir.h>
-#include <qevent.h>
-#include <qlistview.h>
-#include <qmenu.h>
-#include <qmessagebox.h>
-#include <qmovie.h>
-#include <qsettings.h>
-#include <qstackedwidget.h>
-#include <qstyle.h>
-#include <qtoolbutton.h>
-#include <qwebhistory.h>
+#include <QCompleter>
+#include <QDir>
+#include <QEvent>
+#include <QListView>
+#include <QMenu>
+#include <QMessageBox>
+#include <QMovie>
+#include <QSettings>
+#include <QStackedWidget>
+#include <QStyle>
+#include <QToolButton>
+#include <QWebEnginePage>
+#include <QWebEngineProfile>
+#include <QWebEngineDownloadItem>
+#include <QRegularExpression>
 
-#include <qdebug.h>
+#include <QDebug>
 
 //#define USERMODIFIEDBEHAVIOR_DEBUG
 
-TabWidget::TabWidget(QWidget *parent)
+TabWidget::TabWidget(QWidget *parent, QWebEngineProfile *profile)
     : QTabWidget(parent)
-    , m_recentlyClosedTabsAction(0)
-    , m_newTabAction(0)
-    , m_closeTabAction(0)
-    , m_bookmarkTabsAction(0)
-    , m_nextTabAction(0)
-    , m_previousTabAction(0)
-    , m_recentlyClosedTabsMenu(0)
-    , m_lineEditCompleter(0)
-    , m_locationBars(0)
+    , m_recentlyClosedTabsAction(nullptr)
+    , m_newTabAction(nullptr)
+    , m_closeTabAction(nullptr)
+    , m_bookmarkTabsAction(nullptr)
+    , m_nextTabAction(nullptr)
+    , m_previousTabAction(nullptr)
+    , m_recentlyClosedTabsMenu(nullptr)
+    , m_lineEditCompleter(nullptr)
+    , m_locationBars(nullptr)
     , m_tabBar(new TabBar(this))
-    , addTabButton(0)
-    , closeTabButton(0)
+    , addTabButton(nullptr)
+    , closeTabButton(nullptr)
+    , m_profile(profile)
 {
     setElideMode(Qt::ElideRight);
 
@@ -120,21 +152,20 @@ TabWidget::TabWidget(QWidget *parent)
 
     connect(m_tabBar, SIGNAL(loadUrl(const QUrl&, TabWidget::OpenUrlIn)),
             this, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
-    connect(m_tabBar, SIGNAL(newTab()), this, SLOT(newTab()));
+    connect(m_tabBar, &TabBar::newTab, this, &TabWidget::newTab);
     connect(m_tabBar, SIGNAL(closeTab(int)), this, SLOT(closeTab(int)));
     connect(m_tabBar, SIGNAL(cloneTab(int)), this, SLOT(cloneTab(int)));
     connect(m_tabBar, SIGNAL(closeOtherTabs(int)), this, SLOT(closeOtherTabs(int)));
     connect(m_tabBar, SIGNAL(reloadTab(int)), this, SLOT(reloadTab(int)));
-    connect(m_tabBar, SIGNAL(reloadAllTabs()), this, SLOT(reloadAllTabs()));
+    connect(m_tabBar, &TabBar::reloadAllTabs, this, &TabWidget::reloadAllTabs);
     setTabBar(m_tabBar);
     setDocumentMode(true);
-    connect(m_tabBar, SIGNAL(tabMoved(int, int)),
-            this, SLOT(moveTab(int, int)));
+    connect(m_tabBar, &TabBar::tabMoved, this, &TabWidget::moveTab);
 
     // Actions
     m_newTabAction = new QAction(this);
     m_newTabAction->setShortcuts(QKeySequence::AddTab);
-    connect(m_newTabAction, SIGNAL(triggered()), this, SLOT(newTab()));
+    connect(m_newTabAction, &QAction::triggered, this, &TabWidget::newTab);
 
     m_closeTabAction = new QAction(this);
     m_closeTabAction->setShortcuts(QKeySequence::Close);
@@ -142,10 +173,10 @@ TabWidget::TabWidget(QWidget *parent)
 #if !defined(Q_WS_X11)
     m_closeTabAction->setIconVisibleInMenu(false);
 #endif
-    connect(m_closeTabAction, SIGNAL(triggered()), this, SLOT(closeTab()));
+    connect(m_closeTabAction, &QAction::triggered, this, &TabWidget::closeTab);
 
     m_bookmarkTabsAction = new QAction(this);
-    connect(m_bookmarkTabsAction, SIGNAL(triggered()), this, SLOT(bookmarkTabs()));
+    connect(m_bookmarkTabsAction, &QAction::triggered, this, &TabWidget::bookmarkTabs);
 
     m_newTabAction->setIcon(QIcon(QLatin1String(":graphics/addtab.png")));
 #if !defined(Q_WS_X11)
@@ -153,18 +184,18 @@ TabWidget::TabWidget(QWidget *parent)
 #endif
 
     m_nextTabAction = new QAction(this);
-    connect(m_nextTabAction, SIGNAL(triggered()), this, SLOT(nextTab()));
+    connect(m_nextTabAction, &QAction::triggered, this, &TabWidget::nextTab);
 
     m_previousTabAction = new QAction(this);
-    connect(m_previousTabAction, SIGNAL(triggered()), this, SLOT(previousTab()));
+    connect(m_previousTabAction, &QAction::triggered, this, &TabWidget::previousTab);
 #if defined(Q_WS_X11)
     m_previousTabAction->setIcon(QIcon::fromTheme(QLatin1String("go-previous")));
     m_nextTabAction->setIcon(QIcon::fromTheme(QLatin1String("go-next")));
 #endif
 
     m_recentlyClosedTabsMenu = new QMenu(this);
-    connect(m_recentlyClosedTabsMenu, SIGNAL(aboutToShow()),
-            this, SLOT(aboutToShowRecentTabsMenu()));
+    connect(m_recentlyClosedTabsMenu, &QMenu::aboutToShow,
+            this, &TabWidget::aboutToShowRecentTabsMenu);
     connect(m_recentlyClosedTabsMenu, SIGNAL(triggered(QAction *)),
             this, SLOT(aboutToShowRecentTriggeredAction(QAction *)));
     m_recentlyClosedTabsAction = new QAction(this);
@@ -176,24 +207,41 @@ TabWidget::TabWidget(QWidget *parent)
     addTabButton->setDefaultAction(m_newTabAction);
     addTabButton->setAutoRaise(true);
     addTabButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    addTabButton->setIconSize(QSize(50, 100));
 #endif
 
-    connect(m_tabBar, SIGNAL(tabCloseRequested(int)),
-            this, SLOT(closeTab(int)));
+    connect(m_tabBar, &TabBar::tabCloseRequested,
+            this, &TabWidget::closeTab);
     connect(this, SIGNAL(currentChanged(int)),
             this, SLOT(currentChanged(int)));
 
+    connect(this, &TabWidget::currentChanged,
+            this, &TabWidget::currentChanged);
+
     m_locationBars = new QStackedWidget(this);
 
-    connect(BrowserApplication::historyManager(), SIGNAL(historyCleared()),
-        this, SLOT(historyCleared()));
+    connect(BrowserApplication::historyManager(), &HistoryManager::historyCleared,
+            this, &TabWidget::historyCleared);
 
     // Initialize Actions' labels
     retranslate();
     loadSettings();
+    initScripts();
 }
 
+void TabWidget::initScripts() {
+    QFile file(":qwebchannel.js");
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+            qDebug() << "Couldn't read qwebchannel.js, window.external and window.endorphin won't be available";
+    QTextStream out(&file);
+
+    QWebEngineScript script;
+    script.setName("WebChannel loader");
+    script.setInjectionPoint(QWebEngineScript::DocumentCreation);
+    script.setRunsOnSubFrames(true);
+    script.setWorldId(QWebEngineScript::MainWorld);
+    script.setSourceCode(out.readAll());
+    m_profile->scripts()->insert(script);
+}
 void TabWidget::historyCleared()
 {
     m_recentlyClosedTabs.clear();
@@ -233,7 +281,7 @@ void TabWidget::moveTab(int fromIndex, int toIndex)
     m_locationBars->insertWidget(toIndex, lineEdit);
 }
 
-void TabWidget::addWebAction(QAction *action, QWebPage::WebAction webAction)
+void TabWidget::addWebAction(QAction *action, QWebEnginePage::WebAction webAction)
 {
     if (!action)
         return;
@@ -250,29 +298,29 @@ void TabWidget::currentChanged(int index)
 
     WebView *oldWebView = this->webView(m_locationBars->currentIndex());
     if (oldWebView) {
-        disconnect(oldWebView, SIGNAL(statusBarMessage(const QString&)),
-                   this, SIGNAL(showStatusBarMessage(const QString&)));
-        disconnect(oldWebView->page(), SIGNAL(linkHovered(const QString&, const QString&, const QString&)),
-                   this, SIGNAL(linkHovered(const QString&)));
-        disconnect(oldWebView, SIGNAL(loadProgress(int)),
-                   this, SIGNAL(loadProgress(int)));
+        disconnect(oldWebView->page(), &WebPage::linkHovered,
+                   this, &TabWidget::linkHovered);
+        disconnect(oldWebView, &WebView::loadProgress,
+                   this, &TabWidget::loadProgress);
+        disconnect(oldWebView->page()->profile(), &QWebEngineProfile::downloadRequested,
+                   this, &TabWidget::downloadRequested);
     }
 
-    connect(webView, SIGNAL(statusBarMessage(const QString&)),
-            this, SIGNAL(showStatusBarMessage(const QString&)));
-    connect(webView->page(), SIGNAL(linkHovered(const QString&, const QString&, const QString&)),
-            this, SIGNAL(linkHovered(const QString&)));
-    connect(webView, SIGNAL(loadProgress(int)),
-            this, SIGNAL(loadProgress(int)));
+    connect(webView->page(), &WebPage::linkHovered,
+            this, &TabWidget::linkHovered);
+    connect(webView, &WebView::loadProgress,
+            this, &TabWidget::loadProgress);
+    connect(webView->page()->profile(), &QWebEngineProfile::downloadRequested,
+            this, &TabWidget::downloadRequested);
 
     for (int i = 0; i < m_actions.count(); ++i) {
         WebActionMapper *mapper = m_actions[i];
         mapper->updateCurrent(webView->page());
     }
-    emit setCurrentTitle(webView->title());
+    Q_EMIT setCurrentTitle(webView->title());
     m_locationBars->setCurrentIndex(index);
-    emit loadProgress(webView->progress());
-    emit showStatusBarMessage(webView->lastStatusBarText());
+    Q_EMIT loadProgress(webView->progress());
+    Q_EMIT showStatusBarMessage(webView->lastStatusBarText());
     if (webView->url().isEmpty() && webView->hasFocus()) {
         m_locationBars->currentWidget()->setFocus();
     } else if (!webView->url().isEmpty()) {
@@ -336,7 +384,7 @@ WebView *TabWidget::webView(int index) const
     if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
         return webViewWithSearch->m_webView;
     }
-    return 0;
+    return nullptr;
 }
 
 WebViewSearch *TabWidget::webViewSearch(int index) const
@@ -345,7 +393,7 @@ WebViewSearch *TabWidget::webViewSearch(int index) const
     if (WebViewWithSearch *webViewWithSearch = qobject_cast<WebViewWithSearch*>(widget)) {
         return webViewWithSearch->m_webViewSearch;
     }
-    return 0;
+    return nullptr;
 }
 
 int TabWidget::webViewIndex(WebView *webView) const
@@ -370,13 +418,16 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
     // line edit
     LocationBar *locationBar = new LocationBar;
     if (!m_lineEditCompleter) {
-        HistoryCompletionModel *completionModel = new HistoryCompletionModel(this);
+        LocationCompletionModel *completionModel = new LocationCompletionModel(this);
         completionModel->setSourceModel(BrowserApplication::historyManager()->historyFilterModel());
-        m_lineEditCompleter = new HistoryCompleter(completionModel, this);
+        m_lineEditCompleter = new LocationCompleter(completionModel, this);
         connect(m_lineEditCompleter, SIGNAL(activated(const QString &)),
                 this, SLOT(loadString(const QString &)));
         // Should this be in Qt by default?
         QAbstractItemView *popup = m_lineEditCompleter->popup();
+        popup->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        popup->verticalScrollBar()->hide();
+        popup->verticalScrollBar()->resize(0, 0);
         QListView *listView = qobject_cast<QListView*>(popup);
         if (listView) {
             // Urls are always LeftToRight
@@ -385,7 +436,7 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
         }
     }
     locationBar->setCompleter(m_lineEditCompleter);
-    connect(locationBar, SIGNAL(returnPressed()), this, SLOT(lineEditReturnPressed()));
+    connect(locationBar, &LocationBar::returnPressed, this, &TabWidget::lineEditReturnPressed);
     m_locationBars->addWidget(locationBar);
     m_locationBars->setSizePolicy(locationBar->sizePolicy());
 
@@ -395,33 +446,21 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
 
     // webview
     WebView *webView = new WebView;
+    webView->setPage(new WebPage(m_profile, webView));
     locationBar->setWebView(webView);
-    connect(webView, SIGNAL(loadStarted()),
-            this, SLOT(webViewLoadStarted()));
-    connect(webView, SIGNAL(loadProgress(int)),
-                this, SLOT(webViewLoadProgress(int)));
+    connect(webView, &WebView::loadStarted, this, &TabWidget::webViewLoadStarted);
+    connect(webView, &WebView::loadProgress, this, &TabWidget::webViewLoadProgress);
     connect(webView, SIGNAL(loadFinished(bool)),
             this, SLOT(webViewLoadFinished(bool)));
-    connect(webView, SIGNAL(iconChanged()),
-            this, SLOT(webViewIconChanged()));
-    connect(webView, SIGNAL(titleChanged(const QString &)),
-            this, SLOT(webViewTitleChanged(const QString &)));
-    connect(webView, SIGNAL(urlChanged(const QUrl &)),
-            this, SLOT(webViewUrlChanged(const QUrl &)));
+    connect(webView, &WebView::iconChanged, this, &TabWidget::webViewIconChanged);
+    connect(webView, &WebView::titleChanged, this, &TabWidget::webViewTitleChanged);
+    connect(webView, &WebView::urlChanged, this, &TabWidget::webViewUrlChanged);
     connect(webView, SIGNAL(search(const QUrl&, TabWidget::OpenUrlIn)),
             this, SLOT(loadUrl(const QUrl&, TabWidget::OpenUrlIn)));
-    connect(webView->page(), SIGNAL(windowCloseRequested()),
-            this, SLOT(windowCloseRequested()));
-    connect(webView->page(), SIGNAL(printRequested(QWebFrame *)),
-            this, SIGNAL(printRequested(QWebFrame *)));
-    connect(webView->page(), SIGNAL(geometryChangeRequested(const QRect &)),
-            this, SLOT(geometryChangeRequestedCheck(const QRect &)));
-    connect(webView->page(), SIGNAL(menuBarVisibilityChangeRequested(bool)),
-            this, SLOT(menuBarVisibilityChangeRequestedCheck(bool)));
-    connect(webView->page(), SIGNAL(statusBarVisibilityChangeRequested(bool)),
-            this, SLOT(statusBarVisibilityChangeRequestedCheck(bool)));
-    connect(webView->page(), SIGNAL(toolBarVisibilityChangeRequested(bool)),
-            this, SLOT(toolBarVisibilityChangeRequestedCheck(bool)));
+    connect(webView->page(), &WebPage::windowCloseRequested, this, &TabWidget::windowCloseRequested);
+    connect(webView->page(), &WebPage::printRequested, this, &TabWidget::printRequested);
+    connect(webView->page(), &WebPage::geometryChangeRequested, this, &TabWidget::geometryChangeRequestedCheck);
+    connect(webView, &WebView::devToolsRequested, this, &TabWidget::devToolsRequested);
 
     WebViewWithSearch *webViewWithSearch = new WebViewWithSearch(webView, this);
     addTab(webViewWithSearch, tr("Untitled"));
@@ -436,32 +475,14 @@ WebView *TabWidget::makeNewTab(bool makeCurrent)
 
     if (count() == 1)
         currentChanged(currentIndex());
-    emit tabsChanged();
+    Q_EMIT tabsChanged();
     return webView;
 }
 
 void TabWidget::geometryChangeRequestedCheck(const QRect &geometry)
 {
     if (count() == 1)
-        emit geometryChangeRequested(geometry);
-}
-
-void TabWidget::menuBarVisibilityChangeRequestedCheck(bool visible)
-{
-    if (count() == 1)
-        emit menuBarVisibilityChangeRequested(visible);
-}
-
-void TabWidget::statusBarVisibilityChangeRequestedCheck(bool visible)
-{
-    if (count() == 1)
-        emit statusBarVisibilityChangeRequested(visible);
-}
-
-void TabWidget::toolBarVisibilityChangeRequestedCheck(bool visible)
-{
-    if (count() == 1)
-        emit toolBarVisibilityChangeRequested(visible);
+        Q_EMIT geometryChangeRequested(geometry);
 }
 
 void TabWidget::reloadAllTabs()
@@ -558,8 +579,17 @@ void TabWidget::closeTab(int index)
 
     bool hasFocus = false;
     WebView *tab = webView(index);
+    hasFocus = tab->hasFocus();
+
+    if (m_profile == QWebEngineProfile::defaultProfile()) {
+        m_recentlyClosedTabsAction->setEnabled(true);
+        m_recentlyClosedTabs.prepend(tab->url());
+        if (m_recentlyClosedTabs.size() >= TabWidget::m_recentlyClosedTabsSize)
+            m_recentlyClosedTabs.removeLast();
+    }
 
     if (tab && !tab->url().isEmpty()) {
+        /*
         if (tab->isModified()) {
             QMessageBox closeConfirmation(tab);
             closeConfirmation.setWindowFlags(Qt::Sheet);
@@ -573,6 +603,7 @@ void TabWidget::closeTab(int index)
             if (closeConfirmation.exec() == QMessageBox::No)
                 return;
         }
+        */
         hasFocus = tab->hasFocus();
 
         m_recentlyClosedTabsAction->setEnabled(true);
@@ -590,32 +621,60 @@ void TabWidget::closeTab(int index)
 
     QWidget *webViewWithSearch = widget(index);
     removeTab(index);
-    webViewWithSearch->setParent(0);
+    webViewWithSearch->setParent(nullptr);
     webViewWithSearch->deleteLater();
 
-    emit tabsChanged();
+    Q_EMIT tabsChanged();
     if (hasFocus && count() > 0 && currentWebView())
         currentWebView()->setFocus();
     if (count() == 0)
-        emit lastTabClosed();
+        Q_EMIT lastTabClosed();
+}
+
+void TabWidget::setProfile(QWebEngineProfile *profile)
+{
+    m_profile = profile;
+    for (int i = 0; i < count(); ++i) {
+        QWidget *tabWidget = widget(i);
+        if (WebView *tab = qobject_cast<WebView*>(tabWidget)) {
+            WebPage* webPage = new WebPage(m_profile, tab);
+            setupPage(webPage);
+            webPage->load(tab->page()->url());
+            tab->setPage(webPage);
+        }
+    }
+}
+
+void TabWidget::setupPage(QWebEnginePage* page)
+{
+    connect(page, &QWebEnginePage::windowCloseRequested,
+            this, &TabWidget::windowCloseRequested);
+    connect(page, &QWebEnginePage::geometryChangeRequested,
+            this, &TabWidget::geometryChangeRequested);
+
+    // webview actions
+    for (int i = 0; i < m_actions.count(); ++i) {
+        WebActionMapper *mapper = m_actions[i];
+        mapper->addChild(page->action(mapper->webAction()));
+    }
 }
 
 QLabel *TabWidget::animationLabel(int index, bool addMovie)
 {
     if (-1 == index)
-        return 0;
+        return nullptr;
     QTabBar::ButtonPosition side = m_tabBar->freeSide();
     QLabel *loadingAnimation = qobject_cast<QLabel*>(m_tabBar->tabButton(index, side));
     if (!loadingAnimation) {
         loadingAnimation = new QLabel(this);
     }
     if (addMovie && !loadingAnimation->movie()) {
-        QMovie *movie = new QMovie(QLatin1String(":graphics/loading.gif"), QByteArray(), loadingAnimation);
+        QMovie *movie = new QMovie(QStringLiteral(":graphics/loading.gif"), QByteArray(), loadingAnimation);
         movie->setSpeed(50);
         loadingAnimation->setMovie(movie);
         movie->start();
     }
-    m_tabBar->setTabButton(index, side, 0);
+    m_tabBar->setTabButton(index, side, nullptr);
     m_tabBar->setTabButton(index, side, loadingAnimation);
     return loadingAnimation;
 }
@@ -633,7 +692,7 @@ void TabWidget::webViewLoadStarted()
     if (index != currentIndex())
         return;
 
-    emit showStatusBarMessage(tr("Loading..."));
+    Q_EMIT showStatusBarMessage(tr("Loading..."));
 }
 
 void TabWidget::webViewLoadProgress(int progress)
@@ -642,13 +701,14 @@ void TabWidget::webViewLoadProgress(int progress)
     int index = webViewIndex(webView);
 
     if (index != currentIndex()
-        || index < 0)
+            || index < 0)
         return;
 
-    double totalBytes = (double) webView->webPage()->totalBytes() / 1024;
+    //double totalBytes = (double) webView->webPage()->totalBytes() / 1024;
 
-    QString message = tr("Loading %1% (%2 %3)...").arg(progress).arg(totalBytes, 0, 'f', 2).arg(QLatin1String("kB"));
-    emit showStatusBarMessage(message);
+    //QString message = tr("Loading %1% (%2 %3)...").arg(progress).arg(totalBytes, 0, 'f', 2).arg(QStringLiteral("kB"));
+    QString message = tr("Loading ...");
+    Q_EMIT showStatusBarMessage(message);
 }
 
 void TabWidget::webViewLoadFinished(bool ok)
@@ -672,9 +732,9 @@ void TabWidget::webViewLoadFinished(bool ok)
         return;
 
     if (ok)
-        emit showStatusBarMessage(tr("Finished loading"));
+        Q_EMIT showStatusBarMessage(tr("Finished loading"));
     else
-        emit showStatusBarMessage(tr("Failed to load"));
+        Q_EMIT showStatusBarMessage(tr("Failed to load"));
 }
 
 void TabWidget::webViewIconChanged()
@@ -687,7 +747,7 @@ void TabWidget::webViewIconChanged()
         QLabel *label = animationLabel(index, false);
         QMovie *movie = label->movie();
         delete movie;
-        label->setMovie(0);
+        label->setMovie(nullptr);
         label->setPixmap(icon.pixmap(16, 16));
 #endif
     }
@@ -702,11 +762,11 @@ void TabWidget::webViewTitleChanged(const QString &title)
     QString tabTitle = title;
     if (title.isEmpty())
         tabTitle = QString::fromUtf8(webView->url().toEncoded());
-    tabTitle.replace(QLatin1Char('&'), QLatin1String("&&"));
+    tabTitle.replace(QChar('&'), QStringLiteral("&&"));
     setTabText(index, tabTitle);
     setTabToolTip(index, tabTitle);
     if (currentIndex() == index)
-        emit setCurrentTitle(title);
+        Q_EMIT setCurrentTitle(title);
     BrowserApplication::historyManager()->updateHistoryEntry(webView->url(), title);
 }
 
@@ -714,10 +774,13 @@ void TabWidget::webViewUrlChanged(const QUrl &url)
 {
     WebView *webView = qobject_cast<WebView*>(sender());
     int index = webViewIndex(webView);
-    if (-1 == index)
-        return;
-    m_tabBar->setTabData(index, url);
-    emit tabsChanged();
+    if (-1 != index) {
+        m_tabBar->setTabData(index, url);
+        HistoryManager *manager = BrowserApplication::historyManager();
+        if (url.isValid())
+            manager->addHistoryEntry(url.toString());
+    }
+    Q_EMIT tabsChanged();
 }
 
 void TabWidget::openLastTab()
@@ -807,9 +870,9 @@ QUrl TabWidget::guessUrlFromString(const QString &string)
 
     url = QUrl::fromUserInput(string);
 
-    if (url.scheme() == QLatin1String("about")
-        && url.path() == QLatin1String("home"))
-        url = QUrl(QLatin1String("qrc:/startpage.html"));
+    if (url.scheme() == QStringLiteral("about")
+            && url.path() == QStringLiteral("home"))
+        url = QUrl(QStringLiteral("endorphin://startpage"));
 
     // QUrl::isValid() is too much tolerant.
     // We actually want to check if the url conforms to the RFC, which QUrl::isValid() doesn't state.
@@ -817,13 +880,13 @@ QUrl TabWidget::guessUrlFromString(const QString &string)
         return url;
 
     QSettings settings;
-    settings.beginGroup(QLatin1String("urlloading"));
-    bool search = settings.value(QLatin1String("searchEngineFallback"), false).toBool();
+    settings.beginGroup(QStringLiteral("urlloading"));
+    bool search = settings.value(QStringLiteral("searchEngineFallback"), true).toBool();
 
     if (search) {
         url = ToolbarSearch::openSearchManager()->currentEngine()->searchUrl(string.trimmed());
     } else {
-        QString urlString = QLatin1String("http://") + string.trimmed();
+        QString urlString = QStringLiteral("http://") + string.trimmed();
         url = QUrl::fromEncoded(urlString.toUtf8(), QUrl::TolerantMode);
     }
 
@@ -850,14 +913,14 @@ void TabWidget::loadSettings()
     }
 
     QSettings settings;
-    settings.beginGroup(QLatin1String("tabs"));
-    bool newTabButtonInRightCorner = settings.value(QLatin1String("newTabButtonInRightCorner"), true).toBool();
+    settings.beginGroup(QStringLiteral("tabs"));
+    bool newTabButtonInRightCorner = settings.value(QStringLiteral("newTabButtonInRightCorner"), true).toBool();
 #ifndef Q_WS_MAC
     setCornerWidget(addTabButton, newTabButtonInRightCorner ? Qt::TopRightCorner : Qt::TopLeftCorner);
     addTabButton->show();
 #endif
 
-    bool oneCloseButton = settings.value(QLatin1String("oneCloseButton"), false).toBool();
+    bool oneCloseButton = settings.value(QStringLiteral("oneCloseButton"), false).toBool();
     if (oneCloseButton) {
         if (!closeTabButton) {
             closeTabButton = new QToolButton(this);
@@ -868,7 +931,7 @@ void TabWidget::loadSettings()
         setCornerWidget(closeTabButton, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
         closeTabButton->setVisible(oneCloseButton);
     } else {
-        setCornerWidget(0, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
+        setCornerWidget(nullptr, newTabButtonInRightCorner ? Qt::TopLeftCorner : Qt::TopRightCorner);
     }
     m_tabBar->setTabsClosable(!oneCloseButton);
 }
@@ -891,8 +954,8 @@ TabWidget::OpenUrlIn TabWidget::modifyWithUserBehavior(OpenUrlIn tab) {
             tab = NewWindow;
         } else {
             QSettings settings;
-            settings.beginGroup(QLatin1String("tabs"));
-            bool select = settings.value(QLatin1String("selectNewTabs"), false).toBool();
+            settings.beginGroup(QStringLiteral("tabs"));
+            bool select = settings.value(QStringLiteral("selectNewTabs"), false).toBool();
             if (modifiers & Qt::ShiftModifier)
                 tab = !select ? NewSelectedTab : NewNotSelectedTab;
             else
@@ -902,7 +965,7 @@ TabWidget::OpenUrlIn TabWidget::modifyWithUserBehavior(OpenUrlIn tab) {
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
     qDebug() << __FUNCTION__ << "end" << modifiers << buttons << tab;
 #endif
-    BrowserApplication::instance()->setEventKeyboardModifiers(0);
+    BrowserApplication::instance()->setEventKeyboardModifiers(Qt::NoModifier);
     BrowserApplication::instance()->setEventMouseButtons(Qt::NoButton);
     return tab;
 }
@@ -933,45 +996,45 @@ void TabWidget::loadUrl(const QUrl &url, OpenUrlIn tab, const QString &title)
  */
 WebView *TabWidget::getView(OpenUrlIn tab, WebView *currentView)
 {
-    WebView *webView = 0;
+    WebView *webView = nullptr;
     switch (tab) {
-        case NewWindow: {
+    case NewWindow: {
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
-            qDebug() << __FUNCTION__ << "NewWindow";
+        qDebug() << __FUNCTION__ << "NewWindow";
 #endif
-            BrowserMainWindow *newMainWindow = BrowserApplication::instance()->newMainWindow();
-            webView = newMainWindow->currentTab();
-            webView->setFocus();
-            break;
-        }
+        BrowserMainWindow *newMainWindow = BrowserApplication::instance()->newMainWindow();
+        webView = newMainWindow->currentTab();
+        webView->setFocus();
+        break;
+    }
 
-        case NewSelectedTab: {
+    case NewSelectedTab: {
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
-            qDebug() << __FUNCTION__ << "NewSelectedTab";
+        qDebug() << __FUNCTION__ << "NewSelectedTab";
 #endif
-            webView = makeNewTab(true);
-            webView->setFocus();
-            break;
-        }
+        webView = makeNewTab(true);
+        webView->setFocus();
+        break;
+    }
 
-        case NewNotSelectedTab: {
+    case NewNotSelectedTab: {
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
-            qDebug() << __FUNCTION__ << "NewNotSelectedTab";
+        qDebug() << __FUNCTION__ << "NewNotSelectedTab";
 #endif
-            webView = makeNewTab(false);
-            break;
-        }
+        webView = makeNewTab(false);
+        break;
+    }
 
-        case CurrentTab:
-        default:
+    case CurrentTab:
+    default:
 #ifdef USERMODIFIEDBEHAVIOR_DEBUG
-            qDebug() << __FUNCTION__ << "CurrentTab";
+        qDebug() << __FUNCTION__ << "CurrentTab";
 #endif
-            webView = currentView;
-            if (!webView)
-                return 0;
-            webView->setFocus();
-            break;
+        webView = currentView;
+        if (!webView)
+            return nullptr;
+        webView->setFocus();
+        break;
     }
     return webView;
 }
@@ -1075,3 +1138,19 @@ void TabWidget::createTab(const QByteArray &historyState, TabWidget::OpenUrlIn t
     }
 }
 
+void TabWidget::downloadRequested(QWebEngineDownloadItem *download)
+{
+    if (download->savePageFormat() != QWebEngineDownloadItem::UnknownSaveFormat) {
+        QString file = QDir::cleanPath(download->downloadDirectory() + QDir::separator() + download->downloadFileName());
+        SavePageDialog dlg(this, download->savePageFormat(), file);
+        if (dlg.exec() != SavePageDialog::Accepted)
+            return;
+        download->setSavePageFormat(dlg.pageFormat());
+        QFileInfo *info = new QFileInfo(dlg.filePath());
+        download->setDownloadFileName(info->fileName());
+        download->setDownloadDirectory(info->absolutePath());
+    }
+
+    BrowserApplication::downloadManager()->download(download);
+    download->accept();
+}

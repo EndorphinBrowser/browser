@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,17 +64,19 @@
 
 #include "autosaver.h"
 #include "history.h"
+#ifndef NO_BROWSERAPPLICATION
+#include "browserapplication.h"
+#endif
 
-#include <qbuffer.h>
-#include <qdesktopservices.h>
-#include <qdir.h>
-#include <qfile.h>
-#include <qsettings.h>
-#include <qtemporaryfile.h>
-#include <qwebhistoryinterface.h>
-#include <qwebsettings.h>
+#include <QBuffer>
+#include <QDesktopServices>
+#include <QDir>
+#include <QFile>
+#include <QSettings>
+#include <QTemporaryFile>
+#include <QWebEngineSettings>
 
-#include <qdebug.h>
+#include <QDebug>
 
 
 // Fix so we don't have to include browserapplication. Reduces the size.
@@ -85,7 +87,7 @@ QString  HistoryManager::dataFilePath(const QString &fileName)
         QDir dir;
         dir.mkpath(directory);
     }
-    return directory + QLatin1String("/") + fileName;
+    return directory + QStringLiteral("/") + fileName;
 }
 
 QString HistoryEntry::userTitle() const
@@ -103,12 +105,12 @@ QString HistoryEntry::userTitle() const
 static const unsigned int HISTORY_VERSION = 23;
 
 HistoryManager::HistoryManager(QObject *parent)
-    : QWebHistoryInterface(parent)
+    : QObject(parent)
     , m_saveTimer(new AutoSaver(this))
     , m_daysToExpire(30)
-    , m_historyModel(0)
-    , m_historyFilterModel(0)
-    , m_historyTreeModel(0)
+    , m_historyModel(nullptr)
+    , m_historyFilterModel(nullptr)
+    , m_historyTreeModel(nullptr)
 {
     m_expiredTimer.setSingleShot(true);
     connect(&m_expiredTimer, SIGNAL(timeout()),
@@ -122,9 +124,6 @@ HistoryManager::HistoryManager(QObject *parent)
     m_historyModel = new HistoryModel(this, this);
     m_historyFilterModel = new HistoryFilterModel(m_historyModel, this);
     m_historyTreeModel = new HistoryTreeModel(m_historyFilterModel, this);
-
-    // QWebHistoryInterface will delete the history manager
-    QWebHistoryInterface::setDefaultInterface(this);
 }
 
 HistoryManager::~HistoryManager()
@@ -147,16 +146,23 @@ bool HistoryManager::historyContains(const QString &url) const
 
 void HistoryManager::addHistoryEntry(const QString &url)
 {
+#ifndef NO_BROWSERAPPLICATION
+    if (BrowserApplication::instance()->isPrivate())
+        return;
+#endif
+
     QUrl cleanUrl(url);
     cleanUrl.setPassword(QString());
     cleanUrl.setHost(cleanUrl.host().toLower());
-    HistoryEntry item(atomicString(cleanUrl.toString()), QDateTime::currentDateTime());
-    prependHistoryEntry(item);
+    if(!cleanUrl.toString().toLower().contains("endorphinbrowser.gitlab.io/newTab/")) {
+        HistoryEntry item(atomicString(cleanUrl.toString()), QDateTime::currentDateTime());
+        prependHistoryEntry(item);
+    }
 }
 
 void HistoryManager::setHistory(const QList<HistoryEntry> &history, bool loadedAndSorted)
 {
-    emit historyGoingToChange();
+    Q_EMIT historyGoingToChange();
     m_history = history;
 
     // verify that it is sorted by date
@@ -171,7 +177,7 @@ void HistoryManager::setHistory(const QList<HistoryEntry> &history, bool loadedA
         m_lastSavedUrl.clear();
         m_saveTimer->changeOccurred();
     }
-    emit historyReset();
+    Q_EMIT historyReset();
 }
 
 HistoryModel *HistoryManager::historyModel() const
@@ -211,7 +217,7 @@ void HistoryManager::checkForExpired()
         HistoryEntry item = m_history.takeLast();
         // remove from saved file also
         m_lastSavedUrl.clear();
-        emit entryRemoved(item);
+        Q_EMIT entryRemoved(item);
     }
 
     if (nextTimeout > 0)
@@ -220,12 +226,14 @@ void HistoryManager::checkForExpired()
 
 void HistoryManager::prependHistoryEntry(const HistoryEntry &item)
 {
-    QWebSettings *globalSettings = QWebSettings::globalSettings();
-    if (globalSettings->testAttribute(QWebSettings::PrivateBrowsingEnabled))
+    /*
+    QWebEngineSettings *globalSettings = QWebEngineSettings::globalSettings();
+    if (globalSettings->testAttribute(QWebEngineSettings::PrivateBrowsingEnabled))
         return;
+    */
 
     m_history.prepend(item);
-    emit entryAdded(item);
+    Q_EMIT entryAdded(item);
     if (m_history.count() == 1)
         checkForExpired();
 }
@@ -238,7 +246,7 @@ void HistoryManager::updateHistoryEntry(const QUrl &url, const QString &title)
             m_saveTimer->changeOccurred();
             if (m_lastSavedUrl.isEmpty())
                 m_lastSavedUrl = m_history.at(i).url;
-            emit entryUpdated(i);
+            Q_EMIT entryUpdated(i);
             break;
         }
     }
@@ -248,14 +256,14 @@ void HistoryManager::removeHistoryEntry(const HistoryEntry &item)
 {
     m_lastSavedUrl.clear();
     m_history.removeOne(item);
-    emit entryRemoved(item);
+    Q_EMIT entryRemoved(item);
 }
 
 void HistoryManager::removeHistoryEntry(const QUrl &url, const QString &title)
 {
     for (int i = 0; i < m_history.count(); ++i) {
         if (url == m_history.at(i).url
-            && (title.isEmpty() || title == m_history.at(i).title)) {
+                && (title.isEmpty() || title == m_history.at(i).title)) {
             removeHistoryEntry(m_history.at(i));
             break;
         }
@@ -278,29 +286,29 @@ void HistoryManager::setDaysToExpire(int limit)
 
 void HistoryManager::clear()
 {
-    emit historyGoingToChange();
+    Q_EMIT historyGoingToChange();
     m_history.clear();
     m_atomicStringHash.clear();
     m_lastSavedUrl.clear();
     m_saveTimer->changeOccurred();
     m_saveTimer->saveIfNeccessary();
-    emit historyReset();
-    emit historyCleared();
+    Q_EMIT historyReset();
+    Q_EMIT historyCleared();
 }
 
 void HistoryManager::loadSettings()
 {
     // load settings
     QSettings settings;
-    settings.beginGroup(QLatin1String("history"));
-    m_daysToExpire = settings.value(QLatin1String("historyLimit"), 30).toInt();
+    settings.beginGroup(QStringLiteral("history"));
+    m_daysToExpire = settings.value(QStringLiteral("historyLimit"), 30).toInt();
 }
 
 void HistoryManager::load()
 {
     loadSettings();
 
-    QFile historyFile(HistoryManager::dataFilePath(QLatin1String("history")));
+    QFile historyFile(HistoryManager::dataFilePath(QStringLiteral("history")));
 
     if (!historyFile.exists())
         return;
@@ -374,8 +382,8 @@ QString HistoryManager::atomicString(const QString &string) {
 void HistoryManager::save()
 {
     QSettings settings;
-    settings.beginGroup(QLatin1String("history"));
-    settings.setValue(QLatin1String("historyLimit"), m_daysToExpire);
+    settings.beginGroup(QStringLiteral("history"));
+    settings.setValue(QStringLiteral("historyLimit"), m_daysToExpire);
 
     bool saveAll = m_lastSavedUrl.isEmpty();
     int first = m_history.count() - 1;
@@ -391,7 +399,7 @@ void HistoryManager::save()
     if (first == m_history.count() - 1)
         saveAll = true;
 
-    QFile historyFile(HistoryManager::dataFilePath(QLatin1String("history")));
+    QFile historyFile(HistoryManager::dataFilePath(QStringLiteral("history")));
 
     // When saving everything use a temporary file to prevent possible data loss.
     QTemporaryFile tempFile;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef SEARCHBUTTON_H
 #define SEARCHBUTTON_H
 
-#include <qabstractbutton.h>
+#include <QAbstractButton>
 
 class QCompleter;
 class SearchButton : public QAbstractButton
@@ -28,7 +28,7 @@ class SearchButton : public QAbstractButton
     Q_OBJECT
 
 public:
-    SearchButton(QWidget *parent = 0);
+    SearchButton(QWidget *parent = nullptr);
     void setImage(const QImage &image);
     void setShowMenuTriangle(bool show);
     bool showMenuTriangle() const;

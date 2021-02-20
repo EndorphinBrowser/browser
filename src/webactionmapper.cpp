@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,11 +62,11 @@
 
 #include "webactionmapper.h"
 
-#include <qaction.h>
+#include <QAction>
 
-WebActionMapper::WebActionMapper(QAction *root, QWebPage::WebAction webAction, QObject *parent)
+WebActionMapper::WebActionMapper(QAction *root, QWebEnginePage::WebAction webAction, QObject *parent)
     : QObject(parent)
-    , m_currentParent(0)
+    , m_currentParent(nullptr)
     , m_root(root)
     , m_webAction(webAction)
 {
@@ -79,12 +79,12 @@ WebActionMapper::WebActionMapper(QAction *root, QWebPage::WebAction webAction, Q
 
 void WebActionMapper::rootDestroyed()
 {
-    m_root = 0;
+    m_root = nullptr;
 }
 
 void WebActionMapper::currentDestroyed()
 {
-    updateCurrent(0);
+    updateCurrent(nullptr);
 }
 
 void WebActionMapper::addChild(QAction *action)
@@ -94,7 +94,7 @@ void WebActionMapper::addChild(QAction *action)
     connect(action, SIGNAL(changed()), this, SLOT(childChanged()));
 }
 
-QWebPage::WebAction WebActionMapper::webAction() const
+QWebEnginePage::WebAction WebActionMapper::webAction() const
 {
     return m_webAction;
 }
@@ -111,15 +111,15 @@ void WebActionMapper::childChanged()
 {
     if (QAction *source = qobject_cast<QAction*>(sender())) {
         if (m_root
-            && m_currentParent
-            && source->parent() == m_currentParent) {
+                && m_currentParent
+                && source->parent() == m_currentParent) {
             m_root->setChecked(source->isChecked());
             m_root->setEnabled(source->isEnabled());
         }
     }
 }
 
-void WebActionMapper::updateCurrent(QWebPage *currentParent)
+void WebActionMapper::updateCurrent(QWebEnginePage *currentParent)
 {
     if (m_currentParent)
         disconnect(m_currentParent, SIGNAL(destroyed(QObject *)),

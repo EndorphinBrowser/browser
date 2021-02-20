@@ -19,8 +19,8 @@
 
 #include "plaintexteditsearch.h"
 
-#include <qplaintextedit.h>
-#include <qtextcursor.h>
+#include <QPlainTextEdit>
+#include <QTextCursor>
 
 PlainTextEditSearch::PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget *parent)
     : SearchBar(parent)
@@ -31,7 +31,7 @@ PlainTextEditSearch::PlainTextEditSearch(QPlainTextEdit *plainTextEdit, QWidget 
 
 void PlainTextEditSearch::findNext()
 {
-    find(0);
+    find(QTextDocument::FindFlags());
 }
 
 void PlainTextEditSearch::findPrevious()

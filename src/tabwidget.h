@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,8 +65,8 @@
 
 #include <qtabwidget.h>
 
-#include <QtWebKitWidgets>
-#include <qurl.h>
+#include <QtWebEngineWidgets>
+#include <QUrl>
 
 QT_BEGIN_NAMESPACE
 class QCompleter;
@@ -82,7 +82,7 @@ class WebView;
 class WebActionMapper;
 class WebViewSearch;
 class QToolButton;
-
+class QWebEngineDownloadItem;
 /*!
     TabWidget that contains WebViews and a stack widget of associated line edits.
 
@@ -93,7 +93,7 @@ class TabWidget : public QTabWidget
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     // tab widget signals
     void tabsChanged();
     void lastTabClosed();
@@ -104,10 +104,8 @@ signals:
     void linkHovered(const QString &link);
     void loadProgress(int progress);
     void geometryChangeRequested(const QRect &geometry);
-    void menuBarVisibilityChangeRequested(bool visible);
-    void statusBarVisibilityChangeRequested(bool visible);
-    void toolBarVisibilityChangeRequested(bool visible);
-    void printRequested(QWebFrame *frame);
+    void printRequested();
+    void devToolsRequested(QWebEnginePage *source);
 
 public:
     enum OpenUrlIn {
@@ -119,12 +117,14 @@ public:
         NewTab = NewNotSelectedTab
     };
 
-    TabWidget(QWidget *parent = 0);
+    TabWidget(QWidget *parent = nullptr, QWebEngineProfile *profile = QWebEngineProfile::defaultProfile());
 
     void loadSettings();
-    TabBar *tabBar() { return m_tabBar; }
+    TabBar *tabBar() {
+        return m_tabBar;
+    }
     void clear();
-    void addWebAction(QAction *action, QWebPage::WebAction webAction);
+    void addWebAction(QAction *action, QWebEnginePage::WebAction webAction);
 
     QAction *newTabAction() const;
     QAction *closeTabAction() const;
@@ -148,10 +148,15 @@ public:
     static OpenUrlIn modifyWithUserBehavior(OpenUrlIn tab);
     WebView *getView(OpenUrlIn tab, WebView *currentView);
 
+    void setProfile(QWebEngineProfile *profile);
+
+    void initScripts();
+    QWebEngineProfile* profile();
+
 protected:
     void changeEvent(QEvent *event);
 
-public slots:
+public Q_SLOTS:
     void loadString(const QString &string, OpenUrlIn tab = CurrentTab);
     void loadUrlFromUser(const QUrl &url, const QString &title = QString());
     void loadUrl(const QUrl &url, TabWidget::OpenUrlIn tab = CurrentTab, const QString &title = QString());
@@ -166,7 +171,7 @@ public slots:
     void previousTab();
     void bookmarkTabs();
 
-private slots:
+private Q_SLOTS:
     void currentChanged(int index);
     void openLastTab();
     void aboutToShowRecentTabsMenu();
@@ -181,12 +186,12 @@ private slots:
     void windowCloseRequested();
     void moveTab(int fromIndex, int toIndex);
     void geometryChangeRequestedCheck(const QRect &geometry);
-    void menuBarVisibilityChangeRequestedCheck(bool visible);
-    void statusBarVisibilityChangeRequestedCheck(bool visible);
-    void toolBarVisibilityChangeRequestedCheck(bool visible);
     void historyCleared();
+    void downloadRequested(QWebEngineDownloadItem *download);
 
 private:
+    void setupPage(QWebEnginePage* page);
+
     static QUrl guessUrlFromString(const QString &url);
     QLabel *animationLabel(int index, bool addMovie);
     void retranslate();
@@ -209,6 +214,8 @@ private:
     TabBar *m_tabBar;
     QToolButton *addTabButton;
     QToolButton *closeTabButton;
+
+    QWebEngineProfile *m_profile;
 };
 
 #endif // TABWIDGET_H

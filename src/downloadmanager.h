@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2008 Jason A. Donenfeld <Jason@zx2c4.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -67,64 +67,54 @@
 #include "ui_downloads.h"
 #include "ui_downloaditem.h"
 
-#include <qnetworkreply.h>
+#include <QNetworkReply>
 
-#include <qfile.h>
-#include <qdatetime.h>
+#include <QFile>
+#include <QFileInfo>
+#include <QDateTime>
 #include <QElapsedTimer>
+#include <QWebEngineDownloadItem>
 
 class DownloadItem : public QWidget, public Ui_DownloadItem
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void statusChanged();
-    void progress(qint64 bytesReceived = 0, qint64 bytesTotal = 0);
     void downloadFinished();
 
 public:
-    DownloadItem(QNetworkReply *reply = 0, bool requestFileName = false, QWidget *parent = 0);
+    DownloadItem(QWebEngineDownloadItem *download, QWidget *parent = 0);
     bool downloading() const;
     bool downloadedSuccessfully() const;
 
-    qint64 bytesTotal() const;
-    qint64 bytesReceived() const;
-    double remainingTime() const;
-    double currentSpeed() const;
+    void init();
+    bool getFileName(bool promptForFileName = false);
 
-    QUrl m_url;
+    QFileInfo m_file;
 
-    QFile m_output;
-    QNetworkReply *m_reply;
-
-private slots:
+private Q_SLOTS:
     void stop();
     void tryAgain();
     void open();
 
-    void downloadReadyRead();
-    void error(QNetworkReply::NetworkError code);
-    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
-    void metaDataChanged();
+    void downloadProgress();
     void finished();
 
 private:
-    void getFileName();
-    void init();
+    friend class DownloadManager;
     void updateInfoLabel();
 
-    QString saveFileName(const QString &directory) const;
-
-    bool m_requestFileName;
+    QUrl m_url;
     qint64 m_bytesReceived;
     QElapsedTimer m_downloadTime;
-    bool m_startedSaving;
-    bool m_finishedDownloading;
-    bool m_gettingFileName;
-    bool m_canceledFileSelect;
+    bool m_stopped;
     QTime m_lastProgressTime;
 
+    QScopedPointer<QWebEngineDownloadItem> m_download;
     friend class DownloadManager;
+
+    static QString dataString(qint64 size);
 };
 
 class AutoSaver;
@@ -137,8 +127,7 @@ QT_END_NAMESPACE
 class DownloadManager : public QDialog, public Ui_DownloadDialog
 {
     Q_OBJECT
-    Q_PROPERTY(RemovePolicy removePolicy READ removePolicy WRITE setRemovePolicy)
-    Q_ENUMS(RemovePolicy)
+    Q_PROPERTY(RemovePolicy removePolicy READ removePolicy WRITE setRemovePolicy NOTIFY removePolicyChanged)
 
 public:
     enum RemovePolicy {
@@ -146,14 +135,16 @@ public:
         Exit,
         SuccessFullDownload
     };
+    Q_ENUM(RemovePolicy)
 
-    DownloadManager(QWidget *parent = 0);
+    DownloadManager(QWidget *parent = nullptr);
     ~DownloadManager();
     int activeDownloads() const;
     bool allowQuit();
 
     RemovePolicy removePolicy() const;
     void setRemovePolicy(RemovePolicy policy);
+    void removePolicyChanged(){};
 
     static QString timeString(double timeRemaining);
     static QString dataString(qint64 size);
@@ -161,14 +152,11 @@ public:
     void setDownloadDirectory(const QString &directory);
     QString downloadDirectory();
 
-public slots:
-    void download(const QNetworkRequest &request, bool requestFileName = false);
-    inline void download(const QUrl &url, bool requestFileName = false)
-        { download(QNetworkRequest(url), requestFileName); }
-    void handleUnsupportedContent(QNetworkReply *reply, bool requestFileName = false);
+public Q_SLOTS:
+    void download(QWebEngineDownloadItem *download);
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void save() const;
     void updateRow(DownloadItem *item);
     void updateRow();
@@ -183,7 +171,6 @@ private:
 
     AutoSaver *m_autoSaver;
     DownloadModel *m_model;
-    QNetworkAccessManager *m_manager;
     QFileIconProvider *m_iconProvider;
     QList<DownloadItem*> m_downloads;
     RemovePolicy m_removePolicy;
@@ -198,7 +185,7 @@ class DownloadModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    DownloadModel(DownloadManager *downloadManager, QObject *parent = 0);
+    DownloadModel(DownloadManager *downloadManager, QObject *parent = nullptr);
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());

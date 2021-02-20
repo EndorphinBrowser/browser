@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008 - 2009, Aaron Dewes  <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -9,7 +9,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Aaron Dewes nor the names of its contributors
+ * 3. Neither the name of Endorphin nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -29,12 +29,12 @@
 #include "lineedit.h"
 #include "lineedit_p.h"
 
-#include <qevent.h>
-#include <qlayout.h>
+#include <QEvent>
+#include <QLayout>
 #include <qstyleoption.h>
-#include <qpainter.h>
+#include <QPainter>
 
-#include <qdebug.h>
+#include <QDebug>
 
 SideWidget::SideWidget(QWidget *parent)
     : QWidget(parent)
@@ -44,24 +44,24 @@ SideWidget::SideWidget(QWidget *parent)
 bool SideWidget::event(QEvent *event)
 {
     if (event->type() == QEvent::LayoutRequest)
-        emit sizeHintChanged();
+        Q_EMIT sizeHintChanged();
     return QWidget::event(event);
 }
 
 LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
-    , m_leftLayout(0)
-    , m_rightLayout(0)
+    , m_leftLayout(nullptr)
+    , m_rightLayout(nullptr)
 {
     init();
 }
 
 LineEdit::LineEdit(const QString &contents, QWidget *parent)
     : QLineEdit(contents, parent)
-    , m_leftWidget(0)
-    , m_rightWidget(0)
-    , m_leftLayout(0)
-    , m_rightLayout(0)
+    , m_leftWidget(nullptr)
+    , m_rightWidget(nullptr)
+    , m_leftLayout(nullptr)
+    , m_rightLayout(nullptr)
 {
     init();
 }

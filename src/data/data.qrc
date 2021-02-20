@@ -2,11 +2,13 @@
 <qresource>
     <file>128x128/endorphin.png</file>
     <file>128x128/run.png</file>
+    <file>512x512/endorphin.png</file>
     <file>endorphin.svg</file>
     <file>defaultbookmarks.xbel</file>
+    <file>qwebchannel.js</file>
     <file>fetchLinks.js</file>
     <file>parseForms.js</file>
     <file>../../AUTHORS</file>
-    <file>../../LICENSE.GPL2</file>
+    <file>../../LICENSE</file>
 </qresource>
 </RCC>

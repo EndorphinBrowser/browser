@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,21 +22,21 @@
 #include <QtGui/QtGui>
 #include "downloadmanager.h"
 
-#define BIGFILE "http://10.0.0.3/~ben/distccKNOPPIX-1.3-2004-08-20-gcc-3.3.iso"
-#define BIGFILENAME "distccKNOPPIX-1.3-2004-08-20-gcc-3.3.iso"
-#define BIGFILENAME2 "distccKNOPPIX-1.3-2004-08-20-gcc-3.3-1.iso"
+#define BIGFILE "http://ftp.uni-kl.de/pub/linux/knoppix/KNOPPIX_V7.2.0CD-2013-06-16-DE.iso"
+#define BIGFILENAME "KNOPPIX_V7.2.0CD-2013-06-16-DE.iso"
+#define BIGFILENAME2 "KNOPPIX_V7.2.0CD-2013-06-16-DE.iso"
 
 class tst_DownloadManager : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void downloadmanager_data();
     void downloadmanager();
     void cleanupButton_data();

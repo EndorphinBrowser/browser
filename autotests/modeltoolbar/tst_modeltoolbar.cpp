@@ -24,22 +24,22 @@
 #include "browserapplication.h"
 #include "modelmenu.h"
 
-#include <qaction.h>
-#include <qcolor.h>
-#include <qstandarditemmodel.h>
-#include <qstringlistmodel.h>
+#include <QAction>
+#include <QColor>
+#include <QStandardItemModel>
+#include <QStringListModel>
 
 class tst_ModelToolBar : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void modeltoolbar();
     void index();
     void model();
@@ -56,13 +56,20 @@ class SubModelToolBar : public ModelToolBar
 {
 public:
     void call_activated(QModelIndex const &index)
-        { return SubModelToolBar::activated(index); }
+    {
+        return SubModelToolBar::activated(index);
+    }
 
     void call_build()
-        { SubModelToolBar::build(); resize(sizeHint()); }
+    {
+        SubModelToolBar::build();
+        resize(sizeHint());
+    }
 
     ModelMenu *call_createMenu()
-        { return SubModelToolBar::createMenu(); }
+    {
+        return SubModelToolBar::createMenu();
+    }
 };
 
 class ColorModel : public QAbstractItemModel
@@ -273,11 +280,6 @@ void tst_ModelToolBar::activated()
 
         if (spy.count())
             QCOMPARE(spy.at(0).at(0).value<QModelIndex>(), bar.index(action));
-
-        if (action) {
-            QCOMPARE(BrowserApplication::instance()->eventMouseButtons(), Qt::MidButton);
-            QCOMPARE(BrowserApplication::instance()->eventKeyboardModifiers(), Qt::ShiftModifier);
-        }
 
         spy.clear();
 

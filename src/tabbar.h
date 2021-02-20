@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@
 #ifndef TABBAR_H
 #define TABBAR_H
 
-#include <qtabbar.h>
+#include <QTabBar>
 
 #include "tabwidget.h"
 
@@ -74,7 +74,7 @@ class TabBar : public QTabBar
 {
     Q_OBJECT
 
-signals:
+Q_SIGNALS:
     void newTab();
     void cloneTab(int index);
     void closeTab(int index);
@@ -84,12 +84,13 @@ signals:
     void loadUrl(const QUrl &url, TabWidget::OpenUrlIn tab);
 
 public:
-    TabBar(QWidget *parent = 0);
+    TabBar(QWidget *parent = nullptr);
 
     bool showTabBarWhenOneTab() const;
     void setShowTabBarWhenOneTab(bool enabled);
     QAction *viewTabBarAction() const;
     QTabBar::ButtonPosition freeSide();
+    void wheelEvent(QWheelEvent *event) override;
 
 protected:
     void mouseDoubleClickEvent(QMouseEvent *event);
@@ -102,7 +103,7 @@ protected:
     void tabInserted(int position);
     void tabRemoved(int position);
 
-private slots:
+private Q_SLOTS:
     void selectTabAction();
     void cloneTab();
     void closeTab();
@@ -122,7 +123,7 @@ private:
 };
 
 
-#include <qshortcut.h>
+#include <QShortcut>
 
 /*
      Shortcut to switch directly to a tab by index

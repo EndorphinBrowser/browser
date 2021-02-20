@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef SEARCHBAR_H
 #define SEARCHBAR_H
 
-#include <qwidget.h>
+#include <QWidget>
 
 #include "ui_searchbanner.h"
 
@@ -33,11 +33,11 @@ class SearchBar : public QWidget
     Q_OBJECT
 
 public:
-    SearchBar(QWidget *parent = 0);
+    SearchBar(QWidget *parent = nullptr);
     void setSearchObject(QObject *object);
     QObject *searchObject() const;
 
-public slots:
+public Q_SLOTS:
     void animateHide();
     void clear();
     void showFind();
@@ -48,7 +48,7 @@ protected:
     void resizeEvent(QResizeEvent *event);
     Ui_SearchBanner ui;
 
-private slots:
+private Q_SLOTS:
     void frameChanged(int frame);
 
 private:

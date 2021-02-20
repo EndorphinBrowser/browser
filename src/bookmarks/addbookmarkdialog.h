@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2009 Jakub Wieczorek <faw217@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -66,14 +66,14 @@
 
 #include "ui_addbookmarkdialog.h"
 
-#include <qsortfilterproxymodel.h>
+#include <QSortFilterProxyModel>
 
 class AddBookmarkProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    AddBookmarkProxyModel(QObject *parent = 0);
+    AddBookmarkProxyModel(QObject *parent = nullptr);
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
 protected:
@@ -88,7 +88,7 @@ class AddBookmarkDialog : public QDialog, public Ui_AddBookmarkDialog
     Q_OBJECT
 
 public:
-    AddBookmarkDialog(QWidget *parent = 0, BookmarksManager *bookmarksManager = 0);
+    AddBookmarkDialog(QWidget *parent = nullptr, BookmarksManager *bookmarksManager = nullptr);
 
     void setUrl(const QString &url);
     QString url() const;
@@ -104,7 +104,7 @@ public:
 
     BookmarkNode *addedNode() const;
 
-private slots:
+private Q_SLOTS:
     void accept();
 
 private:

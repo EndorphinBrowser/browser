@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  * Copyright 2008 Ariya Hidayat <ariya.hidayat@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -64,23 +64,26 @@
 #ifndef WEBVIEW_H
 #define WEBVIEW_H
 
-#include <qwebview.h>
+#include <QWebEngineView>
 
 #include "tabwidget.h"
 
-#include <qwebelement.h>
 class QLabel;
 
 class BrowserMainWindow;
 class TabWidget;
 class WebPage;
-class WebView : public QWebView
+//class QWebElement;
+class WebView : public QWebEngineView
 {
     Q_OBJECT
 
 public:
-    WebView(QWidget *parent = 0);
-    WebPage *webPage() const { return m_page; }
+    WebView(QWidget *parent = nullptr);
+    void setPage(WebPage *page);
+    WebPage *webPage() const {
+        return m_page;
+    }
 
     void loadSettings();
 
@@ -91,13 +94,18 @@ public:
     QUrl url() const;
 
     QString lastStatusBarText() const;
-    inline int progress() const { return m_progress; }
+    inline int progress() const {
+        return m_progress;
+    }
     TabWidget *tabWidget() const;
+    void ranJavaScript();
 
-signals:
+Q_SIGNALS:
     void search(const QUrl &searchUrl, TabWidget::OpenUrlIn openIn);
+    void notifyRanJavaScript();
+    void devToolsRequested(QWebEnginePage *source);
 
-public slots:
+public Q_SLOTS:
     void zoomIn();
     void zoomOut();
     void resetZoom();
@@ -117,11 +125,11 @@ protected:
 private:
     int levelForZoom(int zoom);
 
-private slots:
+private Q_SLOTS:
     void setProgress(int progress);
-    void loadFinished();
+    void loadFinished(bool success);
     void setStatusBarText(const QString &string);
-    void downloadRequested(const QNetworkRequest &request);
+    void downloadRequested(QWebEngineDownloadItem *download);
     void openActionUrlInNewTab();
     void openActionUrlInNewWindow();
     void downloadLinkToDisk();
@@ -130,12 +138,11 @@ private slots:
     void downloadImageToDisk();
     void copyImageToClipboard();
     void copyImageLocationToClipboard();
-    void blockImage();
     void bookmarkLink();
     void searchRequested(QAction *action);
-    void addSearchEngine();
-    void hideAccessKeys();
-    void accessKeyShortcut();
+//    void addSearchEngine();
+//    void hideAccessKeys();
+//    void accessKeyShortcut();
 
 private:
     QString m_statusBarText;
@@ -145,13 +152,15 @@ private:
     QList<int> m_zoomLevels;
     WebPage *m_page;
 
-    bool m_enableAccessKeys;
-    bool checkForAccessKey(QKeyEvent *event);
-    void showAccessKeys();
-    void makeAccessKeyLabel(const QChar &accessKey, const QWebElement &element);
-    QList<QLabel*> m_accessKeyLabels;
-    QHash<QChar, QWebElement> m_accessKeyNodes;
-    bool m_accessKeysPressed;
+    void onFeaturePermissionRequested(const QUrl &securityOrigin, QWebEnginePage::Feature);
+
+    //bool m_enableAccessKeys;
+    //bool checkForAccessKey(QKeyEvent *event);
+    //void showAccessKeys();
+    //void makeAccessKeyLabel(const QChar &accessKey, const QWebElement &element);
+    //QList<QLabel*> m_accessKeyLabels;
+    //QHash<QChar, QWebElement> m_accessKeyNodes;
+    //bool m_accessKeysPressed;
 };
 
 #endif

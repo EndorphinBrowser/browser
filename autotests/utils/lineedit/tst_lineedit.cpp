@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,19 +20,19 @@
 #include <qtest.h>
 
 #include <lineedit.h>
-#include <qtoolbutton.h>
+#include <QToolButton>
 
 class tst_LineEdit : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
 
-private slots:
+private Q_SLOTS:
     void lineedit_data();
     void lineedit();
 
@@ -52,7 +52,9 @@ class SubLineEdit : public LineEdit
 {
 public:
     void call_resizeEvent(QResizeEvent *event)
-        { return SubLineEdit::resizeEvent(event); }
+    {
+        return SubLineEdit::resizeEvent(event);
+    }
 };
 
 // This will be called before the first test function is executed.
@@ -182,7 +184,7 @@ void tst_LineEdit::textMargin()
 void tst_LineEdit::inactiveText_data()
 {
     QTest::addColumn<QString>("inactiveText");
-    QTest::newRow("foo") << QString("foo");
+    QTest::newRow("foo") << QStringLiteral("foo");
 }
 
 // public QString inactiveText() const

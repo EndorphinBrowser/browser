@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,23 +17,24 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include <Qt>
-#include <QtNetwork/QtNetwork>
-#include <QtGui/QtGui>
+#include <QtNetwork>
+#include <QtGui>
 
 class NetworkDiskCache : public QNetworkDiskCache
 {
 public:
     QNetworkCacheMetaData _fileMetaData(const QString &fileName)
-        { return fileMetaData(fileName); }
+    {
+        return fileMetaData(fileName);
+    }
 
 };
 
 int main(int argc, char **argv)
 {
     QCoreApplication application(argc, argv);
-    QCoreApplication::setOrganizationDomain(QLatin1String("aarondewes.github.io/endorphin/"));
-    QCoreApplication::setApplicationName(QLatin1String("Endorphin"));
+    QCoreApplication::setOrganizationDomain(QStringLiteral("EndorphinBrowser.gitlab.io/"));
+    QCoreApplication::setApplicationName(QStringLiteral("Endorphin"));
 
     QStringList args = application.arguments();
     args.takeFirst();
@@ -45,7 +46,7 @@ int main(int argc, char **argv)
     }
 
     NetworkDiskCache diskCache;
-    QString location = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/browser/");
+    QString location = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QStringLiteral("/browser/");
     diskCache.setCacheDirectory(location);
 
     QNetworkCacheMetaData metaData;
@@ -59,8 +60,8 @@ int main(int argc, char **argv)
     }
 
     if (!args.isEmpty()
-        && args.count() >= 1
-        && args.first() == QLatin1String("-o")) {
+            && args.count() >= 1
+            && args.first() == QStringLiteral("-o")) {
         QUrl url = metaData.url();
         QIODevice *device = diskCache.data(url);
         if (!device) {
@@ -97,7 +98,7 @@ int main(int argc, char **argv)
     stream << "Last Modified Date: " << metaData.lastModified().toString() << Qt::endl;
     stream << "Save to disk: " << metaData.saveToDisk() << Qt::endl;
     stream << "Headers:" << Qt::endl;
-    foreach (const QNetworkCacheMetaData::RawHeader &header, metaData.rawHeaders())
+    Q_FOREACH (const QNetworkCacheMetaData::RawHeader &header, metaData.rawHeaders())
         stream << "\t" << header.first << ": " << header.second << Qt::endl;
     QIODevice *device = diskCache.data(metaData.url());
     if (device) {

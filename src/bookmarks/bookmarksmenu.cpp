@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Aaron Dewes <aaron.dewes@web.de>
+ * Copyright 2020 Aaron Dewes <aaron.dewes@web.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,13 @@
 #include "bookmarknode.h"
 #include "bookmarksmanager.h"
 #include "bookmarksmodel.h"
+#ifndef NO_BROWSERAPPLICATION
 #include "browserapplication.h"
+#else
+#ifdef FOR_AUTOTEST
+#include "tst_addbookmarkdialog.h"
+#endif
+#endif
 
 BookmarksMenu::BookmarksMenu(QWidget *parent)
     : ModelMenu(parent)
@@ -86,7 +92,7 @@ ModelMenu *BookmarksMenu::createBaseMenu()
 
 void BookmarksMenu::activated(const QModelIndex &index)
 {
-    emit openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
+    Q_EMIT openUrl(index.data(BookmarksModel::UrlRole).toUrl(),
                  index.data(Qt::DisplayRole).toString());
 }
 
@@ -133,7 +139,7 @@ void BookmarksMenu::openAll()
 
         TabWidget::OpenUrlIn tab;
         tab = (i == 0) ? TabWidget::CurrentTab : TabWidget::NewTab;
-        emit openUrl(child.data(BookmarksModel::UrlRole).toUrl(),
+        Q_EMIT openUrl(child.data(BookmarksModel::UrlRole).toUrl(),
                      tab,
                      child.data(Qt::DisplayRole).toString());
     }
@@ -141,13 +147,21 @@ void BookmarksMenu::openAll()
 
 BookmarksMenuBarMenu::BookmarksMenuBarMenu(QWidget *parent)
     : BookmarksMenu(parent)
-    , m_bookmarksManager(0)
+    , m_bookmarksManager(nullptr)
 {
 }
 
 bool BookmarksMenuBarMenu::prePopulated()
 {
+#ifndef NO_BROWSERAPPLICATION
     m_bookmarksManager = BrowserApplication::bookmarksManager();
+#else
+#ifdef FOR_AUTOTEST
+    m_bookmarksManager = tst_AddBookmarkDialog::bookmarksManager();
+#else
+#error "Nothing provides a bookmarksmanager"
+#endif
+#endif
     setModel(m_bookmarksManager->bookmarksModel());
     setRootIndex(m_bookmarksManager->bookmarksModel()->index(m_bookmarksManager->menu()));
     // initial actions

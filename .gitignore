@@ -20,3 +20,4 @@ ms_print.*
 doc/
 .qmake.stash
 build
+.vscode
