@@ -79,6 +79,7 @@
 
 #include <qdialog.h>
 #include <qmessagebox.h>
+#include <qcheckbox.h>
 #include <qsettings.h>
 #include <qstyle.h>
 #include <qtextdocument.h>
@@ -162,17 +163,6 @@ void NetworkAccessManager::loadSettings()
     setProxyFactory(proxyFactory);
     settings.endGroup();
 
-#ifndef QT_NO_OPENSSL
-    QSslConfiguration sslCfg = QSslConfiguration::defaultConfiguration();
-    sslCfg.setCaCertificates(sslCfg.systemCaCertificates());
-    QList<QSslCertificate> ca_list = sslCfg.caCertificates();
-    QList<QSslCertificate> ca_new = QSslCertificate::fromData(settings.value(QLatin1String("CaCertificates")).toByteArray());
-    ca_list += ca_new;
-    sslCfg.setCaCertificates(ca_list);
-    sslCfg.setProtocol(QSsl::AnyProtocol);
-    QSslConfiguration::setDefaultConfiguration(sslCfg);
-#endif
-
     settings.beginGroup(QLatin1String("network"));
     QStringList acceptList = settings.value(QLatin1String("acceptLanguages"),
             AcceptLanguageDialog::defaultAcceptList()).toStringList();
@@ -249,32 +239,6 @@ void NetworkAccessManager::proxyAuthenticationRequired(const QNetworkProxy &prox
 }
 
 #ifndef QT_NO_OPENSSL
-QString NetworkAccessManager::certToFormattedString(QSslCertificate cert)
-{
-    QStringList message;
-    message << cert.subjectInfo(QSslCertificate::CommonName);
-    foreach (QString issuer, cert.issuerInfo(QSslCertificate::CommonName)) {
-        message << tr("Issuer: %1").arg(issuer.toHtmlEscaped());
-    }
-    message << tr("Not valid before: %1").arg(cert.effectiveDate().toString());
-    message << tr("Valid until: %1").arg(cert.expiryDate().toString());
-
-    QMultiMap<QSsl::AlternativeNameEntryType, QString> names = cert.subjectAlternativeNames();
-    if (names.count() > 0) {
-        QString list;
-        list += QLatin1String("<br />");
-        list += tr("Alternate Names:");
-        list += QLatin1String("<ul><li>");
-        list += QStringList(names.values(QSsl::DnsEntry)).join(QLatin1String("</li><li>"));
-        list += QLatin1String("</li></ul>");
-        message << list;
-    }
-
-    QString result = QLatin1String("<p>") + message.join(QLatin1String("<br />")) + QLatin1String("</p>");
-
-    return result;
-}
-
 void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError> &error)
 {
 #ifdef NETWORKACCESSMANAGER_DEBUG
@@ -283,16 +247,25 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
     BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
 
     QSettings settings;
+    settings.beginGroup(QLatin1String("knownhosts"));
+    settings.beginGroup(reply->url().host());
+
     QList<QSslCertificate> ca_merge = QSslCertificate::fromData(settings.value(QLatin1String("CaCertificates")).toByteArray());
 
     QList<QSslCertificate> ca_new;
     QStringList errorStrings;
+    QString detailedText;
     for (int i = 0; i < error.count(); ++i) {
-        if (ca_merge.contains(error.at(i).certificate()))
+        QSslCertificate const cert = error.at(i).certificate();
+        if (ca_merge.contains(cert))
             continue;
         errorStrings += error.at(i).errorString();
-        if (!error.at(i).certificate().isNull()) {
-            ca_new.append(error.at(i).certificate());
+        if (!cert.isNull()) {
+            ca_new.append(cert);
+            detailedText += QLatin1String("Thumbprint: ");
+            detailedText += cert.digest(QCryptographicHash::Sha1).toHex().toUpper();
+            detailedText += QLatin1String("\n");
+            detailedText += cert.toText();
         }
     }
     if (errorStrings.isEmpty()) {
@@ -301,37 +274,24 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
     }
 
     QString errors = errorStrings.join(QLatin1String("</li><li>"));
-    int ret = QMessageBox::warning(mainWindow,
+    QMessageBox msgbox(QMessageBox::Warning,
                            QCoreApplication::applicationName() + tr(" - SSL Errors"),
                            tr("<qt>SSL Errors:"
                               "<br/><br/>for: <tt>%1</tt>"
                               "<ul><li>%2</li></ul>\n\n"
                               "Do you want to ignore these errors?</qt>").arg(reply->url().toString()).arg(errors),
                            QMessageBox::Yes | QMessageBox::No,
-                           QMessageBox::No);
-
+                           mainWindow);
+    msgbox.setDefaultButton(QMessageBox::No);
+    msgbox.setDetailedText(detailedText);
+    msgbox.setStyleSheet("QTextEdit{min-width: 620px;}");
+    msgbox.setCheckBox(new QCheckBox(tr("Import certificate to trust list")));
+    msgbox.checkBox()->setDisabled(ca_new.count() == 0);
+    int ret = msgbox.exec();
     if (ret == QMessageBox::Yes) {
         if (ca_new.count() > 0) {
-            QStringList certinfos;
-            for (int i = 0; i < ca_new.count(); ++i)
-                certinfos += certToFormattedString(ca_new.at(i));
-            ret = QMessageBox::question(mainWindow, QCoreApplication::applicationName(),
-                tr("<qt>Certificates:<br/>"
-                   "%1<br/>"
-                   "Do you want to accept all these certificates?</qt>")
-                    .arg(certinfos.join(QString())),
-                QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
-            if (ret == QMessageBox::Yes) {
+             if (msgbox.checkBox()->isChecked()) {
                 ca_merge += ca_new;
-
-                QSslConfiguration sslCfg = QSslConfiguration::defaultConfiguration();
-                QList<QSslCertificate> ca_list = sslCfg.caCertificates();
-                ca_list += ca_new;
-                sslCfg.setCaCertificates(ca_list);
-                sslCfg.setProtocol(QSsl::AnyProtocol);
-                QSslConfiguration::setDefaultConfiguration(sslCfg);
-                reply->setSslConfiguration(sslCfg);
-
                 QByteArray pems;
                 for (int i = 0; i < ca_merge.count(); ++i)
                     pems += ca_merge.at(i).toPem() + '\n';
