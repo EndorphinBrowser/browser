@@ -88,6 +88,7 @@
 #include <qsslconfiguration.h>
 #include <qsslerror.h>
 #include <qdatetime.h>
+#include <qstandardpaths.h>
 
 // #define NETWORKACCESSMANAGER_DEBUG
 
@@ -246,8 +247,13 @@ void NetworkAccessManager::sslErrors(QNetworkReply *reply, const QList<QSslError
 #endif
     BrowserMainWindow *mainWindow = BrowserApplication::instance()->mainWindow();
 
+#ifdef _WIN32_WCE
+    QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/knownhosts.ini", QSettings::IniFormat);
+#else
     QSettings settings;
     settings.beginGroup(QLatin1String("knownhosts"));
+#endif
+
     settings.beginGroup(reply->url().host());
 
     QList<QSslCertificate> ca_merge = QSslCertificate::fromData(settings.value(QLatin1String("CaCertificates")).toByteArray());
