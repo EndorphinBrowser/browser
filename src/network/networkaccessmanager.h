@@ -102,10 +102,6 @@ private slots:
     void privacyChanged(bool isPrivate);
 
 private:
-#ifndef QT_NO_OPENSSL
-    static QString certToFormattedString(QSslCertificate cert);
-#endif
-
     QByteArray m_acceptLanguage;
     QHash<QString, SchemeAccessHandler*> m_schemeHandlers;
 
