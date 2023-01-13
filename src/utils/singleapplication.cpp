@@ -143,23 +143,15 @@ QString SingleApplication::serverName() const
 #endif
 #ifndef Q_OS_WIN
     serverName += QString(QLatin1String("_%1_%2")).arg(getuid()).arg(getgid());
-#else
+#elif !defined(_WIN32_WCE)
     static QString login;
     if (login.isEmpty()) {
-        QT_WA({
-            wchar_t buffer[256];
-            DWORD bufferSize = sizeof(buffer) / sizeof(wchar_t) - 1;
-            GetUserNameW(buffer, &bufferSize);
-            login = QString::fromUtf16((ushort*)buffer);
-        },
-        {
-            char buffer[256];
-            DWORD bufferSize = sizeof(buffer) / sizeof(char) - 1;
-            GetUserNameA(buffer, &bufferSize);
-            login = QString::fromLocal8Bit(buffer);
-        });
+        wchar_t buffer[256];
+        DWORD bufferSize = sizeof(buffer) / sizeof(wchar_t) - 1;
+        GetUserNameW(buffer, &bufferSize);
+        login = QString::fromUtf16((ushort*)buffer);
     }
-    serverName += QString::fromAscii("_%1").arg(login);
+    serverName += QString::fromLatin1("_%1").arg(login);
 #endif
     return serverName;
 }
