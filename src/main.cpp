@@ -19,10 +19,6 @@
 
 #include "browserapplication.h"
 
-#ifdef Q_OS_WIN
-#include "explorerstyle.h"
-#endif
-
 int main(int argc, char **argv)
 {
     Q_INIT_RESOURCE(htmls);
